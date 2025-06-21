@@ -1,9 +1,9 @@
-import React from 'react';
-import SEO from '../components/common/SEO';
-import PageTransition from '../components/common/PageTransition';
-import AnimatedSection from '../components/common/AnimatedSection';
-import { motion } from 'framer-motion';
-import { Users, Target, Award, Globe, Code, Heart } from 'lucide-react';
+import React from "react";
+import SEO from "../components/common/SEO";
+import PageTransition from "../components/common/PageTransition";
+import AnimatedSection from "../components/common/AnimatedSection";
+import { motion } from "framer-motion";
+import { Users, Target, Award, Globe, Code, Heart } from "lucide-react";
 
 const AboutPage: React.FC = () => {
   const founders = [
@@ -11,54 +11,62 @@ const AboutPage: React.FC = () => {
       name: "Zia Hussain",
       role: "Co-Founder & Lead Developer",
       bio: "Full-stack developer with 5+ years of experience building scalable web applications. Passionate about clean code and user-centric design.",
-      image: "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=400",
-      skills: ["React", "Node.js", "TypeScript", "AWS"]
+      image:
+        "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=400",
+      skills: ["React", "Node.js", "TypeScript", "AWS"],
     },
     {
       name: "Umer Gillani",
       role: "Co-Founder & Technical Architect",
       bio: "Systems architect and backend specialist with expertise in building robust, high-performance applications that scale with business growth.",
-      image: "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=400",
-      skills: ["Python", "PostgreSQL", "Docker", "Microservices"]
-    }
+      image:
+        "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=400",
+      skills: ["Python", "PostgreSQL", "Docker", "Microservices"],
+    },
   ];
 
   const values = [
     {
       icon: Target,
       title: "Precision",
-      description: "Every line of code, every pixel, every interaction is crafted with meticulous attention to detail and purpose."
+      description:
+        "Every line of code, every pixel, every interaction is crafted with meticulous attention to detail and purpose.",
     },
     {
       icon: Users,
       title: "Partnership",
-      description: "We work alongside you as true partners, not just vendors, to achieve your business objectives and vision."
+      description:
+        "We work alongside you as true partners, not just vendors, to achieve your business objectives and vision.",
     },
     {
       icon: Award,
       title: "Excellence",
-      description: "We set the highest standards for ourselves and deliver solutions that exceed expectations every time."
+      description:
+        "We set the highest standards for ourselves and deliver solutions that exceed expectations every time.",
     },
     {
       icon: Globe,
       title: "Innovation",
-      description: "We leverage cutting-edge technologies and methodologies to build solutions that give you a competitive advantage."
+      description:
+        "We leverage cutting-edge technologies and methodologies to build solutions that give you a competitive advantage.",
     },
     {
       icon: Code,
       title: "Quality",
-      description: "Clean, maintainable, and scalable code is at the heart of everything we build for long-term success."
+      description:
+        "Clean, maintainable, and scalable code is at the heart of everything we build for long-term success.",
     },
     {
       icon: Heart,
       title: "Passion",
-      description: "We genuinely love what we do, and that passion shows in the quality and care we put into every project."
-    }
+      description:
+        "We genuinely love what we do, and that passion shows in the quality and care we put into every project.",
+    },
   ];
 
   return (
     <PageTransition>
-      <SEO 
+      <SEO
         title="About Us - Zumetrix Labs | Zia Hussain & Umer Gillani"
         description="Meet the founders of Zumetrix Labs - Zia Hussain and Umer Gillani. Learn about our mission, values, and commitment to building exceptional software."
         keywords="Zia Hussain, Umer Gillani, Zumetrix Labs founders, software development team, web development experts Pakistan"
@@ -90,10 +98,11 @@ const AboutPage: React.FC = () => {
               Built on
               <span className="block text-sage">Vision & Values</span>
             </h1>
-            
+
             <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto leading-relaxed font-light">
-              Zumetrix Labs was founded with a simple yet powerful vision: to create software 
-              that doesn't just function—it inspires, transforms, and drives real business results.
+              Zumetrix Labs was founded with a simple yet powerful vision: to
+              create software that doesn't just function—it inspires,
+              transforms, and drives real business results.
             </p>
           </AnimatedSection>
         </div>
@@ -108,7 +117,8 @@ const AboutPage: React.FC = () => {
               <span className="block text-terracotta">Founders</span>
             </h2>
             <p className="text-xl text-stone max-w-3xl mx-auto leading-relaxed font-light">
-              Two passionate developers united by a shared vision of creating exceptional software experiences.
+              Two passionate developers united by a shared vision of creating
+              exceptional software experiences.
             </p>
           </AnimatedSection>
 
@@ -129,28 +139,28 @@ const AboutPage: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-sage/20 group-hover:border-sage/40 transition-colors duration-300"
                   >
-                    <img 
-                      src={founder.image} 
+                    <img
+                      src={founder.image}
                       alt={founder.name}
                       className="w-full h-full object-cover"
                     />
                   </motion.div>
-                  
+
                   <h3 className="text-2xl font-bold text-charcoal mb-2 group-hover:text-sage transition-colors duration-300">
                     {founder.name}
                   </h3>
-                  
+
                   <p className="text-terracotta font-medium mb-4">
                     {founder.role}
                   </p>
-                  
+
                   <p className="text-stone leading-relaxed mb-6">
                     {founder.bio}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {founder.skills.map((skill) => (
-                      <span 
+                      <span
                         key={skill}
                         className="px-3 py-1 bg-sage/10 text-sage-dark text-sm rounded-full hover:bg-sage/20 transition-colors duration-200"
                       >
@@ -174,7 +184,8 @@ const AboutPage: React.FC = () => {
               <span className="block text-terracotta">Core Values</span>
             </h2>
             <p className="text-xl text-stone-light max-w-3xl mx-auto leading-relaxed font-light">
-              These principles guide every decision we make and every line of code we write.
+              These principles guide every decision we make and every line of
+              code we write.
             </p>
           </AnimatedSection>
 
@@ -198,11 +209,11 @@ const AboutPage: React.FC = () => {
                   >
                     <value.icon size={28} className="text-terracotta" />
                   </motion.div>
-                  
+
                   <h3 className="text-xl font-semibold text-cream mb-4 group-hover:text-terracotta transition-colors duration-300">
                     {value.title}
                   </h3>
-                  
+
                   <p className="text-stone-light leading-relaxed">
                     {value.description}
                   </p>
@@ -221,22 +232,25 @@ const AboutPage: React.FC = () => {
               Our
               <span className="block text-terracotta">Mission</span>
             </h2>
-            
+
             <div className="max-w-4xl mx-auto">
               <p className="text-xl lg:text-2xl text-stone leading-relaxed font-light mb-8">
-                To empower businesses with exceptional software that drives growth, enhances user experiences, 
-                and creates lasting competitive advantages in an increasingly digital world.
+                To empower businesses with exceptional software that drives
+                growth, enhances user experiences, and creates lasting
+                competitive advantages in an increasingly digital world.
               </p>
-              
+
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
                 className="bg-cream/50 backdrop-blur-sm border border-stone/10 rounded-lg p-8 hover:border-terracotta/30 transition-all duration-300"
               >
                 <p className="text-lg text-stone leading-relaxed italic">
-                  "We believe that great software is more than just code—it's a bridge between human needs 
-                  and technological possibilities. Every project we undertake is an opportunity to create 
-                  something meaningful, something that makes a real difference in people's lives and businesses."
+                  "We believe that great software is more than just code—it's a
+                  bridge between human needs and technological possibilities.
+                  Every project we undertake is an opportunity to create
+                  something meaningful, something that makes a real difference
+                  in people's lives and businesses."
                 </p>
                 <div className="mt-6 text-terracotta font-medium">
                   — Zia Hussain & Umer Gillani, Co-Founders

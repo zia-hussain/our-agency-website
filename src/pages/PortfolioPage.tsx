@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
-import SEO from '../components/common/SEO';
-import PageTransition from '../components/common/PageTransition';
-import AnimatedSection from '../components/common/AnimatedSection';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, Calendar, Users, Code, Award } from 'lucide-react';
+import React, { useState } from "react";
+import SEO from "../components/common/SEO";
+import PageTransition from "../components/common/PageTransition";
+import AnimatedSection from "../components/common/AnimatedSection";
+import { motion } from "framer-motion";
+import {
+  ExternalLink,
+  Github,
+  Calendar,
+  Users,
+  Code,
+  Award,
+} from "lucide-react";
 
 const PortfolioPage: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const filters = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'web', label: 'Web Apps' },
-    { id: 'mobile', label: 'Mobile Apps' },
-    { id: 'enterprise', label: 'Enterprise' },
-    { id: 'mvp', label: 'MVP' }
+    { id: "all", label: "All Projects" },
+    { id: "web", label: "Web Apps" },
+    { id: "mobile", label: "Mobile Apps" },
+    { id: "enterprise", label: "Enterprise" },
+    { id: "mvp", label: "MVP" },
   ];
 
   const projects = [
@@ -22,9 +29,12 @@ const PortfolioPage: React.FC = () => {
       title: "FinanceFlow Dashboard",
       category: "Web Application",
       type: "web",
-      description: "A comprehensive financial analytics platform with real-time data visualization, automated reporting capabilities, and advanced portfolio management features.",
-      longDescription: "FinanceFlow Dashboard revolutionizes how financial advisors manage client portfolios. Built with React and TypeScript, it features real-time market data integration, customizable dashboards, automated report generation, and advanced analytics. The platform handles over 10,000 daily transactions and serves 500+ active users.",
-      image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description:
+        "A comprehensive financial analytics platform with real-time data visualization, automated reporting capabilities, and advanced portfolio management features.",
+      longDescription:
+        "FinanceFlow Dashboard revolutionizes how financial advisors manage client portfolios. Built with React and TypeScript, it features real-time market data integration, customizable dashboards, automated report generation, and advanced analytics. The platform handles over 10,000 daily transactions and serves 500+ active users.",
+      image:
+        "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["React", "TypeScript", "D3.js", "Node.js", "PostgreSQL", "AWS"],
       client: "FinTech Solutions Inc.",
       duration: "4 months",
@@ -36,24 +46,33 @@ const PortfolioPage: React.FC = () => {
         "Automated report generation",
         "Portfolio performance analytics",
         "Multi-user dashboard customization",
-        "Advanced filtering and search"
+        "Advanced filtering and search",
       ],
       results: [
         "40% increase in user engagement",
         "60% reduction in report generation time",
         "99.9% uptime achieved",
-        "500+ active daily users"
-      ]
+        "500+ active daily users",
+      ],
     },
     {
       id: 2,
       title: "WellnessTracker Mobile",
       category: "Mobile Application",
       type: "mobile",
-      description: "An intuitive health and wellness tracking application with personalized insights, goal management, and social features for motivation.",
-      longDescription: "WellnessTracker Mobile empowers users to take control of their health journey. The app features comprehensive health tracking, AI-powered insights, social challenges, and integration with popular fitness devices. Built with React Native for seamless cross-platform experience.",
-      image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["React Native", "Firebase", "Machine Learning", "Redux", "GraphQL"],
+      description:
+        "An intuitive health and wellness tracking application with personalized insights, goal management, and social features for motivation.",
+      longDescription:
+        "WellnessTracker Mobile empowers users to take control of their health journey. The app features comprehensive health tracking, AI-powered insights, social challenges, and integration with popular fitness devices. Built with React Native for seamless cross-platform experience.",
+      image:
+        "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
+      tags: [
+        "React Native",
+        "Firebase",
+        "Machine Learning",
+        "Redux",
+        "GraphQL",
+      ],
       client: "WellnessPath Startup",
       duration: "6 months",
       team: "4 developers",
@@ -64,23 +83,26 @@ const PortfolioPage: React.FC = () => {
         "Social challenges and leaderboards",
         "Wearable device integration",
         "Offline functionality",
-        "Push notifications"
+        "Push notifications",
       ],
       results: [
         "50,000+ downloads in first month",
         "4.8/5 app store rating",
         "85% user retention rate",
-        "Featured in App Store"
-      ]
+        "Featured in App Store",
+      ],
     },
     {
       id: 3,
       title: "RetailOps Automation",
       category: "Enterprise Solution",
       type: "enterprise",
-      description: "End-to-end inventory management and order processing automation for a growing e-commerce business with multiple sales channels.",
-      longDescription: "RetailOps Automation streamlines complex e-commerce operations across multiple channels. The system automates inventory management, order processing, supplier communications, and financial reporting. Built with Python and AWS, it processes thousands of orders daily.",
-      image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description:
+        "End-to-end inventory management and order processing automation for a growing e-commerce business with multiple sales channels.",
+      longDescription:
+        "RetailOps Automation streamlines complex e-commerce operations across multiple channels. The system automates inventory management, order processing, supplier communications, and financial reporting. Built with Python and AWS, it processes thousands of orders daily.",
+      image:
+        "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["Python", "AWS", "PostgreSQL", "REST API", "Docker", "Redis"],
       client: "RetailOps Enterprise",
       duration: "8 months",
@@ -92,23 +114,26 @@ const PortfolioPage: React.FC = () => {
         "Supplier integration",
         "Real-time analytics dashboard",
         "Automated reporting",
-        "Error handling and alerts"
+        "Error handling and alerts",
       ],
       results: [
         "75% reduction in processing time",
         "99.5% order accuracy",
         "50% cost savings in operations",
-        "Handles 10,000+ orders daily"
-      ]
+        "Handles 10,000+ orders daily",
+      ],
     },
     {
       id: 4,
       title: "TaskFlow MVP",
       category: "Startup MVP",
       type: "mvp",
-      description: "A rapid prototype for a project management startup, built to validate market demand and secure seed funding.",
-      longDescription: "TaskFlow MVP was developed in just 6 weeks to help a startup validate their project management concept. The platform features team collaboration, task management, time tracking, and basic reporting. The MVP successfully helped secure $500K in seed funding.",
-      image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description:
+        "A rapid prototype for a project management startup, built to validate market demand and secure seed funding.",
+      longDescription:
+        "TaskFlow MVP was developed in just 6 weeks to help a startup validate their project management concept. The platform features team collaboration, task management, time tracking, and basic reporting. The MVP successfully helped secure $500K in seed funding.",
+      image:
+        "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["React", "Node.js", "Firebase", "Stripe", "Vercel"],
       client: "TaskFlow Startup",
       duration: "6 weeks",
@@ -120,24 +145,34 @@ const PortfolioPage: React.FC = () => {
         "Time tracking",
         "Basic reporting",
         "User authentication",
-        "Payment integration"
+        "Payment integration",
       ],
       results: [
         "Secured $500K seed funding",
         "1,000+ beta users",
         "Validated product-market fit",
-        "95% user satisfaction"
-      ]
+        "95% user satisfaction",
+      ],
     },
     {
       id: 5,
       title: "EduPlatform Web",
       category: "Educational Platform",
       type: "web",
-      description: "A comprehensive online learning platform with video streaming, interactive quizzes, and progress tracking for educational institutions.",
-      longDescription: "EduPlatform Web transforms traditional education with modern technology. The platform supports video lectures, interactive content, student progress tracking, and instructor tools. Built to scale for thousands of concurrent users with optimized video delivery.",
-      image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "AWS S3", "Stripe"],
+      description:
+        "A comprehensive online learning platform with video streaming, interactive quizzes, and progress tracking for educational institutions.",
+      longDescription:
+        "EduPlatform Web transforms traditional education with modern technology. The platform supports video lectures, interactive content, student progress tracking, and instructor tools. Built to scale for thousands of concurrent users with optimized video delivery.",
+      image:
+        "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "AWS S3",
+        "Stripe",
+      ],
       client: "EduTech Institute",
       duration: "5 months",
       team: "4 developers",
@@ -148,24 +183,33 @@ const PortfolioPage: React.FC = () => {
         "Progress tracking",
         "Instructor dashboard",
         "Payment processing",
-        "Mobile responsive design"
+        "Mobile responsive design",
       ],
       results: [
         "5,000+ active students",
         "99% video uptime",
         "40% improvement in engagement",
-        "Reduced infrastructure costs by 30%"
-      ]
+        "Reduced infrastructure costs by 30%",
+      ],
     },
     {
       id: 6,
       title: "LogiTrack Mobile",
       category: "Logistics App",
       type: "mobile",
-      description: "A logistics tracking application for delivery companies with real-time GPS tracking, route optimization, and customer notifications.",
-      longDescription: "LogiTrack Mobile revolutionizes delivery operations with real-time tracking, intelligent route optimization, and automated customer communications. The app integrates with existing logistics systems and provides comprehensive analytics for fleet management.",
-      image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["React Native", "Google Maps API", "Node.js", "MongoDB", "Socket.io"],
+      description:
+        "A logistics tracking application for delivery companies with real-time GPS tracking, route optimization, and customer notifications.",
+      longDescription:
+        "LogiTrack Mobile revolutionizes delivery operations with real-time tracking, intelligent route optimization, and automated customer communications. The app integrates with existing logistics systems and provides comprehensive analytics for fleet management.",
+      image:
+        "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
+      tags: [
+        "React Native",
+        "Google Maps API",
+        "Node.js",
+        "MongoDB",
+        "Socket.io",
+      ],
       client: "LogiCorp Solutions",
       duration: "7 months",
       team: "3 developers",
@@ -176,31 +220,32 @@ const PortfolioPage: React.FC = () => {
         "Customer notifications",
         "Driver mobile app",
         "Fleet management dashboard",
-        "Analytics and reporting"
+        "Analytics and reporting",
       ],
       results: [
         "30% reduction in delivery time",
         "95% customer satisfaction",
         "25% fuel cost savings",
-        "Tracks 1,000+ deliveries daily"
-      ]
-    }
+        "Tracks 1,000+ deliveries daily",
+      ],
+    },
   ];
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.type === activeFilter);
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((project) => project.type === activeFilter);
 
   const stats = [
     { icon: Code, number: "50+", label: "Projects Completed" },
     { icon: Users, number: "25+", label: "Happy Clients" },
     { icon: Calendar, number: "3+", label: "Years Experience" },
-    { icon: Award, number: "100%", label: "Success Rate" }
+    { icon: Award, number: "100%", label: "Success Rate" },
   ];
 
   return (
     <PageTransition>
-      <SEO 
+      <SEO
         title="Portfolio - Our Best Work | Zumetrix Labs"
         description="Explore our portfolio of web applications, mobile apps, and enterprise solutions. See how we've helped businesses achieve their goals with exceptional software."
         keywords="portfolio, web development projects, mobile app projects, software development case studies, React projects, Node.js projects"
@@ -224,10 +269,11 @@ const PortfolioPage: React.FC = () => {
               Portfolio of
               <span className="block text-sage">Excellence</span>
             </h1>
-            
+
             <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto leading-relaxed font-light">
-              Discover how we've helped businesses transform their ideas into successful digital solutions 
-              that drive growth and user engagement.
+              Discover how we've helped businesses transform their ideas into
+              successful digital solutions that drive growth and user
+              engagement.
             </p>
           </AnimatedSection>
         </div>
@@ -275,8 +321,8 @@ const PortfolioPage: React.FC = () => {
                   onClick={() => setActiveFilter(filter.id)}
                   className={`px-6 py-3 rounded-sm font-medium transition-all duration-300 ${
                     activeFilter === filter.id
-                      ? 'bg-sage text-cream shadow-lg'
-                      : 'bg-cream text-stone border border-stone/20 hover:border-sage/30 hover:text-sage'
+                      ? "bg-sage text-cream shadow-lg"
+                      : "bg-cream text-stone border border-stone/20 hover:border-sage/30 hover:text-sage"
                   }`}
                 >
                   {filter.label}
@@ -304,15 +350,15 @@ const PortfolioPage: React.FC = () => {
                 >
                   {/* Project Image */}
                   <div className="relative overflow-hidden aspect-[16/10]">
-                    <motion.img 
-                      src={project.image} 
+                    <motion.img
+                      src={project.image}
                       alt={project.title}
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    
+
                     {/* Hover Actions */}
                     <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <motion.div
@@ -349,7 +395,7 @@ const PortfolioPage: React.FC = () => {
                         {project.year}
                       </span>
                     </div>
-                    
+
                     <p className="text-stone leading-relaxed mb-6">
                       {project.description}
                     </p>
@@ -358,35 +404,46 @@ const PortfolioPage: React.FC = () => {
                     <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
                       <div>
                         <span className="text-stone-light">Client:</span>
-                        <div className="font-medium text-charcoal">{project.client}</div>
+                        <div className="font-medium text-charcoal">
+                          {project.client}
+                        </div>
                       </div>
                       <div>
                         <span className="text-stone-light">Duration:</span>
-                        <div className="font-medium text-charcoal">{project.duration}</div>
+                        <div className="font-medium text-charcoal">
+                          {project.duration}
+                        </div>
                       </div>
                       <div>
                         <span className="text-stone-light">Team:</span>
-                        <div className="font-medium text-charcoal">{project.team}</div>
+                        <div className="font-medium text-charcoal">
+                          {project.team}
+                        </div>
                       </div>
                     </div>
 
                     {/* Key Results */}
                     <div className="mb-6">
-                      <h4 className="font-semibold text-charcoal mb-3">Key Results:</h4>
+                      <h4 className="font-semibold text-charcoal mb-3">
+                        Key Results:
+                      </h4>
                       <div className="grid grid-cols-2 gap-2">
                         {project.results.slice(0, 4).map((result, idx) => (
-                          <div key={idx} className="text-sm text-stone flex items-center gap-2">
+                          <div
+                            key={idx}
+                            className="text-sm text-stone flex items-center gap-2"
+                          >
                             <div className="w-1.5 h-1.5 bg-sage rounded-full"></div>
                             {result}
                           </div>
                         ))}
                       </div>
                     </div>
-                    
+
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
-                        <span 
+                        <span
                           key={tag}
                           className="text-xs px-3 py-1 bg-stone/10 text-stone rounded-full hover:bg-sage/10 hover:text-sage transition-colors duration-200"
                         >
@@ -410,9 +467,10 @@ const PortfolioPage: React.FC = () => {
               Ready to Create
               <span className="block text-terracotta">Your Success Story?</span>
             </h2>
-            
+
             <p className="text-xl text-stone-light max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              Let's discuss your project and create a solution that drives real business results.
+              Let's discuss your project and create a solution that drives real
+              business results.
             </p>
 
             <motion.button
@@ -423,7 +481,10 @@ const PortfolioPage: React.FC = () => {
                        flex items-center gap-3 text-lg shadow-lg hover:shadow-xl mx-auto"
             >
               Start Your Project
-              <ExternalLink size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+              <ExternalLink
+                size={20}
+                className="group-hover:translate-x-1 transition-transform duration-300"
+              />
             </motion.button>
           </AnimatedSection>
         </div>

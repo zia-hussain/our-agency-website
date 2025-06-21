@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zumetrixlabs.com/sitemap.xml

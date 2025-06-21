@@ -1,5 +1,5 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React from "react";
+import { Helmet } from "react-helmet-async";
 
 interface SEOProps {
   title?: string;
@@ -8,15 +8,17 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
+  googleVerification?: string;
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'Zumetrix Labs - Premium Software Development Agency',
-  description = 'World-class software development agency creating exceptional web applications, mobile apps, and custom solutions. Founded by Zia Hussain and Umer Gillani.',
-  keywords = 'Zumetrix Labs, Zia Hussain, Umer Gillani, Web Development Agency, SaaS Dashboards, Custom MVPs, React Developer Pakistan, Best Web Agency Pakistan, Full Stack Development',
-  image = 'https://zumetrixlabs.com/og-image.jpg',
-  url = 'https://zumetrixlabs.com',
-  type = 'website'
+  title = "Zumetrix Labs | Premium Web & App Development Agency | SaaS MVP Experts | Pakistan",
+  description = "Zumetrix Labs is a full-stack software development agency led by Zia Hussain and Umer Gillani. We specialize in building world-class web applications, mobile apps, custom SaaS dashboards, and MVPs for startups and businesses worldwide. Whether you're launching a new product or scaling your platform, our team delivers premium, scalable, and modern solutions using React.js, Node.js, Next.js, React Native, Firebase, and more. Trusted by clients across Europe, USA, and the Middle East.",
+  keywords = "Zumetrix, Zumetrix Labs, metrix, zumetrixlab, Zia Hussain, Umer Gillani, Web Development Pakistan, Software Agency Pakistan, React Developer, Full Stack Developer, MVP Builder, SaaS Development, Dashboard Experts, Mobile App Development, Node.js Agency, Firebase Experts, Top Freelance Developers, Build Startup App, Custom Software Services, Pakistani Developers, Best Development Agency, Hire React Developer, Hire SaaS MVP Developer, Freelance Team, App Design Agency",
+  image = "https://zumetrixlabs.com/og-image.jpg",
+  url = "https://zumetrixlabs.com",
+  type = "website",
+  googleVerification,
 }) => {
   return (
     <Helmet>
@@ -24,19 +26,30 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={url} />
-      
-      {/* Open Graph */}
+
+      {googleVerification && (
+        <meta name="google-site-verification" content={googleVerification} />
+      )}
+
+      {/* Open Graph for sharing on Facebook/LinkedIn */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
-      
-      {/* Twitter */}
+
+      {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+
+      {/* Extra SEO tags */}
+      <meta
+        name="author"
+        content="Zumetrix Labs - Zia Hussain & Umer Gillani"
+      />
+      <meta name="robots" content="index, follow" />
     </Helmet>
   );
 };

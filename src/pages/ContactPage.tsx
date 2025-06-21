@@ -1,51 +1,64 @@
-import React, { useState } from 'react';
-import SEO from '../components/common/SEO';
-import PageTransition from '../components/common/PageTransition';
-import AnimatedSection from '../components/common/AnimatedSection';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Calendar, MessageCircle, Clock, CheckCircle } from 'lucide-react';
+import React, { useState } from "react";
+import SEO from "../components/common/SEO";
+import PageTransition from "../components/common/PageTransition";
+import AnimatedSection from "../components/common/AnimatedSection";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Calendar,
+  MessageCircle,
+  Clock,
+  CheckCircle,
+} from "lucide-react";
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    projectType: '',
-    budget: '',
-    timeline: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    projectType: "",
+    budget: "",
+    timeline: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
+
     // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
-        name: '',
-        email: '',
-        company: '',
-        projectType: '',
-        budget: '',
-        timeline: '',
-        message: ''
+        name: "",
+        email: "",
+        company: "",
+        projectType: "",
+        budget: "",
+        timeline: "",
+        message: "",
       });
     }, 3000);
   };
@@ -56,22 +69,22 @@ const ContactPage: React.FC = () => {
       title: "Email Us",
       details: "hello@zumetrixlabs.com",
       description: "Send us an email and we'll respond within 24 hours",
-      action: "mailto:hello@zumetrixlabs.com"
+      action: "mailto:hello@zumetrixlabs.com",
     },
     {
       icon: Phone,
       title: "Call Us",
       details: "+92 XXX XXXXXXX",
       description: "Speak directly with our team during business hours",
-      action: "tel:+92XXXXXXXXX"
+      action: "tel:+92XXXXXXXXX",
     },
     {
       icon: MapPin,
       title: "Location",
       details: "Pakistan",
       description: "We work with clients globally from our base in Pakistan",
-      action: "#"
-    }
+      action: "#",
+    },
   ];
 
   const services = [
@@ -80,7 +93,7 @@ const ContactPage: React.FC = () => {
     "MVP Development",
     "Process Automation",
     "UI/UX Design",
-    "Technical Consulting"
+    "Technical Consulting",
   ];
 
   const budgetRanges = [
@@ -88,7 +101,7 @@ const ContactPage: React.FC = () => {
     "$10,000 - $25,000",
     "$25,000 - $50,000",
     "$50,000 - $100,000",
-    "Over $100,000"
+    "Over $100,000",
   ];
 
   const timelines = [
@@ -96,12 +109,12 @@ const ContactPage: React.FC = () => {
     "1-2 months",
     "3-4 months",
     "5-6 months",
-    "6+ months"
+    "6+ months",
   ];
 
   return (
     <PageTransition>
-      <SEO 
+      <SEO
         title="Contact Us - Start Your Project | Zumetrix Labs"
         description="Ready to start your software project? Contact Zumetrix Labs for a free consultation. We respond within 24 hours and offer honest advice with no obligation."
         keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Zia Hussain contact, Umer Gillani contact"
@@ -126,10 +139,11 @@ const ContactPage: React.FC = () => {
               Start Your
               <span className="block text-terracotta">Project Today</span>
             </h1>
-            
+
             <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto leading-relaxed font-light">
-              Ready to transform your vision into reality? Let's discuss your project requirements 
-              and create a solution that exceeds your expectations.
+              Ready to transform your vision into reality? Let's discuss your
+              project requirements and create a solution that exceeds your
+              expectations.
             </p>
           </AnimatedSection>
         </div>
@@ -160,16 +174,22 @@ const ContactPage: React.FC = () => {
                     >
                       <CheckCircle size={32} className="text-sage" />
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-charcoal mb-4">Thank You!</h3>
+                    <h3 className="text-2xl font-bold text-charcoal mb-4">
+                      Thank You!
+                    </h3>
                     <p className="text-stone">
-                      We've received your message and will get back to you within 24 hours.
+                      We've received your message and will get back to you
+                      within 24 hours.
                     </p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-2">
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-charcoal mb-2"
+                        >
                           Full Name *
                         </label>
                         <input
@@ -184,7 +204,10 @@ const ContactPage: React.FC = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-2">
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-charcoal mb-2"
+                        >
                           Email Address *
                         </label>
                         <input
@@ -201,7 +224,10 @@ const ContactPage: React.FC = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-charcoal mb-2">
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-medium text-charcoal mb-2"
+                      >
                         Company Name
                       </label>
                       <input
@@ -216,7 +242,10 @@ const ContactPage: React.FC = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="projectType" className="block text-sm font-medium text-charcoal mb-2">
+                      <label
+                        htmlFor="projectType"
+                        className="block text-sm font-medium text-charcoal mb-2"
+                      >
                         Project Type *
                       </label>
                       <select
@@ -229,14 +258,19 @@ const ContactPage: React.FC = () => {
                       >
                         <option value="">Select a service</option>
                         {services.map((service) => (
-                          <option key={service} value={service}>{service}</option>
+                          <option key={service} value={service}>
+                            {service}
+                          </option>
                         ))}
                       </select>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="budget" className="block text-sm font-medium text-charcoal mb-2">
+                        <label
+                          htmlFor="budget"
+                          className="block text-sm font-medium text-charcoal mb-2"
+                        >
                           Budget Range
                         </label>
                         <select
@@ -248,12 +282,17 @@ const ContactPage: React.FC = () => {
                         >
                           <option value="">Select budget range</option>
                           {budgetRanges.map((range) => (
-                            <option key={range} value={range}>{range}</option>
+                            <option key={range} value={range}>
+                              {range}
+                            </option>
                           ))}
                         </select>
                       </div>
                       <div>
-                        <label htmlFor="timeline" className="block text-sm font-medium text-charcoal mb-2">
+                        <label
+                          htmlFor="timeline"
+                          className="block text-sm font-medium text-charcoal mb-2"
+                        >
                           Timeline
                         </label>
                         <select
@@ -265,14 +304,19 @@ const ContactPage: React.FC = () => {
                         >
                           <option value="">Select timeline</option>
                           {timelines.map((timeline) => (
-                            <option key={timeline} value={timeline}>{timeline}</option>
+                            <option key={timeline} value={timeline}>
+                              {timeline}
+                            </option>
                           ))}
                         </select>
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-charcoal mb-2">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-charcoal mb-2"
+                      >
                         Project Description *
                       </label>
                       <textarea
@@ -300,7 +344,11 @@ const ContactPage: React.FC = () => {
                         <>
                           <motion.div
                             animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            transition={{
+                              duration: 1,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
                             className="w-5 h-5 border-2 border-cream/30 border-t-cream rounded-full"
                           />
                           Sending...
@@ -325,8 +373,9 @@ const ContactPage: React.FC = () => {
                     Get In Touch
                   </h2>
                   <p className="text-lg text-stone leading-relaxed mb-8">
-                    We're here to help bring your vision to life. Reach out through any of these channels 
-                    and we'll get back to you promptly.
+                    We're here to help bring your vision to life. Reach out
+                    through any of these channels and we'll get back to you
+                    promptly.
                   </p>
                 </div>
 
@@ -407,7 +456,8 @@ const ContactPage: React.FC = () => {
               <span className="block text-sage">Questions</span>
             </h2>
             <p className="text-xl text-stone-light max-w-3xl mx-auto leading-relaxed font-light">
-              Quick answers to common questions about working with Zumetrix Labs.
+              Quick answers to common questions about working with Zumetrix
+              Labs.
             </p>
           </AnimatedSection>
 
@@ -415,20 +465,24 @@ const ContactPage: React.FC = () => {
             {[
               {
                 question: "How quickly can you start my project?",
-                answer: "We typically begin new projects within 1-2 weeks of contract signing, depending on our current workload and project complexity."
+                answer:
+                  "We typically begin new projects within 1-2 weeks of contract signing, depending on our current workload and project complexity.",
               },
               {
                 question: "Do you work with startups?",
-                answer: "Absolutely! We love working with startups and offer special MVP packages to help validate ideas quickly and cost-effectively."
+                answer:
+                  "Absolutely! We love working with startups and offer special MVP packages to help validate ideas quickly and cost-effectively.",
               },
               {
                 question: "What's your development process?",
-                answer: "We follow an agile methodology with regular check-ins, transparent communication, and iterative development to ensure your vision is realized."
+                answer:
+                  "We follow an agile methodology with regular check-ins, transparent communication, and iterative development to ensure your vision is realized.",
               },
               {
                 question: "Do you provide ongoing support?",
-                answer: "Yes, we offer comprehensive maintenance and support packages to keep your software running smoothly after launch."
-              }
+                answer:
+                  "Yes, we offer comprehensive maintenance and support packages to keep your software running smoothly after launch.",
+              },
             ].map((faq, index) => (
               <AnimatedSection
                 key={index}
