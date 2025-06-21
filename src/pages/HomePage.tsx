@@ -11,7 +11,7 @@ import CTA from "../components/home/CTA";
 const HomePage: React.FC = () => {
   return (
     <PageTransition>
-      <SEO googleVerification="XbgNbYq2H0qTlfTCwVFlXrYWHnnw0acGCLOOM9T2zL" />
+      <SEO googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs" />
 
       <Hero />
       <About />
