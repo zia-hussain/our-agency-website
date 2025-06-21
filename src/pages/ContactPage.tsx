@@ -115,6 +115,8 @@ const ContactPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
+        gaTagId="G-PRSP59FL20"
+        googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Contact Us - Start Your Project | Zumetrix Labs"
         description="Ready to start your software project? Contact Zumetrix Labs for a free consultation. We respond within 24 hours and offer honest advice with no obligation."
         keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Zia Hussain contact, Umer Gillani contact"

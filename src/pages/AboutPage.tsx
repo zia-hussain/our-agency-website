@@ -67,6 +67,8 @@ const AboutPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
+        gaTagId="G-PRSP59FL20"
+        googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="About Us - Zumetrix Labs | Zia Hussain & Umer Gillani"
         description="Meet the founders of Zumetrix Labs - Zia Hussain and Umer Gillani. Learn about our mission, values, and commitment to building exceptional software."
         keywords="Zia Hussain, Umer Gillani, Zumetrix Labs founders, software development team, web development experts Pakistan"

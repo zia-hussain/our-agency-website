@@ -9,6 +9,7 @@ interface SEOProps {
   url?: string;
   type?: string;
   googleVerification?: string;
+  gaTagId?: string;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -19,6 +20,7 @@ const SEO: React.FC<SEOProps> = ({
   url = "https://zumetrixlabs.com",
   type = "website",
   googleVerification,
+  gaTagId,
 }) => {
   return (
     <Helmet>
@@ -50,6 +52,24 @@ const SEO: React.FC<SEOProps> = ({
         content="Zumetrix Labs - Zia Hussain & Umer Gillani"
       />
       <meta name="robots" content="index, follow" />
+
+      {/* ✅ Google Analytics Tag */}
+      {gaTagId && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaTagId}`}
+          ></script>
+          <script>
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaTagId}');
+            `}
+          </script>
+        </>
+      )}
     </Helmet>
   );
 };
