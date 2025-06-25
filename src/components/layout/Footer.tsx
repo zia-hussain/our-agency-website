@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-charcoal text-cream">
+    <footer className="bg-dark-900 text-text-primary border-t border-glass-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Section */}
@@ -45,11 +45,20 @@ const Footer: React.FC = () => {
             className="lg:col-span-1"
           >
             <Link to="/" className="inline-block mb-4">
-              <span className="text-2xl font-bold tracking-tight hover:text-terracotta transition-colors duration-300">
-                Zumetrix Labs
-              </span>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center space-x-3"
+              >
+                <div className="w-8 h-8 bg-emerald-gradient rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">Z</span>
+                </div>
+                <span className="text-2xl font-bold tracking-tight hover:text-emerald-400 transition-colors duration-300">
+                  Zumetrix Labs
+                </span>
+              </motion.div>
             </Link>
-            <p className="text-stone-light mb-6 leading-relaxed">
+            <p className="text-text-secondary mb-6 leading-relaxed">
               Crafting exceptional software experiences that drive business growth and user satisfaction.
             </p>
             <div className="flex space-x-4">
@@ -61,7 +70,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-stone-light hover:text-terracotta transition-colors duration-300 p-2 rounded-full hover:bg-terracotta/10"
+                  className="text-text-secondary hover:text-emerald-400 transition-colors duration-300 p-2 rounded-lg hover:bg-glass-light backdrop-blur-xl border border-transparent hover:border-emerald-500/20"
                   aria-label={social.label}
                 >
                   <social.icon size={20} />
@@ -77,13 +86,13 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-cream">Company</h3>
+            <h3 className="text-lg font-semibold mb-4 text-text-primary">Company</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-stone-light hover:text-terracotta transition-colors duration-300 text-sm"
+                    className="text-text-secondary hover:text-emerald-400 transition-colors duration-300 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -99,13 +108,13 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-cream">Services</h3>
+            <h3 className="text-lg font-semibold mb-4 text-text-primary">Services</h3>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-stone-light hover:text-terracotta transition-colors duration-300 text-sm"
+                    className="text-text-secondary hover:text-emerald-400 transition-colors duration-300 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -121,13 +130,13 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-cream">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4 text-text-primary">Contact</h3>
             <ul className="space-y-3">
               {footerLinks.contact.map((contact, index) => (
                 <li key={index}>
                   <a
                     href={contact.href}
-                    className="text-stone-light hover:text-terracotta transition-colors duration-300 text-sm flex items-center gap-2"
+                    className="text-text-secondary hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2"
                   >
                     <contact.icon size={16} />
                     {contact.text}
@@ -144,17 +153,17 @@ const Footer: React.FC = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="border-t border-stone/20 mt-12 pt-8"
+          className="border-t border-glass-light mt-12 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-stone text-sm mb-4 md:mb-0">
+            <p className="text-text-muted text-sm mb-4 md:mb-0">
               © {currentYear} Zumetrix Labs. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link to="/privacy" className="text-stone hover:text-terracotta transition-colors duration-300">
+              <Link to="/privacy" className="text-text-muted hover:text-emerald-400 transition-colors duration-300">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-stone hover:text-terracotta transition-colors duration-300">
+              <Link to="/terms" className="text-text-muted hover:text-emerald-400 transition-colors duration-300">
                 Terms of Service
               </Link>
             </div>
