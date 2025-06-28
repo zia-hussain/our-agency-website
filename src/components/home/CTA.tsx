@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const CTA: React.FC = () => {
   return (
-    <section className="py-24 lg:py-32 bg-dark-800 relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-gradient-to-br from-neutral-50 via-primary-50/30 to-accent-50/20 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -18,7 +18,7 @@ const CTA: React.FC = () => {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-0 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"
+          className="absolute top-0 left-0 w-96 h-96 bg-primary-300/10 rounded-full blur-3xl"
         />
         <motion.div
           animate={{ 
@@ -30,7 +30,7 @@ const CTA: React.FC = () => {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute bottom-0 right-0 w-128 h-128 bg-emerald-400/5 rounded-full blur-3xl"
+          className="absolute bottom-0 right-0 w-128 h-128 bg-accent-300/5 rounded-full blur-3xl"
         />
       </div>
 
@@ -38,36 +38,36 @@ const CTA: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
-            className="inline-flex items-center px-4 py-2 bg-glass-light backdrop-blur-xl border border-emerald-500/20 rounded-full text-sm font-medium text-emerald-400 mb-8"
+            className="inline-flex items-center px-4 py-2 bg-glass-warm backdrop-blur-xl border border-primary-200/30 rounded-full text-sm font-medium text-primary-700 mb-8"
           >
             <Sparkles size={16} className="mr-2" />
-            <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
+            <span className="w-2 h-2 bg-success-500 rounded-full mr-2 animate-pulse-soft"></span>
             Ready to Start?
           </motion.div>
 
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-text-primary mb-8 tracking-tight leading-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-neutral-800 mb-8 tracking-tight leading-tight">
             Let's Build Something
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="block bg-emerald-gradient bg-clip-text text-transparent"
+              className="block bg-warm-gradient bg-clip-text text-transparent"
             >
               Exceptional Together
             </motion.span>
           </h2>
           
-          <p className="text-xl lg:text-2xl text-text-secondary max-w-4xl mx-auto mb-16 leading-relaxed font-light">
+          <p className="text-xl lg:text-2xl text-neutral-600 max-w-4xl mx-auto mb-16 leading-relaxed font-light">
             Ready to transform your vision into reality? We're here to help you create 
             software that doesn't just meet expectations—it exceeds them and drives real business results.
           </p>
@@ -77,9 +77,9 @@ const CTA: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="group bg-emerald-gradient text-white px-10 py-5 rounded-lg font-medium 
-                         hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 
-                         flex items-center gap-3 text-lg backdrop-blur-sm border border-emerald-500/20"
+                className="group bg-warm-gradient text-white px-10 py-5 rounded-lg font-medium 
+                         hover:shadow-warm transition-all duration-300 
+                         flex items-center gap-3 text-lg backdrop-blur-sm border border-primary-300/20"
               >
                 <Mail size={22} />
                 Start Your Project
@@ -90,9 +90,9 @@ const CTA: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
-              className="group bg-glass-light backdrop-blur-xl text-text-secondary hover:text-emerald-400 px-10 py-5 rounded-lg font-medium 
-                       hover:bg-glass-medium transition-all duration-300 
-                       flex items-center gap-3 text-lg border border-glass-light hover:border-emerald-500/20"
+              className="group bg-glass-warm backdrop-blur-xl text-neutral-600 hover:text-primary-600 px-10 py-5 rounded-lg font-medium 
+                       hover:bg-primary-100/50 transition-all duration-300 
+                       flex items-center gap-3 text-lg border border-primary-200/30 hover:border-primary-300/40"
             >
               <Calendar size={22} />
               Schedule a Call
@@ -124,26 +124,26 @@ const CTA: React.FC = () => {
                 key={item.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: item.delay }}
+                transition={{ duration: 0.6, delay: item.delay }}
                 viewport={{ once: true }}
                 className="group"
               >
                 <motion.div
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-glass-light backdrop-blur-xl p-6 rounded-2xl border border-glass-light hover:border-emerald-500/30 hover:bg-glass-medium transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10"
+                  className="bg-glass-warm backdrop-blur-xl p-6 rounded-2xl border border-primary-200/30 hover:border-primary-300/40 hover:bg-primary-100/50 transition-all duration-300 hover:shadow-warm"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.3 }}
-                    className="w-12 h-12 bg-emerald-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-emerald-500/25 transition-all duration-300"
+                    className="w-12 h-12 bg-warm-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-warm transition-all duration-300"
                   >
                     <item.icon size={20} className="text-white" />
                   </motion.div>
-                  <h3 className="font-semibold text-text-primary mb-2 group-hover:text-emerald-400 transition-colors duration-300">
+                  <h3 className="font-semibold text-neutral-800 mb-2 group-hover:text-primary-600 transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="text-text-secondary text-sm leading-relaxed">
+                  <p className="text-neutral-600 text-sm leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>

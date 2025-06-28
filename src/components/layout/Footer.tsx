@@ -33,14 +33,14 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-dark-900 text-text-primary border-t border-glass-light">
+    <footer className="bg-gradient-to-br from-neutral-800 via-neutral-900 to-neutral-800 text-neutral-100 border-t border-primary-200/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="lg:col-span-1"
           >
@@ -50,15 +50,15 @@ const Footer: React.FC = () => {
                 transition={{ duration: 0.2 }}
                 className="flex items-center space-x-3"
               >
-                <div className="w-8 h-8 bg-emerald-gradient rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-warm-gradient rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">Z</span>
                 </div>
-                <span className="text-2xl font-bold tracking-tight hover:text-emerald-400 transition-colors duration-300">
+                <span className="text-2xl font-bold tracking-tight hover:text-primary-400 transition-colors duration-300">
                   Zumetrix Labs
                 </span>
               </motion.div>
             </Link>
-            <p className="text-text-secondary mb-6 leading-relaxed">
+            <p className="text-neutral-400 mb-6 leading-relaxed">
               Crafting exceptional software experiences that drive business growth and user satisfaction.
             </p>
             <div className="flex space-x-4">
@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-text-secondary hover:text-emerald-400 transition-colors duration-300 p-2 rounded-lg hover:bg-glass-light backdrop-blur-xl border border-transparent hover:border-emerald-500/20"
+                  className="text-neutral-400 hover:text-primary-400 transition-colors duration-300 p-2 rounded-lg hover:bg-glass-warm backdrop-blur-xl border border-transparent hover:border-primary-200/20"
                   aria-label={social.label}
                 >
                   <social.icon size={20} />
@@ -83,16 +83,16 @@ const Footer: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-text-primary">Company</h3>
+            <h3 className="text-lg font-semibold mb-4 text-neutral-100">Company</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-text-secondary hover:text-emerald-400 transition-colors duration-300 text-sm"
+                    className="text-neutral-400 hover:text-primary-400 transition-colors duration-300 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -105,16 +105,16 @@ const Footer: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-text-primary">Services</h3>
+            <h3 className="text-lg font-semibold mb-4 text-neutral-100">Services</h3>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-text-secondary hover:text-emerald-400 transition-colors duration-300 text-sm"
+                    className="text-neutral-400 hover:text-primary-400 transition-colors duration-300 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -127,16 +127,16 @@ const Footer: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-text-primary">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4 text-neutral-100">Contact</h3>
             <ul className="space-y-3">
               {footerLinks.contact.map((contact, index) => (
                 <li key={index}>
                   <a
                     href={contact.href}
-                    className="text-text-secondary hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2"
+                    className="text-neutral-400 hover:text-primary-400 transition-colors duration-300 text-sm flex items-center gap-2"
                   >
                     <contact.icon size={16} />
                     {contact.text}
@@ -151,19 +151,19 @@ const Footer: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.4, delay: 0.4 }}
           viewport={{ once: true }}
-          className="border-t border-glass-light mt-12 pt-8"
+          className="border-t border-primary-200/10 mt-12 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-text-muted text-sm mb-4 md:mb-0">
+            <p className="text-neutral-500 text-sm mb-4 md:mb-0">
               © {currentYear} Zumetrix Labs. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link to="/privacy" className="text-text-muted hover:text-emerald-400 transition-colors duration-300">
+              <Link to="/privacy" className="text-neutral-500 hover:text-primary-400 transition-colors duration-300">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-text-muted hover:text-emerald-400 transition-colors duration-300">
+              <Link to="/terms" className="text-neutral-500 hover:text-primary-400 transition-colors duration-300">
                 Terms of Service
               </Link>
             </div>

@@ -255,24 +255,24 @@ const PortfolioPage: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-cream via-cream to-sage/5 relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-gradient-to-br from-primary-50 via-neutral-50 to-accent-50/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center px-4 py-2 bg-sage/10 border border-sage/20 rounded-full text-sm font-medium text-sage-dark mb-8"
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center px-4 py-2 bg-glass-warm backdrop-blur-xl border border-primary-200/30 rounded-full text-sm font-medium text-primary-700 mb-8"
             >
               Our Work
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-8 tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-neutral-800 mb-8 tracking-tight leading-tight">
               Portfolio of
-              <span className="block text-sage">Excellence</span>
+              <span className="block bg-warm-gradient bg-clip-text text-transparent">Excellence</span>
             </h1>
 
-            <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl lg:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed font-light">
               Discover how we've helped businesses transform their ideas into
               successful digital solutions that drive growth and user
               engagement.
@@ -282,7 +282,7 @@ const PortfolioPage: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-cream border-b border-stone/10">
+      <section className="py-16 bg-gradient-to-br from-neutral-50 via-primary-50/30 to-accent-50/20 border-b border-primary-200/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -294,14 +294,14 @@ const PortfolioPage: React.FC = () => {
                 <motion.div
                   whileHover={{ scale: 1.1, y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-sage/30 transition-colors duration-300"
+                  className="w-16 h-16 bg-glass-warm backdrop-blur-xl border border-primary-200/30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary-100/50 group-hover:border-primary-300/40 transition-all duration-300"
                 >
-                  <stat.icon size={24} className="text-sage" />
+                  <stat.icon size={24} className="text-primary-600" />
                 </motion.div>
-                <div className="text-3xl font-bold text-charcoal mb-2 group-hover:text-sage transition-colors duration-300">
+                <div className="text-3xl font-bold text-neutral-800 mb-2 group-hover:text-primary-600 transition-colors duration-300">
                   {stat.number}
                 </div>
-                <div className="text-stone text-sm font-medium">
+                <div className="text-neutral-600 text-sm font-medium">
                   {stat.label}
                 </div>
               </AnimatedSection>
@@ -311,7 +311,7 @@ const PortfolioPage: React.FC = () => {
       </section>
 
       {/* Filter Section */}
-      <section className="py-12 bg-cream">
+      <section className="py-12 bg-gradient-to-br from-neutral-50 via-primary-50/30 to-accent-50/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="flex flex-wrap justify-center gap-4">
@@ -321,10 +321,10 @@ const PortfolioPage: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`px-6 py-3 rounded-sm font-medium transition-all duration-300 ${
+                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                     activeFilter === filter.id
-                      ? "bg-sage text-cream shadow-lg"
-                      : "bg-cream text-stone border border-stone/20 hover:border-sage/30 hover:text-sage"
+                      ? "bg-warm-gradient text-white shadow-warm"
+                      : "bg-glass-warm backdrop-blur-xl text-neutral-600 border border-primary-200/30 hover:border-primary-300/40 hover:text-primary-600"
                   }`}
                 >
                   {filter.label}
@@ -336,7 +336,7 @@ const PortfolioPage: React.FC = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-gradient-to-br from-neutral-50 via-primary-50/30 to-accent-50/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {filteredProjects.map((project, index) => (
@@ -348,7 +348,7 @@ const PortfolioPage: React.FC = () => {
                 <motion.div
                   whileHover={{ y: -12 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-cream border border-stone/10 rounded-lg overflow-hidden hover:border-sage/30 hover:shadow-2xl transition-all duration-500"
+                  className="bg-glass-warm backdrop-blur-xl border border-primary-200/30 rounded-lg overflow-hidden hover:border-primary-300/40 hover:shadow-warm transition-all duration-300"
                 >
                   {/* Project Image */}
                   <div className="relative overflow-hidden aspect-[16/10]">
@@ -359,29 +359,29 @@ const PortfolioPage: React.FC = () => {
                       transition={{ duration: 0.6 }}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                     {/* Hover Actions */}
                     <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="bg-cream/90 backdrop-blur-sm p-2 rounded-lg shadow-lg cursor-pointer"
+                        className="bg-glass-warm backdrop-blur-xl p-2 rounded-lg shadow-soft cursor-pointer"
                       >
-                        <ExternalLink size={16} className="text-charcoal" />
+                        <ExternalLink size={16} className="text-neutral-800" />
                       </motion.div>
                       <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="bg-cream/90 backdrop-blur-sm p-2 rounded-lg shadow-lg cursor-pointer"
+                        className="bg-glass-warm backdrop-blur-xl p-2 rounded-lg shadow-soft cursor-pointer"
                       >
-                        <Github size={16} className="text-charcoal" />
+                        <Github size={16} className="text-neutral-800" />
                       </motion.div>
                     </div>
 
                     {/* Category Badge */}
                     <div className="absolute bottom-4 left-4">
-                      <span className="px-3 py-1 bg-sage/20 text-sage text-xs font-medium rounded-full backdrop-blur-sm border border-sage/30">
+                      <span className="px-3 py-1 bg-warm-gradient text-white text-xs font-medium rounded-full backdrop-blur-xl border border-primary-300/30">
                         {project.category}
                       </span>
                     </div>
@@ -390,35 +390,35 @@ const PortfolioPage: React.FC = () => {
                   {/* Project Content */}
                   <div className="p-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-charcoal group-hover:text-sage transition-colors duration-300">
+                      <h3 className="text-2xl font-bold text-neutral-800 group-hover:text-primary-600 transition-colors duration-300">
                         {project.title}
                       </h3>
-                      <span className="text-sm text-stone font-medium">
+                      <span className="text-sm text-neutral-600 font-medium">
                         {project.year}
                       </span>
                     </div>
 
-                    <p className="text-stone leading-relaxed mb-6">
+                    <p className="text-neutral-600 leading-relaxed mb-6">
                       {project.description}
                     </p>
 
                     {/* Project Meta */}
                     <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
                       <div>
-                        <span className="text-stone-light">Client:</span>
-                        <div className="font-medium text-charcoal">
+                        <span className="text-neutral-500">Client:</span>
+                        <div className="font-medium text-neutral-800">
                           {project.client}
                         </div>
                       </div>
                       <div>
-                        <span className="text-stone-light">Duration:</span>
-                        <div className="font-medium text-charcoal">
+                        <span className="text-neutral-500">Duration:</span>
+                        <div className="font-medium text-neutral-800">
                           {project.duration}
                         </div>
                       </div>
                       <div>
-                        <span className="text-stone-light">Team:</span>
-                        <div className="font-medium text-charcoal">
+                        <span className="text-neutral-500">Team:</span>
+                        <div className="font-medium text-neutral-800">
                           {project.team}
                         </div>
                       </div>
@@ -426,16 +426,16 @@ const PortfolioPage: React.FC = () => {
 
                     {/* Key Results */}
                     <div className="mb-6">
-                      <h4 className="font-semibold text-charcoal mb-3">
+                      <h4 className="font-semibold text-neutral-800 mb-3">
                         Key Results:
                       </h4>
                       <div className="grid grid-cols-2 gap-2">
                         {project.results.slice(0, 4).map((result, idx) => (
                           <div
                             key={idx}
-                            className="text-sm text-stone flex items-center gap-2"
+                            className="text-sm text-neutral-600 flex items-center gap-2"
                           >
-                            <div className="w-1.5 h-1.5 bg-sage rounded-full"></div>
+                            <div className="w-1.5 h-1.5 bg-primary-500 rounded-full"></div>
                             {result}
                           </div>
                         ))}
@@ -447,7 +447,7 @@ const PortfolioPage: React.FC = () => {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs px-3 py-1 bg-stone/10 text-stone rounded-full hover:bg-sage/10 hover:text-sage transition-colors duration-200"
+                          className="text-xs px-3 py-1 bg-primary-100/50 text-neutral-600 rounded-full hover:bg-primary-200/50 hover:text-primary-700 transition-colors duration-200"
                         >
                           {tag}
                         </span>
@@ -462,15 +462,15 @@ const PortfolioPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-charcoal">
+      <section className="py-24 bg-gradient-to-br from-neutral-800 via-neutral-900 to-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-cream mb-8 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-neutral-100 mb-8 tracking-tight">
               Ready to Create
-              <span className="block text-terracotta">Your Success Story?</span>
+              <span className="block bg-warm-gradient bg-clip-text text-transparent">Your Success Story?</span>
             </h2>
 
-            <p className="text-xl text-stone-light max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
               Let's discuss your project and create a solution that drives real
               business results.
             </p>
@@ -478,9 +478,9 @@ const PortfolioPage: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="group bg-sage text-cream px-8 py-4 rounded-sm font-medium 
-                       hover:bg-sage-dark transition-all duration-300 
-                       flex items-center gap-3 text-lg shadow-lg hover:shadow-xl mx-auto"
+              className="group bg-warm-gradient text-white px-8 py-4 rounded-lg font-medium 
+                       hover:shadow-warm transition-all duration-300 
+                       flex items-center gap-3 text-lg mx-auto"
             >
               Start Your Project
               <ExternalLink

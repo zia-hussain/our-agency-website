@@ -33,10 +33,10 @@ const Navigation: React.FC = () => {
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-dark-900/80 backdrop-blur-xl border-b border-glass-light shadow-2xl' 
+          ? 'bg-glass-warm backdrop-blur-xl border-b border-primary-200/20 shadow-soft' 
           : 'bg-transparent'
       }`}
     >
@@ -48,10 +48,10 @@ const Navigation: React.FC = () => {
               transition={{ duration: 0.2 }}
               className="flex items-center space-x-3"
             >
-              <div className="w-8 h-8 bg-emerald-gradient rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-warm-gradient rounded-lg flex items-center justify-center shadow-warm">
                 <span className="text-white font-bold text-sm">Z</span>
               </div>
-              <span className="text-xl lg:text-2xl font-bold text-text-primary tracking-tight group-hover:text-emerald-400 transition-colors duration-300">
+              <span className="text-xl lg:text-2xl font-bold text-neutral-800 tracking-tight group-hover:text-primary-600 transition-colors duration-300">
                 Zumetrix Labs
               </span>
             </motion.div>
@@ -65,13 +65,13 @@ const Navigation: React.FC = () => {
                   to={item.path}
                   className={`relative px-3 py-2 text-sm font-medium tracking-wide transition-all duration-300 group ${
                     location.pathname === item.path
-                      ? 'text-emerald-400'
-                      : 'text-text-secondary hover:text-emerald-400'
+                      ? 'text-primary-600'
+                      : 'text-neutral-600 hover:text-primary-600'
                   }`}
                 >
                   {item.name}
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-gradient rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-warm-gradient rounded-full"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: location.pathname === item.path ? 1 : 0 }}
                     whileHover={{ scaleX: 1 }}
@@ -87,9 +87,9 @@ const Navigation: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-emerald-gradient text-white px-6 py-2.5 rounded-lg font-medium 
-                         hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 
-                         backdrop-blur-sm border border-emerald-500/20"
+                className="bg-warm-gradient text-white px-6 py-2.5 rounded-lg font-medium 
+                         hover:shadow-warm transition-all duration-300 
+                         backdrop-blur-sm border border-primary-300/20"
               >
                 Get Started
               </motion.button>
@@ -99,7 +99,7 @@ const Navigation: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-text-primary hover:text-emerald-400 transition-colors duration-200 p-2"
+              className="text-neutral-800 hover:text-primary-600 transition-colors duration-200 p-2"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -114,7 +114,7 @@ const Navigation: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-dark-900/95 backdrop-blur-xl border-t border-glass-light"
+            className="md:hidden bg-glass-warm backdrop-blur-xl border-t border-primary-200/20"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item, index) => (
@@ -128,8 +128,8 @@ const Navigation: React.FC = () => {
                     to={item.path}
                     className={`block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200 rounded-lg ${
                       location.pathname === item.path
-                        ? 'text-emerald-400 bg-emerald-500/10'
-                        : 'text-text-secondary hover:text-emerald-400 hover:bg-emerald-500/5'
+                        ? 'text-primary-600 bg-primary-50'
+                        : 'text-neutral-600 hover:text-primary-600 hover:bg-primary-50/50'
                     }`}
                   >
                     {item.name}
@@ -143,7 +143,7 @@ const Navigation: React.FC = () => {
                 className="pt-4"
               >
                 <Link to="/contact">
-                  <button className="w-full bg-emerald-gradient text-white px-6 py-2.5 rounded-lg font-medium">
+                  <button className="w-full bg-warm-gradient text-white px-6 py-2.5 rounded-lg font-medium">
                     Get Started
                   </button>
                 </Link>

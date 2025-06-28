@@ -42,7 +42,7 @@ const ServicesPage: React.FC = () => {
         "PostgreSQL",
         "AWS",
       ],
-      color: "terracotta",
+      color: "warm",
       image:
         "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
@@ -71,7 +71,7 @@ const ServicesPage: React.FC = () => {
         "Redux",
         "GraphQL",
       ],
-      color: "sage",
+      color: "accent",
       image:
         "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
@@ -100,7 +100,7 @@ const ServicesPage: React.FC = () => {
         "Redis",
         "Docker",
       ],
-      color: "terracotta",
+      color: "success",
       image:
         "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
@@ -129,7 +129,7 @@ const ServicesPage: React.FC = () => {
         "RabbitMQ",
         "Cron",
       ],
-      color: "sage",
+      color: "warm",
       image:
         "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
@@ -158,7 +158,7 @@ const ServicesPage: React.FC = () => {
         "Stripe",
         "Analytics",
       ],
-      color: "terracotta",
+      color: "accent",
       image:
         "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
@@ -187,7 +187,7 @@ const ServicesPage: React.FC = () => {
         "Principle",
         "Framer",
       ],
-      color: "sage",
+      color: "success",
       image:
         "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
@@ -238,24 +238,24 @@ const ServicesPage: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-cream via-cream to-terracotta/5 relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-gradient-to-br from-primary-50 via-neutral-50 to-accent-50/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center px-4 py-2 bg-terracotta/10 border border-terracotta/20 rounded-full text-sm font-medium text-terracotta mb-8"
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center px-4 py-2 bg-glass-warm backdrop-blur-xl border border-primary-200/30 rounded-full text-sm font-medium text-primary-700 mb-8"
             >
               What We Do
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-8 tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-neutral-800 mb-8 tracking-tight leading-tight">
               Comprehensive
-              <span className="block text-terracotta">Software Solutions</span>
+              <span className="block bg-warm-gradient bg-clip-text text-transparent">Software Solutions</span>
             </h1>
 
-            <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl lg:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed font-light">
               From web applications to mobile apps, we provide end-to-end
               software development services that drive business growth and user
               satisfaction.
@@ -265,7 +265,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-gradient-to-br from-neutral-50 via-primary-50/30 to-accent-50/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
             {services.map((service, index) => (
@@ -284,37 +284,32 @@ const ServicesPage: React.FC = () => {
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.3 }}
-                      className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 ${
-                        service.color === "terracotta"
-                          ? "bg-terracotta/20 group-hover:bg-terracotta/30"
-                          : "bg-sage/20 group-hover:bg-sage/30"
-                      } transition-colors duration-300`}
+                      className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 
+                        bg-${service.color}-gradient group-hover:shadow-warm transition-all duration-300`}
                     >
                       <service.icon
                         size={28}
-                        className={
-                          service.color === "terracotta"
-                            ? "text-terracotta"
-                            : "text-sage"
-                        }
+                        className="text-white"
                       />
                     </motion.div>
 
-                    <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4 group-hover:text-terracotta transition-colors duration-300">
+                    <h2 className="text-3xl md:text-4xl font-bold text-neutral-800 mb-4 group-hover:text-primary-600 transition-colors duration-300">
                       {service.title}
                     </h2>
 
                     <p
                       className={`text-lg font-medium mb-6 ${
-                        service.color === "terracotta"
-                          ? "text-terracotta"
-                          : "text-sage"
+                        service.color === "warm"
+                          ? "text-primary-600"
+                          : service.color === "accent"
+                          ? "text-accent-600"
+                          : "text-success-600"
                       }`}
                     >
                       {service.subtitle}
                     </p>
 
-                    <p className="text-stone leading-relaxed mb-8 text-lg">
+                    <p className="text-neutral-600 leading-relaxed mb-8 text-lg">
                       {service.description}
                     </p>
 
@@ -325,12 +320,14 @@ const ServicesPage: React.FC = () => {
                           <Check
                             size={16}
                             className={
-                              service.color === "terracotta"
-                                ? "text-terracotta"
-                                : "text-sage"
+                              service.color === "warm"
+                                ? "text-primary-600"
+                                : service.color === "accent"
+                                ? "text-accent-600"
+                                : "text-success-600"
                             }
                           />
-                          <span className="text-stone text-sm">{feature}</span>
+                          <span className="text-neutral-600 text-sm">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -341,9 +338,11 @@ const ServicesPage: React.FC = () => {
                         <span
                           key={tech}
                           className={`px-3 py-1 text-xs rounded-full ${
-                            service.color === "terracotta"
-                              ? "bg-terracotta/10 text-terracotta"
-                              : "bg-sage/10 text-sage"
+                            service.color === "warm"
+                              ? "bg-primary-100/50 text-primary-700"
+                              : service.color === "accent"
+                              ? "bg-accent-100/50 text-accent-700"
+                              : "bg-success-100/50 text-success-700"
                           }`}
                         >
                           {tech}
@@ -355,10 +354,12 @@ const ServicesPage: React.FC = () => {
                       <motion.button
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className={`group font-medium px-6 py-3 rounded-sm transition-all duration-300 text-lg flex items-center gap-2 ${
-                          service.color === "terracotta"
-                            ? "bg-terracotta text-cream hover:bg-terracotta-dark"
-                            : "bg-sage text-cream hover:bg-sage-dark"
+                        className={`group font-medium px-6 py-3 rounded-lg transition-all duration-300 text-lg flex items-center gap-2 ${
+                          service.color === "warm"
+                            ? "bg-warm-gradient text-white hover:shadow-warm"
+                            : service.color === "accent"
+                            ? "bg-accent-gradient text-white hover:shadow-soft"
+                            : "bg-success-gradient text-white hover:shadow-soft"
                         }`}
                       >
                         Get Started
@@ -375,7 +376,7 @@ const ServicesPage: React.FC = () => {
                     <motion.div
                       whileHover={{ scale: 1.05, y: -8 }}
                       transition={{ duration: 0.4 }}
-                      className="relative overflow-hidden rounded-lg aspect-[4/3] group-hover:shadow-2xl transition-shadow duration-300"
+                      className="relative overflow-hidden rounded-lg aspect-[4/3] group-hover:shadow-warm transition-shadow duration-300"
                     >
                       <img
                         src={service.image}
@@ -384,9 +385,11 @@ const ServicesPage: React.FC = () => {
                       />
                       <div
                         className={`absolute inset-0 bg-gradient-to-br opacity-20 ${
-                          service.color === "terracotta"
-                            ? "from-terracotta/20 to-transparent"
-                            : "from-sage/20 to-transparent"
+                          service.color === "warm"
+                            ? "from-primary-300/20 to-transparent"
+                            : service.color === "accent"
+                            ? "from-accent-300/20 to-transparent"
+                            : "from-success-300/20 to-transparent"
                         }`}
                       ></div>
                     </motion.div>
@@ -399,14 +402,14 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 bg-charcoal">
+      <section className="py-24 bg-gradient-to-br from-neutral-800 via-neutral-900 to-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-cream mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-neutral-100 mb-6 tracking-tight">
               Our
-              <span className="block text-sage">Process</span>
+              <span className="block bg-warm-gradient bg-clip-text text-transparent">Process</span>
             </h2>
-            <p className="text-xl text-stone-light max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed font-light">
               A proven methodology that ensures successful project delivery from
               concept to launch.
             </p>
@@ -422,18 +425,18 @@ const ServicesPage: React.FC = () => {
                 <motion.div
                   whileHover={{ scale: 1.1, y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-sage/30 transition-colors duration-300"
+                  className="w-16 h-16 bg-warm-gradient rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-warm transition-all duration-300"
                 >
-                  <span className="text-sage font-bold text-lg">
+                  <span className="text-white font-bold text-lg">
                     {step.step}
                   </span>
                 </motion.div>
 
-                <h3 className="text-xl font-semibold text-cream mb-4 group-hover:text-sage transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-neutral-100 mb-4 group-hover:text-primary-400 transition-colors duration-300">
                   {step.title}
                 </h3>
 
-                <p className="text-stone-light text-sm leading-relaxed">
+                <p className="text-neutral-400 text-sm leading-relaxed">
                   {step.description}
                 </p>
               </AnimatedSection>
@@ -443,15 +446,15 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-cream via-cream to-sage/5">
+      <section className="py-24 bg-gradient-to-br from-primary-50 via-neutral-50 to-accent-50/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-charcoal mb-8 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-neutral-800 mb-8 tracking-tight">
               Ready to Start
-              <span className="block text-terracotta">Your Project?</span>
+              <span className="block bg-warm-gradient bg-clip-text text-transparent">Your Project?</span>
             </h2>
 
-            <p className="text-xl text-stone max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
               Let's discuss your project requirements and create a solution that
               drives real business results.
             </p>
@@ -461,9 +464,9 @@ const ServicesPage: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group bg-charcoal text-cream px-8 py-4 rounded-sm font-medium 
-                           hover:bg-charcoal-light transition-all duration-300 
-                           flex items-center gap-3 text-lg shadow-lg hover:shadow-xl"
+                  className="group bg-warm-gradient text-white px-8 py-4 rounded-lg font-medium 
+                           hover:shadow-warm transition-all duration-300 
+                           flex items-center gap-3 text-lg"
                 >
                   Get Free Consultation
                   <ArrowRight
@@ -477,7 +480,7 @@ const ServicesPage: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-charcoal hover:text-sage font-medium px-8 py-4 
+                  className="text-neutral-600 hover:text-primary-600 font-medium px-8 py-4 
                            transition-colors duration-300 text-lg"
                 >
                   View Our Work
