@@ -46,8 +46,8 @@ const Hero: React.FC = () => {
         {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, #D4A574 2px, transparent 2px),
-                             radial-gradient(circle at 75% 75%, #D4A574 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25% 25%, #C48A64 2px, transparent 2px),
+                             radial-gradient(circle at 75% 75%, #C48A64 2px, transparent 2px)`,
             backgroundSize: '50px 50px'
           }} />
         </div>
@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8 hover:bg-card/70 transition-all duration-200"
+            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8 hover:bg-card/70 transition-all duration-100"
           >
             <Sparkles size={16} className="mr-2" />
             <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse-soft"></span>
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.4, delay: 0.4 }}
               className="block bg-shimmer bg-clip-text text-transparent animate-text-shimmer"
               style={{
-                backgroundImage: 'linear-gradient(90deg, #D4A574, #DCA973, #E8C49B, #D4A574)',
+                backgroundImage: 'linear-gradient(90deg, #C48A64, #DCA973, #E8C49B, #C48A64)',
                 backgroundSize: '200% auto',
               }}
             >
@@ -114,50 +114,63 @@ const Hero: React.FC = () => {
             drives real business results.
           </motion.p>
           
-          {/* CTA Buttons */}
+          {/* CTA Buttons - PERFECT HIERARCHY */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 1 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
           >
+            {/* PRIMARY BUTTON - BIGGER & MORE PROMINENT */}
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="group bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                         hover:shadow-glow transition-all duration-200 
-                         flex items-center gap-3 text-lg"
+                whileHover={{ 
+                  scale: 1.02,
+                  y: -1,
+                  transition: { duration: 0.1, ease: "easeOut" }
+                }}
+                whileTap={{ 
+                  scale: 0.98,
+                  transition: { duration: 0.05 }
+                }}
+                className="group bg-beige-gradient text-primary-foreground px-10 py-4 rounded-xl font-semibold 
+                         hover:shadow-glow transition-all duration-100 ease-out
+                         flex items-center gap-3 text-lg shadow-lg"
               >
                 Start Your Project
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+                <ArrowRight size={20} className="group-hover:translate-x-0.5 transition-transform duration-100" />
               </motion.button>
             </Link>
             
+            {/* SECONDARY BUTTON - SMALLER WITH PLAY ICON */}
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.1, ease: "easeOut" }
+              }}
+              whileTap={{ 
+                scale: 0.98,
+                transition: { duration: 0.05 }
+              }}
               onClick={() => scrollToSection('portfolio')}
-              className="group text-muted-foreground hover:text-primary font-medium px-8 py-4 
-                       transition-colors duration-200 text-lg flex items-center gap-3 
-                       bg-card/30 backdrop-blur-xl border border-border rounded-lg
+              className="group text-muted-foreground hover:text-primary font-medium px-6 py-3 
+                       transition-all duration-100 ease-out text-base flex items-center gap-3 
+                       bg-card/30 backdrop-blur-xl border border-border rounded-xl
                        hover:bg-card/50 hover:border-primary/30"
             >
-              <div className="w-12 h-12 bg-card/50 backdrop-blur-xl rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors duration-200 border border-border">
-                <Play size={16} className="text-primary ml-0.5" />
+              <div className="w-10 h-10 bg-card/50 backdrop-blur-xl rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-all duration-100 border border-border">
+                <Play size={14} className="text-primary ml-0.5" />
               </div>
               View Our Work
             </motion.button>
           </motion.div>
 
-          {/* Stats */}
+          {/* Stats - PERFECTLY ALIGNED */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 1.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             {[
               { number: '50+', label: 'Projects Delivered' },
@@ -170,7 +183,11 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 1.4 + index * 0.05 }}
-                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-lg p-4 hover:bg-card/50 hover:border-primary/30 transition-all duration-200"
+                whileHover={{ 
+                  y: -2,
+                  transition: { duration: 0.1 }
+                }}
+                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-xl p-4 hover:bg-card/50 hover:border-primary/30 transition-all duration-100 cursor-pointer"
               >
                 <div className="text-2xl md:text-3xl font-bold text-foreground mb-1 bg-shimmer bg-clip-text text-transparent">
                   {stat.number}
@@ -196,21 +213,21 @@ const Hero: React.FC = () => {
         className="absolute bottom-1/4 left-1/4 w-16 h-16 bg-beige-gradient rounded-full hidden lg:block opacity-60"
       />
 
-      {/* Scroll Indicator */}
+      {/* PERFECTLY CENTERED SCROLL INDICATOR */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-border rounded-full flex justify-center"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-6 h-10 border-2 border-border rounded-full flex justify-center bg-card/20 backdrop-blur-xl"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="w-1 h-3 bg-primary rounded-full mt-2"
           />
         </motion.div>
