@@ -42,9 +42,40 @@ const ServicesPage: React.FC = () => {
         "PostgreSQL",
         "AWS",
       ],
-      color: "warm",
+      price: "Starting at $5,000",
+      popular: false,
       image:
         "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
+    },
+    {
+      id: "saas-dashboards",
+      icon: Database,
+      title: "SaaS Dashboards",
+      subtitle: "Data visualization that tells stories",
+      description:
+        "Transform complex data into intuitive, actionable insights with custom dashboards that empower decision-making and drive business growth.",
+      features: [
+        "Real-time Analytics",
+        "Custom Data Visualization",
+        "Interactive Dashboards",
+        "Multi-tenant Architecture",
+        "Role-based Access Control",
+        "API Integration",
+        "Export & Reporting",
+        "Mobile Responsive",
+      ],
+      technologies: [
+        "React",
+        "D3.js",
+        "Chart.js",
+        "Node.js",
+        "PostgreSQL",
+        "Redis",
+      ],
+      price: "Starting at $8,000",
+      popular: true,
+      image:
+        "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
       id: "mobile-apps",
@@ -71,70 +102,13 @@ const ServicesPage: React.FC = () => {
         "Redux",
         "GraphQL",
       ],
-      color: "accent",
+      price: "Starting at $12,000",
+      popular: false,
       image:
         "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
-      id: "data-solutions",
-      icon: Database,
-      title: "Data Solutions",
-      subtitle: "Robust backend systems & APIs",
-      description:
-        "Build the foundation of your digital ecosystem with secure, scalable backend systems. We create APIs and data architectures that power your applications reliably.",
-      features: [
-        "RESTful API Development",
-        "GraphQL Implementation",
-        "Database Design & Optimization",
-        "Cloud Infrastructure",
-        "Data Migration",
-        "Security Implementation",
-        "Performance Monitoring",
-        "Documentation",
-      ],
-      technologies: [
-        "Node.js",
-        "Python",
-        "PostgreSQL",
-        "MongoDB",
-        "Redis",
-        "Docker",
-      ],
-      color: "success",
-      image:
-        "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
-    {
-      id: "automation",
-      icon: Cog,
-      title: "Process Automation",
-      subtitle: "Streamline operations intelligently",
-      description:
-        "Eliminate repetitive tasks and optimize workflows with intelligent automation solutions. Save time, reduce errors, and focus on what matters most to your business.",
-      features: [
-        "Workflow Automation",
-        "System Integration",
-        "Data Processing",
-        "Report Generation",
-        "Email Automation",
-        "Task Scheduling",
-        "Error Handling",
-        "Monitoring & Alerts",
-      ],
-      technologies: [
-        "Python",
-        "Zapier",
-        "AWS Lambda",
-        "Celery",
-        "RabbitMQ",
-        "Cron",
-      ],
-      color: "warm",
-      image:
-        "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
-    {
-      id: "mvp",
+      id: "mvp-development",
       icon: Rocket,
       title: "MVP Development",
       subtitle: "Launch your startup idea fast",
@@ -158,36 +132,68 @@ const ServicesPage: React.FC = () => {
         "Stripe",
         "Analytics",
       ],
-      color: "accent",
+      price: "Starting at $4,000",
+      popular: false,
       image:
         "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
-      id: "design",
-      icon: Palette,
-      title: "UI/UX Design",
-      subtitle: "Beautiful, intuitive interfaces",
+      id: "automation",
+      icon: Cog,
+      title: "Automation Solutions",
+      subtitle: "Streamline operations intelligently",
       description:
-        "Create memorable user experiences with beautiful, intuitive interfaces. Our design process focuses on user research, usability, and creating interfaces that users love.",
+        "Eliminate repetitive tasks and optimize workflows with intelligent automation solutions. Save time, reduce errors, and focus on what matters most to your business.",
       features: [
-        "User Research & Analysis",
-        "Wireframing & Prototyping",
-        "Visual Design",
-        "Design Systems",
-        "Usability Testing",
-        "Responsive Design",
-        "Accessibility",
-        "Brand Integration",
+        "Workflow Automation",
+        "System Integration",
+        "Data Processing",
+        "Report Generation",
+        "Email Automation",
+        "Task Scheduling",
+        "Error Handling",
+        "Monitoring & Alerts",
       ],
       technologies: [
-        "Figma",
-        "Adobe XD",
-        "Sketch",
-        "InVision",
-        "Principle",
-        "Framer",
+        "Python",
+        "Zapier",
+        "AWS Lambda",
+        "Celery",
+        "RabbitMQ",
+        "Cron",
       ],
-      color: "success",
+      price: "Starting at $2,500",
+      popular: false,
+      image:
+        "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
+    },
+    {
+      id: "design",
+      icon: Palette,
+      title: "Digital Strategy",
+      subtitle: "Technology roadmaps that drive growth",
+      description:
+        "Strategic planning and digital transformation consulting that helps businesses leverage technology for competitive advantage and sustainable growth.",
+      features: [
+        "Technology Consulting",
+        "Architecture Planning",
+        "Digital Transformation",
+        "Growth Strategy",
+        "Performance Audits",
+        "Security Assessment",
+        "Scalability Planning",
+        "Team Training",
+      ],
+      technologies: [
+        "Consulting",
+        "Strategy",
+        "Planning",
+        "Analysis",
+        "Roadmapping",
+        "Training",
+      ],
+      price: "Starting at $1,500",
+      popular: false,
       image:
         "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
@@ -238,178 +244,158 @@ const ServicesPage: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary-50 via-neutral-50 to-accent-50/30 relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center px-4 py-2 bg-glass-warm backdrop-blur-xl border border-primary-200/30 rounded-full text-sm font-medium text-primary-700 mb-8"
+              transition={{ duration: 0.3 }}
+              className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
-              What We Do
+              Premium Software Development Services
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-neutral-800 mb-8 tracking-tight leading-tight">
-              Comprehensive
-              <span className="block bg-warm-gradient bg-clip-text text-transparent">Software Solutions</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+              From web applications to mobile apps, we deliver
+              <span className="block bg-shimmer bg-clip-text text-transparent">world-class solutions</span>
+              that transform businesses and drive exceptional results.
             </h1>
-
-            <p className="text-xl lg:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed font-light">
-              From web applications to mobile apps, we provide end-to-end
-              software development services that drive business growth and user
-              satisfaction.
-            </p>
           </AnimatedSection>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 bg-gradient-to-br from-neutral-50 via-primary-50/30 to-accent-50/20">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-24">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {services.map((service, index) => (
               <AnimatedSection
                 key={service.id}
-                delay={index * 0.1}
+                delay={index * 0.05}
                 className="group"
               >
-                <div
-                  className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
-                    index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-                  }`}
+                <motion.div
+                  whileHover={{ y: -12, scale: 1.02 }}
+                  transition={{ duration: 0.15 }}
+                  className="relative h-full"
                 >
-                  {/* Content */}
-                  <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
+                  {service.popular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                      <span className="bg-beige-gradient text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                        Most Popular
+                      </span>
+                    </div>
+                  )}
+                  
+                  <div className={`bg-card/50 backdrop-blur-xl p-8 rounded-2xl transition-all duration-150 border h-full flex flex-col
+                    ${service.popular 
+                      ? 'border-primary/50 shadow-glow' 
+                      : 'border-border hover:border-primary/30'
+                    } group-hover:bg-card/70 group-hover:shadow-card-hover`}
+                  >
                     <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.15 }}
                       className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 
-                        bg-${service.color}-gradient group-hover:shadow-warm transition-all duration-300`}
+                        ${service.popular 
+                          ? 'bg-beige-gradient shadow-glow' 
+                          : 'bg-primary/10 group-hover:bg-beige-gradient'
+                        } transition-all duration-150`}
                     >
-                      <service.icon
-                        size={28}
-                        className="text-white"
-                      />
+                      <service.icon size={28} className={service.popular ? 'text-primary-foreground' : 'text-primary group-hover:text-primary-foreground'} />
                     </motion.div>
-
-                    <h2 className="text-3xl md:text-4xl font-bold text-neutral-800 mb-4 group-hover:text-primary-600 transition-colors duration-300">
+                    
+                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-150">
                       {service.title}
-                    </h2>
+                    </h3>
 
-                    <p
-                      className={`text-lg font-medium mb-6 ${
-                        service.color === "warm"
-                          ? "text-primary-600"
-                          : service.color === "accent"
-                          ? "text-accent-600"
-                          : "text-success-600"
-                      }`}
-                    >
+                    <p className="text-primary/80 text-sm font-medium mb-4">
                       {service.subtitle}
                     </p>
-
-                    <p className="text-neutral-600 leading-relaxed mb-8 text-lg">
+                    
+                    <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
                       {service.description}
                     </p>
 
-                    {/* Features */}
-                    <div className="grid md:grid-cols-2 gap-3 mb-8">
-                      {service.features.map((feature) => (
-                        <div key={feature} className="flex items-center gap-3">
-                          <Check
-                            size={16}
-                            className={
-                              service.color === "warm"
-                                ? "text-primary-600"
-                                : service.color === "accent"
-                                ? "text-accent-600"
-                                : "text-success-600"
-                            }
-                          />
-                          <span className="text-neutral-600 text-sm">{feature}</span>
-                        </div>
-                      ))}
+                    <div className="mb-6">
+                      <div className="text-2xl font-bold text-primary mb-4">
+                        {service.price}
+                      </div>
+                      <ul className="space-y-2 mb-6">
+                        {service.features.slice(0, 4).map((feature) => (
+                          <li key={feature} className="text-sm text-muted-foreground flex items-center">
+                            <Check size={14} className="text-primary mr-2 flex-shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
 
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {service.technologies.map((tech) => (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {service.technologies.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className={`px-3 py-1 text-xs rounded-full ${
-                            service.color === "warm"
-                              ? "bg-primary-100/50 text-primary-700"
-                              : service.color === "accent"
-                              ? "bg-accent-100/50 text-accent-700"
-                              : "bg-success-100/50 text-success-700"
-                          }`}
+                          className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    <Link to="/contact">
-                      <motion.button
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`group font-medium px-6 py-3 rounded-lg transition-all duration-300 text-lg flex items-center gap-2 ${
-                          service.color === "warm"
-                            ? "bg-warm-gradient text-white hover:shadow-warm"
-                            : service.color === "accent"
-                            ? "bg-accent-gradient text-white hover:shadow-soft"
-                            : "bg-success-gradient text-white hover:shadow-soft"
-                        }`}
-                      >
-                        Get Started
-                        <ArrowRight
-                          size={18}
-                          className="group-hover:translate-x-1 transition-transform duration-300"
-                        />
-                      </motion.button>
-                    </Link>
-                  </div>
-
-                  {/* Image */}
-                  <div className={index % 2 === 1 ? "lg:col-start-1" : ""}>
-                    <motion.div
-                      whileHover={{ scale: 1.05, y: -8 }}
-                      transition={{ duration: 0.4 }}
-                      className="relative overflow-hidden rounded-lg aspect-[4/3] group-hover:shadow-warm transition-shadow duration-300"
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-150 ${
+                        service.popular
+                          ? 'bg-beige-gradient text-primary-foreground hover:shadow-glow'
+                          : 'bg-card border border-border text-foreground hover:bg-primary/10 hover:border-primary/30'
+                      }`}
                     >
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br opacity-20 ${
-                          service.color === "warm"
-                            ? "from-primary-300/20 to-transparent"
-                            : service.color === "accent"
-                            ? "from-accent-300/20 to-transparent"
-                            : "from-success-300/20 to-transparent"
-                        }`}
-                      ></div>
-                    </motion.div>
+                      Learn More
+                    </motion.button>
                   </div>
-                </div>
+                </motion.div>
               </AnimatedSection>
             ))}
           </div>
+
+          {/* CTA Section */}
+          <AnimatedSection className="text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+              Ready to build something 
+              <span className="bg-shimmer bg-clip-text text-transparent"> exceptional</span>?
+            </h3>
+            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Let's discuss your project and create a solution that drives real business results.
+            </p>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.15 }}
+                className="bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                         hover:shadow-glow transition-all duration-150 
+                         flex items-center gap-3 text-lg mx-auto"
+              >
+                Start Your Project
+                <ArrowRight size={20} />
+              </motion.button>
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-24 bg-gradient-to-br from-neutral-800 via-neutral-900 to-neutral-800">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-neutral-100 mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
               Our
-              <span className="block bg-warm-gradient bg-clip-text text-transparent">Process</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Process</span>
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               A proven methodology that ensures successful project delivery from
               concept to launch.
             </p>
@@ -419,75 +405,29 @@ const ServicesPage: React.FC = () => {
             {process.map((step, index) => (
               <AnimatedSection
                 key={step.step}
-                delay={index * 0.1}
+                delay={index * 0.05}
                 className="text-center group"
               >
                 <motion.div
                   whileHover={{ scale: 1.1, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-16 h-16 bg-warm-gradient rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-warm transition-all duration-300"
+                  transition={{ duration: 0.15 }}
+                  className="w-16 h-16 bg-beige-gradient rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-glow transition-all duration-150"
                 >
-                  <span className="text-white font-bold text-lg">
+                  <span className="text-primary-foreground font-bold text-lg">
                     {step.step}
                   </span>
                 </motion.div>
 
-                <h3 className="text-xl font-semibold text-neutral-100 mb-4 group-hover:text-primary-400 transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-150">
                   {step.title}
                 </h3>
 
-                <p className="text-neutral-400 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {step.description}
                 </p>
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-primary-50 via-neutral-50 to-accent-50/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-neutral-800 mb-8 tracking-tight">
-              Ready to Start
-              <span className="block bg-warm-gradient bg-clip-text text-transparent">Your Project?</span>
-            </h2>
-
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              Let's discuss your project requirements and create a solution that
-              drives real business results.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group bg-warm-gradient text-white px-8 py-4 rounded-lg font-medium 
-                           hover:shadow-warm transition-all duration-300 
-                           flex items-center gap-3 text-lg"
-                >
-                  Get Free Consultation
-                  <ArrowRight
-                    size={20}
-                    className="group-hover:translate-x-1 transition-transform duration-300"
-                  />
-                </motion.button>
-              </Link>
-
-              <Link to="/portfolio">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-neutral-600 hover:text-primary-600 font-medium px-8 py-4 
-                           transition-colors duration-300 text-lg"
-                >
-                  View Our Work
-                </motion.button>
-              </Link>
-            </div>
-          </AnimatedSection>
         </div>
       </section>
     </PageTransition>
