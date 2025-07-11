@@ -145,7 +145,7 @@ export default {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'beige-gradient': 'linear-gradient(135deg, #C48A64 0%, #DCA973 100%)',
         'dark-gradient': 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
-        'shimmer': 'linear-gradient(90deg, transparent, rgba(196, 138, 100, 0.4), transparent)',
+        'shimmer': 'linear-gradient(90deg, rgba(196, 138, 100, 0.3), rgba(196, 138, 100, 1), rgba(196, 138, 100, 0.3))',
       },
       boxShadow: {
         'glow': '0 0 20px rgba(196, 138, 100, 0.3)',
