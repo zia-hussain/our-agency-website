@@ -216,7 +216,7 @@ const Hero: React.FC = () => {
       />
 
       {/* PERFECTLY CENTERED SCROLL INDICATOR */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4, delay: 1.5 }}
@@ -233,7 +233,7 @@ const Hero: React.FC = () => {
             className="w-1 h-3 bg-primary rounded-full mt-2"
           />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 };
