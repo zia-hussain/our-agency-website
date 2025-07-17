@@ -9,19 +9,23 @@ const AboutPage: React.FC = () => {
   const founders = [
     {
       name: "Zia Hussain",
-      role: "Co-Founder & Lead Developer",
-      bio: "Full-stack developer with 5+ years of experience building scalable web applications. Passionate about clean code and user-centric design.",
-      image:
-        "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=400",
-      skills: ["React", "Node.js", "TypeScript", "AWS"],
+      role: "Co-Founder · Product & Growth",
+      bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn’t just built well — it solves the right problem, beautifully.",
+      image: "/Software Engineer.png",
+      skills: [
+        "Strategy",
+        "Client Acquisition",
+        "React",
+        "Node.js",
+        "Growth Systems",
+      ],
     },
     {
       name: "Umer Gillani",
-      role: "Co-Founder & Technical Architect",
-      bio: "Systems architect and backend specialist with expertise in building robust, high-performance applications that scale with business growth.",
-      image:
-        "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=400",
-      skills: ["Python", "PostgreSQL", "Docker", "Microservices"],
+      role: "Co-Founder · Engineering & Automation",
+      bio: "Umer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
+      image: "/umer_gillani.png",
+      skills: ["Next.js", "TypeScript", "Firebase", "Python", "AI Automation"],
     },
   ];
 
@@ -96,9 +100,11 @@ const AboutPage: React.FC = () => {
               Our Story
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Built on
-              <span className="block bg-shimmer bg-clip-text text-transparent">Vision & Values</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                Vision & Values
+              </span>
             </h1>
 
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
@@ -114,9 +120,11 @@ const AboutPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+            <h2 className="text-5xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
               Meet the
-              <span className="block bg-shimmer bg-clip-text text-transparent">Founders</span>
+              <span className=" block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                Founders
+              </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               Two passionate developers united by a shared vision of creating
@@ -134,7 +142,7 @@ const AboutPage: React.FC = () => {
                 <motion.div
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ duration: 0.15 }}
-                  className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 hover:shadow-card-hover transition-all duration-150"
+                  className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 hover:shadow-card-hover "
                 >
                   <motion.div
                     whileHover={{ scale: 1.05 }}
@@ -183,9 +191,11 @@ const AboutPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+            <h2 className="text-5xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
               Our
-              <span className="block bg-shimmer bg-clip-text text-transparent">Core Values</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                Core Values
+              </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               These principles guide every decision we make and every line of
@@ -202,13 +212,13 @@ const AboutPage: React.FC = () => {
               >
                 <motion.div
                   whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.15 }}
-                  className="bg-card/50 backdrop-blur-xl p-8 rounded-lg transition-all duration-150 border border-border hover:border-primary/30 h-full hover:shadow-card-hover"
+                  transition={{ duration: 0.2 }}
+                  className="bg-card/50 backdrop-blur-xl p-8 rounded-lg  border border-border hover:border-primary/30 h-full hover:shadow-card-hover"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.15 }}
-                    className="inline-flex items-center justify-center w-16 h-16 bg-beige-gradient rounded-xl mb-6 group-hover:shadow-glow transition-all duration-150"
+                    className="inline-flex items-center justify-center w-16 h-16 bg-beige-gradient rounded-xl mb-6 group-hover:shadow-glow "
                   >
                     <value.icon size={28} className="text-primary-foreground" />
                   </motion.div>
@@ -231,9 +241,11 @@ const AboutPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-8 tracking-tight">
+            <h2 className="text-3xl md:text-8xl font-bold text-foreground mb-8 tracking-tight">
               Our
-              <span className="block bg-shimmer bg-clip-text text-transparent">Mission</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                Mission
+              </span>
             </h2>
 
             <div className="max-w-4xl mx-auto">
@@ -246,7 +258,7 @@ const AboutPage: React.FC = () => {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.15 }}
-                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 transition-all duration-150"
+                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 "
               >
                 <p className="text-lg text-muted-foreground leading-relaxed italic">
                   "We believe that great software is more than just code—it's a

@@ -79,19 +79,14 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground mb-8 leading-tight tracking-tight"
+            className="text-5xl md:text-7xl lg:text-8xl xl:text-8xl font-bold text-foreground mb-8 leading-tight tracking-tight"
           >
             We build
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.4 }}
-              className="block bg-shimmer bg-clip-text text-transparent animate-text-shimmer"
-              style={{
-                backgroundImage:
-                  "linear-gradient(90deg, #C48A64, #DCA973, #E8C49B, #C48A64)",
-                backgroundSize: "200% auto",
-              }}
+              className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]"
             >
               world-class
             </motion.span>

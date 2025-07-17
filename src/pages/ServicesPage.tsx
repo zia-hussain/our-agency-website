@@ -258,7 +258,9 @@ const ServicesPage: React.FC = () => {
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               From web applications to mobile apps, we deliver
-              <span className="block bg-shimmer bg-clip-text text-transparent">world-class solutions</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                world-class solutions
+              </span>
               that transform businesses and drive exceptional results.
             </h1>
           </AnimatedSection>
@@ -287,25 +289,35 @@ const ServicesPage: React.FC = () => {
                       </span>
                     </div>
                   )}
-                  
-                  <div className={`bg-card/50 backdrop-blur-xl p-8 rounded-2xl transition-all duration-150 border h-full flex flex-col
-                    ${service.popular 
-                      ? 'border-primary/50 shadow-glow' 
-                      : 'border-border hover:border-primary/30'
+
+                  <div
+                    className={`bg-card/50 backdrop-blur-xl p-8 rounded-2xl  border h-full flex flex-col
+                    ${
+                      service.popular
+                        ? "border-primary/50 shadow-glow"
+                        : "border-border hover:border-primary/30"
                     } group-hover:bg-card/70 group-hover:shadow-card-hover`}
                   >
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.15 }}
                       className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 
-                        ${service.popular 
-                          ? 'bg-beige-gradient shadow-glow' 
-                          : 'bg-primary/10 group-hover:bg-beige-gradient'
-                        } transition-all duration-150`}
+                        ${
+                          service.popular
+                            ? "bg-beige-gradient shadow-glow"
+                            : "bg-primary/10 group-hover:bg-beige-gradient"
+                        } `}
                     >
-                      <service.icon size={28} className={service.popular ? 'text-primary-foreground' : 'text-primary group-hover:text-primary-foreground'} />
+                      <service.icon
+                        size={28}
+                        className={
+                          service.popular
+                            ? "text-primary-foreground"
+                            : "text-primary group-hover:text-primary-foreground"
+                        }
+                      />
                     </motion.div>
-                    
+
                     <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-150">
                       {service.title}
                     </h3>
@@ -313,7 +325,7 @@ const ServicesPage: React.FC = () => {
                     <p className="text-primary/80 text-sm font-medium mb-4">
                       {service.subtitle}
                     </p>
-                    
+
                     <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
                       {service.description}
                     </p>
@@ -324,8 +336,14 @@ const ServicesPage: React.FC = () => {
                       </div>
                       <ul className="space-y-2 mb-6">
                         {service.features.slice(0, 4).map((feature) => (
-                          <li key={feature} className="text-sm text-muted-foreground flex items-center">
-                            <Check size={14} className="text-primary mr-2 flex-shrink-0" />
+                          <li
+                            key={feature}
+                            className="text-sm text-muted-foreground flex items-center"
+                          >
+                            <Check
+                              size={14}
+                              className="text-primary mr-2 flex-shrink-0"
+                            />
                             {feature}
                           </li>
                         ))}
@@ -347,10 +365,10 @@ const ServicesPage: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-150 ${
+                      className={`w-full py-3 px-6 rounded-lg font-medium  ${
                         service.popular
-                          ? 'bg-beige-gradient text-primary-foreground hover:shadow-glow'
-                          : 'bg-card border border-border text-foreground hover:bg-primary/10 hover:border-primary/30'
+                          ? "bg-beige-gradient text-primary-foreground hover:shadow-glow"
+                          : "bg-card border border-border text-foreground hover:bg-primary/10 hover:border-primary/30"
                       }`}
                     >
                       Learn More
@@ -363,12 +381,17 @@ const ServicesPage: React.FC = () => {
 
           {/* CTA Section */}
           <AnimatedSection className="text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Ready to build something 
-              <span className="bg-shimmer bg-clip-text text-transparent"> exceptional</span>?
+            <h3 className="text-3xl md:text-3xl font-bold text-foreground mb-6">
+              Ready to build something
+              <span className="bg-shimmer bg-clip-text text-transparent">
+                {" "}
+                exceptional
+              </span>
+              ?
             </h3>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Let's discuss your project and create a solution that drives real business results.
+              Let's discuss your project and create a solution that drives real
+              business results.
             </p>
             <Link to="/contact">
               <motion.button
@@ -376,7 +399,7 @@ const ServicesPage: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.15 }}
                 className="bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                         hover:shadow-glow transition-all duration-150 
+                         hover:shadow-glow  
                          flex items-center gap-3 text-lg mx-auto"
               >
                 Start Your Project
@@ -391,9 +414,11 @@ const ServicesPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
               Our
-              <span className="block bg-shimmer bg-clip-text text-transparent">Process</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                Process
+              </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               A proven methodology that ensures successful project delivery from
@@ -411,7 +436,7 @@ const ServicesPage: React.FC = () => {
                 <motion.div
                   whileHover={{ scale: 1.1, y: -5 }}
                   transition={{ duration: 0.15 }}
-                  className="w-16 h-16 bg-beige-gradient rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-glow transition-all duration-150"
+                  className="w-16 h-16 bg-beige-gradient rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-glow "
                 >
                   <span className="text-primary-foreground font-bold text-lg">
                     {step.step}

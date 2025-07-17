@@ -227,7 +227,9 @@ const PortfolioPage: React.FC = () => {
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Portfolio of
-              <span className="block bg-shimmer bg-clip-text text-transparent">Excellence</span>
+              <span className=" block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                Excellence
+              </span>
             </h1>
 
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
@@ -252,7 +254,7 @@ const PortfolioPage: React.FC = () => {
                 <motion.div
                   whileHover={{ scale: 1.1, y: -5 }}
                   transition={{ duration: 0.15 }}
-                  className="w-16 h-16 bg-card/50 backdrop-blur-xl border border-border rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/10 group-hover:border-primary/30 transition-all duration-150"
+                  className="w-16 h-16 bg-card/50 backdrop-blur-xl border border-border rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/10 group-hover:border-primary/30 "
                 >
                   <stat.icon size={24} className="text-primary" />
                 </motion.div>
@@ -280,7 +282,7 @@ const PortfolioPage: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.15 }}
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-150 ${
+                  className={`px-6 py-3 rounded-lg font-medium  ${
                     activeFilter === filter.id
                       ? "bg-beige-gradient text-primary-foreground shadow-glow"
                       : "bg-card/50 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary"
@@ -307,10 +309,10 @@ const PortfolioPage: React.FC = () => {
                 <motion.div
                   whileHover={{ y: -12, scale: 1.02 }}
                   transition={{ duration: 0.15 }}
-                  className={`bg-card/50 backdrop-blur-xl border rounded-lg overflow-hidden transition-all duration-150 ${
-                    project.featured 
-                      ? 'border-primary/50 shadow-glow' 
-                      : 'border-border hover:border-primary/30'
+                  className={`bg-card/50 backdrop-blur-xl border rounded-lg overflow-hidden  ${
+                    project.featured
+                      ? "border-primary/50 shadow-glow"
+                      : "border-border hover:border-primary/30"
                   } group-hover:bg-card/70 group-hover:shadow-card-hover`}
                 >
                   {project.featured && (
@@ -438,9 +440,11 @@ const PortfolioPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-8 tracking-tight">
+            <h2 className="text-3xl md:text-8xl font-bold text-foreground mb-8 tracking-tight">
               Ready to Create
-              <span className="block bg-shimmer bg-clip-text text-transparent">Your Success Story?</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                Your Success Story?
+              </span>
             </h2>
 
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light">
@@ -453,7 +457,7 @@ const PortfolioPage: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.15 }}
               className="group bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                       hover:shadow-glow transition-all duration-150 
+                       hover:shadow-glow  
                        flex items-center gap-3 text-lg mx-auto"
             >
               Start Your Project

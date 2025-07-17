@@ -1,37 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     company: [
-      { name: 'About Us', path: '/about' },
-      { name: 'Services', path: '/services' },
-      { name: 'Portfolio', path: '/portfolio' },
-      { name: 'Contact', path: '/contact' },
+      { name: "About Us", path: "/about" },
+      { name: "Services", path: "/services" },
+      { name: "Portfolio", path: "/portfolio" },
+      { name: "Contact", path: "/contact" },
     ],
     services: [
-      { name: 'Web Applications', path: '/services#web-apps' },
-      { name: 'SaaS Dashboards', path: '/services#saas-dashboards' },
-      { name: 'Mobile Apps', path: '/services#mobile-apps' },
-      { name: 'MVP Development', path: '/services#mvp' },
-      { name: 'Automation Solutions', path: '/services#automation' },
-      { name: 'Digital Strategy', path: '/services#digital-strategy' },
+      { name: "Web Applications", path: "/services#web-apps" },
+      { name: "SaaS Dashboards", path: "/services#saas-dashboards" },
+      { name: "Mobile Apps", path: "/services#mobile-apps" },
+      { name: "MVP Development", path: "/services#mvp" },
+      { name: "Automation Solutions", path: "/services#automation" },
+      { name: "Digital Strategy", path: "/services#digital-strategy" },
     ],
     contact: [
-      { icon: Mail, text: 'hello@zumetrixlabs.com', href: 'mailto:hello@zumetrixlabs.com' },
-      { icon: Phone, text: '+92 XXX XXXXXXX', href: 'tel:+92XXXXXXXXX' },
-      { icon: MapPin, text: 'Pakistan', href: '#' },
+      {
+        icon: Mail,
+        text: "hello@zumetrixlabs.com",
+        href: "mailto:hello@zumetrixlabs.com",
+      },
+      { icon: Phone, text: "+92 XXX XXXXXXX", href: "tel:+92XXXXXXXXX" },
+      { icon: MapPin, text: "Pakistan", href: "#" },
     ],
   };
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/zumetrix-labs', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/zumetrix-labs', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com/zumetrixlabs', label: 'Twitter' },
+    { icon: Github, href: "https://github.com/zumetrix-labs", label: "GitHub" },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com/company/zumetrix-labs",
+      label: "LinkedIn",
+    },
+    {
+      icon: Twitter,
+      href: "https://twitter.com/zumetrixlabs",
+      label: "Twitter",
+    },
   ];
 
   return (
@@ -48,20 +60,21 @@ const Footer: React.FC = () => {
           >
             <Link to="/" className="inline-block mb-4">
               <motion.div
-                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
                 className="flex items-center space-x-3"
               >
-                <div className="w-8 h-8 bg-beige-gradient rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">Z</span>
-                </div>
-                <span className="text-2xl font-bold tracking-tight hover:text-primary transition-colors duration-200 text-foreground">
-                  Zumetrix Labs
+                <span className="text-2xl font-bold tracking-tight hover:text-primary transition-colors duration-200 text-foreground ">
+                  <img
+                    className="h-8"
+                    src="/zumetrix final.svg"
+                    alt="Zumetrix Labs"
+                  />
                 </span>
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Crafting exceptional software experiences that drive business growth and user satisfaction.
+              Crafting exceptional software experiences that drive business
+              growth and user satisfaction.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -89,7 +102,9 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.3, delay: 0.05 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-foreground">Company</h3>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">
+              Company
+            </h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -111,7 +126,9 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.3, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-foreground">Services</h3>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">
+              Services
+            </h3>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
@@ -133,7 +150,9 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.3, delay: 0.15 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-foreground">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">
+              Contact
+            </h3>
             <ul className="space-y-3">
               {footerLinks.contact.map((contact, index) => (
                 <li key={index}>
@@ -160,13 +179,20 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-              © {currentYear} Zumetrix Labs. All rights reserved. Coded with ❤️ by Zia Hussain and Umer Gillani.
+              © {currentYear} Zumetrix Labs. All rights reserved. Coded with ❤️
+              by Zia Hussain and Umer Gillani.
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors duration-200">
+              <Link
+                to="/privacy"
+                className="text-muted-foreground hover:text-primary transition-colors duration-200"
+              >
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors duration-200">
+              <Link
+                to="/terms"
+                className="text-muted-foreground hover:text-primary transition-colors duration-200"
+              >
                 Terms of Service
               </Link>
             </div>

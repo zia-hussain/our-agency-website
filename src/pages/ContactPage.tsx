@@ -137,9 +137,11 @@ const ContactPage: React.FC = () => {
               Let's Talk
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight">
               Start Your
-              <span className="block bg-shimmer bg-clip-text text-transparent">Project Today</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1] pb-4 leading-[1.1]">
+                Project Today
+              </span>
             </h1>
 
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
@@ -157,7 +159,7 @@ const ContactPage: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <AnimatedSection>
-              <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 transition-all duration-150">
+              <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 ">
                 <h2 className="text-3xl font-bold text-foreground mb-8">
                   Tell Us About Your Project
                 </h2>
@@ -340,7 +342,7 @@ const ContactPage: React.FC = () => {
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
                       className="w-full bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                               hover:shadow-glow transition-all duration-150 
+                               hover:shadow-glow  
                                flex items-center justify-center gap-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
@@ -383,17 +385,20 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
+                  {contactInfo.map((info) => (
                     <motion.a
                       key={info.title}
                       href={info.action}
                       whileHover={{ scale: 1.02, y: -2 }}
                       transition={{ duration: 0.15 }}
-                      className="block bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 hover:border-primary/30 hover:shadow-card-hover transition-all duration-150 group"
+                      className="block bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 hover:border-primary/30 hover:shadow-card-hover  group"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-beige-gradient rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all duration-150">
-                          <info.icon size={24} className="text-primary-foreground" />
+                        <div className="w-12 h-12 bg-beige-gradient rounded-lg flex items-center justify-center group-hover:shadow-glow ">
+                          <info.icon
+                            size={24}
+                            className="text-primary-foreground"
+                          />
                         </div>
                         <div className="flex-1">
                           <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-150">
@@ -456,9 +461,11 @@ const ContactPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
               Frequently Asked
-              <span className="block bg-shimmer bg-clip-text text-transparent">Questions</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+                Questions
+              </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               Quick answers to common questions about working with Zumetrix
@@ -497,7 +504,7 @@ const ContactPage: React.FC = () => {
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.15 }}
-                  className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border hover:border-primary/30 transition-all duration-150"
+                  className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border hover:border-primary/30 "
                 >
                   <h3 className="font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-150">
                     {faq.question}

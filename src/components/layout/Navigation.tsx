@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,8 +13,8 @@ const Navigation: React.FC = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -22,58 +22,60 @@ const Navigation: React.FC = () => {
   }, [location]);
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Contact', path: '/contact' },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        isScrolled 
-          ? 'bg-background/80 backdrop-blur-xl border-b border-border' 
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50  ${
+        isScrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-border"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link to="/" className="flex-shrink-0 group">
             <motion.div
-              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
               className="flex items-center space-x-3"
             >
-              <div className="w-8 h-8 bg-beige-gradient rounded-lg flex items-center justify-center shadow-glow">
-                <span className="text-black font-bold text-sm">Z</span>
-              </div>
               <span className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
-                Zumetrix Labs
+                <img
+                  className="h-40 w-40"
+                  src="/zumetrix final.svg"
+                  alt="Zumetrix Labs"
+                />
               </span>
             </motion.div>
           </Link>
-          
+
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`relative px-3 py-2 text-sm font-medium tracking-wide transition-all duration-200 group ${
+                  className={`relative px-3 py-2 text-sm font-medium tracking-wide  group ${
                     location.pathname === item.path
-                      ? 'text-primary'
-                      : 'text-muted-foreground hover:text-primary'
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-primary"
                   }`}
                 >
                   {item.name}
                   <motion.div
                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-beige-gradient rounded-full"
                     initial={{ scaleX: 0 }}
-                    animate={{ scaleX: location.pathname === item.path ? 1 : 0 }}
+                    animate={{
+                      scaleX: location.pathname === item.path ? 1 : 0,
+                    }}
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.2 }}
                   />
@@ -89,7 +91,7 @@ const Navigation: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
                 className="bg-beige-gradient text-primary-foreground px-6 py-2.5 rounded-lg font-medium 
-                         hover:shadow-glow transition-all duration-200"
+                         hover:shadow-glow "
               >
                 Let's Talk
               </motion.button>
@@ -111,7 +113,7 @@ const Navigation: React.FC = () => {
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
             className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border"
@@ -128,8 +130,8 @@ const Navigation: React.FC = () => {
                     to={item.path}
                     className={`block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200 rounded-lg ${
                       location.pathname === item.path
-                        ? 'text-primary bg-primary/10'
-                        : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
                     }`}
                   >
                     {item.name}
