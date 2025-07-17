@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Play } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Play } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Hero: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -16,26 +16,26 @@ const Hero: React.FC = () => {
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.1, 1],
             rotate: [0, 5, 0],
           }}
-          transition={{ 
+          transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-terracotta/5 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1.1, 1, 1.1],
             rotate: [0, -5, 0],
           }}
-          transition={{ 
+          transition={{
             duration: 25,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute bottom-1/4 right-1/4 w-128 h-128 bg-sage/5 rounded-full blur-3xl"
         />
@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
               Exceptional Software
             </motion.span>
           </motion.h1>
-          
+
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -83,11 +83,12 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-lg md:text-xl lg:text-2xl text-stone max-w-4xl mx-auto mb-12 leading-relaxed font-light"
           >
-            Zumetrix Labs crafts premium digital experiences for forward-thinking companies. 
-            From elegant web applications to sophisticated mobile solutions, we transform 
-            your vision into extraordinary software that drives real business results.
+            Zumetrix Labs helps startups and businesses build modern, scalable
+            MVPs, SaaS dashboards, and full-stack web applications using React,
+            Node.js, and Firebase. From strategy to final deployment, we
+            transform ideas into elegant, powerful software experiences.
           </motion.p>
-          
+
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -104,16 +105,20 @@ const Hero: React.FC = () => {
                          flex items-center gap-3 text-lg shadow-lg hover:shadow-xl"
               >
                 Start Your Project
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1 transition-transform duration-300"
+                />
               </motion.button>
             </Link>
-            
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('portfolio')}
+              onClick={() => scrollToSection("portfolio")}
               className="group text-charcoal hover:text-terracotta font-medium px-8 py-4 
                        transition-colors duration-300 text-lg flex items-center gap-3"
+              aria-label="Explore Zumetrix Labs portfolio of custom software projects"
             >
               <div className="w-12 h-12 bg-terracotta/10 rounded-full flex items-center justify-center group-hover:bg-terracotta/20 transition-colors duration-300">
                 <Play size={16} className="text-terracotta ml-0.5" />
@@ -130,10 +135,10 @@ const Hero: React.FC = () => {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
           >
             {[
-              { number: '50+', label: 'Projects Delivered' },
-              { number: '25+', label: 'Happy Clients' },
-              { number: '3+', label: 'Years Experience' },
-              { number: '100%', label: 'Client Satisfaction' },
+              { number: "50+", label: "Web & App Projects Delivered" },
+              { number: "25+", label: "Clients Served Worldwide" },
+              { number: "3+", label: "Years of Modern Stack Experience" },
+              { number: "100%", label: "Client Satisfaction Rate" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
