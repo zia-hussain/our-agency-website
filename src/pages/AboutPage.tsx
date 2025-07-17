@@ -8,7 +8,7 @@ import { Users, Target, Award, Globe, Code, Heart } from "lucide-react";
 const AboutPage: React.FC = () => {
   const founders = [
     {
-      name: "Zia Hussain",
+      name: "Syed Zia Hussain",
       role: "Co-Founder · Product & Growth",
       bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn’t just built well — it solves the right problem, beautifully.",
       image: "/Software Engineer.png",
@@ -21,7 +21,7 @@ const AboutPage: React.FC = () => {
       ],
     },
     {
-      name: "Umer Gillani",
+      name: "Syed Omer Shah",
       role: "Co-Founder · Engineering & Automation",
       bio: "Umer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
       image: "/umer_gillani.png",
@@ -73,9 +73,9 @@ const AboutPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="About Us - Zumetrix Labs | Zia Hussain & Umer Gillani"
-        description="Meet the founders of Zumetrix Labs - Zia Hussain and Umer Gillani. Learn about our mission, values, and commitment to building exceptional software."
-        keywords="Zia Hussain, Umer Gillani, Zumetrix Labs founders, software development team, web development experts Pakistan"
+        title="About Us - Zumetrix Labs | Syed Zia Hussain & Syed Omer Shah"
+        description="Meet the founders of Zumetrix Labs - Syed Zia Hussain and Syed Omer Shah. Learn about our mission, values, and commitment to building exceptional software."
+        keywords="Syed Zia Hussain, Syed Omer Shah, Zumetrix Labs founders, software development team, web development experts Pakistan"
         url="https://zumetrixlabs.com/about"
       />
 
@@ -268,7 +268,7 @@ const AboutPage: React.FC = () => {
                   in people's lives and businesses."
                 </p>
                 <div className="mt-6 text-primary font-medium">
-                  — Zia Hussain & Umer Gillani, Co-Founders
+                  — Syed Zia Hussain & Syed Omer Shah, Co-Founders
                 </div>
               </motion.div>
             </div>

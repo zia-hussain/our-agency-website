@@ -60,9 +60,9 @@ const PortfolioPage: React.FC = () => {
               Our Work
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+            <h1 className="text-3xl md:text-8xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Portfolio of
-              <span className=" block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Excellence
               </span>
             </h1>
@@ -157,13 +157,13 @@ const PortfolioPage: React.FC = () => {
                   )}
 
                   {/* Project Image */}
-                  <div className="relative overflow-hidden aspect-[16/10]">
+                  <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] flex items-center justify-center bg-background">
                     <motion.img
                       src={project.image}
                       alt={project.title}
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.4 }}
-                      className="w-full h-full object-cover"
+                      className="max-w-full max-h-full object-contain"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
 
@@ -277,7 +277,7 @@ const PortfolioPage: React.FC = () => {
           <AnimatedSection className="text-center">
             <h2 className="text-3xl md:text-8xl font-bold text-foreground mb-8 tracking-tight">
               Ready to Create
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Your Success Story?
               </span>
             </h2>

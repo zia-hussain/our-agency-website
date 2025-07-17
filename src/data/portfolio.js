@@ -1,28 +1,29 @@
 export const projects = [
     {
         id: 1,
-        title: "FinanceFlow Dashboard",
+        title: "Ifyify - AI-Powered Personal Branding Tool",
         category: "Web Application",
-        type: "web",
+        type: "mvp",
         description:
-            "A comprehensive financial analytics platform with real-time data visualization, automated reporting capabilities, and advanced portfolio management features.",
+            "A sleek and scalable React-based AI platform that helps users craft professional bios, taglines, and brand personas using custom-built prompt flows and style selectors.",
         longDescription:
-            "FinanceFlow Dashboard revolutionizes how financial advisors manage client portfolios. Built with React and TypeScript, it features real-time market data integration, customizable dashboards, automated report generation, and advanced analytics. The platform handles over 10,000 daily transactions and serves 500+ active users.",
+            "Ifyify is a cutting-edge AI-driven personal branding tool designed to help users instantly generate bios, taglines, and tailored branding content. Built from scratch with React, TailwindCSS, Supabase, and OpenAI, the platform features a beautifully animated style selector system, prompt-based generation flows, and multi-step user onboarding. Our role included frontend UI/UX implementation, AI integration, secure auth, and scalable architecture setup. We also supported post-launch improvements like better prompt uploads, dashboard enhancements, and future-proof extensibility.",
         image:
-            "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
-        tags: ["React", "TypeScript", "D3.js", "Node.js", "PostgreSQL", "AWS"],
-        client: "FinTech Solutions Inc.",
-        duration: "4 months",
-        team: "3 developers",
-        year: "2024",
+            "../../public/project_images/ifyify.art (3).jpg",
+        tags: ["React", "TailwindCSS", "Supabase", "OpenAI", "JavaScript", "Responsive UI"],
+        client: "Kelly Andrews – Best Business Services",
+        duration: "2 weeks (Phase 1)",
+        team: "Solo Developer",
+        year: "2025",
         featured: true,
         results: [
-            "40% increase in user engagement",
-            "60% reduction in report generation time",
-            "99.9% uptime achieved",
-            "500+ active daily users",
+            "Successful launch of MVP within 2 weeks",
+            "Integrated AI with prompt flow system using OpenAI",
+            "Clean, responsive UI with animated style selector",
+            "Client praised work ethic and plans long-term collaboration"
         ],
-    },
+    }
+    ,
     {
         id: 2,
         title: "WellnessTracker Mobile",
@@ -33,7 +34,7 @@ export const projects = [
         longDescription:
             "WellnessTracker Mobile empowers users to take control of their health journey. The app features comprehensive health tracking, AI-powered insights, social challenges, and integration with popular fitness devices. Built with React Native for seamless cross-platform experience.",
         image:
-            "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
+            "../../public/project_images/task_manager_portfolio_img.jpg",
         tags: [
             "React Native",
             "Firebase",

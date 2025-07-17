@@ -258,7 +258,7 @@ const ServicesPage: React.FC = () => {
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               From web applications to mobile apps, we deliver
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+              <span className="block bg-shimmer bg-clip-text text-transparent">
                 world-class solutions
               </span>
               that transform businesses and drive exceptional results.
@@ -381,7 +381,7 @@ const ServicesPage: React.FC = () => {
 
           {/* CTA Section */}
           <AnimatedSection className="text-center">
-            <h3 className="text-3xl md:text-3xl font-bold text-foreground mb-6">
+            <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Ready to build something
               <span className="bg-shimmer bg-clip-text text-transparent">
                 {" "}
@@ -413,45 +413,56 @@ const ServicesPage: React.FC = () => {
       {/* Process Section */}
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-20">
-            <h2 className="text-3xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
+          <AnimatedSection className="text-center">
+            <h2 className="text-5xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
               Our
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
                 Process
               </span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
-              A proven methodology that ensures successful project delivery from
-              concept to launch.
-            </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-5 gap-8">
-            {process.map((step, index) => (
-              <AnimatedSection
-                key={step.step}
-                delay={index * 0.05}
-                className="text-center group"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  transition={{ duration: 0.15 }}
-                  className="w-16 h-16 bg-beige-gradient rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-glow "
+          <div className="relative">
+            <h2 className="text-center text-xl md:text-2xl text-muted-foreground font-medium mb-12">
+              A proven methodology that delivers from concept → launch.
+              <br />
+              We follow a structured process to ensure your project is a
+              success.
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 max-w-6xl mx-auto px-4">
+              {process.map((step, index) => (
+                <AnimatedSection
+                  key={step.step}
+                  delay={index * 0.08}
+                  className="relative group flex flex-col items-center text-center"
                 >
-                  <span className="text-primary-foreground font-bold text-lg">
+                  {/* Circle with glow */}
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary to-orange-400 text-white text-lg md:text-xl font-bold rounded-full flex items-center justify-center shadow-lg z-10"
+                  >
                     {step.step}
-                  </span>
-                </motion.div>
+                  </motion.div>
 
-                <h3 className="text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-150">
-                  {step.title}
-                </h3>
+                  {/* Vertical line */}
+                  {index !== process.length && (
+                    <div className="hidden md:block h-16 w-px bg-primary/20" />
+                  )}
 
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {step.description}
-                </p>
-              </AnimatedSection>
-            ))}
+                  {/* Title + Description */}
+                  <div className="mt-6">
+                    <h3 className="text-base md:text-lg font-semibold text-foreground group-hover:text-primary transition">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed max-w-[220px] mx-auto">
+                      {step.description}
+                    </p>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
         </div>
       </section>

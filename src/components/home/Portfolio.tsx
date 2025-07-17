@@ -9,13 +9,20 @@ const Portfolio: React.FC = () => {
 
   const projects = [
     {
-      title: "FinanceFlow Dashboard",
+      id: 1,
+      title: "Ifyify - AI-Powered Personal Branding Tool",
       category: "Web Application",
       description:
-        "A comprehensive financial analytics platform with real-time data visualization and automated reporting capabilities.",
-      image:
-        "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["React", "TypeScript", "D3.js", "Node.js"],
+        "A sleek and scalable React-based AI platform that helps users craft professional bios, taglines, and brand personas using custom-built prompt flows and style selectors.",
+      image: "../../public/project_images/ifyify.art (3).jpg",
+      tags: [
+        "React",
+        "TailwindCSS",
+        "Supabase",
+        "OpenAI",
+        "JavaScript",
+        "Responsive UI",
+      ],
       featured: true,
     },
     {

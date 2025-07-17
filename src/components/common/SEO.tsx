@@ -14,8 +14,8 @@ interface SEOProps {
 
 const SEO: React.FC<SEOProps> = ({
   title = "Zumetrix Labs | Premium Web & App Development Agency | SaaS MVP Experts | Pakistan",
-  description = "Zumetrix Labs is a full-stack software development agency led by Zia Hussain and Umer Gillani. We specialize in building world-class web applications, mobile apps, custom SaaS dashboards, and MVPs for startups and businesses worldwide. Whether you're launching a new product or scaling your platform, our team delivers premium, scalable, and modern solutions using React.js, Node.js, Next.js, React Native, Firebase, and more. Trusted by clients across Europe, USA, and the Middle East.",
-  keywords = "Zumetrix, Zumetrix Labs, metrix, zumetrixlab, Zia Hussain, Umer Gillani, Web Development Pakistan, Software Agency Pakistan, React Developer, Full Stack Developer, MVP Builder, SaaS Development, Dashboard Experts, Mobile App Development, Node.js Agency, Firebase Experts, Top Freelance Developers, Build Startup App, Custom Software Services, Pakistani Developers, Best Development Agency, Hire React Developer, Hire SaaS MVP Developer, Freelance Team, App Design Agency",
+  description = "Zumetrix Labs is a full-stack software development agency led by Syed Zia Hussain and Syed Omer Shah. We specialize in building world-class web applications, mobile apps, custom SaaS dashboards, and MVPs for startups and businesses worldwide. Whether you're launching a new product or scaling your platform, our team delivers premium, scalable, and modern solutions using React.js, Node.js, Next.js, React Native, Firebase, and more. Trusted by clients across Europe, USA, and the Middle East.",
+  keywords = "Zumetrix, Zumetrix Labs, metrix, zumetrixlab, Syed Zia Hussain, Syed Omer Shah, Web Development Pakistan, Software Agency Pakistan, React Developer, Full Stack Developer, MVP Builder, SaaS Development, Dashboard Experts, Mobile App Development, Node.js Agency, Firebase Experts, Top Freelance Developers, Build Startup App, Custom Software Services, Pakistani Developers, Best Development Agency, Hire React Developer, Hire SaaS MVP Developer, Freelance Team, App Design Agency",
   image = "https://zumetrixlabs.com/og-image.jpg",
   url = "https://zumetrixlabs.com",
   type = "website",
@@ -49,7 +49,7 @@ const SEO: React.FC<SEOProps> = ({
       {/* Extra SEO tags */}
       <meta
         name="author"
-        content="Zumetrix Labs - Zia Hussain & Umer Gillani"
+        content="Zumetrix Labs - Syed Zia Hussain & Syed Omer Shah"
       />
       <meta name="robots" content="index, follow" />
 

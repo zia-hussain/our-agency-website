@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
             className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8 hover:bg-card/70 transition-all duration-100"
           >
             <Sparkles size={16} className="mr-2" />
-            <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse-soft"></span>
+            <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
             Available for new projects
           </motion.div>
 
@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
             className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed font-light"
           >
             Zumetrix Labs transforms ambitious ideas into powerful digital
-            experiences. Led by Zia Hussain and Umer Gillani, we craft
+            experiences. Led by Syed Zia Hussain and Syed Omer Shah, we craft
             exceptional web applications, MVPs, and custom software that drives
             real business results.
           </motion.p>
@@ -207,12 +207,12 @@ const Hero: React.FC = () => {
       <motion.div
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 right-1/4 w-20 h-20 bg-card/30 backdrop-blur-xl border border-border rounded-2xl hidden lg:block"
+        className="absolute top-1/4 right-1/4 w-20 h-20 bg-primary/10 backdrop-blur-xl border border-border rounded-2xl hidden lg:block"
       />
       <motion.div
         animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-1/4 left-1/4 w-16 h-16 bg-beige-gradient rounded-full hidden lg:block opacity-60"
+        className="absolute bottom-1/4 left-1/4 w-16 h-16 bg-primary/50 rounded-full hidden lg:block opacity-60"
       />
 
       {/* PERFECTLY CENTERED SCROLL INDICATOR */}

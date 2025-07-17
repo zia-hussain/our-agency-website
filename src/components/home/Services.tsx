@@ -278,7 +278,7 @@ const Services: React.FC = () => {
           transition={{ duration: 0.4, delay: 0.6 }}
           className="text-center mt-20"
         >
-          <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+          <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Ready to build something
             <span className="bg-shimmer bg-clip-text text-transparent">
               {" "}
