@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
             className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8 hover:bg-card/70 transition-all duration-100"
           >
             <Sparkles size={16} className="mr-2" />
-            <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+            <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
             Available for new projects
           </motion.div>
 
@@ -86,7 +86,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.4 }}
-              className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]"
+              className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]"
             >
               world-class
             </motion.span>
