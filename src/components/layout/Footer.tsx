@@ -24,8 +24,8 @@ const Footer: React.FC = () => {
     contact: [
       {
         icon: Mail,
-        text: "hello@zumetrixlabs.com",
-        href: "mailto:hello@zumetrixlabs.com",
+        text: "hello@zumetrix.com",
+        href: "mailto:hello@zumetrix.com",
       },
       { icon: Phone, text: "+92 XXX XXXXXXX", href: "tel:+92XXXXXXXXX" },
       { icon: MapPin, text: "Pakistan", href: "#" },

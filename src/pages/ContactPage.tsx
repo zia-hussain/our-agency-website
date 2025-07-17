@@ -67,9 +67,9 @@ const ContactPage: React.FC = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: "hello@zumetrixlabs.com",
+      details: "hello@zumetrix.com",
       description: "Send us an email and we'll respond within 24 hours",
-      action: "mailto:hello@zumetrixlabs.com",
+      action: "mailto:hello@zumetrix.com",
     },
     {
       icon: Phone,
