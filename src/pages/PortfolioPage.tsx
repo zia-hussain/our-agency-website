@@ -40,14 +40,7 @@ const PortfolioPage: React.FC = () => {
       duration: "4 months",
       team: "3 developers",
       year: "2024",
-      features: [
-        "Real-time market data integration",
-        "Interactive data visualizations",
-        "Automated report generation",
-        "Portfolio performance analytics",
-        "Multi-user dashboard customization",
-        "Advanced filtering and search",
-      ],
+      featured: true,
       results: [
         "40% increase in user engagement",
         "60% reduction in report generation time",
@@ -77,14 +70,7 @@ const PortfolioPage: React.FC = () => {
       duration: "6 months",
       team: "4 developers",
       year: "2024",
-      features: [
-        "Comprehensive health tracking",
-        "AI-powered personalized insights",
-        "Social challenges and leaderboards",
-        "Wearable device integration",
-        "Offline functionality",
-        "Push notifications",
-      ],
+      featured: false,
       results: [
         "50,000+ downloads in first month",
         "4.8/5 app store rating",
@@ -108,14 +94,7 @@ const PortfolioPage: React.FC = () => {
       duration: "8 months",
       team: "5 developers",
       year: "2023",
-      features: [
-        "Multi-channel inventory sync",
-        "Automated order processing",
-        "Supplier integration",
-        "Real-time analytics dashboard",
-        "Automated reporting",
-        "Error handling and alerts",
-      ],
+      featured: false,
       results: [
         "75% reduction in processing time",
         "99.5% order accuracy",
@@ -139,14 +118,7 @@ const PortfolioPage: React.FC = () => {
       duration: "6 weeks",
       team: "2 developers",
       year: "2024",
-      features: [
-        "Team collaboration tools",
-        "Task management system",
-        "Time tracking",
-        "Basic reporting",
-        "User authentication",
-        "Payment integration",
-      ],
+      featured: false,
       results: [
         "Secured $500K seed funding",
         "1,000+ beta users",
@@ -177,14 +149,7 @@ const PortfolioPage: React.FC = () => {
       duration: "5 months",
       team: "4 developers",
       year: "2023",
-      features: [
-        "Video streaming optimization",
-        "Interactive quiz system",
-        "Progress tracking",
-        "Instructor dashboard",
-        "Payment processing",
-        "Mobile responsive design",
-      ],
+      featured: false,
       results: [
         "5,000+ active students",
         "99% video uptime",
@@ -214,14 +179,7 @@ const PortfolioPage: React.FC = () => {
       duration: "7 months",
       team: "3 developers",
       year: "2023",
-      features: [
-        "Real-time GPS tracking",
-        "Route optimization",
-        "Customer notifications",
-        "Driver mobile app",
-        "Fleet management dashboard",
-        "Analytics and reporting",
-      ],
+      featured: false,
       results: [
         "30% reduction in delivery time",
         "95% customer satisfaction",
@@ -255,24 +213,24 @@ const PortfolioPage: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-cream via-cream to-sage/5 relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center px-4 py-2 bg-sage/10 border border-sage/20 rounded-full text-sm font-medium text-sage-dark mb-8"
+              transition={{ duration: 0.3 }}
+              className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
               Our Work
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-8 tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Portfolio of
-              <span className="block text-sage">Excellence</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Excellence</span>
             </h1>
 
-            <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
               Discover how we've helped businesses transform their ideas into
               successful digital solutions that drive growth and user
               engagement.
@@ -282,26 +240,26 @@ const PortfolioPage: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-cream border-b border-stone/10">
+      <section className="py-16 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <AnimatedSection
                 key={stat.label}
-                delay={index * 0.1}
+                delay={index * 0.05}
                 className="text-center group"
               >
                 <motion.div
                   whileHover={{ scale: 1.1, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-sage/30 transition-colors duration-300"
+                  transition={{ duration: 0.15 }}
+                  className="w-16 h-16 bg-card/50 backdrop-blur-xl border border-border rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/10 group-hover:border-primary/30 transition-all duration-150"
                 >
-                  <stat.icon size={24} className="text-sage" />
+                  <stat.icon size={24} className="text-primary" />
                 </motion.div>
-                <div className="text-3xl font-bold text-charcoal mb-2 group-hover:text-sage transition-colors duration-300">
+                <div className="text-3xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-150">
                   {stat.number}
                 </div>
-                <div className="text-stone text-sm font-medium">
+                <div className="text-muted-foreground text-sm font-medium">
                   {stat.label}
                 </div>
               </AnimatedSection>
@@ -311,7 +269,7 @@ const PortfolioPage: React.FC = () => {
       </section>
 
       {/* Filter Section */}
-      <section className="py-12 bg-cream">
+      <section className="py-12 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="flex flex-wrap justify-center gap-4">
@@ -320,11 +278,12 @@ const PortfolioPage: React.FC = () => {
                   key={filter.id}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`px-6 py-3 rounded-sm font-medium transition-all duration-300 ${
+                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-150 ${
                     activeFilter === filter.id
-                      ? "bg-sage text-cream shadow-lg"
-                      : "bg-cream text-stone border border-stone/20 hover:border-sage/30 hover:text-sage"
+                      ? "bg-beige-gradient text-primary-foreground shadow-glow"
+                      : "bg-card/50 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary"
                   }`}
                 >
                   {filter.label}
@@ -336,52 +295,64 @@ const PortfolioPage: React.FC = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {filteredProjects.map((project, index) => (
               <AnimatedSection
                 key={project.id}
-                delay={index * 0.1}
+                delay={index * 0.05}
                 className="group"
               >
                 <motion.div
-                  whileHover={{ y: -12 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-cream border border-stone/10 rounded-lg overflow-hidden hover:border-sage/30 hover:shadow-2xl transition-all duration-500"
+                  whileHover={{ y: -12, scale: 1.02 }}
+                  transition={{ duration: 0.15 }}
+                  className={`bg-card/50 backdrop-blur-xl border rounded-lg overflow-hidden transition-all duration-150 ${
+                    project.featured 
+                      ? 'border-primary/50 shadow-glow' 
+                      : 'border-border hover:border-primary/30'
+                  } group-hover:bg-card/70 group-hover:shadow-card-hover`}
                 >
+                  {project.featured && (
+                    <div className="bg-beige-gradient text-primary-foreground text-xs font-medium px-3 py-1 text-center">
+                      Featured Project
+                    </div>
+                  )}
+
                   {/* Project Image */}
                   <div className="relative overflow-hidden aspect-[16/10]">
                     <motion.img
                       src={project.image}
                       alt={project.title}
                       whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
+                      transition={{ duration: 0.4 }}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
 
                     {/* Hover Actions */}
-                    <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                       <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="bg-cream/90 backdrop-blur-sm p-2 rounded-lg shadow-lg cursor-pointer"
+                        transition={{ duration: 0.15 }}
+                        className="bg-card/80 backdrop-blur-xl p-2 rounded-lg shadow-dark cursor-pointer"
                       >
-                        <ExternalLink size={16} className="text-charcoal" />
+                        <ExternalLink size={16} className="text-primary" />
                       </motion.div>
                       <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="bg-cream/90 backdrop-blur-sm p-2 rounded-lg shadow-lg cursor-pointer"
+                        transition={{ duration: 0.15 }}
+                        className="bg-card/80 backdrop-blur-xl p-2 rounded-lg shadow-dark cursor-pointer"
                       >
-                        <Github size={16} className="text-charcoal" />
+                        <Github size={16} className="text-primary" />
                       </motion.div>
                     </div>
 
                     {/* Category Badge */}
                     <div className="absolute bottom-4 left-4">
-                      <span className="px-3 py-1 bg-sage/20 text-sage text-xs font-medium rounded-full backdrop-blur-sm border border-sage/30">
+                      <span className="px-3 py-1 bg-beige-gradient text-primary-foreground text-xs font-medium rounded-full backdrop-blur-xl">
                         {project.category}
                       </span>
                     </div>
@@ -390,35 +361,35 @@ const PortfolioPage: React.FC = () => {
                   {/* Project Content */}
                   <div className="p-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-charcoal group-hover:text-sage transition-colors duration-300">
+                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-150">
                         {project.title}
                       </h3>
-                      <span className="text-sm text-stone font-medium">
+                      <span className="text-sm text-muted-foreground font-medium">
                         {project.year}
                       </span>
                     </div>
 
-                    <p className="text-stone leading-relaxed mb-6">
+                    <p className="text-muted-foreground leading-relaxed mb-6">
                       {project.description}
                     </p>
 
                     {/* Project Meta */}
                     <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
                       <div>
-                        <span className="text-stone-light">Client:</span>
-                        <div className="font-medium text-charcoal">
+                        <span className="text-muted-foreground">Client:</span>
+                        <div className="font-medium text-foreground">
                           {project.client}
                         </div>
                       </div>
                       <div>
-                        <span className="text-stone-light">Duration:</span>
-                        <div className="font-medium text-charcoal">
+                        <span className="text-muted-foreground">Duration:</span>
+                        <div className="font-medium text-foreground">
                           {project.duration}
                         </div>
                       </div>
                       <div>
-                        <span className="text-stone-light">Team:</span>
-                        <div className="font-medium text-charcoal">
+                        <span className="text-muted-foreground">Team:</span>
+                        <div className="font-medium text-foreground">
                           {project.team}
                         </div>
                       </div>
@@ -426,16 +397,16 @@ const PortfolioPage: React.FC = () => {
 
                     {/* Key Results */}
                     <div className="mb-6">
-                      <h4 className="font-semibold text-charcoal mb-3">
+                      <h4 className="font-semibold text-foreground mb-3">
                         Key Results:
                       </h4>
                       <div className="grid grid-cols-2 gap-2">
                         {project.results.slice(0, 4).map((result, idx) => (
                           <div
                             key={idx}
-                            className="text-sm text-stone flex items-center gap-2"
+                            className="text-sm text-muted-foreground flex items-center gap-2"
                           >
-                            <div className="w-1.5 h-1.5 bg-sage rounded-full"></div>
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
                             {result}
                           </div>
                         ))}
@@ -445,12 +416,14 @@ const PortfolioPage: React.FC = () => {
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
-                        <span
+                        <motion.span
                           key={tag}
-                          className="text-xs px-3 py-1 bg-stone/10 text-stone rounded-full hover:bg-sage/10 hover:text-sage transition-colors duration-200"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.15 }}
+                          className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors duration-150 cursor-pointer"
                         >
                           {tag}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
                   </div>
@@ -462,15 +435,15 @@ const PortfolioPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-charcoal">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-cream mb-8 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-8 tracking-tight">
               Ready to Create
-              <span className="block text-terracotta">Your Success Story?</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Your Success Story?</span>
             </h2>
 
-            <p className="text-xl text-stone-light max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light">
               Let's discuss your project and create a solution that drives real
               business results.
             </p>
@@ -478,14 +451,15 @@ const PortfolioPage: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="group bg-sage text-cream px-8 py-4 rounded-sm font-medium 
-                       hover:bg-sage-dark transition-all duration-300 
-                       flex items-center gap-3 text-lg shadow-lg hover:shadow-xl mx-auto"
+              transition={{ duration: 0.15 }}
+              className="group bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                       hover:shadow-glow transition-all duration-150 
+                       flex items-center gap-3 text-lg mx-auto"
             >
               Start Your Project
               <ExternalLink
                 size={20}
-                className="group-hover:translate-x-1 transition-transform duration-300"
+                className="group-hover:translate-x-1 transition-transform duration-150"
               />
             </motion.button>
           </AnimatedSection>

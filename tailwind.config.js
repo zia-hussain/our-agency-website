@@ -4,32 +4,91 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#FEFCF6',
-        charcoal: '#1A1A1A',
-        'charcoal-light': '#2A2A2A',
-        'charcoal-lighter': '#3A3A3A',
-        terracotta: '#C87B5B',
-        'terracotta-light': '#D49481',
-        'terracotta-dark': '#B86A4A',
-        stone: '#8B8680',
-        'stone-light': '#A19B94',
-        'stone-lighter': '#B7B2AB',
-        sage: '#9CAF88',
-        'sage-light': '#B5C4A7',
-        'sage-dark': '#7A8B6B',
+        // PERFECT DARK THEME WITH BEIGE ACCENTS (EXACTLY LIKE LOVABLE BUT BETTER!)
+        background: '#0a0a0a',
+        foreground: '#ffffff',
+        card: '#111111',
+        'card-foreground': '#ffffff',
+        popover: '#111111',
+        'popover-foreground': '#ffffff',
+        primary: {
+          DEFAULT: '#C48A64', // EXACT BEIGE COLOR YOU WANTED!
+          foreground: '#000000',
+          50: '#FDF8F3',
+          100: '#F9EFE3',
+          200: '#F2DCC1',
+          300: '#E8C49B',
+          400: '#DCA973',
+          500: '#C48A64', // MAIN BEIGE
+          600: '#B8795A',
+          700: '#A67A4A',
+          800: '#8A6640',
+          900: '#715437',
+        },
+        secondary: {
+          DEFAULT: '#1a1a1a',
+          foreground: '#ffffff',
+        },
+        muted: {
+          DEFAULT: '#1a1a1a',
+          foreground: '#888888',
+        },
+        accent: {
+          DEFAULT: '#C48A64',
+          foreground: '#000000',
+        },
+        destructive: {
+          DEFAULT: '#ef4444',
+          foreground: '#ffffff',
+        },
+        border: '#2a2a2a',
+        input: '#1a1a1a',
+        ring: '#C48A64',
+        // Custom colors for our BEAST theme
+        dark: {
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#171717',
+          950: '#0a0a0a',
+        },
+        beige: {
+          50: '#FDF8F3',
+          100: '#F9EFE3',
+          200: '#F2DCC1',
+          300: '#E8C49B',
+          400: '#DCA973',
+          500: '#C48A64', // PERFECT BEIGE
+          600: '#B8795A',
+          700: '#A67A4A',
+          800: '#8A6640',
+          900: '#715437',
+        }
       },
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'display': ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'fade-in': 'fadeIn 0.8s ease-out forwards',
-        'slide-up': 'slideUp 0.8s ease-out forwards',
-        'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
-        'slide-in-right': 'slideInRight 0.8s ease-out forwards',
-        'scale-in': 'scaleIn 0.6s ease-out forwards',
-        'parallax': 'parallax 1s ease-out forwards',
+        // ULTRA SMOOTH ANIMATIONS (NO MORE LAG!)
+        'fade-in': 'fadeIn 0.1s ease-out forwards',
+        'slide-up': 'slideUp 0.1s ease-out forwards',
+        'scale-in': 'scaleIn 0.1s ease-out forwards',
         'float': 'float 6s ease-in-out infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate',
         'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+        'bounce-soft': 'bounceSoft 2s ease-in-out infinite',
+        'gradient-shift': 'gradientShift 8s ease infinite',
+        'card-hover': 'cardHover 0.1s ease-out forwards',
+        'text-shimmer': 'textShimmer 2s ease-in-out infinite',
+        'interactive-bounce': 'interactiveBounce 0.1s ease-out',
+        'smooth-scale': 'smoothScale 0.1s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -37,41 +96,71 @@ export default {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        slideInLeft: {
-          '0%': { opacity: '0', transform: 'translateX(-30px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-        slideInRight: {
-          '0%': { opacity: '0', transform: 'translateX(30px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
         scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.9)' },
+          '0%': { opacity: '0', transform: 'scale(0.98)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
-        },
-        parallax: {
-          '0%': { transform: 'translateY(100px)' },
-          '100%': { transform: 'translateY(0)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
         },
-        pulseSoft: {
-          '0%, 100%': { opacity: '0.6' },
-          '50%': { opacity: '1' },
+        glow: {
+          '0%': { boxShadow: '0 0 20px rgba(196, 138, 100, 0.3)' },
+          '100%': { boxShadow: '0 0 40px rgba(196, 138, 100, 0.6)' },
         },
+        pulseSoft: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.8' },
+        },
+        bounceSoft: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
+        gradientShift: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        cardHover: {
+          '0%': { transform: 'translateY(0) scale(1)' },
+          '100%': { transform: 'translateY(-8px) scale(1.02)' },
+        },
+        textShimmer: {
+          '0%': { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
+        },
+        interactiveBounce: {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        smoothScale: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.02)' },
+        },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'beige-gradient': 'linear-gradient(135deg, #C48A64 0%, #DCA973 100%)',
+        'dark-gradient': 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
+        'shimmer': 'linear-gradient(90deg, transparent, rgba(196, 138, 100, 0.4), transparent)',
+      },
+      boxShadow: {
+        'glow': '0 0 20px rgba(196, 138, 100, 0.3)',
+        'glow-lg': '0 0 40px rgba(196, 138, 100, 0.4)',
+        'dark': '0 4px 20px rgba(0, 0, 0, 0.3)',
+        'card': '0 4px 20px rgba(0, 0, 0, 0.1)',
+        'card-hover': '0 8px 40px rgba(196, 138, 100, 0.2)',
+        'interactive': '0 4px 20px rgba(196, 138, 100, 0.15)',
       },
       backdropBlur: {
         xs: '2px',
+        '3xl': '64px',
       },
-      spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-        '128': '32rem',
+      transitionDuration: {
+        '100': '100ms', // ULTRA SMOOTH TRANSITIONS
       },
     },
   },

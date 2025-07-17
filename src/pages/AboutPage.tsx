@@ -76,12 +76,12 @@ const AboutPage: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-cream via-cream to-sage/5 relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 right-1/4 w-64 h-64 border border-terracotta/10 rounded-full"
+            className="absolute top-1/4 right-1/4 w-64 h-64 border border-primary/10 rounded-full"
           />
         </div>
 
@@ -90,18 +90,18 @@ const AboutPage: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center px-4 py-2 bg-sage/10 border border-sage/20 rounded-full text-sm font-medium text-sage-dark mb-8"
+              transition={{ duration: 0.3 }}
+              className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
               Our Story
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-8 tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Built on
-              <span className="block text-sage">Vision & Values</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Vision & Values</span>
             </h1>
 
-            <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
               Zumetrix Labs was founded with a simple yet powerful vision: to
               create software that doesn't just function—it inspires,
               transforms, and drives real business results.
@@ -111,14 +111,14 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Founders Section */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-charcoal mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
               Meet the
-              <span className="block text-terracotta">Founders</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Founders</span>
             </h2>
-            <p className="text-xl text-stone max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               Two passionate developers united by a shared vision of creating
               exceptional software experiences.
             </p>
@@ -128,18 +128,18 @@ const AboutPage: React.FC = () => {
             {founders.map((founder, index) => (
               <AnimatedSection
                 key={founder.name}
-                delay={index * 0.2}
+                delay={index * 0.1}
                 className="group"
               >
                 <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-cream border border-stone/10 rounded-lg p-8 hover:border-sage/30 hover:shadow-xl transition-all duration-300"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.15 }}
+                  className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 hover:shadow-card-hover transition-all duration-150"
                 >
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-sage/20 group-hover:border-sage/40 transition-colors duration-300"
+                    transition={{ duration: 0.15 }}
+                    className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-border group-hover:border-primary/50 transition-colors duration-150"
                   >
                     <img
                       src={founder.image}
@@ -148,26 +148,28 @@ const AboutPage: React.FC = () => {
                     />
                   </motion.div>
 
-                  <h3 className="text-2xl font-bold text-charcoal mb-2 group-hover:text-sage transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-150">
                     {founder.name}
                   </h3>
 
-                  <p className="text-terracotta font-medium mb-4">
+                  <p className="text-primary font-medium mb-4">
                     {founder.role}
                   </p>
 
-                  <p className="text-stone leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-6">
                     {founder.bio}
                   </p>
 
                   <div className="flex flex-wrap gap-2">
                     {founder.skills.map((skill) => (
-                      <span
+                      <motion.span
                         key={skill}
-                        className="px-3 py-1 bg-sage/10 text-sage-dark text-sm rounded-full hover:bg-sage/20 transition-colors duration-200"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.15 }}
+                        className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full hover:bg-primary/20 transition-colors duration-150 cursor-pointer"
                       >
                         {skill}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </motion.div>
@@ -178,14 +180,14 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-charcoal">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-cream mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
               Our
-              <span className="block text-terracotta">Core Values</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Core Values</span>
             </h2>
-            <p className="text-xl text-stone-light max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               These principles guide every decision we make and every line of
               code we write.
             </p>
@@ -195,28 +197,27 @@ const AboutPage: React.FC = () => {
             {values.map((value, index) => (
               <AnimatedSection
                 key={value.title}
-                delay={index * 0.1}
+                delay={index * 0.05}
                 className="group"
               >
                 <motion.div
                   whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-charcoal-light p-8 rounded-lg hover:bg-charcoal-lighter 
-                           transition-all duration-500 border border-stone/10 hover:border-terracotta/30 h-full"
+                  transition={{ duration: 0.15 }}
+                  className="bg-card/50 backdrop-blur-xl p-8 rounded-lg transition-all duration-150 border border-border hover:border-primary/30 h-full hover:shadow-card-hover"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                    className="inline-flex items-center justify-center w-16 h-16 bg-terracotta/20 rounded-xl mb-6 group-hover:bg-terracotta/30 transition-colors duration-300"
+                    transition={{ duration: 0.15 }}
+                    className="inline-flex items-center justify-center w-16 h-16 bg-beige-gradient rounded-xl mb-6 group-hover:shadow-glow transition-all duration-150"
                   >
-                    <value.icon size={28} className="text-terracotta" />
+                    <value.icon size={28} className="text-primary-foreground" />
                   </motion.div>
 
-                  <h3 className="text-xl font-semibold text-cream mb-4 group-hover:text-terracotta transition-colors duration-300">
+                  <h3 className="text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-150">
                     {value.title}
                   </h3>
 
-                  <p className="text-stone-light leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {value.description}
                   </p>
                 </motion.div>
@@ -227,34 +228,34 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="py-24 bg-gradient-to-br from-cream via-cream to-terracotta/5">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-charcoal mb-8 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-8 tracking-tight">
               Our
-              <span className="block text-terracotta">Mission</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Mission</span>
             </h2>
 
             <div className="max-w-4xl mx-auto">
-              <p className="text-xl lg:text-2xl text-stone leading-relaxed font-light mb-8">
+              <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-8">
                 To empower businesses with exceptional software that drives
                 growth, enhances user experiences, and creates lasting
                 competitive advantages in an increasingly digital world.
               </p>
 
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                className="bg-cream/50 backdrop-blur-sm border border-stone/10 rounded-lg p-8 hover:border-terracotta/30 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.15 }}
+                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 transition-all duration-150"
               >
-                <p className="text-lg text-stone leading-relaxed italic">
+                <p className="text-lg text-muted-foreground leading-relaxed italic">
                   "We believe that great software is more than just code—it's a
                   bridge between human needs and technological possibilities.
                   Every project we undertake is an opportunity to create
                   something meaningful, something that makes a real difference
                   in people's lives and businesses."
                 </p>
-                <div className="mt-6 text-terracotta font-medium">
+                <div className="mt-6 text-primary font-medium">
                   — Zia Hussain & Umer Gillani, Co-Founders
                 </div>
               </motion.div>

@@ -1,153 +1,247 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Monitor, Smartphone, Database, Cog, Rocket, Palette, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-import AnimatedSection from '../common/AnimatedSection';
+import { Monitor, Smartphone, Database, Cog, Rocket, Palette, ArrowRight, Code } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 const Services: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const services = [
     {
       icon: Monitor,
       title: "Web Applications",
-      description: "Sophisticated web platforms built with modern frameworks, optimized for performance and scalability.",
+      description: "Custom web platforms that deliver exceptional user experiences and drive business growth.",
       features: ["React & TypeScript", "Cloud Architecture", "Performance Optimization"],
-      color: "terracotta"
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Apps",
-      description: "Native iOS and Android applications that deliver seamless user experiences across all devices.",
-      features: ["iOS & Android", "Cross-Platform", "App Store Optimization"],
-      color: "sage"
+      price: "Starting at $5,000",
+      popular: false
     },
     {
       icon: Database,
-      title: "Data Solutions",
-      description: "Robust backend systems and APIs that power your applications with reliable, secure data management.",
-      features: ["API Development", "Database Design", "Cloud Integration"],
-      color: "terracotta"
+      title: "SaaS Dashboards", 
+      description: "Data visualization and analytics platforms that transform complex data into actionable insights.",
+      features: ["Real-time Analytics", "Custom Dashboards", "API Integration"],
+      price: "Starting at $8,000",
+      popular: true
     },
     {
-      icon: Cog,
-      title: "Automation",
-      description: "Streamline your operations with intelligent automation solutions that save time and reduce errors.",
-      features: ["Workflow Automation", "System Integration", "Process Optimization"],
-      color: "sage"
+      icon: Smartphone,
+      title: "Mobile Applications",
+      description: "Native and cross-platform mobile apps that users love and businesses depend on.",
+      features: ["iOS & Android", "Cross-Platform", "App Store Optimization"],
+      price: "Starting at $12,000",
+      popular: false
     },
     {
       icon: Rocket,
       title: "MVP Development",
-      description: "Launch your startup idea quickly with a minimum viable product that validates your concept.",
+      description: "Rapid prototyping to validate your ideas and get to market fast with a solid foundation.",
       features: ["Rapid Prototyping", "Market Validation", "Iterative Development"],
-      color: "terracotta"
+      price: "Starting at $4,000",
+      popular: false
+    },
+    {
+      icon: Cog,
+      title: "Automation Solutions",
+      description: "Streamline operations with intelligent automation that saves time and reduces errors.",
+      features: ["Workflow Automation", "API Development", "Process Optimization"],
+      price: "Starting at $3,000",
+      popular: false
     },
     {
       icon: Palette,
-      title: "UI/UX Design",
-      description: "Beautiful, intuitive interfaces that create memorable experiences and drive user engagement.",
-      features: ["User Research", "Design Systems", "Prototyping"],
-      color: "sage"
+      title: "Digital Strategy",
+      description: "Technology roadmaps and digital transformation strategies that drive growth.",
+      features: ["Technology Planning", "Architecture Planning", "Growth Strategy"],
+      price: "Starting at $1,500",
+      popular: false
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section id="services" className="py-24 lg:py-32 bg-charcoal relative overflow-hidden">
+    <section id="services" className="py-24 lg:py-32 bg-background relative overflow-hidden" ref={ref}>
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, #C87B5B 2px, transparent 2px),
-                           radial-gradient(circle at 75% 75%, #9CAF88 2px, transparent 2px)`,
+          backgroundImage: `radial-gradient(circle at 25% 25%, #D4A574 2px, transparent 2px),
+                           radial-gradient(circle at 75% 75%, #D4A574 2px, transparent 2px)`,
           backgroundSize: '50px 50px'
         }} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <AnimatedSection className="text-center mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.4 }}
+          className="text-center mb-20"
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center px-4 py-2 bg-terracotta/20 border border-terracotta/30 rounded-full text-sm font-medium text-terracotta mb-8"
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
           >
-            What We Do
+            <Code size={16} className="mr-2" />
+            Premium Software Development Services
           </motion.div>
 
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-cream mb-8 tracking-tight leading-tight">
-            Comprehensive
-            <span className="block text-terracotta">Software Solutions</span>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+            From web applications to mobile apps, we deliver world-class solutions that transform businesses and drive exceptional results.
           </h2>
-          
-          <p className="text-xl lg:text-2xl text-stone-light max-w-4xl mx-auto leading-relaxed font-light mb-12">
-            From concept to deployment, we offer comprehensive software development 
-            services that drive business growth and user satisfaction.
-          </p>
 
           <Link to="/services">
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="group text-cream hover:text-terracotta font-medium px-6 py-3 
-                       transition-colors duration-300 text-lg flex items-center gap-2 mx-auto
-                       border border-cream/20 rounded-sm hover:border-terracotta/30 hover:bg-terracotta/5"
+              transition={{ duration: 0.2 }}
+              className="group text-muted-foreground hover:text-primary font-medium px-6 py-3 
+                       transition-colors duration-200 text-lg flex items-center gap-2 mx-auto
+                       bg-card/30 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30"
             >
-              Explore All Services
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+              Get Started Today
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
             </motion.button>
           </Link>
-        </AnimatedSection>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {services.map((service, index) => (
-            <AnimatedSection
+            <motion.div
               key={service.title}
-              delay={index * 0.1}
-              className="group"
+              variants={cardVariants}
+              whileHover={{ 
+                y: -12, 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+              className="group relative"
             >
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className="bg-charcoal-light p-8 rounded-lg hover:bg-charcoal-lighter 
-                         transition-all duration-500 border border-stone/10 hover:border-terracotta/30
-                         h-full flex flex-col"
+              {service.popular && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                  <span className="bg-beige-gradient text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+              
+              <div className={`bg-card/50 backdrop-blur-xl p-8 rounded-2xl transition-all duration-200 border h-full flex flex-col
+                ${service.popular 
+                  ? 'border-primary/50 shadow-glow' 
+                  : 'border-border hover:border-primary/30'
+                } group-hover:bg-card/70 group-hover:shadow-card-hover`}
               >
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                   className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 
-                    ${service.color === 'terracotta' 
-                      ? 'bg-terracotta/20 group-hover:bg-terracotta/30' 
-                      : 'bg-sage/20 group-hover:bg-sage/30'
-                    } transition-colors duration-300`}
+                    ${service.popular 
+                      ? 'bg-beige-gradient shadow-glow' 
+                      : 'bg-primary/10 group-hover:bg-beige-gradient'
+                    } transition-all duration-200`}
                 >
-                  <service.icon 
-                    size={28} 
-                    className={`${service.color === 'terracotta' ? 'text-terracotta' : 'text-sage'}`} 
-                  />
+                  <service.icon size={28} className={service.popular ? 'text-primary-foreground' : 'text-primary group-hover:text-primary-foreground'} />
                 </motion.div>
                 
-                <h3 className="text-xl font-semibold text-cream mb-4 group-hover:text-terracotta transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-200">
                   {service.title}
                 </h3>
                 
-                <p className="text-stone-light mb-6 leading-relaxed flex-grow">
+                <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
                   {service.description}
                 </p>
-                
-                <ul className="space-y-2">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="text-sm text-stone flex items-center">
-                      <div className={`w-1.5 h-1.5 rounded-full mr-3 ${
-                        service.color === 'terracotta' ? 'bg-terracotta' : 'bg-sage'
-                      }`}></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </AnimatedSection>
+
+                <div className="mb-6">
+                  <div className="text-2xl font-bold text-primary mb-4">
+                    {service.price}
+                  </div>
+                  <ul className="space-y-2">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="text-sm text-muted-foreground flex items-center">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                    service.popular
+                      ? 'bg-beige-gradient text-primary-foreground hover:shadow-glow'
+                      : 'bg-card border border-border text-foreground hover:bg-primary/10 hover:border-primary/30'
+                  }`}
+                >
+                  Learn More
+                </motion.button>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.4, delay: 0.6 }}
+          className="text-center mt-20"
+        >
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+            Ready to build something 
+            <span className="bg-shimmer bg-clip-text text-transparent"> exceptional</span>?
+          </h3>
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Let's discuss your project and create a solution that drives real business results.
+          </p>
+          <Link to="/contact">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                       hover:shadow-glow transition-all duration-200 
+                       flex items-center gap-3 text-lg mx-auto"
+            >
+              Start Your Project
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+            </motion.button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

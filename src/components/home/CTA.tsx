@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mail, MessageCircle, Calendar } from 'lucide-react';
-import { motion } from 'framer-motion';
-import AnimatedSection from '../common/AnimatedSection';
+import { ArrowRight, Mail, MessageCircle, Calendar, Sparkles } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 const CTA: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-br from-cream via-cream to-sage/5 relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-background relative overflow-hidden" ref={ref}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -19,7 +21,7 @@ const CTA: React.FC = () => {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-terracotta/5 to-sage/5 rounded-full blur-3xl"
+          className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
         />
         <motion.div
           animate={{ 
@@ -31,37 +33,41 @@ const CTA: React.FC = () => {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute bottom-0 right-0 w-128 h-128 bg-gradient-to-tl from-sage/5 to-terracotta/5 rounded-full blur-3xl"
+          className="absolute bottom-0 right-0 w-128 h-128 bg-primary/3 rounded-full blur-3xl"
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <AnimatedSection className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.4 }}
+          className="text-center"
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center px-4 py-2 bg-terracotta/10 border border-terracotta/20 rounded-full text-sm font-medium text-terracotta mb-8"
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
           >
-            <span className="w-2 h-2 bg-terracotta rounded-full mr-2 animate-pulse-soft"></span>
+            <Sparkles size={16} className="mr-2" />
+            <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse-soft"></span>
             Ready to Start?
           </motion.div>
 
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-charcoal mb-8 tracking-tight leading-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
             Let's Build Something
             <motion.span
               initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="block text-terracotta"
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="block bg-shimmer bg-clip-text text-transparent"
             >
               Exceptional Together
             </motion.span>
           </h2>
           
-          <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto mb-16 leading-relaxed font-light">
+          <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-16 leading-relaxed font-light">
             Ready to transform your vision into reality? We're here to help you create 
             software that doesn't just meet expectations—it exceeds them and drives real business results.
           </p>
@@ -71,22 +77,24 @@ const CTA: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="group bg-charcoal text-cream px-10 py-5 rounded-sm font-medium 
-                         hover:bg-charcoal-light transition-all duration-300 
-                         flex items-center gap-3 text-lg shadow-xl hover:shadow-2xl"
+                transition={{ duration: 0.2 }}
+                className="group bg-beige-gradient text-primary-foreground px-10 py-5 rounded-lg font-medium 
+                         hover:shadow-glow transition-all duration-200 
+                         flex items-center gap-3 text-lg"
               >
                 <Mail size={22} />
                 Start Your Project
-                <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-200" />
               </motion.button>
             </Link>
             
             <motion.button
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
-              className="group bg-sage text-cream px-10 py-5 rounded-sm font-medium 
-                       hover:bg-sage-dark transition-all duration-300 
-                       flex items-center gap-3 text-lg shadow-xl hover:shadow-2xl"
+              transition={{ duration: 0.2 }}
+              className="group bg-card/50 backdrop-blur-xl text-muted-foreground hover:text-primary px-10 py-5 rounded-lg font-medium 
+                       hover:bg-card/70 transition-all duration-200 
+                       flex items-center gap-3 text-lg border border-border hover:border-primary/30"
             >
               <Calendar size={22} />
               Schedule a Call
@@ -99,49 +107,51 @@ const CTA: React.FC = () => {
                 icon: MessageCircle,
                 title: "Quick Response",
                 description: "We respond to all inquiries within 24 hours",
-                delay: 0.2
+                delay: 0.1
               },
               {
                 icon: Calendar,
                 title: "Free Consultation",
                 description: "30-minute strategy session to discuss your project",
-                delay: 0.4
+                delay: 0.2
               },
               {
                 icon: ArrowRight,
                 title: "No Obligation",
                 description: "Honest advice with no pressure to commit",
-                delay: 0.6
+                delay: 0.3
               }
             ].map((item, index) => (
-              <AnimatedSection
+              <motion.div
                 key={item.title}
-                delay={item.delay}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.4, delay: item.delay }}
                 className="group"
               >
                 <motion.div
                   whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-cream/50 backdrop-blur-sm p-6 rounded-lg border border-stone/10 hover:border-sage/30 hover:bg-cream/70 transition-all duration-300"
+                  transition={{ duration: 0.2 }}
+                  className="bg-card/50 backdrop-blur-xl p-6 rounded-2xl border border-border hover:border-primary/30 hover:bg-card/70 transition-all duration-200 hover:shadow-card-hover"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-sage/30 transition-colors duration-300"
+                    transition={{ duration: 0.2 }}
+                    className="w-12 h-12 bg-beige-gradient rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-200"
                   >
-                    <item.icon size={20} className="text-sage" />
+                    <item.icon size={20} className="text-primary-foreground" />
                   </motion.div>
-                  <h3 className="font-semibold text-charcoal mb-2 group-hover:text-sage transition-colors duration-300">
+                  <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
                     {item.title}
                   </h3>
-                  <p className="text-stone text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>
-              </AnimatedSection>
+              </motion.div>
             ))}
           </div>
-        </AnimatedSection>
+        </motion.div>
       </div>
     </section>
   );

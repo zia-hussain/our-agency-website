@@ -89,19 +89,19 @@ const ContactPage: React.FC = () => {
 
   const services = [
     "Web Application Development",
+    "SaaS Dashboard Development",
     "Mobile App Development",
     "MVP Development",
-    "Process Automation",
-    "UI/UX Design",
-    "Technical Consulting",
+    "Automation Solutions",
+    "Digital Strategy Consulting",
   ];
 
   const budgetRanges = [
-    "Under $10,000",
-    "$10,000 - $25,000",
-    "$25,000 - $50,000",
-    "$50,000 - $100,000",
-    "Over $100,000",
+    "Under $5,000",
+    "$5,000 - $15,000",
+    "$15,000 - $30,000",
+    "$30,000 - $50,000",
+    "Over $50,000",
   ];
 
   const timelines = [
@@ -124,25 +124,25 @@ const ContactPage: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-cream via-cream to-terracotta/5 relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center px-4 py-2 bg-terracotta/10 border border-terracotta/20 rounded-full text-sm font-medium text-terracotta mb-8"
+              transition={{ duration: 0.3 }}
+              className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
-              <span className="w-2 h-2 bg-terracotta rounded-full mr-2 animate-pulse-soft"></span>
+              <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse-soft"></span>
               Let's Talk
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-8 tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Start Your
-              <span className="block text-terracotta">Project Today</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Project Today</span>
             </h1>
 
-            <p className="text-xl lg:text-2xl text-stone max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
               Ready to transform your vision into reality? Let's discuss your
               project requirements and create a solution that exceeds your
               expectations.
@@ -152,13 +152,13 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <AnimatedSection>
-              <div className="bg-cream border border-stone/10 rounded-lg p-8 hover:border-sage/30 transition-all duration-300">
-                <h2 className="text-3xl font-bold text-charcoal mb-8">
+              <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 transition-all duration-150">
+                <h2 className="text-3xl font-bold text-foreground mb-8">
                   Tell Us About Your Project
                 </h2>
 
@@ -172,14 +172,14 @@ const ContactPage: React.FC = () => {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.2, type: "spring" }}
-                      className="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-6"
+                      className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
                     >
-                      <CheckCircle size={32} className="text-sage" />
+                      <CheckCircle size={32} className="text-primary" />
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-charcoal mb-4">
+                    <h3 className="text-2xl font-bold text-foreground mb-4">
                       Thank You!
                     </h3>
-                    <p className="text-stone">
+                    <p className="text-muted-foreground">
                       We've received your message and will get back to you
                       within 24 hours.
                     </p>
@@ -190,7 +190,7 @@ const ContactPage: React.FC = () => {
                       <div>
                         <label
                           htmlFor="name"
-                          className="block text-sm font-medium text-charcoal mb-2"
+                          className="block text-sm font-medium text-foreground mb-2"
                         >
                           Full Name *
                         </label>
@@ -201,14 +201,14 @@ const ContactPage: React.FC = () => {
                           required
                           value={formData.name}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-stone/20 rounded-sm focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors duration-200"
+                          className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
                           placeholder="Your full name"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-charcoal mb-2"
+                          className="block text-sm font-medium text-foreground mb-2"
                         >
                           Email Address *
                         </label>
@@ -219,7 +219,7 @@ const ContactPage: React.FC = () => {
                           required
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-stone/20 rounded-sm focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors duration-200"
+                          className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -228,7 +228,7 @@ const ContactPage: React.FC = () => {
                     <div>
                       <label
                         htmlFor="company"
-                        className="block text-sm font-medium text-charcoal mb-2"
+                        className="block text-sm font-medium text-foreground mb-2"
                       >
                         Company Name
                       </label>
@@ -238,7 +238,7 @@ const ContactPage: React.FC = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-stone/20 rounded-sm focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors duration-200"
+                        className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
                         placeholder="Your company name"
                       />
                     </div>
@@ -246,7 +246,7 @@ const ContactPage: React.FC = () => {
                     <div>
                       <label
                         htmlFor="projectType"
-                        className="block text-sm font-medium text-charcoal mb-2"
+                        className="block text-sm font-medium text-foreground mb-2"
                       >
                         Project Type *
                       </label>
@@ -256,7 +256,7 @@ const ContactPage: React.FC = () => {
                         required
                         value={formData.projectType}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-stone/20 rounded-sm focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors duration-200"
+                        className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
                       >
                         <option value="">Select a service</option>
                         {services.map((service) => (
@@ -271,7 +271,7 @@ const ContactPage: React.FC = () => {
                       <div>
                         <label
                           htmlFor="budget"
-                          className="block text-sm font-medium text-charcoal mb-2"
+                          className="block text-sm font-medium text-foreground mb-2"
                         >
                           Budget Range
                         </label>
@@ -280,7 +280,7 @@ const ContactPage: React.FC = () => {
                           name="budget"
                           value={formData.budget}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-stone/20 rounded-sm focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors duration-200"
+                          className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
                         >
                           <option value="">Select budget range</option>
                           {budgetRanges.map((range) => (
@@ -293,7 +293,7 @@ const ContactPage: React.FC = () => {
                       <div>
                         <label
                           htmlFor="timeline"
-                          className="block text-sm font-medium text-charcoal mb-2"
+                          className="block text-sm font-medium text-foreground mb-2"
                         >
                           Timeline
                         </label>
@@ -302,7 +302,7 @@ const ContactPage: React.FC = () => {
                           name="timeline"
                           value={formData.timeline}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-stone/20 rounded-sm focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors duration-200"
+                          className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
                         >
                           <option value="">Select timeline</option>
                           {timelines.map((timeline) => (
@@ -317,7 +317,7 @@ const ContactPage: React.FC = () => {
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium text-charcoal mb-2"
+                        className="block text-sm font-medium text-foreground mb-2"
                       >
                         Project Description *
                       </label>
@@ -328,7 +328,7 @@ const ContactPage: React.FC = () => {
                         rows={6}
                         value={formData.message}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-stone/20 rounded-sm focus:border-sage focus:ring-2 focus:ring-sage/20 transition-colors duration-200 resize-none"
+                        className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 resize-none bg-background text-foreground"
                         placeholder="Tell us about your project, goals, and any specific requirements..."
                       />
                     </div>
@@ -338,8 +338,9 @@ const ContactPage: React.FC = () => {
                       disabled={isSubmitting}
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full bg-charcoal text-cream px-8 py-4 rounded-sm font-medium 
-                               hover:bg-charcoal-light transition-all duration-300 
+                      transition={{ duration: 0.15 }}
+                      className="w-full bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                               hover:shadow-glow transition-all duration-150 
                                flex items-center justify-center gap-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
@@ -351,7 +352,7 @@ const ContactPage: React.FC = () => {
                               repeat: Infinity,
                               ease: "linear",
                             }}
-                            className="w-5 h-5 border-2 border-cream/30 border-t-cream rounded-full"
+                            className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
                           />
                           Sending...
                         </>
@@ -368,13 +369,13 @@ const ContactPage: React.FC = () => {
             </AnimatedSection>
 
             {/* Contact Information */}
-            <AnimatedSection delay={0.2}>
+            <AnimatedSection delay={0.1}>
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl font-bold text-charcoal mb-6">
+                  <h2 className="text-3xl font-bold text-foreground mb-6">
                     Get In Touch
                   </h2>
-                  <p className="text-lg text-stone leading-relaxed mb-8">
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                     We're here to help bring your vision to life. Reach out
                     through any of these channels and we'll get back to you
                     promptly.
@@ -387,21 +388,21 @@ const ContactPage: React.FC = () => {
                       key={info.title}
                       href={info.action}
                       whileHover={{ scale: 1.02, y: -2 }}
-                      transition={{ duration: 0.2 }}
-                      className="block bg-cream border border-stone/10 rounded-lg p-6 hover:border-terracotta/30 hover:shadow-lg transition-all duration-300 group"
+                      transition={{ duration: 0.15 }}
+                      className="block bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 hover:border-primary/30 hover:shadow-card-hover transition-all duration-150 group"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-terracotta/20 rounded-lg flex items-center justify-center group-hover:bg-terracotta/30 transition-colors duration-300">
-                          <info.icon size={24} className="text-terracotta" />
+                        <div className="w-12 h-12 bg-beige-gradient rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all duration-150">
+                          <info.icon size={24} className="text-primary-foreground" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-semibold text-charcoal mb-1 group-hover:text-terracotta transition-colors duration-300">
+                          <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-150">
                             {info.title}
                           </h3>
-                          <p className="text-lg font-medium text-charcoal mb-2">
+                          <p className="text-lg font-medium text-foreground mb-2">
                             {info.details}
                           </p>
-                          <p className="text-stone text-sm">
+                          <p className="text-muted-foreground text-sm">
                             {info.description}
                           </p>
                         </div>
@@ -411,20 +412,21 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 {/* Quick Actions */}
-                <div className="bg-sage/5 border border-sage/20 rounded-lg p-6">
-                  <h3 className="font-semibold text-charcoal mb-4 flex items-center gap-2">
-                    <Calendar size={20} className="text-sage" />
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <Calendar size={20} className="text-primary" />
                     Quick Actions
                   </h3>
                   <div className="space-y-3">
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full text-left p-3 bg-cream rounded-sm border border-stone/10 hover:border-sage/30 transition-colors duration-200 group"
+                      transition={{ duration: 0.15 }}
+                      className="w-full text-left p-3 bg-card/50 rounded-lg border border-border hover:border-primary/30 transition-colors duration-150 group"
                     >
                       <div className="flex items-center gap-3">
-                        <MessageCircle size={16} className="text-sage" />
-                        <span className="text-charcoal group-hover:text-sage transition-colors duration-200">
+                        <MessageCircle size={16} className="text-primary" />
+                        <span className="text-foreground group-hover:text-primary transition-colors duration-150">
                           Schedule a 30-minute consultation call
                         </span>
                       </div>
@@ -432,11 +434,12 @@ const ContactPage: React.FC = () => {
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full text-left p-3 bg-cream rounded-sm border border-stone/10 hover:border-sage/30 transition-colors duration-200 group"
+                      transition={{ duration: 0.15 }}
+                      className="w-full text-left p-3 bg-card/50 rounded-lg border border-border hover:border-primary/30 transition-colors duration-150 group"
                     >
                       <div className="flex items-center gap-3">
-                        <Clock size={16} className="text-sage" />
-                        <span className="text-charcoal group-hover:text-sage transition-colors duration-200">
+                        <Clock size={16} className="text-primary" />
+                        <span className="text-foreground group-hover:text-primary transition-colors duration-150">
                           Get a project timeline estimate
                         </span>
                       </div>
@@ -450,14 +453,14 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-charcoal">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-cream mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
               Frequently Asked
-              <span className="block text-sage">Questions</span>
+              <span className="block bg-shimmer bg-clip-text text-transparent">Questions</span>
             </h2>
-            <p className="text-xl text-stone-light max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               Quick answers to common questions about working with Zumetrix
               Labs.
             </p>
@@ -488,18 +491,18 @@ const ContactPage: React.FC = () => {
             ].map((faq, index) => (
               <AnimatedSection
                 key={index}
-                delay={index * 0.1}
+                delay={index * 0.05}
                 className="group"
               >
                 <motion.div
                   whileHover={{ y: -4 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-charcoal-light p-6 rounded-lg border border-stone/10 hover:border-sage/30 transition-all duration-300"
+                  transition={{ duration: 0.15 }}
+                  className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border hover:border-primary/30 transition-all duration-150"
                 >
-                  <h3 className="font-semibold text-cream mb-3 group-hover:text-sage transition-colors duration-300">
+                  <h3 className="font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-150">
                     {faq.question}
                   </h3>
-                  <p className="text-stone-light leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {faq.answer}
                   </p>
                 </motion.div>
