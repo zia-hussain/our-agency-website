@@ -24,6 +24,7 @@ const Portfolio: React.FC = () => {
         "Responsive UI",
       ],
       featured: true,
+      liveLink: "https://www.ifyify.art",
     },
     {
       title: "WellnessTracker Mobile",
@@ -186,23 +187,36 @@ const Portfolio: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
 
                   {/* Hover Actions */}
-                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      transition={{ duration: 0.2 }}
-                      className="bg-card/80 backdrop-blur-xl p-2 rounded-lg shadow-dark border border-border hover:bg-primary/10 "
-                    >
-                      <ExternalLink size={16} className="text-primary" />
-                    </motion.div>
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      transition={{ duration: 0.2 }}
-                      className="bg-card/80 backdrop-blur-xl p-2 rounded-lg shadow-dark border border-border hover:bg-primary/10 "
-                    >
-                      <Github size={16} className="text-primary" />
-                    </motion.div>
+                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                    {/* Live Link */}
+                    {project.liveLink && (
+                      <motion.a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ duration: 0.15 }}
+                        className="bg-card/80 backdrop-blur-xl p-2 rounded-lg shadow-dark cursor-pointer"
+                      >
+                        <ExternalLink size={16} className="text-primary" />
+                      </motion.a>
+                    )}
+
+                    {/* GitHub Link */}
+                    {project.githubLink && (
+                      <motion.a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ duration: 0.15 }}
+                        className="bg-card/80 backdrop-blur-xl p-2 rounded-lg shadow-dark cursor-pointer"
+                      >
+                        <Github size={16} className="text-primary" />
+                      </motion.a>
+                    )}
                   </div>
 
                   {/* Category Badge */}
