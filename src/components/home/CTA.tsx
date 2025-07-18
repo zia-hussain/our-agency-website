@@ -72,7 +72,7 @@ const CTA: React.FC = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="block bg-shimmer bg-clip-text text-transparent pb-4leading-[1.1]"
+              className="block bg-shimmer bg-clip-text text-transparent pb-2 leading-[1.1]"
             >
               Exceptional Together
             </motion.span>
