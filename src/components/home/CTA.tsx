@@ -66,7 +66,7 @@ const CTA: React.FC = () => {
             Ready to Start?
           </motion.div>
 
-          <h2 className="text-5xl md:text-8xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+          <h2 className="text-5xl md:text-7xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
             Let's Build Something
             <motion.span
               initial={{ opacity: 0, x: -20 }}

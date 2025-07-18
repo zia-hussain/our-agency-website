@@ -120,7 +120,7 @@ const AboutPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-5xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
+            <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
               Meet the
               <span className=" block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Founders
@@ -191,7 +191,7 @@ const AboutPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-5xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
+            <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
               Our
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Core Values
@@ -241,7 +241,7 @@ const AboutPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <h2 className="text-5xl md:text-8xl font-bold text-foreground mb-8 tracking-tight">
+            <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight">
               Our
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Mission

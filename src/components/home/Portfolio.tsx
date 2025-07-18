@@ -117,7 +117,7 @@ const Portfolio: React.FC = () => {
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
             Featured
-            <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+            <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
               Projects
             </span>
           </h2>

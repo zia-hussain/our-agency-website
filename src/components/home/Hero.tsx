@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.4 }}
-              className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]"
+              className="block bg-shimmer bg-clip-text text-transparent"
             >
               world-class
             </motion.span>

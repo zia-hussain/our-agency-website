@@ -67,9 +67,9 @@ const About: React.FC = () => {
             Our Foundation
           </motion.div>
 
-          <h2 className="text-5xl md:text-8xl lg:text-6xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+          <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
             Built on
-            <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+            <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
               Excellence & Vision
             </span>
           </h2>
