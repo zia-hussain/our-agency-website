@@ -9,7 +9,7 @@ export const projects = [
         longDescription:
             "Ifyify is a cutting-edge AI-driven personal branding tool designed to help users instantly generate bios, taglines, and tailored branding content. Built from scratch with React, TailwindCSS, Supabase, and OpenAI, the platform features a beautifully animated style selector system, prompt-based generation flows, and multi-step user onboarding. Our role included frontend UI/UX implementation, AI integration, secure auth, and scalable architecture setup. We also supported post-launch improvements like better prompt uploads, dashboard enhancements, and future-proof extensibility.",
         image:
-            "../../public/project_images/ifyify.art (3).jpg",
+            "/project_images/YOU AS ART.png",
         tags: ["React", "TailwindCSS", "Supabase", "OpenAI", "JavaScript", "Responsive UI"],
         client: "Kelly Andrews – Best Business Services",
         duration: "2 weeks (Phase 1)",
@@ -22,6 +22,7 @@ export const projects = [
             "Clean, responsive UI with animated style selector",
             "Client praised work ethic and plans long-term collaboration"
         ],
+        liveLink: "https://www.ifyify.art",
     }
     ,
     {
@@ -34,7 +35,7 @@ export const projects = [
         longDescription:
             "WellnessTracker Mobile empowers users to take control of their health journey. The app features comprehensive health tracking, AI-powered insights, social challenges, and integration with popular fitness devices. Built with React Native for seamless cross-platform experience.",
         image:
-            "../../public/project_images/task_manager_portfolio_img.jpg",
+            "/project_images/task_manager_portfolio_img.jpg",
         tags: [
             "React Native",
             "Firebase",

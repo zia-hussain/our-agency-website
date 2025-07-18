@@ -14,7 +14,7 @@ const Portfolio: React.FC = () => {
       category: "Web Application",
       description:
         "A sleek and scalable React-based AI platform that helps users craft professional bios, taglines, and brand personas using custom-built prompt flows and style selectors.",
-      image: "../../public/project_images/ifyify.art (3).jpg",
+      image: "/project_images/YOU AS ART.png",
       tags: [
         "React",
         "TailwindCSS",

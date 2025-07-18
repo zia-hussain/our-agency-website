@@ -10,3 +10,16 @@ h5,
 h6 {
   @apply font-bold text-foreground !important;
 }
+
+*::selection {
+  background-color: #c68c65;
+  color: #333;
+}
+
+button {
+  user-select: none;
+}
+
+img {
+  user-select: none;
+}

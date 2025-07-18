@@ -1,93 +1,12 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import {
-  Monitor,
-  Smartphone,
-  Database,
-  Cog,
-  Rocket,
-  Palette,
-  ArrowRight,
-  Code,
-} from "lucide-react";
+import { ArrowRight, Code } from "lucide-react";
 import { motion, useInView } from "framer-motion";
+import { services } from "../../data/service.js";
 
 const Services: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const services = [
-    {
-      icon: Monitor,
-      title: "Web Applications",
-      description:
-        "Custom web platforms that deliver exceptional user experiences and drive business growth.",
-      features: [
-        "React & TypeScript",
-        "Cloud Architecture",
-        "Performance Optimization",
-      ],
-      price: "Starting at $5,000",
-      popular: false,
-    },
-    {
-      icon: Database,
-      title: "SaaS Dashboards",
-      description:
-        "Data visualization and analytics platforms that transform complex data into actionable insights.",
-      features: ["Real-time Analytics", "Custom Dashboards", "API Integration"],
-      price: "Starting at $8,000",
-      popular: true,
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Applications",
-      description:
-        "Native and cross-platform mobile apps that users love and businesses depend on.",
-      features: ["iOS & Android", "Cross-Platform", "App Store Optimization"],
-      price: "Starting at $12,000",
-      popular: false,
-    },
-    {
-      icon: Rocket,
-      title: "MVP Development",
-      description:
-        "Rapid prototyping to validate your ideas and get to market fast with a solid foundation.",
-      features: [
-        "Rapid Prototyping",
-        "Market Validation",
-        "Iterative Development",
-      ],
-      price: "Starting at $4,000",
-      popular: false,
-    },
-    {
-      icon: Cog,
-      title: "Automation Solutions",
-      description:
-        "Streamline operations with intelligent automation that saves time and reduces errors.",
-      features: [
-        "Workflow Automation",
-        "API Development",
-        "Process Optimization",
-      ],
-      price: "Starting at $3,000",
-      popular: false,
-    },
-    {
-      icon: Palette,
-      title: "Digital Strategy",
-      description:
-        "Technology roadmaps and digital transformation strategies that drive growth.",
-      features: [
-        "Technology Planning",
-        "Architecture Planning",
-        "Growth Strategy",
-      ],
-      price: "Starting at $1,500",
-      popular: false,
-    },
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
