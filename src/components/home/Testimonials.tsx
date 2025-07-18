@@ -81,18 +81,6 @@ const Testimonials: React.FC = () => {
       ref={ref}
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `conic-gradient(from 0deg, transparent, #D4A574, transparent)`,
-            backgroundSize: "200px 200px",
-          }}
-        />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
