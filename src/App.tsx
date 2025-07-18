@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden">
+    <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden max-w-7xl mx-auto">
       <ScrollToTop />
       <Navigation />
 
