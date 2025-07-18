@@ -66,13 +66,13 @@ const CTA: React.FC = () => {
             Ready to Start?
           </motion.div>
 
-          <h2 className="text-3xl md:text-8xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+          <h2 className="text-5xl md:text-8xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
             Let's Build Something
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]"
+              className="block bg-shimmer bg-clip-text text-transparent pb-4leading-[1.1]"
             >
               Exceptional Together
             </motion.span>

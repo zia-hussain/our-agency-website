@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "./components/layout/Navigation";

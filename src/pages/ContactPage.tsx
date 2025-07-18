@@ -139,7 +139,7 @@ const ContactPage: React.FC = () => {
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight">
               Start Your
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1] pb-4 leading-[1.1]">
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Project Today
               </span>
             </h1>
@@ -160,7 +160,7 @@ const ContactPage: React.FC = () => {
             {/* Contact Form */}
             <AnimatedSection>
               <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 ">
-                <h2 className="text-3xl font-bold text-foreground mb-8">
+                <h2 className="text-5xl font-bold text-foreground mb-8">
                   Tell Us About Your Project
                 </h2>
 
@@ -374,7 +374,7 @@ const ContactPage: React.FC = () => {
             <AnimatedSection delay={0.1}>
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-6">
+                  <h2 className="text-5xl font-bold text-foreground mb-6">
                     Get In Touch
                   </h2>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -461,9 +461,9 @@ const ContactPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-3xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
+            <h2 className="text-5xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
               Frequently Asked
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 pb-4 leading-[1.1]">
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Questions
               </span>
             </h2>

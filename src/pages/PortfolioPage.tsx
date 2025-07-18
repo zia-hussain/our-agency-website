@@ -60,7 +60,7 @@ const PortfolioPage: React.FC = () => {
               Our Work
             </motion.div>
 
-            <h1 className="text-3xl md:text-8xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-8xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Portfolio of
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Excellence
@@ -93,7 +93,7 @@ const PortfolioPage: React.FC = () => {
                 >
                   <stat.icon size={24} className="text-primary" />
                 </motion.div>
-                <div className="text-3xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-150">
+                <div className="text-5xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-150">
                   {stat.number}
                 </div>
                 <div className="text-muted-foreground text-sm font-medium">
@@ -288,7 +288,7 @@ const PortfolioPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <h2 className="text-3xl md:text-8xl font-bold text-foreground mb-8 tracking-tight">
+            <h2 className="text-5xl md:text-8xl font-bold text-foreground mb-8 tracking-tight">
               Ready to Create
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Your Success Story?
