@@ -21,10 +21,9 @@ function App() {
   }, []);
 
   return (
-    <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden">
+    <div className="font-inter antialiased bg-cream text-charcoal relative">
       {/* Animated Background */}
       <div className="absolute inset-0 z-10">
-        ssss
         {/* Gradient Orbs */}
         <motion.div
           animate={{
@@ -52,6 +51,7 @@ function App() {
           }}
           className="absolute bottom-1/4 right-1/4 w-128 h-128 bg-primary/5 rounded-full blur-3xl"
         />
+
         {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div
