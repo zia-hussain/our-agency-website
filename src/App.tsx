@@ -9,6 +9,7 @@ import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import ContactPage from "./pages/ContactPage";
+import BackToTop from "./components/common/BackToTop";
 
 function App() {
   useEffect(() => {
@@ -21,10 +22,9 @@ function App() {
   }, []);
 
   return (
-    <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden max-w-7xl mx-auto">
+    <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden">
       <ScrollToTop />
       <Navigation />
-
       <AnimatePresence mode="wait">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -34,8 +34,8 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </AnimatePresence>
-
       <Footer />
+      <BackToTop />
     </div>
   );
 }
