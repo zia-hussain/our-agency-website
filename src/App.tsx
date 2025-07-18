@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div className="font-inter antialiased bg-cream text-charcoal relative">
+    <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 z-10">
         {/* Gradient Orbs */}
