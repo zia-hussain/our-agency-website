@@ -13,6 +13,49 @@ const Hero: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden pt-20">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        {/* Gradient Orbs */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0],
+            opacity: [0.05, 0.2, 0.05],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute bottom-1/4 right-1/4 w-128 h-128 bg-primary/5 rounded-full blur-3xl"
+        />
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.1]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 25% 25%, #C48A64 2px, transparent 2px),
+                             radial-gradient(circle at 75% 75%, #C48A64 2px, transparent 2px)`,
+              backgroundSize: "50px 50px",
+            }}
+          />
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -43,7 +86,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.4 }}
-              className="block bg-shimmer bg-clip-text text-transparent"
+              className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]"
             >
               world-class
             </motion.span>
