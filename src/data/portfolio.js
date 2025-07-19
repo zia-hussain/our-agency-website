@@ -65,7 +65,7 @@ export const projects = [
         longDescription:
             "RetailOps Automation streamlines complex e-commerce operations across multiple channels. The system automates inventory management, order processing, supplier communications, and financial reporting. Built with Python and AWS, it processes thousands of orders daily.",
         image:
-            "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
+            "/project_images/FIT-GENIUS-FINAL.png",
         tags: ["Python", "AWS", "PostgreSQL", "REST API", "Docker", "Redis"],
         client: "RetailOps Enterprise",
         duration: "8 months",
