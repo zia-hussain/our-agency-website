@@ -76,7 +76,7 @@ const AboutPage: React.FC = () => {
         title="About Us - Zumetrix Labs | Syed Zia Hussain & Syed Omer Shah"
         description="Meet the founders of Zumetrix Labs - Syed Zia Hussain and Syed Omer Shah. Learn about our mission, values, and commitment to building exceptional software."
         keywords="Syed Zia Hussain, Syed Omer Shah, Zumetrix Labs founders, software development team, web development experts Pakistan"
-        url="https://zumetrixlabs.com/about"
+        url="https://zumetrix.com/about"
       />
 
       {/* Hero Section */}
