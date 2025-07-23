@@ -120,7 +120,7 @@ const ContactPage: React.FC = () => {
         title="Contact Us - Start Your Project | Zumetrix Labs"
         description="Ready to start your software project? Contact Zumetrix Labs for a free consultation. We respond within 24 hours and offer honest advice with no obligation."
         keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Syed Zia Hussain contact, Syed Omer Shah contact"
-        url="https://zumetrixlabs.com/contact"
+        url="https://zumetrix.com/contact"
       />
 
       {/* Hero Section */}
