@@ -44,7 +44,7 @@ const PortfolioPage: React.FC = () => {
         title="Portfolio - Our Best Work | Zumetrix Labs"
         description="Explore our portfolio of web applications, mobile apps, and enterprise solutions. See how we've helped businesses achieve their goals with exceptional software."
         keywords="portfolio, web development projects, mobile app projects, software development case studies, React projects, Node.js projects"
-        url="https://zumetrixlabs.com/portfolio"
+        url="https://zumetrix.com/portfolio"
       />
 
       {/* Hero Section */}
