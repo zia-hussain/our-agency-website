@@ -16,7 +16,7 @@ const ServicesPage: React.FC = () => {
         title="Services - Web Apps, Mobile Apps, MVP Development | Zumetrix Labs"
         description="Comprehensive software development services including web applications, mobile apps, MVP development, automation, and UI/UX design. Expert developers in Pakistan."
         keywords="web development services, mobile app development, MVP development, software automation, UI UX design, React development, Node.js development"
-        url="https://zumetrixlabs.com/services"
+        url="https://zumetrix.com/services"
       />
 
       {/* Hero Section */}
