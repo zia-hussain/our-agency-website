@@ -74,8 +74,25 @@ const Hero: React.FC = () => {
             Available for new projects
           </motion.div>
 
-          {/* Main Heading */}
-          <motion.h1
+          {/* ✅ SEO H1 HEADING */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-8xl font-bold text-foreground mb-6 leading-tight tracking-tight">
+            We build <br />
+            <span className="bg-shimmer bg-clip-text text-transparent">
+              world-class
+            </span>{" "}
+            <br />
+            software solutions
+          </h1>
+
+          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed font-light">
+            Zumetrix is a premium software development agency in Pakistan,
+            building modern SaaS platforms, mobile apps, and web applications.
+            Trusted by startups and businesses worldwide, led by{" "}
+            <strong>Syed Zia Hussain Shah</strong> &{" "}
+            <strong>Syed Omer Shah</strong>.
+          </p>
+
+          {/* <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
@@ -100,7 +117,6 @@ const Hero: React.FC = () => {
             </motion.span>
           </motion.h1>
 
-          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -108,10 +124,10 @@ const Hero: React.FC = () => {
             className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed font-light"
           >
             Zumetrix Labs transforms ambitious ideas into powerful digital
-            experiences. Led by Syed Zia Hussain and Syed Omer Shah, we craft
+            experiences. Led by Syed Zia Hussain Shah and Syed Omer Shah, we craft
             exceptional web applications, MVPs, and custom software that drives
             real business results.
-          </motion.p>
+          </motion.p> */}
 
           {/* CTA Buttons - PERFECT HIERARCHY */}
           <motion.div
