@@ -8,7 +8,7 @@ import { Users, Target, Award, Globe, Code, Heart } from "lucide-react";
 const AboutPage: React.FC = () => {
   const founders = [
     {
-      name: "Syed Zia Hussain",
+      name: "Syed Zia Hussain Shah",
       role: "Co-Founder · Product & Growth",
       bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn’t just built well — it solves the right problem, beautifully.",
       image: "/Software Engineer.png",
@@ -73,9 +73,9 @@ const AboutPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="About Us - Zumetrix Labs | Syed Zia Hussain & Syed Omer Shah"
-        description="Meet the founders of Zumetrix Labs - Syed Zia Hussain and Syed Omer Shah. Learn about our mission, values, and commitment to building exceptional software."
-        keywords="Syed Zia Hussain, Syed Omer Shah, Zumetrix Labs founders, software development team, web development experts Pakistan"
+        title="About Us - Zumetrix Labs | Syed Zia Hussain Shah & Syed Omer Shah"
+        description="Meet the founders of Zumetrix Labs - Syed Zia Hussain Shah and Syed Omer Shah. Learn about our mission, values, and commitment to building exceptional software."
+        keywords="Syed Zia Hussain Shah, Syed Omer Shah, Zumetrix Labs founders, software development team, web development experts Pakistan"
         url="https://zumetrix.com/about"
       />
 
@@ -268,7 +268,7 @@ const AboutPage: React.FC = () => {
                   in people's lives and businesses."
                 </p>
                 <div className="mt-6 text-primary font-medium">
-                  — Syed Zia Hussain & Syed Omer Shah, Co-Founders
+                  — Syed Zia Hussain Shah & Syed Omer Shah, Co-Founders
                 </div>
               </motion.div>
             </div>
