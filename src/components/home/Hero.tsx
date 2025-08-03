@@ -92,43 +92,6 @@ const Hero: React.FC = () => {
             <strong>Syed Omer Shah</strong>.
           </p>
 
-          {/* <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl xl:text-8xl font-bold text-foreground mb-8 leading-tight tracking-tight"
-          >
-            We build
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              className="block bg-shimmer bg-clip-text text-transparent"
-            >
-              world-class
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.6 }}
-              className="block text-foreground"
-            >
-              software solutions
-            </motion.span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.8 }}
-            className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed font-light"
-          >
-            Zumetrix Labs transforms ambitious ideas into powerful digital
-            experiences. Led by Syed Zia Hussain Shah and Syed Omer Shah, we craft
-            exceptional web applications, MVPs, and custom software that drives
-            real business results.
-          </motion.p> */}
-
           {/* CTA Buttons - PERFECT HIERARCHY */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
