@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
+# Sitemaps
 Sitemap: https://zumetrix.com/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
+
+# Block admin areas (if any in future)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all important pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /portfolio
+Allow: /contact
+
+# SEO optimized for Zumetrix Labs - Software Development Agency Pakistan
+# Founded by Zia Hussain and Syed Omer Shah
+# Specializing in SaaS MVP development, React/Node.js, Firebase, AI automation

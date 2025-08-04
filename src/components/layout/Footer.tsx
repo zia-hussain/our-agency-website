@@ -40,9 +40,9 @@ const Footer: React.FC = () => {
       label: "LinkedIn",
     },
     {
-      icon: Twitter,
-      href: "https://twitter.com/zumetrixlabs",
-      label: "Twitter",
+      icon: Mail,
+      href: "https://www.instagram.com/zumetrixlabs",
+      label: "Instagram",
     },
   ];
 
@@ -73,8 +73,9 @@ const Footer: React.FC = () => {
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Crafting exceptional software experiences that drive business
-              growth and user satisfaction.
+              Pakistan's leading software development agency specializing in SaaS MVP development, 
+              React/Node.js applications, AI automation, and custom software solutions. 
+              Founded by expert developers Zia Hussain and Syed Omer Shah.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -179,8 +180,8 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-              © {currentYear} Zumetrix Labs. All rights reserved. Coded with ❤️
-              by Syed Zia Hussain Shah and Syed Omer Shah.
+              © {currentYear} Zumetrix Labs. All rights reserved. Crafted with ❤️
+              by Zia Hussain and Syed Omer Shah. Pakistan's premier software development agency.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link

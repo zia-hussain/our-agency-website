@@ -40,7 +40,7 @@ export const services = [
         "icon": Database,
         "title": "SaaS Dashboards",
         "subtitle": "Data dashboards that drive decisions",
-        "description": "Transform raw data into clear, actionable insights. We design intuitive dashboards that help you track KPIs, monitor performance, and scale your SaaS product confidently.",
+        "description": "Transform raw data into clear, actionable insights with custom SaaS dashboards. We design intuitive, responsive dashboards using React, D3.js, and modern data visualization libraries that help you track KPIs, monitor performance, and scale your SaaS product confidently.",
         "features": [
             "Real-time Analytics & Metrics",
             "Interactive Charting & Filtering",
@@ -66,7 +66,7 @@ export const services = [
         "icon": Smartphone,
         "title": "Mobile Applications",
         "subtitle": "Cross-platform apps that feel native",
-        "description": "We create powerful mobile experiences using React Native and native tools—built to run smoothly across both iOS and Android with fast deployment and native-like performance.",
+        "description": "We create powerful, cross-platform mobile applications using React Native, Expo, and native development tools. Our mobile apps run smoothly across both iOS and Android with fast deployment, native-like performance, and seamless user experiences.",
         "features": [
             "React Native & Expo Development",
             "Offline Mode & Push Notifications",
@@ -92,7 +92,7 @@ export const services = [
         "icon": Rocket,
         "title": "MVP Development",
         "subtitle": "Validate your idea, fast",
-        "description": "From idea to product in weeks—not months. We help founders launch lean MVPs with just the right features to test the market, raise funding, or onboard users.",
+        "description": "From idea to product in weeks—not months. We help startups and entrepreneurs launch lean SaaS MVPs with just the right features to test the market, raise funding, or onboard users. Our MVP development process includes rapid prototyping, user authentication, payment integration, and deployment.",
         "features": [
             "Rapid UI/UX Prototyping",
             "MVP-First Architecture",
@@ -118,7 +118,7 @@ export const services = [
         "icon": Cog,
         "title": "Automation Solutions",
         "subtitle": "Automate the boring stuff",
-        "description": "We design and build workflow automations that save time, reduce manual errors, and help you scale—whether through Zapier, Make, or custom Python-based bots.",
+        "description": "We design and build intelligent workflow automations and AI-powered solutions that save time, reduce manual errors, and help you scale. Our automation services include no-code solutions (Zapier, Make.com), custom Python bots, and AI integrations that streamline your business processes.",
         "features": [
             "No-Code & Low-Code Automation (Zapier, Make)",
             "Custom Bots with Python",
@@ -144,7 +144,7 @@ export const services = [
         "icon": Palette,
         "title": "Digital Strategy & Consulting",
         "subtitle": "Plan smarter, build better",
-        "description": "We offer 1-on-1 consulting, architecture planning, and growth-focused audits to help you make the right product decisions before writing a single line of code.",
+        "description": "We offer expert 1-on-1 consulting, technical architecture planning, and growth-focused audits to help you make the right product decisions before writing a single line of code. Our digital strategy services include technology roadmaps, competitive analysis, and scalability planning.",
         "features": [
             "Technical Discovery & Roadmapping",
             "Growth Planning & Monetization Strategy",

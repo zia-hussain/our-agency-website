@@ -74,23 +74,66 @@ const Hero: React.FC = () => {
             Available for new projects
           </motion.div>
 
-          {/* ✅ SEO H1 HEADING */}
+          {/* ✅ SEO OPTIMIZED H1 HEADING */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-8xl font-bold text-foreground mb-6 leading-tight tracking-tight">
             We build <br />
-            <span className="bg-shimmer bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
               world-class
             </span>{" "}
             <br />
             software solutions
           </h1>
 
-          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed font-light">
-            Zumetrix is a premium software development agency in Pakistan,
-            building modern SaaS platforms, mobile apps, and web applications.
-            Trusted by startups and businesses worldwide, led by{" "}
-            <strong>Syed Zia Hussain Shah</strong> &{" "}
-            <strong>Syed Omer Shah</strong>.
-          </p>
+          {/* ✅ SEO RICH DESCRIPTION WITH KEYWORDS */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-4">
+              <strong>Zumetrix Labs</strong> is Pakistan's leading <strong>software development agency</strong> specializing in 
+              <strong> SaaS MVP development</strong>, <strong>React/Node.js applications</strong>, and <strong>AI automation services</strong>. 
+              Founded by expert developers <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>, we transform ambitious ideas into 
+              powerful digital experiences that drive real business results.
+            </p>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              We specialize in <strong>custom web applications</strong>, <strong>mobile app development</strong>, 
+              <strong> Firebase development</strong>, <strong>no-code automations</strong>, and modern tech stacks including 
+              React.js, Next.js, TypeScript, and Node.js. Trusted by 50+ clients worldwide for premium software solutions.
+            </p>
+          </div>
+
+          {/* ✅ KEYWORD-RICH SERVICES HIGHLIGHT */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12 max-w-4xl mx-auto">
+            {[
+              "SaaS MVP Development",
+              "React/Node.js Development", 
+              "AI Automation Services",
+              "Firebase Development",
+              "Mobile App Development",
+              "Custom Dashboards"
+            ].map((service, index) => (
+              <motion.span
+                key={service}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 1.6 + index * 0.1 }}
+                className="px-4 py-2 bg-card/30 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-200"
+              >
+                {service}
+              </motion.span>
+            ))}
+          </div>
+
+          {/* ✅ INTERNAL LINKING SECTION */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 1.8 }}
+            className="text-center mb-8"
+          >
+            <p className="text-muted-foreground text-sm">
+              Learn more about our <a href="/services" className="text-primary hover:underline font-medium">software development services</a>, 
+              view our <a href="/portfolio" className="text-primary hover:underline font-medium">portfolio of successful projects</a>, 
+              or <a href="/about" className="text-primary hover:underline font-medium">meet our expert founders</a>
+            </p>
+          </motion.div>
 
           {/* CTA Buttons - PERFECT HIERARCHY */}
           <motion.div
