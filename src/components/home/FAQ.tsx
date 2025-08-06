@@ -8,44 +8,61 @@ const FAQ: React.FC = () => {
   const faqs = [
     {
       question: "What services does Zumetrix Labs provide?",
-      answer: "Zumetrix Labs is Pakistan's leading software development agency specializing in SaaS MVP development, React/Node.js web applications, mobile app development, AI automation services, Firebase integration, custom dashboards, no-code automation solutions, and enterprise software development. We serve startups and enterprises worldwide with premium, scalable software solutions using modern tech stacks including React.js, Next.js, TypeScript, Node.js, MongoDB, and AI technologies."
+      answer:
+        "Zumetrix Labs is Pakistan's leading software development agency specializing in SaaS MVP development, React/Node.js web applications, mobile app development, AI automation services, Firebase integration, custom dashboards, no-code automation solutions, and enterprise software development. We serve startups and enterprises worldwide with premium, scalable software solutions using modern tech stacks including React.js, Next.js, TypeScript, Node.js, MongoDB, and AI technologies.",
     },
     {
       question: "Who is Zia Hussain and who founded Zumetrix Labs?",
-      answer: "Zumetrix Labs was founded by two expert software developers: Zia Hussain (Co-Founder & CEO) and Syed Omer Shah (Co-Founder & CTO). Zia Hussain is a full-stack developer with expertise in React, Node.js, Firebase, and business strategy. He's known on professional platforms like Upwork, Fiverr, and LinkedIn as a top-rated developer. Syed Omer Shah specializes in advanced engineering, AI automation, and scalable architecture. Together, they have 6+ years of combined experience and have delivered 50+ successful projects."
+      answer:
+        "Zumetrix Labs was founded by two expert software developers: Zia Hussain (Co-Founder & CEO) and Syed Omer Shah (Co-Founder & CTO). Zia Hussain is a full-stack developer with expertise in React, Node.js, Firebase, and business strategy. He's known on professional platforms like Upwork, Fiverr, and LinkedIn as a top-rated developer. Syed Omer Shah specializes in advanced engineering, AI automation, and scalable architecture. Together, they have 6+ years of combined experience and have delivered 50+ successful projects.",
     },
     {
       question: "Does Zumetrix build SaaS MVPs and support AI integrations?",
-      answer: "Yes! SaaS MVP development and AI automation are our core specialties. We help startups and entrepreneurs validate their ideas quickly by building lean, scalable MVPs using React, Next.js, Node.js, Firebase, and modern tech stacks. Our AI integration services include OpenAI API integration, ChatGPT automation, custom AI workflows, business process automation, and intelligent chatbot development. We've helped clients secure funding and launch successful SaaS products with AI-powered features."
+      answer:
+        "Yes! SaaS MVP development and AI automation are our core specialties. We help startups and entrepreneurs validate their ideas quickly by building lean, scalable MVPs using React, Next.js, Node.js, Firebase, and modern tech stacks. Our AI integration services include OpenAI API integration, ChatGPT automation, custom AI workflows, business process automation, and intelligent chatbot development. We've helped clients secure funding and launch successful SaaS products with AI-powered features.",
     },
     {
-      question: "Can Zumetrix automate business processes and do you offer mobile app development?",
-      answer: "Absolutely! We're experts in business automation and mobile app development. Our automation services include workflow automation with Make.com and Zapier, CRM automation setup, WhatsApp automation, email parsing bots, task automation with n8n, sales funnel automation, and custom API integrations. For mobile apps, we develop native iOS and Android applications using React Native and Flutter, cross-platform apps, PWA development, and app store optimization. We've built mobile apps for various industries with 50,000+ downloads."
+      question:
+        "Can Zumetrix automate business processes and do you offer mobile app development?",
+      answer:
+        "Absolutely! We're experts in business automation and mobile app development. Our automation services include workflow automation with Make.com and Zapier, CRM automation setup, WhatsApp automation, email parsing bots, task automation with n8n, sales funnel automation, and custom API integrations. For mobile apps, we develop native iOS and Android applications using React Native and Flutter, cross-platform apps, PWA development, and app store optimization. We've built mobile apps for various industries with 50,000+ downloads.",
     },
     {
-      question: "Can I hire React, Node.js, and Firebase developers from Zumetrix?",
-      answer: "Yes! You can hire our expert React, Node.js, and Firebase developers for your projects. Our team includes top-rated developers with deep expertise in React.js, Next.js, TypeScript, Node.js backend development, Firebase (Auth, Firestore, Cloud Functions), MongoDB, REST API development, and modern development practices. We offer flexible engagement models including dedicated developers, project-based development, and ongoing maintenance. Contact us to discuss your requirements and hire the best developers in Pakistan."
+      question:
+        "Can I hire React, Node.js, and Firebase developers from Zumetrix?",
+      answer:
+        "Yes! You can hire our expert React, Node.js, and Firebase developers for your projects. Our team includes top-rated developers with deep expertise in React.js, Next.js, TypeScript, Node.js backend development, Firebase (Auth, Firestore, Cloud Functions), MongoDB, REST API development, and modern development practices. We offer flexible engagement models including dedicated developers, project-based development, and ongoing maintenance. Contact us to discuss your requirements and hire the best developers in Pakistan.",
     },
     {
-      question: "What makes Zumetrix different from other software agencies in Pakistan?",
-      answer: "Zumetrix Labs stands out as Pakistan's #1 software development agency through our founder-led approach, technical expertise, and proven track record. Unlike typical agencies, our founders Zia Hussain and Syed Omer Shah are hands-on developers who personally oversee every project. We specialize in modern tech stacks (React, Node.js, Firebase, AI automation), deliver pixel-perfect UI/UX, maintain 100% client satisfaction, and have offices serving Karachi, Lahore, and Islamabad. We're also experts in AI automation and no-code solutions, giving us a unique competitive edge in the Pakistani market."
+      question:
+        "What makes Zumetrix different from other software agencies in Pakistan?",
+      answer:
+        "Zumetrix Labs stands out as Pakistan's #1 software development agency through our founder-led approach, technical expertise, and proven track record. Unlike typical agencies, our founders Zia Hussain and Syed Omer Shah are hands-on developers who personally oversee every project. We specialize in modern tech stacks (React, Node.js, Firebase, AI automation), deliver pixel-perfect UI/UX, maintain 100% client satisfaction, and have offices serving Karachi, Lahore, and Islamabad. We're also experts in AI automation and no-code solutions, giving us a unique competitive edge in the Pakistani market.",
     },
     {
-      question: "Do you provide AI automation, no-code solutions, and custom dashboards?",
-      answer: "Yes! We're Pakistan's leading experts in AI automation workflows, no-code solutions, and custom dashboard development. Our services include custom AI integrations (OpenAI, ChatGPT), workflow automation (Zapier, Make.com, n8n), chatbot development, data processing automation, CRM automation, WhatsApp automation, email parsing bots, Stripe automation, custom admin panels, data visualization dashboards, real-time analytics dashboards, and intelligent business process optimization. We help businesses reduce manual work, increase efficiency, and leverage AI to gain competitive advantages."
+      question:
+        "Do you provide AI automation, no-code solutions, and custom dashboards?",
+      answer:
+        "Yes! We're Pakistan's leading experts in AI automation workflows, no-code solutions, and custom dashboard development. Our services include custom AI integrations (OpenAI, ChatGPT), workflow automation (Zapier, Make.com, n8n), chatbot development, data processing automation, CRM automation, WhatsApp automation, email parsing bots, Stripe automation, custom admin panels, data visualization dashboards, real-time analytics dashboards, and intelligent business process optimization. We help businesses reduce manual work, increase efficiency, and leverage AI to gain competitive advantages.",
     },
     {
-      question: "What technologies does Zumetrix specialize in and how can I start a project?",
-      answer: "Our core technology stack includes React.js, Next.js, TypeScript, Node.js, Firebase, PostgreSQL, MongoDB, Python, React Native, Flutter, Tailwind CSS, and modern deployment platforms (Vercel, AWS). We also specialize in AI technologies (OpenAI API, ChatGPT), payment systems (Stripe), authentication systems, and no-code platforms (Zapier, Make.com, n8n). To start a project with Zumetrix Labs, contact us through our website, email (hello@zumetrix.com), or schedule a free consultation call. We'll discuss your requirements, provide a detailed proposal with timeline and pricing, and our founders will personally kick off your project."
+      question:
+        "What technologies does Zumetrix specialize in and how can I start a project?",
+      answer:
+        "Our core technology stack includes React.js, Next.js, TypeScript, Node.js, Firebase, PostgreSQL, MongoDB, Python, React Native, Flutter, Tailwind CSS, and modern deployment platforms (Vercel, AWS). We also specialize in AI technologies (OpenAI API, ChatGPT), payment systems (Stripe), authentication systems, and no-code platforms (Zapier, Make.com, n8n). To start a project with Zumetrix Labs, contact us through our website, email (hello@zumetrix.com), or schedule a free consultation call. We'll discuss your requirements, provide a detailed proposal with timeline and pricing, and our founders will personally kick off your project.",
     },
     {
-      question: "Does Zumetrix serve clients in Karachi, Lahore, Islamabad and internationally?",
-      answer: "Yes! Zumetrix Labs serves clients across Pakistan including Karachi, Lahore, Islamabad, and internationally. We're Pakistan's top software development agency with a global reach, serving startups and enterprises worldwide. Whether you're looking for local Pakistani developers or need a remote development team from Pakistan, we provide world-class software development services. Our founders Zia Hussain and Syed Omer Shah lead a team of expert developers who deliver premium solutions regardless of your location."
+      question:
+        "Does Zumetrix serve clients in Karachi, Lahore, Islamabad and internationally?",
+      answer:
+        "Yes! Zumetrix Labs serves clients across Pakistan including Karachi, Lahore, Islamabad, and internationally. We're Pakistan's top software development agency with a global reach, serving startups and enterprises worldwide. Whether you're looking for local Pakistani developers or need a remote development team from Pakistan, we provide world-class software development services. Our founders Zia Hussain and Syed Omer Shah lead a team of expert developers who deliver premium solutions regardless of your location.",
     },
     {
-      question: "What is the pricing for Zumetrix services and do you work with startups?",
-      answer: "We offer competitive pricing for all our services: Web Applications starting at $5,000, SaaS Dashboards starting at $8,000, Mobile Applications starting at $12,000, MVP Development starting at $4,000, Automation Solutions starting at $2,500, and Digital Strategy starting at $1,500. We absolutely love working with startups and offer special MVP packages to help validate ideas quickly and cost-effectively. We've helped numerous startups secure funding, launch successful products, and scale their businesses. Contact us for a custom quote based on your specific requirements."
-    }
+      question:
+        "What is the pricing for Zumetrix services and do you work with startups?",
+      answer:
+        "We offer competitive pricing for all our services: Web Applications starting at $5,000, SaaS Dashboards starting at $8,000, Mobile Applications starting at $12,000, MVP Development starting at $4,000, Automation Solutions starting at $2,500, and Digital Strategy starting at $1,500. We absolutely love working with startups and offer special MVP packages to help validate ideas quickly and cost-effectively. We've helped numerous startups secure funding, launch successful products, and scale their businesses. Contact us for a custom quote based on your specific requirements.",
+    },
   ];
 
   const toggleFAQ = (index: number) => {
@@ -87,8 +104,9 @@ const FAQ: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.2 }}
             className="text-xl text-muted-foreground leading-relaxed"
           >
-            Get answers to common questions about our software development services, 
-            founders Zia Hussain and Syed Omer Shah, and how we can help transform your business ideas into reality.
+            Get answers to common questions about our software development
+            services, founders Zia Hussain and Syed Omer Shah, and how we can
+            help transform your business ideas into reality.
           </motion.p>
         </div>
 
@@ -163,7 +181,7 @@ const FAQ: React.FC = () => {
           >
             Contact Us Today
           </motion.button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
