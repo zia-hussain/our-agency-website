@@ -73,9 +73,9 @@ const Footer: React.FC = () => {
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Pakistan's leading software development agency specializing in SaaS MVP development, 
-              React/Node.js applications, AI automation, and custom software solutions. 
-              Founded by expert developers Zia Hussain and Syed Omer Shah.
+              Pakistan's #1 software development agency founded by expert developers Zia Hussain and Syed Omer Shah. 
+              We specialize in SaaS MVP development, React/Node.js applications, mobile app development, AI automation services, 
+              Firebase integration, and custom software solutions. Serving clients in Karachi, Lahore, Islamabad, and worldwide.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.15 }}
                   className="text-muted-foreground hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-card/50 backdrop-blur-xl border border-transparent hover:border-border"
                   aria-label={social.label}
                 >
@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.05 }}
+            transition={{ duration: 0.2, delay: 0.05 }}
             viewport={{ once: true }}
           >
             <h3 className="text-lg font-semibold mb-4 text-foreground">
@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-150 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -124,7 +124,7 @@ const Footer: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
             viewport={{ once: true }}
           >
             <h3 className="text-lg font-semibold mb-4 text-foreground">
@@ -135,7 +135,7 @@ const Footer: React.FC = () => {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-150 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -148,7 +148,7 @@ const Footer: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
+            transition={{ duration: 0.2, delay: 0.15 }}
             viewport={{ once: true }}
           >
             <h3 className="text-lg font-semibold mb-4 text-foreground">
@@ -159,7 +159,7 @@ const Footer: React.FC = () => {
                 <li key={index}>
                   <a
                     href={contact.href}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm flex items-center gap-2"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-150 text-sm flex items-center gap-2"
                   >
                     <contact.icon size={16} />
                     {contact.text}
@@ -174,25 +174,26 @@ const Footer: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
+          transition={{ duration: 0.2, delay: 0.2 }}
           viewport={{ once: true }}
           className="border-t border-border mt-12 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-              © {currentYear} Zumetrix Labs. All rights reserved. Crafted with ❤️
-              by Zia Hussain and Syed Omer Shah. Pakistan's premier software development agency.
+              © {currentYear} Zumetrix Labs. All rights reserved. Crafted with ❤️ by founders 
+              <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>. Pakistan's #1 software development agency 
+              serving Karachi, Lahore, Islamabad, and clients worldwide.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link
                 to="/privacy"
-                className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                className="text-muted-foreground hover:text-primary transition-colors duration-150"
               >
                 Privacy Policy
               </Link>
               <Link
                 to="/terms"
-                className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                className="text-muted-foreground hover:text-primary transition-colors duration-150"
               >
                 Terms of Service
               </Link>

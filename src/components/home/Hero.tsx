@@ -87,15 +87,16 @@ const Hero: React.FC = () => {
           {/* ✅ SEO RICH DESCRIPTION WITH KEYWORDS */}
           <div className="max-w-4xl mx-auto mb-8">
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-4">
-              <strong>Zumetrix Labs</strong> is Pakistan's leading <strong>software development agency</strong> specializing in 
-              <strong> SaaS MVP development</strong>, <strong>React/Node.js applications</strong>, and <strong>AI automation services</strong>. 
-              Founded by expert developers <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>, we transform ambitious ideas into 
-              powerful digital experiences that drive real business results.
+              <strong>Zumetrix Labs</strong> is Pakistan's #1 <strong>software development agency</strong> founded by expert developers 
+              <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>. We specialize in <strong>SaaS MVP development</strong>, 
+              <strong> React/Node.js applications</strong>, <strong>mobile app development</strong>, <strong>AI automation services</strong>, 
+              and <strong>custom software solutions</strong>. Transform your ambitious ideas into powerful digital experiences that drive real business results.
             </p>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              We specialize in <strong>custom web applications</strong>, <strong>mobile app development</strong>, 
-              <strong> Firebase development</strong>, <strong>no-code automations</strong>, and modern tech stacks including 
-              React.js, Next.js, TypeScript, and Node.js. Trusted by 50+ clients worldwide for premium software solutions.
+              Our expert team delivers <strong>custom web applications</strong>, <strong>Firebase development</strong>, 
+              <strong> no-code automation solutions</strong>, <strong>AI workflow integration</strong>, and enterprise software using 
+              React.js, Next.js, TypeScript, Node.js, and modern tech stacks. Trusted by 50+ clients worldwide including startups and enterprises 
+              in Karachi, Lahore, Islamabad, and internationally.
             </p>
           </div>
 
@@ -103,17 +104,17 @@ const Hero: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-3 mb-12 max-w-4xl mx-auto">
             {[
               "SaaS MVP Development",
-              "React/Node.js Development", 
+              "React Developer Pakistan", 
               "AI Automation Services",
-              "Firebase Development",
+              "Firebase Expert Pakistan",
               "Mobile App Development",
-              "Custom Dashboards"
+              "No-Code Automation Agency"
             ].map((service, index) => (
               <motion.span
                 key={service}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 1.6 + index * 0.1 }}
+                transition={{ duration: 0.2, delay: 0.8 + index * 0.05 }}
                 className="px-4 py-2 bg-card/30 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-200"
               >
                 {service}
@@ -123,15 +124,15 @@ const Hero: React.FC = () => {
 
           {/* ✅ INTERNAL LINKING SECTION */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 1.8 }}
+            transition={{ duration: 0.3, delay: 1 }}
             className="text-center mb-8"
           >
             <p className="text-muted-foreground text-sm">
-              Learn more about our <a href="/services" className="text-primary hover:underline font-medium">software development services</a>, 
-              view our <a href="/portfolio" className="text-primary hover:underline font-medium">portfolio of successful projects</a>, 
-              or <a href="/about" className="text-primary hover:underline font-medium">meet our expert founders</a>
+              Learn more about our <a href="/services" className="text-primary hover:underline font-medium">comprehensive software development services</a>, 
+              view our <a href="/portfolio" className="text-primary hover:underline font-medium">portfolio of 50+ successful projects</a>, 
+              or <a href="/about" className="text-primary hover:underline font-medium">meet founders Zia Hussain and Syed Omer Shah</a>
             </p>
           </motion.div>
 
@@ -139,7 +140,7 @@ const Hero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 1 }}
+            transition={{ duration: 0.3, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
           >
             {/* PRIMARY BUTTON - BIGGER & MORE PROMINENT */}
@@ -148,20 +149,20 @@ const Hero: React.FC = () => {
                 whileHover={{
                   scale: 1.02,
                   y: -1,
-                  transition: { duration: 0.1, ease: "easeOut" },
+                  transition: { duration: 0.15, ease: "easeOut" },
                 }}
                 whileTap={{
                   scale: 0.98,
-                  transition: { duration: 0.05 },
+                  transition: { duration: 0.1 },
                 }}
                 className="group bg-beige-gradient text-primary-foreground px-10 py-4 rounded-xl font-semibold 
-                         hover:shadow-glow transition-all duration-100 ease-out
+                         hover:shadow-glow transition-all duration-150 ease-out
                          flex items-center gap-3 text-lg shadow-lg"
               >
                 Start Your Project
                 <ArrowRight
                   size={20}
-                  className="group-hover:translate-x-0.5 transition-transform duration-100"
+                  className="group-hover:translate-x-0.5 transition-transform duration-150"
                 />
               </motion.button>
             </Link>
@@ -170,19 +171,19 @@ const Hero: React.FC = () => {
             <motion.button
               whileHover={{
                 scale: 1.02,
-                transition: { duration: 0.1, ease: "easeOut" },
+                transition: { duration: 0.15, ease: "easeOut" },
               }}
               whileTap={{
                 scale: 0.98,
-                transition: { duration: 0.05 },
+                transition: { duration: 0.1 },
               }}
               onClick={() => scrollToSection("portfolio")}
               className="group text-muted-foreground hover:text-primary font-medium px-6 py-3 
-                       transition-all duration-100 ease-out text-base flex items-center gap-3 
+                       transition-all duration-150 ease-out text-base flex items-center gap-3 
                        bg-card/30 backdrop-blur-xl border border-border rounded-xl
                        hover:bg-card/50 hover:border-primary/30"
             >
-              <div className="w-10 h-10 bg-card/50 backdrop-blur-xl rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-all duration-100 border border-border">
+              <div className="w-10 h-10 bg-card/50 backdrop-blur-xl rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-all duration-150 border border-border">
                 <Play size={14} className="text-primary ml-0.5" />
               </div>
               View Our Work
@@ -193,25 +194,25 @@ const Hero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 1.2 }}
+            transition={{ duration: 0.3, delay: 0.8 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             {[
-              { number: "50+", label: "Web & App Projects Delivered" },
-              { number: "25+", label: "Clients Served Worldwide" },
-              { number: "3+", label: "Years of Modern Stack Experience" },
+              { number: "50+", label: "Projects Delivered Successfully" },
+              { number: "25+", label: "Happy Clients Worldwide" },
+              { number: "3+", label: "Years of Expert Experience" },
               { number: "100%", label: "Client Satisfaction Rate" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 1.4 + index * 0.05 }}
+                transition={{ duration: 0.2, delay: 1 + index * 0.05 }}
                 whileHover={{
                   y: -2,
-                  transition: { duration: 0.1 },
+                  transition: { duration: 0.15 },
                 }}
-                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-xl p-4 hover:bg-card/50 hover:border-primary/30 transition-all duration-100 cursor-pointer"
+                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-xl p-4 hover:bg-card/50 hover:border-primary/30 transition-all duration-150 cursor-pointer"
               >
                 <div className="text-2xl md:text-3xl font-bold text-foreground mb-1 bg-shimmer bg-clip-text text-transparent">
                   {stat.number}
@@ -237,25 +238,25 @@ const Hero: React.FC = () => {
         className="absolute bottom-1/4 left-1/4 w-16 h-16 bg-primary/50 rounded-full hidden lg:block opacity-60"
       />
 
-      {/* PERFECTLY CENTERED SCROLL INDICATOR */}
-      {/* <motion.div
+      {/* SCROLL INDICATOR - PERFECTLY POSITIONED */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        transition={{ duration: 0.3, delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 border-2 border-border rounded-full flex justify-center bg-card/20 backdrop-blur-xl"
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="w-6 h-10 border-2 border-border rounded-full flex justify-center bg-card/30 backdrop-blur-xl hover:bg-card/50 transition-all duration-150 cursor-pointer"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             className="w-1 h-3 bg-primary rounded-full mt-2"
           />
         </motion.div>
-      </motion.div> */}
+      </motion.div>
     </section>
   );
 };

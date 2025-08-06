@@ -1,23 +1,62 @@
+# Robots.txt for Zumetrix Labs - Pakistan's #1 Software Development Agency
+# Founded by Zia Hussain and Syed Omer Shah
+# Specializing in SaaS MVP Development, React/Node.js, AI Automation
+
 User-agent: *
 Allow: /
 
+# Priority pages for crawling
+Allow: /about
+Allow: /services  
+Allow: /portfolio
+Allow: /contact
+
+# Service-specific pages
+Allow: /services/saas-mvp-development
+Allow: /services/react-nodejs-development
+Allow: /services/mobile-app-development
+Allow: /services/ai-automation-services
+
+# Founder pages for personal branding
+Allow: /founders/zia-hussain
+Allow: /founders/syed-omer-shah
+
+# Location-based pages for local SEO
+Allow: /karachi-software-developers
+Allow: /lahore-web-development-agency
+Allow: /islamabad-mobile-app-developers
+
+# Block admin areas and private content
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /temp/
+Disallow: /*.json$
+Disallow: /node_modules/
+
+# Allow important assets
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.svg
+Allow: *.webp
+
 # Sitemaps
 Sitemap: https://zumetrix.com/sitemap.xml
+Sitemap: https://zumetrix.com/sitemap-images.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1
 
-# Block admin areas (if any in future)
-Disallow: /admin/
-Disallow: /private/
-
-# Allow all important pages
-Allow: /
-Allow: /about
-Allow: /services
-Allow: /portfolio
-Allow: /contact
-
 # SEO optimized for Zumetrix Labs - Software Development Agency Pakistan
-# Founded by Zia Hussain and Syed Omer Shah
+# Founded by expert developers Zia Hussain (CEO) and Syed Omer Shah (CTO)
 # Specializing in SaaS MVP development, React/Node.js, Firebase, AI automation
+# Serving clients in Karachi, Lahore, Islamabad, and worldwide
+# Keywords: software development agency Pakistan, SaaS MVP builder, React developer Pakistan
+# AI automation services, mobile app development, Firebase experts, hire developers Pakistan
