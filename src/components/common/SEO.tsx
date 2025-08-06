@@ -30,8 +30,14 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={url} />
-      <meta name="author" content="Zumetrix Labs - Founded by Zia Hussain & Syed Omer Shah" />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta
+        name="author"
+        content="Zumetrix Labs - Founded by Zia Hussain & Syed Omer Shah"
+      />
+      <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      />
       <meta name="googlebot" content="index, follow" />
       <meta name="bingbot" content="index, follow" />
       <meta name="language" content="English" />
@@ -41,7 +47,10 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="distribution" content="global" />
       <meta name="rating" content="general" />
       <meta name="classification" content="Software Development Agency" />
-      <meta name="category" content="Technology, Software Development, Web Development, Mobile Apps" />
+      <meta
+        name="category"
+        content="Technology, Software Development, Web Development, Mobile Apps"
+      />
       <meta name="coverage" content="Worldwide" />
       <meta name="target" content="Startups, Enterprises, Businesses" />
 
@@ -58,10 +67,16 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:site_name" content="Zumetrix Labs" />
       <meta property="og:locale" content="en_US" />
       <meta property="article:author" content="Zia Hussain, Syed Omer Shah" />
-      <meta property="article:publisher" content="https://www.linkedin.com/company/zumetrix-labs" />
+      <meta
+        property="article:publisher"
+        content="https://www.linkedin.com/company/zumetrix"
+      />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="Zumetrix Labs - Pakistan's #1 Software Development Agency" />
+      <meta
+        property="og:image:alt"
+        content="Zumetrix Labs - Pakistan's #1 Software Development Agency"
+      />
 
       {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -70,18 +85,27 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:image" content={image} />
       <meta name="twitter:site" content="@zumetrixlabs" />
       <meta name="twitter:creator" content="@ziahussain, @omershah" />
-      <meta name="twitter:image:alt" content="Zumetrix Labs - Software Development Agency Pakistan" />
+      <meta
+        name="twitter:image:alt"
+        content="Zumetrix Labs - Software Development Agency Pakistan"
+      />
 
       {/* Additional SEO Meta Tags */}
       <meta name="theme-color" content="#C48A64" />
       <meta name="msapplication-TileColor" content="#C48A64" />
       <meta name="apple-mobile-web-app-title" content="Zumetrix Labs" />
       <meta name="application-name" content="Zumetrix Labs" />
-      <meta name="msapplication-tooltip" content="Pakistan's #1 Software Development Agency" />
+      <meta
+        name="msapplication-tooltip"
+        content="Pakistan's #1 Software Development Agency"
+      />
       <meta name="format-detection" content="telephone=yes" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+      />
 
       {/* Structured Data */}
       {structuredData && (

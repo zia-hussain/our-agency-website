@@ -73,9 +73,12 @@ const Footer: React.FC = () => {
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Pakistan's #1 software development agency founded by expert developers Zia Hussain and Syed Omer Shah. 
-              We specialize in SaaS MVP development, React/Node.js applications, mobile app development, AI automation services, 
-              Firebase integration, and custom software solutions. Serving clients in Karachi, Lahore, Islamabad, and worldwide.
+              Pakistan's #1 software development agency founded by expert
+              developers Zia Hussain and Syed Omer Shah. We specialize in SaaS
+              MVP development, React/Node.js applications, mobile app
+              development, AI automation services, Firebase integration, and
+              custom software solutions. Serving clients in Karachi, Lahore,
+              Islamabad, and worldwide.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -180,9 +183,11 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-              © {currentYear} Zumetrix Labs. All rights reserved. Crafted with ❤️ by founders 
-              <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>. Pakistan's #1 software development agency 
-              serving Karachi, Lahore, Islamabad, and clients worldwide.
+              © {currentYear} Zumetrix Labs. All rights reserved. Crafted with
+              ❤️ by founders
+              <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>.
+              Pakistan's #1 software development agency serving Karachi, Lahore,
+              Islamabad, and clients worldwide.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link
