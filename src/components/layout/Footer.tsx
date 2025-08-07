@@ -58,14 +58,14 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             className="lg:col-span-1"
           >
-            <Link to="/" className="inline-block mb-4">
+            <Link to="/" className="flex-shrink-0 group">
               <motion.div
                 transition={{ duration: 0.2 }}
                 className="flex items-center space-x-3"
               >
-                <span className="text-2xl font-bold tracking-tight hover:text-primary transition-colors duration-200 text-foreground ">
+                <span className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
                   <img
-                    className="h-8"
+                    className="h-40 w-40"
                     src="/Zumetrix_Labs_Logo (7).png"
                     alt="Zumetrix Labs"
                   />
