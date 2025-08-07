@@ -50,7 +50,7 @@ const Navigation: React.FC = () => {
               <span className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
                 <img
                   className="h-40 w-40"
-                  src="/zumetrix final.svg"
+                  src="/Zumetrix_Labs_Logo (5).png"
                   alt="Zumetrix Labs"
                 />
               </span>

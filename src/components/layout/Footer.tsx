@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
                 <span className="text-2xl font-bold tracking-tight hover:text-primary transition-colors duration-200 text-foreground ">
                   <img
                     className="h-8"
-                    src="/zumetrix final.svg"
+                    src="/Zumetrix_Labs_Logo (5).png"
                     alt="Zumetrix Labs"
                   />
                 </span>
