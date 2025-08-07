@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { COMPANY, SOCIAL_LINKS } from "../../config/constants.js";
+
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
@@ -12,6 +14,7 @@ const Footer: React.FC = () => {
       { name: "Services", path: "/services" },
       { name: "Portfolio", path: "/portfolio" },
       { name: "Contact", path: "/contact" },
+      { name: "Articles", path: "/articles" },
     ],
     services: [
       { name: "Web Applications", path: "/services#web-apps" },
@@ -24,24 +27,24 @@ const Footer: React.FC = () => {
     contact: [
       {
         icon: Mail,
-        text: "hello@zumetrix.com",
-        href: "mailto:hello@zumetrix.com",
+        text: COMPANY.email,
+        href: `mailto:${COMPANY.email}`,
       },
-      { icon: Phone, text: "+92 XXX XXXXXXX", href: "tel:+92XXXXXXXXX" },
-      { icon: MapPin, text: "Pakistan", href: "#" },
+      { icon: Phone, text: COMPANY.phone, href: `tel:${COMPANY.phone.replace(/\s/g, '')}` },
+      { icon: MapPin, text: COMPANY.address, href: "#" },
     ],
   };
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/zumetrix-labs", label: "GitHub" },
+    { icon: Github, href: SOCIAL_LINKS.github, label: "GitHub" },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/company/zumetrix-labs",
+      href: SOCIAL_LINKS.linkedin,
       label: "LinkedIn",
     },
     {
       icon: Mail,
-      href: "https://www.instagram.com/zumetrixlabs",
+      href: SOCIAL_LINKS.instagram,
       label: "Instagram",
     },
   ];
