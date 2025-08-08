@@ -42,25 +42,73 @@ const ContactPage: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      // Submit to Formspree (replace with your actual endpoint)
+      const formspreeResponse = await fetch('https://formspree.io/f/xdkogkqr', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          projectType: formData.projectType,
+          budget: formData.budget,
+          timeline: formData.timeline,
+          message: formData.message,
+          _subject: `New Project Inquiry from ${formData.name}`,
+        }),
+      });
+
+      // Submit to Google Sheets via Zapier webhook (replace with your actual webhook)
+      const zapierResponse = await fetch('https://hooks.zapier.com/hooks/catch/19579896/2mq8kqj/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          projectType: formData.projectType,
+          budget: formData.budget,
+          timeline: formData.timeline,
+          message: formData.message,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (formspreeResponse.ok) {
+        setIsSubmitted(true);
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: "",
+            email: "",
+            company: "",
+            projectType: "",
+            budget: "",
+            timeline: "",
+            message: "",
+          });
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('There was an error submitting the form. Please try again.');
+    }
 
     setIsSubmitting(false);
-    setIsSubmitted(true);
+  };
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        projectType: "",
-        budget: "",
-        timeline: "",
-        message: "",
-      });
-    }, 3000);
+  const handleScheduleCall = () => {
+    window.open('https://calendly.com/zumetrix-labs/consultation', '_blank');
+  };
+
+  const handleQuickEstimate = () => {
+    window.open('https://calendly.com/zumetrix-labs/project-estimate', '_blank');
   };
 
   const contactInfo = [
@@ -424,6 +472,7 @@ const ContactPage: React.FC = () => {
                   </h3>
                   <div className="space-y-3">
                     <motion.button
+                      onClick={handleScheduleCall}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
@@ -437,6 +486,7 @@ const ContactPage: React.FC = () => {
                       </div>
                     </motion.button>
                     <motion.button
+                      onClick={handleQuickEstimate}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}

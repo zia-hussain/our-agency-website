@@ -61,6 +61,71 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Articles/Blog Pages -->
+  <url>
+    <loc>https://zumetrix.com/articles</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/articles/build-saas-mvp-in-30-days</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/articles/ai-automation-business-growth</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/articles/react-nodejs-best-practices-2024</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/articles/mobile-app-development-flutter-react-native</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/articles/firebase-complete-guide-pakistani-developers</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/articles/no-code-automation-zapier-make-n8n</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://zumetrix.com/privacy-policy</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/terms-of-service</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
   <!-- Service-specific pages for better SEO -->
   <url>
     <loc>https://zumetrix.com/services/saas-mvp-development</loc>

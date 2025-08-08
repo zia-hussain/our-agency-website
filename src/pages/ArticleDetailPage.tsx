@@ -174,14 +174,19 @@ const ArticleDetailPage: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div 
-              className="prose prose-lg prose-invert max-w-none
-                         prose-headings:text-foreground prose-headings:font-bold
-                         prose-p:text-muted-foreground prose-p:leading-relaxed
-                         prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+              className="prose prose-xl prose-invert max-w-none
+                         prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
+                         prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:leading-tight
+                         prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4 prose-h3:leading-tight
+                         prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
+                         prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium
                          prose-strong:text-foreground prose-strong:font-semibold
-                         prose-code:text-primary prose-code:bg-card prose-code:px-2 prose-code:py-1 prose-code:rounded
-                         prose-pre:bg-card prose-pre:border prose-pre:border-border
-                         prose-blockquote:border-l-primary prose-blockquote:bg-card/50 prose-blockquote:p-4 prose-blockquote:rounded-r-lg"
+                         prose-code:text-primary prose-code:bg-card/50 prose-code:px-3 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-medium
+                         prose-pre:bg-card/50 prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-6
+                         prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:bg-card/30 prose-blockquote:p-6 prose-blockquote:rounded-r-lg prose-blockquote:my-8
+                         prose-ul:text-muted-foreground prose-ul:leading-relaxed prose-ul:text-lg
+                         prose-li:text-muted-foreground prose-li:mb-2 prose-li:leading-relaxed
+                         prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
           </AnimatedSection>

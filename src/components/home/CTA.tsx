@@ -104,6 +104,7 @@ const CTA: React.FC = () => {
             </Link>
 
             <motion.button
+              onClick={() => window.open('https://calendly.com/zumetrix-labs/consultation', '_blank')}
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}

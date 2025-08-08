@@ -41,9 +41,17 @@ const ArticlesPage: React.FC = () => {
               </span>
             </h1>
 
-            <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-              Expert insights on software development, SaaS MVP building, AI automation, 
-              and modern web technologies from Zumetrix Labs founders and technical experts.
+            <div className="max-w-5xl mx-auto">
+              <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
+                Expert insights on <strong>software development</strong>, <strong>SaaS MVP building</strong>, 
+                <strong> AI automation</strong>, and modern web technologies from <strong>Zumetrix Labs</strong> founders 
+                <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Learn from Pakistan's leading <strong>software development experts</strong> about React/Node.js development, 
+                Firebase integration, mobile app development, no-code automation, and building successful SaaS products. 
+                Our technical articles help developers and entrepreneurs stay ahead in the rapidly evolving tech landscape.
+              </p>
             </p>
           </AnimatedSection>
         </div>
