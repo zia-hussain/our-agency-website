@@ -30,7 +30,11 @@ const Footer: React.FC = () => {
         text: COMPANY.email,
         href: `mailto:${COMPANY.email}`,
       },
-      { icon: Phone, text: COMPANY.phone, href: `tel:${COMPANY.phone.replace(/\s/g, '')}` },
+      {
+        icon: Phone,
+        text: COMPANY.phone,
+        href: `tel:${COMPANY.phone.replace(/\s/g, "")}`,
+      },
       { icon: MapPin, text: COMPANY.address, href: "#" },
     ],
   };
@@ -59,9 +63,12 @@ const Footer: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             viewport={{ once: true }}
-            className="lg:col-span-1"
+            className="lg:col-span-1 "
           >
-            <Link to="/" className="flex-shrink-0 group">
+            <Link
+              to="/"
+              className="flex-shrink-0 group flex items-center justify-between h-16 mb-4 -mt-3"
+            >
               <motion.div
                 transition={{ duration: 0.2 }}
                 className="flex items-center space-x-3"

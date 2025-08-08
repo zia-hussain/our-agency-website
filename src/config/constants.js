@@ -4,7 +4,7 @@ export const COMPANY = {
   email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
   phone: import.meta.env.VITE_COMPANY_PHONE || "+92 XXX XXXXXXX",
   address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",
-  website: import.meta.env.VITE_COMPANY_WEBSITE || "https://zumetrix.com",
+  website: import.meta.env.VITE_COMPANY_WEBSITE || "https://www.zumetrix.com",
 };
 
 export const FOUNDERS = [
@@ -53,7 +53,7 @@ export const SEO_CONFIG = {
 
 export const LOCATIONS = [
   "Karachi",
-  "Lahore", 
+  "Lahore",
   "Islamabad",
   "Pakistan",
   "Worldwide"
@@ -61,7 +61,7 @@ export const LOCATIONS = [
 
 export const MAIN_SERVICES = [
   "SaaS MVP Development",
-  "React/Node.js Development", 
+  "React/Node.js Development",
   "Mobile App Development",
   "AI Automation Services",
   "Firebase Integration",
