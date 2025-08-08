@@ -8,15 +8,54 @@ import { Link } from "react-router-dom";
 import { services, process } from "../data/service.js";
 
 const ServicesPage: React.FC = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://zumetrix.com/#organization",
+        "name": "Zumetrix Labs",
+        "url": "https://zumetrix.com",
+        "description": "Pakistan's #1 software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, mobile app development, and custom software solutions.",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Software Development Services",
+          "itemListElement": services.map(service => ({
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": service.title,
+              "description": service.description,
+              "provider": {
+                "@id": "https://zumetrix.com/#organization"
+              }
+            }
+          }))
+        }
+      },
+      ...services.map(service => ({
+        "@type": "Service",
+        "name": service.title,
+        "description": service.description,
+        "provider": {
+          "@id": "https://zumetrix.com/#organization"
+        },
+        "areaServed": ["Pakistan", "Worldwide"],
+        "serviceType": service.technologies
+      }))
+    ]
+  };
+
   return (
     <PageTransition>
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Services - Web Apps, Mobile Apps, MVP Development | Zumetrix Labs"
-        description="Comprehensive software development services including web applications, mobile apps, MVP development, automation, and UI/UX design. Expert developers in Pakistan."
-        keywords="web development services, mobile app development, MVP development, software automation, UI UX design, React development, Node.js development"
+        title="Software Development Services Pakistan | SaaS MVP, React, AI Automation | Zumetrix Labs"
+        description="Expert software development services in Pakistan by Zumetrix Labs. SaaS MVP development, React/Node.js applications, mobile apps, AI automation, Firebase integration, custom dashboards. Founded by Zia Hussain & Syed Omer Shah. Serving Karachi, Lahore, Islamabad & worldwide."
+        keywords="software development services Pakistan, SaaS MVP development, React development agency Pakistan, Node.js developers Pakistan, mobile app development Pakistan, AI automation services, Firebase experts Pakistan, custom software solutions, web application development, dashboard development, no-code automation, Zia Hussain, Syed Omer Shah, Zumetrix Labs services, hire React developers Pakistan, enterprise software development, startup MVP builder, business automation Pakistan"
         url="https://zumetrix.com/services"
+        structuredData={structuredData}
       />
 
       {/* Hero Section */}
@@ -29,16 +68,32 @@ const ServicesPage: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
-              Premium Software Development Services
+              🚀 Premium Software Development Services in Pakistan
             </motion.div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-              From web applications to mobile apps, we deliver
+              Expert Software Development Services in
               <span className="block bg-shimmer bg-clip-text text-transparent">
+                Pakistan & Worldwide
+              </span>
                 world-class solutions
               </span>
               that transform businesses and drive exceptional results.
             </h1>
+
+            <div className="max-w-5xl mx-auto mb-12">
+              <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
+                <strong>Zumetrix Labs</strong> delivers world-class <strong>software development services</strong> across Pakistan and globally. 
+                Founded by expert developers <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>, we specialize in 
+                <strong> SaaS MVP development</strong>, <strong>React/Node.js applications</strong>, <strong>mobile app development</strong>, 
+                <strong> AI automation services</strong>, and <strong>custom software solutions</strong>.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Our <strong>software development agency</strong> serves clients in <strong>Karachi, Lahore, Islamabad</strong>, and internationally. 
+                We build scalable web applications, custom dashboards, Firebase integrations, no-code automations, and enterprise software 
+                using modern tech stacks including React.js, Next.js, TypeScript, Node.js, and AI technologies.
+              </p>
+            </div>
           </AnimatedSection>
         </div>
       </section>
