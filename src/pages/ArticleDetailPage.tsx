@@ -4,40 +4,42 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
-import { 
-  Calendar, 
-  Clock, 
-  User, 
-  ArrowLeft, 
-  Share2, 
-  BookOpen, 
+import {
+  Calendar,
+  Clock,
+  User,
+  ArrowLeft,
+  Share2,
+  BookOpen,
   ChevronRight,
   Copy,
   Check,
   MessageCircle,
-  ExternalLink
+  ExternalLink,
+  ArrowRight,
 } from "lucide-react";
 import { articles } from "../data/articles.js";
 
 const ArticleDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const article = articles.find(a => a.slug === slug);
+  const article = articles.find((a) => a.slug === slug);
   const [copied, setCopied] = useState(false);
   const [activeHeading, setActiveHeading] = useState("");
 
   // Get related articles (same category, excluding current)
   const relatedArticles = articles
-    .filter(a => a.id !== article?.id && a.category === article?.category)
+    .filter((a) => a.id !== article?.id && a.category === article?.category)
     .slice(0, 3);
 
   // Get next/previous articles
-  const currentIndex = articles.findIndex(a => a.id === article?.id);
-  const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
+  const currentIndex = articles.findIndex((a) => a.id === article?.id);
+  const nextArticle =
+    currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
   const prevArticle = currentIndex > 0 ? articles[currentIndex - 1] : null;
 
   useEffect(() => {
     // Extract headings for TOC
-    const headings = document.querySelectorAll('h2, h3');
+    const headings = document.querySelectorAll("h2, h3");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -46,7 +48,7 @@ const ArticleDetailPage: React.FC = () => {
           }
         });
       },
-      { rootMargin: '-100px 0px -80% 0px' }
+      { rootMargin: "-100px 0px -80% 0px" }
     );
 
     headings.forEach((heading) => observer.observe(heading));
@@ -59,25 +61,29 @@ const ArticleDetailPage: React.FC = () => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy: ', err);
+      console.error("Failed to copy: ", err);
     }
   };
 
   const shareOnTwitter = () => {
     const text = `${article?.title} by ${article?.author} @zumetrixlabs`;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
-    window.open(url, '_blank');
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      text
+    )}&url=${encodeURIComponent(window.location.href)}`;
+    window.open(url, "_blank");
   };
 
   const shareOnLinkedIn = () => {
-    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
-    window.open(url, '_blank');
+    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+      window.location.href
+    )}`;
+    window.open(url, "_blank");
   };
 
   const shareOnWhatsApp = () => {
     const text = `${article?.title} - ${window.location.href}`;
     const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   };
 
   if (!article) {
@@ -85,8 +91,12 @@ const ArticleDetailPage: React.FC = () => {
       <PageTransition>
         <div className="min-h-screen bg-background flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Article Not Found</h1>
-            <p className="text-muted-foreground mb-8">The article you're looking for doesn't exist.</p>
+            <h1 className="text-4xl font-bold text-foreground mb-4">
+              Article Not Found
+            </h1>
+            <p className="text-muted-foreground mb-8">
+              The article you're looking for doesn't exist.
+            </p>
             <Link to="/articles">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -105,35 +115,35 @@ const ArticleDetailPage: React.FC = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": article.title,
-    "description": article.excerpt,
-    "image": article.image,
-    "author": {
+    headline: article.title,
+    description: article.excerpt,
+    image: article.image,
+    author: {
       "@type": "Person",
-      "name": article.author,
-      "jobTitle": article.authorRole,
-      "worksFor": {
+      name: article.author,
+      jobTitle: article.authorRole,
+      worksFor: {
         "@type": "Organization",
-        "name": "Zumetrix Labs"
-      }
+        name: "Zumetrix Labs",
+      },
     },
-    "publisher": {
+    publisher: {
       "@type": "Organization",
-      "name": "Zumetrix Labs",
-      "logo": {
+      name: "Zumetrix Labs",
+      logo: {
         "@type": "ImageObject",
-        "url": "https://zumetrix.com/logo.png"
-      }
+        url: "https://zumetrix.com/logo.png",
+      },
     },
-    "datePublished": article.publishedAt,
-    "dateModified": article.publishedAt,
-    "mainEntityOfPage": {
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://zumetrix.com/articles/${article.slug}`
+      "@id": `https://zumetrix.com/articles/${article.slug}`,
     },
-    "keywords": article.tags.join(", "),
-    "articleSection": article.category,
-    "wordCount": article.content.split(' ').length
+    keywords: article.tags.join(", "),
+    articleSection: article.category,
+    wordCount: article.content.split(" ").length,
   };
 
   return (
@@ -153,9 +163,16 @@ const ArticleDetailPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
-              <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+              <Link to="/" className="hover:text-primary transition-colors">
+                Home
+              </Link>
               <ChevronRight size={16} />
-              <Link to="/articles" className="hover:text-primary transition-colors">Articles</Link>
+              <Link
+                to="/articles"
+                className="hover:text-primary transition-colors"
+              >
+                Articles
+              </Link>
               <ChevronRight size={16} />
               <span className="text-foreground">{article.title}</span>
             </nav>
@@ -211,8 +228,12 @@ const ArticleDetailPage: React.FC = () => {
                     className="w-12 h-12 rounded-full object-cover border-2 border-border"
                   />
                   <div>
-                    <div className="font-semibold text-foreground">{article.author}</div>
-                    <div className="text-sm text-muted-foreground">{article.authorRole}</div>
+                    <div className="font-semibold text-foreground">
+                      {article.author}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {article.authorRole}
+                    </div>
                   </div>
                 </div>
 
@@ -220,7 +241,9 @@ const ArticleDetailPage: React.FC = () => {
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Calendar size={14} />
-                    <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
+                    <span>
+                      {new Date(article.publishedAt).toLocaleDateString()}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock size={14} />
@@ -231,7 +254,9 @@ const ArticleDetailPage: React.FC = () => {
 
               {/* Share Buttons */}
               <div className="flex items-center gap-3">
-                <span className="text-sm text-muted-foreground mr-2">Share:</span>
+                <span className="text-sm text-muted-foreground mr-2">
+                  Share:
+                </span>
                 <motion.button
                   onClick={shareOnTwitter}
                   whileHover={{ scale: 1.1 }}
@@ -239,7 +264,10 @@ const ArticleDetailPage: React.FC = () => {
                   className="p-2 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-colors"
                   title="Share on Twitter"
                 >
-                  <MessageCircle size={16} className="text-muted-foreground hover:text-primary" />
+                  <MessageCircle
+                    size={16}
+                    className="text-muted-foreground hover:text-primary"
+                  />
                 </motion.button>
                 <motion.button
                   onClick={shareOnLinkedIn}
@@ -248,7 +276,10 @@ const ArticleDetailPage: React.FC = () => {
                   className="p-2 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-colors"
                   title="Share on LinkedIn"
                 >
-                  <Share2 size={16} className="text-muted-foreground hover:text-primary" />
+                  <Share2
+                    size={16}
+                    className="text-muted-foreground hover:text-primary"
+                  />
                 </motion.button>
                 <motion.button
                   onClick={shareOnWhatsApp}
@@ -257,7 +288,10 @@ const ArticleDetailPage: React.FC = () => {
                   className="p-2 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-colors"
                   title="Share on WhatsApp"
                 >
-                  <MessageCircle size={16} className="text-muted-foreground hover:text-primary" />
+                  <MessageCircle
+                    size={16}
+                    className="text-muted-foreground hover:text-primary"
+                  />
                 </motion.button>
                 <motion.button
                   onClick={copyToClipboard}
@@ -269,7 +303,10 @@ const ArticleDetailPage: React.FC = () => {
                   {copied ? (
                     <Check size={16} className="text-primary" />
                   ) : (
-                    <Copy size={16} className="text-muted-foreground hover:text-primary" />
+                    <Copy
+                      size={16}
+                      className="text-muted-foreground hover:text-primary"
+                    />
                   )}
                 </motion.button>
               </div>
@@ -310,16 +347,28 @@ const ArticleDetailPage: React.FC = () => {
                   </h3>
                   <nav className="space-y-2">
                     {/* This would be dynamically generated from article headings */}
-                    <a href="#section1" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <a
+                      href="#section1"
+                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
                       Introduction
                     </a>
-                    <a href="#section2" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <a
+                      href="#section2"
+                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
                       Getting Started
                     </a>
-                    <a href="#section3" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <a
+                      href="#section3"
+                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
                       Best Practices
                     </a>
-                    <a href="#section4" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <a
+                      href="#section4"
+                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
                       Conclusion
                     </a>
                   </nav>
@@ -330,7 +379,7 @@ const ArticleDetailPage: React.FC = () => {
             {/* Article Content */}
             <div className="lg:col-span-3">
               <AnimatedSection>
-                <article 
+                <article
                   className="prose prose-lg dark:prose-invert max-w-none article-content
                            prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
                            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:leading-tight
@@ -369,7 +418,9 @@ const ArticleDetailPage: React.FC = () => {
                         <ArrowLeft size={16} />
                         Previous Article
                       </div>
-                      <h3 className="font-semibold text-foreground line-clamp-2">{prevArticle.title}</h3>
+                      <h3 className="font-semibold text-foreground line-clamp-2">
+                        {prevArticle.title}
+                      </h3>
                     </motion.div>
                   </Link>
                 )}
@@ -383,7 +434,9 @@ const ArticleDetailPage: React.FC = () => {
                         Next Article
                         <ArrowRight size={16} />
                       </div>
-                      <h3 className="font-semibold text-foreground line-clamp-2">{nextArticle.title}</h3>
+                      <h3 className="font-semibold text-foreground line-clamp-2">
+                        {nextArticle.title}
+                      </h3>
                     </motion.div>
                   </Link>
                 )}
@@ -394,9 +447,13 @@ const ArticleDetailPage: React.FC = () => {
           {/* Related Articles */}
           {relatedArticles.length > 0 && (
             <AnimatedSection>
-              <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Related Articles</h2>
-              <p className="text-muted-foreground text-center mb-12">More insights from our experts</p>
-              
+              <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+                Related Articles
+              </h2>
+              <p className="text-muted-foreground text-center mb-12">
+                More insights from our experts
+              </p>
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {relatedArticles.map((relatedArticle, index) => (
                   <AnimatedSection key={relatedArticle.id} delay={index * 0.1}>
@@ -453,7 +510,8 @@ const ArticleDetailPage: React.FC = () => {
               </h2>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-light">
-                Get a free 30-minute consultation to discuss your project requirements and see how we can help bring your vision to life.
+                Get a free 30-minute consultation to discuss your project
+                requirements and see how we can help bring your vision to life.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -473,9 +531,14 @@ const ArticleDetailPage: React.FC = () => {
                     />
                   </motion.button>
                 </Link>
-                
+
                 <motion.button
-                  onClick={() => window.open('https://calendly.com/zumetrix-labs/consultation', '_blank')}
+                  onClick={() =>
+                    window.open(
+                      "https://calendly.com/zumetrix-labs/consultation",
+                      "_blank"
+                    )
+                  }
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.15 }}
