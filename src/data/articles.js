@@ -213,3 +213,13 @@ export const articles = [
     }
   }
 ];
+
+export const categories = [
+  { id: "all", label: "All Articles" },
+  { id: "Development", label: "Development" },
+  { id: "AI & Automation", label: "AI & Automation" },
+  { id: "Mobile Development", label: "Mobile" },
+  { id: "SaaS", label: "SaaS" },
+  { id: "Firebase", label: "Firebase" },
+  { id: "Automation", label: "Automation" }
+];
