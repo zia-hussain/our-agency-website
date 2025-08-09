@@ -8,8 +8,8 @@ import { Calendar, Clock, User, ArrowRight, BookOpen } from "lucide-react";
 import { articles } from "../data/articles.js";
 
 const ArticlesPage: React.FC = () => {
-  const featuredArticles = articles.filter(article => article.featured);
-  const regularArticles = articles.filter(article => !article.featured);
+  const featuredArticles = articles.filter((article) => article.featured);
+  const regularArticles = articles.filter((article) => !article.featured);
 
   return (
     <PageTransition>
@@ -43,16 +43,22 @@ const ArticlesPage: React.FC = () => {
 
             <div className="max-w-5xl mx-auto">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                Expert insights on <strong>software development</strong>, <strong>SaaS MVP building</strong>, 
-                <strong> AI automation</strong>, and modern web technologies from <strong>Zumetrix Labs</strong> founders 
-                <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>.
+                Expert insights on <strong>software development</strong>,{" "}
+                <strong>SaaS MVP building</strong>,
+                <strong> AI automation</strong>, and modern web technologies
+                from <strong>Zumetrix Labs</strong> founders
+                <strong> Zia Hussain</strong> and{" "}
+                <strong>Syed Omer Shah</strong>.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Learn from Pakistan's leading <strong>software development experts</strong> about React/Node.js development, 
-                Firebase integration, mobile app development, no-code automation, and building successful SaaS products. 
-                Our technical articles help developers and entrepreneurs stay ahead in the rapidly evolving tech landscape.
+                Learn from Pakistan's leading{" "}
+                <strong>software development experts</strong> about
+                React/Node.js development, Firebase integration, mobile app
+                development, no-code automation, and building successful SaaS
+                products. Our technical articles help developers and
+                entrepreneurs stay ahead in the rapidly evolving tech landscape.
               </p>
-            </p>
+            </div>
           </AnimatedSection>
         </div>
       </section>
@@ -62,8 +68,12 @@ const ArticlesPage: React.FC = () => {
         <section className="py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection className="mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">Featured Articles</h2>
-              <p className="text-muted-foreground">Our most popular and comprehensive guides</p>
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Featured Articles
+              </h2>
+              <p className="text-muted-foreground">
+                Our most popular and comprehensive guides
+              </p>
             </AnimatedSection>
 
             <div className="grid lg:grid-cols-2 gap-8">
@@ -99,7 +109,11 @@ const ArticlesPage: React.FC = () => {
                           </div>
                           <div className="flex items-center gap-2">
                             <Calendar size={14} />
-                            <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
+                            <span>
+                              {new Date(
+                                article.publishedAt
+                              ).toLocaleDateString()}
+                            </span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Clock size={14} />
@@ -128,7 +142,10 @@ const ArticlesPage: React.FC = () => {
 
                         <div className="flex items-center text-primary font-medium group-hover:gap-3 transition-all duration-300">
                           Read Article
-                          <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          <ArrowRight
+                            size={16}
+                            className="ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                          />
                         </div>
                       </div>
                     </motion.article>
@@ -144,8 +161,12 @@ const ArticlesPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">All Articles</h2>
-            <p className="text-muted-foreground">Comprehensive guides and tutorials on modern software development</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              All Articles
+            </h2>
+            <p className="text-muted-foreground">
+              Comprehensive guides and tutorials on modern software development
+            </p>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -205,7 +226,10 @@ const ArticlesPage: React.FC = () => {
 
                       <div className="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all duration-300">
                         Read More
-                        <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+                        <ArrowRight
+                          size={14}
+                          className="ml-1 group-hover:translate-x-1 transition-transform duration-300"
+                        />
                       </div>
                     </div>
                   </motion.article>
@@ -228,7 +252,8 @@ const ArticlesPage: React.FC = () => {
             </h2>
 
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              Let's discuss your project and create a solution that drives real business results.
+              Let's discuss your project and create a solution that drives real
+              business results.
             </p>
 
             <Link to="/contact">

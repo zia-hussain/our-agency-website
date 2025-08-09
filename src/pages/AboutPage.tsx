@@ -11,7 +11,7 @@ const AboutPage: React.FC = () => {
       name: "Syed Zia Hussain Shah",
       role: "Co-Founder · Product & Growth",
       bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn’t just built well — it solves the right problem, beautifully.",
-      image: "/Software Engineer.png",
+      image: "/zia-hussain-founder.png",
       skills: [
         "Strategy",
         "Client Acquisition",
@@ -24,7 +24,7 @@ const AboutPage: React.FC = () => {
       name: "Syed Omer Shah",
       role: "Co-Founder · Engineering & Automation",
       bio: "Umer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
-      image: "/umer_gillani.png",
+      image: "/syed-omer-shah-founder.png",
       skills: ["Next.js", "TypeScript", "Firebase", "Python", "AI Automation"],
     },
   ];
@@ -110,15 +110,20 @@ const AboutPage: React.FC = () => {
             {/* ✅ SEO RICH CONTENT */}
             <div className="max-w-4xl mx-auto">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                <strong>Zumetrix Labs</strong> was founded in 2021 with a simple yet powerful vision: to create 
-                <strong> world-class software solutions</strong> that don't just function—they inspire, transform, 
-                and drive real business results for startups and enterprises worldwide.
+                <strong>Zumetrix Labs</strong> was founded in 2021 with a simple
+                yet powerful vision: to create
+                <strong> world-class software solutions</strong> that don't just
+                function—they inspire, transform, and drive real business
+                results for startups and enterprises worldwide.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                As Pakistan's leading <strong>software development agency</strong>, we specialize in 
-                <strong> SaaS MVP development</strong>, <strong>React/Node.js applications</strong>, 
-                <strong> AI automation services</strong>, and custom software solutions. Our founder-led approach 
-                ensures every project receives expert attention and delivers exceptional results.
+                As Pakistan's leading{" "}
+                <strong>software development agency</strong>, we specialize in
+                <strong> SaaS MVP development</strong>,{" "}
+                <strong>React/Node.js applications</strong>,
+                <strong> AI automation services</strong>, and custom software
+                solutions. Our founder-led approach ensures every project
+                receives expert attention and delivers exceptional results.
               </p>
             </div>
           </AnimatedSection>
@@ -134,39 +139,56 @@ const AboutPage: React.FC = () => {
                 Pakistan's Premier Software Development Agency
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Since our founding in 2021, <strong>Zumetrix Labs</strong> has established itself as Pakistan's 
-                most trusted <strong>software development agency</strong>. We've successfully delivered 
-                <strong> 50+ projects</strong> for clients across the globe, specializing in modern web technologies, 
-                mobile applications, and cutting-edge AI automation solutions.
+                Since our founding in 2021, <strong>Zumetrix Labs</strong> has
+                established itself as Pakistan's most trusted{" "}
+                <strong>software development agency</strong>. We've successfully
+                delivered
+                <strong> 50+ projects</strong> for clients across the globe,
+                specializing in modern web technologies, mobile applications,
+                and cutting-edge AI automation solutions.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Our expertise spans <strong>SaaS MVP development</strong>, <strong>React/Node.js development</strong>, 
-                <strong> Firebase integration</strong>, <strong>TypeScript applications</strong>, and 
-                <strong> no-code automation workflows</strong>. We pride ourselves on delivering pixel-perfect, 
-                scalable solutions that help businesses achieve their digital transformation goals.
+                Our expertise spans <strong>SaaS MVP development</strong>,{" "}
+                <strong>React/Node.js development</strong>,
+                <strong> Firebase integration</strong>,{" "}
+                <strong>TypeScript applications</strong>, and
+                <strong> no-code automation workflows</strong>. We pride
+                ourselves on delivering pixel-perfect, scalable solutions that
+                help businesses achieve their digital transformation goals.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                What sets us apart is our founder-led approach. Unlike typical software agencies, our founders 
-                <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong> are hands-on developers who 
-                personally oversee every project, ensuring the highest quality standards and client satisfaction.
+                What sets us apart is our founder-led approach. Unlike typical
+                software agencies, our founders
+                <strong> Zia Hussain</strong> and{" "}
+                <strong>Syed Omer Shah</strong> are hands-on developers who
+                personally oversee every project, ensuring the highest quality
+                standards and client satisfaction.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
                 <div className="text-3xl font-bold text-primary mb-2">50+</div>
-                <div className="text-sm text-muted-foreground">Successful Projects Delivered</div>
+                <div className="text-sm text-muted-foreground">
+                  Successful Projects Delivered
+                </div>
               </div>
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
                 <div className="text-3xl font-bold text-primary mb-2">25+</div>
-                <div className="text-sm text-muted-foreground">Happy Clients Worldwide</div>
+                <div className="text-sm text-muted-foreground">
+                  Happy Clients Worldwide
+                </div>
               </div>
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
                 <div className="text-3xl font-bold text-primary mb-2">3+</div>
-                <div className="text-sm text-muted-foreground">Years of Excellence</div>
+                <div className="text-sm text-muted-foreground">
+                  Years of Excellence
+                </div>
               </div>
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
                 <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                <div className="text-sm text-muted-foreground">Client Satisfaction Rate</div>
+                <div className="text-sm text-muted-foreground">
+                  Client Satisfaction Rate
+                </div>
               </div>
             </div>
           </div>
@@ -184,9 +206,11 @@ const AboutPage: React.FC = () => {
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-              <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong> are the expert developers and 
-              visionary founders behind Zumetrix Labs. With combined 6+ years of experience in modern software 
-              development, they lead Pakistan's most innovative software development agency.
+              <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>{" "}
+              are the expert developers and visionary founders behind Zumetrix
+              Labs. With combined 6+ years of experience in modern software
+              development, they lead Pakistan's most innovative software
+              development agency.
             </p>
           </AnimatedSection>
 

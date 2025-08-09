@@ -14,36 +14,37 @@ const ServicesPage: React.FC = () => {
       {
         "@type": "Organization",
         "@id": "https://zumetrix.com/#organization",
-        "name": "Zumetrix Labs",
-        "url": "https://zumetrix.com",
-        "description": "Pakistan's #1 software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, mobile app development, and custom software solutions.",
-        "hasOfferCatalog": {
+        name: "Zumetrix Labs",
+        url: "https://zumetrix.com",
+        description:
+          "Pakistan's #1 software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, mobile app development, and custom software solutions.",
+        hasOfferCatalog: {
           "@type": "OfferCatalog",
-          "name": "Software Development Services",
-          "itemListElement": services.map(service => ({
+          name: "Software Development Services",
+          itemListElement: services.map((service) => ({
             "@type": "Offer",
-            "itemOffered": {
+            itemOffered: {
               "@type": "Service",
-              "name": service.title,
-              "description": service.description,
-              "provider": {
-                "@id": "https://zumetrix.com/#organization"
-              }
-            }
-          }))
-        }
-      },
-      ...services.map(service => ({
-        "@type": "Service",
-        "name": service.title,
-        "description": service.description,
-        "provider": {
-          "@id": "https://zumetrix.com/#organization"
+              name: service.title,
+              description: service.description,
+              provider: {
+                "@id": "https://zumetrix.com/#organization",
+              },
+            },
+          })),
         },
-        "areaServed": ["Pakistan", "Worldwide"],
-        "serviceType": service.technologies
-      }))
-    ]
+      },
+      ...services.map((service) => ({
+        "@type": "Service",
+        name: service.title,
+        description: service.description,
+        provider: {
+          "@id": "https://zumetrix.com/#organization",
+        },
+        areaServed: ["Pakistan", "Worldwide"],
+        serviceType: service.technologies,
+      })),
+    ],
   };
 
   return (
@@ -76,22 +77,30 @@ const ServicesPage: React.FC = () => {
               <span className="block bg-shimmer bg-clip-text text-transparent">
                 Pakistan & Worldwide
               </span>
-                world-class solutions
-              </span>
-              that transform businesses and drive exceptional results.
+              world-class solutions that transform businesses and drive
+              exceptional results.
             </h1>
 
             <div className="max-w-5xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                <strong>Zumetrix Labs</strong> delivers world-class <strong>software development services</strong> across Pakistan and globally. 
-                Founded by expert developers <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>, we specialize in 
-                <strong> SaaS MVP development</strong>, <strong>React/Node.js applications</strong>, <strong>mobile app development</strong>, 
-                <strong> AI automation services</strong>, and <strong>custom software solutions</strong>.
+                <strong>Zumetrix Labs</strong> delivers world-class{" "}
+                <strong>software development services</strong> across Pakistan
+                and globally. Founded by expert developers{" "}
+                <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>
+                , we specialize in
+                <strong> SaaS MVP development</strong>,{" "}
+                <strong>React/Node.js applications</strong>,{" "}
+                <strong>mobile app development</strong>,
+                <strong> AI automation services</strong>, and{" "}
+                <strong>custom software solutions</strong>.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Our <strong>software development agency</strong> serves clients in <strong>Karachi, Lahore, Islamabad</strong>, and internationally. 
-                We build scalable web applications, custom dashboards, Firebase integrations, no-code automations, and enterprise software 
-                using modern tech stacks including React.js, Next.js, TypeScript, Node.js, and AI technologies.
+                Our <strong>software development agency</strong> serves clients
+                in <strong>Karachi, Lahore, Islamabad</strong>, and
+                internationally. We build scalable web applications, custom
+                dashboards, Firebase integrations, no-code automations, and
+                enterprise software using modern tech stacks including React.js,
+                Next.js, TypeScript, Node.js, and AI technologies.
               </p>
             </div>
           </AnimatedSection>
