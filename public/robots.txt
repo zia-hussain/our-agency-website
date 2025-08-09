@@ -4,6 +4,8 @@
 
 User-agent: *
 Allow: /
+Disallow: /wp-json/
+Disallow: /wp-admin/
 
 # Priority pages for crawling
 Allow: /about
