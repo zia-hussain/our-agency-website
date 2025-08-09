@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import {
   Calendar,
   Clock,
-  User,
   ArrowLeft,
   Share2,
   BookOpen,

@@ -4,22 +4,30 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
-import { Calendar, Clock, User, ArrowRight, BookOpen, Filter } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  User,
+  ArrowRight,
+  BookOpen,
+  Filter,
+} from "lucide-react";
 import { articles, categories } from "../data/articles.js";
 
 const ArticlesPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [visibleArticles, setVisibleArticles] = useState(6);
 
-  const filteredArticles = activeFilter === "all" 
-    ? articles 
-    : articles.filter(article => article.category === activeFilter);
+  const filteredArticles =
+    activeFilter === "all"
+      ? articles
+      : articles.filter((article) => article.category === activeFilter);
 
   const displayedArticles = filteredArticles.slice(0, visibleArticles);
   const hasMore = visibleArticles < filteredArticles.length;
 
   const loadMore = () => {
-    setVisibleArticles(prev => Math.min(prev + 6, filteredArticles.length));
+    setVisibleArticles((prev) => Math.min(prev + 6, filteredArticles.length));
   };
 
   const handleFilterChange = (categoryId: string) => {
@@ -30,28 +38,29 @@ const ArticlesPage: React.FC = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Zumetrix Labs Blog - Expert Software Development Insights",
-    "description": "Expert insights on software development, SaaS MVP building, AI automation, React/Node.js development from Zumetrix Labs founders Zia Hussain and Syed Omer Shah.",
-    "url": "https://zumetrix.com/articles",
-    "publisher": {
+    name: "Zumetrix Labs Blog - Expert Software Development Insights",
+    description:
+      "Expert insights on software development, SaaS MVP building, AI automation, React/Node.js development from Zumetrix Labs founders Zia Hussain and Syed Omer Shah.",
+    url: "https://zumetrix.com/articles",
+    publisher: {
       "@type": "Organization",
-      "name": "Zumetrix Labs",
-      "logo": {
+      name: "Zumetrix Labs",
+      logo: {
         "@type": "ImageObject",
-        "url": "https://zumetrix.com/logo.png"
-      }
+        url: "https://zumetrix.com/logo.png",
+      },
     },
-    "blogPost": articles.map(article => ({
+    blogPost: articles.map((article) => ({
       "@type": "BlogPosting",
-      "headline": article.title,
-      "description": article.excerpt,
-      "url": `https://zumetrix.com/articles/${article.slug}`,
-      "datePublished": article.publishedAt,
-      "author": {
+      headline: article.title,
+      description: article.excerpt,
+      url: `https://zumetrix.com/articles/${article.slug}`,
+      datePublished: article.publishedAt,
+      author: {
         "@type": "Person",
-        "name": article.author
-      }
-    }))
+        name: article.author,
+      },
+    })),
   };
 
   return (
@@ -102,15 +111,20 @@ const ArticlesPage: React.FC = () => {
 
             <div className="max-w-5xl mx-auto">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                Expert insights on <strong>software development</strong>, <strong>SaaS MVP building</strong>, 
-                <strong> AI automation</strong>, and modern web technologies from <strong>Zumetrix Labs</strong> founders 
-                <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>.
+                Expert insights on <strong>software development</strong>,{" "}
+                <strong>SaaS MVP building</strong>,
+                <strong> AI automation</strong>, and modern web technologies
+                from <strong>Zumetrix Labs</strong> founders
+                <strong> Zia Hussain</strong> and{" "}
+                <strong>Syed Omer Shah</strong>.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Learn from Pakistan's leading <strong>software development experts</strong> about 
-                React/Node.js development, Firebase integration, mobile app development, no-code automation, 
-                and building successful SaaS products. Our technical articles help developers and entrepreneurs 
-                stay ahead in the rapidly evolving tech landscape.
+                Learn from Pakistan's leading{" "}
+                <strong>software development experts</strong> about
+                React/Node.js development, Firebase integration, mobile app
+                development, no-code automation, and building successful SaaS
+                products. Our technical articles help developers and
+                entrepreneurs stay ahead in the rapidly evolving tech landscape.
               </p>
             </div>
           </AnimatedSection>
@@ -123,7 +137,9 @@ const ArticlesPage: React.FC = () => {
           <AnimatedSection>
             <div className="flex items-center gap-4 mb-8">
               <Filter size={20} className="text-primary" />
-              <h2 className="text-lg font-semibold text-foreground">Filter by Category</h2>
+              <h2 className="text-lg font-semibold text-foreground">
+                Filter by Category
+              </h2>
             </div>
             <div className="flex flex-wrap gap-3">
               {categories.map((category) => (
@@ -131,9 +147,8 @@ const ArticlesPage: React.FC = () => {
                   key={category.id}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
                   onClick={() => handleFilterChange(category.id)}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                  className={`px-6 py-3 rounded-lg font-medium ${
                     activeFilter === category.id
                       ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow"
                       : "bg-card/50 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary"
@@ -156,8 +171,11 @@ const ArticlesPage: React.FC = () => {
                 <Link to={`/articles/${article.slug}`}>
                   <motion.article
                     whileHover={{ y: -12, scale: 1.02 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="group bg-card/50 backdrop-blur-xl border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-card-hover transition-all duration-250 h-full flex flex-col"
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                    }}
+                    className="group bg-card/50 backdrop-blur-xl border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-card-hover h-full flex flex-col"
                   >
                     {/* Featured Badge */}
                     {article.featured && (
@@ -177,7 +195,7 @@ const ArticlesPage: React.FC = () => {
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-250"></div>
-                      
+
                       {/* Category Badge */}
                       <div className="absolute top-4 left-4">
                         <span className="px-3 py-1 bg-card/80 backdrop-blur-xl text-foreground text-xs font-medium rounded-full border border-border">
@@ -196,7 +214,9 @@ const ArticlesPage: React.FC = () => {
                         </div>
                         <div className="flex items-center gap-1">
                           <Calendar size={12} />
-                          <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
+                          <span>
+                            {new Date(article.publishedAt).toLocaleDateString()}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock size={12} />
@@ -273,7 +293,8 @@ const ArticlesPage: React.FC = () => {
             </h2>
 
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              Let's discuss your project and create a solution that drives real business results.
+              Let's discuss your project and create a solution that drives real
+              business results.
             </p>
 
             <Link to="/contact">
@@ -282,7 +303,7 @@ const ArticlesPage: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.15 }}
                 className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                         hover:shadow-glow transition-all duration-300 
+                         hover:shadow-glow
                          flex items-center gap-3 text-lg mx-auto"
               >
                 Start Your Project

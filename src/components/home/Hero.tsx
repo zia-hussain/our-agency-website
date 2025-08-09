@@ -222,7 +222,6 @@ const Hero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.8 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             {[
@@ -235,10 +234,9 @@ const Hero: React.FC = () => {
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.2, delay: 1 + index * 0.05 }}
                 whileHover={{
                   y: -2,
-                  transition: { duration: 0.15 },
+                  transition: { duration: 0.1 },
                 }}
                 className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-xl p-4 hover:bg-card/50 hover:border-primary/30 transition-all duration-150 cursor-pointer"
               >
@@ -267,7 +265,7 @@ const Hero: React.FC = () => {
       />
 
       {/* SCROLL INDICATOR - PERFECTLY POSITIONED */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 1.2 }}
@@ -284,7 +282,7 @@ const Hero: React.FC = () => {
             className="w-1 h-3 bg-primary rounded-full mt-2"
           />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 };

@@ -177,7 +177,7 @@ const FAQ: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
+            className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-3 rounded-lg font-medium hover:shadow-lg"
           >
             Contact Us Today
           </motion.button>
