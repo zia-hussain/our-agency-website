@@ -40,7 +40,7 @@ export const SOCIAL_LINKS = {
   instagram: import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/zumetrixlabs",
   linkedin: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/company/zumetrix-labs",
   github: import.meta.env.VITE_GITHUB_URL || "https://github.com/zumetrix-labs",
-  twitter: import.meta.env.VITE_TWITTER_URL || "https://twitter.com/zumetrixlabs",
+  twitter: import.meta.env.VITE_TWITTER_URL || "https://x.com/zumetrix83892",
 };
 
 export const SEO_CONFIG = {

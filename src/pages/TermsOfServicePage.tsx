@@ -48,21 +48,26 @@ const TermsOfServicePage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="prose prose-lg prose-invert max-w-none
+            <div
+              className="prose prose-lg prose-invert max-w-none
                            prose-headings:text-foreground prose-headings:font-bold
                            prose-p:text-muted-foreground prose-p:leading-relaxed
                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                            prose-strong:text-foreground prose-strong:font-semibold
-                           prose-ul:text-muted-foreground prose-li:text-muted-foreground">
-              
+                           prose-ul:text-muted-foreground prose-li:text-muted-foreground"
+            >
               <h2>1. Acceptance of Terms</h2>
               <p>
-                By accessing and using the services provided by {COMPANY.name}, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+                By accessing and using the services provided by {COMPANY.name},
+                you accept and agree to be bound by the terms and provision of
+                this agreement. If you do not agree to abide by the above,
+                please do not use this service.
               </p>
 
               <h2>2. Description of Service</h2>
               <p>
-                {COMPANY.name} provides software development services including but not limited to:
+                {COMPANY.name} provides software development services including
+                but not limited to:
               </p>
               <ul>
                 <li>Web application development</li>
@@ -76,7 +81,8 @@ const TermsOfServicePage: React.FC = () => {
               <h2>3. Service Agreement</h2>
               <h3>Project Scope</h3>
               <p>
-                All projects will be clearly defined in a separate project agreement or statement of work (SOW) that outlines:
+                All projects will be clearly defined in a separate project
+                agreement or statement of work (SOW) that outlines:
               </p>
               <ul>
                 <li>Project deliverables and timeline</li>
@@ -87,7 +93,8 @@ const TermsOfServicePage: React.FC = () => {
 
               <h3>Payment Terms</h3>
               <p>
-                Payment terms will be specified in the project agreement. Generally:
+                Payment terms will be specified in the project agreement.
+                Generally:
               </p>
               <ul>
                 <li>A deposit may be required before work begins</li>
@@ -99,8 +106,12 @@ const TermsOfServicePage: React.FC = () => {
               <h2>4. Client Responsibilities</h2>
               <p>The client agrees to:</p>
               <ul>
-                <li>Provide necessary information and materials in a timely manner</li>
-                <li>Respond to requests for feedback within agreed timeframes</li>
+                <li>
+                  Provide necessary information and materials in a timely manner
+                </li>
+                <li>
+                  Respond to requests for feedback within agreed timeframes
+                </li>
                 <li>Make payments according to the agreed schedule</li>
                 <li>Provide accurate and complete project requirements</li>
               </ul>
@@ -108,74 +119,101 @@ const TermsOfServicePage: React.FC = () => {
               <h2>5. Intellectual Property</h2>
               <h3>Client-Owned Content</h3>
               <p>
-                The client retains ownership of all content, data, and materials provided to {COMPANY.name} for the project.
+                The client retains ownership of all content, data, and materials
+                provided to {COMPANY.name} for the project.
               </p>
 
               <h3>Developed Solutions</h3>
               <p>
-                Upon full payment, the client will own the custom code and solutions developed specifically for their project. {COMPANY.name} retains the right to use general methodologies, techniques, and knowledge gained during the project.
+                Upon full payment, the client will own the custom code and
+                solutions developed specifically for their project.{" "}
+                {COMPANY.name} retains the right to use general methodologies,
+                techniques, and knowledge gained during the project.
               </p>
 
               <h3>Third-Party Components</h3>
               <p>
-                Projects may include third-party libraries, frameworks, or services that are subject to their own licensing terms.
+                Projects may include third-party libraries, frameworks, or
+                services that are subject to their own licensing terms.
               </p>
 
               <h2>6. Confidentiality</h2>
               <p>
-                {COMPANY.name} agrees to maintain the confidentiality of all client information and will not disclose any confidential information to third parties without prior written consent.
+                {COMPANY.name} agrees to maintain the confidentiality of all
+                client information and will not disclose any confidential
+                information to third parties without prior written consent.
               </p>
 
               <h2>7. Warranties and Disclaimers</h2>
               <p>
-                {COMPANY.name} warrants that services will be performed in a professional manner. However, we make no warranties regarding:
+                {COMPANY.name} warrants that services will be performed in a
+                professional manner. However, we make no warranties regarding:
               </p>
               <ul>
                 <li>Compatibility with all systems or browsers</li>
                 <li>Uninterrupted or error-free operation</li>
-                <li>Meeting specific performance criteria unless explicitly agreed</li>
+                <li>
+                  Meeting specific performance criteria unless explicitly agreed
+                </li>
               </ul>
 
               <h2>8. Limitation of Liability</h2>
               <p>
-                {COMPANY.name}'s liability for any claim related to our services shall not exceed the total amount paid by the client for the specific project in question.
+                {COMPANY.name}'s liability for any claim related to our services
+                shall not exceed the total amount paid by the client for the
+                specific project in question.
               </p>
 
               <h2>9. Support and Maintenance</h2>
               <p>
-                Post-launch support and maintenance services are available separately and will be outlined in a separate agreement if requested.
+                Post-launch support and maintenance services are available
+                separately and will be outlined in a separate agreement if
+                requested.
               </p>
 
               <h2>10. Termination</h2>
               <p>
-                Either party may terminate the service agreement with written notice. In case of termination:
+                Either party may terminate the service agreement with written
+                notice. In case of termination:
               </p>
               <ul>
-                <li>The client is responsible for payment of all work completed</li>
-                <li>All work products will be delivered in their current state</li>
+                <li>
+                  The client is responsible for payment of all work completed
+                </li>
+                <li>
+                  All work products will be delivered in their current state
+                </li>
                 <li>Confidentiality obligations will survive termination</li>
               </ul>
 
               <h2>11. Force Majeure</h2>
               <p>
-                {COMPANY.name} shall not be liable for any delay or failure to perform due to circumstances beyond our reasonable control, including but not limited to natural disasters, government actions, or technical failures.
+                {COMPANY.name} shall not be liable for any delay or failure to
+                perform due to circumstances beyond our reasonable control,
+                including but not limited to natural disasters, government
+                actions, or technical failures.
               </p>
 
               <h2>12. Governing Law</h2>
               <p>
-                These terms shall be governed by and construed in accordance with the laws of Pakistan, without regard to conflict of law principles.
+                These terms shall be governed by and construed in accordance
+                with the laws of Pakistan, without regard to conflict of law
+                principles.
               </p>
 
               <h2>13. Modifications</h2>
               <p>
-                {COMPANY.name} reserves the right to modify these terms at any time. Clients will be notified of any material changes, and continued use of our services constitutes acceptance of the modified terms.
+                {COMPANY.name} reserves the right to modify these terms at any
+                time. Clients will be notified of any material changes, and
+                continued use of our services constitutes acceptance of the
+                modified terms.
               </p>
 
               <h2>14. Contact Information</h2>
               <p>
                 For questions about these Terms of Service, please contact us:
               </p>
-              
+
               <div className="not-prose bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 mt-8">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">

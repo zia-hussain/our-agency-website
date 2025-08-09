@@ -201,13 +201,13 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-6 text-sm">
               <Link
-                to="/privacy"
+                to="/privacy-policy"
                 className="text-muted-foreground hover:text-primary transition-colors duration-150"
               >
                 Privacy Policy
               </Link>
               <Link
-                to="/terms"
+                to="/terms-of-service"
                 className="text-muted-foreground hover:text-primary transition-colors duration-150"
               >
                 Terms of Service

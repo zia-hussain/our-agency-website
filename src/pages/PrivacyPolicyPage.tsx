@@ -48,21 +48,29 @@ const PrivacyPolicyPage: React.FC = () => {
       <section className="py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="prose prose-lg prose-invert max-w-none
+            <div
+              className="prose prose-lg prose-invert max-w-none
                            prose-headings:text-foreground prose-headings:font-bold
                            prose-p:text-muted-foreground prose-p:leading-relaxed
                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                            prose-strong:text-foreground prose-strong:font-semibold
-                           prose-ul:text-muted-foreground prose-li:text-muted-foreground">
-              
+                           prose-ul:text-muted-foreground prose-li:text-muted-foreground"
+            >
               <h2>1. Introduction</h2>
               <p>
-                Welcome to {COMPANY.name}. We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+                Welcome to {COMPANY.name}. We are committed to protecting your
+                privacy and ensuring the security of your personal information.
+                This Privacy Policy explains how we collect, use, disclose, and
+                safeguard your information when you visit our website or use our
+                services.
               </p>
 
               <h2>2. Information We Collect</h2>
               <h3>Personal Information</h3>
-              <p>We may collect personal information that you voluntarily provide to us when you:</p>
+              <p>
+                We may collect personal information that you voluntarily provide
+                to us when you:
+              </p>
               <ul>
                 <li>Contact us through our website forms</li>
                 <li>Subscribe to our newsletter</li>
@@ -79,7 +87,10 @@ const PrivacyPolicyPage: React.FC = () => {
               </ul>
 
               <h3>Automatically Collected Information</h3>
-              <p>We may automatically collect certain information about your device and usage patterns, including:</p>
+              <p>
+                We may automatically collect certain information about your
+                device and usage patterns, including:
+              </p>
               <ul>
                 <li>IP address and browser type</li>
                 <li>Operating system and device information</li>
@@ -98,21 +109,37 @@ const PrivacyPolicyPage: React.FC = () => {
               </ul>
 
               <h2>4. Information Sharing and Disclosure</h2>
-              <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except in the following circumstances:</p>
+              <p>
+                We do not sell, trade, or otherwise transfer your personal
+                information to third parties without your consent, except in the
+                following circumstances:
+              </p>
               <ul>
-                <li>With trusted service providers who assist us in operating our website and conducting our business</li>
-                <li>When required by law or to protect our rights and safety</li>
+                <li>
+                  With trusted service providers who assist us in operating our
+                  website and conducting our business
+                </li>
+                <li>
+                  When required by law or to protect our rights and safety
+                </li>
                 <li>In connection with a business transfer or acquisition</li>
               </ul>
 
               <h2>5. Data Security</h2>
               <p>
-                We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.
+                We implement appropriate technical and organizational security
+                measures to protect your personal information against
+                unauthorized access, alteration, disclosure, or destruction.
+                However, no method of transmission over the internet is 100%
+                secure.
               </p>
 
               <h2>6. Cookies and Tracking Technologies</h2>
               <p>
-                We use cookies and similar tracking technologies to enhance your browsing experience, analyze website traffic, and understand user preferences. You can control cookie settings through your browser preferences.
+                We use cookies and similar tracking technologies to enhance your
+                browsing experience, analyze website traffic, and understand
+                user preferences. You can control cookie settings through your
+                browser preferences.
               </p>
 
               <h2>7. Your Rights and Choices</h2>
@@ -126,27 +153,39 @@ const PrivacyPolicyPage: React.FC = () => {
 
               <h2>8. Data Retention</h2>
               <p>
-                We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required by law.
+                We retain your personal information only for as long as
+                necessary to fulfill the purposes outlined in this Privacy
+                Policy, unless a longer retention period is required by law.
               </p>
 
               <h2>9. International Data Transfers</h2>
               <p>
-                Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place to protect your personal information during such transfers.
+                Your information may be transferred to and processed in
+                countries other than your own. We ensure appropriate safeguards
+                are in place to protect your personal information during such
+                transfers.
               </p>
 
               <h2>10. Children's Privacy</h2>
               <p>
-                Our services are not directed to individuals under the age of 16. We do not knowingly collect personal information from children under 16.
+                Our services are not directed to individuals under the age of
+                16. We do not knowingly collect personal information from
+                children under 16.
               </p>
 
               <h2>11. Changes to This Privacy Policy</h2>
               <p>
-                We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
+                We may update this Privacy Policy from time to time. We will
+                notify you of any material changes by posting the new Privacy
+                Policy on this page and updating the "Last updated" date.
               </p>
 
               <h2>12. Contact Us</h2>
-              <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us:</p>
-              
+              <p>
+                If you have any questions about this Privacy Policy or our
+                privacy practices, please contact us:
+              </p>
+
               <div className="not-prose bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 mt-8">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
