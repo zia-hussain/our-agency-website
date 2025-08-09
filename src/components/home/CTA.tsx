@@ -14,10 +14,7 @@ const CTA: React.FC = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section
-      className="py-24 lg:py-32 bg-background relative overflow-hidden"
-      ref={ref}
-    >
+    <section className="py-24 lg:py-32 bg-background relative" ref={ref}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -104,7 +101,12 @@ const CTA: React.FC = () => {
             </Link>
 
             <motion.button
-              onClick={() => window.open('https://calendly.com/zumetrix-labs/consultation', '_blank')}
+              onClick={() =>
+                window.open(
+                  "https://calendly.com/zumetrix-labs/consultation",
+                  "_blank"
+                )
+              }
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}

@@ -36,7 +36,7 @@ const ArticlesPage: React.FC = () => {
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Articles &
-              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent pb-2 leading-[1.1]">
                 Insights
               </span>
             </h1>

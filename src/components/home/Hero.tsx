@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
         />
 
         {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.1]">
+        <div className="absolute inset-0 opacity-[0.07]">
           <div
             className="absolute inset-0"
             style={{
@@ -87,16 +87,26 @@ const Hero: React.FC = () => {
           {/* ✅ SEO RICH DESCRIPTION WITH KEYWORDS */}
           <div className="max-w-4xl mx-auto mb-8">
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-4">
-              <strong>Zumetrix Labs</strong> is Pakistan's #1 <strong>software development agency</strong> founded by expert developers 
-              <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>. We specialize in <strong>SaaS MVP development</strong>, 
-              <strong> React/Node.js applications</strong>, <strong>mobile app development</strong>, <strong>AI automation services</strong>, 
-              and <strong>custom software solutions</strong>. Transform your ambitious ideas into powerful digital experiences that drive real business results.
+              <strong>Zumetrix Labs</strong> is Pakistan's #1{" "}
+              <strong>software development agency</strong> founded by expert
+              developers
+              <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>.
+              We specialize in <strong>SaaS MVP development</strong>,
+              <strong> React/Node.js applications</strong>,{" "}
+              <strong>mobile app development</strong>,{" "}
+              <strong>AI automation services</strong>, and{" "}
+              <strong>custom software solutions</strong>. Transform your
+              ambitious ideas into powerful digital experiences that drive real
+              business results.
             </p>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Our expert team delivers <strong>custom web applications</strong>, <strong>Firebase development</strong>, 
-              <strong> no-code automation solutions</strong>, <strong>AI workflow integration</strong>, and enterprise software using 
-              React.js, Next.js, TypeScript, Node.js, and modern tech stacks. Trusted by 50+ clients worldwide including startups and enterprises 
-              in Karachi, Lahore, Islamabad, and internationally.
+              Our expert team delivers <strong>custom web applications</strong>,{" "}
+              <strong>Firebase development</strong>,
+              <strong> no-code automation solutions</strong>,{" "}
+              <strong>AI workflow integration</strong>, and enterprise software
+              using React.js, Next.js, TypeScript, Node.js, and modern tech
+              stacks. Trusted by 50+ clients worldwide including startups and
+              enterprises in Karachi, Lahore, Islamabad, and internationally.
             </p>
           </div>
 
@@ -104,11 +114,11 @@ const Hero: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-3 mb-12 max-w-4xl mx-auto">
             {[
               "SaaS MVP Development",
-              "React Developer Pakistan", 
+              "React Developer Pakistan",
               "AI Automation Services",
               "Firebase Expert Pakistan",
               "Mobile App Development",
-              "No-Code Automation Agency"
+              "No-Code Automation Agency",
             ].map((service, index) => (
               <motion.span
                 key={service}
@@ -130,9 +140,27 @@ const Hero: React.FC = () => {
             className="text-center mb-8"
           >
             <p className="text-muted-foreground text-sm">
-              Learn more about our <a href="/services" className="text-primary hover:underline font-medium">comprehensive software development services</a>, 
-              view our <a href="/portfolio" className="text-primary hover:underline font-medium">portfolio of 50+ successful projects</a>, 
-              or <a href="/about" className="text-primary hover:underline font-medium">meet founders Zia Hussain and Syed Omer Shah</a>
+              Learn more about our{" "}
+              <a
+                href="/services"
+                className="text-primary hover:underline font-medium"
+              >
+                comprehensive software development services
+              </a>
+              , view our{" "}
+              <a
+                href="/portfolio"
+                className="text-primary hover:underline font-medium"
+              >
+                portfolio of 50+ successful projects
+              </a>
+              , or{" "}
+              <a
+                href="/about"
+                className="text-primary hover:underline font-medium"
+              >
+                meet founders Zia Hussain and Syed Omer Shah
+              </a>
             </p>
           </motion.div>
 

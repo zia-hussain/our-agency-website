@@ -65,5 +65,16 @@ export const MAIN_SERVICES = [
   "Mobile App Development",
   "AI Automation Services",
   "Firebase Integration",
-  "No-Code Automation"
+  "No-Code Automation",
+  "Full-Stack Development",
+  "UI/UX Design",
+  "E-commerce Solutions",
+  "API Development",
+  "Cloud Migration",
+  "DevOps Services",
+  "Cybersecurity Solutions",
+  "Performance Optimization",
+  "Maintenance & Support",
+  "Consulting & Strategy"
+
 ];
