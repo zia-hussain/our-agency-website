@@ -12,9 +12,9 @@ const Navigation: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "start",
       });
     }
   };
@@ -61,7 +61,7 @@ const Navigation: React.FC = () => {
             >
               <div className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
                 <img
-                  className="h-10 w-auto lg:h-12 lg:w-auto"
+                  className="h-44 w-44"
                   src="/Zumetrix_Labs_Logo (7).png"
                   alt="Zumetrix Labs"
                 />
