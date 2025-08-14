@@ -4,13 +4,7 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
-import {
-  Calendar,
-  Clock,
-  User,
-  ArrowRight,
-  BookOpen,
-} from "lucide-react";
+import { Calendar, Clock, User, ArrowRight, BookOpen } from "lucide-react";
 import { articles, categories } from "../data/articles.js";
 
 const ArticlesPage: React.FC = () => {
@@ -110,10 +104,15 @@ const ArticlesPage: React.FC = () => {
 
             <div className="max-w-5xl mx-auto">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                Learn from Pakistan's leading software development experts about building SaaS MVPs, React/Node.js applications, AI automation, and scaling tech businesses globally.
+                Learn from Pakistan's leading software development experts about
+                building SaaS MVPs, React/Node.js applications, AI automation,
+                and scaling tech businesses globally.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Expert insights from <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>, founders of Zumetrix Labs. Our articles help developers and entrepreneurs master modern web technologies and build successful digital products.
+                Expert insights from <strong>Zia Hussain</strong> and{" "}
+                <strong>Syed Omer Shah</strong>, founders of Zumetrix Labs. Our
+                articles help developers and entrepreneurs master modern web
+                technologies and build successful digital products.
               </p>
             </div>
           </AnimatedSection>
@@ -139,7 +138,7 @@ const ArticlesPage: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleFilterChange(category.id)}
-                  className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg ${
+                  className={`px-8 py-4 rounded-xl font-semibold shadow-lg ${
                     activeFilter === category.id
                       ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow scale-105"
                       : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"
@@ -156,7 +155,7 @@ const ArticlesPage: React.FC = () => {
       {/* Articles Grid */}
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10">
             {displayedArticles.map((article, index) => (
               <AnimatedSection key={article.id} delay={index * 0.1}>
                 <Link to={`/articles/${article.slug}`}>
@@ -201,7 +200,7 @@ const ArticlesPage: React.FC = () => {
                       <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <User size={14} />
-                          <span className="font-medium truncate max-w-[100px]">{article.author}</span>
+                          <span className="font-medium">{article.author}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Calendar size={14} />
@@ -239,12 +238,9 @@ const ArticlesPage: React.FC = () => {
 
                       {/* Read More */}
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center text-primary font-semibold group-hover:gap-2 transition-all duration-300">
+                        <div className="flex items-center gap-1 text-primary font-semibold">
                           <span>Read Article</span>
-                          <ArrowRight
-                            size={16}
-                            className="group-hover:translate-x-1 transition-transform duration-300"
-                          />
+                          <ArrowRight size={16} />
                         </div>
                       </div>
                     </div>
@@ -286,7 +282,8 @@ const ArticlesPage: React.FC = () => {
             </h2>
 
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              Get expert guidance from our founders and transform your business vision into a powerful digital solution.
+              Get expert guidance from our founders and transform your business
+              vision into a powerful digital solution.
             </p>
 
             <Link to="/contact">
