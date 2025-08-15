@@ -117,10 +117,10 @@ const PortfolioPage: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.15 }}
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`px-6 py-3 rounded-lg font-medium  ${
+                  className={`px-8 py-4 rounded-xl font-semibold shadow-lg ${
                     activeFilter === filter.id
-                      ? "bg-beige-gradient text-primary-foreground shadow-glow"
-                      : "bg-card/50 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary"
+                      ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow scale-105"
+                      : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"
                   }`}
                 >
                   {filter.label}
