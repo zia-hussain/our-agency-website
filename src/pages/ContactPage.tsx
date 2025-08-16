@@ -43,72 +43,132 @@ const ContactPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Submit to Formspree (replace with your actual endpoint)
-      const formspreeResponse = await fetch('https://formspree.io/f/xdkogkqr', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          projectType: formData.projectType,
-          budget: formData.budget,
-          timeline: formData.timeline,
-          message: formData.message,
-          _subject: `New Project Inquiry from ${formData.name}`,
-        }),
+      const fd = new FormData();
+      fd.append("name", formData.name);
+      fd.append("email", formData.email);
+      fd.append("company", formData.company);
+      fd.append("projectType", formData.projectType);
+      fd.append("budget", formData.budget);
+      fd.append("timeline", formData.timeline);
+      fd.append("message", formData.message);
+      fd.append("_subject", `New Project Inquiry from ${formData.name}`);
+
+      const res = await fetch(import.meta.env.VITE_CONTACT_FORM_ENDPOINT, {
+        method: "POST",
+        body: fd,
+        headers: { Accept: "application/json" }, // don't set Content-Type
       });
 
-      // Submit to Google Sheets via Zapier webhook (replace with your actual webhook)
-      const zapierResponse = await fetch('https://hooks.zapier.com/hooks/catch/19579896/2mq8kqj/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          projectType: formData.projectType,
-          budget: formData.budget,
-          timeline: formData.timeline,
-          message: formData.message,
-          timestamp: new Date().toISOString(),
-        }),
-      });
+      if (!res.ok) throw new Error(await res.text());
 
-      if (formspreeResponse.ok) {
-        setIsSubmitted(true);
-        // Reset form after 3 seconds
-        setTimeout(() => {
-          setIsSubmitted(false);
-          setFormData({
-            name: "",
-            email: "",
-            company: "",
-            projectType: "",
-            budget: "",
-            timeline: "",
-            message: "",
-          });
-        }, 3000);
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      alert('There was an error submitting the form. Please try again.');
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          projectType: "",
+          budget: "",
+          timeline: "",
+          message: "",
+        });
+      }, 3000);
+    } catch (err) {
+      console.error("Form submission error:", err);
+      alert("There was an error submitting the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
   };
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+
+  //   try {
+  //     // Submit to Formspree (replace with your actual endpoint)
+  //     const formDataToSend = new FormData();
+  //     formDataToSend.append("name", formData.name);
+  //     formDataToSend.append("email", formData.email);
+  //     formDataToSend.append("company", formData.company);
+  //     formDataToSend.append("projectType", formData.projectType);
+  //     formDataToSend.append("budget", formData.budget);
+  //     formDataToSend.append("timeline", formData.timeline);
+  //     formDataToSend.append("message", formData.message);
+  //     formDataToSend.append(
+  //       "_subject",
+  //       `New Project Inquiry from ${formData.name}`
+  //     );
+
+  //     const formspreeResponse = await fetch(
+  //       import.meta.env.VITE_CONTACT_FORM_ENDPOINT,
+  //       {
+  //         method: "POST",
+  //         body: formDataToSend,
+  //         headers: { Accept: "application/json" }, // only Accept, not Content-Type
+  //       }
+  //     );
+
+  //     // Submit to Google Sheets via Zapier webhook (replace with your actual webhook)
+  //     const zapierResponse = await fetch(
+  //       import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           name: formData.name,
+  //           email: formData.email,
+  //           company: formData.company,
+  //           projectType: formData.projectType,
+  //           budget: formData.budget,
+  //           timeline: formData.timeline,
+  //           message: formData.message,
+  //           timestamp: new Date().toISOString(),
+  //         }),
+  //       }
+  //     );
+
+  //     if (formspreeResponse.ok) {
+  //       setIsSubmitted(true);
+  //       // Reset form after 3 seconds
+  //       setTimeout(() => {
+  //         setIsSubmitted(false);
+  //         setFormData({
+  //           name: "",
+  //           email: "",
+  //           company: "",
+  //           projectType: "",
+  //           budget: "",
+  //           timeline: "",
+  //           message: "",
+  //         });
+  //       }, 3000);
+  //     }
+  //   } catch (error) {
+  //     console.error("Form submission error:", error);
+  //     alert("There was an error submitting the form. Please try again.");
+  //   }
+
+  //   setIsSubmitting(false);
+  // };
+
   const handleScheduleCall = () => {
-    window.open(import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/zumetrix-labs/consultation', '_blank');
+    window.open(
+      import.meta.env.VITE_CALENDLY_URL ||
+        "https://calendly.com/zumetrix-labs/consultation",
+      "_blank"
+    );
   };
 
   const handleQuickEstimate = () => {
-    window.open(import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/zumetrix-labs/project-estimate', '_blank');
+    window.open(
+      import.meta.env.VITE_CALENDLY_URL ||
+        "https://calendly.com/zumetrix-labs/project-estimate",
+      "_blank"
+    );
   };
 
   const contactInfo = [
@@ -236,40 +296,63 @@ const ContactPage: React.FC = () => {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Shared style helpers */}
+                    {/* Tip: put these at file top if you want, or keep inline */}
+                    {/*
+    const labelCls = "block text-[13px] font-medium text-muted-foreground mb-1.5";
+    const fieldCls = "w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
+                      focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
+                      hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]";
+    const selectWrapCls = "relative";
+    const selectChevron = (
+      <svg className='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60'
+           viewBox="0 0 20 20" fill="currentColor">
+        <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/>
+      </svg>
+    );
+  */}
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label
                           htmlFor="name"
-                          className="block text-sm font-medium text-foreground mb-2"
+                          className="block text-[13px] font-medium text-muted-foreground mb-1.5"
                         >
-                          Full Name *
+                          Full Name <span className="text-destructive">*</span>
                         </label>
                         <input
-                          type="text"
                           id="name"
                           name="name"
+                          type="text"
                           required
+                          autoComplete="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
+                          className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
+                   focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
+                   hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
                           placeholder="Your full name"
                         />
                       </div>
+
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-foreground mb-2"
+                          className="block text-[13px] font-medium text-muted-foreground mb-1.5"
                         >
-                          Email Address *
+                          Email Address{" "}
+                          <span className="text-destructive">*</span>
                         </label>
                         <input
-                          type="email"
                           id="email"
                           name="email"
+                          type="email"
                           required
+                          autoComplete="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
+                          className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
+                   focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
+                   hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -278,17 +361,20 @@ const ContactPage: React.FC = () => {
                     <div>
                       <label
                         htmlFor="company"
-                        className="block text-sm font-medium text-foreground mb-2"
+                        className="block text-[13px] font-medium text-muted-foreground mb-1.5"
                       >
                         Company Name
                       </label>
                       <input
-                        type="text"
                         id="company"
                         name="company"
+                        type="text"
+                        autoComplete="organization"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
+                        className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
+                 focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
+                 hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
                         placeholder="Your company name"
                       />
                     </div>
@@ -296,80 +382,116 @@ const ContactPage: React.FC = () => {
                     <div>
                       <label
                         htmlFor="projectType"
-                        className="block text-sm font-medium text-foreground mb-2"
+                        className="block text-[13px] font-medium text-muted-foreground mb-1.5"
                       >
-                        Project Type *
+                        Project Type <span className="text-destructive">*</span>
                       </label>
-                      <select
-                        id="projectType"
-                        name="projectType"
-                        required
-                        value={formData.projectType}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
-                      >
-                        <option value="">Select a service</option>
-                        {services.map((service) => (
-                          <option key={service} value={service}>
-                            {service}
-                          </option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          id="projectType"
+                          name="projectType"
+                          required
+                          value={formData.projectType}
+                          onChange={handleInputChange}
+                          className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
+                   focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
+                   hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                        >
+                          <option value="">Select a service</option>
+                          {services.map((service) => (
+                            <option key={service} value={service}>
+                              {service}
+                            </option>
+                          ))}
+                        </select>
+                        {/* Chevron */}
+                        <svg
+                          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" />
+                        </svg>
+                      </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label
                           htmlFor="budget"
-                          className="block text-sm font-medium text-foreground mb-2"
+                          className="block text-[13px] font-medium text-muted-foreground mb-1.5"
                         >
                           Budget Range
                         </label>
-                        <select
-                          id="budget"
-                          name="budget"
-                          value={formData.budget}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
-                        >
-                          <option value="">Select budget range</option>
-                          {budgetRanges.map((range) => (
-                            <option key={range} value={range}>
-                              {range}
-                            </option>
-                          ))}
-                        </select>
+                        <div className="relative">
+                          <select
+                            id="budget"
+                            name="budget"
+                            value={formData.budget}
+                            onChange={handleInputChange}
+                            className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
+                     focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
+                     hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                          >
+                            <option value="">Select budget range</option>
+                            {budgetRanges.map((range) => (
+                              <option key={range} value={range}>
+                                {range}
+                              </option>
+                            ))}
+                          </select>
+                          <svg
+                            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" />
+                          </svg>
+                        </div>
                       </div>
+
                       <div>
                         <label
                           htmlFor="timeline"
-                          className="block text-sm font-medium text-foreground mb-2"
+                          className="block text-[13px] font-medium text-muted-foreground mb-1.5"
                         >
                           Timeline
                         </label>
-                        <select
-                          id="timeline"
-                          name="timeline"
-                          value={formData.timeline}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 bg-background text-foreground"
-                        >
-                          <option value="">Select timeline</option>
-                          {timelines.map((timeline) => (
-                            <option key={timeline} value={timeline}>
-                              {timeline}
-                            </option>
-                          ))}
-                        </select>
+                        <div className="relative">
+                          <select
+                            id="timeline"
+                            name="timeline"
+                            value={formData.timeline}
+                            onChange={handleInputChange}
+                            className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
+                     focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
+                     hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                          >
+                            <option value="">Select timeline</option>
+                            {timelines.map((t) => (
+                              <option key={t} value={t}>
+                                {t}
+                              </option>
+                            ))}
+                          </select>
+                          <svg
+                            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
 
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium text-foreground mb-2"
+                        className="block text-[13px] font-medium text-muted-foreground mb-1.5"
                       >
-                        Project Description *
+                        Project Description{" "}
+                        <span className="text-destructive">*</span>
                       </label>
                       <textarea
                         id="message"
@@ -378,9 +500,15 @@ const ContactPage: React.FC = () => {
                         rows={6}
                         value={formData.message}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-150 resize-none bg-background text-foreground"
-                        placeholder="Tell us about your project, goals, and any specific requirements..."
+                        className="w-full min-h-[144px] px-4 py-3 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none resize-y
+                 focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
+                 hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                        placeholder="Tell us about your project, goals, and any specific requirements…"
                       />
+                      <p className="mt-1 text-xs text-muted-foreground/70">
+                        Tip: Mention goals, audience, deadlines, and any links
+                        (Figma, docs, or references).
+                      </p>
                     </div>
 
                     <motion.button
@@ -389,28 +517,27 @@ const ContactPage: React.FC = () => {
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="w-full bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                               hover:shadow-glow  
-                               flex items-center justify-center gap-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-foreground text-background px-8 h-12 rounded-xl font-medium tracking-wide
+               hover:opacity-95 hover:shadow-lg hover:shadow-foreground/10
+               disabled:opacity-50 disabled:cursor-not-allowed"
+                      aria-busy={isSubmitting}
                     >
                       {isSubmitting ? (
-                        <>
-                          <motion.div
+                        <span className="inline-flex items-center gap-3">
+                          <motion.span
                             animate={{ rotate: 360 }}
                             transition={{
                               duration: 1,
                               repeat: Infinity,
                               ease: "linear",
                             }}
-                            className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
+                            className="inline-block h-4 w-4 border-2 border-background/40 border-t-background rounded-full"
+                            aria-hidden="true"
                           />
-                          Sending...
-                        </>
+                          Sending…
+                        </span>
                       ) : (
-                        <>
-                          <Send size={20} />
-                          Send Message
-                        </>
+                        "Send Message"
                       )}
                     </motion.button>
                   </form>
