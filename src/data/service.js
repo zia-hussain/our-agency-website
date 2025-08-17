@@ -11,17 +11,17 @@ export const services = [
     {
         "id": "web-apps",
         "icon": Monitor,
-        "title": "Web Applications",
-        "subtitle": "Modern, scalable web solutions",
-        "description": "Custom-built, high-performance web platforms using modern JavaScript frameworks and cloud-native infrastructure. Perfect for startups and enterprises who care about speed, UX, and growth.",
+        "title": "Enterprise Web Applications",
+        "subtitle": "Scalable, high-performance digital solutions",
+        "description": "Transform your business vision into powerful, enterprise-grade web applications that scale globally. We build custom platforms using cutting-edge React, Next.js, and TypeScript technologies with cloud-native architecture designed for international markets. Perfect for ambitious startups and established enterprises who demand world-class performance, exceptional user experiences, and measurable business growth.",
         "features": [
-            "React & TypeScript Development",
-            "Progressive Web App (PWA) Support",
-            "Optimized Cloud Architecture & Deployment",
-            "SEO & Lighthouse Optimization",
-            "Real-time Interactions with WebSockets",
-            "REST & GraphQL API Integration",
-            "Responsive, Accessible UI"
+            "React & TypeScript Development with Modern Architecture",
+            "Progressive Web App (PWA) Support for Mobile-First Experience",
+            "Optimized Cloud Architecture & Global CDN Deployment",
+            "Advanced SEO & Lighthouse Performance Optimization (90+ scores)",
+            "Real-time Interactions with WebSockets & Live Updates",
+            "REST & GraphQL API Integration with Third-party Services",
+            "Responsive, Accessible UI with International Design Standards"
         ],
         "technologies": [
             "React",
@@ -31,23 +31,24 @@ export const services = [
             "PostgreSQL",
             "AWS"
         ],
-        "price": "Starting at $5,000",
+        "price": "Starting at $8,000",
         "popular": false,
         "image": "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         "id": "saas-dashboards",
         "icon": Database,
-        "title": "SaaS Dashboards",
-        "subtitle": "Data dashboards that drive decisions",
-        "description": "Transform raw data into clear, actionable insights with custom SaaS dashboards. We design intuitive, responsive dashboards using React, D3.js, and modern data visualization libraries that help you track KPIs, monitor performance, and scale your SaaS product confidently.",
+        "title": "SaaS MVP Development",
+        "subtitle": "Launch your SaaS product in weeks, not months",
+        "description": "Accelerate your startup journey with our proven SaaS MVP development process. We transform ambitious business ideas into market-ready products using React, Node.js, and modern cloud technologies. Our streamlined approach helps entrepreneurs validate concepts, secure funding, and scale globally with enterprise-grade architecture from day one.",
         "features": [
-            "Real-time Analytics & Metrics",
-            "Interactive Charting & Filtering",
-            "Role-based Access Control",
-            "Multi-tenant Architecture",
-            "Export & Reporting Tools",
-            "Responsive, Mobile-friendly UI"
+            "Rapid MVP Development (4-8 weeks from concept to launch)",
+            "Real-time Analytics & Business Intelligence Dashboards",
+            "Interactive Data Visualization with D3.js & Chart.js",
+            "Multi-tenant Architecture with Role-based Access Control",
+            "Automated Reporting & Export Tools for Business Insights",
+            "Responsive, Mobile-friendly UI with Dark/Light Theme Support",
+            "Stripe Payment Integration & Subscription Management"
         ],
         "technologies": [
             "React",
@@ -57,7 +58,7 @@ export const services = [
             "PostgreSQL",
             "Redis"
         ],
-        "price": "Starting at $8,000",
+        "price": "Starting at $12,000",
         "popular": true,
         "image": "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
@@ -65,15 +66,16 @@ export const services = [
         "id": "mobile-apps",
         "icon": Smartphone,
         "title": "Mobile Applications",
-        "subtitle": "Cross-platform apps that feel native",
-        "description": "We create powerful, cross-platform mobile applications using React Native, Expo, and native development tools. Our mobile apps run smoothly across both iOS and Android with fast deployment, native-like performance, and seamless user experiences.",
+        "subtitle": "Cross-platform apps that feel native and perform flawlessly",
+        "description": "Create powerful, cross-platform mobile applications that deliver exceptional user experiences across iOS and Android. Using React Native, Expo, and native development tools, we build apps that feel native, perform flawlessly, and scale to millions of users. Perfect for startups launching their first mobile product or enterprises expanding their digital presence.",
         "features": [
-            "React Native & Expo Development",
-            "Offline Mode & Push Notifications",
-            "App Store & Play Store Deployment",
-            "Device Feature Integrations (Camera, Location, etc.)",
-            "Performance & Crash Monitoring",
-            "Clean & Responsive UI/UX Design"
+            "React Native & Expo Development for Cross-platform Efficiency",
+            "Offline Mode & Push Notifications for Enhanced User Engagement",
+            "App Store & Play Store Deployment with Optimization",
+            "Device Feature Integrations (Camera, Location, Biometrics)",
+            "Performance Monitoring & Crash Analytics with Real-time Alerts",
+            "Clean & Responsive UI/UX Design with Platform-specific Guidelines",
+            "Backend Integration with Firebase, AWS, or Custom APIs"
         ],
         "technologies": [
             "React Native",
@@ -83,23 +85,24 @@ export const services = [
             "Swift",
             "Kotlin"
         ],
-        "price": "Starting at $12,000",
+        "price": "Starting at $15,000",
         "popular": false,
         "image": "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         "id": "mvp-development",
         "icon": Rocket,
-        "title": "MVP Development",
-        "subtitle": "Validate your idea, fast",
-        "description": "From idea to product in weeks—not months. We help startups and entrepreneurs launch lean SaaS MVPs with just the right features to test the market, raise funding, or onboard users. Our MVP development process includes rapid prototyping, user authentication, payment integration, and deployment.",
+        "title": "Startup MVP Development",
+        "subtitle": "Validate your business idea and secure funding fast",
+        "description": "Transform your startup vision into a market-ready MVP in just 4-8 weeks. Our proven methodology helps entrepreneurs validate business concepts, attract early users, secure funding, and build scalable foundations for long-term growth. We focus on essential features that solve real problems while maintaining enterprise-grade quality and performance standards.",
         "features": [
-            "Rapid UI/UX Prototyping",
-            "MVP-First Architecture",
-            "Integrated AI Workflows (OpenAI, LangChain)",
-            "Stripe Payments & Firebase Auth",
-            "Real-time Feature Support",
-            "Analytics & Early User Feedback"
+            "Rapid UI/UX Prototyping with User-Centered Design",
+            "MVP-First Architecture with Scalability Planning",
+            "Integrated AI Workflows (OpenAI, LangChain) for Competitive Edge",
+            "Stripe Payments & Firebase Authentication for Quick Launch",
+            "Real-time Feature Support with WebSocket Integration",
+            "Analytics & Early User Feedback Systems for Data-Driven Decisions",
+            "Investor-Ready Demos with Professional Presentation Materials"
         ],
         "technologies": [
             "React",
@@ -109,23 +112,24 @@ export const services = [
             "Stripe",
             "OpenAI"
         ],
-        "price": "Starting at $4,000",
+        "price": "Starting at $6,000",
         "popular": true,
         "image": "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         "id": "automation",
         "icon": Cog,
-        "title": "Automation Solutions",
-        "subtitle": "Automate the boring stuff",
-        "description": "We design and build intelligent workflow automations and AI-powered solutions that save time, reduce manual errors, and help you scale. Our automation services include no-code solutions (Zapier, Make.com), custom Python bots, and AI integrations that streamline your business processes.",
+        "title": "AI Automation Solutions",
+        "subtitle": "Automate workflows and scale your business intelligently",
+        "description": "Revolutionize your business operations with intelligent AI automation solutions that eliminate manual work, reduce errors, and accelerate growth. We design and implement custom automation workflows using OpenAI, no-code platforms, and custom development to streamline your processes and give you a competitive advantage in your market.",
         "features": [
-            "No-Code & Low-Code Automation (Zapier, Make)",
-            "Custom Bots with Python",
-            "Email Parsing & Auto-Replies",
-            "Report Scheduling & Data Cleanup",
-            "CRM & Google Sheet Integrations",
-            "Slack/Discord Bot Setup"
+            "No-Code & Low-Code Automation (Zapier, Make.com, n8n)",
+            "Custom AI Bots with Python & OpenAI Integration",
+            "Email Parsing & Automated Response Systems",
+            "Report Scheduling & Data Processing Automation",
+            "CRM & Google Sheets Integration for Seamless Workflows",
+            "Slack/Discord Bot Setup for Team Communication",
+            "Business Process Optimization & Workflow Design"
         ],
         "technologies": [
             "Python",
@@ -133,25 +137,26 @@ export const services = [
             "Make.com",
             "AWS Lambda",
             "n8n",
-            "Celery"
+            "OpenAI"
         ],
-        "price": "Starting at $2,500",
+        "price": "Starting at $4,000",
         "popular": false,
         "image": "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
         "id": "digital-strategy",
         "icon": Palette,
-        "title": "Digital Strategy & Consulting",
-        "subtitle": "Plan smarter, build better",
-        "description": "We offer expert 1-on-1 consulting, technical architecture planning, and growth-focused audits to help you make the right product decisions before writing a single line of code. Our digital strategy services include technology roadmaps, competitive analysis, and scalability planning.",
+        "title": "Digital Strategy & Technical Consulting",
+        "subtitle": "Strategic guidance from expert technical founders",
+        "description": "Get expert guidance from our technical founders to make the right product decisions before investing in development. Our digital strategy services include comprehensive technical audits, growth-focused roadmaps, architecture planning, and hands-on consulting to help you build scalable, profitable digital products that dominate your market.",
         "features": [
-            "Technical Discovery & Roadmapping",
-            "Growth Planning & Monetization Strategy",
-            "Architecture Review & Optimization",
-            "Tool & Stack Selection",
-            "Security & Performance Audits",
-            "Team Training & Knowledge Transfer"
+            "Technical Discovery & Strategic Roadmapping",
+            "Growth Planning & Monetization Strategy Development",
+            "Architecture Review & Performance Optimization",
+            "Technology Stack Selection & Implementation Planning",
+            "Security & Performance Audits with Actionable Recommendations",
+            "Team Training & Knowledge Transfer Sessions",
+            "Competitive Analysis & Market Positioning Strategy"
         ],
         "technologies": [
             "Consulting",
@@ -161,7 +166,7 @@ export const services = [
             "Workshops",
             "Audits"
         ],
-        "price": "Starting at $1,500",
+        "price": "Starting at $2,500",
         "popular": false,
         "image": "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800"
     }
@@ -170,32 +175,32 @@ export const services = [
 export const process = [
     {
         step: "01",
-        title: "Discovery",
+        title: "Discovery & Strategy",
         description:
-            "We start by understanding your business, goals, and challenges through detailed consultation.",
+            "We start by understanding your business goals, target market, and technical requirements through comprehensive consultation and strategic planning sessions.",
     },
     {
         step: "02",
-        title: "Strategy",
+        title: "Architecture & Planning",
         description:
-            "We develop a comprehensive strategy and technical roadmap tailored to your specific needs.",
+            "Our expert team develops a detailed technical roadmap, system architecture, and project timeline tailored to your specific business objectives and growth plans.",
     },
     {
         step: "03",
-        title: "Design",
+        title: "Design & Prototyping",
         description:
-            "Our team creates intuitive designs and prototypes that align with your brand and user expectations.",
+            "We create intuitive user interfaces, interactive prototypes, and comprehensive design systems that align with your brand identity and user expectations.",
     },
     {
         step: "04",
-        title: "Development",
+        title: "Development & Testing",
         description:
-            "We build your solution using best practices, clean code, and rigorous testing procedures.",
+            "Our developers build your solution using industry best practices, clean code standards, and rigorous testing procedures to ensure exceptional quality and performance.",
     },
     {
         step: "05",
-        title: "Launch",
+        title: "Launch & Scale",
         description:
-            "We deploy your solution and provide ongoing support to ensure optimal performance.",
+            "We deploy your solution with optimized performance, provide comprehensive training, and offer ongoing support to ensure continued success and growth.",
     },
 ];
