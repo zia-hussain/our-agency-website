@@ -460,7 +460,8 @@ const ArticleDetailPage: React.FC = () => {
           <div className="flex gap-12">
             {/* Sticky TOC - Desktop Only */}
             <div className="hidden lg:block w-80 flex-shrink-0">
-              <div className="sticky top-32">
+              {/* See bolt, i want to make this fixed to only the right section should be scroll when we reached on this section so broo can you make it perfect now broo or not if yes so then bro remove this comment also after doing that perfect as i want okay bro */}
+              <div className="fixed top-32">
                 <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                     <BookOpen size={16} />
@@ -483,7 +484,7 @@ const ArticleDetailPage: React.FC = () => {
                       </motion.button>
                     ))}
                   </nav>
-                  
+
                   {/* Reading Progress */}
                   <div className="mt-6 pt-4 border-t border-border">
                     <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
