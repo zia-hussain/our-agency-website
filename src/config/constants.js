@@ -2,7 +2,7 @@
 export const COMPANY = {
   name: import.meta.env.VITE_COMPANY_NAME || "Zumetrix Labs",
   email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
-  phone: import.meta.env.VITE_COMPANY_PHONE || "+92 XXX XXXXXXX",
+  phone: import.meta.env.VITE_COMPANY_PHONE || "+92 (317) 259-6525",
   address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",
   website: import.meta.env.VITE_COMPANY_WEBSITE || "https://www.zumetrix.com",
 };
@@ -30,6 +30,8 @@ export const FOUNDERS = [
     bio: "Umer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
     skills: ["Next.js", "TypeScript", "Firebase", "Python", "AI Automation"],
     social: {
+      upwork: "https://www.upwork.com/freelancers/019551f0a911e24660",
+      fiverr: "https://www.fiverr.com/omershahgillani",
       linkedin: "https://www.linkedin.com/in/omer-gillani/",
       github: "https://github.com/UmerGillani36",
     }
