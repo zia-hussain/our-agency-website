@@ -75,9 +75,9 @@ const Footer: React.FC = () => {
                 className="flex items-center space-x-3"
               >
                 <img
-                  className="h-12 w-auto lg:h-14"
+                  className="h-52 w-52"
                   src="/Zumetrix_Labs_Logo (7).png"
-                  alt="Zumetrix Labs"
+                  alt={SITE_CONFIG.company.name}
                 />
               </motion.div>
             </Link>
@@ -192,11 +192,12 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-              © {currentYear} {SITE_CONFIG.company.name}. All rights reserved. Crafted with
-              ❤️ by founders
-              <strong> {SITE_CONFIG.founders[0].name}</strong> and <strong>{SITE_CONFIG.founders[1].name}</strong>.
-              Pakistan's #1 software development agency serving Karachi, Lahore,
-              Islamabad, and clients worldwide.
+              © {currentYear} {SITE_CONFIG.company.name}. All rights reserved.
+              Crafted with ❤️ by founders
+              <strong> {SITE_CONFIG.founders[0].name}</strong> and{" "}
+              <strong>{SITE_CONFIG.founders[1].name}</strong>. Pakistan's #1
+              software development agency serving Karachi, Lahore, Islamabad,
+              and clients worldwide.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link
