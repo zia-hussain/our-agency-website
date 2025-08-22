@@ -21,9 +21,9 @@ const FeaturedCaseStudies: React.FC = () => {
           className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-6xl font-bold text-[#EDEDED] mb-6 tracking-tight leading-tight">
-            {featuredCaseStudies.title.split(' ').slice(0, 2).join(' ')}
+            {featuredCaseStudies.title.split(" ").slice(0, 2).join(" ")}
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              {featuredCaseStudies.title.split(' ').slice(2).join(' ')}
+              {featuredCaseStudies.title.split(" ").slice(2).join(" ")}
             </span>
           </h2>
 
@@ -55,7 +55,7 @@ const FeaturedCaseStudies: React.FC = () => {
                       transition={{ duration: 0.3 }}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-140"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/90 via-transparent to-transparent transition-opacity duration-140"></div>
 
                     {/* Country Badge */}
                     <div className="absolute top-4 left-4">
@@ -109,7 +109,10 @@ const FeaturedCaseStudies: React.FC = () => {
                     <div className="flex items-center justify-between mt-auto">
                       <div className="flex items-center text-primary font-medium">
                         <span>Read Case Study</span>
-                        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-140" />
+                        <ArrowRight
+                          size={16}
+                          className="ml-2 group-hover:translate-x-1 transition-transform duration-140"
+                        />
                       </div>
                     </div>
                   </div>
