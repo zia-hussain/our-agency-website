@@ -52,7 +52,13 @@ const FoundersStrip: React.FC = () => {
                       {founder.role}
                     </p>
                     <p className="text-sm text-[#B6B6B6] leading-[1.7]">
-                      {founder.credibility}
+                      {Array.isArray(founder.credibility) ? (
+                        founder.credibility.map((line, i) => (
+                          <div key={i}>• {line}</div>
+                        ))
+                      ) : (
+                        <div>• {founder.credibility}</div>
+                      )}
                     </p>
                   </div>
                 </div>
