@@ -11,11 +11,11 @@ const TestimonialsCarousel: React.FC = () => {
   // Auto-advance testimonials
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 6000);
-    
+
     return () => clearInterval(interval);
   }, [testimonials.length, isAutoPlaying]);
 
@@ -25,7 +25,9 @@ const TestimonialsCarousel: React.FC = () => {
   };
 
   const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
     setIsAutoPlaying(false);
   };
 
@@ -52,7 +54,8 @@ const TestimonialsCarousel: React.FC = () => {
             </span>
           </h2>
           <p className="text-xl text-[#B6B6B6] max-w-4xl mx-auto leading-[1.7] font-light">
-            Real feedback from international clients across the US, UK, Canada, Australia, UAE, and Singapore
+            Real feedback from international clients across the US, UK, Canada,
+            Australia, UAE, and Singapore
           </p>
         </motion.div>
 
@@ -75,7 +78,11 @@ const TestimonialsCarousel: React.FC = () => {
               {/* Rating */}
               <div className="flex justify-center mb-6">
                 {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                  <Star key={i} size={20} className="text-primary fill-current" />
+                  <Star
+                    key={i}
+                    size={20}
+                    className="text-primary fill-current"
+                  />
                 ))}
               </div>
 
@@ -101,14 +108,16 @@ const TestimonialsCarousel: React.FC = () => {
                     {testimonials[currentIndex].role}
                   </div>
                   <div className="text-sm text-[#B6B6B6]">
-                    {testimonials[currentIndex].company} • {testimonials[currentIndex].country}
+                    {testimonials[currentIndex].company} •{" "}
+                    {testimonials[currentIndex].country}
                   </div>
                 </div>
               </div>
 
               {/* Project Result */}
               <div className="mt-6 inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20">
-                {testimonials[currentIndex].project} • {testimonials[currentIndex].results}
+                {testimonials[currentIndex].project} •{" "}
+                {testimonials[currentIndex].results}
               </div>
             </motion.div>
           </AnimatePresence>
