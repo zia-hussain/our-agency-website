@@ -43,33 +43,32 @@ const Navigation: React.FC = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-50 ${
         isScrolled
-          ? "bg-[#0C0C0C]/95 backdrop-blur-xl border-b border-[#1E1E1E]/60 shadow-2xl"
+          ? "bg-background/10 backdrop-blur-xl border-border/50 shadow-lg"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto py-1 px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 group">
             <motion.div
               whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.12 }}
-              className="flex items-center"
+              transition={{ duration: 0.15 }}
+              className="flex items-center space-x-3"
             >
               <img
-                className="h-8 lg:h-10 w-auto"
+                className="h-44 w-44"
                 src="/Zumetrix_Labs_Logo (7).png"
                 alt={SITE_CONFIG.company.name}
               />
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation - Rounded Style */}
+          {/* Desktop Navigation - BEAST MODE ROUNDED STYLE */}
           <div className="hidden lg:block">
-            <div className="bg-[#131313]/80 backdrop-blur-xl border border-[#1E1E1E]/60 rounded-full px-2 py-2 shadow-lg">
+            <div className="bg-card/60 backdrop-blur-xl border border-border/50 rounded-full px-2 py-2 shadow-lg">
               <div className="flex items-center space-x-1">
                 {navItems.map((item) => (
                   <Link
@@ -80,11 +79,11 @@ const Navigation: React.FC = () => {
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      transition={{ duration: 0.12 }}
-                      className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-140 ${
+                      transition={{ duration: 0.15 }}
+                      className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-150 ${
                         isActiveRoute(item.path)
-                          ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-[0_0_20px_rgba(196,138,100,0.3)]"
-                          : "text-[#B6B6B6] hover:text-primary hover:bg-[#131313]/80"
+                          ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow"
+                          : "text-muted-foreground hover:text-primary hover:bg-card/80"
                       }`}
                     >
                       {item.name}
@@ -99,11 +98,11 @@ const Navigation: React.FC = () => {
           <div className="hidden lg:block">
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.12 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.15 }}
                 className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-full font-medium 
-                         hover:shadow-[0_0_20px_rgba(196,138,100,0.4)] transition-all duration-120 text-sm"
+                         hover:shadow-glow transition-all duration-150 text-sm"
               >
                 Let's Talk
               </motion.button>
@@ -116,7 +115,7 @@ const Navigation: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-[#EDEDED] hover:text-primary transition-colors duration-120 p-2 rounded-lg bg-[#131313]/80 backdrop-blur-xl border border-[#1E1E1E]/60"
+              className="text-foreground hover:text-primary transition-colors duration-150 p-2 rounded-lg bg-card/50 backdrop-blur-xl border border-border/50"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -132,7 +131,7 @@ const Navigation: React.FC = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden bg-[#0C0C0C]/95 backdrop-blur-xl border-b border-[#1E1E1E]/60"
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
               {navItems.map((item, index) => (
@@ -144,10 +143,10 @@ const Navigation: React.FC = () => {
                 >
                   <Link
                     to={item.path}
-                    className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-140 ${
+                    className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-150 ${
                       isActiveRoute(item.path)
                         ? "text-primary bg-primary/10 border border-primary/20"
-                        : "text-[#B6B6B6] hover:text-primary hover:bg-[#131313]/60"
+                        : "text-muted-foreground hover:text-primary hover:bg-card/50"
                     }`}
                   >
                     {item.name}
