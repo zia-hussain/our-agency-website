@@ -294,4 +294,70 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Service-specific pages for better SEO -->
+  <url>
+    <loc>https://zumetrix.com/services/saas-mvp-development</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/services/react-nodejs-development</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/services/mobile-app-development</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/services/ai-automation-services</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Founder-specific pages for personal branding -->
+  <url>
+    <loc>https://zumetrix.com/founders/zia-hussain</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/founders/syed-omer-shah</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Location-based pages for local SEO -->
+  <url>
+    <loc>https://zumetrix.com/karachi-software-developers</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/lahore-web-development-agency</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://zumetrix.com/islamabad-mobile-app-developers</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
