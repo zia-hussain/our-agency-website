@@ -148,7 +148,7 @@ const ArticlesPage: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleFilterChange(category.id)}
-                  className={`px-6 py-3 rounded-lg font-medium ${
+                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-250 ${
                     activeFilter === category.id
                       ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow"
                       : "bg-card/50 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary"
@@ -172,10 +172,10 @@ const ArticlesPage: React.FC = () => {
                   <motion.article
                     whileHover={{ y: -12, scale: 1.02 }}
                     transition={{
-                      duration: 0.2,
-                      ease: "easeInOut",
+                      duration: 0.25,
+                      ease: "easeOut",
                     }}
-                    className="group bg-card/50 backdrop-blur-xl border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-card-hover h-full flex flex-col"
+                    className="group bg-card/50 backdrop-blur-xl border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-card-hover h-full flex flex-col transition-all duration-250"
                   >
                     {/* Featured Badge */}
                     {article.featured && (
@@ -270,7 +270,7 @@ const ArticlesPage: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.15 }}
                 className="bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-8 py-4 rounded-lg font-medium 
-                         hover:bg-card/70 transition-all duration-200 
+                         hover:bg-card/70 transition-all duration-250 
                          flex items-center gap-3 text-lg mx-auto border border-border hover:border-primary/30"
               >
                 Load More Articles
@@ -303,13 +303,13 @@ const ArticlesPage: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.15 }}
                 className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                         hover:shadow-glow
+                         hover:shadow-glow transition-all duration-250
                          flex items-center gap-3 text-lg mx-auto"
               >
                 Start Your Project
                 <ArrowRight
                   size={20}
-                  className="group-hover:translate-x-1 transition-transform duration-300"
+                  className="group-hover:translate-x-1 transition-transform duration-250"
                 />
               </motion.button>
             </Link>
