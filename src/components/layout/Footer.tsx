@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
               >
                 <div className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
                   <img
-                    className="h-12 w-auto lg:h-16 lg:w-auto"
+                    className="h-10 w-auto lg:h-12 lg:w-auto"
                     src="/Zumetrix_Labs_Logo (7).png"
                     alt="Zumetrix Labs"
                   />

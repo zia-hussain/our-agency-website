@@ -10,7 +10,6 @@ import {
   User,
   ArrowRight,
   BookOpen,
-  Filter,
 } from "lucide-react";
 import { articles, categories } from "../data/articles.js";
 
@@ -162,7 +161,7 @@ const ArticlesPage: React.FC = () => {
               <AnimatedSection key={article.id} delay={index * 0.1}>
                 <Link to={`/articles/${article.slug}`}>
                   <motion.article
-                    whileHover={{ y: -16, scale: 1.03 }}
+                    whileHover={{ y: -12, scale: 1.02 }}
                     transition={{
                       duration: 0.3,
                       ease: "easeOut",
@@ -177,11 +176,11 @@ const ArticlesPage: React.FC = () => {
                     )}
 
                     {/* Article Image */}
-                    <div className="relative overflow-hidden aspect-[16/10]">
+                    <div className="relative overflow-hidden aspect-[16/9]">
                       <motion.img
                         src={article.image}
                         alt={article.title}
-                        whileHover={{ scale: 1.08 }}
+                        whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.5 }}
                         className="w-full h-full object-cover"
                         loading="lazy"
@@ -202,7 +201,7 @@ const ArticlesPage: React.FC = () => {
                       <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <User size={14} />
-                          <span className="font-medium">{article.author}</span>
+                          <span className="font-medium truncate max-w-[100px]">{article.author}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Calendar size={14} />
@@ -216,7 +215,7 @@ const ArticlesPage: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Title */}
+                      {/* Title - 2 lines max with ellipsis */}
                       <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
                         {article.title}
                       </h3>

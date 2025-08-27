@@ -42,7 +42,7 @@ img {
 
 /* PREMIUM TYPOGRAPHY FOR ARTICLES - LUXURIOUS DARK THEME */
 .prose :where(p):not(:where(.not-prose *)) {
-  color: #D1D5DB !important; /* Perfect light gray for readability */
+  color: #DBDBDB !important; /* Perfect light gray for readability - exactly as requested */
   line-height: 1.8 !important;
   margin-bottom: 2rem !important;
   font-size: 1.125rem !important; /* 18px */
@@ -50,7 +50,7 @@ img {
 }
 
 .prose :where(h1, h2, h3, h4, h5, h6):not(:where(.not-prose *)) {
-  color: #F3F4F6 !important;
+  color: #FFFFFF !important; /* Sharp white headings as requested */
   font-weight: 700 !important;
   letter-spacing: -0.025em !important;
   scroll-margin-top: 8rem !important; /* Account for sticky header */
@@ -86,8 +86,8 @@ img {
 }
 
 .prose :where(li):not(:where(.not-prose *)) {
-  margin: 0.75rem 0 !important;
-  color: #D1D5DB !important;
+  margin: 0.75rem 0 !important; 
+  color: #DBDBDB !important; /* Consistent with paragraph color */
   font-size: 1.125rem !important; /* 18px */
   font-weight: 300 !important;
   line-height: 1.7 !important;
@@ -104,7 +104,7 @@ img {
 }
 
 .prose :where(strong):not(:where(.not-prose *)) {
-  color: #F3F4F6 !important;
+  color: #FFFFFF !important; /* Sharp white for strong text */
   font-weight: 600 !important;
 }
 
@@ -135,7 +135,7 @@ img {
   border-radius: 0 0.75rem 0.75rem 0 !important;
   margin: 3rem 0 !important;
   font-style: italic !important;
-  color: #D1D5DB !important;
+  color: #DBDBDB !important; /* Consistent color */
   backdrop-filter: blur(10px) !important;
   box-shadow: 0 4px 20px rgba(196, 138, 100, 0.1) !important;
 }

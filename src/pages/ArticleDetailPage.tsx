@@ -67,7 +67,7 @@ const ArticleDetailPage: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveHeading(entry.target.textContent || "");
+            setActiveHeading(entry.target.id);
           }
         });
       },
@@ -248,7 +248,7 @@ const ArticleDetailPage: React.FC = () => {
                 Articles
               </Link>
               <ChevronRight size={16} />
-              <span className="text-foreground font-medium">{article.title}</span>
+              <span className="text-foreground font-medium line-clamp-1">{article.title}</span>
             </nav>
 
             <Link to="/articles">
@@ -421,7 +421,7 @@ const ArticleDetailPage: React.FC = () => {
             {/* Sticky TOC - Desktop Only */}
             <div className="hidden lg:block">
               <div className="sticky top-32">
-                <div className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-xl border border-border/50 rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300">
+                <div className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-xl border border-border/50 rounded-2xl p-8 shadow-2xl">
                   <div className="flex items-center gap-3 mb-8 pb-6 border-b border-border/30">
                     <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg">
                       <BookOpen size={18} className="text-primary-foreground" />
@@ -440,20 +440,19 @@ const ArticleDetailPage: React.FC = () => {
                         whileTap={{ scale: 0.98 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
                         className={`group block text-left text-sm transition-all duration-300 w-full py-4 px-5 rounded-xl hover:bg-gradient-to-r hover:from-primary/15 hover:to-primary/8 hover:shadow-lg relative overflow-hidden ${
-                          activeHeading === item.text
+                          activeHeading === item.id
                             ? "text-primary font-semibold bg-gradient-to-r from-primary/20 to-primary/10 border-l-4 border-l-primary shadow-lg"
                             : "text-muted-foreground hover:text-foreground"
                         } ${item.level === 3 ? "ml-6" : ""}`}
                       >
                         <div className="flex items-center gap-3">
                           <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            activeHeading === item.text 
+                            activeHeading === item.id 
                               ? "bg-primary shadow-glow scale-125" 
                               : "bg-muted-foreground/40 group-hover:bg-primary/70 group-hover:scale-110"
                           }`} />
                           <span className="leading-tight font-medium">{item.text}</span>
                         </div>
-                        {/* Hover effect overlay */}
                         <div className="absolute inset-0 bg-gradient-to-r from-primary/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
                       </motion.button>
                     ))}
