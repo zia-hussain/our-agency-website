@@ -156,6 +156,9 @@ export default {
         'card-hover': '0 8px 40px rgba(196, 138, 100, 0.2)',
         'interactive': '0 4px 20px rgba(196, 138, 100, 0.15)',
       },
+      borderWidth: {
+        '3': '3px',
+      },
       backdropBlur: {
         xs: '2px',
         '3xl': '64px',

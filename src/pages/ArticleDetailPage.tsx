@@ -16,6 +16,7 @@ import {
   MessageCircle,
   ExternalLink,
   ArrowRight,
+  ArrowUp,
 } from "lucide-react";
 import { articles } from "../data/articles.js";
 
@@ -367,47 +368,79 @@ const ArticleDetailPage: React.FC = () => {
             {/* Sticky TOC - Desktop Only */}
             <div className="hidden lg:block">
               <div className="sticky top-32">
-                <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6">
-                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <div className="bg-gradient-to-br from-card/60 to-card/40 backdrop-blur-xl border border-border/50 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/30">
                     <BookOpen size={16} />
-                    Table of Contents
-                  </h3>
-                  <nav className="space-y-2">
+                    <h3 className="font-bold text-foreground text-lg tracking-tight">
+                      Table of Contents
+                    </h3>
+                  </div>
+                  <nav className="space-y-1">
                     {/* This would be dynamically generated from article headings */}
                     {tableOfContents.map((item) => (
                       <motion.button
                         key={item.id}
                         onClick={() => scrollToSection(item.id)}
-                        whileHover={{ x: 4 }}
-                        transition={{ duration: 0.15 }}
-                        className={`block text-left text-sm transition-colors duration-200 w-full py-1 px-2 rounded hover:bg-primary/10 ${
+                        whileHover={{ x: 6, scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className={`group block text-left text-sm transition-all duration-300 w-full py-3 px-4 rounded-lg hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 hover:shadow-md relative overflow-hidden ${
                           activeHeading === item.text
-                            ? "text-primary font-medium"
-                            : "text-muted-foreground hover:text-primary"
+                            ? "text-primary font-semibold bg-gradient-to-r from-primary/15 to-primary/8 border-l-3 border-l-primary shadow-sm"
+                            : "text-muted-foreground hover:text-foreground"
                         } ${item.level === 3 ? "ml-4" : ""}`}
                       >
-                        {item.text}
+                        <div className="flex items-center gap-2">
+                          <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                            activeHeading === item.text 
+                              ? "bg-primary shadow-glow" 
+                              : "bg-muted-foreground/30 group-hover:bg-primary/60"
+                          }`} />
+                          <span className="leading-tight">{item.text}</span>
+                        </div>
+                        {/* Hover effect overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                       </motion.button>
                     ))}
-                    <a
-                      href="#section2"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Getting Started
-                    </a>
-                    <a
-                      href="#section3"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Best Practices
-                    </a>
-                    <a
-                      href="#section4"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Conclusion
-                    </a>
                   </nav>
+                  
+                  {/* Progress indicator */}
+                  <div className="mt-6 pt-4 border-t border-border/30">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <div className="w-2 h-2 bg-primary/60 rounded-full animate-pulse" />
+                      <span>Reading Progress</span>
+                    </div>
+                    <div className="mt-2 w-full bg-border/30 rounded-full h-1.5 overflow-hidden">
+                      <motion.div 
+                        className="h-full bg-gradient-to-r from-primary to-primary/80 rounded-full"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "45%" }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Quick actions */}
+                  <div className="mt-6 pt-4 border-t border-border/30 space-y-2">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      className="w-full text-left text-xs text-muted-foreground hover:text-primary transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-primary/5 flex items-center gap-2"
+                    >
+                      <ArrowUp size={12} />
+                      Back to Top
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={copyToClipboard}
+                      className="w-full text-left text-xs text-muted-foreground hover:text-primary transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-primary/5 flex items-center gap-2"
+                    >
+                      {copied ? <Check size={12} /> : <Copy size={12} />}
+                      {copied ? "Copied!" : "Share Article"}
+                    </motion.button>
+                  </div>
                 </div>
               </div>
             </div>
