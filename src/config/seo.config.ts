@@ -223,24 +223,24 @@ export const SEO_CONFIG = {
 // Service-specific SEO configurations
 export const SERVICE_SEO = {
   "saas-mvp": {
-    title: "SaaS MVP Development for Startups: Timeline, Cost & Tech Stack | Zumetrix Labs",
+    title: "SaaS MVP Development for Startups: Timeline, Cost & Tech Stack",
     description: "Build production-ready SaaS MVPs in weeks using React, Node.js, and Firebase. Clear process, transparent pricing, and support from idea to launch.",
-    keywords: "SaaS MVP development, React SaaS, startup MVP, Firebase SaaS, MVP development agency Pakistan"
+    keywords: "SaaS MVP development, React SaaS, startup MVP, Firebase SaaS, MVP development process"
   },
   "react-dashboards": {
-    title: "React + Node Dashboards: Real-Time Analytics for Founders | Zumetrix Labs", 
+    title: "React + Node Dashboards: Real-Time Analytics for Founders", 
     description: "Custom React dashboards with real-time data, beautiful UI, and scalable Node.js backends. Perfect for SaaS products and business intelligence.",
     keywords: "React dashboard development, Node.js backend, real-time analytics, custom dashboards, data visualization"
   },
   "ai-automation": {
-    title: "AI Automation & No-Code Workflows: Cut Ops Time by 40-70% | Zumetrix Labs",
+    title: "AI Automation & No-Code Workflows: Cut Ops Time by 40-70%",
     description: "Streamline operations with AI automation, OpenAI integration, and no-code workflows. Reduce manual work and increase efficiency.",
     keywords: "AI automation, OpenAI integration, no-code automation, business process automation, workflow automation"
   },
   "firebase-apps": {
-    title: "Firebase Apps & Integrations: Auth, Firestore, Cloud Functions | Zumetrix Labs",
+    title: "Firebase Apps & Integrations: Auth, Firestore, Cloud Functions",
     description: "Expert Firebase development services including authentication, Firestore databases, cloud functions, and hosting solutions.",
-    keywords: "Firebase development, Firestore, Firebase authentication, Firebase hosting, Firebase experts Pakistan"
+    keywords: "Firebase development, Firestore, Firebase authentication, Firebase hosting, Firebase cloud functions"
   }
 };
 
