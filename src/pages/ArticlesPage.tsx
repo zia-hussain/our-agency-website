@@ -291,11 +291,11 @@ const ArticlesPage: React.FC = () => {
 
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.05, y: -4 }}
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.1 }}
                 className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-10 py-5 rounded-xl font-semibold 
-                         hover:shadow-glow transition-all duration-300
+                         hover:shadow-glow transition-all duration-100
                          flex items-center gap-3 text-lg mx-auto shadow-lg"
               >
                 Start Your Project
