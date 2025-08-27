@@ -24,6 +24,7 @@ const ArticleDetailPage: React.FC = () => {
   const article = articles.find((a) => a.slug === slug);
   const [copied, setCopied] = useState(false);
   const [activeHeading, setActiveHeading] = useState("");
+  const [tableOfContents, setTableOfContents] = useState<Array<{id: string, text: string, level: number}>>([]);
 
   // Get related articles (same category, excluding current)
   const relatedArticles = articles
@@ -37,7 +38,7 @@ const ArticleDetailPage: React.FC = () => {
   const prevArticle = currentIndex > 0 ? articles[currentIndex - 1] : null;
 
   useEffect(() => {
-    // Extract headings for TOC
+    // Extract headings for TOC and set up intersection observer
     const headings = document.querySelectorAll("h2, h3");
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,9 +51,35 @@ const ArticleDetailPage: React.FC = () => {
       { rootMargin: "-100px 0px -80% 0px" }
     );
 
+    // Build table of contents
+    const toc: Array<{id: string, text: string, level: number}> = [];
     headings.forEach((heading) => observer.observe(heading));
+    headings.forEach((heading, index) => {
+      const id = `section${index + 1}`;
+      heading.id = id;
+      toc.push({
+        id,
+        text: heading.textContent || '',
+        level: parseInt(heading.tagName.charAt(1))
+      });
+    });
+    
+    setTableOfContents(toc);
+    
     return () => observer.disconnect();
   }, [article]);
+
+  // Smooth scroll to section
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+    }
+  };
 
   const copyToClipboard = async () => {
     try {
@@ -63,6 +90,7 @@ const ArticleDetailPage: React.FC = () => {
       console.error("Failed to copy: ", err);
     }
   };
+
 
   const shareOnTwitter = () => {
     const text = `${article?.title} by ${article?.author} @zumetrixlabs`;
@@ -346,12 +374,21 @@ const ArticleDetailPage: React.FC = () => {
                   </h3>
                   <nav className="space-y-2">
                     {/* This would be dynamically generated from article headings */}
-                    <a
-                      href="#section1"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Introduction
-                    </a>
+                    {tableOfContents.map((item) => (
+                      <motion.button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.15 }}
+                        className={`block text-left text-sm transition-colors duration-200 w-full py-1 px-2 rounded hover:bg-primary/10 ${
+                          activeHeading === item.text
+                            ? "text-primary font-medium"
+                            : "text-muted-foreground hover:text-primary"
+                        } ${item.level === 3 ? "ml-4" : ""}`}
+                      >
+                        {item.text}
+                      </motion.button>
+                    ))}
                     <a
                       href="#section2"
                       className="block text-sm text-muted-foreground hover:text-primary transition-colors"

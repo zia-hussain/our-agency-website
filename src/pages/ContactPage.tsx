@@ -104,11 +104,11 @@ const ContactPage: React.FC = () => {
   };
 
   const handleScheduleCall = () => {
-    window.open('https://calendly.com/zumetrix-labs/consultation', '_blank');
+    window.open(import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/zumetrix-labs/consultation', '_blank');
   };
 
   const handleQuickEstimate = () => {
-    window.open('https://calendly.com/zumetrix-labs/project-estimate', '_blank');
+    window.open(import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/zumetrix-labs/project-estimate', '_blank');
   };
 
   const contactInfo = [

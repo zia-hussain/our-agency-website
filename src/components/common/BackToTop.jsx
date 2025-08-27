@@ -1,4 +1,4 @@
-// components/common/BackToTop.tsx
+// components/common/BackToTop.jsx
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
@@ -24,8 +24,16 @@ const BackToTop = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
+      whileHover={{ scale: 1.1, y: -2 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ 
+        duration: 0.15,
+        type: "spring",
+        stiffness: 400,
+        damping: 17
+      }}
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 bg-primary text-white p-3 rounded-full shadow-xl hover:scale-105"
+      className="fixed bottom-6 right-6 z-50 bg-beige-gradient text-primary-foreground p-3 rounded-full shadow-xl hover:shadow-glow transition-all duration-200"
     >
       <ArrowUp size={20} />
     </motion.button>

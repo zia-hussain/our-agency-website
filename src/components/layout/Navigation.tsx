@@ -8,6 +8,17 @@ const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Smooth scroll to section function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -48,13 +59,13 @@ const Navigation: React.FC = () => {
               transition={{ duration: 0.2 }}
               className="flex items-center space-x-3"
             >
-              <span className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
+              <div className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
                 <img
-                  className="h-40 w-40"
+                  className="h-12 w-auto lg:h-16 lg:w-auto"
                   src="/Zumetrix_Labs_Logo (7).png"
                   alt="Zumetrix Labs"
                 />
-              </span>
+              </div>
             </motion.div>
           </Link>
 

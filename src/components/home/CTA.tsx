@@ -103,7 +103,7 @@ const CTA: React.FC = () => {
             <motion.button
               onClick={() =>
                 window.open(
-                  "https://calendly.com/zumetrix-labs/consultation",
+                  import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/zumetrix-labs/consultation",
                   "_blank"
                 )
               }
