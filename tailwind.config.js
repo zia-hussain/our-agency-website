@@ -78,18 +78,18 @@ export default {
       },
       animation: {
         // LIGHTNING FAST SMOOTH ANIMATIONS
-        'fade-in': 'fadeIn 0.15s ease-out forwards',
-        'slide-up': 'slideUp 0.15s ease-out forwards',
-        'scale-in': 'scaleIn 0.15s ease-out forwards',
+        'fade-in': 'fadeIn 0.1s ease-out forwards',
+        'slide-up': 'slideUp 0.1s ease-out forwards',
+        'scale-in': 'scaleIn 0.1s ease-out forwards',
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
         'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
         'bounce-soft': 'bounceSoft 2s ease-in-out infinite',
         'gradient-shift': 'gradientShift 8s ease infinite',
-        'card-hover': 'cardHover 0.15s ease-out forwards',
+        'card-hover': 'cardHover 0.1s ease-out forwards',
         'text-shimmer': 'textShimmer 2s ease-in-out infinite',
-        'interactive-bounce': 'interactiveBounce 0.15s ease-out',
-        'smooth-scale': 'smoothScale 0.15s ease-out',
+        'interactive-bounce': 'interactiveBounce 0.1s ease-out',
+        'smooth-scale': 'smoothScale 0.1s ease-out',
       },
       keyframes: {
         fadeIn: {
