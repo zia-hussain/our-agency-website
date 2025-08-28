@@ -43,23 +43,59 @@ const ContactPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const fd = new FormData();
-      fd.append("name", formData.name);
-      fd.append("email", formData.email);
-      fd.append("company", formData.company);
-      fd.append("projectType", formData.projectType);
-      fd.append("budget", formData.budget);
-      fd.append("timeline", formData.timeline);
-      fd.append("message", formData.message);
-      fd.append("_subject", `New Project Inquiry from ${formData.name}`);
+      // Submit to Formspree with Google Sheets integration
+      const formspreeData = new FormData();
+      formspreeData.append("name", formData.name);
+      formspreeData.append("email", formData.email);
+      formspreeData.append("company", formData.company);
+      formspreeData.append("projectType", formData.projectType);
+      formspreeData.append("budget", formData.budget);
+      formspreeData.append("timeline", formData.timeline);
+      formspreeData.append("message", formData.message);
+      formspreeData.append("_subject", `New Project Inquiry from ${formData.name}`);
+      
+      // Add Google Sheets integration via Formspree
+      formspreeData.append("_redirect", window.location.href);
+      formspreeData.append("_format", "json");
 
-      const res = await fetch(import.meta.env.VITE_CONTACT_FORM_ENDPOINT, {
+      // Submit to Formspree (which will forward to Google Sheets)
+      const formspreeResponse = await fetch(import.meta.env.VITE_CONTACT_FORM_ENDPOINT, {
         method: "POST",
-        body: fd,
-        headers: { Accept: "application/json" }, // don't set Content-Type
+        body: formspreeData,
+        headers: { 
+          Accept: "application/json"
+        }
       });
 
-      if (!res.ok) throw new Error(await res.text());
+      // Also send to Google Sheets webhook as backup
+      if (import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK) {
+        try {
+          await fetch(import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              company: formData.company,
+              projectType: formData.projectType,
+              budget: formData.budget,
+              timeline: formData.timeline,
+              message: formData.message,
+              timestamp: new Date().toISOString(),
+              source: "Zumetrix Contact Form"
+            }),
+          });
+        } catch (webhookError) {
+          console.warn("Webhook submission failed:", webhookError);
+          // Don't fail the main submission if webhook fails
+        }
+      }
+
+      if (!formspreeResponse.ok) {
+        throw new Error(`Form submission failed: ${formspreeResponse.statusText}`);
+      }
 
       setIsSubmitted(true);
       setTimeout(() => {
@@ -76,7 +112,7 @@ const ContactPage: React.FC = () => {
       }, 3000);
     } catch (err) {
       console.error("Form submission error:", err);
-      alert("There was an error submitting the form. Please try again.");
+      alert("There was an error submitting the form. Please try again or contact us directly at hello@zumetrix.com");
     } finally {
       setIsSubmitting(false);
     }
