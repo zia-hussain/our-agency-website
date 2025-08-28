@@ -73,13 +73,11 @@ const Footer: React.FC = () => {
                 transition={{ duration: 0.2 }}
                 className="flex items-center space-x-3"
               >
-                <div className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
-                  <img
-                    className="h-52 w-52"
-                    src="/Zumetrix_Labs_Logo (7).png"
-                    alt="Zumetrix Labs"
-                  />
-                </div>
+                <img
+                  className="h-16 w-auto lg:h-20"
+                  src="/Zumetrix_Labs_Logo (7).png"
+                  alt="Zumetrix Labs"
+                />
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">

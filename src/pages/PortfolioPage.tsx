@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
-import { projects } from "../data/portfolio.js"; // Assuming you have a projects data file
+import { projects, projectCategories, projectRegions } from "../data/projects";
 import {
   ExternalLink,
   Github,
@@ -11,23 +12,25 @@ import {
   Users,
   Code,
   Award,
+  Filter,
+  MapPin,
+  Building
 } from "lucide-react";
 
 const PortfolioPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [activeRegion, setActiveRegion] = useState("all");
 
-  const filters = [
-    { id: "all", label: "All Projects" },
-    { id: "web", label: "Web Apps" },
-    { id: "mobile", label: "Mobile Apps" },
-    { id: "enterprise", label: "Enterprise" },
-    { id: "mvp", label: "MVP" },
-  ];
-
-  const filteredProjects =
-    activeFilter === "all"
-      ? projects
-      : projects.filter((project) => project.type === activeFilter);
+  const filteredProjects = projects.filter((project) => {
+    const matchesCategory = activeFilter === "all" || project.type === activeFilter;
+    const matchesRegion = activeRegion === "all" || 
+      (activeRegion === "north-america" && ["United States", "Canada"].includes(project.client.country)) ||
+      (activeRegion === "europe" && ["United Kingdom", "Germany", "France", "Netherlands"].includes(project.client.country)) ||
+      (activeRegion === "asia-pacific" && ["Australia", "Singapore", "Japan"].includes(project.client.country)) ||
+      (activeRegion === "middle-east" && ["UAE", "Saudi Arabia", "Qatar"].includes(project.client.country));
+    
+    return matchesCategory && matchesRegion;
+  });
 
   const stats = [
     { icon: Code, number: "50+", label: "Projects Completed" },
@@ -109,23 +112,72 @@ const PortfolioPage: React.FC = () => {
       <section className="py-12 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="flex flex-wrap justify-center gap-4">
-              {filters.map((filter) => (
-                <motion.button
-                  key={filter.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={`px-8 py-4 rounded-xl font-semibold shadow-lg ${
-                    activeFilter === filter.id
-                      ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow scale-105"
-                      : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"
-                  }`}
-                >
-                  {filter.label}
-                </motion.button>
-              ))}
+            <div className="text-center mb-8">
+              <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center justify-center gap-2">
+                <Filter size={20} />
+                Filter Projects
+              </h3>
+            </div>
+            
+            <div className="space-y-6">
+              {/* Category Filters */}
+              <div>
+                <h4 className="text-sm font-medium text-muted-foreground mb-3 text-center">By Category</h4>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {projectCategories.map((filter) => (
+                    <motion.button
+                      key={filter.id}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.1 }}
+                      onClick={() => setActiveFilter(filter.id)}
+                      className={`px-6 py-3 rounded-xl font-semibold shadow-lg ${
+                        activeFilter === filter.id
+                          ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow scale-105"
+                          : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"
+                      }`}
+                    >
+                      {filter.label}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Region Filters */}
+              <div>
+                <h4 className="text-sm font-medium text-muted-foreground mb-3 text-center">By Region</h4>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {projectRegions.map((region) => (
+                    <motion.button
+                      key={region.id}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.1 }}
+                      onClick={() => setActiveRegion(region.id)}
+                      className={`px-4 py-2 rounded-lg font-medium ${
+                        activeRegion === region.id
+                          ? "bg-primary/20 text-primary border border-primary/30"
+                          : "bg-card/40 text-muted-foreground border border-border hover:border-primary/20 hover:text-primary"
+                      }`}
+                    >
+                      {region.label}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Results Count */}
+      <section className="py-8 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center">
+              <p className="text-muted-foreground">
+                Showing <span className="font-semibold text-foreground">{filteredProjects.length}</span> projects
+              </p>
             </div>
           </AnimatedSection>
         </div>
@@ -141,146 +193,148 @@ const PortfolioPage: React.FC = () => {
                 delay={index * 0.05}
                 className="group"
               >
-                <motion.div
-                  whileHover={{ y: -12, scale: 1.02 }}
-                  transition={{ duration: 0.15 }}
-                  className={`bg-card/50 backdrop-blur-xl border rounded-lg overflow-hidden  ${
-                    project.featured
-                      ? "border-primary/50 shadow-glow"
-                      : "border-border hover:border-primary/30"
-                  } group-hover:bg-card/70 group-hover:shadow-card-hover`}
-                >
-                  {project.featured && (
-                    <div className="bg-beige-gradient text-primary-foreground text-xs font-medium px-3 py-1 text-center">
-                      Featured Project
-                    </div>
-                  )}
+                <Link to={`/portfolio/${project.slug}`}>
+                  <motion.div
+                    whileHover={{ y: -12, scale: 1.02 }}
+                    transition={{ duration: 0.1 }}
+                    className={`bg-card/50 backdrop-blur-xl border rounded-lg overflow-hidden cursor-pointer ${
+                      project.featured
+                        ? "border-primary/50 shadow-glow"
+                        : "border-border hover:border-primary/30"
+                    } group-hover:bg-card/70 group-hover:shadow-card-hover`}
+                  >
+                    {project.featured && (
+                      <div className="bg-beige-gradient text-primary-foreground text-xs font-medium px-3 py-1 text-center">
+                        Featured Project
+                      </div>
+                    )}
 
-                  {/* Project Image */}
-                  <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] flex items-center justify-center bg-background">
-                    <motion.img
-                      src={project.image}
-                      alt={project.title}
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.4 }}
-                      className="max-w-full max-h-full object-contain"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
+                    {/* Project Image */}
+                    <div className="relative w-full aspect-[16/9] overflow-hidden">
+                      <motion.img
+                        src={project.image}
+                        alt={project.title}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-100"></div>
 
-                    {/* Hover Actions */}
-                    <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                      {/* Live Link */}
-                      {project.liveLink && (
-                        <motion.a
-                          href={project.liveLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          transition={{ duration: 0.15 }}
-                          className="bg-card/80 backdrop-blur-xl p-2 rounded-lg shadow-dark cursor-pointer"
-                        >
-                          <ExternalLink size={16} className="text-primary" />
-                        </motion.a>
-                      )}
-
-                      {/* GitHub Link */}
-                      {project.githubLink && (
-                        <motion.a
-                          href={project.githubLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          transition={{ duration: 0.15 }}
-                          className="bg-card/80 backdrop-blur-xl p-2 rounded-lg shadow-dark cursor-pointer"
-                        >
-                          <Github size={16} className="text-primary" />
-                        </motion.a>
-                      )}
-                    </div>
-
-                    {/* Category Badge */}
-                    <div className="absolute bottom-4 left-4">
-                      <span className="px-3 py-1 bg-beige-gradient text-primary-foreground text-xs font-medium rounded-full backdrop-blur-xl">
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Project Content */}
-                  <div className="p-8">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-150">
-                        {project.title}
-                      </h3>
-                      <span className="text-sm text-muted-foreground font-medium">
-                        {project.year}
-                      </span>
-                    </div>
-
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      {project.description}
-                    </p>
-
-                    {/* Project Meta */}
-                    <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
-                      <div>
-                        <span className="text-muted-foreground">Client:</span>
-                        <div className="font-medium text-foreground">
-                          {project.client}
+                      {/* Client Location Badge */}
+                      <div className="absolute top-4 left-4">
+                        <div className="flex items-center gap-2 px-3 py-1 bg-card/80 backdrop-blur-xl text-foreground text-xs font-medium rounded-full border border-border">
+                          <MapPin size={12} />
+                          {project.client.country}
                         </div>
                       </div>
-                      <div>
-                        <span className="text-muted-foreground">Duration:</span>
-                        <div className="font-medium text-foreground">
-                          {project.duration}
-                        </div>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Team:</span>
-                        <div className="font-medium text-foreground">
-                          {project.team}
-                        </div>
+
+                      {/* Category Badge */}
+                      <div className="absolute bottom-4 left-4">
+                        <span className="px-3 py-1 bg-beige-gradient text-primary-foreground text-xs font-medium rounded-full backdrop-blur-xl">
+                          {project.category}
+                        </span>
                       </div>
                     </div>
 
-                    {/* Key Results */}
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-foreground mb-3">
-                        Key Results:
-                      </h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {project.results.slice(0, 4).map((result, idx) => (
-                          <div
-                            key={idx}
-                            className="text-sm text-muted-foreground flex items-center gap-2"
-                          >
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                            {result}
+                    {/* Project Content */}
+                    <div className="p-8">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-100">
+                          {project.title}
+                        </h3>
+                        <span className="text-sm text-muted-foreground font-medium">
+                          {project.year}
+                        </span>
+                      </div>
+
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        {project.description}
+                      </p>
+
+                      {/* Client Info */}
+                      <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
+                        <div className="flex items-center gap-2">
+                          <Building size={14} className="text-primary" />
+                          <div>
+                            <span className="text-muted-foreground">Client:</span>
+                            <div className="font-medium text-foreground line-clamp-1">
+                              {project.client.name}
+                            </div>
                           </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar size={14} className="text-primary" />
+                          <div>
+                            <span className="text-muted-foreground">Duration:</span>
+                            <div className="font-medium text-foreground">
+                              {project.duration}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Key Results */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-foreground mb-3">
+                          Key Results:
+                        </h4>
+                        <div className="grid grid-cols-1 gap-2">
+                          {project.results.slice(0, 2).map((result, idx) => (
+                            <div
+                              key={idx}
+                              className="text-sm text-muted-foreground flex items-center gap-2"
+                            >
+                              <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
+                              {result}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.slice(0, 4).map((tag) => (
+                          <motion.span
+                            key={tag}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.1 }}
+                            className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors duration-100 cursor-pointer"
+                          >
+                            {tag}
+                          </motion.span>
                         ))}
+                        {project.tags.length > 4 && (
+                          <span className="text-xs px-3 py-1 bg-muted/20 text-muted-foreground rounded-full">
+                            +{project.tags.length - 4} more
+                          </span>
+                        )}
                       </div>
                     </div>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <motion.span
-                          key={tag}
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.15 }}
-                          className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors duration-150 cursor-pointer"
-                        >
-                          {tag}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </Link>
               </AnimatedSection>
             ))}
           </div>
+
+          {filteredProjects.length === 0 && (
+            <div className="col-span-full text-center py-16">
+              <div className="text-muted-foreground mb-4">
+                No projects found matching your filters.
+              </div>
+              <motion.button
+                onClick={() => {
+                  setActiveFilter("all");
+                  setActiveRegion("all");
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.1 }}
+                className="text-primary hover:underline"
+              >
+                Clear all filters
+              </motion.button>
+            </div>
+          )}
         </div>
       </section>
 

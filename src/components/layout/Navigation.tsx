@@ -154,13 +154,11 @@ const Navigation: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navItems.length * 0.05 }}
-                className="pt-4"
-              >
-                <Link to="/contact">
-                  <button className="w-full bg-beige-gradient text-primary-foreground px-6 py-2.5 rounded-lg font-medium">
-                    Let's Talk
-                  </button>
-                </Link>
+                <img
+                  className="h-10 w-auto lg:h-12"
+                  src="/Zumetrix_Labs_Logo (7).png"
+                  alt="Zumetrix Labs"
+                />
               </motion.div>
             </div>
           </motion.div>

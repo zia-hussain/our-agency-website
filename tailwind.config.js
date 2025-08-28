@@ -90,6 +90,7 @@ export default {
         'text-shimmer': 'textShimmer 2s ease-in-out infinite',
         'interactive-bounce': 'interactiveBounce 0.1s ease-out',
         'smooth-scale': 'smoothScale 0.1s ease-out',
+        'ultra-smooth': 'ultraSmooth 0.1s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -140,6 +141,10 @@ export default {
         smoothScale: {
           '0%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(1.02)' },
+        },
+        ultraSmooth: {
+          '0%': { transform: 'translateY(0) scale(1)' },
+          '100%': { transform: 'translateY(-2px) scale(1.01)' },
         },
       },
       backgroundImage: {
