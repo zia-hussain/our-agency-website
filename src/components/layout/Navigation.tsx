@@ -154,6 +154,7 @@ const Navigation: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navItems.length * 0.05 }}
+              >
                 <img
                   className="h-10 w-auto lg:h-12"
                   src="/Zumetrix_Labs_Logo (7).png"
