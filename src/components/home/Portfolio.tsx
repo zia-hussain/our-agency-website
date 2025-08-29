@@ -129,7 +129,6 @@ const Portfolio: React.FC = () => {
           </p>
 
           <Link to="/portfolio">
-          <Link to="/portfolio">
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
