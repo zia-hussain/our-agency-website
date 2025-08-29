@@ -191,9 +191,9 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-              © {currentYear} Zumetrix Labs. All rights reserved. Crafted with
+              © {currentYear} {SITE_CONFIG.company.name}. All rights reserved. Crafted with
               ❤️ by founders
-              <strong> Zia Hussain</strong> and <strong>Syed Omer Shah</strong>.
+              <strong> {SITE_CONFIG.founders[0].name}</strong> and <strong>{SITE_CONFIG.founders[1].name}</strong>.
               Pakistan's #1 software development agency serving Karachi, Lahore,
               Islamabad, and clients worldwide.
             </p>

@@ -162,7 +162,7 @@ const ArticlesPage: React.FC = () => {
                   <motion.article
                     whileHover={{ y: -12, scale: 1.02 }}
                     transition={{
-                      duration: 0.3,
+                      duration: 0.15,
                       ease: "easeOut",
                     }}
                     className="group bg-card/60 backdrop-blur-xl border border-border rounded-2xl overflow-hidden hover:border-primary/30 hover:shadow-2xl h-full flex flex-col transition-all duration-300"
@@ -180,11 +180,11 @@ const ArticlesPage: React.FC = () => {
                         src={article.image}
                         alt={article.title}
                         whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.15 }}
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
 
                       {/* Category Badge */}
                       <div className="absolute top-4 left-4">
@@ -215,12 +215,12 @@ const ArticlesPage: React.FC = () => {
                       </div>
 
                       {/* Title - 2 lines max with ellipsis */}
-                      <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
+                      <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-150 line-clamp-2 leading-tight">
                         {article.title}
                       </h3>
 
                       {/* Excerpt */}
-                      <p className="text-muted-foreground leading-relaxed mb-6 flex-grow line-clamp-3 font-light">
+                      <p className="text-[#DBDBDB] leading-relaxed mb-6 flex-grow line-clamp-3 font-light">
                         {article.excerpt}
                       </p>
 

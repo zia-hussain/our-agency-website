@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { SITE_CONFIG } from "../../config/site";
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,13 +60,11 @@ const Navigation: React.FC = () => {
               transition={{ duration: 0.2 }}
               className="flex items-center space-x-3"
             >
-              <div className="text-xl lg:text-2xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200">
-                <img
-                  className="h-44 w-44"
-                  src="/Zumetrix_Labs_Logo (7).png"
-                  alt="Zumetrix Labs"
-                />
-              </div>
+              <img
+                className="h-10 w-auto lg:h-12"
+                src="/Zumetrix_Labs_Logo (7).png"
+                alt={SITE_CONFIG.company.name}
+              />
             </motion.div>
           </Link>
 

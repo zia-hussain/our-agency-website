@@ -1,4 +1,4 @@
-// Zumetrix Labs - Site Configuration
+// Zumetrix Labs - Centralized Site Configuration
 // All site data driven from environment variables
 
 export const SITE_CONFIG = {
@@ -20,12 +20,6 @@ export const SITE_CONFIG = {
       role: import.meta.env.VITE_FOUNDER_1_ROLE || "Co-Founder & CEO",
       image: import.meta.env.VITE_FOUNDER_1_IMAGE || "/zia-hussain-founder.png",
       bio: import.meta.env.VITE_FOUNDER_1_BIO || "Zia is the visionary mind behind Zumetrix Labs.",
-      social: {
-        upwork: import.meta.env.VITE_UPWORK_PROFILE_ZIA,
-        fiverr: import.meta.env.VITE_FIVERR_PROFILE_ZIA,
-        linkedin: import.meta.env.VITE_LINKEDIN_PROFILE_ZIA,
-        github: import.meta.env.VITE_GITHUB_PROFILE_ZIA,
-      }
     },
     {
       name: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
@@ -33,10 +27,6 @@ export const SITE_CONFIG = {
       role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
       image: import.meta.env.VITE_FOUNDER_2_IMAGE || "/syed-omer-shah-founder.png",
       bio: import.meta.env.VITE_FOUNDER_2_BIO || "Umer is the technical backbone of Zumetrix Labs.",
-      social: {
-        linkedin: import.meta.env.VITE_LINKEDIN_PROFILE_OMER,
-        github: import.meta.env.VITE_GITHUB_PROFILE_OMER,
-      }
     }
   ],
 
@@ -55,20 +45,17 @@ export const SITE_CONFIG = {
     calendlyUrl: import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/zumetrix-labs/consultation",
   },
 
-  // SEO Configuration
-  seo: {
-    title: import.meta.env.VITE_META_TITLE || "Zumetrix Labs | #1 Software Development Agency",
-    description: import.meta.env.VITE_META_DESCRIPTION || "Pakistan's top software development agency founded by expert developers Zia Hussain and Syed Omer Shah.",
-    keywords: import.meta.env.VITE_META_KEYWORDS || "Zumetrix Labs, Zia Hussain, Syed Omer Shah, software development agency Pakistan",
-    gaTagId: import.meta.env.VITE_GA_TAG_ID || "G-PRSP59FL20",
-    googleVerification: import.meta.env.VITE_GOOGLE_VERIFICATION || "XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs",
-  },
-
   // Business Metrics
   metrics: {
     projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "50+",
     happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "25+",
     yearsExperience: import.meta.env.VITE_YEARS_EXPERIENCE || "3+",
     successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
+  },
+
+  // SEO Configuration
+  seo: {
+    gaTagId: import.meta.env.VITE_GA_TAG_ID || "G-PRSP59FL20",
+    googleVerification: import.meta.env.VITE_GOOGLE_VERIFICATION || "XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs",
   }
 };

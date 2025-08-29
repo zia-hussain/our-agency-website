@@ -169,7 +169,7 @@ export default {
         '3xl': '64px',
       },
       transitionDuration: {
-        '100': '100ms', // ULTRA SMOOTH TRANSITIONS
+        '150': '150ms', // SMOOTH TRANSITIONS
       },
     },
   },

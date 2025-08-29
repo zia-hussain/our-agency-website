@@ -3,6 +3,11 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
+import { SITE_CONFIG } from "../config/site";
+import { contactFAQs } from "../data/faqs/contact";
+import { useState as useContactState } from "react";
+import { Plus } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -26,6 +31,7 @@ const ContactPage: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [openFAQ, setOpenFAQ] = useContactState<number | null>(0);
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -43,7 +49,14 @@ const ContactPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Submit to Formspree with Google Sheets integration
+      const formEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
+      const webhookEndpoint = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK;
+      
+      if (!formEndpoint) {
+        throw new Error("Contact form endpoint not configured");
+      }
+
+      // Submit to Formspree
       const formspreeData = new FormData();
       formspreeData.append("name", formData.name);
       formspreeData.append("email", formData.email);
@@ -53,24 +66,23 @@ const ContactPage: React.FC = () => {
       formspreeData.append("timeline", formData.timeline);
       formspreeData.append("message", formData.message);
       formspreeData.append("_subject", `New Project Inquiry from ${formData.name}`);
-      
-      // Add Google Sheets integration via Formspree
-      formspreeData.append("_redirect", window.location.href);
-      formspreeData.append("_format", "json");
 
-      // Submit to Formspree (which will forward to Google Sheets)
-      const formspreeResponse = await fetch(import.meta.env.VITE_CONTACT_FORM_ENDPOINT, {
+      const formspreeResponse = await fetch(formEndpoint, {
         method: "POST",
         body: formspreeData,
-        headers: { 
+        headers: {
           Accept: "application/json"
         }
       });
 
-      // Also send to Google Sheets webhook as backup
-      if (import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK) {
+      if (!formspreeResponse.ok) {
+        throw new Error(`Form submission failed: ${formspreeResponse.statusText}`);
+      }
+
+      // Send to Google Sheets webhook (Zapier)
+      if (webhookEndpoint) {
         try {
-          await fetch(import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK, {
+          await fetch(webhookEndpoint, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -89,12 +101,7 @@ const ContactPage: React.FC = () => {
           });
         } catch (webhookError) {
           console.warn("Webhook submission failed:", webhookError);
-          // Don't fail the main submission if webhook fails
         }
-      }
-
-      if (!formspreeResponse.ok) {
-        throw new Error(`Form submission failed: ${formspreeResponse.statusText}`);
       }
 
       setIsSubmitted(true);
@@ -112,7 +119,7 @@ const ContactPage: React.FC = () => {
       }, 3000);
     } catch (err) {
       console.error("Form submission error:", err);
-      alert("There was an error submitting the form. Please try again or contact us directly at hello@zumetrix.com");
+      alert("There was an error submitting the form. Please try again or contact us directly at " + SITE_CONFIG.company.email);
     } finally {
       setIsSubmitting(false);
     }
@@ -193,7 +200,7 @@ const ContactPage: React.FC = () => {
 
   const handleScheduleCall = () => {
     window.open(
-      import.meta.env.VITE_CALENDLY_URL ||
+      SITE_CONFIG.contact.calendlyUrl,
         "https://calendly.com/zumetrix-labs/consultation",
       "_blank"
     );
@@ -201,31 +208,35 @@ const ContactPage: React.FC = () => {
 
   const handleQuickEstimate = () => {
     window.open(
-      import.meta.env.VITE_CALENDLY_URL ||
+      SITE_CONFIG.contact.calendlyUrl,
         "https://calendly.com/zumetrix-labs/project-estimate",
       "_blank"
     );
+  };
+
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index);
   };
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email Us",
-      details: "hello@zumetrix.com",
+      details: SITE_CONFIG.company.email,
       description: "Send us an email and we'll respond within 24 hours",
-      action: "mailto:hello@zumetrix.com",
+      action: `mailto:${SITE_CONFIG.company.email}`,
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+92 XXX XXXXXXX",
+      details: SITE_CONFIG.company.phone,
       description: "Speak directly with our team during business hours",
-      action: "tel:+92XXXXXXXXX",
+      action: `tel:${SITE_CONFIG.company.phone.replace(/\s/g, "")}`,
     },
     {
       icon: MapPin,
       title: "Location",
-      details: "Pakistan",
+      details: SITE_CONFIG.company.address,
       description: "We work with clients globally from our base in Pakistan",
       action: "#",
     },
@@ -675,60 +686,41 @@ const ContactPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-16">
             <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
-              Frequently Asked
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
+              Contact
+              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                 Questions
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
-              Quick answers to common questions about working with Zumetrix
-              Labs.
+              Common questions about getting started with Zumetrix Labs
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                question: "How quickly can you start my project?",
-                answer:
-                  "We typically begin new projects within 1-2 weeks of contract signing, depending on our current workload and project complexity.",
-              },
-              {
-                question: "Do you work with startups?",
-                answer:
-                  "Absolutely! We love working with startups and offer special MVP packages to help validate ideas quickly and cost-effectively.",
-              },
-              {
-                question: "What's your development process?",
-                answer:
-                  "We follow an agile methodology with regular check-ins, transparent communication, and iterative development to ensure your vision is realized.",
-              },
-              {
-                question: "Do you provide ongoing support?",
-                answer:
-                  "Yes, we offer comprehensive maintenance and support packages to keep your software running smoothly after launch.",
-              },
-            ].map((faq, index) => (
-              <AnimatedSection
+          <div className="space-y-4 max-w-4xl mx-auto">
+            {contactFAQs.map((faq, index) => (
+              <motion.div
                 key={index}
-                delay={index * 0.05}
-                className="group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-150"
               >
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.15 }}
-                  className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border hover:border-primary/30 "
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-card/70 transition-all duration-150"
                 >
-                  <h3 className="font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-150">
+                  <h3 className="text-lg font-semibold text-foreground pr-4">
                     {faq.question}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
+                  <motion.div
+                    animate={{ rotate: openFAQ === index ? 45 : 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex-shrink-0"
+                  >
+                    <Plus size={20} className="text-primary" />
+                  </motion.div>
+                </button>
         </div>
       </section>
     </PageTransition>
