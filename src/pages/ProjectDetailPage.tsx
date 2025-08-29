@@ -19,13 +19,16 @@ import {
   Globe,
   Code2,
   AlertTriangle,
-  Target
+  Target,
+  TrendingUp,
+  Award,
+  Zap
 } from "lucide-react";
-import { projects } from "../data/projects";
+import { getProjectBySlug } from "../data/projects";
 
 const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const project = projects.find((p) => p.slug === slug);
+  const project = slug ? getProjectBySlug(slug) : null;
 
   if (!project) {
     return (
@@ -42,7 +45,7 @@ const ProjectDetailPage: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.1 }}
+                transition={{ duration: 0.15 }}
                 className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-lg font-medium"
               >
                 Back to Portfolio
@@ -90,11 +93,11 @@ const ProjectDetailPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
-              <Link to="/" className="hover:text-primary transition-colors duration-100">
+              <Link to="/" className="hover:text-primary transition-colors duration-150">
                 Home
               </Link>
               <ChevronRight size={16} />
-              <Link to="/portfolio" className="hover:text-primary transition-colors duration-100">
+              <Link to="/portfolio" className="hover:text-primary transition-colors duration-150">
                 Portfolio
               </Link>
               <ChevronRight size={16} />
@@ -106,10 +109,10 @@ const ProjectDetailPage: React.FC = () => {
             <Link to="/portfolio">
               <motion.div
                 whileHover={{ x: -2 }}
-                transition={{ duration: 0.1 }}
-                className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors duration-100 mb-8 group"
+                transition={{ duration: 0.15 }}
+                className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors duration-150 mb-8 group"
               >
-                <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-0.5 transition-transform duration-100" />
+                <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-0.5 transition-transform duration-150" />
                 Back to Portfolio
               </motion.div>
             </Link>
@@ -123,7 +126,7 @@ const ProjectDetailPage: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
               <div className="flex items-center gap-3 mb-6">
-                <span className="px-4 py-2 bg-gradient-to-r from-primary/20 to-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">
+                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">
                   {project.category}
                 </span>
                 {project.featured && (
@@ -144,28 +147,36 @@ const ProjectDetailPage: React.FC = () => {
               {/* Client Info */}
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div className="flex items-center gap-3">
-                  <Building size={20} className="text-primary" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Building size={18} className="text-primary" />
+                  </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Client</div>
                     <div className="font-semibold text-foreground">{project.client.name}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <MapPin size={20} className="text-primary" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <MapPin size={18} className="text-primary" />
+                  </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Location</div>
                     <div className="font-semibold text-foreground">{project.client.country}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Calendar size={20} className="text-primary" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Calendar size={18} className="text-primary" />
+                  </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Duration</div>
                     <div className="font-semibold text-foreground">{project.duration}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Users size={20} className="text-primary" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Users size={18} className="text-primary" />
+                  </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Team</div>
                     <div className="font-semibold text-foreground">{project.team}</div>
@@ -182,7 +193,7 @@ const ProjectDetailPage: React.FC = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.1 }}
+                    transition={{ duration: 0.15 }}
                     className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-lg font-medium flex items-center gap-2"
                   >
                     <ExternalLink size={18} />
@@ -196,7 +207,7 @@ const ProjectDetailPage: React.FC = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.1 }}
+                    transition={{ duration: 0.15 }}
                     className="bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-6 py-3 rounded-lg font-medium border border-border hover:border-primary/30 flex items-center gap-2"
                   >
                     <Github size={18} />
@@ -224,48 +235,101 @@ const ProjectDetailPage: React.FC = () => {
       </section>
 
       {/* Problem, Solution, Results */}
-      <section className="py-24 bg-card/20 border-y border-border">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-12">
             <AnimatedSection>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <AlertTriangle size={24} className="text-white" />
+              <motion.div
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ duration: 0.15 }}
+                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/50 h-full"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500/20 to-red-600/20 border border-red-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <AlertTriangle size={24} className="text-red-400" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">The Problem</h3>
                 <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
-              </div>
+              </motion.div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Code size={24} className="text-white" />
+              <motion.div
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ duration: 0.15 }}
+                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/50 h-full"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Code2 size={24} className="text-blue-400" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Our Solution</h3>
                 <p className="text-muted-foreground leading-relaxed">{project.solution}</p>
-              </div>
+              </motion.div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Target size={24} className="text-white" />
+              <motion.div
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ duration: 0.15 }}
+                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/50 h-full"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Target size={24} className="text-green-400" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">The Results</h3>
-                <ul className="space-y-2">
+                <ul className="space-y-3 text-left">
                   {project.results.map((result, index) => (
-                    <li key={index} className="text-muted-foreground flex items-center gap-2">
-                      <CheckCircle size={16} className="text-green-500 flex-shrink-0" />
-                      {result}
+                    <li key={index} className="text-muted-foreground flex items-start gap-3">
+                      <CheckCircle size={16} className="text-green-400 flex-shrink-0 mt-0.5" />
+                      <span className="leading-relaxed">{result}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             </AnimatedSection>
           </div>
         </div>
       </section>
+
+      {/* KPIs Section */}
+      {project.kpis && (
+        <section className="py-24 bg-card/20 border-y border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+                Key Performance
+                <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                  Indicators
+                </span>
+              </h2>
+              <p className="text-xl text-muted-foreground font-light">
+                Measurable results that demonstrate project success
+              </p>
+            </AnimatedSection>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {project.kpis.map((kpi, index) => (
+                <AnimatedSection key={kpi.label} delay={index * 0.05}>
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    transition={{ duration: 0.15 }}
+                    className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6 hover:border-primary/30 hover:bg-card/70"
+                  >
+                    <div className="text-4xl font-bold text-primary mb-2">
+                      {kpi.value}
+                    </div>
+                    <div className="font-semibold text-foreground mb-2">
+                      {kpi.label}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {kpi.description}
+                    </div>
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Technology Stack */}
       <section className="py-24 bg-background">
@@ -284,14 +348,17 @@ const ProjectDetailPage: React.FC = () => {
 
           <div className="grid md:grid-cols-2 gap-12">
             <AnimatedSection>
-              <h3 className="text-2xl font-bold text-foreground mb-6">Technologies</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                <Code2 size={24} className="text-primary" />
+                Technologies
+              </h3>
               <div className="flex flex-wrap gap-3">
                 {project.stack.map((tech) => (
                   <motion.span
                     key={tech}
                     whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.1 }}
-                    className="px-4 py-2 bg-card/50 backdrop-blur-xl text-foreground rounded-lg border border-border hover:border-primary/30 transition-all duration-100"
+                    transition={{ duration: 0.15 }}
+                    className="px-4 py-2 bg-card/50 backdrop-blur-xl text-foreground rounded-lg border border-border hover:border-primary/30 transition-all duration-150"
                   >
                     {tech}
                   </motion.span>
@@ -300,7 +367,10 @@ const ProjectDetailPage: React.FC = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <h3 className="text-2xl font-bold text-foreground mb-6">Services Provided</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                <Zap size={24} className="text-primary" />
+                Services Provided
+              </h3>
               <div className="space-y-3">
                 {project.services.map((service) => (
                   <div key={service} className="flex items-center gap-3">
@@ -319,8 +389,8 @@ const ProjectDetailPage: React.FC = () => {
         <section className="py-24 bg-card/20 border-y border-border">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-8">
-                <Quote size={24} className="text-primary-foreground" />
+              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/30 border border-primary/30 rounded-full flex items-center justify-center mx-auto mb-8">
+                <Quote size={24} className="text-primary" />
               </div>
               
               <blockquote className="text-2xl md:text-3xl text-foreground font-light leading-relaxed mb-8 italic">
@@ -331,11 +401,45 @@ const ProjectDetailPage: React.FC = () => {
                 <div className="font-semibold text-foreground text-lg">
                   {project.testimonial.author}
                 </div>
-                <div className="text-muted-foreground">
+                <div className="text-primary font-medium">
                   {project.testimonial.role}
                 </div>
               </div>
             </AnimatedSection>
+          </div>
+        </section>
+      )}
+
+      {/* Gallery */}
+      {project.gallery && project.gallery.length > 1 && (
+        <section className="py-24 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+                Project
+                <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                  Gallery
+                </span>
+              </h2>
+            </AnimatedSection>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {project.gallery.map((image, index) => (
+                <AnimatedSection key={index} delay={index * 0.05}>
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    transition={{ duration: 0.15 }}
+                    className="relative overflow-hidden rounded-xl border border-border hover:border-primary/30"
+                  >
+                    <img
+                      src={image}
+                      alt={`${project.title} screenshot ${index + 1}`}
+                      className="w-full aspect-[16/10] object-cover"
+                    />
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
         </section>
       )}
@@ -358,9 +462,9 @@ const ProjectDetailPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
                 <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.1 }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.15 }}
                   className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium flex items-center gap-3 text-lg"
                 >
                   Start Your Project
@@ -370,9 +474,9 @@ const ProjectDetailPage: React.FC = () => {
 
               <Link to="/portfolio">
                 <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.1 }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.15 }}
                   className="bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-8 py-4 rounded-lg font-medium border border-border hover:border-primary/30 flex items-center gap-3 text-lg"
                 >
                   View More Projects

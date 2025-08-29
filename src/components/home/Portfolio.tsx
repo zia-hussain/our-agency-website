@@ -117,28 +117,6 @@ const Portfolio: React.FC = () => {
           </motion.div>
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-
-      {/* See All Projects Button */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ duration: 0.4, delay: 0.6 }}
-        className="text-center mt-16"
-      >
-        <Link to="/portfolio">
-          <motion.button
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.15 }}
-            className="group bg-card/60 backdrop-blur-xl text-foreground hover:text-primary px-10 py-5 rounded-xl font-semibold 
-                     hover:bg-card/80 transition-all duration-150 
-                     flex items-center gap-3 text-lg mx-auto border border-border hover:border-primary/30 shadow-lg hover:shadow-2xl"
-          >
-            See All Projects
-            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-150" />
-          </motion.button>
-        </Link>
-      </motion.div>
             Featured
             <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
               Projects
@@ -149,23 +127,6 @@ const Portfolio: React.FC = () => {
             A selection of our recent work that showcases our commitment to
             excellence and innovation in software development.
           </p>
-
-          <Link to="/portfolio">
-            <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.15 }}
-              className="group text-muted-foreground hover:text-primary font-medium px-6 py-3 
-                       transition-colors duration-150 text-lg flex items-center gap-2 mx-auto
-                       bg-card/30 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30"
-            >
-              View All Projects
-              <ArrowRight
-                size={18}
-                className="group-hover:translate-x-1 transition-transform duration-150"
-              />
-            </motion.button>
-          </Link>
         </motion.div>
 
         <motion.div
@@ -272,6 +233,28 @@ const Portfolio: React.FC = () => {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* See All Projects Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.4, delay: 0.6 }}
+          className="text-center mt-16"
+        >
+          <Link to="/portfolio">
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.15 }}
+              className="group bg-card/60 backdrop-blur-xl text-foreground hover:text-primary px-10 py-5 rounded-xl font-semibold 
+                       hover:bg-card/80 transition-all duration-150 
+                       flex items-center gap-3 text-lg mx-auto border border-border hover:border-primary/30 shadow-lg hover:shadow-2xl"
+            >
+              See All Projects
+              <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-150" />
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>
