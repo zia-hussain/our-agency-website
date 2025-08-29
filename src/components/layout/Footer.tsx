@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { SITE_CONFIG } from "../../config/site";
 
 import { COMPANY, SOCIAL_LINKS } from "../../config/constants.js";
 
