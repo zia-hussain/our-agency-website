@@ -1,18 +1,39 @@
 import React from "react";
-import { useState } from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, Target, Award, Globe, Code, Heart, Plus } from "lucide-react";
-import { aboutFAQs } from "../data/faqs/about";
 
 const AboutPage: React.FC = () => {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+  const [openFAQ, setOpenFAQ] = React.useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
+
+  const aboutFAQs = [
+    {
+      question: "Who are Zia Hussain and Syed Omer Shah?",
+      answer: "Zia Hussain (CEO) and Syed Omer Shah (CTO) are expert software developers and the co-founders of Zumetrix Labs. With combined 6+ years of experience in modern web development, they specialize in React/Node.js development, SaaS MVP building, AI automation, and enterprise software solutions. They personally oversee all client projects to ensure exceptional quality and results."
+    },
+    {
+      question: "What makes Zumetrix Labs different from other development agencies?",
+      answer: "Zumetrix Labs is founder-led, meaning Zia and Omer are directly involved in every project. As expert developers themselves, they bring hands-on technical expertise rather than just project management. They specialize in modern technologies like React, TypeScript, Node.js, and AI automation, serving international clients with world-class quality standards."
+    },
+    {
+      question: "Which countries and markets do you serve?",
+      answer: "We serve international clients across the United States, United Kingdom, Canada, Australia, UAE, Singapore, and worldwide. Our founders understand global market requirements and international business standards, making us ideal partners for ambitious tech projects regardless of location."
+    },
+    {
+      question: "What types of projects do Zia and Omer specialize in?",
+      answer: "Our founders specialize in SaaS MVP development, React/TypeScript applications, Node.js backend systems, mobile app development, AI automation workflows, and enterprise software solutions. They're particularly skilled at helping startups build their first products and enterprises scale their existing systems."
+    },
+    {
+      question: "How experienced are the founders in software development?",
+      answer: "Zia Hussain brings expertise in full-stack development, business strategy, and client success, while Syed Omer Shah specializes in scalable architecture, modern web stacks, and AI automation. Together, they've delivered 50+ successful projects and maintain a 100% client satisfaction rate with their hands-on approach."
+    }
+  ];
 
   const founders = [
     {
