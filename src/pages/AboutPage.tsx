@@ -1,11 +1,19 @@
 import React from "react";
+import { useState } from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
-import { motion } from "framer-motion";
-import { Users, Target, Award, Globe, Code, Heart } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Users, Target, Award, Globe, Code, Heart, Plus } from "lucide-react";
+import { aboutFAQs } from "../data/faqs/about";
 
 const AboutPage: React.FC = () => {
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
   const founders = [
     {
       name: "Syed Zia Hussain Shah",
@@ -73,9 +81,9 @@ const AboutPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="About Zumetrix Labs | Meet Founders Zia Hussain & Syed Omer Shah | Software Development Agency Pakistan"
-        description="Meet the expert founders of Zumetrix Labs - Zia Hussain (CEO) and Syed Omer Shah (CTO). Learn about Pakistan's leading software development agency, our mission, values, and commitment to building world-class SaaS MVPs, React/Node.js applications, and AI automation solutions. Founded in 2021, we've delivered 50+ successful projects worldwide."
-        keywords="Zia Hussain, Syed Omer Shah, Zumetrix Labs founders, software development agency Pakistan, React developer Pakistan, Node.js experts, Firebase developers, SaaS MVP builders, AI automation experts, full stack developers Pakistan, startup founders Pakistan, software agency team"
+        title="Meet Zia Hussain & Syed Omer Shah | Expert Software Developers & Zumetrix Labs Founders"
+        description="Meet Zia Hussain (CEO) and Syed Omer Shah (CTO), expert software developers and founders of Zumetrix Labs. Leading React/Node.js developers, SaaS MVP builders, and AI automation experts serving international clients in US, UK, Canada, Australia, UAE, and worldwide. Hire top software development talent for your startup or enterprise project."
+        keywords="Zia Hussain software developer, Syed Omer Shah developer, React Node.js experts, SaaS MVP developers, AI automation specialists, hire software developers, startup CTO services, enterprise software consultants, international software team, remote development team, expert full stack developers, software development founders"
         url="https://zumetrix.com/about"
       />
 
@@ -110,21 +118,10 @@ const AboutPage: React.FC = () => {
             {/* ✅ SEO RICH CONTENT */}
             <div className="max-w-4xl mx-auto">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                <strong>Zumetrix Labs</strong> was founded in 2021 with a simple
-                yet powerful vision: to create
-                <strong> world-class software solutions</strong> that don't just
-                function—they inspire, transform, and drive real business
-                results for startups and enterprises worldwide.
+                <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong> are expert software developers and the visionary founders behind <strong>Zumetrix Labs</strong>. With combined expertise in React/Node.js development, SaaS MVP building, AI automation, and enterprise software solutions, they've helped 50+ international clients transform their business ideas into successful digital products.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                As Pakistan's leading{" "}
-                <strong>software development agency</strong>, we specialize in
-                <strong> SaaS MVP development</strong>,{" "}
-                <strong>React/Node.js applications</strong>,
-                <strong> AI automation services</strong>, and custom software
-                solutions. Our founder-led approach ensures every project
-                receives expert attention and delivers exceptional results.
-              </p>
+                Founded in 2021, <strong>Zumetrix Labs</strong> serves international clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, Singapore</strong>, and worldwide. Our founder-led approach ensures every <strong>SaaS MVP</strong>, <strong>React application</strong>, <strong>mobile app</strong>, and <strong>AI automation project</strong> receives expert attention from experienced software developers who understand global market requirements.
             </div>
           </AnimatedSection>
         </div>
@@ -139,30 +136,13 @@ const AboutPage: React.FC = () => {
                 Pakistan's Premier Software Development Agency
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Since our founding in 2021, <strong>Zumetrix Labs</strong> has
-                established itself as Pakistan's most trusted{" "}
-                <strong>software development agency</strong>. We've successfully
-                delivered
-                <strong> 50+ projects</strong> for clients across the globe,
-                specializing in modern web technologies, mobile applications,
-                and cutting-edge AI automation solutions.
+                <strong>Zia Hussain (CEO)</strong> and <strong>Syed Omer Shah (CTO)</strong> bring deep expertise in modern software development to every project. As hands-on founders, they personally oversee all client work, ensuring exceptional quality and results. Their combined experience spans <strong>React/TypeScript development</strong>, <strong>Node.js backend architecture</strong>, <strong>Firebase integration</strong>, <strong>AI automation workflows</strong>, and <strong>startup MVP development</strong>.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Our expertise spans <strong>SaaS MVP development</strong>,{" "}
-                <strong>React/Node.js development</strong>,
-                <strong> Firebase integration</strong>,{" "}
-                <strong>TypeScript applications</strong>, and
-                <strong> no-code automation workflows</strong>. We pride
-                ourselves on delivering pixel-perfect, scalable solutions that
-                help businesses achieve their digital transformation goals.
+                Serving international markets including the <strong>United States, United Kingdom, European Union, Canada, Australia, UAE, and Singapore</strong>, Zumetrix Labs has delivered <strong>50+ successful projects</strong> ranging from early-stage startup MVPs to enterprise-scale applications. Our founders' expertise in <strong>modern JavaScript frameworks</strong>, <strong>cloud architecture</strong>, and <strong>business automation</strong> makes them ideal partners for ambitious tech projects.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                What sets us apart is our founder-led approach. Unlike typical
-                software agencies, our founders
-                <strong> Zia Hussain</strong> and{" "}
-                <strong>Syed Omer Shah</strong> are hands-on developers who
-                personally oversee every project, ensuring the highest quality
-                standards and client satisfaction.
+                Whether you're a startup founder looking to <strong>build your first SaaS MVP</strong>, an enterprise needing <strong>custom software solutions</strong>, or a business seeking <strong>AI automation services</strong>, Zia and Omer provide the technical leadership and development expertise to bring your vision to life with world-class quality and international standards.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">
@@ -355,6 +335,70 @@ const AboutPage: React.FC = () => {
               </motion.div>
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-card/20 border-t border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
+              About Our
+              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                Founders
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed font-light">
+              Common questions about Zia Hussain, Syed Omer Shah, and Zumetrix Labs
+            </p>
+          </AnimatedSection>
+
+          <div className="space-y-4">
+            {aboutFAQs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-150"
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-card/70 transition-all duration-150"
+                >
+                  <h3 className="text-lg font-semibold text-foreground pr-4">
+                    {faq.question}
+                  </h3>
+                  <motion.div
+                    animate={{ rotate: openFAQ === index ? 45 : 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex-shrink-0"
+                  >
+                    <Plus size={20} className="text-primary" />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence>
+                  {openFAQ === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6">
+                        <p className="text-[#DBDBDB] leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </PageTransition>

@@ -22,18 +22,10 @@ import {
 
 const PortfolioPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [activeRegion, setActiveRegion] = useState("all");
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
   const filteredProjects = projects.filter((project) => {
-    const matchesCategory = activeFilter === "all" || project.type === activeFilter;
-    const matchesRegion = activeRegion === "all" || 
-      (activeRegion === "north-america" && ["United States", "Canada"].includes(project.client.country)) ||
-      (activeRegion === "europe" && ["United Kingdom", "Germany", "France", "Netherlands"].includes(project.client.country)) ||
-      (activeRegion === "asia-pacific" && ["Australia", "Singapore", "Japan"].includes(project.client.country)) ||
-      (activeRegion === "middle-east" && ["UAE", "Saudi Arabia", "Qatar"].includes(project.client.country));
-    
-    return matchesCategory && matchesRegion;
+    return activeFilter === "all" || project.type === activeFilter;
   });
 
   const toggleFAQ = (index: number) => {
@@ -52,9 +44,9 @@ const PortfolioPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Portfolio - Our Best Work | Zumetrix Labs"
-        description="Explore our portfolio of web applications, mobile apps, and enterprise solutions. See how we've helped businesses achieve their goals with exceptional software."
-        keywords="portfolio, web development projects, mobile app projects, software development case studies, React projects, Node.js projects"
+        title="Software Development Portfolio | SaaS MVP, React, Mobile Apps | Zumetrix Labs"
+        description="Explore Zumetrix Labs' portfolio of successful software projects including SaaS MVPs, React/Node.js applications, mobile apps, and enterprise solutions for international clients in US, UK, Canada, Australia, and worldwide."
+        keywords="software development portfolio, SaaS MVP projects, React development projects, mobile app portfolio, enterprise software solutions, startup MVP case studies, international software projects, web application portfolio"
         url="https://zumetrix.com/portfolio"
       />
 
@@ -151,28 +143,6 @@ const PortfolioPage: React.FC = () => {
                 </div>
               </div>
               
-              {/* Region Filters */}
-              <div>
-                <h4 className="text-sm font-medium text-muted-foreground mb-3 text-center">By Region</h4>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {projectRegions.map((region) => (
-                    <motion.button
-                      key={region.id}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.1 }}
-                      onClick={() => setActiveRegion(region.id)}
-                      className={`px-4 py-2 rounded-lg font-medium ${
-                        activeRegion === region.id
-                          ? "bg-primary/20 text-primary border border-primary/30"
-                          : "bg-card/40 text-muted-foreground border border-border hover:border-primary/20 hover:text-primary"
-                      }`}
-                    >
-                      {region.label}
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
             </div>
           </AnimatedSection>
         </div>

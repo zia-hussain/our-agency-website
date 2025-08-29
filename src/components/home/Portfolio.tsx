@@ -129,18 +129,19 @@ const Portfolio: React.FC = () => {
           </p>
 
           <Link to="/portfolio">
+          <Link to="/portfolio">
             <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.15 }}
               className="group text-muted-foreground hover:text-primary font-medium px-6 py-3 
-                       transition-colors duration-200 text-lg flex items-center gap-2 mx-auto
+                       transition-colors duration-150 text-lg flex items-center gap-2 mx-auto
                        bg-card/30 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30"
             >
               View All Projects
               <ArrowRight
                 size={18}
-                className="group-hover:translate-x-1 transition-transform duration-200"
+                className="group-hover:translate-x-1 transition-transform duration-150"
               />
             </motion.button>
           </Link>

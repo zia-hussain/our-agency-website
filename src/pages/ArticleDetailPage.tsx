@@ -24,6 +24,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import { articles } from "../data/articles.js";
+import { articlesFAQs } from "../data/faqs/articles";
 
 const ArticleDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -456,62 +457,67 @@ const ArticleDetailPage: React.FC = () => {
       {/* Article Content with Modern Sidebar */}
       <section className="pb-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-4 gap-12">
+          <div className="flex gap-12">
             {/* Sticky TOC - Desktop Only */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:block w-80 flex-shrink-0">
               <div className="sticky top-32">
-                <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6">
+                <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                     <BookOpen size={16} />
                     Table of Contents
                   </h3>
-                  <nav className="space-y-2">
-                    {/* This would be dynamically generated from article headings */}
-                    <a
-                      href="#section1"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Introduction
-                    </a>
-                    <a
-                      href="#section2"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Getting Started
-                    </a>
-                    <a
-                      href="#section3"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Best Practices
-                    </a>
-                    <a
-                      href="#section4"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Conclusion
-                    </a>
+                  <nav className="space-y-1">
+                    {tableOfContents.map((heading) => (
+                      <motion.button
+                        key={heading.id}
+                        onClick={() => scrollToSection(heading.id)}
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.15 }}
+                        className={`block w-full text-left text-sm py-2 px-3 rounded-lg transition-all duration-150 ${
+                          activeHeading === heading.id
+                            ? "text-primary bg-primary/10 border-l-2 border-primary"
+                            : "text-muted-foreground hover:text-primary hover:bg-card/30"
+                        } ${heading.level === 3 ? "ml-4" : ""}`}
+                      >
+                        {heading.text}
+                      </motion.button>
+                    ))}
                   </nav>
+                  
+                  {/* Reading Progress */}
+                  <div className="mt-6 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
+                      <span>Reading Progress</span>
+                      <span>{Math.round(readingProgress)}%</span>
+                    </div>
+                    <div className="w-full bg-border rounded-full h-1">
+                      <motion.div
+                        className="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full"
+                        style={{ width: `${readingProgress}%` }}
+                        transition={{ duration: 0.1 }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Article Content */}
-            <div className="lg:col-span-3">
+            <div className="flex-1 min-w-0">
               <AnimatedSection>
                 <article
-                  className="prose prose-lg dark:prose-invert max-w-none article-content
+                  className="prose prose-lg dark:prose-invert max-w-[72ch] article-content mx-auto
                            prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
                            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:leading-tight
                            prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4 prose-h3:leading-tight
-                           prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
+                           prose-p:text-[#DBDBDB] prose-p:leading-[1.8] prose-p:mb-6 prose-p:text-lg
                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium
                            prose-strong:text-foreground prose-strong:font-semibold
                            prose-code:text-primary prose-code:bg-card/50 prose-code:px-3 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-medium
                            prose-pre:bg-card/50 prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-6
                            prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:bg-card/30 prose-blockquote:p-6 prose-blockquote:rounded-r-lg prose-blockquote:my-8
-                           prose-ul:text-muted-foreground prose-ul:leading-relaxed prose-ul:text-lg
-                           prose-li:text-muted-foreground prose-li:mb-2 prose-li:leading-relaxed
+                           prose-ul:text-[#DBDBDB] prose-ul:leading-[1.8] prose-ul:text-lg
+                           prose-li:text-[#DBDBDB] prose-li:mb-2 prose-li:leading-[1.8]
                            prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8"
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />

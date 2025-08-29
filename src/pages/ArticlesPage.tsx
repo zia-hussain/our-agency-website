@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
-import { motion } from "framer-motion";
-import { Calendar, Clock, User, ArrowRight, BookOpen } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, Clock, User, ArrowRight, BookOpen, Plus } from "lucide-react";
 import { articles, categories } from "../data/articles.js";
+import { articlesFAQs } from "../data/faqs/articles";
 
 const ArticlesPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [visibleArticles, setVisibleArticles] = useState(6);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
   const filteredArticles =
     activeFilter === "all"
@@ -26,6 +28,10 @@ const ArticlesPage: React.FC = () => {
   const handleFilterChange = (categoryId: string) => {
     setActiveFilter(categoryId);
     setVisibleArticles(6);
+  };
+
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index);
   };
 
   const structuredData = {
@@ -303,6 +309,70 @@ const ArticlesPage: React.FC = () => {
               </motion.button>
             </Link>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-card/20 border-t border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
+              Articles
+              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                Questions
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed font-light">
+              Common questions about our expert insights and development guides
+            </p>
+          </AnimatedSection>
+
+          <div className="space-y-4">
+            {articlesFAQs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-150"
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-card/70 transition-all duration-150"
+                >
+                  <h3 className="text-lg font-semibold text-foreground pr-4">
+                    {faq.question}
+                  </h3>
+                  <motion.div
+                    animate={{ rotate: openFAQ === index ? 45 : 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex-shrink-0"
+                  >
+                    <Plus size={20} className="text-primary" />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence>
+                  {openFAQ === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6">
+                        <p className="text-[#DBDBDB] leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </PageTransition>

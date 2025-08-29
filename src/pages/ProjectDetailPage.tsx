@@ -17,8 +17,9 @@ import {
   ChevronRight,
   Star,
   Globe,
-  Code,
-  Zap
+  Code2,
+  AlertTriangle,
+  Target
 } from "lucide-react";
 import { projects } from "../data/projects";
 
@@ -229,7 +230,7 @@ const ProjectDetailPage: React.FC = () => {
             <AnimatedSection>
               <div className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Zap size={24} className="text-white" />
+                  <AlertTriangle size={24} className="text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">The Problem</h3>
                 <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
@@ -249,7 +250,7 @@ const ProjectDetailPage: React.FC = () => {
             <AnimatedSection delay={0.2}>
               <div className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Star size={24} className="text-white" />
+                  <Target size={24} className="text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">The Results</h3>
                 <ul className="space-y-2">
