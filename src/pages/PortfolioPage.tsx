@@ -3,21 +3,19 @@ import { Link } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
-import { motion } from "framer-motion";
-import { projects, projectCategories, projectRegions } from "../data/projects";
+import { motion, AnimatePresence } from "framer-motion";
+import { projects, projectCategories } from "../data/projects";
 import { portfolioFAQs } from "../data/faqs/portfolio";
 import { Plus } from "lucide-react";
-import { AnimatePresence } from "framer-motion";
 import {
-  ExternalLink,
-  Github,
   Calendar,
   Users,
   Code,
   Award,
   Filter,
   MapPin,
-  Building
+  Building,
+  ArrowRight
 } from "lucide-react";
 
 const PortfolioPage: React.FC = () => {
@@ -39,15 +37,38 @@ const PortfolioPage: React.FC = () => {
     { icon: Award, number: "100%", label: "Success Rate" },
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Zumetrix Labs Portfolio - Software Development Projects",
+    description: "Explore our portfolio of successful software development projects including SaaS applications, mobile apps, enterprise solutions, and startup MVPs for international clients.",
+    url: "https://zumetrix.com/portfolio",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: projects.map((project, index) => ({
+        "@type": "CreativeWork",
+        position: index + 1,
+        name: project.title,
+        description: project.description,
+        image: project.image,
+        creator: {
+          "@type": "Organization",
+          name: "Zumetrix Labs"
+        }
+      }))
+    }
+  };
+
   return (
     <PageTransition>
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Software Development Portfolio | SaaS MVP, React, Mobile Apps | Zumetrix Labs"
-        description="Explore Zumetrix Labs' portfolio of successful software projects including SaaS MVPs, React/Node.js applications, mobile apps, and enterprise solutions for international clients in US, UK, Canada, Australia, and worldwide."
-        keywords="software development portfolio, SaaS MVP projects, React development projects, mobile app portfolio, enterprise software solutions, startup MVP case studies, international software projects, web application portfolio"
+        description="Explore Zumetrix Labs' portfolio of successful software projects including SaaS MVPs, React/Node.js applications, mobile apps, and enterprise solutions for international clients in US, UK, Canada, Australia, UAE, and worldwide. Founded by expert developers Zia Hussain and Syed Omer Shah."
+        keywords="software development portfolio, SaaS MVP projects, React development projects, mobile app portfolio, enterprise software solutions, startup MVP case studies, international software projects, web application portfolio, Zia Hussain projects, Syed Omer Shah portfolio"
         url="https://zumetrix.com/portfolio"
+        structuredData={structuredData}
       />
 
       {/* Hero Section */}
@@ -73,7 +94,7 @@ const PortfolioPage: React.FC = () => {
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
               Discover how we've helped businesses transform their ideas into
               successful digital solutions that drive growth and user
-              engagement.
+              engagement across global markets.
             </p>
           </AnimatedSection>
         </div>
@@ -90,9 +111,9 @@ const PortfolioPage: React.FC = () => {
                 className="text-center group"
               >
                 <motion.div
-                  whileHover={{ scale: 1.1, y: -5 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   transition={{ duration: 0.15 }}
-                  className="w-16 h-16 bg-card/50 backdrop-blur-xl border border-border rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/10 group-hover:border-primary/30 "
+                  className="w-16 h-16 bg-card/50 backdrop-blur-xl border border-border rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/10 group-hover:border-primary/30"
                 >
                   <stat.icon size={24} className="text-primary" />
                 </motion.div>
@@ -108,7 +129,7 @@ const PortfolioPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Filter Section */}
+      {/* Filter Section - Category Only */}
       <section className="py-12 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
@@ -119,30 +140,23 @@ const PortfolioPage: React.FC = () => {
               </h3>
             </div>
             
-            <div className="space-y-6">
-              {/* Category Filters */}
-              <div>
-                <h4 className="text-sm font-medium text-muted-foreground mb-3 text-center">By Category</h4>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {projectCategories.map((filter) => (
-                    <motion.button
-                      key={filter.id}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.1 }}
-                      onClick={() => setActiveFilter(filter.id)}
-                      className={`px-6 py-3 rounded-xl font-semibold shadow-lg ${
-                        activeFilter === filter.id
-                          ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow scale-105"
-                          : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"
-                      }`}
-                    >
-                      {filter.label}
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-              
+            <div className="flex flex-wrap justify-center gap-3">
+              {projectCategories.map((filter) => (
+                <motion.button
+                  key={filter.id}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.15 }}
+                  onClick={() => setActiveFilter(filter.id)}
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-150 ${
+                    activeFilter === filter.id
+                      ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow"
+                      : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"
+                  }`}
+                >
+                  {filter.label}
+                </motion.button>
+              ))}
             </div>
           </AnimatedSection>
         </div>
@@ -173,9 +187,9 @@ const PortfolioPage: React.FC = () => {
               >
                 <Link to={`/portfolio/${project.slug}`}>
                   <motion.div
-                    whileHover={{ y: -12, scale: 1.02 }}
-                    transition={{ duration: 0.1 }}
-                    className={`bg-card/50 backdrop-blur-xl border rounded-lg overflow-hidden cursor-pointer ${
+                    whileHover={{ y: -8, scale: 1.01 }}
+                    transition={{ duration: 0.15 }}
+                    className={`bg-card/50 backdrop-blur-xl border rounded-lg overflow-hidden cursor-pointer h-full flex flex-col ${
                       project.featured
                         ? "border-primary/50 shadow-glow"
                         : "border-border hover:border-primary/30"
@@ -192,11 +206,11 @@ const PortfolioPage: React.FC = () => {
                       <motion.img
                         src={project.image}
                         alt={project.title}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.03 }}
                         transition={{ duration: 0.3 }}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-100"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
 
                       {/* Client Location Badge */}
                       <div className="absolute top-4 left-4">
@@ -215,9 +229,9 @@ const PortfolioPage: React.FC = () => {
                     </div>
 
                     {/* Project Content */}
-                    <div className="p-8">
+                    <div className="p-8 flex-grow flex flex-col">
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-100">
+                        <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-150 line-clamp-2 leading-tight">
                           {project.title}
                         </h3>
                         <span className="text-sm text-muted-foreground font-medium">
@@ -225,7 +239,7 @@ const PortfolioPage: React.FC = () => {
                         </span>
                       </div>
 
-                      <p className="text-muted-foreground leading-relaxed mb-6">
+                      <p className="text-muted-foreground leading-relaxed mb-6 line-clamp-3">
                         {project.description}
                       </p>
 
@@ -263,20 +277,20 @@ const PortfolioPage: React.FC = () => {
                               className="text-sm text-muted-foreground flex items-center gap-2"
                             >
                               <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
-                              {result}
+                              <span className="line-clamp-1">{result}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       {/* Technologies */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 mt-auto">
                         {project.tags.slice(0, 4).map((tag) => (
                           <motion.span
                             key={tag}
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.1 }}
-                            className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors duration-100 cursor-pointer"
+                            whileHover={{ scale: 1.02 }}
+                            transition={{ duration: 0.15 }}
+                            className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors duration-150 cursor-pointer"
                           >
                             {tag}
                           </motion.span>
@@ -300,11 +314,9 @@ const PortfolioPage: React.FC = () => {
                 No projects found matching your filters.
               </div>
               <motion.button
-                onClick={() => {
-                  setActiveFilter("all");
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                onClick={() => setActiveFilter("all")}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
                 className="text-primary hover:underline"
               >
@@ -392,23 +404,25 @@ const PortfolioPage: React.FC = () => {
 
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light">
               Let's discuss your project and create a solution that drives real
-              business results.
+              business results for your global audience.
             </p>
 
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              className="group bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                       hover:shadow-glow  
-                       flex items-center gap-3 text-lg mx-auto"
-            >
-              Start Your Project
-              <ExternalLink
-                size={20}
-                className="group-hover:translate-x-1 transition-transform duration-150"
-              />
-            </motion.button>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className="group bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                         hover:shadow-glow  
+                         flex items-center gap-3 text-lg mx-auto"
+              >
+                Start Your Project
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1 transition-transform duration-150"
+                />
+              </motion.button>
+            </Link>
           </AnimatedSection>
         </div>
       </section>
