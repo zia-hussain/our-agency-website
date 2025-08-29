@@ -1,16 +1,24 @@
 import React from "react";
+import { useState } from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
-import { motion } from "framer-motion";
-import { Users, Target, Award, Globe, Code, Heart } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Users, Target, Award, Globe, Code, Heart, Plus } from "lucide-react";
+import { aboutFAQs } from "../data/faqs/about";
 
 const AboutPage: React.FC = () => {
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
   const founders = [
     {
       name: "Syed Zia Hussain Shah",
       role: "Co-Founder · Product & Growth",
-      bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn’t just built well — it solves the right problem, beautifully.",
+      bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn't just built well — it solves the right problem, beautifully.",
       image: "/zia-hussain-founder.png",
       skills: [
         "Strategy",
@@ -114,6 +122,7 @@ const AboutPage: React.FC = () => {
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Founded in 2021, <strong>Zumetrix Labs</strong> serves international clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, Singapore</strong>, and worldwide. Our founder-led approach ensures every <strong>SaaS MVP</strong>, <strong>React application</strong>, <strong>mobile app</strong>, and <strong>AI automation project</strong> receives expert attention from experienced software developers who understand global market requirements.
+              </p>
             </div>
           </AnimatedSection>
         </div>
@@ -329,11 +338,72 @@ const AboutPage: React.FC = () => {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-card/20 border-t border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
+              About Our
+              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                Founders
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed font-light">
+              Common questions about Zia Hussain, Syed Omer Shah, and Zumetrix Labs
+            </p>
+          </AnimatedSection>
+
+          <div className="space-y-4">
+            {aboutFAQs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-150"
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-card/70 transition-all duration-150"
+                >
+                  <h3 className="text-lg font-semibold text-foreground pr-4">
+                    {faq.question}
+                  </h3>
+                  <motion.div
+                    animate={{ rotate: openFAQ === index ? 45 : 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex-shrink-0"
+                  >
+                    <Plus size={20} className="text-primary" />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence>
+                  {openFAQ === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6">
+                        <p className="text-[#DBDBDB] leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </PageTransition>
   );
 };
 
 export default AboutPage;
-
-  )
-}
