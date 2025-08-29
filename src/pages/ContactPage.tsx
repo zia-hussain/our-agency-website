@@ -200,7 +200,7 @@ const ContactPage: React.FC = () => {
 
   const handleScheduleCall = () => {
     window.open(
-      SITE_CONFIG.contact.calendlyUrl,
+      SITE_CONFIG.contact.calendlyUrl ||
         "https://calendly.com/zumetrix-labs/consultation",
       "_blank"
     );
@@ -208,7 +208,7 @@ const ContactPage: React.FC = () => {
 
   const handleQuickEstimate = () => {
     window.open(
-      SITE_CONFIG.contact.calendlyUrl,
+      SITE_CONFIG.contact.calendlyUrl ||
         "https://calendly.com/zumetrix-labs/project-estimate",
       "_blank"
     );
@@ -721,6 +721,24 @@ const ContactPage: React.FC = () => {
                     <Plus size={20} className="text-primary" />
                   </motion.div>
                 </button>
+                <AnimatePresence>
+                  {openFAQ === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </PageTransition>
