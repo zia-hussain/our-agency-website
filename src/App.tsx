@@ -12,6 +12,7 @@ import ContactPage from "./pages/ContactPage";
 import ArticlesPage from "./pages/ArticlesPage";
 import ArticleDetailPage from "./pages/ArticleDetailPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import BackToTop from "./components/common/BackToTop";
