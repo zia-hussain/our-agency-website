@@ -78,6 +78,7 @@ const Footer: React.FC = () => {
                   className="h-10 w-auto lg:h-12"
                   src="/Zumetrix_Labs_Logo (7).png"
                   alt={SITE_CONFIG.company.name}
+                  style={{ height: '40px', width: 'auto' }}
                 />
               </motion.div>
             </Link>

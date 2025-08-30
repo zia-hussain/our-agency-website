@@ -80,9 +80,9 @@ const ContactPage: React.FC = () => {
       }
 
       // Send to Google Sheets webhook (Zapier)
-      if (webhookEndpoint) {
+      if (actualWebhookEndpoint) {
         try {
-          await fetch(webhookEndpoint, {
+          await fetch(actualWebhookEndpoint, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
