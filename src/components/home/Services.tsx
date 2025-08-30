@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Code } from "lucide-react";
 import { motion, useInView } from "framer-motion";
-import { services } from "../../data/service.js";
+import { services } from "../../data/services.ts";
 
 const Services: React.FC = () => {
   const ref = useRef(null);

@@ -5,7 +5,7 @@ import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
-import { services, process } from "../data/service.js";
+import { services, process } from "../data/services.ts";
 import { servicesFAQs } from "../data/faqs/services";
 import { useState } from "react";
 import { Plus } from "lucide-react";
