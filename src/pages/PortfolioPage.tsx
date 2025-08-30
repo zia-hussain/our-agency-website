@@ -22,7 +22,7 @@ const PortfolioPage: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
   // Show only featured/best projects on main portfolio page
-  const featuredProjects = projects.filter(project => project.featured).slice(0, 6);
+  const featuredProjects = projects.filter(project => project.featured);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
@@ -80,7 +80,7 @@ const PortfolioPage: React.FC = () => {
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
               <Eye size={16} className="mr-2" />
-              Our Best Work
+              Featured Projects
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">

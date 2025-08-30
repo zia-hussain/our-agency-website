@@ -212,7 +212,9 @@ const ServicesPage: React.FC = () => {
                           : "bg-card border border-border text-foreground hover:bg-primary/10 hover:border-primary/30"
                       }`}
                     >
-                      Learn More
+                      <Link to={`/services/${service.slug}`} className="block w-full h-full">
+                        Learn More
+                      </Link>
                     </motion.button>
                   </div>
                 </motion.div>

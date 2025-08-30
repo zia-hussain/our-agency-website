@@ -242,7 +242,7 @@ const Portfolio: React.FC = () => {
           transition={{ duration: 0.4, delay: 0.6 }}
           className="text-center mt-16"
         >
-          <Link to="/portfolio">
+          <Link to="/portfolio/all">
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
