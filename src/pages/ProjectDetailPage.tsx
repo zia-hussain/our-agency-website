@@ -245,9 +245,9 @@ const ProjectDetailPage: React.FC = () => {
                 className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/70 h-full"
               >
                 <div className="w-16 h-16 bg-primary/10 border border-primary/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <AlertTriangle size={24} className="text-primary" />
+                  <Target size={24} className="text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">The Problem</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4">The Challenge</h3>
                 <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
               </motion.div>
             </AnimatedSection>
