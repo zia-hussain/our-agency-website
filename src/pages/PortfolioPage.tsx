@@ -381,3 +381,5 @@ const PortfolioPage: React.FC = () => {
     </PageTransition>
   );
 };
+
+export default PortfolioPage;
