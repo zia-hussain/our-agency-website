@@ -12,19 +12,17 @@ import {
   Users,
   Code,
   Award,
-  Filter,
   MapPin,
   Building,
-  ArrowRight
+  ArrowRight,
+  Eye
 } from "lucide-react";
 
 const PortfolioPage: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState("all");
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
-  const filteredProjects = projects.filter((project) => {
-    return activeFilter === "all" || project.type === activeFilter;
-  });
+  // Show only featured/best projects on main portfolio page
+  const featuredProjects = projects.filter(project => project.featured).slice(0, 6);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
@@ -45,7 +43,7 @@ const PortfolioPage: React.FC = () => {
     url: "https://zumetrix.com/portfolio",
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: projects.map((project, index) => ({
+      itemListElement: featuredProjects.map((project, index) => ({
         "@type": "CreativeWork",
         position: index + 1,
         name: project.title,
@@ -81,7 +79,8 @@ const PortfolioPage: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
-              Our Work
+              <Eye size={16} className="mr-2" />
+              Our Best Work
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
@@ -129,57 +128,11 @@ const PortfolioPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Filter Section - Category Only */}
-      <section className="py-12 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center justify-center gap-2">
-                <Filter size={20} />
-                Filter Projects
-              </h3>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-3">
-              {projectCategories.map((filter) => (
-                <motion.button
-                  key={filter.id}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.15 }}
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-150 ${
-                    activeFilter === filter.id
-                      ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow"
-                      : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"
-                  }`}
-                >
-                  {filter.label}
-                </motion.button>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Results Count */}
-      <section className="py-8 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="text-center">
-              <p className="text-muted-foreground">
-                Showing <span className="font-semibold text-foreground">{filteredProjects.length}</span> projects
-              </p>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Projects Grid */}
+      {/* Featured Projects Grid */}
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {filteredProjects.map((project, index) => (
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            {featuredProjects.map((project, index) => (
               <AnimatedSection
                 key={project.id}
                 delay={index * 0.05}
@@ -189,14 +142,10 @@ const PortfolioPage: React.FC = () => {
                   <motion.div
                     whileHover={{ y: -8, scale: 1.01 }}
                     transition={{ duration: 0.15 }}
-                    className={`bg-card/50 backdrop-blur-xl border rounded-lg overflow-hidden cursor-pointer h-full flex flex-col ${
-                      project.featured
-                        ? "border-primary/50 shadow-glow"
-                        : "border-border hover:border-primary/30"
-                    } group-hover:bg-card/70 group-hover:shadow-card-hover`}
+                    className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden cursor-pointer h-full flex flex-col hover:border-primary/30 group-hover:bg-card/70 group-hover:shadow-card-hover"
                   >
                     {project.featured && (
-                      <div className="bg-beige-gradient text-primary-foreground text-xs font-medium px-3 py-1 text-center">
+                      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs font-medium px-3 py-1 text-center">
                         Featured Project
                       </div>
                     )}
@@ -222,7 +171,7 @@ const PortfolioPage: React.FC = () => {
 
                       {/* Category Badge */}
                       <div className="absolute bottom-4 left-4">
-                        <span className="px-3 py-1 bg-beige-gradient text-primary-foreground text-xs font-medium rounded-full backdrop-blur-xl">
+                        <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full backdrop-blur-xl border border-primary/30">
                           {project.category}
                         </span>
                       </div>
@@ -308,22 +257,25 @@ const PortfolioPage: React.FC = () => {
             ))}
           </div>
 
-          {filteredProjects.length === 0 && (
-            <div className="col-span-full text-center py-16">
-              <div className="text-muted-foreground mb-4">
-                No projects found matching your filters.
-              </div>
+          {/* See All Projects Button */}
+          <AnimatedSection className="text-center">
+            <Link to="/portfolio/all">
               <motion.button
-                onClick={() => setActiveFilter("all")}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="text-primary hover:underline"
+                className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                         hover:shadow-glow transition-all duration-150
+                         flex items-center gap-3 text-lg mx-auto"
               >
-                Clear all filters
+                See All Projects
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1 transition-transform duration-150"
+                />
               </motion.button>
-            </div>
-          )}
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -412,8 +364,8 @@ const PortfolioPage: React.FC = () => {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="group bg-beige-gradient text-primary-foreground px-8 py-4 rounded-lg font-medium 
-                         hover:shadow-glow  
+                className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                         hover:shadow-glow transition-all duration-150
                          flex items-center gap-3 text-lg mx-auto"
               >
                 Start Your Project

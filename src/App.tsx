@@ -15,6 +15,7 @@ import ProjectDetailPage from "./pages/ProjectDetailPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import BackToTop from "./components/common/BackToTop";
+import AllProjectsPage from "./pages/AllProjectsPage";
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/portfolio/all" element={<AllProjectsPage />} />
           <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/articles" element={<ArticlesPage />} />

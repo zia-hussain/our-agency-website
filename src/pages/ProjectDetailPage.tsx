@@ -242,10 +242,10 @@ const ProjectDetailPage: React.FC = () => {
               <motion.div
                 whileHover={{ y: -4, scale: 1.01 }}
                 transition={{ duration: 0.15 }}
-                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/50 h-full"
+                className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/70 h-full"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-red-500/20 to-red-600/20 border border-red-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <AlertTriangle size={24} className="text-red-400" />
+                <div className="w-16 h-16 bg-primary/10 border border-primary/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <AlertTriangle size={24} className="text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">The Problem</h3>
                 <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
@@ -256,10 +256,10 @@ const ProjectDetailPage: React.FC = () => {
               <motion.div
                 whileHover={{ y: -4, scale: 1.01 }}
                 transition={{ duration: 0.15 }}
-                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/50 h-full"
+                className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/70 h-full"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Code2 size={24} className="text-blue-400" />
+                <div className="w-16 h-16 bg-primary/10 border border-primary/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Code2 size={24} className="text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Our Solution</h3>
                 <p className="text-muted-foreground leading-relaxed">{project.solution}</p>
@@ -270,16 +270,16 @@ const ProjectDetailPage: React.FC = () => {
               <motion.div
                 whileHover={{ y: -4, scale: 1.01 }}
                 transition={{ duration: 0.15 }}
-                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/50 h-full"
+                className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-8 hover:border-primary/30 hover:bg-card/70 h-full"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Target size={24} className="text-green-400" />
+                <div className="w-16 h-16 bg-primary/10 border border-primary/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Target size={24} className="text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">The Results</h3>
                 <ul className="space-y-3 text-left">
                   {project.results.map((result, index) => (
                     <li key={index} className="text-muted-foreground flex items-start gap-3">
-                      <CheckCircle size={16} className="text-green-400 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={16} className="text-primary flex-shrink-0 mt-0.5" />
                       <span className="leading-relaxed">{result}</span>
                     </li>
                   ))}
