@@ -75,19 +75,14 @@ const Footer: React.FC = () => {
                 className="flex items-center space-x-3"
               >
                 <img
-                  className="h-12 w-auto lg:h-14"
+                  className="h-10 w-auto lg:h-12"
                   src="/Zumetrix_Labs_Logo (7).png"
                   alt={SITE_CONFIG.company.name}
                 />
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Pakistan's #1 software development agency founded by expert
-              developers Zia Hussain and Syed Omer Shah. We specialize in SaaS
-              MVP development, React/Node.js applications, mobile app
-              development, AI automation services, Firebase integration, and
-              custom software solutions. Serving clients in Karachi, Lahore,
-              Islamabad, and worldwide.
+              World-class software development agency founded by expert developers Zia Hussain and Syed Omer Shah. We specialize in enterprise-grade SaaS MVP development, React/Node.js applications, mobile app development, AI automation services, Firebase integration, and custom software solutions. Serving ambitious startups and established enterprises across the United States, United Kingdom, Canada, Australia, UAE, Singapore, and global markets.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -193,11 +188,9 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm mb-4 md:mb-0">
               © {currentYear} {SITE_CONFIG.company.name}. All rights reserved.
-              Crafted with ❤️ by founders
+              Crafted with ❤️ by expert founders
               <strong> {SITE_CONFIG.founders[0].name}</strong> and{" "}
-              <strong>{SITE_CONFIG.founders[1].name}</strong>. Pakistan's #1
-              software development agency serving Karachi, Lahore, Islamabad,
-              and clients worldwide.
+              <strong>{SITE_CONFIG.founders[1].name}</strong>. World-class software development agency serving international clients across the United States, United Kingdom, Canada, Australia, UAE, Singapore, and global markets.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link

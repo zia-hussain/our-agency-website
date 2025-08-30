@@ -194,7 +194,7 @@ const ProjectDetailPage: React.FC = () => {
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
-                    className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-lg font-medium flex items-center gap-2"
+                    className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:shadow-glow"
                   >
                     <ExternalLink size={18} />
                     View Live Project
@@ -465,7 +465,7 @@ const ProjectDetailPage: React.FC = () => {
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium flex items-center gap-3 text-lg"
+                  className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium flex items-center gap-3 text-lg hover:shadow-glow"
                 >
                   Start Your Project
                   <ExternalLink size={20} />

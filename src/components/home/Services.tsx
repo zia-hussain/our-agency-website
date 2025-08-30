@@ -73,9 +73,15 @@ const Services: React.FC = () => {
           </motion.div>
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-            From web applications to mobile apps, we deliver world-class
-            solutions that transform businesses and drive exceptional results.
+            World-Class Software
+            <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
+              Development Services
+            </span>
           </h2>
+
+          <p className="text-xl lg:text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed font-light mb-12">
+            From enterprise web applications to mobile apps and AI automation, we deliver world-class software solutions that transform businesses, accelerate growth, and drive exceptional results for ambitious startups and established enterprises across global markets.
+          </p>
 
           <Link to="/services">
             <motion.button
@@ -86,7 +92,7 @@ const Services: React.FC = () => {
                        transition-colors duration-200 text-lg flex items-center gap-2 mx-auto
                        bg-card/30 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30"
             >
-              Get Started Today
+              Explore All Services
               <ArrowRight
                 size={18}
                 className="group-hover:translate-x-1 transition-transform duration-200"
@@ -160,17 +166,29 @@ const Services: React.FC = () => {
                   <div className="text-2xl font-bold text-primary mb-4">
                     {service.price}
                   </div>
-                  <ul className="space-y-2">
-                    {service.features.map((feature) => (
+                  <ul className="space-y-2 mb-4">
+                    {service.features.slice(0, 4).map((feature) => (
                       <li
                         key={feature}
-                        className="text-sm text-muted-foreground flex items-center"
+                        className="text-sm text-muted-foreground flex items-start gap-2"
                       >
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3"></div>
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         {feature}
                       </li>
                     ))}
                   </ul>
+                  
+                  {/* Technology Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {service.technologies.slice(0, 3).map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full border border-primary/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <motion.button
@@ -205,9 +223,8 @@ const Services: React.FC = () => {
             </span>
             ?
           </h3>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and create a solution that drives real
-            business results.
+          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed font-light">
+            Let's discuss your business vision and create a custom software solution that drives measurable growth, scales globally, and gives you a competitive advantage in your market.
           </p>
           <Link to="/contact">
             <motion.button

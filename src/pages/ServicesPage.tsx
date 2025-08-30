@@ -63,8 +63,8 @@ const ServicesPage: React.FC = () => {
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Software Development Services Pakistan | SaaS MVP, React, AI Automation | Zumetrix Labs"
-        description="Expert software development services in Pakistan by Zumetrix Labs. SaaS MVP development, React/Node.js applications, mobile apps, AI automation, Firebase integration, custom dashboards. Founded by Zia Hussain & Syed Omer Shah. Serving Karachi, Lahore, Islamabad & worldwide."
-        keywords="software development services Pakistan, SaaS MVP development, React development agency Pakistan, Node.js developers Pakistan, mobile app development Pakistan, AI automation services, Firebase experts Pakistan, custom software solutions, web application development, dashboard development, no-code automation, Zia Hussain, Syed Omer Shah, Zumetrix Labs services, hire React developers Pakistan, enterprise software development, startup MVP builder, business automation Pakistan"
+        description="World-class software development services by Zumetrix Labs. Enterprise SaaS MVP development, React/Node.js applications, mobile apps, AI automation, Firebase integration, custom dashboards for international markets. Founded by expert developers Zia Hussain & Syed Omer Shah. Serving US, UK, Canada, Australia, UAE, Singapore & worldwide."
+        keywords="software development services, SaaS MVP development, React development agency, Node.js developers, mobile app development, AI automation services, Firebase experts, custom software solutions, web application development, enterprise software development, startup MVP builder, business automation, international software agency, Zia Hussain, Syed Omer Shah, Zumetrix Labs services, hire React developers, global software development"
         url="https://zumetrix.com/services"
         structuredData={structuredData}
       />
@@ -83,34 +83,25 @@ const ServicesPage: React.FC = () => {
             </motion.div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-              Expert Software Development Services in
+              World-Class Software Development Services for
               <span className="block bg-shimmer bg-clip-text text-transparent">
-                Pakistan & Worldwide
+                Global Markets
               </span>
-              world-class solutions that transform businesses and drive
-              exceptional results.
             </h1>
 
             <div className="max-w-5xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
                 <strong>Zumetrix Labs</strong> delivers world-class{" "}
-                <strong>software development services</strong> across Pakistan
-                and globally. Founded by expert developers{" "}
+                <strong>software development services</strong> for international markets and ambitious businesses worldwide. Founded by expert developers{" "}
                 <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>
-                , we specialize in
-                <strong> SaaS MVP development</strong>,{" "}
+                , we specialize in <strong>enterprise-grade SaaS MVP development</strong>,{" "}
                 <strong>React/Node.js applications</strong>,{" "}
                 <strong>mobile app development</strong>,
                 <strong> AI automation services</strong>, and{" "}
-                <strong>custom software solutions</strong>.
+                <strong>custom enterprise software solutions</strong> that scale globally and drive exceptional business results.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Our <strong>software development agency</strong> serves clients
-                in <strong>Karachi, Lahore, Islamabad</strong>, and
-                internationally. We build scalable web applications, custom
-                dashboards, Firebase integrations, no-code automations, and
-                enterprise software using modern tech stacks including React.js,
-                Next.js, TypeScript, Node.js, and AI technologies.
+                Our <strong>international software development agency</strong> serves high-value clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe</strong>. We build enterprise-grade web applications, sophisticated custom dashboards, advanced Firebase integrations, intelligent no-code automations, and scalable enterprise software using cutting-edge tech stacks including React.js, Next.js, TypeScript, Node.js, Python, cloud-native architectures, and AI technologies that give your business a competitive advantage in global markets.
               </p>
             </div>
           </AnimatedSection>

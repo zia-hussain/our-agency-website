@@ -9,43 +9,46 @@ const Testimonials: React.FC = () => {
   const testimonials = [
     {
       quote:
-        "Zumetrix Labs transformed our vision into a sophisticated platform that exceeded our expectations. Their attention to detail and technical expertise are unmatched in the industry.",
-      author: "Sarah Chen",
-      title: "CEO, TechFlow Solutions",
-      company: "TechFlow",
+        "Zumetrix Labs delivered exactly what we envisioned and more. The AI integration is seamless, the user experience is fantastic, and the code quality is exceptional. Looking forward to Phase 2 expansion!",
+      author: "Kelly Andrews",
+      title: "Founder, Best Business Services",
+      company: "Ifyify",
       avatar:
         "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
+      project: "AI-Powered Personal Branding Tool"
     },
     {
       quote:
-        "Working with Zumetrix Labs was a game-changer for our startup. They delivered a world-class mobile application that helped us secure Series A funding within months.",
-      author: "Marcus Rodriguez",
-      title: "Founder, WellnessPath",
-      company: "WellnessPath",
+        "The team at Zumetrix Labs created an amazing wellness app that our users absolutely love. The AI insights feature is particularly impressive and has become our key differentiator in the market.",
+      author: "Sarah Johnson",
+      title: "CEO, WellnessPath",
+      company: "WellnessTracker",
       avatar:
         "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
+      project: "Health & Fitness Mobile App"
     },
     {
       quote:
-        "The team's expertise in both design and development created a solution that not only works flawlessly but also delights our users every single day. Exceptional work.",
-      author: "Emily Foster",
-      title: "CTO, RetailOps",
+        "Zumetrix Labs completely transformed our entire operation. The automation platform they built has saved us hundreds of hours monthly and significantly reduced errors while allowing us to scale confidently.",
+      author: "James Mitchell",
+      title: "Operations Director, RetailOps",
       company: "RetailOps",
       avatar:
         "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
+      project: "Enterprise E-commerce Automation"
     },
   ];
 
   const clients = [
-    "TechFlow",
+    "Best Business Services",
     "WellnessPath",
-    "RetailOps",
-    "DataSync",
-    "CloudWorks",
-    "FinanceFlow",
+    "RetailOps Enterprise",
+    "TaskFlow Startup",
+    "EduTech Institute",
+    "LogiCorp Solutions",
   ];
 
   const containerVariants = {
@@ -97,19 +100,18 @@ const Testimonials: React.FC = () => {
             className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
           >
             <Star size={16} className="mr-2" />
-            Client Stories
+            Client Success Stories
           </motion.div>
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-            What Our
-            <span className="block bg-shimmer bg-clip-text text-transparent pb-4leading-[1.1]">
+            What Our Global
+            <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
               Clients Say
             </span>
           </h2>
 
           <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-            Don't just take our word for it. Here's what our clients say about
-            working with Zumetrix Labs and the results we've delivered together.
+            Don't just take our word for it. Here's what our international clients from the United States, Canada, United Kingdom, UAE, Singapore, and Australia say about working with Zumetrix Labs and the exceptional results we've delivered together.
           </p>
         </motion.div>
 
@@ -126,19 +128,19 @@ const Testimonials: React.FC = () => {
               whileHover={{
                 y: -8,
                 scale: 1.02,
-                transition: { duration: 0.2 },
+                transition: { duration: 0.15 },
               }}
               className="group"
             >
-              <div className="bg-card/50 backdrop-blur-xl p-8 rounded-2xl  border border-border hover:border-primary/30 h-full flex flex-col group-hover:bg-card/70 group-hover:shadow-card-hover">
+              <div className="bg-card/50 backdrop-blur-xl p-8 rounded-2xl border border-border hover:border-primary/30 h-full flex flex-col group-hover:bg-card/70 group-hover:shadow-card-hover transition-all duration-150">
                 {/* Quote Icon */}
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : { scale: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="w-12 h-12 bg-beige-gradient rounded-full flex items-center justify-center mb-6"
+                  className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/30 border border-primary/30 rounded-full flex items-center justify-center mb-6"
                 >
-                  <Quote size={20} className="text-primary-foreground" />
+                  <Quote size={20} className="text-primary" />
                 </motion.div>
 
                 {/* Rating */}
@@ -166,23 +168,25 @@ const Testimonials: React.FC = () => {
                   "{testimonial.quote}"
                 </blockquote>
 
-                <div className="flex items-center">
-                  <motion.img
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                    className="w-14 h-14 rounded-full object-cover mr-4 border-2 border-border"
-                  />
-                  <div>
-                    <div className="font-semibold text-foreground text-lg">
-                      {testimonial.author}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {testimonial.title}
-                    </div>
-                    <div className="text-xs text-primary font-medium">
-                      {testimonial.company}
+                <div className="border-t border-border pt-6">
+                  <div className="flex items-center">
+                    <motion.img
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.15 }}
+                      src={testimonial.avatar}
+                      alt={testimonial.author}
+                      className="w-14 h-14 rounded-full object-cover mr-4 border-2 border-border"
+                    />
+                    <div>
+                      <div className="font-semibold text-foreground text-lg">
+                        {testimonial.author}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {testimonial.title}
+                      </div>
+                      <div className="text-xs text-primary font-medium">
+                        {testimonial.company} • {testimonial.project}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -199,7 +203,7 @@ const Testimonials: React.FC = () => {
           className="text-center"
         >
           <h3 className="text-xl font-semibold text-foreground mb-12">
-            Trusted by Leading Companies
+            Trusted by Leading International Companies
           </h3>
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
             {clients.map((client, index) => (
@@ -210,8 +214,8 @@ const Testimonials: React.FC = () => {
                   isInView ? { opacity: 0.6, y: 0 } : { opacity: 0, y: 20 }
                 }
                 whileHover={{ opacity: 1, scale: 1.1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="text-muted-foreground font-medium text-lg hover:text-primary transition-colors duration-200 cursor-pointer bg-card/30 backdrop-blur-xl px-6 py-3 rounded-lg border border-border hover:border-primary/30"
+                transition={{ duration: 0.15, delay: index * 0.05 }}
+                className="text-muted-foreground font-medium text-lg hover:text-primary transition-colors duration-150 cursor-pointer bg-card/30 backdrop-blur-xl px-6 py-3 rounded-lg border border-border hover:border-primary/30"
               >
                 {client}
               </motion.div>

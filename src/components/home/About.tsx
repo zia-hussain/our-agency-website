@@ -75,10 +75,7 @@ const About: React.FC = () => {
           </h2>
 
           <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light mb-12">
-            We believe exceptional software is born from the intersection of
-            technical mastery, design excellence, and deep understanding of
-            human needs. Our mission is to create digital experiences that don't
-            just function—they inspire and transform businesses.
+            We believe exceptional software is born from the intersection of technical mastery, design excellence, and deep understanding of human needs. Founded by expert developers Zia Hussain and Syed Omer Shah, our mission is to create digital experiences that don't just function—they inspire, transform businesses, and drive measurable growth for ambitious entrepreneurs and enterprises worldwide.
           </p>
 
           <Link to="/about">
@@ -123,7 +120,7 @@ const About: React.FC = () => {
                 {value.title}
               </h3>
 
-              <p className="text-muted-foreground leading-relaxed text-lg">
+              <p className="text-muted-foreground leading-relaxed text-base">
                 {value.description}
               </p>
             </motion.div>

@@ -96,17 +96,14 @@ const Hero: React.FC = () => {
               <strong>mobile app development</strong>,{" "}
               <strong>AI automation services</strong>, and{" "}
               <strong>custom software solutions</strong>. Transform your
-              ambitious ideas into powerful digital experiences that drive real
-              business results.
+              ambitious business vision into powerful digital experiences that scale globally, drive measurable growth, and deliver exceptional ROI for your enterprise.
             </p>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Our expert team delivers <strong>custom web applications</strong>,{" "}
+              Our world-class development team delivers <strong>enterprise-grade web applications</strong>,{" "}
               <strong>Firebase development</strong>,
               <strong> no-code automation solutions</strong>,{" "}
               <strong>AI workflow integration</strong>, and enterprise software
-              using React.js, Next.js, TypeScript, Node.js, and modern tech
-              stacks. Trusted by 50+ clients worldwide including startups and
-              enterprises in Karachi, Lahore, Islamabad, and internationally.
+              using cutting-edge React.js, Next.js, TypeScript, Node.js, and cloud-native architectures. Trusted by 50+ international clients including ambitious startups and established enterprises across the United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe.
             </p>
           </div>
 
