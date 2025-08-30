@@ -9,17 +9,6 @@ const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Smooth scroll to section function
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -32,6 +21,14 @@ const Navigation: React.FC = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
+
+  // Check if current path matches nav item (including nested routes)
+  const isActiveRoute = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
+  };
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -47,79 +44,88 @@ const Navigation: React.FC = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50  ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
+          ? "bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Logo */}
           <Link to="/" className="flex-shrink-0 group">
             <motion.div
-              transition={{ duration: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.15 }}
               className="flex items-center space-x-3"
             >
               <img
                 className="h-8 w-auto lg:h-10"
                 src="/Zumetrix_Labs_Logo (7).png"
                 alt={SITE_CONFIG.company.name}
+                style={{ height: '32px', width: 'auto' }}
               />
             </motion.div>
           </Link>
 
+          {/* Desktop Navigation - BEAST MODE ROUNDED STYLE */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={`relative px-3 py-2 text-sm font-medium tracking-wide  group ${
-                    location.pathname === item.path
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
-                  }`}
-                >
-                  {item.name}
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-beige-gradient rounded-full"
-                    initial={{ scaleX: 0 }}
-                    animate={{
-                      scaleX: location.pathname === item.path ? 1 : 0,
-                    }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </Link>
-              ))}
+            <div className="bg-card/60 backdrop-blur-xl border border-border/50 rounded-full px-2 py-2 shadow-lg">
+              <div className="flex items-center space-x-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className="relative group"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.15 }}
+                      className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-150 ${
+                        isActiveRoute(item.path)
+                          ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow"
+                          : "text-muted-foreground hover:text-primary hover:bg-card/80"
+                      }`}
+                    >
+                      {item.name}
+                    </motion.div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
+          {/* CTA Button */}
           <div className="hidden md:block">
             <Link to="/contact">
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="bg-beige-gradient text-primary-foreground px-6 py-2.5 rounded-lg font-medium 
-                         hover:shadow-glow "
+                transition={{ duration: 0.15 }}
+                className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-full font-medium 
+                         hover:shadow-glow transition-all duration-150 text-sm"
               >
                 Let's Talk
               </motion.button>
             </Link>
           </div>
 
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-foreground hover:text-primary transition-colors duration-200 p-2"
+              className="text-foreground hover:text-primary transition-colors duration-150 p-2 rounded-lg bg-card/50 backdrop-blur-xl border border-border/50"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -127,38 +133,41 @@ const Navigation: React.FC = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-              className="h-8 w-auto lg:h-10"
+            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <div className="px-4 pt-2 pb-6 space-y-2">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
+                  transition={{ delay: index * 0.05, duration: 0.15 }}
                 >
                   <Link
                     to={item.path}
-                    className={`block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200 rounded-lg ${
-                      location.pathname === item.path
-                        ? "text-primary bg-primary/10"
-                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                    className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-150 ${
+                      isActiveRoute(item.path)
+                        ? "text-primary bg-primary/10 border border-primary/20"
+                        : "text-muted-foreground hover:text-primary hover:bg-card/50"
                     }`}
                   >
                     {item.name}
                   </Link>
                 </motion.div>
               ))}
+              
+              {/* Mobile CTA */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navItems.length * 0.05 }}
+                transition={{ delay: navItems.length * 0.05, duration: 0.15 }}
+                className="pt-4"
               >
-                <img
-                  className="h-10 w-auto lg:h-12"
-                  src="/Zumetrix_Labs_Logo (7).png"
-                  alt="Zumetrix Labs"
-                />
+                <Link to="/contact">
+                  <button className="w-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-xl font-medium">
+                    Let's Talk
+                  </button>
+                </Link>
               </motion.div>
             </div>
           </motion.div>
