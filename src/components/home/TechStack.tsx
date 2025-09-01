@@ -6,6 +6,11 @@ import { getSiteData } from "../../data/site";
 const TechStack: React.FC = () => {
   const { techStack } = getSiteData();
 
+  // Extract all technologies from coreCapabilities
+  const allTechnologies = techStack.coreCapabilities.flatMap(capability => 
+    capability.technologies
+  );
+
   const coreCapabilities = [
     {
       icon: Code2,
@@ -88,9 +93,9 @@ const TechStack: React.FC = () => {
           className="text-center"
         >
           <div className="flex flex-wrap justify-center gap-3">
-            {techStack.technologies.map((tech, index) => (
+            {allTechnologies.map((tech, index) => (
               <motion.span
-                key={tech.name}
+                key={tech}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -98,7 +103,7 @@ const TechStack: React.FC = () => {
                 transition={{ duration: 0.12, delay: index * 0.03 }}
                 className="px-4 py-2 bg-[#131313]/60 backdrop-blur-xl border border-[#1E1E1E]/60 rounded-full text-sm font-medium text-[#B6B6B6] hover:text-primary hover:border-primary/30 transition-all duration-120 cursor-pointer"
               >
-                {tech.name}
+                {tech}
               </motion.span>
             ))}
           </div>
