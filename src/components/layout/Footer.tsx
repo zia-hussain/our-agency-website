@@ -1,6 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  Phone,
+  MapPin,
+  Instagram,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../../config/site";
 
@@ -47,8 +55,9 @@ const Footer: React.FC = () => {
       href: SOCIAL_LINKS.linkedin,
       label: "LinkedIn",
     },
+    { icon: Twitter, href: SOCIAL_LINKS.twitter, label: "Twitter" },
     {
-      icon: Mail,
+      icon: Instagram,
       href: SOCIAL_LINKS.instagram,
       label: "Instagram",
     },
@@ -75,15 +84,21 @@ const Footer: React.FC = () => {
                 className="flex items-center space-x-3"
               >
                 <img
-                  className="h-10 w-auto lg:h-12"
+                  className="h-52 w-52"
                   src="/Zumetrix_Labs_Logo (7).png"
                   alt={SITE_CONFIG.company.name}
-                  style={{ height: '40px', width: 'auto' }}
                 />
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              World-class software development agency founded by expert developers Zia Hussain and Syed Omer Shah. We specialize in enterprise-grade SaaS MVP development, React/Node.js applications, mobile app development, AI automation services, Firebase integration, and custom software solutions. Serving ambitious startups and established enterprises across the United States, United Kingdom, Canada, Australia, UAE, Singapore, and global markets.
+              World-class software development agency founded by expert
+              developers Zia Hussain and Syed Omer Shah. We specialize in
+              enterprise-grade SaaS MVP development, React/Node.js applications,
+              mobile app development, AI automation services, Firebase
+              integration, and custom software solutions. Serving ambitious
+              startups and established enterprises across the United States,
+              United Kingdom, Canada, Australia, UAE, Singapore, and global
+              markets.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -191,7 +206,10 @@ const Footer: React.FC = () => {
               © {currentYear} {SITE_CONFIG.company.name}. All rights reserved.
               Crafted with ❤️ by expert founders
               <strong> {SITE_CONFIG.founders[0].name}</strong> and{" "}
-              <strong>{SITE_CONFIG.founders[1].name}</strong>. World-class software development agency serving international clients across the United States, United Kingdom, Canada, Australia, UAE, Singapore, and global markets.
+              <strong>{SITE_CONFIG.founders[1].name}</strong>. World-class
+              software development agency serving international clients across
+              the United States, United Kingdom, Canada, Australia, UAE,
+              Singapore, and global markets.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link

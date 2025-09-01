@@ -43,14 +43,13 @@ const Navigation: React.FC = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg"
+          ? "bg-background/10 backdrop-blur-xl border-border/50 shadow-lg"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-1 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 group">
@@ -60,16 +59,15 @@ const Navigation: React.FC = () => {
               className="flex items-center space-x-3"
             >
               <img
-                className="h-8 w-auto lg:h-10"
+                className="h-44 w-44"
                 src="/Zumetrix_Labs_Logo (7).png"
                 alt={SITE_CONFIG.company.name}
-                style={{ height: '32px', width: 'auto' }}
               />
             </motion.div>
           </Link>
 
           {/* Desktop Navigation - BEAST MODE ROUNDED STYLE */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="bg-card/60 backdrop-blur-xl border border-border/50 rounded-full px-2 py-2 shadow-lg">
               <div className="flex items-center space-x-1">
                 {navItems.map((item) => (
@@ -97,7 +95,7 @@ const Navigation: React.FC = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link to="/contact">
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -112,7 +110,7 @@ const Navigation: React.FC = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -133,7 +131,7 @@ const Navigation: React.FC = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
               {navItems.map((item, index) => (
@@ -155,7 +153,7 @@ const Navigation: React.FC = () => {
                   </Link>
                 </motion.div>
               ))}
-              
+
               {/* Mobile CTA */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
