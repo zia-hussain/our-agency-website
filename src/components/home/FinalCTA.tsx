@@ -118,4 +118,4 @@ const FinalCTA: React.FC = () => {
   );
 };
 
-export default TestimonialsCarousel;
+export default FinalCTA;
