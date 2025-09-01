@@ -6,12 +6,12 @@ export default {
     extend: {
       colors: {
         // PERFECT DARK THEME WITH BEIGE ACCENTS (EXACTLY LIKE LOVABLE BUT BETTER!)
-        background: '#0a0a0a',
-        foreground: '#ffffff',
-        card: '#111111',
-        'card-foreground': '#ffffff',
-        popover: '#111111',
-        'popover-foreground': '#ffffff',
+        background: '#0C0C0C', // Updated exact color
+        foreground: '#EDEDED', // Updated exact color
+        card: '#131313', // Updated exact color
+        'card-foreground': '#EDEDED', // Updated exact color
+        popover: '#131313', // Updated exact color
+        'popover-foreground': '#EDEDED', // Updated exact color
         primary: {
           DEFAULT: '#C48A64', // EXACT BEIGE COLOR YOU WANTED!
           foreground: '#000000',
@@ -27,12 +27,12 @@ export default {
           900: '#715437',
         },
         secondary: {
-          DEFAULT: '#1a1a1a',
-          foreground: '#ffffff',
+          DEFAULT: '#131313', // Updated
+          foreground: '#EDEDED', // Updated
         },
         muted: {
-          DEFAULT: '#1a1a1a',
-          foreground: '#888888',
+          DEFAULT: '#131313', // Updated
+          foreground: '#B6B6B6', // Updated exact color
         },
         accent: {
           DEFAULT: '#C48A64',
@@ -40,10 +40,10 @@ export default {
         },
         destructive: {
           DEFAULT: '#ef4444',
-          foreground: '#ffffff',
+          foreground: '#EDEDED', // Updated
         },
-        border: '#2a2a2a',
-        input: '#1a1a1a',
+        border: '#1E1E1E', // Updated exact color with 60% opacity applied in components
+        input: '#131313', // Updated
         ring: '#C48A64',
         // Custom colors for our BEAST theme
         dark: {
@@ -57,7 +57,7 @@ export default {
           700: '#404040',
           800: '#262626',
           900: '#171717',
-          950: '#0a0a0a',
+          950: '#0C0C0C', // Updated
         },
         beige: {
           50: '#FDF8F3',
@@ -78,19 +78,19 @@ export default {
       },
       animation: {
         // LIGHTNING FAST SMOOTH ANIMATIONS
-        'fade-in': 'fadeIn 0.1s ease-out forwards',
-        'slide-up': 'slideUp 0.1s ease-out forwards',
-        'scale-in': 'scaleIn 0.1s ease-out forwards',
+        'fade-in': 'fadeIn 0.12s ease-out forwards', // Updated timing
+        'slide-up': 'slideUp 0.14s ease-out forwards', // Updated timing
+        'scale-in': 'scaleIn 0.12s ease-out forwards', // Updated timing
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
         'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
         'bounce-soft': 'bounceSoft 2s ease-in-out infinite',
         'gradient-shift': 'gradientShift 8s ease infinite',
-        'card-hover': 'cardHover 0.1s ease-out forwards',
+        'card-hover': 'cardHover 0.14s ease-out forwards', // Updated timing
         'text-shimmer': 'textShimmer 2s ease-in-out infinite',
-        'interactive-bounce': 'interactiveBounce 0.1s ease-out',
-        'smooth-scale': 'smoothScale 0.1s ease-out',
-        'ultra-smooth': 'ultraSmooth 0.1s ease-out',
+        'interactive-bounce': 'interactiveBounce 0.12s ease-out', // Updated timing
+        'smooth-scale': 'smoothScale 0.12s ease-out', // Updated timing
+        'ultra-smooth': 'ultraSmooth 0.14s ease-out', // Updated timing
       },
       keyframes: {
         fadeIn: {
