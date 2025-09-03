@@ -78,19 +78,19 @@ export default {
       },
       animation: {
         // LIGHTNING FAST SMOOTH ANIMATIONS
-        'fade-in': 'fadeIn 0.12s ease-out forwards', // Updated timing
-        'slide-up': 'slideUp 0.14s ease-out forwards', // Updated timing
-        'scale-in': 'scaleIn 0.12s ease-out forwards', // Updated timing
+        'fade-in': 'fadeIn 0.15s ease-out forwards',
+        'slide-up': 'slideUp 0.15s ease-out forwards', 
+        'scale-in': 'scaleIn 0.15s ease-out forwards',
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
         'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
         'bounce-soft': 'bounceSoft 2s ease-in-out infinite',
         'gradient-shift': 'gradientShift 8s ease infinite',
-        'card-hover': 'cardHover 0.14s ease-out forwards', // Updated timing
+        'card-hover': 'cardHover 0.15s ease-out forwards',
         'text-shimmer': 'textShimmer 2s ease-in-out infinite',
-        'interactive-bounce': 'interactiveBounce 0.12s ease-out', // Updated timing
-        'smooth-scale': 'smoothScale 0.12s ease-out', // Updated timing
-        'ultra-smooth': 'ultraSmooth 0.14s ease-out', // Updated timing
+        'interactive-bounce': 'interactiveBounce 0.15s ease-out',
+        'smooth-scale': 'smoothScale 0.15s ease-out',
+        'ultra-smooth': 'ultraSmooth 0.15s ease-out',
       },
       keyframes: {
         fadeIn: {

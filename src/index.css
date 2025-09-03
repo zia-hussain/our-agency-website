@@ -5,6 +5,7 @@
 /* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 h1,
@@ -25,11 +26,25 @@ h6 {
 body {
   overflow-x: hidden;
   background-color: #0a0a0a;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Ensure smooth scrolling works on all browsers */
 * {
   scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scroll on all elements */
+* {
+  box-sizing: border-box;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 button {
@@ -38,6 +53,24 @@ button {
 
 img {
   user-select: none;
+}
+
+/* Premium scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #131313;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C48A64;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #DCA973;
 }
 
 /* PREMIUM TYPOGRAPHY FOR ARTICLES - LUXURIOUS DARK THEME */

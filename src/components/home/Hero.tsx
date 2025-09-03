@@ -8,8 +8,11 @@ import {
   Users,
   Award,
   Clock,
-  Workflow,
-  Folder,
+  Globe,
+  CheckCircle,
+  Zap,
+  Shield,
+  Rocket
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSiteData } from "../../data/site";
@@ -19,13 +22,20 @@ const Hero: React.FC = () => {
   const siteData = getSiteData();
   const { hero, metrics } = siteData;
 
+  // Premium hero images from Pexels
+  const heroImages = [
+    "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=1200"
+  ];
+
   // Auto-rotate mockups
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentMockup((prev) => (prev + 1) % hero.mockups.length);
-    }, 4000);
+      setCurrentMockup((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
     return () => clearInterval(interval);
-  }, [hero.mockups.length]);
+  }, [heroImages.length]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -34,10 +44,37 @@ const Hero: React.FC = () => {
     }
   };
 
+  const trustMetrics = [
+    {
+      icon: Star,
+      value: "5.0★",
+      label: "Client Rating",
+      description: "100% satisfaction"
+    },
+    {
+      icon: Globe,
+      value: "50+",
+      label: "Global Projects",
+      description: "6 countries served"
+    },
+    {
+      icon: Clock,
+      value: "30d",
+      label: "MVP Delivery",
+      description: "Rapid development"
+    },
+    {
+      icon: Award,
+      value: "100%",
+      label: "Success Rate",
+      description: "Zero failures"
+    }
+  ];
+
   return (
-    <section className="min-h-screen bg-[#0C0C0C] flex items-center justify-center relative overflow-hidden pt-20 lg:pt-28 pb-16">
+    <section className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden pt-20 lg:pt-28 pb-16">
       {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
+      <div className="absolute inset-0 opacity-[0.02]">
         <div
           className="absolute inset-0"
           style={{
@@ -51,7 +88,7 @@ const Hero: React.FC = () => {
       <motion.div
         animate={{
           scale: [1, 1.1, 1],
-          opacity: [0.05, 0.1, 0.05],
+          opacity: [0.03, 0.08, 0.03],
         }}
         transition={{
           duration: 20,
@@ -62,7 +99,7 @@ const Hero: React.FC = () => {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -75,62 +112,64 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="inline-flex items-center px-4 py-2 bg-[#131313]/80 backdrop-blur-xl border border-[#1E1E1E]/60 rounded-full text-sm font-medium text-primary mb-8 hover:bg-[#131313] transition-all duration-150"
+              className="inline-flex items-center px-4 py-2 bg-card/80 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-6 hover:bg-card transition-all duration-150"
             >
               <Sparkles size={16} className="mr-2" />
               {hero.overline}
             </motion.div>
 
-            {/* Headline - Big & Bold */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#EDEDED] mb-6 leading-tight tracking-tight">
-              {hero.headline.split(".")[0]}.
-              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-2">
-                {hero.headline.split(".")[1]?.trim()}.
+            {/* Headline - SEO Optimized & Trust-Building */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
+              Transform Your Vision Into
+              <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent mt-2">
+                World-Class Software
+              </span>
+              <span className="block text-foreground">
+                That Scales Globally
               </span>
             </h1>
 
-            {/* Subtext - 2 lines max */}
-            <p className="text-xl text-[#B6B6B6] leading-[1.7] mb-8 max-w-2xl">
-              {hero.subtext}
+            {/* Subtext - Clear Value Proposition */}
+            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-[1.6] mb-8 max-w-2xl">
+              <strong className="text-foreground">SaaS MVPs, AI Automation & Mobile Apps</strong> for ambitious startups and enterprises. 
+              <span className="block mt-2">
+                Trusted by <strong className="text-primary">50+ international clients</strong> across US, UK, Canada, Australia & UAE.
+              </span>
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Link to={hero.primaryCTA.link}>
+              <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.12, ease: "easeOut" }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
                   className="group bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-8 py-4 rounded-xl font-semibold 
-                           hover:shadow-[0_0_30px_rgba(196,138,100,0.4)] transition-all duration-120 ease-out
-                           flex items-center gap-3 text-lg shadow-lg"
+                           hover:shadow-glow transition-all duration-150
+                           flex items-center gap-3 text-lg shadow-lg w-full sm:w-auto justify-center"
                 >
-                  {hero.primaryCTA.text}
-                  <div className="w-10 h-10 bg-primary/80 backdrop-blur-xl rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-all duration-120 border border-primary/60 group-hover:translate-x-1 duration-120">
-                    <ArrowRight size={20} className="" />
-                  </div>
+                  Start Your Project
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-150" />
                 </motion.button>
               </Link>
 
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.12, ease: "easeOut" }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
                 onClick={() => scrollToSection("portfolio")}
-                className="group text-[#B6B6B6] hover:text-primary font-medium px-6 py-4 
-                         transition-all duration-120 ease-out text-lg flex items-center gap-3 
-                         bg-[#131313]/50 backdrop-blur-xl border border-[#1E1E1E]/60 rounded-xl
-                         hover:bg-[#131313]/80 hover:border-primary/30"
+                className="group text-muted-foreground hover:text-primary font-semibold px-8 py-4 
+                         transition-all duration-150 text-lg flex items-center gap-3 justify-center
+                         bg-card/50 backdrop-blur-xl border border-border rounded-xl
+                         hover:bg-card/80 hover:border-primary/30 w-full sm:w-auto"
               >
-                <div className="w-10 h-10 bg-[#131313]/80 backdrop-blur-xl rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-all duration-120 border border-[#1E1E1E]/60">
-                  <Play size={14} className="text-primary ml-0.5" />
-                </div>
-                {hero.secondaryCTA.text}
+                <Play size={16} className="text-primary" />
+                View Success Stories
               </motion.button>
             </div>
           </motion.div>
 
-          {/* Right Column - Rotating Mockups */}
+          {/* Right Column - Premium Visual Carousel */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -138,45 +177,51 @@ const Hero: React.FC = () => {
             className="relative"
           >
             <div className="relative w-full max-w-lg mx-auto">
-              {/* Main Mockup Display */}
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[#1E1E1E]/60 shadow-2xl">
+              {/* Main Image Display */}
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border shadow-2xl">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentMockup}
-                    src={hero.mockups[currentMockup]}
-                    alt={`Project mockup ${currentMockup + 1}`}
+                    src={heroImages[currentMockup]}
+                    alt={`Premium software development project ${currentMockup + 1}`}
                     initial={{ opacity: 0, scale: 1.05 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                     className="w-full h-full object-cover rounded-2xl"
                   />
                 </AnimatePresence>
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 left-4">
+                  <div className="bg-card/90 backdrop-blur-xl border border-border rounded-full px-3 py-1 text-xs font-medium text-foreground">
+                    Enterprise Grade
+                  </div>
+                </div>
               </div>
 
-              {/* Mockup Indicators */}
+              {/* Image Indicators */}
               <div className="flex justify-center gap-2 mt-6">
-                {hero.mockups.map((_, index) => (
+                {heroImages.map((_, index) => (
                   <motion.button
                     key={index}
                     onClick={() => setCurrentMockup(index)}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
-                    transition={{ duration: 0.12 }}
-                    className={`w-2 h-2 rounded-full transition-all duration-120 ${
+                    transition={{ duration: 0.15 }}
+                    className={`w-2 h-2 rounded-full transition-all duration-150 ${
                       currentMockup === index
-                        ? "bg-primary shadow-[0_0_10px_rgba(196,138,100,0.5)]"
-                        : "bg-[#1E1E1E] hover:bg-primary/50"
+                        ? "bg-primary shadow-glow"
+                        : "bg-border hover:bg-primary/50"
                     }`}
                   />
                 ))}
               </div>
 
               {/* Floating Elements */}
-              {/* Floating Premium Elements */}
               <motion.div
                 animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
                 transition={{
@@ -184,11 +229,9 @@ const Hero: React.FC = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -top-6 -right-6 w-20 h-20 bg-primary/10 backdrop-blur-xl border border-[#1E1E1E]/60 rounded-2xl hidden lg:block"
+                className="absolute -top-6 -right-6 w-20 h-20 bg-primary/10 backdrop-blur-xl border border-border rounded-2xl hidden lg:flex items-center justify-center"
               >
-                <div className="w-full h-full flex items-center justify-center text-3xl text-primary/80">
-                  <Sparkles size={32} />
-                </div>
+                <Sparkles size={32} className="text-primary/80" />
               </motion.div>
 
               <motion.div
@@ -198,57 +241,41 @@ const Hero: React.FC = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -bottom-6 -left-6 w-16 h-16 bg-primary/20 rounded-full hidden lg:block"
+                className="absolute -bottom-6 -left-6 w-16 h-16 bg-primary/20 rounded-full hidden lg:flex items-center justify-center"
               >
-                <div className="w-full h-full flex items-center justify-center text-2xl text-primary/70">
-                  <Star size={24} />
-                </div>
+                <Star size={24} className="text-primary/70" />
               </motion.div>
             </div>
           </motion.div>
         </div>
 
-        {/* Proof Points Row */}
+        {/* Trust Metrics Row - Perfectly Responsive */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-16 lg:mt-20"
         >
-          {[
-            {
-              icon: Star,
-              text: "100% Client Satisfaction",
-              value: "5.0★ Rating",
-            },
-            {
-              icon: Folder,
-              text: "50+ Projects",
-              label: "Delivered Successfully",
-            },
-            { icon: Clock, text: "30-Day MVPs", label: "Rapid Development" },
-            {
-              icon: Award,
-              text: "6 Countries",
-              label: "International Clients",
-            },
-          ].map((item, index) => (
+          {trustMetrics.map((metric, index) => (
             <motion.div
-              key={item.text}
+              key={metric.label}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ y: -2, scale: 1.02 }}
-              transition={{ duration: 0.12, delay: 0.8 + index * 0.05 }}
-              className="text-center bg-[#131313]/50 backdrop-blur-xl border border-[#1E1E1E]/60 rounded-xl px-4 py-8 hover:bg-[#131313]/80 hover:border-primary/30 transition-all duration-120 cursor-pointer"
+              transition={{ duration: 0.15, delay: 0.8 + index * 0.05 }}
+              className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-xl px-3 py-6 lg:px-4 lg:py-8 hover:bg-card/80 hover:border-primary/30 transition-all duration-150 cursor-pointer group"
             >
-              <div className="flex items-center justify-center mb-2">
-                <item.icon size={16} className="text-primary mr-1" />
-                <span className="text-xl font-bold text-[#EDEDED]">
-                  {item.value || item.text}
+              <div className="flex items-center justify-center mb-3">
+                <metric.icon size={18} className="text-primary mr-2" />
+                <span className="text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-150">
+                  {metric.value}
                 </span>
               </div>
-              <div className="text-sm text-[#8e8e8e] font-medium">
-                {item.label || item.text}
+              <div className="text-sm lg:text-base font-medium text-foreground mb-1">
+                {metric.label}
+              </div>
+              <div className="text-xs lg:text-sm text-muted-foreground">
+                {metric.description}
               </div>
             </motion.div>
           ))}
