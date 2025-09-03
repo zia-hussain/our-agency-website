@@ -184,4 +184,4 @@ const ServicesPreview: React.FC = () => {
   );
 };
 
-export default TrustBand;
+export default ServicesPreview;
