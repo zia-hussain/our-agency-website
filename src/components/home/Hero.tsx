@@ -120,17 +120,14 @@ const Hero: React.FC = () => {
 
             {/* Headline - SEO Optimized & Trust-Building */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
-              Transform Your Vision Into
-              <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent mt-2">
+              <span className="block">Transform Your Vision Into</span>
+              <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
                 World-Class Software
-              </span>
-              <span className="block text-foreground">
-                That Scales Globally
               </span>
             </h1>
 
             {/* Subtext - Clear Value Proposition */}
-            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-[1.6] mb-8 max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl lg:text-xl text-muted-foreground leading-[1.6] mb-8 max-w-2xl">
               <strong className="text-foreground">SaaS MVPs, AI Automation & Mobile Apps</strong> for ambitious startups and enterprises. 
               <span className="block mt-2">
                 Trusted by <strong className="text-primary">50+ international clients</strong> across US, UK, Canada, Australia & UAE.
@@ -138,18 +135,18 @@ const Hero: React.FC = () => {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12">
               <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15, ease: "easeOut" }}
-                  className="group bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-8 py-4 rounded-xl font-semibold 
+                  className="group bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold 
                            hover:shadow-glow transition-all duration-150
-                           flex items-center gap-3 text-lg shadow-lg w-full sm:w-auto justify-center"
+                           flex items-center gap-2 sm:gap-3 text-base sm:text-lg shadow-lg w-full sm:w-auto justify-center"
                 >
                   Start Your Project
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-150" />
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-150" />
                 </motion.button>
               </Link>
 
@@ -158,8 +155,8 @@ const Hero: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15, ease: "easeOut" }}
                 onClick={() => scrollToSection("portfolio")}
-                className="group text-muted-foreground hover:text-primary font-semibold px-8 py-4 
-                         transition-all duration-150 text-lg flex items-center gap-3 justify-center
+                className="group text-muted-foreground hover:text-primary font-semibold px-6 sm:px-8 py-3 sm:py-4 
+                         transition-all duration-150 text-base sm:text-lg flex items-center gap-2 sm:gap-3 justify-center
                          bg-card/50 backdrop-blur-xl border border-border rounded-xl
                          hover:bg-card/80 hover:border-primary/30 w-full sm:w-auto"
               >
@@ -254,7 +251,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.6 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-16 lg:mt-20"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mt-12 sm:mt-16 lg:mt-20"
         >
           {trustMetrics.map((metric, index) => (
             <motion.div
@@ -263,18 +260,18 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ y: -2, scale: 1.02 }}
               transition={{ duration: 0.15, delay: 0.8 + index * 0.05 }}
-              className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-xl px-3 py-6 lg:px-4 lg:py-8 hover:bg-card/80 hover:border-primary/30 transition-all duration-150 cursor-pointer group"
+              className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-xl px-2 sm:px-3 py-4 sm:py-6 lg:px-4 lg:py-8 hover:bg-card/80 hover:border-primary/30 transition-all duration-150 cursor-pointer group"
             >
               <div className="flex items-center justify-center mb-3">
-                <metric.icon size={18} className="text-primary mr-2" />
-                <span className="text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-150">
+                <metric.icon size={16} className="text-primary mr-1 sm:mr-2" />
+                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-150">
                   {metric.value}
                 </span>
               </div>
-              <div className="text-sm lg:text-base font-medium text-foreground mb-1">
+              <div className="text-xs sm:text-sm lg:text-base font-medium text-foreground mb-1">
                 {metric.label}
               </div>
-              <div className="text-xs lg:text-sm text-muted-foreground">
+              <div className="text-xs text-muted-foreground">
                 {metric.description}
               </div>
             </motion.div>
