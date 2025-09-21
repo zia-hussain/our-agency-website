@@ -416,7 +416,7 @@ const HomePage: React.FC = () => {
           "scalable software solutions",
           "high performance applications",
           "secure software development",
-        name: "Zumetrix Labs - #1 Software Development Agency Pakistan",
+          "Zumetrix Labs - #1 Software Development Agency Pakistan",
           "software development experts",
           "top software developers",
           "best software agency",
