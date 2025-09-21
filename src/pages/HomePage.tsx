@@ -333,7 +333,7 @@ const HomePage: React.FC = () => {
           "AI chatbot development Karachi",
           "workflow automation UAE",
           "custom software solutions"
-        }
+        ]
       },
       {
         "@type": "WebSite",
