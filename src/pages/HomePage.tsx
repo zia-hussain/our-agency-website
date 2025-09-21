@@ -181,16 +181,11 @@ const HomePage: React.FC = () => {
         },
         // Enhanced LocalBusiness schema for geo-targeting
         "@type": ["Organization", "LocalBusiness"],
-        address: {
-          "@type": "PostalAddress",
-          addressCountry: "Pakistan",
-          addressRegion: "Punjab",
-          addressLocality: "Karachi, Lahore, Islamabad"
-        },
+        address: { "@type": "PostalAddress", addressCountry: "Pakistan" },
         areaServed: [
           {
-            "@type": "Country",
-            name: "Pakistan"
+            "@type": "Place",
+            name: "Worldwide"
           },
           {
             "@type": "Country", 
@@ -215,10 +210,6 @@ const HomePage: React.FC = () => {
           {
             "@type": "Country",
             name: "Singapore"
-          },
-          {
-            "@type": "Place",
-            name: "Worldwide"
           }
         ],
         // Enhanced service offerings for AI understanding

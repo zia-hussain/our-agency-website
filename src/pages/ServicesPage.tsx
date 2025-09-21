@@ -132,7 +132,7 @@ const ServicesPage: React.FC = () => {
       <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
@@ -150,7 +150,7 @@ const ServicesPage: React.FC = () => {
 
             <div className="max-w-5xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                <strong>Zumetrix Labs</strong> delivers world-class{" "}
+                <strong>Zumetrix Labs</strong> delivers world-class{" "} 
                 <strong>software development services</strong> for international markets and ambitious businesses worldwide. Founded by expert developers{" "}
                 <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>
                 , we specialize in <strong>enterprise-grade SaaS MVP development</strong>,{" "}
@@ -159,7 +159,7 @@ const ServicesPage: React.FC = () => {
                 <strong> AI automation services</strong>, and{" "}
                 <strong>custom enterprise software solutions</strong> that scale globally and drive exceptional business results.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed"> 
                 Our <strong>international software development agency</strong> serves high-value clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe</strong>. We build enterprise-grade web applications, sophisticated custom dashboards, advanced Firebase integrations, intelligent no-code automations, and scalable enterprise software using cutting-edge tech stacks including React.js, Next.js, TypeScript, Node.js, Python, cloud-native architectures, and AI technologies that give your business a competitive advantage in global markets.
               </p>
             </div>

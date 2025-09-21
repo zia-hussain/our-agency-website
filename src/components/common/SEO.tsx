@@ -43,10 +43,6 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="language" content="English" />
       <meta name="geo.region" content="PK" />
       <meta name="geo.country" content="Pakistan" />
-      <meta name="geo.placename" content="Karachi, Lahore, Islamabad" />
-      <meta name="distribution" content="global" />
-      <meta name="rating" content="general" />
-      <meta name="classification" content="Software Development Agency" />
       <meta
         name="category"
         content="Technology, Software Development, Web Development, Mobile Apps"
@@ -54,10 +50,6 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="coverage" content="Worldwide" />
       <meta name="target" content="Startups, Enterprises, Businesses" />
       
-      {/* Enhanced geo-targeting meta tags */}
-      <meta name="geo.region" content="PK-PB" />
-      <meta name="geo.placename" content="Karachi, Lahore, Islamabad, Pakistan" />
-      <meta name="ICBM" content="24.8607, 67.0011" />
       <meta name="DC.title" content={title} />
       <meta name="DC.creator" content="Zia Hussain, Syed Omer Shah" />
       <meta name="DC.subject" content="Software Development, SaaS MVP, AI Automation" />

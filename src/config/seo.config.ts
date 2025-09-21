@@ -56,25 +56,7 @@ export const SEO_CONFIG = {
   ],
 
   // International Target Markets
-  targetMarkets: {
-    primary: ["Pakistan", "United States", "United Kingdom", "Canada", "Australia"],
-    cities: [
-      // Pakistan
-      "Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad",
-      // US
-      "San Francisco", "New York", "Austin", "Seattle", "Los Angeles", "Boston", "Chicago",
-      // UK
-      "London", "Manchester", "Birmingham", "Edinburgh", "Bristol",
-      // Canada
-      "Toronto", "Vancouver", "Montreal", "Calgary", "Ottawa",
-      // EU
-      "Berlin", "Munich", "Amsterdam", "Stockholm", "Copenhagen", "Zurich", "Dublin",
-      // Middle East
-      "Dubai", "Abu Dhabi", "Riyadh", "Doha", "Kuwait City",
-      // APAC
-      "Singapore", "Sydney", "Melbourne", "Auckland", "Hong Kong"
-    ]
-  },
+  targetMarkets: ["Worldwide", "United States", "United Kingdom", "Canada", "Australia", "European Union", "Middle East", "Asia Pacific"],
 
   // Service-Specific Keywords
   serviceKeywords: {
@@ -101,8 +83,6 @@ export const SEO_CONFIG = {
       "AI automation services",
       "OpenAI integration",
       "ChatGPT automation",
-      "AI workflow automation",
-      "business process automation",
       "AI chatbot development",
       "machine learning solutions"
     ],
@@ -110,7 +90,6 @@ export const SEO_CONFIG = {
       "mobile app development Pakistan",
       "React Native development",
       "Flutter app development",
-      "iOS app development",
       "Android app development",
       "cross-platform app development"
     ],
@@ -119,7 +98,6 @@ export const SEO_CONFIG = {
       "Firebase experts Pakistan",
       "Firestore development",
       "Firebase authentication",
-      "Firebase hosting",
       "Firebase cloud functions"
     ]
   },
@@ -129,7 +107,6 @@ export const SEO_CONFIG = {
     "Zia Hussain developer",
     "Syed Zia Hussain Shah",
     "Zia Hussain software engineer",
-    "Zia Hussain CEO Zumetrix",
     "Syed Omer Shah developer",
     "Syed Omer Shah CTO",
     "Pakistani software developers",
@@ -140,7 +117,6 @@ export const SEO_CONFIG = {
   intentKeywords: [
     "hire React developer",
     "hire Node.js developer", 
-    "hire Firebase expert",
     "build SaaS product",
     "launch MVP fast",
     "software development agency",
@@ -196,11 +172,7 @@ export const SEO_CONFIG = {
       }
     ],
     "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "Pakistan",
-      "addressRegion": "Punjab"
-    },
-    "contactPoint": {
+      "@type": "PostalAddress", "addressCountry": "Pakistan" }, "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+92-XXX-XXXXXXX",
       "contactType": "customer service",

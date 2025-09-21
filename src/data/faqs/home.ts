@@ -2,7 +2,7 @@
 export const homeFAQs = [
   {
     question: "What is Zumetrix Labs and what software development services do they provide?",
-    answer: "Zumetrix Labs is Pakistan's premier software development agency founded by expert developers Zia Hussain (CEO) and Syed Omer Shah (CTO). We specialize in SaaS MVP development (30-day delivery), React/Node.js web applications, mobile app development using React Native & Flutter, AI automation services with OpenAI integration, Firebase development, custom enterprise software, and no-code automation solutions using Zapier and Make.com. We serve 50+ international clients across the United States, United Kingdom, Canada, Australia, UAE, and Singapore with 100% client satisfaction rate."
+    answer: "Zumetrix Labs is a premier software development agency founded by expert developers Zia Hussain (CEO) and Syed Omer Shah (CTO). We specialize in SaaS MVP development (30-day delivery), React/Node.js web applications, mobile app development using React Native & Flutter, AI automation services with OpenAI integration, Firebase development, custom enterprise software, and no-code automation solutions using Zapier and Make.com. We serve 50+ international clients across the United States, United Kingdom, Canada, Australia, UAE, and Singapore with 100% client satisfaction rate."
   },
   {
     question: "Who founded Zumetrix Labs and what makes them different from other international software agencies?",

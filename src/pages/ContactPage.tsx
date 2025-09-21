@@ -283,50 +283,14 @@ const ContactPage: React.FC = () => {
           description: "Contact Pakistan's leading software development agency for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
           mainEntity: {
             "@type": "LocalBusiness",
-            "@id": "https://zumetrix.com/#organization",
             name: "Zumetrix Labs",
             description: "Pakistan's premier software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development for international clients.",
             address: {
               "@type": "PostalAddress",
               addressCountry: "Pakistan",
-              addressRegion: "Punjab",
-              addressLocality: "Karachi, Lahore, Islamabad"
+              addressRegion: "Punjab"
             },
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: "24.8607",
-              longitude: "67.0011"
-            },
-            areaServed: [
-              {
-                "@type": "Country",
-                name: "Pakistan"
-              },
-              {
-                "@type": "Country",
-                name: "United States"
-              },
-              {
-                "@type": "Country",
-                name: "United Kingdom"
-              },
-              {
-                "@type": "Country",
-                name: "Canada"
-              },
-              {
-                "@type": "Country",
-                name: "Australia"
-              },
-              {
-                "@type": "Country",
-                name: "United Arab Emirates"
-              },
-              {
-                "@type": "Country",
-                name: "Singapore"
-              }
-            ],
+            areaServed: "Worldwide",
             contactPoint: {
               "@type": "ContactPoint",
               telephone: "+92-XXX-XXXXXXX",
