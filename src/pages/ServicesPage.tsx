@@ -40,6 +40,19 @@ const ServicesPage: React.FC = () => {
               provider: {
                 "@id": "https://zumetrix.com/#organization",
               },
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "5.0",
+                reviewCount: "50",
+                bestRating: "5",
+                worstRating: "5"
+              },
+              offers: {
+                "@type": "Offer",
+                price: service.price.replace(/[^0-9]/g, ''),
+                priceCurrency: "USD",
+                availability: "https://schema.org/InStock"
+              }
             },
           })),
         },
@@ -48,11 +61,57 @@ const ServicesPage: React.FC = () => {
         "@type": "Service",
         name: service.title,
         description: service.description,
+        aggregateRating: {
+          "@type": "AggregateRating", 
+          ratingValue: "5.0",
+          reviewCount: "50",
+          bestRating: "5",
+          worstRating: "5"
+        },
         provider: {
           "@id": "https://zumetrix.com/#organization",
         },
-        areaServed: ["Pakistan", "Worldwide"],
+        areaServed: [
+          {
+            "@type": "Country",
+            name: "Pakistan"
+          },
+          {
+            "@type": "Country",
+            name: "United States"
+          },
+          {
+            "@type": "Country", 
+            name: "United Kingdom"
+          },
+          {
+            "@type": "Country",
+            name: "Canada"
+          },
+          {
+            "@type": "Country",
+            name: "Australia"
+          },
+          {
+            "@type": "Country",
+            name: "United Arab Emirates"
+          },
+          {
+            "@type": "Country",
+            name: "Singapore"
+          },
+          {
+            "@type": "Place",
+            name: "Worldwide"
+          }
+        ],
         serviceType: service.technologies,
+        offers: {
+          "@type": "Offer",
+          price: service.price.replace(/[^0-9]/g, ''),
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock"
+        }
       })),
     ],
   };

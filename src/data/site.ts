@@ -18,9 +18,8 @@ export const SITE_DATA = {
   // Hero Section Data
   hero: {
     overline: "Software for Startups & Enterprises",
-    headline: "Enterprise Software That Doesn’t Just Scale. It Dominates.",
-    subtext:
-      "50+ clients worldwide trust us for SaaS, AI & Mobile systems that dominate markets. Built with React/Node.js precision. Delivered in 30 days.",
+    headline: "Transform Your Vision Into World-Class Software That Scales Globally",
+    subtext: "Zumetrix Labs builds SaaS MVPs in 30 days, AI automation systems, and mobile apps for ambitious startups and enterprises. Founded by expert developers Zia Hussain & Syed Omer Shah. Trusted by 50+ international clients across US, UK, Canada, Australia & UAE with 100% satisfaction rate.",
     primaryCTA: {
       text: "Start Your Project",
       link: "/contact",

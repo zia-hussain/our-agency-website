@@ -53,6 +53,24 @@ const SEO: React.FC<SEOProps> = ({
       />
       <meta name="coverage" content="Worldwide" />
       <meta name="target" content="Startups, Enterprises, Businesses" />
+      
+      {/* Enhanced geo-targeting meta tags */}
+      <meta name="geo.region" content="PK-PB" />
+      <meta name="geo.placename" content="Karachi, Lahore, Islamabad, Pakistan" />
+      <meta name="ICBM" content="24.8607, 67.0011" />
+      <meta name="DC.title" content={title} />
+      <meta name="DC.creator" content="Zia Hussain, Syed Omer Shah" />
+      <meta name="DC.subject" content="Software Development, SaaS MVP, AI Automation" />
+      <meta name="DC.description" content={description} />
+      <meta name="DC.publisher" content="Zumetrix Labs" />
+      <meta name="DC.contributor" content="Zumetrix Labs Team" />
+      <meta name="DC.date" content={new Date().toISOString().split('T')[0]} />
+      <meta name="DC.type" content="Text" />
+      <meta name="DC.format" content="text/html" />
+      <meta name="DC.identifier" content={url} />
+      <meta name="DC.language" content="en" />
+      <meta name="DC.coverage" content="Worldwide" />
+      <meta name="DC.rights" content="Copyright Zumetrix Labs" />
 
       {googleVerification && (
         <meta name="google-site-verification" content={googleVerification} />

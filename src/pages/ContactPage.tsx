@@ -276,6 +276,83 @@ const ContactPage: React.FC = () => {
         description="Ready to start your software project? Contact Zumetrix Labs for a free consultation. We respond within 24 hours and offer honest advice with no obligation."
         keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Syed Zia Hussain Shah contact, Syed Omer Shah contact"
         url="https://zumetrix.com/contact"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: "Contact Zumetrix Labs - Software Development Agency",
+          description: "Contact Pakistan's leading software development agency for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
+          mainEntity: {
+            "@type": "LocalBusiness",
+            "@id": "https://zumetrix.com/#organization",
+            name: "Zumetrix Labs",
+            description: "Pakistan's premier software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development for international clients.",
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "Pakistan",
+              addressRegion: "Punjab",
+              addressLocality: "Karachi, Lahore, Islamabad"
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: "24.8607",
+              longitude: "67.0011"
+            },
+            areaServed: [
+              {
+                "@type": "Country",
+                name: "Pakistan"
+              },
+              {
+                "@type": "Country",
+                name: "United States"
+              },
+              {
+                "@type": "Country",
+                name: "United Kingdom"
+              },
+              {
+                "@type": "Country",
+                name: "Canada"
+              },
+              {
+                "@type": "Country",
+                name: "Australia"
+              },
+              {
+                "@type": "Country",
+                name: "United Arab Emirates"
+              },
+              {
+                "@type": "Country",
+                name: "Singapore"
+              }
+            ],
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+92-XXX-XXXXXXX",
+              contactType: "customer service",
+              email: "hello@zumetrix.com",
+              availableLanguage: ["English", "Urdu"],
+              hoursAvailable: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                opens: "09:00",
+                closes: "18:00",
+                timeZone: "Asia/Karachi"
+              }
+            },
+            priceRange: "$5,000 - $50,000",
+            paymentAccepted: ["Cash", "Credit Card", "Bank Transfer", "PayPal", "Stripe"],
+            currenciesAccepted: "USD",
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "5.0",
+              reviewCount: "50",
+              bestRating: "5",
+              worstRating: "5"
+            }
+          }
+        }}
       />
 
       {/* Hero Section */}

@@ -196,11 +196,31 @@ const ArticleDetailPage: React.FC = () => {
     image: article.image,
     author: {
       "@type": "Person",
+      "@id": `https://zumetrix.com/about#${article.author.toLowerCase().replace(/\s+/g, '-')}`,
       name: article.author,
       jobTitle: article.authorRole,
+      description: article.author === "Zia Hussain" 
+        ? "Expert full-stack developer and co-founder of Zumetrix Labs. Specializes in React, Node.js, SaaS MVP development, and business strategy."
+        : "Technical backbone of Zumetrix Labs. Expert in scalable architecture, AI automation, and modern web technologies.",
+      knowsAbout: article.author === "Zia Hussain"
+        ? ["React Development", "Node.js Development", "SaaS MVP Development", "Business Strategy", "Client Success"]
+        : ["AI Automation", "System Architecture", "Cloud Infrastructure", "Performance Optimization", "Python Development"],
+      sameAs: article.author === "Zia Hussain"
+        ? [
+            "https://www.upwork.com/freelancers/ziahussain1",
+            "https://www.fiverr.com/syedziashahgill", 
+            "https://www.linkedin.com/in/zia-hussain-404-/",
+            "https://github.com/zia-hussain"
+          ]
+        : [
+            "https://www.linkedin.com/in/omer-gillani/",
+            "https://github.com/UmerGillani36"
+          ],
       worksFor: {
         "@type": "Organization",
+        "@id": "https://zumetrix.com/#organization",
         name: "Zumetrix Labs",
+        url: "https://zumetrix.com"
       },
     },
     publisher: {
