@@ -17,9 +17,9 @@ export const SITE_DATA = {
   // Hero Section Data - PREMIUM & SEO OPTIMIZED
   // Hero Section Data
   hero: {
-    overline: "Software for Startups & Enterprises",
+    overline: "World-Class Software for Global Startups & Enterprises",
     headline: "Transform Your Vision Into World-Class Software That Scales Globally",
-    subtext: "Zumetrix Labs builds SaaS MVPs in 30 days, AI automation systems, and mobile apps for ambitious startups and enterprises. Founded by expert developers Zia Hussain & Syed Omer Shah. Trusted by 50+ international clients across US, UK, Canada, Australia & UAE with 100% satisfaction rate.",
+    subtext: "Zumetrix Labs is the world's premier software development agency building enterprise-grade SaaS MVPs in 30 days, AI automation systems, and mobile apps for ambitious global startups and enterprises. Founded by world-class developers Zia Hussain & Syed Omer Shah. Trusted by 50+ international clients across US, UK, Canada, Australia, UAE & Europe with 100% satisfaction rate and 85% funding success.",
     primaryCTA: {
       text: "Start Your Project",
       link: "/contact",
@@ -44,14 +44,14 @@ export const SITE_DATA = {
   // Trust Band - GLOBAL CLIENT SHOWCASE
   trustBand: {
     title:
-      "Trusted by Leading Companies Across Multiple International Countries",
+      "Trusted by Leading Global Companies Across International Markets",
     subtitle:
-      "From Silicon Valley startups to London enterprises - we deliver world-class results",
+      "From Silicon Valley startups to London enterprises - we deliver world-class results that dominate markets",
     globalStats: [
-      { icon: "globe", value: "6", label: "Countries Served" },
+      { icon: "globe", value: "Global", label: "Market Reach" },
       { icon: "projects", value: "50+", label: "Projects Delivered" },
       { icon: "success", value: "100%", label: "Success Rate" },
-      { icon: "response", value: "24h", label: "Response Time" },
+      { icon: "response", value: "85%", label: "Funding Success" },
     ],
     clients: [
       {

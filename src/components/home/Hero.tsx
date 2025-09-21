@@ -128,9 +128,9 @@ const Hero: React.FC = () => {
 
             {/* Subtext - Clear Value Proposition */}
             <p className="text-base sm:text-lg md:text-xl lg:text-xl text-muted-foreground leading-[1.6] mb-8 max-w-2xl">
-              <strong className="text-foreground">Zumetrix Labs builds SaaS MVPs in 30 days, AI automation systems, and mobile apps</strong> for ambitious startups and enterprises. 
+              <strong className="text-foreground">Zumetrix Labs is the world's premier software development agency building enterprise-grade SaaS MVPs in 30 days, AI automation systems, and mobile apps</strong> for ambitious global startups and enterprises. 
               <span className="block mt-2">
-                Founded by expert developers <strong className="text-primary">Zia Hussain & Syed Omer Shah</strong>. Trusted by <strong className="text-primary">50+ international clients</strong> across US, UK, Canada, Australia & UAE with <strong className="text-primary">100% satisfaction rate</strong>.
+                Founded by world-class developers <strong className="text-primary">Zia Hussain & Syed Omer Shah</strong>. Trusted by <strong className="text-primary">50+ international clients</strong> across US, UK, Canada, Australia, UAE & Europe with <strong className="text-primary">100% satisfaction rate</strong> and <strong className="text-primary">85% funding success</strong> for startup MVPs.
               </span>
             </p>
 

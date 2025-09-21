@@ -150,17 +150,17 @@ const ServicesPage: React.FC = () => {
 
             <div className="max-w-5xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                <strong>Zumetrix Labs</strong> delivers world-class{" "} 
-                <strong>software development services</strong> for international markets and ambitious businesses worldwide. Founded by expert developers{" "}
+                <strong>Zumetrix Labs</strong> delivers the world's most advanced{" "} 
+                <strong>software development services</strong> for global markets and ambitious businesses worldwide. Founded by world-class expert developers{" "}
                 <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>
-                , we specialize in <strong>enterprise-grade SaaS MVP development</strong>,{" "}
+                , we are globally recognized for <strong>enterprise-grade SaaS MVP development</strong>,{" "}
                 <strong>React/Node.js applications</strong>,{" "}
                 <strong>mobile app development</strong>,
                 <strong> AI automation services</strong>, and{" "}
-                <strong>custom enterprise software solutions</strong> that scale globally and drive exceptional business results.
+                <strong>custom enterprise software solutions</strong> that scale globally, dominate markets, and drive exceptional business results.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed"> 
-                Our <strong>international software development agency</strong> serves high-value clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe</strong>. We build enterprise-grade web applications, sophisticated custom dashboards, advanced Firebase integrations, intelligent no-code automations, and scalable enterprise software using cutting-edge tech stacks including React.js, Next.js, TypeScript, Node.js, Python, cloud-native architectures, and AI technologies that give your business a competitive advantage in global markets.
+                Our <strong>world-class international software development agency</strong> serves high-value clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe</strong>. We build enterprise-grade web applications, sophisticated custom dashboards, advanced Firebase integrations, intelligent AI automations, and scalable enterprise software using cutting-edge tech stacks including React.js, Next.js, TypeScript, Node.js, Python, cloud-native architectures, and AI technologies that give your business an unbeatable competitive advantage in global markets.
               </p>
             </div>
           </AnimatedSection>

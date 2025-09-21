@@ -200,11 +200,37 @@ const ArticleDetailPage: React.FC = () => {
       name: article.author,
       jobTitle: article.authorRole,
       description: article.author === "Zia Hussain" 
-        ? "Expert full-stack developer and co-founder of Zumetrix Labs. Specializes in React, Node.js, SaaS MVP development, and business strategy."
-        : "Technical backbone of Zumetrix Labs. Expert in scalable architecture, AI automation, and modern web technologies.",
+        ? "World-class full-stack developer and visionary co-founder of Zumetrix Labs. Global expert in React/TypeScript development, Node.js architecture, SaaS MVP building, Firebase integration, and international business strategy. Led 30+ successful MVP launches with 100% client satisfaction rate."
+        : "Technical mastermind and co-founder of Zumetrix Labs. World-class expert in scalable system architecture, AI automation workflows, Python development, cloud infrastructure optimization, and cutting-edge web technologies. Architect of systems serving 100K+ users globally.",
       knowsAbout: article.author === "Zia Hussain"
-        ? ["React Development", "Node.js Development", "SaaS MVP Development", "Business Strategy", "Client Success"]
-        : ["AI Automation", "System Architecture", "Cloud Infrastructure", "Performance Optimization", "Python Development"],
+        ? [
+            "React Development", 
+            "Node.js Development", 
+            "SaaS MVP Development", 
+            "TypeScript Development",
+            "Firebase Integration",
+            "Business Strategy", 
+            "Client Success",
+            "Enterprise Web Applications",
+            "Startup MVP Strategy",
+            "International Software Development",
+            "Full Stack Development",
+            "Software Architecture"
+          ]
+        : [
+            "AI Automation", 
+            "OpenAI Integration",
+            "System Architecture", 
+            "Cloud Infrastructure", 
+            "Performance Optimization", 
+            "Python Development",
+            "Machine Learning Implementation",
+            "Database Optimization",
+            "API Development",
+            "DevOps Engineering",
+            "Scalable Web Applications",
+            "Enterprise Software Architecture"
+          ],
       sameAs: article.author === "Zia Hussain"
         ? [
             "https://www.upwork.com/freelancers/ziahussain1",
@@ -215,6 +241,28 @@ const ArticleDetailPage: React.FC = () => {
         : [
             "https://www.linkedin.com/in/omer-gillani/",
             "https://github.com/UmerGillani36"
+          ],
+      hasOccupation: {
+        "@type": "Occupation",
+        name: article.author === "Zia Hussain" ? "Software Development Expert & CEO" : "Chief Technology Officer & AI Automation Expert",
+        occupationLocation: {
+          "@type": "Place",
+          name: "Worldwide"
+        },
+        skills: article.author === "Zia Hussain" 
+          ? "React, Node.js, TypeScript, Firebase, SaaS Development, Business Strategy"
+          : "AI Automation, System Architecture, Python, Cloud Infrastructure, Performance Optimization"
+      },
+      award: article.author === "Zia Hussain"
+        ? [
+            "100% Client Satisfaction Rate",
+            "30+ Successful MVP Launches", 
+            "Expert React/Node.js Developer Recognition"
+          ]
+        : [
+            "Systems Serving 100K+ Users",
+            "AI Automation Expert Recognition",
+            "Scalable Architecture Specialist"
           ],
       worksFor: {
         "@type": "Organization",

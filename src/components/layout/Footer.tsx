@@ -91,14 +91,7 @@ const Footer: React.FC = () => {
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              World-class software development agency founded by expert
-              developers Zia Hussain and Syed Omer Shah. We specialize in
-              enterprise-grade SaaS MVP development, React/Node.js applications,
-              mobile app development, AI automation services, Firebase
-              integration, and custom software solutions. Serving ambitious
-              startups and established enterprises across the United States,
-              United Kingdom, Canada, Australia, UAE, Singapore, and global
-              markets.
+              World-class software development agency founded by expert developers Zia Hussain and Syed Omer Shah. Global leaders in enterprise-grade SaaS MVP development, React/Node.js applications, mobile app development, AI automation services, Firebase integration, and custom software solutions. Serving ambitious startups and established enterprises across the United States, United Kingdom, Canada, Australia, UAE, Singapore, Europe, and global markets with 100% satisfaction rate and 85% funding success for startup MVPs.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
