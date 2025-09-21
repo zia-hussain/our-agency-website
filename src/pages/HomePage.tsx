@@ -428,7 +428,7 @@ const HomePage: React.FC = () => {
           "software development outsourcing",
           "technology consulting",
           "digital innovation",
-          "software modernization"
+          "software modernization",
           "Zumetrix",
           "Zometrix", 
           "Zumetrix Agency",
