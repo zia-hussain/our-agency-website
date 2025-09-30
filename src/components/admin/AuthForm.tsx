@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Lock, Eye, EyeOff, LogIn, Sparkles } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, LogIn, Sparkles, Shield } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
 const AuthForm: React.FC = () => {
@@ -33,13 +33,13 @@ const AuthForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4 relative overflow-hidden">
-      {/* Background Elements */}
+    <div className="min-h-screen bg-background flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* SUBTLE BACKGROUND ELEMENTS */}
       <div className="absolute inset-0">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.03, 0.08, 0.03],
+            scale: [1, 1.1, 1],
+            opacity: [0.02, 0.05, 0.02],
           }}
           transition={{
             duration: 20,
@@ -50,8 +50,8 @@ const AuthForm: React.FC = () => {
         />
         <motion.div
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.05, 0.1, 0.05],
+            scale: [1.1, 1, 1.1],
+            opacity: [0.03, 0.06, 0.03],
           }}
           transition={{
             duration: 25,
@@ -68,14 +68,14 @@ const AuthForm: React.FC = () => {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="max-w-md w-full relative z-10"
       >
-        <div className="bg-card/60 backdrop-blur-xl border border-border rounded-2xl p-8 shadow-2xl">
-          {/* Logo & Header */}
+        <div className="bg-card border border-border rounded-2xl p-8 sm:p-10 shadow-2xl">
+          {/* PREMIUM LOGO & HEADER */}
           <div className="text-center mb-8">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-primary/80 rounded-2xl mb-6 shadow-glow"
+              className="inline-flex items-center justify-center w-20 h-20 bg-primary rounded-2xl mb-6 shadow-lg"
             >
               <img
                 src="/Zumetrix_Labs_Logo (7).png"
@@ -89,7 +89,7 @@ const AuthForm: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
-              <h1 className="text-3xl font-bold text-foreground mb-2">
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
                 Welcome Back
               </h1>
               <p className="text-muted-foreground">
@@ -97,19 +97,19 @@ const AuthForm: React.FC = () => {
               </p>
             </motion.div>
 
-            {/* Premium Badge */}
+            {/* SECURITY BADGE */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.3 }}
               className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium border border-primary/20 mt-4"
             >
-              <Sparkles size={12} className="mr-1" />
-              Content Management System
+              <Shield size={12} className="mr-1" />
+              Secure Content Management
             </motion.div>
           </div>
 
-          {/* Error Message */}
+          {/* ERROR MESSAGE */}
           <AnimatePresence>
             {error && (
               <motion.div
@@ -124,7 +124,7 @@ const AuthForm: React.FC = () => {
             )}
           </AnimatePresence>
 
-          {/* Sign In Form */}
+          {/* SIGN IN FORM - FULLY RESPONSIVE */}
           <form onSubmit={handleSignIn} className="space-y-6">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -142,7 +142,7 @@ const AuthForm: React.FC = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-background/50 border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-4 focus:ring-primary/20 transition-all duration-150 outline-none"
+                  className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-4 focus:ring-primary/20 transition-all duration-150 outline-none"
                   placeholder="admin@zumetrix.com"
                 />
               </div>
@@ -164,7 +164,7 @@ const AuthForm: React.FC = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 bg-background/50 border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-4 focus:ring-primary/20 transition-all duration-150 outline-none"
+                  className="w-full pl-10 pr-12 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-4 focus:ring-primary/20 transition-all duration-150 outline-none"
                   placeholder="Enter your password"
                 />
                 <motion.button
@@ -191,7 +191,7 @@ const AuthForm: React.FC = () => {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="w-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-3 rounded-xl font-medium hover:shadow-glow transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-lg"
+                className="w-full bg-primary text-primary-foreground py-3 sm:py-4 rounded-xl font-medium hover:shadow-lg transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base sm:text-lg"
               >
                 {loading ? (
                   <>
@@ -212,7 +212,7 @@ const AuthForm: React.FC = () => {
             </motion.div>
           </form>
 
-          {/* Footer */}
+          {/* FOOTER */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -229,7 +229,7 @@ const AuthForm: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Additional Security Info */}
+        {/* HELP CONTACT */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

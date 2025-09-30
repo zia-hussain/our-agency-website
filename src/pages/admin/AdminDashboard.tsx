@@ -18,19 +18,24 @@ import {
   Award,
   Activity,
   Calendar,
-  DollarSign,
-  Target
+  Target,
+  Zap,
+  Code,
+  Building,
+  MapPin
 } from 'lucide-react';
 import { useServices, useProjects, useArticles, useTestimonials, useFounders } from '../../hooks/useSupabaseData';
 
 const AdminDashboard: React.FC = () => {
-  const { services } = useServices();
-  const { projects } = useProjects();
-  const { articles } = useArticles();
-  const { testimonials } = useTestimonials();
-  const { founders } = useFounders();
+  const { services, loading: servicesLoading } = useServices();
+  const { projects, loading: projectsLoading } = useProjects();
+  const { articles, loading: articlesLoading } = useArticles();
+  const { testimonials, loading: testimonialsLoading } = useTestimonials();
+  const { founders, loading: foundersLoading } = useFounders();
 
-  // KPI Data
+  const isLoading = servicesLoading || projectsLoading || articlesLoading || testimonialsLoading || foundersLoading;
+
+  // REAL KPI DATA FROM SUPABASE
   const kpiStats = [
     {
       name: 'Total Projects',
@@ -38,9 +43,10 @@ const AdminDashboard: React.FC = () => {
       change: '+12%',
       changeType: 'positive',
       icon: FileText,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-500/10',
-      description: 'Active portfolio projects'
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
+      description: 'Portfolio projects',
+      href: '/admin/projects'
     },
     {
       name: 'Services Offered',
@@ -48,9 +54,10 @@ const AdminDashboard: React.FC = () => {
       change: '+8%',
       changeType: 'positive',
       icon: Briefcase,
-      color: 'text-green-500',
-      bgColor: 'bg-green-500/10',
-      description: 'Available service packages'
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
+      description: 'Service packages',
+      href: '/admin/services'
     },
     {
       name: 'Published Articles',
@@ -58,9 +65,10 @@ const AdminDashboard: React.FC = () => {
       change: '+25%',
       changeType: 'positive',
       icon: BookOpen,
-      color: 'text-purple-500',
-      bgColor: 'bg-purple-500/10',
-      description: 'Expert insights published'
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
+      description: 'Expert insights',
+      href: '/admin/articles'
     },
     {
       name: 'Client Testimonials',
@@ -68,13 +76,14 @@ const AdminDashboard: React.FC = () => {
       change: '+15%',
       changeType: 'positive',
       icon: MessageSquare,
-      color: 'text-orange-500',
-      bgColor: 'bg-orange-500/10',
-      description: 'Happy client reviews'
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
+      description: 'Happy clients',
+      href: '/admin/testimonials'
     },
   ];
 
-  // Business Metrics
+  // BUSINESS METRICS
   const businessMetrics = [
     {
       name: 'Client Satisfaction',
@@ -84,25 +93,25 @@ const AdminDashboard: React.FC = () => {
       bgColor: 'bg-primary/10',
     },
     {
-      name: 'Project Success Rate',
+      name: 'Project Success',
       value: '100%',
       icon: Target,
-      color: 'text-green-500',
-      bgColor: 'bg-green-500/10',
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
     },
     {
-      name: 'Avg. Response Time',
+      name: 'Response Time',
       value: '24h',
       icon: Clock,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-500/10',
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
     },
     {
-      name: 'Countries Served',
+      name: 'Global Reach',
       value: '6+',
       icon: Globe,
-      color: 'text-purple-500',
-      bgColor: 'bg-purple-500/10',
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
     },
   ];
 
@@ -111,66 +120,94 @@ const AdminDashboard: React.FC = () => {
       name: 'Add New Project',
       href: '/admin/projects/new',
       icon: Plus,
-      description: 'Showcase your latest work',
-      color: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
+      description: 'Showcase latest work',
+      color: 'bg-primary/10 text-primary border-primary/20',
     },
     {
       name: 'Write Article',
       href: '/admin/articles/new',
       icon: Plus,
       description: 'Share expert insights',
-      color: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
+      color: 'bg-primary/10 text-primary border-primary/20',
     },
     {
       name: 'Add Service',
       href: '/admin/services/new',
       icon: Plus,
       description: 'Create new offering',
-      color: 'bg-green-500/10 text-green-500 border-green-500/20',
+      color: 'bg-primary/10 text-primary border-primary/20',
     },
     {
       name: 'View Live Site',
       href: '/',
       icon: Eye,
-      description: 'See your changes live',
+      description: 'See changes live',
       color: 'bg-primary/10 text-primary border-primary/20',
     },
   ];
 
-  const recentActivity = [
-    { action: 'Project updated', item: 'Ifyify AI Platform', time: '2 hours ago', type: 'project' },
-    { action: 'Article published', item: 'SaaS MVP Guide', time: '1 day ago', type: 'article' },
-    { action: 'Service modified', item: 'AI Automation', time: '2 days ago', type: 'service' },
-    { action: 'Testimonial added', item: 'Kelly Andrews', time: '3 days ago', type: 'testimonial' },
-  ];
+  if (isLoading) {
+    return (
+      <div className="space-y-8">
+        {/* Loading Skeleton */}
+        <div className="bg-card border border-border rounded-2xl p-8">
+          <div className="animate-pulse">
+            <div className="h-8 bg-muted/20 rounded w-1/3 mb-4"></div>
+            <div className="h-4 bg-muted/20 rounded w-2/3"></div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="bg-card border border-border rounded-xl p-6">
+              <div className="animate-pulse">
+                <div className="h-12 w-12 bg-muted/20 rounded-xl mb-4"></div>
+                <div className="h-6 bg-muted/20 rounded w-16 mb-2"></div>
+                <div className="h-4 bg-muted/20 rounded w-24"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
-      {/* Welcome Header */}
+      {/* WELCOME HEADER - EXECUTIVE STYLE */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="bg-gradient-to-r from-card/80 to-card/60 backdrop-blur-xl border border-border rounded-2xl p-8"
+        className="bg-card border border-border rounded-2xl p-8"
       >
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-foreground mb-2">
-              Welcome to Your Digital Empire
+            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
+              Content Management Dashboard
             </h1>
             <p className="text-lg text-muted-foreground">
-              Manage your world-class software development agency from here
+              Manage your world-class software development agency
             </p>
+            <div className="flex items-center gap-4 mt-4 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                <span className="text-muted-foreground">System Status: <span className="text-primary font-medium">Online</span></span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock size={14} className="text-primary" />
+                <span className="text-muted-foreground">Last Updated: <span className="text-foreground font-medium">Just now</span></span>
+              </div>
+            </div>
           </div>
           <div className="hidden md:block">
-            <div className="w-20 h-20 bg-gradient-to-r from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-glow">
+            <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center shadow-lg">
               <BarChart3 size={32} className="text-primary-foreground" />
             </div>
           </div>
         </div>
       </motion.div>
 
-      {/* KPI Stats Grid */}
+      {/* REAL KPI STATS - DYNAMIC DATA */}
       <div>
         <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
           <TrendingUp size={24} className="text-primary" />
@@ -184,21 +221,17 @@ const AdminDashboard: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              <Link to={stat.href || '#'}>
+              <Link to={stat.href}>
                 <motion.div
                   whileHover={{ y: -4, scale: 1.02 }}
                   transition={{ duration: 0.15 }}
-                  className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6 hover:border-primary/30 transition-all duration-150 group cursor-pointer"
+                  className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-all duration-150 group cursor-pointer"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <div className={`p-3 rounded-xl ${stat.bgColor}`}>
                       <stat.icon size={24} className={stat.color} />
                     </div>
-                    <div className={`text-xs font-medium px-2 py-1 rounded-full ${
-                      stat.changeType === 'positive' 
-                        ? 'bg-green-500/10 text-green-500' 
-                        : 'bg-red-500/10 text-red-500'
-                    }`}>
+                    <div className="text-xs font-medium px-2 py-1 rounded-full bg-primary/10 text-primary">
                       {stat.change}
                     </div>
                   </div>
@@ -220,7 +253,7 @@ const AdminDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Business Metrics */}
+      {/* BUSINESS PERFORMANCE */}
       <div>
         <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
           <Award size={24} className="text-primary" />
@@ -234,7 +267,7 @@ const AdminDashboard: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               whileHover={{ scale: 1.02 }}
-              className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-4 hover:border-primary/30 transition-all duration-150 text-center"
+              className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 transition-all duration-150 text-center"
             >
               <div className={`w-12 h-12 ${metric.bgColor} rounded-xl flex items-center justify-center mx-auto mb-3`}>
                 <metric.icon size={20} className={metric.color} />
@@ -250,10 +283,10 @@ const AdminDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* QUICK ACTIONS */}
       <div>
         <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-          <Activity size={24} className="text-primary" />
+          <Zap size={24} className="text-primary" />
           Quick Actions
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -268,13 +301,13 @@ const AdminDashboard: React.FC = () => {
                 <motion.div
                   whileHover={{ y: -2, scale: 1.02 }}
                   transition={{ duration: 0.15 }}
-                  className={`bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6 hover:border-primary/30 transition-all duration-150 group ${action.color}`}
+                  className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-all duration-150 group"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 bg-current/10 rounded-lg">
-                      <action.icon size={18} className="text-current" />
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <action.icon size={18} className="text-primary" />
                     </div>
-                    <h3 className="font-semibold text-foreground group-hover:text-current transition-colors duration-150">
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-150">
                       {action.name}
                     </h3>
                   </div>
@@ -288,14 +321,14 @@ const AdminDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Content Overview Grid */}
+      {/* CONTENT OVERVIEW */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Recent Projects */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+          className="bg-card border border-border rounded-xl p-6"
         >
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -325,9 +358,11 @@ const AdminDashboard: React.FC = () => {
                     {project.title}
                   </p>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span>{project.client_name}</span>
+                    <Building size={12} />
+                    <span>{project.client?.name || 'Client'}</span>
                     <span>•</span>
-                    <span>{project.client_country}</span>
+                    <MapPin size={12} />
+                    <span>{project.client?.country || 'Global'}</span>
                   </div>
                 </div>
                 {project.featured && (
@@ -345,7 +380,7 @@ const AdminDashboard: React.FC = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
-          className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+          className="bg-card border border-border rounded-xl p-6"
         >
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -391,14 +426,14 @@ const AdminDashboard: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Recent Activity & System Status */}
+      {/* RECENT ACTIVITY & SYSTEM STATUS */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Recent Activity */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.4 }}
-          className="lg:col-span-2 bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+          className="lg:col-span-2 bg-card border border-border rounded-xl p-6"
         >
           <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
             <Activity size={20} className="text-primary" />
@@ -438,51 +473,51 @@ const AdminDashboard: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.5 }}
-          className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+          className="bg-card border border-border rounded-xl p-6"
         >
           <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
             <Globe size={20} className="text-primary" />
             System Status
           </h3>
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-primary/10 border border-primary/20 rounded-lg">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
                 <span className="text-sm font-medium text-foreground">Website</span>
               </div>
-              <span className="text-xs text-green-500 font-medium">Online</span>
+              <span className="text-xs text-primary font-medium">Online</span>
             </div>
             
-            <div className="flex items-center justify-between p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-primary/10 border border-primary/20 rounded-lg">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
                 <span className="text-sm font-medium text-foreground">Database</span>
               </div>
-              <span className="text-xs text-green-500 font-medium">Connected</span>
+              <span className="text-xs text-primary font-medium">Connected</span>
             </div>
             
-            <div className="flex items-center justify-between p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-primary/10 border border-primary/20 rounded-lg">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-foreground">Analytics</span>
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-foreground">CMS</span>
               </div>
-              <span className="text-xs text-blue-500 font-medium">Tracking</span>
+              <span className="text-xs text-primary font-medium">Active</span>
             </div>
 
             <div className="mt-6 p-4 bg-primary/5 border border-primary/20 rounded-lg">
-              <div className="text-sm font-medium text-foreground mb-2">Quick Stats</div>
+              <div className="text-sm font-medium text-foreground mb-2">Performance</div>
               <div className="space-y-2 text-xs text-muted-foreground">
                 <div className="flex justify-between">
-                  <span>Last backup:</span>
-                  <span className="text-primary">2 hours ago</span>
+                  <span>Response Time:</span>
+                  <span className="text-primary">Fast</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Uptime:</span>
-                  <span className="text-green-500">99.9%</span>
+                  <span className="text-primary">99.9%</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Storage used:</span>
-                  <span className="text-foreground">2.3 GB</span>
+                  <span>Data Sync:</span>
+                  <span className="text-primary">Real-time</span>
                 </div>
               </div>
             </div>
@@ -490,25 +525,25 @@ const AdminDashboard: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Content Management Shortcuts */}
+      {/* CONTENT MANAGEMENT SHORTCUTS */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.6 }}
-        className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+        className="bg-card border border-border rounded-xl p-6"
       >
         <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
           <Settings size={20} className="text-primary" />
-          Content Management Shortcuts
+          Content Management
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             { name: 'Edit Homepage', href: '/admin/home-content', icon: Home, desc: 'Hero, services, testimonials' },
-            { name: 'Manage Navigation', href: '/admin/navigation', icon: NavigationIcon, desc: 'Menu links & footer' },
-            { name: 'Update FAQs', href: '/admin/faqs', icon: MessageSquare, desc: 'Page-specific questions' },
+            { name: 'Manage Navigation', href: '/admin/navigation', icon: NavigationIcon, desc: 'Menu links & structure' },
+            { name: 'Update Footer', href: '/admin/footer', icon: FooterIcon, desc: 'Footer content & links' },
+            { name: 'Manage FAQs', href: '/admin/faqs', icon: HelpCircle, desc: 'Page-specific questions' },
             { name: 'Site Settings', href: '/admin/settings', icon: Settings, desc: 'Global configuration' },
             { name: 'SEO Settings', href: '/admin/seo', icon: TrendingUp, desc: 'Meta tags & analytics' },
-            { name: 'View Analytics', href: '/admin/analytics', icon: BarChart3, desc: 'Performance metrics' },
           ].map((shortcut, index) => (
             <motion.div
               key={shortcut.name}

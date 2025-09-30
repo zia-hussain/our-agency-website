@@ -21,7 +21,10 @@ import {
   Eye,
   Globe,
   Navigation as NavigationIcon,
-  HelpCircle
+  HelpCircle,
+  Footer as FooterIcon,
+  Search,
+  Plus
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
@@ -95,7 +98,13 @@ const AdminLayout: React.FC = () => {
       name: 'Navigation', 
       href: '/admin/navigation', 
       icon: NavigationIcon,
-      description: 'Menu & footer links'
+      description: 'Menu & navigation links'
+    },
+    { 
+      name: 'Footer', 
+      href: '/admin/footer', 
+      icon: FooterIcon,
+      description: 'Footer content & links'
     },
     { 
       name: 'FAQs', 
@@ -143,23 +152,23 @@ const AdminLayout: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Sidebar */}
+      {/* Sidebar - PROFESSIONAL FIXED DESIGN */}
       <motion.div
         initial={false}
         animate={{ x: sidebarOpen ? 0 : '-100%' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed inset-y-0 left-0 z-50 w-72 bg-card/95 backdrop-blur-xl border-r border-border lg:translate-x-0 lg:static lg:inset-0 shadow-2xl"
+        className="fixed inset-y-0 left-0 z-50 w-80 bg-card border-r border-border lg:translate-x-0 lg:static lg:inset-0 shadow-2xl"
       >
         <div className="flex flex-col h-full">
-          {/* Logo Section */}
+          {/* PREMIUM LOGO SECTION */}
           <div className="flex items-center justify-between h-20 px-6 border-b border-border bg-card/50">
-            <Link to="/" className="flex items-center space-x-3 group">
+            <div className="flex items-center space-x-3 group">
               <motion.img
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 transition={{ duration: 0.15 }}
                 src="/Zumetrix_Labs_Logo (7).png"
                 alt="Zumetrix Labs"
-                className="h-10 w-10"
+                className="h-12 w-12"
               />
               <div>
                 <span className="font-bold text-foreground text-lg group-hover:text-primary transition-colors duration-150">
@@ -167,7 +176,7 @@ const AdminLayout: React.FC = () => {
                 </span>
                 <div className="text-xs text-muted-foreground">Content Management</div>
               </div>
-            </Link>
+            </div>
             <button
               onClick={() => setSidebarOpen(false)}
               className="lg:hidden text-muted-foreground hover:text-foreground p-2 rounded-lg hover:bg-card/50 transition-all duration-150"
@@ -176,8 +185,8 @@ const AdminLayout: React.FC = () => {
             </button>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+          {/* NAVIGATION - CLEAN & ORGANIZED */}
+          <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
             {navigation.map((item) => (
               <motion.div
                 key={item.name}
@@ -188,8 +197,8 @@ const AdminLayout: React.FC = () => {
                   to={item.href}
                   className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-150 ${
                     isActive(item.href)
-                      ? 'bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-card/70 hover:shadow-lg'
+                      ? 'bg-primary text-primary-foreground shadow-lg'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-card/70'
                   }`}
                 >
                   <item.icon 
@@ -197,7 +206,7 @@ const AdminLayout: React.FC = () => {
                     className={`mr-3 ${
                       isActive(item.href) 
                         ? 'text-primary-foreground' 
-                        : 'text-primary group-hover:text-primary'
+                        : 'text-primary'
                     }`} 
                   />
                   <div className="flex-1">
@@ -215,7 +224,7 @@ const AdminLayout: React.FC = () => {
             ))}
           </nav>
 
-          {/* Quick Actions */}
+          {/* QUICK ACTIONS FOOTER */}
           <div className="p-4 border-t border-border bg-card/30">
             <div className="space-y-2">
               <Link to="/" target="_blank">
@@ -246,11 +255,11 @@ const AdminLayout: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Main content */}
+      {/* MAIN CONTENT AREA */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Enhanced Header */}
-        <header className="h-20 bg-card/50 backdrop-blur-xl border-b border-border flex items-center justify-between px-6 shadow-lg sticky top-0 z-30">
-          {/* Left side - Mobile menu + Breadcrumb */}
+        {/* PROFESSIONAL HEADER BAR */}
+        <header className="h-20 bg-card border-b border-border flex items-center justify-between px-6 shadow-lg sticky top-0 z-30">
+          {/* Left side - Mobile menu + Current page info */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(true)}
@@ -259,7 +268,7 @@ const AdminLayout: React.FC = () => {
               <Menu size={20} />
             </button>
             
-            <div className="hidden sm:block">
+            <div>
               <h1 className="text-xl font-bold text-foreground">
                 {navigation.find(nav => isActive(nav.href))?.name || 'Dashboard'}
               </h1>
@@ -269,8 +278,29 @@ const AdminLayout: React.FC = () => {
             </div>
           </div>
 
-          {/* Right side - Notifications + User Menu */}
+          {/* Right side - Search, Notifications, User Menu */}
           <div className="flex items-center gap-4">
+            {/* Global Search */}
+            <div className="hidden md:block relative">
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search content..."
+                className="w-64 pl-10 pr-4 py-2 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150 text-sm"
+              />
+            </div>
+
+            {/* Quick Add Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="bg-primary text-primary-foreground p-2 rounded-lg hover:shadow-lg transition-all duration-150"
+              title="Quick Add"
+            >
+              <Plus size={18} />
+            </motion.button>
+
             {/* Notifications */}
             <div className="relative">
               <motion.button
@@ -296,7 +326,7 @@ const AdminLayout: React.FC = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 top-12 w-80 bg-card/95 backdrop-blur-xl border border-border rounded-xl shadow-2xl z-50"
+                    className="absolute right-0 top-12 w-80 bg-card border border-border rounded-xl shadow-2xl z-50"
                   >
                     <div className="p-4 border-b border-border">
                       <h3 className="font-semibold text-foreground">Notifications</h3>
@@ -340,7 +370,7 @@ const AdminLayout: React.FC = () => {
                 transition={{ duration: 0.15 }}
                 className="flex items-center gap-3 p-2 text-muted-foreground hover:text-foreground rounded-lg hover:bg-card/50 transition-all duration-150"
               >
-                <div className="w-8 h-8 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                   <User size={16} className="text-primary-foreground" />
                 </div>
                 <div className="hidden sm:block text-left">
@@ -358,11 +388,11 @@ const AdminLayout: React.FC = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 top-12 w-56 bg-card/95 backdrop-blur-xl border border-border rounded-xl shadow-2xl z-50"
+                    className="absolute right-0 top-12 w-56 bg-card border border-border rounded-xl shadow-2xl z-50"
                   >
                     <div className="p-4 border-b border-border">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                           <User size={18} className="text-primary-foreground" />
                         </div>
                         <div>
@@ -393,7 +423,7 @@ const AdminLayout: React.FC = () => {
           </div>
         </header>
 
-        {/* Page content with smooth transitions */}
+        {/* PAGE CONTENT - SMOOTH TRANSITIONS */}
         <main className="flex-1 p-6 overflow-auto bg-background/50">
           <motion.div
             key={location.pathname}

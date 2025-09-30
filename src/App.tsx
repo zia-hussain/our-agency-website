@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
@@ -26,6 +26,9 @@ import SiteSettings from "./pages/admin/SiteSettings";
 import AuthForm from "./components/admin/AuthForm";
 
 function App() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   useEffect(() => {
     // Smooth scrolling for the entire page
     document.documentElement.style.scrollBehavior = "smooth";
@@ -38,7 +41,7 @@ function App() {
   return (
     <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden">
       <ScrollToTop />
-      <Navigation />
+      {!isAdminRoute && <Navigation />}
       <AnimatePresence mode="wait">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -78,8 +81,8 @@ function App() {
           </Route>
         </Routes>
       </AnimatePresence>
-      <Footer />
-      <BackToTop />
+      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && <BackToTop />}
     </div>
   );
 }
