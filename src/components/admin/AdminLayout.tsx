@@ -22,7 +22,7 @@ import {
   Globe,
   Navigation as NavigationIcon,
   HelpCircle,
-  Footer as FooterIcon,
+  AlignEndHorizontal as FooterIcon,
   Search,
   Plus
 } from 'lucide-react';
