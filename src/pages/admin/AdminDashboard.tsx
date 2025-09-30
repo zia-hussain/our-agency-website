@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Briefcase,
   FileText,
@@ -22,9 +22,17 @@ import {
   Zap,
   Code,
   Building,
-  MapPin
-} from 'lucide-react';
-import { useServices, useProjects, useArticles, useTestimonials, useFounders } from '../../hooks/useSupabaseData';
+  MapPin,
+  Home,
+  NavigationIcon,
+} from "lucide-react";
+import {
+  useServices,
+  useProjects,
+  useArticles,
+  useTestimonials,
+  useFounders,
+} from "../../hooks/useSupabaseData";
 
 const AdminDashboard: React.FC = () => {
   const { services, loading: servicesLoading } = useServices();
@@ -33,116 +41,121 @@ const AdminDashboard: React.FC = () => {
   const { testimonials, loading: testimonialsLoading } = useTestimonials();
   const { founders, loading: foundersLoading } = useFounders();
 
-  const isLoading = servicesLoading || projectsLoading || articlesLoading || testimonialsLoading || foundersLoading;
+  const isLoading =
+    servicesLoading ||
+    projectsLoading ||
+    articlesLoading ||
+    testimonialsLoading ||
+    foundersLoading;
 
   // REAL KPI DATA FROM SUPABASE
   const kpiStats = [
     {
-      name: 'Total Projects',
+      name: "Total Projects",
       value: projects.length,
-      change: '+12%',
-      changeType: 'positive',
+      change: "+12%",
+      changeType: "positive",
       icon: FileText,
-      color: 'text-primary',
-      bgColor: 'bg-primary/10',
-      description: 'Portfolio projects',
-      href: '/admin/projects'
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+      description: "Portfolio projects",
+      href: "/admin/projects",
     },
     {
-      name: 'Services Offered',
+      name: "Services Offered",
       value: services.length,
-      change: '+8%',
-      changeType: 'positive',
+      change: "+8%",
+      changeType: "positive",
       icon: Briefcase,
-      color: 'text-primary',
-      bgColor: 'bg-primary/10',
-      description: 'Service packages',
-      href: '/admin/services'
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+      description: "Service packages",
+      href: "/admin/services",
     },
     {
-      name: 'Published Articles',
+      name: "Published Articles",
       value: articles.length,
-      change: '+25%',
-      changeType: 'positive',
+      change: "+25%",
+      changeType: "positive",
       icon: BookOpen,
-      color: 'text-primary',
-      bgColor: 'bg-primary/10',
-      description: 'Expert insights',
-      href: '/admin/articles'
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+      description: "Expert insights",
+      href: "/admin/articles",
     },
     {
-      name: 'Client Testimonials',
+      name: "Client Testimonials",
       value: testimonials.length,
-      change: '+15%',
-      changeType: 'positive',
+      change: "+15%",
+      changeType: "positive",
       icon: MessageSquare,
-      color: 'text-primary',
-      bgColor: 'bg-primary/10',
-      description: 'Happy clients',
-      href: '/admin/testimonials'
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+      description: "Happy clients",
+      href: "/admin/testimonials",
     },
   ];
 
   // BUSINESS METRICS
   const businessMetrics = [
     {
-      name: 'Client Satisfaction',
-      value: '100%',
+      name: "Client Satisfaction",
+      value: "100%",
       icon: Star,
-      color: 'text-primary',
-      bgColor: 'bg-primary/10',
+      color: "text-primary",
+      bgColor: "bg-primary/10",
     },
     {
-      name: 'Project Success',
-      value: '100%',
+      name: "Project Success",
+      value: "100%",
       icon: Target,
-      color: 'text-primary',
-      bgColor: 'bg-primary/10',
+      color: "text-primary",
+      bgColor: "bg-primary/10",
     },
     {
-      name: 'Response Time',
-      value: '24h',
+      name: "Response Time",
+      value: "24h",
       icon: Clock,
-      color: 'text-primary',
-      bgColor: 'bg-primary/10',
+      color: "text-primary",
+      bgColor: "bg-primary/10",
     },
     {
-      name: 'Global Reach',
-      value: '6+',
+      name: "Global Reach",
+      value: "6+",
       icon: Globe,
-      color: 'text-primary',
-      bgColor: 'bg-primary/10',
+      color: "text-primary",
+      bgColor: "bg-primary/10",
     },
   ];
 
   const quickActions = [
     {
-      name: 'Add New Project',
-      href: '/admin/projects/new',
+      name: "Add New Project",
+      href: "/admin/projects/new",
       icon: Plus,
-      description: 'Showcase latest work',
-      color: 'bg-primary/10 text-primary border-primary/20',
+      description: "Showcase latest work",
+      color: "bg-primary/10 text-primary border-primary/20",
     },
     {
-      name: 'Write Article',
-      href: '/admin/articles/new',
+      name: "Write Article",
+      href: "/admin/articles/new",
       icon: Plus,
-      description: 'Share expert insights',
-      color: 'bg-primary/10 text-primary border-primary/20',
+      description: "Share expert insights",
+      color: "bg-primary/10 text-primary border-primary/20",
     },
     {
-      name: 'Add Service',
-      href: '/admin/services/new',
+      name: "Add Service",
+      href: "/admin/services/new",
       icon: Plus,
-      description: 'Create new offering',
-      color: 'bg-primary/10 text-primary border-primary/20',
+      description: "Create new offering",
+      color: "bg-primary/10 text-primary border-primary/20",
     },
     {
-      name: 'View Live Site',
-      href: '/',
+      name: "View Live Site",
+      href: "/",
       icon: Eye,
-      description: 'See changes live',
-      color: 'bg-primary/10 text-primary border-primary/20',
+      description: "See changes live",
+      color: "bg-primary/10 text-primary border-primary/20",
     },
   ];
 
@@ -158,7 +171,10 @@ const AdminDashboard: React.FC = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="bg-card border border-border rounded-xl p-6">
+            <div
+              key={i}
+              className="bg-card border border-border rounded-xl p-6"
+            >
               <div className="animate-pulse">
                 <div className="h-12 w-12 bg-muted/20 rounded-xl mb-4"></div>
                 <div className="h-6 bg-muted/20 rounded w-16 mb-2"></div>
@@ -191,11 +207,17 @@ const AdminDashboard: React.FC = () => {
             <div className="flex items-center gap-4 mt-4 text-sm">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                <span className="text-muted-foreground">System Status: <span className="text-primary font-medium">Online</span></span>
+                <span className="text-muted-foreground">
+                  System Status:{" "}
+                  <span className="text-primary font-medium">Online</span>
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={14} className="text-primary" />
-                <span className="text-muted-foreground">Last Updated: <span className="text-foreground font-medium">Just now</span></span>
+                <span className="text-muted-foreground">
+                  Last Updated:{" "}
+                  <span className="text-foreground font-medium">Just now</span>
+                </span>
               </div>
             </div>
           </div>
@@ -269,15 +291,15 @@ const AdminDashboard: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 transition-all duration-150 text-center"
             >
-              <div className={`w-12 h-12 ${metric.bgColor} rounded-xl flex items-center justify-center mx-auto mb-3`}>
+              <div
+                className={`w-12 h-12 ${metric.bgColor} rounded-xl flex items-center justify-center mx-auto mb-3`}
+              >
                 <metric.icon size={20} className={metric.color} />
               </div>
               <div className="text-2xl font-bold text-foreground mb-1">
                 {metric.value}
               </div>
-              <div className="text-sm text-muted-foreground">
-                {metric.name}
-              </div>
+              <div className="text-sm text-muted-foreground">{metric.name}</div>
             </motion.div>
           ))}
         </div>
@@ -297,7 +319,10 @@ const AdminDashboard: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
-              <Link to={action.href} target={action.href === '/' ? '_blank' : undefined}>
+              <Link
+                to={action.href}
+                target={action.href === "/" ? "_blank" : undefined}
+              >
                 <motion.div
                   whileHover={{ y: -2, scale: 1.02 }}
                   transition={{ duration: 0.15 }}
@@ -335,7 +360,10 @@ const AdminDashboard: React.FC = () => {
               <FileText size={20} className="text-primary" />
               Recent Projects
             </h3>
-            <Link to="/admin/projects" className="text-primary hover:underline text-sm font-medium">
+            <Link
+              to="/admin/projects"
+              className="text-primary hover:underline text-sm font-medium"
+            >
               Manage all →
             </Link>
           </div>
@@ -359,10 +387,10 @@ const AdminDashboard: React.FC = () => {
                   </p>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Building size={12} />
-                    <span>{project.client?.name || 'Client'}</span>
+                    <span>{project.client?.name || "Client"}</span>
                     <span>•</span>
                     <MapPin size={12} />
-                    <span>{project.client?.country || 'Global'}</span>
+                    <span>{project.client?.country || "Global"}</span>
                   </div>
                 </div>
                 {project.featured && (
@@ -387,7 +415,10 @@ const AdminDashboard: React.FC = () => {
               <BookOpen size={20} className="text-primary" />
               Recent Articles
             </h3>
-            <Link to="/admin/articles" className="text-primary hover:underline text-sm font-medium">
+            <Link
+              to="/admin/articles"
+              className="text-primary hover:underline text-sm font-medium"
+            >
               Manage all →
             </Link>
           </div>
@@ -441,11 +472,41 @@ const AdminDashboard: React.FC = () => {
           </h3>
           <div className="space-y-4">
             {[
-              { action: 'Project updated', item: 'Ifyify AI Platform', time: '2 hours ago', type: 'project', icon: FileText },
-              { action: 'Article published', item: 'SaaS MVP Guide', time: '1 day ago', type: 'article', icon: BookOpen },
-              { action: 'Service modified', item: 'AI Automation', time: '2 days ago', type: 'service', icon: Briefcase },
-              { action: 'Testimonial added', item: 'Kelly Andrews', time: '3 days ago', type: 'testimonial', icon: MessageSquare },
-              { action: 'Settings updated', item: 'Site Configuration', time: '1 week ago', type: 'settings', icon: Settings },
+              {
+                action: "Project updated",
+                item: "Ifyify AI Platform",
+                time: "2 hours ago",
+                type: "project",
+                icon: FileText,
+              },
+              {
+                action: "Article published",
+                item: "SaaS MVP Guide",
+                time: "1 day ago",
+                type: "article",
+                icon: BookOpen,
+              },
+              {
+                action: "Service modified",
+                item: "AI Automation",
+                time: "2 days ago",
+                type: "service",
+                icon: Briefcase,
+              },
+              {
+                action: "Testimonial added",
+                item: "Kelly Andrews",
+                time: "3 days ago",
+                type: "testimonial",
+                icon: MessageSquare,
+              },
+              {
+                action: "Settings updated",
+                item: "Site Configuration",
+                time: "1 week ago",
+                type: "settings",
+                icon: Settings,
+              },
             ].map((activity, index) => (
               <motion.div
                 key={index}
@@ -459,9 +520,12 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">
-                    {activity.action}: <span className="text-primary">{activity.item}</span>
+                    {activity.action}:{" "}
+                    <span className="text-primary">{activity.item}</span>
                   </p>
-                  <p className="text-xs text-muted-foreground">{activity.time}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {activity.time}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -483,19 +547,25 @@ const AdminDashboard: React.FC = () => {
             <div className="flex items-center justify-between p-3 bg-primary/10 border border-primary/20 rounded-lg">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-sm font-medium text-foreground">Website</span>
+                <span className="text-sm font-medium text-foreground">
+                  Website
+                </span>
               </div>
               <span className="text-xs text-primary font-medium">Online</span>
             </div>
-            
+
             <div className="flex items-center justify-between p-3 bg-primary/10 border border-primary/20 rounded-lg">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-sm font-medium text-foreground">Database</span>
+                <span className="text-sm font-medium text-foreground">
+                  Database
+                </span>
               </div>
-              <span className="text-xs text-primary font-medium">Connected</span>
+              <span className="text-xs text-primary font-medium">
+                Connected
+              </span>
             </div>
-            
+
             <div className="flex items-center justify-between p-3 bg-primary/10 border border-primary/20 rounded-lg">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
@@ -505,7 +575,9 @@ const AdminDashboard: React.FC = () => {
             </div>
 
             <div className="mt-6 p-4 bg-primary/5 border border-primary/20 rounded-lg">
-              <div className="text-sm font-medium text-foreground mb-2">Performance</div>
+              <div className="text-sm font-medium text-foreground mb-2">
+                Performance
+              </div>
               <div className="space-y-2 text-xs text-muted-foreground">
                 <div className="flex justify-between">
                   <span>Response Time:</span>
@@ -538,12 +610,42 @@ const AdminDashboard: React.FC = () => {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { name: 'Edit Homepage', href: '/admin/home-content', icon: Home, desc: 'Hero, services, testimonials' },
-            { name: 'Manage Navigation', href: '/admin/navigation', icon: NavigationIcon, desc: 'Menu links & structure' },
-            { name: 'Update Footer', href: '/admin/footer', icon: FooterIcon, desc: 'Footer content & links' },
-            { name: 'Manage FAQs', href: '/admin/faqs', icon: HelpCircle, desc: 'Page-specific questions' },
-            { name: 'Site Settings', href: '/admin/settings', icon: Settings, desc: 'Global configuration' },
-            { name: 'SEO Settings', href: '/admin/seo', icon: TrendingUp, desc: 'Meta tags & analytics' },
+            {
+              name: "Edit Homepage",
+              href: "/admin/home-content",
+              icon: Home,
+              desc: "Hero, services, testimonials",
+            },
+            {
+              name: "Manage Navigation",
+              href: "/admin/navigation",
+              icon: NavigationIcon,
+              desc: "Menu links & structure",
+            },
+            // {
+            //   name: "Update Footer",
+            //   href: "/admin/footer",
+            //   icon: FooterIcon,
+            //   desc: "Footer content & links",
+            // },
+            // {
+            //   name: "Manage FAQs",
+            //   href: "/admin/faqs",
+            //   icon: HelpCircle,
+            //   desc: "Page-specific questions",
+            // },
+            {
+              name: "Site Settings",
+              href: "/admin/settings",
+              icon: Settings,
+              desc: "Global configuration",
+            },
+            {
+              name: "SEO Settings",
+              href: "/admin/seo",
+              icon: TrendingUp,
+              desc: "Meta tags & analytics",
+            },
           ].map((shortcut, index) => (
             <motion.div
               key={shortcut.name}
