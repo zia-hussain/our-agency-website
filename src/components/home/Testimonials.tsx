@@ -16,7 +16,7 @@ const Testimonials: React.FC = () => {
       avatar:
         "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      project: "AI-Powered Personal Branding Tool"
+      project: "AI-Powered Personal Branding Tool",
     },
     {
       quote:
@@ -27,7 +27,7 @@ const Testimonials: React.FC = () => {
       avatar:
         "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      project: "Health & Fitness Mobile App"
+      project: "Health & Fitness Mobile App",
     },
     {
       quote:
@@ -38,7 +38,7 @@ const Testimonials: React.FC = () => {
       avatar:
         "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      project: "Enterprise E-commerce Automation"
+      project: "Enterprise E-commerce Automation",
     },
   ];
 
@@ -111,7 +111,10 @@ const Testimonials: React.FC = () => {
           </h2>
 
           <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-            Don't just take our word for it. Here's what our international clients from the United States, Canada, United Kingdom, UAE, Singapore, and Australia say about working with Zumetrix Labs and the exceptional results we've delivered together.
+            Don't just take our word for it. Here's what our international
+            clients from the United States, Canada, United Kingdom, UAE,
+            Singapore, and Australia say about working with Zumetrix Labs and
+            the exceptional results we've delivered together.
           </p>
         </motion.div>
 

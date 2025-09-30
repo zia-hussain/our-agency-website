@@ -80,7 +80,10 @@ const Services: React.FC = () => {
           </h2>
 
           <p className="text-xl lg:text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed font-light mb-12">
-            From enterprise web applications to mobile apps and AI automation, we deliver world-class software solutions that transform businesses, accelerate growth, and drive exceptional results for ambitious startups and established enterprises across global markets.
+            From enterprise web applications to mobile apps and AI automation,
+            we deliver world-class software solutions that transform businesses,
+            accelerate growth, and drive exceptional results for ambitious
+            startups and established enterprises across global markets.
           </p>
 
           <Link to="/services">
@@ -177,7 +180,7 @@ const Services: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  
+
                   {/* Technology Tags */}
                   <div className="flex flex-wrap gap-2">
                     {service.technologies.slice(0, 3).map((tech) => (
@@ -201,7 +204,10 @@ const Services: React.FC = () => {
                       : "bg-card border border-border text-foreground hover:bg-primary/10 hover:border-primary/30"
                   }`}
                 >
-                  <Link to={`/services/${service.slug}`} className="block w-full h-full">
+                  <Link
+                    to={`/services/${service.slug}`}
+                    className="block w-full h-full"
+                  >
                     Learn More
                   </Link>
                 </motion.button>
@@ -226,7 +232,9 @@ const Services: React.FC = () => {
             ?
           </h3>
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed font-light">
-            Let's discuss your business vision and create a custom software solution that drives measurable growth, scales globally, and gives you a competitive advantage in your market.
+            Let's discuss your business vision and create a custom software
+            solution that drives measurable growth, scales globally, and gives
+            you a competitive advantage in your market.
           </p>
           <Link to="/contact">
             <motion.button

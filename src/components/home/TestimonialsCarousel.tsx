@@ -7,14 +7,14 @@ import { getSiteData } from "../../data/site";
 
 const TestimonialsCarousel: React.FC = () => {
   const { testimonials } = getSiteData();
-  
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
+    {
       loop: true,
       align: "center",
       skipSnaps: false,
       dragFree: false,
-      containScroll: "trimSnaps"
+      containScroll: "trimSnaps",
     },
     [Autoplay({ delay: 6000, stopOnInteraction: false })]
   );
@@ -37,7 +37,7 @@ const TestimonialsCarousel: React.FC = () => {
 
   useEffect(() => {
     if (!emblaApi) return;
-    
+
     setScrollSnaps(emblaApi.scrollSnapList());
     emblaApi.on("select", onSelect);
     onSelect();
@@ -61,7 +61,8 @@ const TestimonialsCarousel: React.FC = () => {
             </span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-[1.6] font-light px-4">
-            Real feedback from international clients across the US, UK, Canada, Australia, UAE, and Singapore
+            Real feedback from international clients across the US, UK, Canada,
+            Australia, UAE, and Singapore
           </p>
         </motion.div>
 
@@ -70,7 +71,10 @@ const TestimonialsCarousel: React.FC = () => {
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial, index) => (
-                <div key={testimonial.id} className="flex-[0_0_100%] min-w-0 px-4">
+                <div
+                  key={testimonial.id}
+                  className="flex-[0_0_100%] min-w-0 px-4"
+                >
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -80,7 +84,10 @@ const TestimonialsCarousel: React.FC = () => {
                     {/* Quote Icon */}
                     <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-primary/20 to-primary/30 border border-primary/30 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-6 lg:mb-8">
                       <Quote size={20} className="lg:hidden text-primary" />
-                      <Quote size={28} className="hidden lg:block text-primary" />
+                      <Quote
+                        size={28}
+                        className="hidden lg:block text-primary"
+                      />
                     </div>
 
                     {/* Rating Stars */}
@@ -92,14 +99,20 @@ const TestimonialsCarousel: React.FC = () => {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.2, delay: i * 0.1 }}
                         >
-                          <Star size={16} className="lg:hidden text-primary fill-current mx-0.5" />
-                          <Star size={20} className="hidden lg:block text-primary fill-current mx-0.5" />
+                          <Star
+                            size={16}
+                            className="lg:hidden text-primary fill-current mx-0.5"
+                          />
+                          <Star
+                            size={20}
+                            className="hidden lg:block text-primary fill-current mx-0.5"
+                          />
                         </motion.div>
                       ))}
                     </div>
 
                     {/* Quote Text - Responsive Typography */}
-                    <blockquote className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-foreground font-light leading-[1.4] lg:leading-[1.5] mb-8 lg:mb-10 italic text-center max-w-4xl mx-auto px-2">
+                    <blockquote className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-foreground font-light leading-[1.4] lg:leading-[1.5] mb-8 lg:mb-10 italic text-center max-w-4xl mx-auto px-2 user-select-none">
                       "{testimonial.quote}"
                     </blockquote>
 
@@ -134,8 +147,13 @@ const TestimonialsCarousel: React.FC = () => {
                     {/* Project Result Badge - Mobile Optimized */}
                     <div className="text-center">
                       <div className="inline-flex items-center px-3 lg:px-4 py-2 bg-gradient-to-r from-primary/20 to-primary/10 text-primary rounded-full text-xs lg:text-sm font-semibold border border-primary/30">
-                        <span className="hidden sm:inline">{testimonial.project} • </span>
-                        <span className="sm:hidden">{testimonial.project.split(' ').slice(0, 2).join(' ')} • </span>
+                        <span className="hidden sm:inline">
+                          {testimonial.project} •{" "}
+                        </span>
+                        <span className="sm:hidden">
+                          {testimonial.project.split(" ").slice(0, 2).join(" ")}{" "}
+                          •{" "}
+                        </span>
                         {testimonial.results}
                       </div>
                     </div>
