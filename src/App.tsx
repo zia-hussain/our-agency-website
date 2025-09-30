@@ -20,12 +20,11 @@ import AllProjectsPage from "./pages/AllProjectsPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import ServiceManagement from "./pages/admin/ServiceManagement";
-import ProjectManagement from "./pages/admin/ProjectManagement";
+import ServicesManagement from "./pages/admin/ServicesManagement";
+import ProjectsManagement from "./pages/admin/ProjectsManagement";
 import SiteSettings from "./pages/admin/SiteSettings";
 import AuthForm from "./components/admin/AuthForm";
 import HomePageContent from "./pages/admin/HomePageContent";
-import { useActivityLogs } from "./hooks/useSupabaseData";
 
 function App() {
   const location = useLocation();
