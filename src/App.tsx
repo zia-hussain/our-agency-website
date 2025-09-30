@@ -24,6 +24,8 @@ import ServiceManagement from "./pages/admin/ServiceManagement";
 import ProjectManagement from "./pages/admin/ProjectManagement";
 import SiteSettings from "./pages/admin/SiteSettings";
 import AuthForm from "./components/admin/AuthForm";
+import HomePageContent from "./pages/admin/HomePageContent";
+import { useActivityLogs } from "./hooks/useSupabaseData";
 
 function App() {
   const location = useLocation();
@@ -65,7 +67,7 @@ function App() {
             </ProtectedRoute>
           }>
             <Route index element={<AdminDashboard />} />
-            <Route path="home-content" element={<div className="p-8 text-center text-muted-foreground">Home Content Management - Coming Soon</div>} />
+            <Route path="home-content" element={<HomePageContent />} />
             <Route path="about-content" element={<div className="p-8 text-center text-muted-foreground">About Content Management - Coming Soon</div>} />
             <Route path="contact-content" element={<div className="p-8 text-center text-muted-foreground">Contact Content Management - Coming Soon</div>} />
             <Route path="navigation" element={<div className="p-8 text-center text-muted-foreground">Navigation Management - Coming Soon</div>} />

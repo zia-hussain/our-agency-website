@@ -40,13 +40,15 @@ const AdminDashboard: React.FC = () => {
   const { articles, loading: articlesLoading } = useArticles();
   const { testimonials, loading: testimonialsLoading } = useTestimonials();
   const { founders, loading: foundersLoading } = useFounders();
+  const { activityLogs, loading: activityLoading } = useActivityLogs(5);
 
   const isLoading =
     servicesLoading ||
     projectsLoading ||
     articlesLoading ||
     testimonialsLoading ||
-    foundersLoading;
+    foundersLoading ||
+    activityLoading;
 
   // REAL KPI DATA FROM SUPABASE
   const kpiStats = [
@@ -471,43 +473,17 @@ const AdminDashboard: React.FC = () => {
             Recent Activity
           </h3>
           <div className="space-y-4">
-            {[
-              {
-                action: "Project updated",
-                item: "Ifyify AI Platform",
-                time: "2 hours ago",
-                type: "project",
-                icon: FileText,
-              },
-              {
-                action: "Article published",
-                item: "SaaS MVP Guide",
-                time: "1 day ago",
-                type: "article",
-                icon: BookOpen,
-              },
-              {
-                action: "Service modified",
-                item: "AI Automation",
-                time: "2 days ago",
-                type: "service",
-                icon: Briefcase,
-              },
-              {
-                action: "Testimonial added",
-                item: "Kelly Andrews",
-                time: "3 days ago",
-                type: "testimonial",
-                icon: MessageSquare,
-              },
-              {
-                action: "Settings updated",
-                item: "Site Configuration",
-                time: "1 week ago",
-                type: "settings",
-                icon: Settings,
-              },
-            ].map((activity, index) => (
+            {activityLogs.length > 0 ? activityLogs.map((activity, index) => {
+              const iconMap: Record<string, any> = {
+                'site_settings': Settings,
+                'projects': FileText,
+                'services': Briefcase,
+                'articles': BookOpen,
+                'testimonials': MessageSquare,
+              };
+              const ActivityIcon = iconMap[activity.table_name] || Settings;
+              
+              return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -10 }}
@@ -516,19 +492,25 @@ const AdminDashboard: React.FC = () => {
                 className="flex items-center gap-4 p-4 bg-background/30 rounded-lg hover:bg-background/50 transition-colors duration-150"
               >
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <activity.icon size={16} className="text-primary" />
+                  <ActivityIcon size={16} className="text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">
-                    {activity.action}:{" "}
-                    <span className="text-primary">{activity.item}</span>
+                    {activity.action_type}d {activity.table_name.replace('_', ' ')}:{" "}
+                    <span className="text-primary">{activity.record_title || 'Item'}</span>
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {activity.time}
+                    {new Date(activity.created_at).toLocaleDateString()}
                   </p>
                 </div>
               </motion.div>
-            ))}
+              );
+            }) : (
+              <div className="text-center py-8 text-muted-foreground">
+                <Settings size={32} className="mx-auto mb-4 opacity-50" />
+                <p>No recent activity</p>
+              </div>
+            )}
           </div>
         </motion.div>
 

@@ -140,5 +140,73 @@ export interface SiteSettings {
   ga_tag_id: string;
   google_verification: string;
   calendly_url: string;
+  hero_headline?: string;
+  hero_subtext?: string;
+  hero_primary_cta_text?: string;
+  hero_primary_cta_link?: string;
+  hero_secondary_cta_text?: string;
+  hero_secondary_cta_link?: string;
+  trust_band_title?: string;
+  trust_band_subtitle?: string;
+  services_preview_title?: string;
+  services_preview_subtitle?: string;
+  final_cta_headline?: string;
+  final_cta_subtitle?: string;
   updated_at: string;
+}
+
+export interface PageContent {
+  id: string;
+  page_slug: string;
+  section_key: string;
+  section_data: Record<string, any>;
+  section_order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface NavigationLink {
+  id: string;
+  label: string;
+  href: string;
+  link_type: string;
+  is_external: boolean;
+  order_index: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface FAQ {
+  id: string;
+  page_slug: string;
+  question: string;
+  answer: string;
+  order_index: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface MediaAsset {
+  id: string;
+  filename: string;
+  cloudinary_url: string;
+  cloudinary_public_id: string;
+  file_type: string;
+  file_size?: number;
+  used_in_pages: string[];
+  created_at: string;
+}
+
+export interface ActivityLog {
+  id: string;
+  action_type: string;
+  table_name: string;
+  record_id: string;
+  record_title?: string;
+  user_email?: string;
+  changes: Record<string, any>;
+  created_at: string;
 }

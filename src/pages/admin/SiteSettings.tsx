@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, RefreshCw, Building, Globe, Mail, Phone, MapPin, BarChart3, Calendar } from 'lucide-react';
+import { Save, RefreshCw, Building, Globe, Mail, Phone, MapPin, BarChart3, Calendar, Eye } from 'lucide-react';
 import { useSiteSettings } from '../../hooks/useSupabaseData';
 import { supabase } from '../../lib/supabase';
 
@@ -66,6 +66,18 @@ const SiteSettings: React.FC = () => {
 
       if (error) throw error;
 
+      // Log activity
+      await supabase
+        .from('activity_logs')
+        .insert({
+          action_type: 'update',
+          table_name: 'site_settings',
+          record_id: '1',
+          record_title: 'Global Site Settings',
+          user_email: 'admin@zumetrix.com',
+          changes: formData,
+        });
+
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
       refetch();
@@ -107,8 +119,21 @@ const SiteSettings: React.FC = () => {
               Manage your company information and global site configuration
             </p>
           </div>
-          <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-glow">
+          <div className="flex items-center gap-4">
+            <a href="/" target="_blank" rel="noopener noreferrer">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className="bg-card border border-border text-foreground px-4 py-2 rounded-lg hover:border-primary/30 transition-all duration-150 flex items-center gap-2"
+              >
+                <Eye size={16} />
+                Preview Live
+              </motion.button>
+            </a>
+            <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center">
             <Globe size={24} className="text-primary-foreground" />
+            </div>
           </div>
         </div>
       </div>
