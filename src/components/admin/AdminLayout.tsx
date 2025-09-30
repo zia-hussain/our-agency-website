@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link, useLocation, Outlet } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from "react";
+import { Link, useLocation, Outlet } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard,
   Settings,
@@ -24,9 +24,9 @@ import {
   HelpCircle,
   AlignEndHorizontal,
   Search,
-  Plus
-} from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+  Plus,
+} from "lucide-react";
+import { supabase } from "../../lib/supabase";
 
 const AdminLayout: React.FC = () => {
   const location = useLocation();
@@ -36,111 +36,121 @@ const AdminLayout: React.FC = () => {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    window.location.href = '/admin/login';
+    window.location.href = "/admin/login";
   };
 
   const navigation = [
-    { 
-      name: 'Dashboard', 
-      href: '/admin', 
+    {
+      name: "Dashboard",
+      href: "/admin",
       icon: LayoutDashboard,
-      description: 'Overview & Analytics'
+      description: "Overview & Analytics",
     },
-    { 
-      name: 'Home Page', 
-      href: '/admin/home-content', 
+    {
+      name: "Home Page",
+      href: "/admin/home-content",
       icon: Home,
-      description: 'Hero, Services, CTA sections'
+      description: "Hero, Services, CTA sections",
     },
-    { 
-      name: 'About Page', 
-      href: '/admin/about-content', 
+    {
+      name: "About Page",
+      href: "/admin/about-content",
       icon: Info,
-      description: 'Company story & founders'
+      description: "Company story & founders",
     },
-    { 
-      name: 'Services', 
-      href: '/admin/services', 
+    {
+      name: "Services",
+      href: "/admin/services",
       icon: Briefcase,
-      description: 'Service offerings & pricing'
+      description: "Service offerings & pricing",
     },
-    { 
-      name: 'Portfolio', 
-      href: '/admin/projects', 
+    {
+      name: "Portfolio",
+      href: "/admin/projects",
       icon: FileText,
-      description: 'Project case studies'
+      description: "Project case studies",
     },
-    { 
-      name: 'Articles', 
-      href: '/admin/articles', 
+    {
+      name: "Articles",
+      href: "/admin/articles",
       icon: BookOpen,
-      description: 'Blog posts & insights'
+      description: "Blog posts & insights",
     },
-    { 
-      name: 'Contact Page', 
-      href: '/admin/contact-content', 
+    {
+      name: "Contact Page",
+      href: "/admin/contact-content",
       icon: Phone,
-      description: 'Contact info & forms'
+      description: "Contact info & forms",
     },
-    { 
-      name: 'Testimonials', 
-      href: '/admin/testimonials', 
+    {
+      name: "Testimonials",
+      href: "/admin/testimonials",
       icon: MessageSquare,
-      description: 'Client feedback'
+      description: "Client feedback",
     },
-    { 
-      name: 'Founders', 
-      href: '/admin/founders', 
+    {
+      name: "Founders",
+      href: "/admin/founders",
       icon: Users,
-      description: 'Founder profiles'
+      description: "Founder profiles",
     },
-    { 
-      name: 'Navigation', 
-      href: '/admin/navigation', 
+    {
+      name: "Navigation",
+      href: "/admin/navigation",
       icon: NavigationIcon,
-      description: 'Menu & navigation links'
+      description: "Menu & navigation links",
     },
-    { 
-      name: 'Footer', 
-      href: '/admin/footer', 
+    {
+      name: "Footer",
+      href: "/admin/footer",
       icon: AlignEndHorizontal,
-      description: 'Footer content & links'
+      description: "Footer content & links",
     },
-    { 
-      name: 'FAQs', 
-      href: '/admin/faqs', 
+    {
+      name: "FAQs",
+      href: "/admin/faqs",
       icon: HelpCircle,
-      description: 'Page-specific FAQs'
+      description: "Page-specific FAQs",
     },
-    { 
-      name: 'SEO Settings', 
-      href: '/admin/seo', 
+    {
+      name: "SEO Settings",
+      href: "/admin/seo",
       icon: Globe,
-      description: 'Meta tags & analytics'
+      description: "Meta tags & analytics",
     },
-    { 
-      name: 'Site Settings', 
-      href: '/admin/settings', 
+    {
+      name: "Site Settings",
+      href: "/admin/settings",
       icon: Settings,
-      description: 'Global configuration'
+      description: "Global configuration",
     },
   ];
 
   const isActive = (path: string) => {
-    if (path === '/admin') {
-      return location.pathname === '/admin';
+    if (path === "/admin") {
+      return location.pathname === "/admin";
     }
     return location.pathname.startsWith(path);
   };
 
   // Mock notifications for now
   const notifications = [
-    { id: 1, message: "New contact form submission", time: "2 min ago", unread: true },
-    { id: 2, message: "Project updated successfully", time: "1 hour ago", unread: false },
+    {
+      id: 1,
+      message: "New contact form submission",
+      time: "2 min ago",
+      unread: true,
+    },
+    {
+      id: 2,
+      message: "Project updated successfully",
+      time: "1 hour ago",
+      unread: false,
+    },
     { id: 3, message: "Article published", time: "3 hours ago", unread: false },
   ];
 
-  const unreadCount = notifications.filter(n => n.unread).length;
+  const unreadCount = notifications.filter((n) => n.unread).length;
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -159,12 +169,14 @@ const AdminLayout: React.FC = () => {
       </AnimatePresence>
 
       {/* FIXED SIDEBAR - ALWAYS VISIBLE ON DESKTOP */}
-      <div className={`
+      <div
+        className={`
         fixed inset-y-0 left-0 z-50 w-80 bg-card border-r border-border shadow-2xl
         transform transition-transform duration-300 ease-in-out
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0 lg:static lg:inset-0
-      `}>
+      `}
+      >
         <div className="flex flex-col h-full">
           {/* PREMIUM LOGO SECTION */}
           <div className="flex items-center justify-between h-20 px-6 border-b border-border bg-card/50">
@@ -180,7 +192,9 @@ const AdminLayout: React.FC = () => {
                 <span className="font-bold text-foreground text-lg group-hover:text-primary transition-colors duration-150">
                   Zumetrix Labs
                 </span>
-                <div className="text-xs text-muted-foreground">Content Management</div>
+                <div className="text-xs text-muted-foreground">
+                  Content Management
+                </div>
               </div>
             </div>
             <button
@@ -204,25 +218,27 @@ const AdminLayout: React.FC = () => {
                   onClick={() => setSidebarOpen(false)}
                   className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-150 ${
                     isActive(item.href)
-                      ? 'bg-primary text-primary-foreground shadow-lg'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-card/70'
+                      ? "bg-primary text-primary-foreground shadow-lg"
+                      : "text-muted-foreground hover:text-foreground hover:bg-card/70"
                   }`}
                 >
-                  <item.icon 
-                    size={18} 
+                  <item.icon
+                    size={18}
                     className={`mr-3 ${
-                      isActive(item.href) 
-                        ? 'text-primary-foreground' 
-                        : 'text-primary'
-                    }`} 
+                      isActive(item.href)
+                        ? "text-primary-foreground"
+                        : "text-primary"
+                    }`}
                   />
                   <div className="flex-1">
                     <div className="font-medium">{item.name}</div>
-                    <div className={`text-xs ${
-                      isActive(item.href) 
-                        ? 'text-primary-foreground/80' 
-                        : 'text-muted-foreground/70'
-                    }`}>
+                    <div
+                      className={`text-xs ${
+                        isActive(item.href)
+                          ? "text-primary-foreground/80"
+                          : "text-muted-foreground/70"
+                      }`}
+                    >
                       {item.description}
                     </div>
                   </div>
@@ -243,10 +259,13 @@ const AdminLayout: React.FC = () => {
                 >
                   <Eye size={16} className="mr-3 text-primary" />
                   <span>View Live Site</span>
-                  <Globe size={14} className="ml-auto opacity-50 group-hover:opacity-100" />
+                  <Globe
+                    size={14}
+                    className="ml-auto opacity-50 group-hover:opacity-100"
+                  />
                 </motion.button>
               </Link>
-              
+
               <motion.button
                 onClick={handleSignOut}
                 whileHover={{ scale: 1.02 }}
@@ -263,7 +282,7 @@ const AdminLayout: React.FC = () => {
       </div>
 
       {/* MAIN CONTENT AREA - PROPERLY POSITIONED */}
-      <div className="flex-1 flex flex-col min-w-0 lg:ml-80">
+      <div className="flex-1 flex flex-col min-w-0">
         {/* PROFESSIONAL HEADER BAR */}
         <header className="h-20 bg-card border-b border-border flex items-center justify-between px-6 shadow-lg sticky top-0 z-30">
           {/* Left side - Mobile menu + Current page info */}
@@ -274,13 +293,15 @@ const AdminLayout: React.FC = () => {
             >
               <Menu size={20} />
             </button>
-            
+
             <div>
               <h1 className="text-xl font-bold text-foreground">
-                {navigation.find(nav => isActive(nav.href))?.name || 'Dashboard'}
+                {navigation.find((nav) => isActive(nav.href))?.name ||
+                  "Dashboard"}
               </h1>
               <p className="text-sm text-muted-foreground">
-                {navigation.find(nav => isActive(nav.href))?.description || 'Manage your content'}
+                {navigation.find((nav) => isActive(nav.href))?.description ||
+                  "Manage your content"}
               </p>
             </div>
           </div>
@@ -289,7 +310,10 @@ const AdminLayout: React.FC = () => {
           <div className="flex items-center gap-4">
             {/* Global Search */}
             <div className="hidden md:block relative">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Search
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+              />
               <input
                 type="text"
                 placeholder="Search content..."
@@ -336,14 +360,16 @@ const AdminLayout: React.FC = () => {
                     className="absolute right-0 top-12 w-80 bg-card border border-border rounded-xl shadow-2xl z-50"
                   >
                     <div className="p-4 border-b border-border">
-                      <h3 className="font-semibold text-foreground">Notifications</h3>
+                      <h3 className="font-semibold text-foreground">
+                        Notifications
+                      </h3>
                     </div>
                     <div className="max-h-64 overflow-y-auto">
                       {notifications.map((notification) => (
                         <div
                           key={notification.id}
                           className={`p-4 border-b border-border/50 hover:bg-card/50 transition-colors duration-150 ${
-                            notification.unread ? 'bg-primary/5' : ''
+                            notification.unread ? "bg-primary/5" : ""
                           }`}
                         >
                           <div className="flex items-start gap-3">
@@ -351,8 +377,12 @@ const AdminLayout: React.FC = () => {
                               <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                             )}
                             <div className="flex-1">
-                              <p className="text-sm text-foreground">{notification.message}</p>
-                              <p className="text-xs text-muted-foreground mt-1">{notification.time}</p>
+                              <p className="text-sm text-foreground">
+                                {notification.message}
+                              </p>
+                              <p className="text-xs text-muted-foreground mt-1">
+                                {notification.time}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -381,8 +411,12 @@ const AdminLayout: React.FC = () => {
                   <User size={16} className="text-primary-foreground" />
                 </div>
                 <div className="hidden sm:block text-left">
-                  <div className="text-sm font-medium text-foreground">Admin</div>
-                  <div className="text-xs text-muted-foreground">Zumetrix Labs</div>
+                  <div className="text-sm font-medium text-foreground">
+                    Admin
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Zumetrix Labs
+                  </div>
                 </div>
                 <ChevronDown size={16} className="hidden sm:block" />
               </motion.button>
@@ -403,8 +437,12 @@ const AdminLayout: React.FC = () => {
                           <User size={18} className="text-primary-foreground" />
                         </div>
                         <div>
-                          <div className="font-medium text-foreground">Admin User</div>
-                          <div className="text-sm text-muted-foreground">Administrator</div>
+                          <div className="font-medium text-foreground">
+                            Admin User
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            Administrator
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -437,7 +475,7 @@ const AdminLayout: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <Outlet />
           </motion.div>
