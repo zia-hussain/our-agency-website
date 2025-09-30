@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, RefreshCw, Home, Eye, Upload, Trash2, Plus, Edit3 } from 'lucide-react';
+import { Save, RefreshCw, Home, Eye, Upload, Trash2, Plus, CreditCard as Edit3 } from 'lucide-react';
 import { useSiteSettings, usePageContent } from '../../hooks/useSupabaseData';
 import { supabase } from '../../lib/supabase';
 
