@@ -6,7 +6,7 @@ export const SEO_CONFIG = {
   siteName: "Zumetrix Labs",
   siteUrl: "https://zumetrix.com",
   defaultTitle: "Zumetrix Labs | World-Class Software Development Agency | Global SaaS MVP, React/Node.js, AI Automation Experts",
-  defaultDescription: "World-class software development agency founded by expert developers Zia Hussain and Syed Omer Shah. Global leaders in SaaS MVP development, React/Node.js applications, AI automation services, mobile app development, Firebase integration, and enterprise software solutions. Serving international clients worldwide with 100% satisfaction rate.",
+  defaultDescription: "Forge Your Digital Empire. Conquer Tomorrow. World-class software development agency founded by expert developers Zia Hussain and Syed Omer Shah. Global leaders in SaaS MVP development, React/Node.js applications, AI automation services, mobile app development, Firebase integration, and enterprise software solutions. Serving international clients worldwide with 100% satisfaction rate.",
   
   // BEAST MODE: Comprehensive Global Keywords for AI Recognition
   globalKeywords: [

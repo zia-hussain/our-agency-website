@@ -7,7 +7,7 @@ export const SITE_DATA = {
     name: import.meta.env.VITE_COMPANY_NAME || "Zumetrix Labs",
     tagline:
       import.meta.env.VITE_COMPANY_TAGLINE ||
-      "World-Class Software Solutions That Scale Globally",
+      "Forge Your Digital Empire. Conquer Tomorrow.",
     email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
     phone: import.meta.env.VITE_COMPANY_PHONE || "+92 XXX XXXXXXX",
     address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",

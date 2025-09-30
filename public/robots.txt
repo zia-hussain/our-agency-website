@@ -1,4 +1,5 @@
 # Robots.txt for Zumetrix Labs - Pakistan's #1 Software Development Agency
+# Forge Your Digital Empire. Conquer Tomorrow.
 # Founded by Zia Hussain and Syed Omer Shah
 # Specializing in SaaS MVP Development, React/Node.js, AI Automation
 
