@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Plus, Edit, Trash2, Eye, Star, MapPin, Calendar } from 'lucide-react';
+import { Plus, CreditCard as Edit, Trash2, Eye, Star, MapPin, Calendar } from 'lucide-react';
 import { useProjects } from '../../hooks/useSupabaseData';
 import { supabase } from '../../lib/supabase';
 
