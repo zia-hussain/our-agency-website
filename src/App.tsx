@@ -74,8 +74,8 @@ function App() {
             <Route path="faqs" element={<div className="p-8 text-center text-muted-foreground">FAQ Management - Coming Soon</div>} />
             <Route path="seo" element={<div className="p-8 text-center text-muted-foreground">SEO Management - Coming Soon</div>} />
             <Route path="analytics" element={<div className="p-8 text-center text-muted-foreground">Analytics Dashboard - Coming Soon</div>} />
-            <Route path="services" element={<ServiceManagement />} />
-            <Route path="projects" element={<ProjectManagement />} />
+            <Route path="services" element={<ServicesManagement />} />
+            <Route path="projects" element={<ProjectsManagement />} />
             <Route path="articles" element={<div className="p-8 text-center text-muted-foreground">Article Management - Coming Soon</div>} />
             <Route path="testimonials" element={<div className="p-8 text-center text-muted-foreground">Testimonial Management - Coming Soon</div>} />
             <Route path="founders" element={<div className="p-8 text-center text-muted-foreground">Founder Management - Coming Soon</div>} />

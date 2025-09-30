@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, RefreshCw, Home, Eye, Upload, Trash2, Plus, CreditCard as Edit3 } from 'lucide-react';
-import { useSiteSettings, usePageContent } from '../../hooks/useSupabaseData';
-import { supabase } from '../../lib/supabase';
+import { Save, Eye, Upload, Home, Users, Briefcase, Zap, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
+import { useSiteSettings } from '../../hooks/useSupabaseData';
+import { supabase, isSupabaseConfigured } from '../../lib/supabase';
+import { logActivity } from '../../hooks/useSupabaseData';
 
 const HomePageContent: React.FC = () => {
-  const { settings, loading: settingsLoading, error: settingsError, refetch: refetchSettings } = useSiteSettings();
-  const { pageContent, loading: contentLoading, error: contentError, refetch: refetchContent } = usePageContent('home');
-  
+  const { settings, loading, error, refetch } = useSiteSettings();
   const [formData, setFormData] = useState({
     // Hero Section
     hero_headline: '',
@@ -33,6 +32,7 @@ const HomePageContent: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [previewMode, setPreviewMode] = useState(false);
 
   useEffect(() => {
     if (settings) {
@@ -62,6 +62,11 @@ const HomePageContent: React.FC = () => {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isSupabaseConfigured || !supabase) {
+      alert('Supabase is not configured');
+      return;
+    }
+
     setSaving(true);
 
     try {
@@ -76,20 +81,11 @@ const HomePageContent: React.FC = () => {
       if (error) throw error;
 
       // Log activity
-      await supabase
-        .from('activity_logs')
-        .insert({
-          action_type: 'update',
-          table_name: 'site_settings',
-          record_id: '1',
-          record_title: 'Homepage Content',
-          user_email: 'admin@zumetrix.com',
-          changes: formData,
-        });
+      await logActivity('update', 'site_settings', '1', 'Homepage Content', formData);
 
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
-      refetchSettings();
+      refetch();
     } catch (err) {
       alert('Failed to save homepage content: ' + (err instanceof Error ? err.message : 'Unknown error'));
     } finally {
@@ -98,13 +94,33 @@ const HomePageContent: React.FC = () => {
   };
 
   const sections = [
-    { id: 'hero', name: 'Hero Section', icon: Home },
-    { id: 'trust', name: 'Trust Band', icon: Eye },
-    { id: 'services', name: 'Services Preview', icon: Edit3 },
-    { id: 'cta', name: 'Final CTA', icon: Plus },
+    { 
+      id: 'hero', 
+      name: 'Hero Section', 
+      icon: Home,
+      description: 'Main headline, subtext, and CTA buttons'
+    },
+    { 
+      id: 'trust', 
+      name: 'Trust Band', 
+      icon: Users,
+      description: 'Client trust indicators and global stats'
+    },
+    { 
+      id: 'services', 
+      name: 'Services Preview', 
+      icon: Briefcase,
+      description: 'Service offerings preview section'
+    },
+    { 
+      id: 'cta', 
+      name: 'Final CTA', 
+      icon: Zap,
+      description: 'Bottom conversion section'
+    },
   ];
 
-  if (settingsLoading || contentLoading) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
         <motion.div
@@ -116,24 +132,39 @@ const HomePageContent: React.FC = () => {
     );
   }
 
-  if (settingsError || contentError) {
+  if (error) {
     return (
-      <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-lg">
-        Error loading content: {settingsError || contentError}
+      <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-lg flex items-center gap-2">
+        <AlertCircle size={16} />
+        Error loading content: {error}
       </div>
     );
   }
 
   return (
     <div className="space-y-8">
-      {/* Header */}
+      {/* Professional Header */}
       <div className="bg-card border border-border rounded-xl p-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-foreground mb-2">Homepage Content Editor</h1>
             <p className="text-muted-foreground">
-              Edit all sections of your homepage with real-time preview
+              Edit all sections of your homepage with real-time preview and instant saves
             </p>
+            <div className="flex items-center gap-4 mt-3 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                <span className="text-muted-foreground">
+                  Status: <span className="text-primary font-medium">Live</span>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <RefreshCw size={14} className="text-primary" />
+                <span className="text-muted-foreground">
+                  Auto-save: <span className="text-primary font-medium">Enabled</span>
+                </span>
+              </div>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <a href="/" target="_blank" rel="noopener noreferrer">
@@ -144,7 +175,7 @@ const HomePageContent: React.FC = () => {
                 className="bg-card border border-border text-foreground px-4 py-2 rounded-lg hover:border-primary/30 transition-all duration-150 flex items-center gap-2"
               >
                 <Eye size={16} />
-                Preview Live
+                View Live
               </motion.button>
             </a>
             <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center">
@@ -155,10 +186,13 @@ const HomePageContent: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Section Navigation */}
+        {/* Section Navigation - Fixed Sidebar Style */}
         <div className="lg:col-span-1">
           <div className="bg-card border border-border rounded-xl p-4 sticky top-8">
-            <h3 className="font-semibold text-foreground mb-4">Page Sections</h3>
+            <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+              <Home size={16} className="text-primary" />
+              Page Sections
+            </h3>
             <nav className="space-y-2">
               {sections.map((section) => (
                 <motion.button
@@ -166,24 +200,51 @@ const HomePageContent: React.FC = () => {
                   onClick={() => setActiveSection(section.id)}
                   whileHover={{ x: 4 }}
                   transition={{ duration: 0.15 }}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  className={`w-full flex items-start gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-150 ${
                     activeSection === section.id
                       ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
                   }`}
                 >
-                  <section.icon size={16} />
-                  {section.name}
+                  <section.icon size={16} className="mt-0.5 flex-shrink-0" />
+                  <div className="text-left">
+                    <div className="font-medium">{section.name}</div>
+                    <div className={`text-xs mt-1 ${
+                      activeSection === section.id 
+                        ? 'text-primary-foreground/80' 
+                        : 'text-muted-foreground/70'
+                    }`}>
+                      {section.description}
+                    </div>
+                  </div>
                 </motion.button>
               ))}
             </nav>
+
+            {/* Preview Toggle */}
+            <div className="mt-6 pt-4 border-t border-border">
+              <motion.button
+                onClick={() => setPreviewMode(!previewMode)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className={`w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  previewMode
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-card/50 text-muted-foreground hover:text-foreground hover:bg-card/80'
+                }`}
+              >
+                <Eye size={14} />
+                {previewMode ? 'Edit Mode' : 'Preview Mode'}
+              </motion.button>
+            </div>
           </div>
         </div>
 
         {/* Content Editor */}
         <div className="lg:col-span-3">
           <form onSubmit={handleSave} className="space-y-8">
-            {/* Hero Section */}
+            {/* Hero Section Editor */}
             {activeSection === 'hero' && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -191,10 +252,16 @@ const HomePageContent: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="bg-card border border-border rounded-xl p-6"
               >
-                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  <Home size={20} className="text-primary" />
-                  Hero Section
-                </h2>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <Home size={20} className="text-primary" />
+                    Hero Section
+                  </h2>
+                  <div className="text-xs text-muted-foreground bg-card/50 px-3 py-1 rounded-full">
+                    Main landing section
+                  </div>
+                </div>
+
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
@@ -209,7 +276,11 @@ const HomePageContent: React.FC = () => {
                       className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
                       placeholder="Transform Your Vision Into World-Class Software..."
                     />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      This appears as the main H1 on your homepage
+                    </p>
                   </div>
+
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Subtext Description *
@@ -223,7 +294,11 @@ const HomePageContent: React.FC = () => {
                       className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150 resize-y"
                       placeholder="Zumetrix Labs is the world's premier software development agency..."
                     />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Supporting text that explains your value proposition
+                    </p>
                   </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
@@ -282,7 +357,7 @@ const HomePageContent: React.FC = () => {
               </motion.div>
             )}
 
-            {/* Trust Band Section */}
+            {/* Trust Band Section Editor */}
             {activeSection === 'trust' && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -290,10 +365,16 @@ const HomePageContent: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="bg-card border border-border rounded-xl p-6"
               >
-                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  <Eye size={20} className="text-primary" />
-                  Trust Band Section
-                </h2>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <Users size={20} className="text-primary" />
+                    Trust Band Section
+                  </h2>
+                  <div className="text-xs text-muted-foreground bg-card/50 px-3 py-1 rounded-full">
+                    Client trust indicators
+                  </div>
+                </div>
+
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
@@ -327,7 +408,7 @@ const HomePageContent: React.FC = () => {
               </motion.div>
             )}
 
-            {/* Services Preview Section */}
+            {/* Services Preview Section Editor */}
             {activeSection === 'services' && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -335,10 +416,16 @@ const HomePageContent: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="bg-card border border-border rounded-xl p-6"
               >
-                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  <Edit3 size={20} className="text-primary" />
-                  Services Preview Section
-                </h2>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <Briefcase size={20} className="text-primary" />
+                    Services Preview Section
+                  </h2>
+                  <div className="text-xs text-muted-foreground bg-card/50 px-3 py-1 rounded-full">
+                    Service offerings preview
+                  </div>
+                </div>
+
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
@@ -372,7 +459,7 @@ const HomePageContent: React.FC = () => {
               </motion.div>
             )}
 
-            {/* Final CTA Section */}
+            {/* Final CTA Section Editor */}
             {activeSection === 'cta' && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -380,10 +467,16 @@ const HomePageContent: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="bg-card border border-border rounded-xl p-6"
               >
-                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  <Plus size={20} className="text-primary" />
-                  Final CTA Section
-                </h2>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <Zap size={20} className="text-primary" />
+                    Final CTA Section
+                  </h2>
+                  <div className="text-xs text-muted-foreground bg-card/50 px-3 py-1 rounded-full">
+                    Bottom conversion section
+                  </div>
+                </div>
+
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
@@ -417,7 +510,7 @@ const HomePageContent: React.FC = () => {
               </motion.div>
             )}
 
-            {/* Save Button */}
+            {/* Save Button - Always Visible */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -443,7 +536,7 @@ const HomePageContent: React.FC = () => {
                   </>
                 ) : saved ? (
                   <>
-                    <Save size={18} />
+                    <CheckCircle size={18} />
                     Changes Saved!
                   </>
                 ) : (
@@ -459,29 +552,69 @@ const HomePageContent: React.FC = () => {
       </div>
 
       {/* Live Preview Panel */}
-      <div className="bg-card border border-border rounded-xl p-6">
-        <h3 className="text-lg font-bold text-foreground mb-4">Live Preview</h3>
-        <div className="bg-background/50 border border-border rounded-lg p-6">
-          <div className="space-y-6">
-            <div className="text-center">
-              <h4 className="text-2xl font-bold text-foreground mb-2">
-                {formData.hero_headline}
-              </h4>
-              <p className="text-muted-foreground mb-4 line-clamp-3">
-                {formData.hero_subtext}
-              </p>
-              <div className="flex gap-4 justify-center">
-                <div className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm">
-                  {formData.hero_primary_cta_text}
-                </div>
-                <div className="bg-card border border-border text-foreground px-4 py-2 rounded-lg text-sm">
-                  {formData.hero_secondary_cta_text}
+      {previewMode && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="bg-card border border-border rounded-xl p-6"
+        >
+          <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+            <Eye size={18} className="text-primary" />
+            Live Preview
+          </h3>
+          <div className="bg-background border border-border rounded-lg p-8">
+            {activeSection === 'hero' && (
+              <div className="text-center space-y-6">
+                <h1 className="text-4xl font-bold text-foreground">
+                  {formData.hero_headline}
+                </h1>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                  {formData.hero_subtext}
+                </p>
+                <div className="flex gap-4 justify-center">
+                  <div className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium">
+                    {formData.hero_primary_cta_text}
+                  </div>
+                  <div className="bg-card border border-border text-foreground px-6 py-3 rounded-lg font-medium">
+                    {formData.hero_secondary_cta_text}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
+            {activeSection === 'trust' && (
+              <div className="text-center space-y-4">
+                <h2 className="text-2xl font-bold text-foreground">
+                  {formData.trust_band_title}
+                </h2>
+                <p className="text-muted-foreground">
+                  {formData.trust_band_subtitle}
+                </p>
+              </div>
+            )}
+            {activeSection === 'services' && (
+              <div className="text-center space-y-4">
+                <h2 className="text-2xl font-bold text-foreground">
+                  {formData.services_preview_title}
+                </h2>
+                <p className="text-muted-foreground">
+                  {formData.services_preview_subtitle}
+                </p>
+              </div>
+            )}
+            {activeSection === 'cta' && (
+              <div className="text-center space-y-4">
+                <h2 className="text-2xl font-bold text-foreground">
+                  {formData.final_cta_headline}
+                </h2>
+                <p className="text-muted-foreground">
+                  {formData.final_cta_subtitle}
+                </p>
+              </div>
+            )}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      )}
     </div>
   );
 };

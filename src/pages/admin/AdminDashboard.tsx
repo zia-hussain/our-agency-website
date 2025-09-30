@@ -25,6 +25,8 @@ import {
   MapPin,
   Home,
   Navigation as NavigationIcon,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 import {
   useServices,
@@ -32,6 +34,7 @@ import {
   useArticles,
   useTestimonials,
   useFounders,
+  useActivityLogs,
 } from "../../hooks/useSupabaseData";
 
 const AdminDashboard: React.FC = () => {
@@ -204,7 +207,7 @@ const AdminDashboard: React.FC = () => {
               Content Management Dashboard
             </h1>
             <p className="text-lg text-muted-foreground">
-              Manage your world-class software development agency
+              Manage your world-class software development agency content
             </p>
             <div className="flex items-center gap-4 mt-4 text-sm">
               <div className="flex items-center gap-2">
@@ -379,7 +382,7 @@ const AdminDashboard: React.FC = () => {
                 className="flex items-center gap-4 p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors duration-150"
               >
                 <img
-                  src={project.image}
+                  src={project.image || 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800'}
                   alt={project.title}
                   className="w-12 h-12 rounded-lg object-cover border border-border"
                 />
@@ -389,10 +392,10 @@ const AdminDashboard: React.FC = () => {
                   </p>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Building size={12} />
-                    <span>{project.client?.name || "Client"}</span>
+                    <span>{project.client_name}</span>
                     <span>•</span>
                     <MapPin size={12} />
-                    <span>{project.client?.country || "Global"}</span>
+                    <span>{project.client_country}</span>
                   </div>
                 </div>
                 {project.featured && (
@@ -402,6 +405,15 @@ const AdminDashboard: React.FC = () => {
                 )}
               </motion.div>
             ))}
+            {projects.length === 0 && (
+              <div className="text-center py-8 text-muted-foreground">
+                <FileText size={32} className="mx-auto mb-4 opacity-50" />
+                <p>No projects yet</p>
+                <Link to="/admin/projects/new" className="text-primary hover:underline text-sm">
+                  Add your first project →
+                </Link>
+              </div>
+            )}
           </div>
         </motion.div>
 
@@ -434,7 +446,7 @@ const AdminDashboard: React.FC = () => {
                 className="flex items-center gap-4 p-4 bg-background/50 rounded-lg hover:bg-background/80 transition-colors duration-150"
               >
                 <img
-                  src={article.image}
+                  src={article.image || 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800'}
                   alt={article.title}
                   className="w-12 h-12 rounded-lg object-cover border border-border"
                 />
@@ -455,6 +467,15 @@ const AdminDashboard: React.FC = () => {
                 )}
               </motion.div>
             ))}
+            {articles.length === 0 && (
+              <div className="text-center py-8 text-muted-foreground">
+                <BookOpen size={32} className="mx-auto mb-4 opacity-50" />
+                <p>No articles yet</p>
+                <Link to="/admin/articles/new" className="text-primary hover:underline text-sm">
+                  Write your first article →
+                </Link>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
@@ -480,12 +501,15 @@ const AdminDashboard: React.FC = () => {
                 'services': Briefcase,
                 'articles': BookOpen,
                 'testimonials': MessageSquare,
+                'founders': Users,
+                'navigation_items': NavigationIcon,
+                'faqs': MessageSquare,
               };
               const ActivityIcon = iconMap[activity.table_name] || Settings;
               
               return (
               <motion.div
-                key={index}
+                key={activity.id}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -496,19 +520,20 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">
-                    {activity.action_type}d {activity.table_name.replace('_', ' ')}:{" "}
+                    {activity.action_type.charAt(0).toUpperCase() + activity.action_type.slice(1)}d {activity.table_name.replace('_', ' ')}:{" "}
                     <span className="text-primary">{activity.record_title || 'Item'}</span>
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {new Date(activity.created_at).toLocaleDateString()}
+                    {new Date(activity.created_at).toLocaleDateString()} at {new Date(activity.created_at).toLocaleTimeString()}
                   </p>
                 </div>
               </motion.div>
               );
             }) : (
               <div className="text-center py-8 text-muted-foreground">
-                <Settings size={32} className="mx-auto mb-4 opacity-50" />
+                <Activity size={32} className="mx-auto mb-4 opacity-50" />
                 <p>No recent activity</p>
+                <p className="text-xs mt-1">Start editing content to see activity logs</p>
               </div>
             )}
           </div>
@@ -604,18 +629,6 @@ const AdminDashboard: React.FC = () => {
               icon: NavigationIcon,
               desc: "Menu links & structure",
             },
-            // {
-            //   name: "Update Footer",
-            //   href: "/admin/footer",
-            //   icon: FooterIcon,
-            //   desc: "Footer content & links",
-            // },
-            // {
-            //   name: "Manage FAQs",
-            //   href: "/admin/faqs",
-            //   icon: HelpCircle,
-            //   desc: "Page-specific questions",
-            // },
             {
               name: "Site Settings",
               href: "/admin/settings",
@@ -627,6 +640,18 @@ const AdminDashboard: React.FC = () => {
               href: "/admin/seo",
               icon: TrendingUp,
               desc: "Meta tags & analytics",
+            },
+            {
+              name: "Manage FAQs",
+              href: "/admin/faqs",
+              icon: MessageSquare,
+              desc: "Page-specific questions",
+            },
+            {
+              name: "Founder Profiles",
+              href: "/admin/founders",
+              icon: Users,
+              desc: "Team member profiles",
             },
           ].map((shortcut, index) => (
             <motion.div

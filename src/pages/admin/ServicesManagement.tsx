@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Plus, CreditCard as Edit, Trash2, Eye, Star, Search, Filter, Grid2x2 as Grid, List } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, Star, Search, Filter, Grid, List, Briefcase, DollarSign, Tag, Globe, CheckCircle, AlertCircle } from 'lucide-react';
 import { useServices } from '../../hooks/useSupabaseData';
-import { supabase } from '../../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../../lib/supabase';
+import { logActivity } from '../../hooks/useSupabaseData';
 
-const ServiceManagement: React.FC = () => {
+const ServicesManagement: React.FC = () => {
   const { services, loading, error, refetch } = useServices();
   const [deleting, setDeleting] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,6 +15,7 @@ const ServiceManagement: React.FC = () => {
 
   const handleDelete = async (id: string, title: string) => {
     if (!confirm(`Are you sure you want to delete "${title}"?`)) return;
+    if (!isSupabaseConfigured || !supabase) return;
     
     setDeleting(id);
     try {
@@ -23,6 +25,8 @@ const ServiceManagement: React.FC = () => {
         .eq('id', id);
 
       if (error) throw error;
+      
+      await logActivity('delete', 'services', id, title);
       refetch();
     } catch (err) {
       alert('Failed to delete service: ' + (err instanceof Error ? err.message : 'Unknown error'));
@@ -31,21 +35,25 @@ const ServiceManagement: React.FC = () => {
     }
   };
 
-  const togglePopular = async (id: string, currentPopular: boolean) => {
+  const togglePopular = async (id: string, currentPopular: boolean, title: string) => {
+    if (!isSupabaseConfigured || !supabase) return;
+
     try {
       const { error } = await supabase
         .from('services')
-        .update({ popular: !currentPopular })
+        .update({ popular: !currentPopular, updated_at: new Date().toISOString() })
         .eq('id', id);
 
       if (error) throw error;
+      
+      await logActivity('update', 'services', id, title, { popular: !currentPopular });
       refetch();
     } catch (err) {
       alert('Failed to update service: ' + (err instanceof Error ? err.message : 'Unknown error'));
     }
   };
 
-  // Filter services based on search and filter criteria
+  // Filter services
   const filteredServices = services.filter(service => {
     const matchesSearch = service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          service.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -71,7 +79,8 @@ const ServiceManagement: React.FC = () => {
 
   if (error) {
     return (
-      <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-lg">
+      <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-lg flex items-center gap-2">
+        <AlertCircle size={16} />
         Error loading services: {error}
       </div>
     );
@@ -79,13 +88,13 @@ const ServiceManagement: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {/* Enhanced Header */}
-      <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
+      {/* Professional Header */}
+      <div className="bg-card border border-border rounded-xl p-6">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-foreground mb-2">Service Management</h1>
             <p className="text-muted-foreground">
-              Manage your service offerings, pricing, and descriptions
+              Manage your service offerings, pricing, and descriptions with full CRUD control
             </p>
             <div className="flex items-center gap-4 mt-3 text-sm">
               <span className="text-muted-foreground">
@@ -94,44 +103,63 @@ const ServiceManagement: React.FC = () => {
               <span className="text-muted-foreground">
                 Popular: <span className="font-semibold text-primary">{services.filter(s => s.popular).length}</span>
               </span>
+              <span className="text-muted-foreground">
+                Active: <span className="font-semibold text-primary">{services.filter(s => s.is_active).length}</span>
+              </span>
             </div>
           </div>
-          <Link to="/admin/services/new">
-            <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.15 }}
-              className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-xl font-medium flex items-center gap-2 hover:shadow-glow transition-all duration-150"
-            >
-              <Plus size={18} />
-              Add New Service
-            </motion.button>
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/services" target="_blank" rel="noopener noreferrer">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className="bg-card border border-border text-foreground px-4 py-2 rounded-lg hover:border-primary/30 transition-all duration-150 flex items-center gap-2"
+              >
+                <Eye size={16} />
+                View Live
+              </motion.button>
+            </Link>
+            <Link to="/admin/services/new">
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium flex items-center gap-2 hover:shadow-lg transition-all duration-150"
+              >
+                <Plus size={18} />
+                Add New Service
+              </motion.button>
+            </Link>
+            <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center">
+              <Briefcase size={24} className="text-primary-foreground" />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Filters & Search */}
-      <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
+      {/* Enhanced Filters & Search */}
+      <div className="bg-card border border-border rounded-xl p-6">
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Search */}
           <div className="flex-1 relative">
             <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search services..."
+              placeholder="Search services, descriptions, or technologies..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-background/50 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+              className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
             />
           </div>
 
-          {/* Filter */}
+          {/* Filters */}
           <div className="flex items-center gap-3">
             <Filter size={18} className="text-muted-foreground" />
             <select
               value={filterPopular}
               onChange={(e) => setFilterPopular(e.target.value as 'all' | 'popular' | 'regular')}
-              className="px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+              className="px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
             >
               <option value="all">All Services</option>
               <option value="popular">Popular Only</option>
@@ -140,7 +168,7 @@ const ServiceManagement: React.FC = () => {
           </div>
 
           {/* View Mode Toggle */}
-          <div className="flex items-center gap-2 bg-background/50 border border-border rounded-lg p-1">
+          <div className="flex items-center gap-2 bg-background border border-border rounded-lg p-1">
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded transition-all duration-150 ${
@@ -175,25 +203,25 @@ const ServiceManagement: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               whileHover={{ y: -4, scale: 1.02 }}
-              className="bg-card/50 backdrop-blur-xl border border-border rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-150 group"
+              className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-150 group"
             >
               {/* Service Image */}
               <div className="relative aspect-[16/9] overflow-hidden">
                 <img
-                  src={service.image}
+                  src={service.image || 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800'}
                   alt={service.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {service.popular && (
                   <div className="absolute top-3 left-3">
-                    <span className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                    <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium shadow-lg">
                       Most Popular
                     </span>
                   </div>
                 )}
                 <div className="absolute top-3 right-3">
                   <span className="bg-card/90 backdrop-blur-xl text-foreground px-3 py-1 rounded-full text-xs font-medium border border-border">
-                    {service.price}
+                    {service.price || 'Custom Pricing'}
                   </span>
                 </div>
               </div>
@@ -227,7 +255,7 @@ const ServiceManagement: React.FC = () => {
                 {/* Actions */}
                 <div className="flex gap-2">
                   <Link to={`/services/${service.slug}`} target="_blank" className="flex-1">
-                    <button className="w-full bg-background/50 text-foreground px-3 py-2 rounded-lg text-sm hover:bg-background/80 transition-colors duration-150 flex items-center justify-center gap-1">
+                    <button className="w-full bg-background text-foreground px-3 py-2 rounded-lg text-sm hover:bg-background/80 transition-colors duration-150 flex items-center justify-center gap-1 border border-border hover:border-primary/30">
                       <Eye size={14} />
                       View
                     </button>
@@ -239,7 +267,7 @@ const ServiceManagement: React.FC = () => {
                     </button>
                   </Link>
                   <button
-                    onClick={() => togglePopular(service.id, service.popular)}
+                    onClick={() => togglePopular(service.id, service.popular, service.title)}
                     className={`p-2 rounded-lg text-sm transition-colors duration-150 ${
                       service.popular 
                         ? 'bg-primary/20 text-primary' 
@@ -271,7 +299,7 @@ const ServiceManagement: React.FC = () => {
         </div>
       ) : (
         /* List View */
-        <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl overflow-hidden">
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-card/30 border-b border-border">
@@ -295,7 +323,7 @@ const ServiceManagement: React.FC = () => {
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-4">
                         <img
-                          src={service.image}
+                          src={service.image || 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800'}
                           alt={service.title}
                           className="w-12 h-12 rounded-lg object-cover border border-border"
                         />
@@ -308,19 +336,23 @@ const ServiceManagement: React.FC = () => {
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <span className="font-semibold text-primary">{service.price}</span>
+                      <span className="font-semibold text-primary">{service.price || 'Custom'}</span>
                     </td>
                     <td className="py-4 px-6">
-                      {service.popular ? (
-                        <span className="inline-flex items-center px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
-                          <Star size={12} className="mr-1 fill-current" />
-                          Popular
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center px-2 py-1 bg-muted/20 text-muted-foreground rounded-full text-xs">
-                          Regular
-                        </span>
-                      )}
+                      <div className="flex items-center gap-2">
+                        {service.popular && (
+                          <span className="inline-flex items-center px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
+                            <Star size={12} className="mr-1 fill-current" />
+                            Popular
+                          </span>
+                        )}
+                        {service.is_active && (
+                          <span className="inline-flex items-center px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
+                            <CheckCircle size={12} className="mr-1" />
+                            Active
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="py-4 px-6">
                       <div className="flex flex-wrap gap-1">
@@ -352,7 +384,7 @@ const ServiceManagement: React.FC = () => {
                           </button>
                         </Link>
                         <button
-                          onClick={() => togglePopular(service.id, service.popular)}
+                          onClick={() => togglePopular(service.id, service.popular, service.title)}
                           className={`p-2 rounded-lg transition-all duration-150 ${
                             service.popular 
                               ? 'text-primary bg-primary/10' 
@@ -392,7 +424,7 @@ const ServiceManagement: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="text-center py-16 bg-card/30 backdrop-blur-xl border border-border rounded-xl"
+          className="text-center py-16 bg-card/30 border border-border rounded-xl"
         >
           <Briefcase size={48} className="text-muted-foreground mx-auto mb-4" />
           <h3 className="text-xl font-bold text-foreground mb-2">
@@ -410,7 +442,7 @@ const ServiceManagement: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-xl font-medium hover:shadow-glow transition-all duration-150"
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-150"
               >
                 Add Your First Service
               </motion.button>
@@ -429,4 +461,4 @@ const ServiceManagement: React.FC = () => {
   );
 };
 
-export default ServiceManagement;
+export default ServicesManagement;

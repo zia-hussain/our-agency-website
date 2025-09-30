@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Plus, CreditCard as Edit, Trash2, Eye, Star, MapPin, Calendar, Search, Filter, Grid2x2 as Grid, List, Building } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, Star, Search, Filter, Grid, List, FileText, MapPin, Calendar, Building, CheckCircle, AlertCircle } from 'lucide-react';
 import { useProjects } from '../../hooks/useSupabaseData';
-import { supabase } from '../../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../../lib/supabase';
+import { logActivity } from '../../hooks/useSupabaseData';
 
-const ProjectManagement: React.FC = () => {
+const ProjectsManagement: React.FC = () => {
   const { projects, loading, error, refetch } = useProjects();
-  const [deleting, setDeleting] = useState<number | null>(null);
+  const [deleting, setDeleting] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [filterFeatured, setFilterFeatured] = useState<'all' | 'featured' | 'regular'>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
 
-  const handleDelete = async (id: number, title: string) => {
+  const handleDelete = async (id: string, title: string) => {
     if (!confirm(`Are you sure you want to delete "${title}"?`)) return;
+    if (!isSupabaseConfigured || !supabase) return;
     
     setDeleting(id);
     try {
@@ -24,6 +26,8 @@ const ProjectManagement: React.FC = () => {
         .eq('id', id);
 
       if (error) throw error;
+      
+      await logActivity('delete', 'projects', id, title);
       refetch();
     } catch (err) {
       alert('Failed to delete project: ' + (err instanceof Error ? err.message : 'Unknown error'));
@@ -32,14 +36,18 @@ const ProjectManagement: React.FC = () => {
     }
   };
 
-  const toggleFeatured = async (id: number, currentFeatured: boolean) => {
+  const toggleFeatured = async (id: string, currentFeatured: boolean, title: string) => {
+    if (!isSupabaseConfigured || !supabase) return;
+
     try {
       const { error } = await supabase
         .from('projects')
-        .update({ featured: !currentFeatured })
+        .update({ featured: !currentFeatured, updated_at: new Date().toISOString() })
         .eq('id', id);
 
       if (error) throw error;
+      
+      await logActivity('update', 'projects', id, title, { featured: !currentFeatured });
       refetch();
     } catch (err) {
       alert('Failed to update project: ' + (err instanceof Error ? err.message : 'Unknown error'));
@@ -78,7 +86,8 @@ const ProjectManagement: React.FC = () => {
 
   if (error) {
     return (
-      <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-lg">
+      <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-lg flex items-center gap-2">
+        <AlertCircle size={16} />
         Error loading projects: {error}
       </div>
     );
@@ -86,13 +95,13 @@ const ProjectManagement: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {/* Enhanced Header */}
-      <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
+      {/* Professional Header */}
+      <div className="bg-card border border-border rounded-xl p-6">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-foreground mb-2">Project Portfolio</h1>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Project Portfolio Management</h1>
             <p className="text-muted-foreground">
-              Manage your case studies and showcase your best work
+              Manage your case studies and showcase your best work with full CRUD control
             </p>
             <div className="flex items-center gap-4 mt-3 text-sm">
               <span className="text-muted-foreground">
@@ -106,22 +115,38 @@ const ProjectManagement: React.FC = () => {
               </span>
             </div>
           </div>
-          <Link to="/admin/projects/new">
-            <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.15 }}
-              className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-xl font-medium flex items-center gap-2 hover:shadow-glow transition-all duration-150"
-            >
-              <Plus size={18} />
-              Add New Project
-            </motion.button>
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/portfolio" target="_blank" rel="noopener noreferrer">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className="bg-card border border-border text-foreground px-4 py-2 rounded-lg hover:border-primary/30 transition-all duration-150 flex items-center gap-2"
+              >
+                <Eye size={16} />
+                View Live
+              </motion.button>
+            </Link>
+            <Link to="/admin/projects/new">
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium flex items-center gap-2 hover:shadow-lg transition-all duration-150"
+              >
+                <Plus size={18} />
+                Add New Project
+              </motion.button>
+            </Link>
+            <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center">
+              <FileText size={24} className="text-primary-foreground" />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Enhanced Filters & Search */}
-      <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
+      <div className="bg-card border border-border rounded-xl p-6">
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Search */}
           <div className="flex-1 relative">
@@ -131,7 +156,7 @@ const ProjectManagement: React.FC = () => {
               placeholder="Search projects, clients, or descriptions..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-background/50 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+              className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
             />
           </div>
 
@@ -141,7 +166,7 @@ const ProjectManagement: React.FC = () => {
             <select
               value={filterFeatured}
               onChange={(e) => setFilterFeatured(e.target.value as 'all' | 'featured' | 'regular')}
-              className="px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+              className="px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
             >
               <option value="all">All Projects</option>
               <option value="featured">Featured Only</option>
@@ -151,7 +176,7 @@ const ProjectManagement: React.FC = () => {
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+              className="px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
             >
               <option value="all">All Categories</option>
               {categories.slice(1).map((category) => (
@@ -161,7 +186,7 @@ const ProjectManagement: React.FC = () => {
           </div>
 
           {/* View Mode Toggle */}
-          <div className="flex items-center gap-2 bg-background/50 border border-border rounded-lg p-1">
+          <div className="flex items-center gap-2 bg-background border border-border rounded-lg p-1">
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded transition-all duration-150 ${
@@ -196,18 +221,18 @@ const ProjectManagement: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               whileHover={{ y: -4, scale: 1.02 }}
-              className="bg-card/50 backdrop-blur-xl border border-border rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-150 group"
+              className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-150 group"
             >
               {/* Project Image */}
               <div className="relative aspect-[16/9] overflow-hidden">
                 <img
-                  src={project.image}
+                  src={project.image || 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800'}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {project.featured && (
                   <div className="absolute top-3 left-3">
-                    <span className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                    <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium shadow-lg">
                       Featured
                     </span>
                   </div>
@@ -270,7 +295,7 @@ const ProjectManagement: React.FC = () => {
                 {/* Actions */}
                 <div className="flex gap-2">
                   <Link to={`/portfolio/${project.slug}`} target="_blank" className="flex-1">
-                    <button className="w-full bg-background/50 text-foreground px-3 py-2 rounded-lg text-sm hover:bg-background/80 transition-colors duration-150 flex items-center justify-center gap-1">
+                    <button className="w-full bg-background text-foreground px-3 py-2 rounded-lg text-sm hover:bg-background/80 transition-colors duration-150 flex items-center justify-center gap-1 border border-border hover:border-primary/30">
                       <Eye size={14} />
                       View
                     </button>
@@ -282,7 +307,7 @@ const ProjectManagement: React.FC = () => {
                     </button>
                   </Link>
                   <button
-                    onClick={() => toggleFeatured(project.id, project.featured)}
+                    onClick={() => toggleFeatured(project.id, project.featured, project.title)}
                     className={`p-2 rounded-lg text-sm transition-colors duration-150 ${
                       project.featured 
                         ? 'bg-primary/20 text-primary' 
@@ -314,7 +339,7 @@ const ProjectManagement: React.FC = () => {
         </div>
       ) : (
         /* List View */
-        <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl overflow-hidden">
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-card/30 border-b border-border">
@@ -339,7 +364,7 @@ const ProjectManagement: React.FC = () => {
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-4">
                         <img
-                          src={project.image}
+                          src={project.image || 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800'}
                           alt={project.title}
                           className="w-12 h-12 rounded-lg object-cover border border-border"
                         />
@@ -366,16 +391,20 @@ const ProjectManagement: React.FC = () => {
                       </span>
                     </td>
                     <td className="py-4 px-6">
-                      {project.featured ? (
-                        <span className="inline-flex items-center px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
-                          <Star size={12} className="mr-1 fill-current" />
-                          Featured
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center px-2 py-1 bg-muted/20 text-muted-foreground rounded-full text-xs">
-                          Regular
-                        </span>
-                      )}
+                      <div className="flex items-center gap-2">
+                        {project.featured && (
+                          <span className="inline-flex items-center px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
+                            <Star size={12} className="mr-1 fill-current" />
+                            Featured
+                          </span>
+                        )}
+                        {project.is_active && (
+                          <span className="inline-flex items-center px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
+                            <CheckCircle size={12} className="mr-1" />
+                            Active
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="py-4 px-6">
                       <span className="text-sm text-muted-foreground">{project.year}</span>
@@ -393,7 +422,7 @@ const ProjectManagement: React.FC = () => {
                           </button>
                         </Link>
                         <button
-                          onClick={() => toggleFeatured(project.id, project.featured)}
+                          onClick={() => toggleFeatured(project.id, project.featured, project.title)}
                           className={`p-2 rounded-lg transition-all duration-150 ${
                             project.featured 
                               ? 'text-primary bg-primary/10' 
@@ -433,7 +462,7 @@ const ProjectManagement: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="text-center py-16 bg-card/30 backdrop-blur-xl border border-border rounded-xl"
+          className="text-center py-16 bg-card/30 border border-border rounded-xl"
         >
           <FileText size={48} className="text-muted-foreground mx-auto mb-4" />
           <h3 className="text-xl font-bold text-foreground mb-2">
@@ -451,7 +480,7 @@ const ProjectManagement: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-xl font-medium hover:shadow-glow transition-all duration-150"
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-150"
               >
                 Add Your First Project
               </motion.button>
@@ -470,4 +499,4 @@ const ProjectManagement: React.FC = () => {
   );
 };
 
-export default ProjectManagement;
+export default ProjectsManagement;
