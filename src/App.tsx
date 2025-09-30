@@ -17,6 +17,13 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import BackToTop from "./components/common/BackToTop";
 import AllProjectsPage from "./pages/AllProjectsPage";
+import AdminLayout from "./components/admin/AdminLayout";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ServiceManagement from "./pages/admin/ServiceManagement";
+import ProjectManagement from "./pages/admin/ProjectManagement";
+import SiteSettings from "./pages/admin/SiteSettings";
+import AuthForm from "./components/admin/AuthForm";
 
 function App() {
   useEffect(() => {
@@ -46,6 +53,19 @@ function App() {
           <Route path="/articles/:slug" element={<ArticleDetailPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AuthForm />} />
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }>
+            <Route index element={<AdminDashboard />} />
+            <Route path="services" element={<ServiceManagement />} />
+            <Route path="projects" element={<ProjectManagement />} />
+            <Route path="settings" element={<SiteSettings />} />
+          </Route>
         </Routes>
       </AnimatePresence>
       <Footer />
