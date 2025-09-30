@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, RefreshCw } from 'lucide-react';
+import { Save, RefreshCw, Building, Globe, Mail, Phone, MapPin, BarChart3, Calendar } from 'lucide-react';
 import { useSiteSettings } from '../../hooks/useSupabaseData';
 import { supabase } from '../../lib/supabase';
 
@@ -79,7 +79,11 @@ const SiteSettings: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+          className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full"
+        />
       </div>
     );
   }
@@ -93,64 +97,82 @@ const SiteSettings: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl space-y-8">
+    <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Site Settings</h1>
-        <p className="text-muted-foreground">
-          Manage your company information and global site settings
-        </p>
+      <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Global Site Settings</h1>
+            <p className="text-muted-foreground">
+              Manage your company information and global site configuration
+            </p>
+          </div>
+          <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-glow">
+            <Globe size={24} className="text-primary-foreground" />
+          </div>
+        </div>
       </div>
 
       <form onSubmit={handleSave} className="space-y-8">
         {/* Company Information */}
-        <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-foreground mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+        >
+          <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+            <Building size={20} className="text-primary" />
             Company Information
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Company Name
+                Company Name *
               </label>
               <input
                 type="text"
                 name="company_name"
                 value={formData.company_name}
                 onChange={handleInputChange}
+                required
                 className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
                 placeholder="Zumetrix Labs"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Tagline
+                Company Tagline *
               </label>
               <input
                 type="text"
                 name="tagline"
                 value={formData.tagline}
                 onChange={handleInputChange}
+                required
                 className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
                 placeholder="Forge Your Digital Empire. Conquer Tomorrow."
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Email
+                <Mail size={16} className="inline mr-1" />
+                Email Address *
               </label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
+                required
                 className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
                 placeholder="hello@zumetrix.com"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Phone
+                <Phone size={16} className="inline mr-1" />
+                Phone Number
               </label>
               <input
                 type="text"
@@ -163,7 +185,8 @@ const SiteSettings: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Address
+                <MapPin size={16} className="inline mr-1" />
+                Address/Location
               </label>
               <input
                 type="text"
@@ -176,7 +199,8 @@ const SiteSettings: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Website
+                <Globe size={16} className="inline mr-1" />
+                Website URL
               </label>
               <input
                 type="url"
@@ -188,17 +212,23 @@ const SiteSettings: React.FC = () => {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Social Media Links */}
-        <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-foreground mb-6">
-            Social Media Links
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+        >
+          <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+            <Globe size={20} className="text-primary" />
+            Social Media & External Links
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                LinkedIn
+                LinkedIn Company Page
               </label>
               <input
                 type="url"
@@ -211,7 +241,7 @@ const SiteSettings: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                GitHub
+                GitHub Organization
               </label>
               <input
                 type="url"
@@ -224,7 +254,7 @@ const SiteSettings: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Twitter/X
+                Twitter/X Profile
               </label>
               <input
                 type="url"
@@ -237,7 +267,7 @@ const SiteSettings: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Instagram
+                Instagram Profile
               </label>
               <input
                 type="url"
@@ -248,13 +278,33 @@ const SiteSettings: React.FC = () => {
                 placeholder="https://instagram.com/zumetrixlabs"
               />
             </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
+                <Calendar size={16} className="inline mr-1" />
+                Calendly Booking URL
+              </label>
+              <input
+                type="url"
+                name="calendly_url"
+                value={formData.calendly_url}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+                placeholder="https://calendly.com/zumetrix-labs/consultation"
+              />
+            </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* SEO & Analytics */}
-        <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-foreground mb-6">
-            SEO & Analytics
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+          className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+        >
+          <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+            <BarChart3 size={20} className="text-primary" />
+            SEO & Analytics Configuration
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -269,10 +319,13 @@ const SiteSettings: React.FC = () => {
                 className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
                 placeholder="G-XXXXXXXXXX"
               />
+              <p className="text-xs text-muted-foreground mt-1">
+                Used for tracking website analytics and user behavior
+              </p>
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Google Verification Code
+                Google Search Console Verification
               </label>
               <input
                 type="text"
@@ -280,54 +333,99 @@ const SiteSettings: React.FC = () => {
                 value={formData.google_verification}
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
-                placeholder="Verification code"
+                placeholder="Verification meta tag content"
               />
-            </div>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-foreground mb-2">
-                Calendly URL
-              </label>
-              <input
-                type="url"
-                name="calendly_url"
-                value={formData.calendly_url}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
-                placeholder="https://calendly.com/zumetrix-labs/consultation"
-              />
+              <p className="text-xs text-muted-foreground mt-1">
+                Verification code for Google Search Console
+              </p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Save Button */}
-        <div className="flex justify-end">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
+          className="flex justify-end"
+        >
           <motion.button
             type="submit"
             disabled={saving}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.15 }}
-            className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-lg font-medium hover:shadow-glow transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-3 rounded-xl font-medium hover:shadow-glow transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
           >
             {saving ? (
               <>
-                <RefreshCw size={18} className="animate-spin" />
-                Saving...
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
+                />
+                Saving Changes...
               </>
             ) : saved ? (
               <>
                 <Save size={18} />
-                Saved!
+                Settings Saved!
               </>
             ) : (
               <>
                 <Save size={18} />
-                Save Settings
+                Save All Settings
               </>
             )}
           </motion.button>
-        </div>
+        </motion.div>
       </form>
+
+      {/* Preview Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.4 }}
+        className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6"
+      >
+        <h3 className="text-lg font-bold text-foreground mb-4">Settings Preview</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Company:</span>
+              <span className="text-foreground font-medium">{formData.company_name || 'Not set'}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Email:</span>
+              <span className="text-foreground font-medium">{formData.email || 'Not set'}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Phone:</span>
+              <span className="text-foreground font-medium">{formData.phone || 'Not set'}</span>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Analytics:</span>
+              <span className={`font-medium ${formData.ga_tag_id ? 'text-green-500' : 'text-muted-foreground'}`}>
+                {formData.ga_tag_id ? 'Configured' : 'Not configured'}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Search Console:</span>
+              <span className={`font-medium ${formData.google_verification ? 'text-green-500' : 'text-muted-foreground'}`}>
+                {formData.google_verification ? 'Verified' : 'Not verified'}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Calendly:</span>
+              <span className={`font-medium ${formData.calendly_url ? 'text-green-500' : 'text-muted-foreground'}`}>
+                {formData.calendly_url ? 'Connected' : 'Not connected'}
+              </span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };

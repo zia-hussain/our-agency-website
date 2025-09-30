@@ -62,8 +62,18 @@ function App() {
             </ProtectedRoute>
           }>
             <Route index element={<AdminDashboard />} />
+            <Route path="home-content" element={<div className="p-8 text-center text-muted-foreground">Home Content Management - Coming Soon</div>} />
+            <Route path="about-content" element={<div className="p-8 text-center text-muted-foreground">About Content Management - Coming Soon</div>} />
+            <Route path="contact-content" element={<div className="p-8 text-center text-muted-foreground">Contact Content Management - Coming Soon</div>} />
+            <Route path="navigation" element={<div className="p-8 text-center text-muted-foreground">Navigation Management - Coming Soon</div>} />
+            <Route path="faqs" element={<div className="p-8 text-center text-muted-foreground">FAQ Management - Coming Soon</div>} />
+            <Route path="seo" element={<div className="p-8 text-center text-muted-foreground">SEO Management - Coming Soon</div>} />
+            <Route path="analytics" element={<div className="p-8 text-center text-muted-foreground">Analytics Dashboard - Coming Soon</div>} />
             <Route path="services" element={<ServiceManagement />} />
             <Route path="projects" element={<ProjectManagement />} />
+            <Route path="articles" element={<div className="p-8 text-center text-muted-foreground">Article Management - Coming Soon</div>} />
+            <Route path="testimonials" element={<div className="p-8 text-center text-muted-foreground">Testimonial Management - Coming Soon</div>} />
+            <Route path="founders" element={<div className="p-8 text-center text-muted-foreground">Founder Management - Coming Soon</div>} />
             <Route path="settings" element={<SiteSettings />} />
           </Route>
         </Routes>
