@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import type { Service, Project, Article, Testimonial, Founder, SiteSettings } from '../lib/supabase';
 
 // Custom hook for fetching services
@@ -9,6 +9,11 @@ export const useServices = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
     const fetchServices = async () => {
       try {
         const { data, error } = await supabase
@@ -38,6 +43,11 @@ export const useProjects = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
     const fetchProjects = async () => {
       try {
         const { data, error } = await supabase
@@ -67,6 +77,11 @@ export const useArticles = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
     const fetchArticles = async () => {
       try {
         const { data, error } = await supabase
@@ -96,6 +111,11 @@ export const useTestimonials = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
     const fetchTestimonials = async () => {
       try {
         const { data, error } = await supabase
@@ -125,6 +145,11 @@ export const useFounders = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
     const fetchFounders = async () => {
       try {
         const { data, error } = await supabase
@@ -155,6 +180,11 @@ export const useSiteSettings = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
     const fetchSettings = async () => {
       try {
         const { data, error } = await supabase
