@@ -24,7 +24,7 @@ import {
   Building,
   MapPin,
   Home,
-  NavigationIcon,
+  Navigation as NavigationIcon,
 } from "lucide-react";
 import {
   useServices,
@@ -161,7 +161,7 @@ const AdminDashboard: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="space-y-8">
+      <div className="space-y-8 max-w-7xl mx-auto">
         {/* Loading Skeleton */}
         <div className="bg-card border border-border rounded-2xl p-8">
           <div className="animate-pulse">
@@ -188,7 +188,7 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 max-w-7xl mx-auto">
       {/* WELCOME HEADER - EXECUTIVE STYLE */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

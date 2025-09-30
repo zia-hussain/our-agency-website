@@ -22,7 +22,7 @@ import {
   Globe,
   Navigation as NavigationIcon,
   HelpCircle,
-  AlignEndHorizontal as FooterIcon,
+  AlignEndHorizontal,
   Search,
   Plus
 } from 'lucide-react';
@@ -103,7 +103,7 @@ const AdminLayout: React.FC = () => {
     { 
       name: 'Footer', 
       href: '/admin/footer', 
-      icon: FooterIcon,
+      icon: AlignEndHorizontal,
       description: 'Footer content & links'
     },
     { 
@@ -111,6 +111,12 @@ const AdminLayout: React.FC = () => {
       href: '/admin/faqs', 
       icon: HelpCircle,
       description: 'Page-specific FAQs'
+    },
+    { 
+      name: 'SEO Settings', 
+      href: '/admin/seo', 
+      icon: Globe,
+      description: 'Meta tags & analytics'
     },
     { 
       name: 'Site Settings', 
@@ -152,13 +158,13 @@ const AdminLayout: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Sidebar - PROFESSIONAL FIXED DESIGN */}
-      <motion.div
-        initial={false}
-        animate={{ x: sidebarOpen ? 0 : '-100%' }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed inset-y-0 left-0 z-50 w-80 bg-card border-r border-border lg:translate-x-0 lg:static lg:inset-0 shadow-2xl"
-      >
+      {/* FIXED SIDEBAR - ALWAYS VISIBLE ON DESKTOP */}
+      <div className={`
+        fixed inset-y-0 left-0 z-50 w-80 bg-card border-r border-border shadow-2xl
+        transform transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        lg:translate-x-0 lg:static lg:inset-0
+      `}>
         <div className="flex flex-col h-full">
           {/* PREMIUM LOGO SECTION */}
           <div className="flex items-center justify-between h-20 px-6 border-b border-border bg-card/50">
@@ -195,6 +201,7 @@ const AdminLayout: React.FC = () => {
               >
                 <Link
                   to={item.href}
+                  onClick={() => setSidebarOpen(false)}
                   className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-150 ${
                     isActive(item.href)
                       ? 'bg-primary text-primary-foreground shadow-lg'
@@ -253,10 +260,10 @@ const AdminLayout: React.FC = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* MAIN CONTENT AREA */}
-      <div className="flex-1 flex flex-col min-w-0">
+      {/* MAIN CONTENT AREA - PROPERLY POSITIONED */}
+      <div className="flex-1 flex flex-col min-w-0 lg:ml-80">
         {/* PROFESSIONAL HEADER BAR */}
         <header className="h-20 bg-card border-b border-border flex items-center justify-between px-6 shadow-lg sticky top-0 z-30">
           {/* Left side - Mobile menu + Current page info */}
