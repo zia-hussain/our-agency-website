@@ -164,40 +164,6 @@ export const useProjects = () => {
   return { projects: [], loading: false, error: null, refetch: () => {} };
 };
 
-// Enhanced hook for founders with real-time updates
-export const useFounders = () => {
-  const [founders, setFounders] = useState<Founder[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchFounders = async () => {
-    if (!isSupabaseConfigured || !supabase) {
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('founders')
-        .select('*')
-        .eq('is_active', true)
-        .order('order_index', { ascending: true });
-
-      if (error) throw error;
-      setFounders(data || []);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch founders');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchFounders();
-  }, []);
-
-  return { founders, loading, error, refetch: fetchFounders };
-};
 
 // Enhanced hook for site settings with real-time updates
 export const useSiteSettings = () => {

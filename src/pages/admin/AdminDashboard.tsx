@@ -33,7 +33,6 @@ import {
   useProjects,
   useArticles,
   useTestimonials,
-  useFounders,
   useActivityLogs,
 } from "../../hooks/useSupabaseData";
 
@@ -42,7 +41,6 @@ const AdminDashboard: React.FC = () => {
   const { projects, loading: projectsLoading } = useProjects();
   const { articles, loading: articlesLoading } = useArticles();
   const { testimonials, loading: testimonialsLoading } = useTestimonials();
-  const { founders, loading: foundersLoading } = useFounders();
   const { activityLogs, loading: activityLoading } = useActivityLogs(5);
 
   const isLoading =
@@ -50,7 +48,6 @@ const AdminDashboard: React.FC = () => {
     projectsLoading ||
     articlesLoading ||
     testimonialsLoading ||
-    foundersLoading ||
     activityLoading;
 
   // REAL KPI DATA FROM SUPABASE
