@@ -1,25 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Eye, 
-  Star, 
-  Search, 
-  Filter, 
-  Grid2x2 as Grid, 
-  List, 
-  MessageSquare, 
-  MapPin, 
-  Building, 
-  Award,
-  CheckCircle, 
-  AlertCircle,
-  Quote,
-  Globe
-} from 'lucide-react';
+import { Plus, CreditCard as Edit, Trash2, Eye, Star, Search, Filter, Grid2x2 as Grid, List, MessageSquare, MapPin, Building, Award, CheckCircle, AlertCircle, Quote, Globe } from 'lucide-react';
 import { useTestimonials } from '../../hooks/useSupabaseData';
 import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import { logActivity } from '../../hooks/useSupabaseData';
