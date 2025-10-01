@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import type { 
+  Article, 
+  PortfolioProject,
+  Testimonial,
+  ContentMigration,
   Service, 
   Project, 
-  Article, 
-  Testimonial, 
   Founder, 
   SiteSettings, 
   PageSection, 
@@ -14,77 +16,7 @@ import type {
   MediaUpload 
 } from '../lib/supabase';
 
-// Enhanced hook for services with real-time updates
-export const useServices = () => {
-  const [services, setServices] = useState<Service[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchServices = async () => {
-    if (!isSupabaseConfigured || !supabase) {
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('services')
-        .select('*')
-        .eq('is_active', true)
-        .order('order_index', { ascending: true });
-
-      if (error) throw error;
-      setServices(data || []);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch services');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchServices();
-  }, []);
-
-  return { services, loading, error, refetch: fetchServices };
-};
-
-// Enhanced hook for projects with real-time updates
-export const useProjects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchProjects = async () => {
-    if (!isSupabaseConfigured || !supabase) {
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('projects')
-        .select('*')
-        .eq('is_active', true)
-        .order('order_index', { ascending: true });
-
-      if (error) throw error;
-      setProjects(data || []);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch projects');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  return { projects, loading, error, refetch: fetchProjects };
-};
-
-// Enhanced hook for articles with real-time updates
+// Hybrid CMS Hooks - Only for Articles, Portfolio & Testimonials
 export const useArticles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
@@ -100,7 +32,6 @@ export const useArticles = () => {
       const { data, error } = await supabase
         .from('articles')
         .select('*')
-        .eq('is_published', true)
         .order('published_at', { ascending: false });
 
       if (error) throw error;
@@ -119,7 +50,39 @@ export const useArticles = () => {
   return { articles, loading, error, refetch: fetchArticles };
 };
 
-// Enhanced hook for testimonials with real-time updates
+export const usePortfolioProjects = () => {
+  const [projects, setProjects] = useState<PortfolioProject[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchProjects = async () => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('portfolio_projects')
+        .select('*')
+        .order('order_index', { ascending: true });
+
+      if (error) throw error;
+      setProjects(data || []);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch projects');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  return { projects, loading, error, refetch: fetchProjects };
+};
+
 export const useTestimonials = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
@@ -152,6 +115,53 @@ export const useTestimonials = () => {
   }, []);
 
   return { testimonials, loading, error, refetch: fetchTestimonials };
+};
+
+// Hook for content migrations
+export const useContentMigrations = () => {
+  const [migrations, setMigrations] = useState<ContentMigration[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchMigrations = async () => {
+    if (!isSupabaseConfigured || !supabase) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('content_migrations')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setMigrations(data || []);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch migrations');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMigrations();
+  }, []);
+
+  return { migrations, loading, error, refetch: fetchMigrations };
+};
+
+// Keep existing hooks for static content (unchanged)
+export const useServices = () => {
+  // This will continue to use the static data from src/data/services.ts
+  // No Supabase integration needed for services as per hybrid approach
+  return { services: [], loading: false, error: null, refetch: () => {} };
+};
+
+export const useProjects = () => {
+  // This will continue to use the static data from src/data/projects.ts  
+  // No Supabase integration needed for projects as per hybrid approach
+  return { projects: [], loading: false, error: null, refetch: () => {} };
 };
 
 // Enhanced hook for founders with real-time updates

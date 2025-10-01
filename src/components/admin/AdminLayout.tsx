@@ -66,7 +66,7 @@ const AdminLayout: React.FC = () => {
     },
     {
       name: "Portfolio",
-      href: "/admin/projects",
+      href: "/admin/portfolio",
       icon: FileText,
       description: "Project case studies",
     },

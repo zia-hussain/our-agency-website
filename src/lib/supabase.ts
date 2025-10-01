@@ -14,7 +14,138 @@ export const supabase = hasValidCredentials ?
 
 export const isSupabaseConfigured = hasValidCredentials;
 
-// Complete Database Types for Beast Mode CMS
+// Hybrid CMS Types - Only for Articles, Portfolio & Testimonials
+export interface Article {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  featured_image?: string;
+  author: string;
+  author_role?: string;
+  author_image?: string;
+  published_at?: string;
+  read_time?: string;
+  tags: string[];
+  category: string;
+  featured: boolean;
+  is_published: boolean;
+  view_count: number;
+  
+  // SEO Fields
+  seo_title?: string;
+  seo_description?: string;
+  seo_keywords?: string;
+  og_title?: string;
+  og_description?: string;
+  og_image?: string;
+  twitter_title?: string;
+  twitter_description?: string;
+  twitter_image?: string;
+  canonical_url?: string;
+  
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PortfolioProject {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  type: string;
+  description: string;
+  long_description?: string;
+  featured_image?: string;
+  gallery: string[];
+  tags: string[];
+  
+  // Client Information
+  client_name: string;
+  client_country: string;
+  client_industry?: string;
+  
+  // Project Details
+  duration?: string;
+  team?: string;
+  year?: string;
+  featured: boolean;
+  is_active: boolean;
+  
+  // Results & Metrics
+  results: string[];
+  problem?: string;
+  solution?: string;
+  kpis?: Array<{
+    label: string;
+    value: string;
+    description: string;
+  }>;
+  
+  // Testimonial
+  testimonial_quote?: string;
+  testimonial_author?: string;
+  testimonial_role?: string;
+  
+  // Links
+  live_link?: string;
+  github_link?: string;
+  
+  // Technology Stack
+  stack: string[];
+  services: string[];
+  
+  // SEO Fields
+  seo_title?: string;
+  seo_description?: string;
+  seo_keywords?: string;
+  og_title?: string;
+  og_description?: string;
+  og_image?: string;
+  twitter_title?: string;
+  twitter_description?: string;
+  twitter_image?: string;
+  canonical_url?: string;
+  
+  // Order & Status
+  order_index: number;
+  
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Testimonial {
+  id: string;
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  country: string;
+  project?: string;
+  avatar?: string;
+  rating: number;
+  results?: string;
+  industry?: string;
+  featured: boolean;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ContentMigration {
+  id: string;
+  migration_name: string;
+  status: 'pending' | 'completed' | 'failed';
+  migrated_count: number;
+  total_count: number;
+  error_message?: string;
+  migrated_at?: string;
+  created_at: string;
+}
+
+// Keep existing types for static content
 export interface Service {
   id: string;
   slug: string;
@@ -76,49 +207,6 @@ export interface Project {
   seo_title?: string;
   seo_description?: string;
   seo_keywords?: string;
-  is_active: boolean;
-  order_index: number;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface Article {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  image?: string;
-  author: string;
-  author_role?: string;
-  author_image?: string;
-  published_at: string;
-  read_time?: string;
-  tags: string[];
-  category: string;
-  featured: boolean;
-  seo_title?: string;
-  seo_description?: string;
-  seo_keywords?: string;
-  is_published: boolean;
-  view_count: number;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface Testimonial {
-  id: string;
-  quote: string;
-  author: string;
-  role: string;
-  company: string;
-  country: string;
-  project?: string;
-  avatar?: string;
-  rating: number;
-  results?: string;
-  industry?: string;
-  featured: boolean;
   is_active: boolean;
   order_index: number;
   created_at: string;

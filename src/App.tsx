@@ -20,8 +20,9 @@ import AllProjectsPage from "./pages/AllProjectsPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import ServicesManagement from "./pages/admin/ServicesManagement";
-import ProjectsManagement from "./pages/admin/ProjectsManagement";
+import ArticlesManagement from "./pages/admin/ArticlesManagement";
+import PortfolioManagement from "./pages/admin/PortfolioManagement";
+import TestimonialsManagement from "./pages/admin/TestimonialsManagement";
 import SiteSettings from "./pages/admin/SiteSettings";
 import AuthForm from "./components/admin/AuthForm";
 import HomePageContent from "./pages/admin/HomePageContent";
@@ -73,10 +74,11 @@ function App() {
             <Route path="faqs" element={<div className="p-8 text-center text-muted-foreground">FAQ Management - Coming Soon</div>} />
             <Route path="seo" element={<div className="p-8 text-center text-muted-foreground">SEO Management - Coming Soon</div>} />
             <Route path="analytics" element={<div className="p-8 text-center text-muted-foreground">Analytics Dashboard - Coming Soon</div>} />
-            <Route path="services" element={<ServicesManagement />} />
-            <Route path="projects" element={<ProjectsManagement />} />
-            <Route path="articles" element={<div className="p-8 text-center text-muted-foreground">Article Management - Coming Soon</div>} />
-            <Route path="testimonials" element={<div className="p-8 text-center text-muted-foreground">Testimonial Management - Coming Soon</div>} />
+            <Route path="services" element={<div className="p-8 text-center text-muted-foreground">Services Management - Static Content (No CMS)</div>} />
+            <Route path="projects" element={<div className="p-8 text-center text-muted-foreground">Projects Management - Static Content (No CMS)</div>} />
+            <Route path="articles" element={<ArticlesManagement />} />
+            <Route path="portfolio" element={<PortfolioManagement />} />
+            <Route path="testimonials" element={<TestimonialsManagement />} />
             <Route path="founders" element={<div className="p-8 text-center text-muted-foreground">Founder Management - Coming Soon</div>} />
             <Route path="settings" element={<SiteSettings />} />
           </Route>
