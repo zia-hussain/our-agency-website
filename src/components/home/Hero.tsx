@@ -12,7 +12,7 @@ import {
   CheckCircle,
   Zap,
   Shield,
-  Rocket
+  Rocket,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSiteData } from "../../data/site";
@@ -26,7 +26,10 @@ const Hero: React.FC = () => {
   const heroImages = [
     "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200",
     "https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200",
   ];
 
   // Auto-rotate mockups
@@ -49,26 +52,26 @@ const Hero: React.FC = () => {
       icon: Star,
       value: "5.0★",
       label: "Client Rating",
-      description: "100% satisfaction"
+      description: "100% satisfaction",
     },
     {
       icon: Globe,
       value: "50+",
       label: "Global Projects",
-      description: "6 countries served"
+      description: "6 countries served",
     },
     {
       icon: Clock,
       value: "30d",
       label: "MVP Delivery",
-      description: "Rapid development"
+      description: "Rapid development",
     },
     {
       icon: Award,
       value: "100%",
       label: "Success Rate",
-      description: "Zero failures"
-    }
+      description: "Zero failures",
+    },
   ];
 
   return (
@@ -130,10 +133,27 @@ const Hero: React.FC = () => {
             {/* Subtext - Clear Value Proposition */}
             <div className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground leading-[1.6] mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0 px-2 lg:px-0">
               <p className="mb-3 sm:mb-4">
-                <strong className="text-foreground">Zumetrix Labs is the world's premier software development agency building enterprise-grade SaaS MVPs in 30 days, AI automation systems, and mobile apps</strong> for ambitious global startups and enterprises.
+                <strong className="text-foreground">
+                  Zumetrix Labs is the world's premier software development
+                  agency building enterprise-grade SaaS MVPs in 30 days, AI
+                  automation systems, and mobile apps
+                </strong>{" "}
+                for ambitious global startups and enterprises.
               </p>
               <p className="text-sm sm:text-base lg:text-lg">
-                Founded by world-class developers <strong className="text-primary">Zia Hussain & Syed Omer Shah</strong>. Trusted by <strong className="text-primary">50+ international clients</strong> with <strong className="text-primary">100% satisfaction rate</strong> and <strong className="text-primary">85% funding success</strong> for startup MVPs.
+                Founded by world-class developers{" "}
+                <strong className="text-primary">
+                  Zia Hussain & Syed Omer Shah
+                </strong>
+                . Trusted by{" "}
+                <strong className="text-primary">
+                  50+ international clients
+                </strong>{" "}
+                with{" "}
+                <strong className="text-primary">100% satisfaction rate</strong>{" "}
+                and{" "}
+                <strong className="text-primary">85% funding success</strong>{" "}
+                for startup MVPs.
               </p>
             </div>
 
@@ -149,8 +169,14 @@ const Hero: React.FC = () => {
                            flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg shadow-lg w-full sm:w-auto justify-center"
                 >
                   Start Your Project
-                  <ArrowRight size={16} className="sm:hidden group-hover:translate-x-1 transition-transform duration-150" />
-                  <ArrowRight size={18} className="hidden sm:block group-hover:translate-x-1 transition-transform duration-150" />
+                  <ArrowRight
+                    size={16}
+                    className="sm:hidden group-hover:translate-x-1 transition-transform duration-150"
+                  />
+                  <ArrowRight
+                    size={18}
+                    className="hidden sm:block group-hover:translate-x-1 transition-transform duration-150"
+                  />
                 </motion.button>
               </Link>
 
@@ -184,19 +210,21 @@ const Hero: React.FC = () => {
                   <motion.img
                     key={currentMockup}
                     src={heroImages[currentMockup]}
-                    alt={`Premium software development project ${currentMockup + 1}`}
-                    initial={{ opacity: 0, scale: 1.1, rotate: 2 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9, rotate: -2 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="w-full h-full object-cover rounded-2xl lg:rounded-3xl group-hover:scale-105 transition-transform duration-700"
+                    alt={`Premium software development project ${
+                      currentMockup + 1
+                    }`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                    className="w-full h-full object-cover rounded-2xl lg:rounded-3xl"
                   />
                 </AnimatePresence>
 
                 {/* Enhanced Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
                   <motion.div
@@ -211,9 +239,9 @@ const Hero: React.FC = () => {
 
                 {/* Floating Tech Icons */}
                 <motion.div
-                  animate={{ 
+                  animate={{
                     y: [0, -8, 0],
-                    rotate: [0, 2, 0]
+                    rotate: [0, 2, 0],
                   }}
                   transition={{
                     duration: 6,
@@ -227,7 +255,7 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Image Indicators */}
-              <div className="flex justify-center gap-3 mt-6 sm:mt-8">
+              {/* <div className="flex justify-center gap-3 mt-6 sm:mt-8">
                 {heroImages.map((_, index) => (
                   <motion.button
                     key={index}
@@ -242,14 +270,14 @@ const Hero: React.FC = () => {
                     }`}
                   />
                 ))}
-              </div>
+              </div> */}
 
               {/* Enhanced Floating Elements */}
               <motion.div
-                animate={{ 
-                  y: [0, -15, 0], 
+                animate={{
+                  y: [0, -15, 0],
                   rotate: [0, 5, 0],
-                  scale: [1, 1.05, 1]
+                  scale: [1, 1.05, 1],
                 }}
                 transition={{
                   duration: 10,
@@ -262,10 +290,10 @@ const Hero: React.FC = () => {
               </motion.div>
 
               <motion.div
-                animate={{ 
-                  y: [0, 18, 0], 
+                animate={{
+                  y: [0, 18, 0],
                   rotate: [0, -8, 0],
-                  scale: [1, 1.1, 1]
+                  scale: [1, 1.1, 1],
                 }}
                 transition={{
                   duration: 12,
@@ -274,15 +302,18 @@ const Hero: React.FC = () => {
                 }}
                 className="absolute -bottom-8 -left-8 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full hidden xl:flex items-center justify-center shadow-lg border border-primary/20"
               >
-                <Star size={24} className="text-primary fill-current animate-pulse" />
+                <Star
+                  size={24}
+                  className="text-primary fill-current animate-pulse"
+                />
               </motion.div>
 
               {/* Code Symbol Floating Element */}
               <motion.div
-                animate={{ 
-                  y: [0, -10, 0], 
+                animate={{
+                  y: [0, -10, 0],
                   x: [0, 5, 0],
-                  rotate: [0, 10, 0]
+                  rotate: [0, 10, 0],
                 }}
                 transition={{
                   duration: 14,
@@ -314,9 +345,18 @@ const Hero: React.FC = () => {
               className="text-center bg-card/50 backdrop-blur-xl border border-border rounded-lg lg:rounded-xl px-2 sm:px-3 lg:px-4 py-3 sm:py-4 lg:py-6 xl:py-8 hover:bg-card/80 hover:border-primary/30 transition-all duration-150 cursor-pointer group"
             >
               <div className="flex items-center justify-center mb-3">
-                <metric.icon size={14} className="sm:hidden text-primary mr-1" />
-                <metric.icon size={16} className="hidden sm:block lg:hidden text-primary mr-1 sm:mr-2" />
-                <metric.icon size={18} className="hidden lg:block text-primary mr-2" />
+                <metric.icon
+                  size={14}
+                  className="sm:hidden text-primary mr-1"
+                />
+                <metric.icon
+                  size={16}
+                  className="hidden sm:block lg:hidden text-primary mr-1 sm:mr-2"
+                />
+                <metric.icon
+                  size={18}
+                  className="hidden lg:block text-primary mr-2"
+                />
                 <span className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-150">
                   {metric.value}
                 </span>
