@@ -422,20 +422,50 @@ export const logActivity = async (
 
 // Utility function for Cloudinary uploads
 export const uploadToCloudinary = async (file: File): Promise<string> => {
-  // PLACEHOLDER: Replace with actual Cloudinary upload
-  // For now, return high-quality Pexels images that match your site theme
+  // 🔥 CLOUDINARY PLACEHOLDER - Replace with actual implementation
+  // This simulates upload and returns professional Pexels images
   const placeholderImages = [
-    'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800',
     'https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800'
+    'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800'
   ];
   
   return new Promise((resolve) => {
     setTimeout(() => {
       const randomImage = placeholderImages[Math.floor(Math.random() * placeholderImages.length)];
       resolve(randomImage);
-    }, 1000);
+    }, 1500); // Simulate realistic upload time
   });
 };
+
+/* 
+🔥 CLOUDINARY INTEGRATION INSTRUCTIONS:
+
+Replace the uploadToCloudinary function above with:
+
+export const uploadToCloudinary = async (file: File): Promise<string> => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', 'YOUR_UPLOAD_PRESET'); // Get from Cloudinary
+  
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload`, // Replace with your cloud name
+    {
+      method: 'POST',
+      body: formData,
+    }
+  );
+  
+  const data = await response.json();
+  return data.secure_url;
+};
+
+Steps to set up Cloudinary:
+1. Create account at cloudinary.com
+2. Get your Cloud Name from dashboard
+3. Create an unsigned upload preset
+4. Replace YOUR_CLOUD_NAME and YOUR_UPLOAD_PRESET above
+*/

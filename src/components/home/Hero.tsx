@@ -22,11 +22,11 @@ const Hero: React.FC = () => {
   const siteData = getSiteData();
   const { hero, metrics } = siteData;
 
-  // Premium hero images from Pexels
+  // BEAST MODE: Premium tech-focused hero images
   const heroImages = [
-    "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
   ];
 
   // Auto-rotate mockups
@@ -177,76 +177,121 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.2 }}
             className="relative order-1 lg:order-2"
           >
-            <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+            <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
               {/* Main Image Display */}
-              <div className="relative aspect-[4/3] rounded-xl lg:rounded-2xl overflow-hidden border border-border shadow-2xl">
+              <div className="relative aspect-[4/3] rounded-2xl lg:rounded-3xl overflow-hidden border border-border shadow-2xl group">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentMockup}
                     src={heroImages[currentMockup]}
                     alt={`Premium software development project ${currentMockup + 1}`}
-                    initial={{ opacity: 0, scale: 1.05 }}
+                    initial={{ opacity: 0, scale: 1.1, rotate: 2 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                    className="w-full h-full object-cover rounded-xl lg:rounded-2xl"
+                    exit={{ opacity: 0, scale: 0.9, rotate: -2 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="w-full h-full object-cover rounded-2xl lg:rounded-3xl group-hover:scale-105 transition-transform duration-700"
                   />
                 </AnimatePresence>
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
+                {/* Enhanced Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
                 
                 {/* Premium Badge */}
                 <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
-                  <div className="bg-card/90 backdrop-blur-xl border border-border rounded-full px-2 sm:px-3 py-1 text-xs font-medium text-foreground">
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                    className="bg-card/95 backdrop-blur-xl border border-border rounded-full px-2 sm:px-3 py-1 text-xs font-medium text-foreground shadow-lg"
+                  >
                     Enterprise Grade
-                  </div>
+                  </motion.div>
                 </div>
+
+                {/* Floating Tech Icons */}
+                <motion.div
+                  animate={{ 
+                    y: [0, -8, 0],
+                    rotate: [0, 2, 0]
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute top-4 right-4 w-8 h-8 bg-primary/20 backdrop-blur-xl border border-primary/30 rounded-lg flex items-center justify-center"
+                >
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                </motion.div>
               </div>
 
               {/* Image Indicators */}
-              <div className="flex justify-center gap-2 mt-4 sm:mt-6">
+              <div className="flex justify-center gap-3 mt-6 sm:mt-8">
                 {heroImages.map((_, index) => (
                   <motion.button
                     key={index}
                     onClick={() => setCurrentMockup(index)}
-                    whileHover={{ scale: 1.2 }}
+                    whileHover={{ scale: 1.3, y: -2 }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ duration: 0.15 }}
-                    className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-150 ${
+                    className={`w-3 h-3 lg:w-4 lg:h-4 rounded-full transition-all duration-300 ${
                       currentMockup === index
-                        ? "bg-primary shadow-glow"
+                        ? "bg-primary shadow-glow scale-125"
                         : "bg-border hover:bg-primary/50"
                     }`}
                   />
                 ))}
               </div>
 
-              {/* Floating Elements */}
+              {/* Enhanced Floating Elements */}
               <motion.div
-                animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
+                animate={{ 
+                  y: [0, -15, 0], 
+                  rotate: [0, 5, 0],
+                  scale: [1, 1.05, 1]
                 }}
-                className="absolute -top-6 -right-6 w-16 h-16 lg:w-20 lg:h-20 bg-primary/10 backdrop-blur-xl border border-border rounded-2xl hidden xl:flex items-center justify-center"
-              >
-                <Sparkles size={24} className="lg:hidden text-primary/80" />
-                <Sparkles size={32} className="hidden lg:block text-primary/80" />
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 12, 0], rotate: [0, -3, 0] }}
                 transition={{
                   duration: 10,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -bottom-6 -left-6 w-12 h-12 lg:w-16 lg:h-16 bg-primary/20 rounded-full hidden xl:flex items-center justify-center"
+                className="absolute -top-8 -right-8 w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-primary/15 to-primary/25 backdrop-blur-xl border border-primary/30 rounded-2xl hidden xl:flex items-center justify-center shadow-lg"
               >
-                <Star size={20} className="lg:hidden text-primary/70" />
-                <Star size={24} className="hidden lg:block text-primary/70" />
+                <Sparkles size={28} className="text-primary animate-pulse" />
+              </motion.div>
+
+              <motion.div
+                animate={{ 
+                  y: [0, 18, 0], 
+                  rotate: [0, -8, 0],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -bottom-8 -left-8 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full hidden xl:flex items-center justify-center shadow-lg border border-primary/20"
+              >
+                <Star size={24} className="text-primary fill-current animate-pulse" />
+              </motion.div>
+
+              {/* Code Symbol Floating Element */}
+              <motion.div
+                animate={{ 
+                  y: [0, -10, 0], 
+                  x: [0, 5, 0],
+                  rotate: [0, 10, 0]
+                }}
+                transition={{
+                  duration: 14,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-1/2 -left-4 w-12 h-12 bg-gradient-to-br from-primary/10 to-primary/20 backdrop-blur-xl border border-primary/20 rounded-xl hidden lg:flex items-center justify-center shadow-lg"
+              >
+                <div className="text-primary font-mono text-sm font-bold">{`</>`}</div>
               </motion.div>
             </div>
           </motion.div>
