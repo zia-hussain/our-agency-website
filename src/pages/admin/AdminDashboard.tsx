@@ -38,7 +38,7 @@ import {
 
 const AdminDashboard: React.FC = () => {
   const { services, loading: servicesLoading } = useServices();
-  const { projects, loading: projectsLoading } = useProjects();
+  const { projects, loading: projectsLoading } = usePortfolioProjects();
   const { articles, loading: articlesLoading } = useArticles();
   const { testimonials, loading: testimonialsLoading } = useTestimonials();
   const { activityLogs, loading: activityLoading } = useActivityLogs(5);

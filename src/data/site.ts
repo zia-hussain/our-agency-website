@@ -35,9 +35,9 @@ export const SITE_DATA = {
       { icon: "speed", text: "<30d MVP delivery" },
     ],
     mockups: [
-      "/project_images/YOU AS ART.png",
-      "/project_images/FIT-GENIUS-FINAL.png",
-      "/project_images/task_manager_portfolio_img.jpg",
+      "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
     ],
   },
 

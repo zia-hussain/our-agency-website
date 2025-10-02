@@ -77,46 +77,10 @@ const AdminLayout: React.FC = () => {
       description: "Blog posts & insights",
     },
     {
-      name: "Contact Page",
-      href: "/admin/contact-content",
-      icon: Phone,
-      description: "Contact info & forms",
-    },
-    {
       name: "Testimonials",
       href: "/admin/testimonials",
       icon: MessageSquare,
       description: "Client feedback",
-    },
-    {
-      name: "Founders",
-      href: "/admin/founders",
-      icon: Users,
-      description: "Founder profiles",
-    },
-    {
-      name: "Navigation",
-      href: "/admin/navigation",
-      icon: NavigationIcon,
-      description: "Menu & navigation links",
-    },
-    {
-      name: "Footer",
-      href: "/admin/footer",
-      icon: AlignEndHorizontal,
-      description: "Footer content & links",
-    },
-    {
-      name: "FAQs",
-      href: "/admin/faqs",
-      icon: HelpCircle,
-      description: "Page-specific FAQs",
-    },
-    {
-      name: "SEO Settings",
-      href: "/admin/seo",
-      icon: Globe,
-      description: "Meta tags & analytics",
     },
     {
       name: "Site Settings",

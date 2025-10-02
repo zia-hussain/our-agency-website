@@ -422,11 +422,20 @@ export const logActivity = async (
 
 // Utility function for Cloudinary uploads
 export const uploadToCloudinary = async (file: File): Promise<string> => {
-  // This is a placeholder - you'll need to implement actual Cloudinary upload
-  // For now, we'll return a placeholder URL
+  // PLACEHOLDER: Replace with actual Cloudinary upload
+  // For now, return high-quality Pexels images that match your site theme
+  const placeholderImages = [
+    'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800'
+  ];
+  
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(`https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800`);
+      const randomImage = placeholderImages[Math.floor(Math.random() * placeholderImages.length)];
+      resolve(randomImage);
     }, 1000);
   });
 };

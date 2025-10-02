@@ -23,6 +23,9 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import ArticlesManagement from "./pages/admin/ArticlesManagement";
 import PortfolioManagement from "./pages/admin/PortfolioManagement";
 import TestimonialsManagement from "./pages/admin/TestimonialsManagement";
+import ArticleForm from "./pages/admin/articles/ArticleForm";
+import ProjectForm from "./pages/admin/portfolio/ProjectForm";
+import TestimonialForm from "./pages/admin/testimonials/TestimonialForm";
 import SiteSettings from "./pages/admin/SiteSettings";
 import AuthForm from "./components/admin/AuthForm";
 import HomePageContent from "./pages/admin/HomePageContent";
@@ -77,8 +80,14 @@ function App() {
             <Route path="services" element={<div className="p-8 text-center text-muted-foreground">Services Management - Static Content (No CMS)</div>} />
             <Route path="projects" element={<div className="p-8 text-center text-muted-foreground">Projects Management - Static Content (No CMS)</div>} />
             <Route path="articles" element={<ArticlesManagement />} />
+            <Route path="articles/new" element={<ArticleForm />} />
+            <Route path="articles/edit/:id" element={<ArticleForm />} />
             <Route path="portfolio" element={<PortfolioManagement />} />
+            <Route path="portfolio/new" element={<ProjectForm />} />
+            <Route path="portfolio/edit/:id" element={<ProjectForm />} />
             <Route path="testimonials" element={<TestimonialsManagement />} />
+            <Route path="testimonials/new" element={<TestimonialForm />} />
+            <Route path="testimonials/edit/:id" element={<TestimonialForm />} />
             <Route path="founders" element={<div className="p-8 text-center text-muted-foreground">Founder Management - Coming Soon</div>} />
             <Route path="settings" element={<SiteSettings />} />
           </Route>
