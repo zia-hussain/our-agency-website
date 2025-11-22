@@ -3,12 +3,14 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import Hero from "../components/home/Hero";
 import TrustBand from "../components/home/TrustBand";
+import ClientLogos from "../components/home/ClientLogos";
 import ServicesPreview from "../components/home/ServicesPreview";
 import SignatureMethod from "../components/home/SignatureMethod";
 import FeaturedCaseStudies from "../components/home/FeaturedCaseStudies";
 import FoundersStrip from "../components/home/FoundersStrip";
 import TechStack from "../components/home/TechStack";
 import TestimonialsCarousel from "../components/home/TestimonialsCarousel";
+import LeadMagnet from "../components/home/LeadMagnet";
 import FAQ from "../components/home/FAQ";
 import FinalCTA from "../components/home/FinalCTA";
 
@@ -179,40 +181,6 @@ const HomePage: React.FC = () => {
           worstRating: "5",
           description: "Based on 50+ international client projects with 100% satisfaction rate"
         },
-        // Enhanced LocalBusiness schema for geo-targeting
-        "@type": ["Organization", "LocalBusiness"],
-        address: { "@type": "PostalAddress", addressCountry: "Pakistan" },
-        areaServed: [
-          {
-            "@type": "Place",
-            name: "Worldwide"
-          },
-          {
-            "@type": "Country", 
-            name: "United States"
-          },
-          {
-            "@type": "Country",
-            name: "United Kingdom"
-          },
-          {
-            "@type": "Country",
-            name: "Canada"
-          },
-          {
-            "@type": "Country",
-            name: "Australia"
-          },
-          {
-            "@type": "Country",
-            name: "United Arab Emirates"
-          },
-          {
-            "@type": "Country",
-            name: "Singapore"
-          }
-        ],
-        // Enhanced service offerings for AI understanding
         makesOffer: [
           {
             "@type": "Offer",
@@ -257,7 +225,6 @@ const HomePage: React.FC = () => {
             availability: "https://schema.org/InStock"
           }
         ],
-        // BEAST MODE: Enhanced founder information with comprehensive Person schema for AI recognition
         employee: [
           {
             "@type": "Person",
@@ -357,7 +324,6 @@ const HomePage: React.FC = () => {
             ]
           }
         ],
-        // BEAST MODE: Comprehensive keywords for global AI understanding and entity recognition
         keywords: [
           "software development agency Pakistan",
           "Zumetrix Labs",
@@ -461,11 +427,6 @@ const HomePage: React.FC = () => {
           "software consulting firm",
           "technology solutions provider"
         ],
-        description:
-          "Pakistan's leading software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development. Founded by Zia Hussain and Syed Omer Shah.",
-        publisher: {
-          "@id": "https://zumetrix.com/#organization",
-        },
         potentialAction: [
           {
             "@type": "SearchAction",
@@ -492,12 +453,14 @@ const HomePage: React.FC = () => {
       />
       <Hero />
       <TrustBand />
+      <ClientLogos />
       <ServicesPreview />
       <SignatureMethod />
       <FeaturedCaseStudies />
       <FoundersStrip />
       <TechStack />
       <TestimonialsCarousel />
+      <LeadMagnet />
       <FAQ />
       <FinalCTA />
     </PageTransition>

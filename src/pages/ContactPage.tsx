@@ -18,6 +18,7 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
+import { trackFormSubmit, trackCTAClick } from "../utils/analytics";
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -80,9 +81,9 @@ const ContactPage: React.FC = () => {
       }
 
       // Send to Google Sheets webhook (Zapier)
-      if (actualWebhookEndpoint) {
+      if (webhookEndpoint) {
         try {
-          await fetch(actualWebhookEndpoint, {
+          await fetch(webhookEndpoint, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -103,6 +104,8 @@ const ContactPage: React.FC = () => {
           console.warn("Webhook submission failed:", webhookError);
         }
       }
+
+      trackFormSubmit('contact_form');
 
       setIsSubmitted(true);
       setTimeout(() => {
@@ -199,6 +202,7 @@ const ContactPage: React.FC = () => {
   // };
 
   const handleScheduleCall = () => {
+    trackCTAClick('Schedule Consultation', '/contact');
     window.open(
       SITE_CONFIG.contact.calendlyUrl ||
         "https://calendly.com/zumetrix-labs/consultation",
@@ -207,6 +211,7 @@ const ContactPage: React.FC = () => {
   };
 
   const handleQuickEstimate = () => {
+    trackCTAClick('Quick Estimate', '/contact');
     window.open(
       SITE_CONFIG.contact.calendlyUrl ||
         "https://calendly.com/zumetrix-labs/project-estimate",
