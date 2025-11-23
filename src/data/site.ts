@@ -428,6 +428,117 @@ export const SITE_DATA = {
     countriesServed: "6",
     responseTime: "24 hours",
   },
+
+  // Client Logos & Trust Badges
+  clientLogos: {
+    title: "Trusted by Leading Startups & Enterprises",
+    subtitle: "Join 50+ international clients who've transformed their vision into world-class software",
+    trustBadges: [
+      {
+        value: '5.0',
+        label: 'Rating',
+        subtext: 'Based on 50+ projects',
+        icon: 'award'
+      },
+      {
+        value: '100%',
+        label: 'Satisfaction',
+        subtext: 'Client success rate',
+        icon: 'users'
+      },
+      {
+        value: '50+',
+        label: 'Projects',
+        subtext: 'Delivered globally',
+        icon: 'briefcase'
+      },
+      {
+        value: 'Elite',
+        label: 'Developers',
+        subtext: 'World-class team',
+        icon: 'star'
+      }
+    ],
+    clients: [
+      { name: 'Ifyify', industry: 'SaaS Platform' },
+      { name: 'RetailOps', industry: 'E-Commerce' },
+      { name: 'TaskFlow', industry: 'Productivity' },
+      { name: 'EduTech', industry: 'Education' },
+      { name: 'WellnessPath', industry: 'Healthcare' },
+      { name: 'LogiCorp', industry: 'Logistics' },
+    ],
+    bottomBadge: {
+      rating: '5.0',
+      reviews: '50+ client reviews',
+      satisfaction: '100% satisfaction rate'
+    }
+  },
+
+  // Lead Magnet - MVP Blueprint
+  leadMagnet: {
+    badge: 'Free Download',
+    title: 'Get Your Free',
+    highlight: '30-Day SaaS MVP Blueprint',
+    description: 'Download our comprehensive guide: The exact process we use to build production-ready MVPs in 30 days. Includes timeline breakdown, tech stack recommendations, feature prioritization framework, and launch checklist.',
+    features: [
+      { title: 'Step-by-Step Process', desc: 'From idea to launch' },
+      { title: 'Tech Stack Guide', desc: 'What to use & why' },
+      { title: 'Launch Checklist', desc: 'Ready-to-use template' }
+    ],
+    bottomFeatures: [
+      '10-page PDF guide',
+      'Proven frameworks',
+      'Used by 50+ startups'
+    ],
+    formSubject: 'New Lead Magnet Download: MVP Blueprint',
+    privacy: 'No spam. Unsubscribe anytime. We respect your privacy.',
+    successMessage: {
+      title: 'Success! Check Your Email',
+      description: 'We\'ve sent the MVP Blueprint to',
+      cta: 'While you\'re here, want to discuss your project?',
+      ctaLink: '/contact',
+      ctaText: 'Book a free consultation'
+    }
+  },
+
+  // AI ROI Calculator Configuration
+  aiROICalculator: {
+    badge: 'Interactive ROI Calculator',
+    title: 'See Your',
+    highlight: 'Automation Savings',
+    description: 'Calculate exactly how much time and money AI automation could save your team',
+    defaults: {
+      employees: 5,
+      avgHourlyRate: 50,
+      hoursPerWeek: 5,
+      processType: 'data_entry'
+    },
+    limits: {
+      employees: { min: 1, max: 500 },
+      avgHourlyRate: { min: 15, max: 300 },
+      hoursPerWeek: { min: 1, max: 40 }
+    },
+    processTypes: [
+      { id: 'data_entry', name: 'Data Entry & Processing', reduction: 80, icon: '📊' },
+      { id: 'customer_support', name: 'Customer Support', reduction: 60, icon: '💬' },
+      { id: 'reporting', name: 'Reports & Analytics', reduction: 70, icon: '📈' },
+      { id: 'scheduling', name: 'Scheduling & Coordination', reduction: 75, icon: '📅' },
+      { id: 'email_mgmt', name: 'Email Management', reduction: 65, icon: '📧' }
+    ],
+    automationCost: 5000,
+    reportIncludes: [
+      'Automation strategy tailored to your process',
+      'Phase-by-phase implementation roadmap',
+      'Technology stack recommendations',
+      'Detailed cost & timeline breakdown'
+    ],
+    formSubject: 'AI ROI Calculator - Custom Report Request',
+    successMessage: {
+      title: 'Report Sent Successfully!',
+      ctaText: 'Book Free Consultation',
+      ctaLink: '/contact'
+    }
+  },
 };
 
 // API-ready data access functions
@@ -438,3 +549,6 @@ export const getTestimonials = () => SITE_DATA.testimonials;
 export const getFeaturedTestimonials = () => SITE_DATA.testimonials.slice(0, 3);
 export const getFounders = () => SITE_DATA.foundersStrip.founders;
 export const getMetrics = () => SITE_DATA.metrics;
+export const getClientLogosData = () => SITE_DATA.clientLogos;
+export const getLeadMagnetData = () => SITE_DATA.leadMagnet;
+export const getAIROICalculatorData = () => SITE_DATA.aiROICalculator;

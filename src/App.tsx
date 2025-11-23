@@ -9,6 +9,7 @@ import BackToTop from "./components/common/BackToTop";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const MVPDevelopmentPage = lazy(() => import("./pages/MVPDevelopmentPage"));
 const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ArticlesPage = lazy(() => import("./pages/ArticlesPage"));
@@ -63,6 +64,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/mvp-development" element={<MVPDevelopmentPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/all" element={<AllProjectsPage />} />
