@@ -114,25 +114,39 @@ const ClientLogos: React.FC = () => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Star key={i} className="w-5 h-5 text-primary fill-current" />
-              ))}
-            </div>
-            <span className="font-medium">5.0 rating</span>
-            <span>·</span>
-            <span>50+ client reviews</span>
-            <span>·</span>
-            <span>100% satisfaction rate</span>
-          </div>
-        </motion.div>
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ delay: 0.6 }}
+  className="mt-12 flex justify-center"
+>
+  <div className="inline-flex flex-col items-center gap-3 rounded-full border border-border/60 bg-background/80 px-4 py-3 shadow-sm backdrop-blur-sm sm:flex-row sm:px-6 sm:py-3">
+    {/* Stars + badge */}
+    <div className="flex items-center gap-2 rounded-full bg-gradient-to-r from-primary/15 via-primary/5 to-primary/15 px-3 py-1">
+      <div className="flex -space-x-0.5">
+        {[1, 2, 3, 4, 5].map((i) => (
+          <Star
+            key={i}
+            className="h-4 w-4 text-primary fill-primary drop-shadow-sm"
+          />
+        ))}
+      </div>
+      <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary">
+        Top Rated
+      </span>
+    </div>
+
+    {/* Text stats */}
+    <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+      <span className="font-semibold text-foreground">5.0 rating</span>
+      <span className="hidden sm:inline">•</span>
+      <span>50+ client reviews</span>
+      <span className="hidden sm:inline">•</span>
+      <span>100% satisfaction rate</span>
+    </div>
+  </div>
+</motion.div>
+
       </div>
     </section>
   );

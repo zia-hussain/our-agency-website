@@ -121,7 +121,7 @@ const ServicesPreview: React.FC = () => {
                         {service.timeline}
                       </div>
                     </div>
-                    <div className="text-xs text-primary font-medium bg-primary/10 px-2 py-1 rounded-full">
+                    <div className="text-xs text-primary text-center font-medium bg-primary/10 px-2 py-1 rounded-full">
                       Enterprise Grade
                     </div>
                   </div>

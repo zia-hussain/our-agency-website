@@ -10,6 +10,7 @@ import { servicesFAQs } from "../data/faqs/services";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
+import AIROICalculator from "../components/home/AIROICalculator.tsx";
 
 const ServicesPage: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -368,6 +369,9 @@ const ServicesPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <AIROICalculator />
+    
 
       {/* FAQ Section */}
       <section className="py-24 bg-background">

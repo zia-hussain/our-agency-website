@@ -13,6 +13,7 @@ import TestimonialsCarousel from "../components/home/TestimonialsCarousel";
 import LeadMagnet from "../components/home/LeadMagnet";
 import FAQ from "../components/home/FAQ";
 import FinalCTA from "../components/home/FinalCTA";
+import AIROICalculator from "../components/home/AIROICalculator";
 
 const HomePage: React.FC = () => {
   const structuredData = {
@@ -455,6 +456,7 @@ const HomePage: React.FC = () => {
       <TrustBand />
       <ClientLogos />
       <ServicesPreview />
+      <AIROICalculator />
       <SignatureMethod />
       <FeaturedCaseStudies />
       <FoundersStrip />
