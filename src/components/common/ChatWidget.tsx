@@ -89,10 +89,10 @@ const ChatWidget: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleOpen}
-            className="fixed bottom-6 right-4 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full shadow-glow flex items-center justify-center hover:shadow-2xl transition-all duration-150"
+            className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-50 w-12 h-12 md:w-14 md:h-14 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-150"
             aria-label="Open chat"
           >
-            <MessageCircle size={24} />
+            <MessageCircle size={22} />
           </motion.button>
         )}
 
@@ -101,23 +101,23 @@ const ChatWidget: React.FC = () => {
             initial={{ scale: 0, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0, opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-4 left-4 sm:left-auto sm:right-6 z-50 sm:w-[380px] max-h-[600px] bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-20 md:bottom-6 right-4 left-4 md:left-auto md:right-6 z-50 w-full md:w-[400px] max-w-[calc(100vw-2rem)] max-h-[calc(100vh-8rem)] md:max-h-[600px] bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
-            <div className="bg-gradient-to-r from-primary to-primary/80 p-4 flex items-center justify-between">
+            <div className="bg-card/80 backdrop-blur-xl border-b border-border p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary-foreground/20 rounded-full flex items-center justify-center">
-                  <Sparkles size={20} className="text-primary-foreground" />
+                <div className="w-10 h-10 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center">
+                  <Sparkles size={20} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-primary-foreground">Zumetrix Labs</h3>
-                  <p className="text-xs text-primary-foreground/80">Usually replies instantly</p>
+                  <h3 className="font-semibold text-foreground">Zumetrix Labs</h3>
+                  <p className="text-xs text-muted-foreground">Usually replies instantly</p>
                 </div>
               </div>
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={handleClose}
-                className="text-primary-foreground/80 hover:text-primary-foreground"
+                className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X size={20} />
               </motion.button>

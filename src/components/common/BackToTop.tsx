@@ -36,7 +36,7 @@ const BackToTop: React.FC = () => {
           whileHover={{ scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-40 w-12 h-12 bg-card/80 backdrop-blur-xl border border-border text-foreground hover:text-primary hover:border-primary/30 rounded-full shadow-lg hover:shadow-xl transition-all duration-150 flex items-center justify-center"
+          className="fixed bottom-20 md:bottom-6 left-4 md:left-6 z-40 w-11 h-11 md:w-12 md:h-12 bg-card/80 backdrop-blur-xl border border-border text-foreground hover:text-primary hover:border-primary/30 rounded-full shadow-lg hover:shadow-xl transition-all duration-150 flex items-center justify-center"
           aria-label="Back to top"
         >
           <ArrowUp size={20} />

@@ -528,13 +528,13 @@ const ArticleDetailPage: React.FC = () => {
           <div className="flex gap-12">
             {/* Sticky TOC - Desktop Only */}
             <div className="hidden lg:block w-80 flex-shrink-0">
-              <div className="sticky top-32 w-80 max-w-[320px]">
-                <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
-                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+              <div className="sticky top-32 max-h-[calc(100vh-10rem)]">
+                <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6 flex flex-col max-h-full">
+                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2 flex-shrink-0">
                     <BookOpen size={16} />
                     Table of Contents
                   </h3>
-                  <nav className="space-y-1">
+                  <nav className="space-y-1 overflow-y-auto flex-1 pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
                     {tableOfContents.map((heading) => (
                       <motion.button
                         key={heading.id}
@@ -553,7 +553,7 @@ const ArticleDetailPage: React.FC = () => {
                   </nav>
 
                   {/* Reading Progress */}
-                  <div className="mt-6 pt-4 border-t border-border">
+                  <div className="mt-6 pt-4 border-t border-border flex-shrink-0">
                     <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
                       <span>Reading Progress</span>
                       <span>{Math.round(readingProgress)}%</span>
