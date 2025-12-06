@@ -528,8 +528,7 @@ const ArticleDetailPage: React.FC = () => {
           <div className="flex gap-12">
             {/* Sticky TOC - Desktop Only */}
             <div className="hidden lg:block w-80 flex-shrink-0">
-              {/* See bolt, i want to make this fixed to only the right section should be scroll when we reached on this section so broo can you make it perfect now broo or not if yes so then bro remove this comment also after doing that perfect as i want okay bro */}
-              <div className="fixed top-32">
+              <div className="sticky top-32 w-80 max-w-[320px]">
                 <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                     <BookOpen size={16} />
@@ -572,7 +571,7 @@ const ArticleDetailPage: React.FC = () => {
             </div>
 
             {/* Article Content */}
-            <div className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0 overflow-hidden">
               <AnimatedSection>
                 <article
                   className="prose prose-lg dark:prose-invert max-w-[72ch] article-content mx-auto
@@ -583,11 +582,11 @@ const ArticleDetailPage: React.FC = () => {
                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium
                            prose-strong:text-foreground prose-strong:font-semibold
                            prose-code:text-primary prose-code:bg-card/50 prose-code:px-3 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-medium
-                           prose-pre:bg-card/50 prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-6
+                           prose-pre:bg-card/50 prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-6 prose-pre:overflow-x-auto
                            prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:bg-card/30 prose-blockquote:p-6 prose-blockquote:rounded-r-lg prose-blockquote:my-8
                            prose-ul:text-[#DBDBDB] prose-ul:leading-[1.8] prose-ul:text-lg
                            prose-li:text-[#DBDBDB] prose-li:mb-2 prose-li:leading-[1.8]
-                           prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8"
+                           prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:max-w-full prose-img:h-auto"
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />
               </AnimatedSection>

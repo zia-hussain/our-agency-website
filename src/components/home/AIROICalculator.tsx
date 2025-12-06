@@ -132,10 +132,16 @@ const AIROICalculator: React.FC = () => {
                     <input
                       type="number"
                       value={inputs.employees}
-                      onChange={(e) => setInputs({ ...inputs, employees: parseInt(e.target.value) || 0 })}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value) || 0;
+                        setInputs({ ...inputs, employees: Math.min(Math.max(val, 1), 10000) });
+                      }}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                       min="1"
+                      max="10000"
+                      step="1"
                     />
+                    <p className="text-xs text-muted-foreground mt-1">Range: 1-10,000 employees</p>
                   </div>
 
                   <div>
@@ -145,10 +151,16 @@ const AIROICalculator: React.FC = () => {
                     <input
                       type="number"
                       value={inputs.avgHourlyRate}
-                      onChange={(e) => setInputs({ ...inputs, avgHourlyRate: parseInt(e.target.value) || 0 })}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value) || 0;
+                        setInputs({ ...inputs, avgHourlyRate: Math.min(Math.max(val, 1), 1000) });
+                      }}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                       min="1"
+                      max="1000"
+                      step="1"
                     />
+                    <p className="text-xs text-muted-foreground mt-1">Range: $1-$1,000 per hour</p>
                   </div>
 
                   <div>
@@ -158,11 +170,16 @@ const AIROICalculator: React.FC = () => {
                     <input
                       type="number"
                       value={inputs.hoursPerWeek}
-                      onChange={(e) => setInputs({ ...inputs, hoursPerWeek: parseInt(e.target.value) || 0 })}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value) || 0;
+                        setInputs({ ...inputs, hoursPerWeek: Math.min(Math.max(val, 1), 40) });
+                      }}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                       min="1"
                       max="40"
+                      step="1"
                     />
+                    <p className="text-xs text-muted-foreground mt-1">Range: 1-40 hours per week</p>
                   </div>
 
                   <div>
