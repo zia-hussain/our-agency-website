@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, CheckCircle, FileText } from 'lucide-react';
 import AnimatedSection from '../common/AnimatedSection';
-import { trackLeadMagnetDownload } from '../../utils/analytics';
+import { supabase } from '../../lib/supabase';
+import { trackCTAClick } from '../../utils/analytics';
 
 const LeadMagnet: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -15,19 +16,25 @@ const LeadMagnet: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('name', name);
-      formData.append('magnet', 'MVP Blueprint PDF');
-      formData.append('_subject', 'New Lead Magnet Download: MVP Blueprint');
+      const { error } = await supabase
+        .from('lead_magnets')
+        .insert({
+          email,
+          name: name || null,
+          magnet_type: 'pdf',
+          magnet_name: '30-Day MVP Blueprint',
+          metadata: {
+            source: 'homepage_lead_magnet',
+            pdf_name: '30-day-mvp-blueprint.pdf'
+          },
+          page_url: window.location.href,
+          user_agent: navigator.userAgent,
+          status: 'new'
+        });
 
-      await fetch(import.meta.env.VITE_CONTACT_FORM_ENDPOINT, {
-        method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' }
-      });
+      if (error) throw error;
 
-      trackLeadMagnetDownload('MVP Blueprint PDF');
+      trackCTAClick('Lead Magnet - MVP Blueprint', window.location.pathname);
 
       setIsSubmitted(true);
     } catch (error) {

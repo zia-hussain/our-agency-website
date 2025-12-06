@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calculator, TrendingUp, Clock, DollarSign, Zap, CheckCircle2 } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, DollarSign, Zap, CheckCircle2, Download } from 'lucide-react';
 import AnimatedSection from '../common/AnimatedSection';
-import { trackLeadMagnetDownload } from '../../utils/analytics';
+import { supabase } from '../../lib/supabase';
+import { trackCTAClick } from '../../utils/analytics';
 
 const AIROICalculator: React.FC = () => {
   const [step, setStep] = useState<'input' | 'results' | 'leadCapture'>('input');
@@ -13,6 +14,7 @@ const AIROICalculator: React.FC = () => {
     processType: 'data_entry'
   });
   const [contactInfo, setContactInfo] = useState({ name: '', email: '', company: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const processTypes = {
     data_entry: { name: 'Data Entry & Processing', reduction: 80 },
@@ -59,28 +61,47 @@ const AIROICalculator: React.FC = () => {
   };
 
   const handleGetReport = async () => {
+    if (!contactInfo.email) {
+      alert('Please enter your email to receive the detailed report');
+      return;
+    }
+
+    setIsSubmitting(true);
+
     try {
-      const formData = new FormData();
-      formData.append('name', contactInfo.name);
-      formData.append('email', contactInfo.email);
-      formData.append('company', contactInfo.company);
-      formData.append('employees', inputs.employees.toString());
-      formData.append('hoursPerWeek', inputs.hoursPerWeek.toString());
-      formData.append('monthlySavings', Math.round(results.monthlySavings).toString());
-      formData.append('yearlySavings', Math.round(results.yearlySavings).toString());
-      formData.append('_subject', 'AI ROI Calculator - Request Custom Report');
+      const { error } = await supabase
+        .from('lead_magnets')
+        .insert({
+          email: contactInfo.email,
+          name: contactInfo.name || null,
+          magnet_type: 'calculator',
+          magnet_name: 'AI ROI Calculator Report',
+          metadata: {
+            company: contactInfo.company,
+            employees: inputs.employees,
+            avgHourlyRate: inputs.avgHourlyRate,
+            hoursPerWeek: inputs.hoursPerWeek,
+            processType: inputs.processType,
+            monthlySavings: Math.round(results.monthlySavings),
+            yearlySavings: Math.round(results.yearlySavings),
+            paybackMonths: results.paybackMonths.toFixed(1),
+            firstYearROI: Math.round(results.firstYearROI)
+          },
+          page_url: window.location.href,
+          user_agent: navigator.userAgent,
+          status: 'new'
+        });
 
-      await fetch(import.meta.env.VITE_CONTACT_FORM_ENDPOINT, {
-        method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' }
-      });
+      if (error) throw error;
 
-      trackLeadMagnetDownload('AI ROI Calculator Report');
+      trackCTAClick('AI ROI Calculator Report', window.location.pathname);
 
       setStep('leadCapture');
     } catch (error) {
       console.error('Error:', error);
+      alert('Failed to send report. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -266,13 +287,22 @@ const AIROICalculator: React.FC = () => {
 
                   <motion.button
                     onClick={handleGetReport}
-                    disabled={!contactInfo.name || !contactInfo.email}
+                    disabled={!contactInfo.email || isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-xl font-semibold hover:shadow-glow transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-primary text-primary-foreground px-6 py-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    <TrendingUp size={20} />
-                    Get Custom Report
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                        Sending Report...
+                      </>
+                    ) : (
+                      <>
+                        <Download size={20} />
+                        Get Detailed Report
+                      </>
+                    )}
                   </motion.button>
 
                   <p className="text-xs text-center text-muted-foreground">
