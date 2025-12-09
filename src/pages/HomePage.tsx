@@ -2,8 +2,8 @@ import React from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import Hero from "../components/home/Hero";
+import InfiniteLogoCarousel from "../components/home/InfiniteLogoCarousel";
 import TrustBand from "../components/home/TrustBand";
-import ClientLogos from "../components/home/ClientLogos";
 import ServicesPreview from "../components/home/ServicesPreview";
 import SignatureMethod from "../components/home/SignatureMethod";
 import FeaturedCaseStudies from "../components/home/FeaturedCaseStudies";
@@ -453,8 +453,8 @@ const HomePage: React.FC = () => {
         structuredData={structuredData}
       />
       <Hero />
+      <InfiniteLogoCarousel />
       <TrustBand />
-      <ClientLogos />
       <ServicesPreview />
       <AIROICalculator />
       <SignatureMethod />

@@ -97,13 +97,13 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.1] tracking-tight px-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8 leading-[1.15] tracking-tight px-2 sm:px-4"
           >
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="block text-foreground mb-3"
+              className="block text-foreground mb-2 sm:mb-3"
             >
               The World's Premier
             </motion.span>
@@ -119,7 +119,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.7 }}
-              className="block text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-4"
+              className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-3 sm:mt-4"
             >
               For Visionary Founders
             </motion.span>
@@ -130,7 +130,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-10 max-w-4xl leading-relaxed px-4 font-light"
+            className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-4xl leading-relaxed px-2 sm:px-4 font-light"
           >
             <span className="text-foreground font-medium">Enterprise-grade SaaS MVPs in 30 days</span>, intelligent AI automation, and world-class mobile apps that{" "}
             <span className="text-primary font-medium">raise millions</span> and{" "}
@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.1 }}
-            className="flex flex-wrap items-center justify-center gap-6 mb-12 px-4"
+            className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4 text-sm sm:text-base"
           >
             <div className="flex items-center gap-2">
               <div className="flex">
@@ -170,15 +170,15 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.3 }}
-            className="flex flex-col sm:flex-row gap-5 mb-16"
+            className="flex flex-col sm:flex-row gap-4 mb-12 sm:mb-16 w-full sm:w-auto px-2 sm:px-0"
           >
-            <Link to="/contact">
+            <Link to="/contact" className="w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.03, y: -3 }}
                 whileTap={{ scale: 0.97 }}
-                className="group relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-12 py-6 rounded-2xl font-bold text-lg
+                className="group relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-8 sm:px-12 py-4 sm:py-6 rounded-2xl font-bold text-base sm:text-lg
                          shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-200
-                         flex items-center gap-3 overflow-hidden"
+                         flex items-center justify-center gap-3 overflow-hidden w-full"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/20 to-primary/0"
@@ -203,10 +203,10 @@ const Hero: React.FC = () => {
               whileHover={{ scale: 1.03, y: -3 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => scrollToSection("portfolio")}
-              className="group text-foreground hover:text-primary font-bold px-12 py-6 text-lg
-                       transition-all duration-200 flex items-center gap-3
+              className="group text-foreground hover:text-primary font-bold px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg
+                       transition-all duration-200 flex items-center justify-center gap-3
                        bg-card/60 backdrop-blur-xl border-2 border-border/50 rounded-2xl
-                       hover:bg-card hover:border-primary/40 shadow-xl"
+                       hover:bg-card hover:border-primary/40 shadow-xl w-full"
             >
               <Play size={20} className="text-primary group-hover:scale-110 transition-transform duration-200" />
               View Success Stories
@@ -218,7 +218,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.5 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full max-w-5xl px-2 sm:px-0"
           >
             {[
               { icon: Zap, title: "30-Day Delivery", desc: "Launch-ready MVPs" },
@@ -231,13 +231,13 @@ const Hero: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 1.6 + index * 0.1 }}
                 whileHover={{ y: -4, scale: 1.02 }}
-                className="bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl p-6 hover:bg-card/60 hover:border-primary/30 transition-all duration-200 group"
+                className="bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl p-5 sm:p-6 hover:bg-card/60 hover:border-primary/30 transition-all duration-200 group"
               >
-                <item.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform duration-200" />
-                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
+                <item.icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-200" />
+                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
                   {item.title}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-xs sm:text-sm">
                   {item.desc}
                 </p>
               </motion.div>

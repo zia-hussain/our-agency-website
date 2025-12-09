@@ -41,6 +41,45 @@ export const SITE_DATA = {
     ],
   },
 
+  // Company Logos Carousel - INFINITE SMOOTH SLIDER
+  companyLogosCarousel: {
+    title: "Trusted by Industry Leaders Worldwide",
+    logos: [
+      {
+        name: "Microsoft",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+      },
+      {
+        name: "Amazon",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+      },
+      {
+        name: "Google",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+      },
+      {
+        name: "Meta",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
+      },
+      {
+        name: "Apple",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+      },
+      {
+        name: "Netflix",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+      },
+      {
+        name: "Stripe",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg",
+      },
+      {
+        name: "Shopify",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+      },
+    ],
+  },
+
   // Trust Band - GLOBAL CLIENT SHOWCASE
   trustBand: {
     title:
