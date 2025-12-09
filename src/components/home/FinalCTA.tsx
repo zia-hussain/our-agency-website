@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 
 const FinalCTA: React.FC = () => {
-  const { finalCTA, metrics } = getSiteData();
+  const { finalCTA } = getSiteData();
 
   return (
     <section className="py-20 lg:py-24 bg-background relative overflow-hidden">
@@ -133,33 +133,6 @@ const FinalCTA: React.FC = () => {
             ))}
           </div>
 
-          {/* Global Proof Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 max-w-4xl mx-auto px-4"
-          >
-            {Object.entries(finalCTA.globalProof).map(([key, value], index) => (
-              <motion.div
-                key={key}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.15, delay: index * 0.05 }}
-                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-lg lg:rounded-xl p-3 sm:p-4 hover:border-primary/30 hover:bg-card/50 transition-all duration-150"
-              >
-                <div className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-primary mb-1">
-                  {value}
-                </div>
-                <div className="text-xs lg:text-sm text-muted-foreground capitalize leading-tight">
-                  {key.replace(/([A-Z])/g, ' $1').trim()}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         </motion.div>
       </div>
     </section>

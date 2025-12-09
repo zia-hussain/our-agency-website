@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import AnimatedSection from '../common/AnimatedSection';
-import { Award, Users, Briefcase, Star } from 'lucide-react';
+import { Award, Users, Briefcase, Star, Globe2 } from 'lucide-react';
 import { getClientLogosData } from '../../data/site';
 
 const iconMap = {
@@ -17,7 +17,14 @@ const ClientLogos: React.FC = () => {
   return (
     <section className="py-12 md:py-16 bg-card/20 border-y border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-8 md:mb-12">
+        {/* Header */} 
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="text-center mb-16 lg:mb-20"
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -27,14 +34,17 @@ const ClientLogos: React.FC = () => {
             <Award className="w-3 h-3 md:w-4 md:h-4 mr-2" />
             Trusted by Leaders
           </motion.div>
-
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4 px-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
             {data.title}
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              {data?.themedTitle}
+            </span>
           </h2>
-          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-4">
+
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.6] font-light">
             {data.subtitle}
           </p>
-        </AnimatedSection>
+        </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16">
           {data.trustBadges.map((badge, index) => {

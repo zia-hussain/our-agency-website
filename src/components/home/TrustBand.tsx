@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Globe, Users, Award, Clock, MapPin, Building } from "lucide-react";
+import { Globe, Users, Award, Clock, MapPin, Building, Globe2 } from "lucide-react";
 import { getSiteData } from "../../data/site";
 
 const TrustBand: React.FC = () => {
@@ -11,16 +11,29 @@ const TrustBand: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="text-center mb-12"
+          className="text-center mb-16 lg:mb-20"
         >
-          <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-primary/10 backdrop-blur-xl border border-primary/20 rounded-full text-xs md:text-sm font-medium text-primary mb-4 md:mb-6"
+          >
+            <Globe2 className="w-3 h-3 md:w-4 md:h-4 mr-2" />
+            Our Global Reach
+          </motion.div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
             {trustBand.title}
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              {trustBand.themedTitle}
+            </span>
           </h2>
-          <p className="text-lg text-muted-foreground font-light max-w-3xl mx-auto">
+
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.6] font-light">
             {trustBand.subtitle}
           </p>
         </motion.div>

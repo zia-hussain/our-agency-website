@@ -36,7 +36,7 @@ export const SITE_DATA = {
     ],
     mockups: [
       "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800",
-      "https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=800", 
+      "https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=800",
       "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
     ],
   },
@@ -44,7 +44,8 @@ export const SITE_DATA = {
   // Trust Band - GLOBAL CLIENT SHOWCASE
   trustBand: {
     title:
-      "Trusted by Leading Global Companies Across International Markets",
+      "Trusted by Leading Global Companies ",
+    themedTitle: "Across International Markets",
     subtitle:
       "From Silicon Valley startups to London enterprises - we deliver world-class results that dominate markets",
     globalStats: [
@@ -206,9 +207,10 @@ export const SITE_DATA = {
 
   // Founders Strip - EXPERT CREDIBILITY
   foundersStrip: {
-    title: "Meet the Expert Founders",
+    title: "Led By Experienced Founders",
+    themedTitle: "From Silicon Valley to Global",
     subtitle:
-      "World-class developers serving international clients with 6+ years combined experience",
+      "Combined 7+ years building successful products for international markets and scaling startups",
     founders: [
       {
         name: "Zia Hussain",
@@ -256,9 +258,10 @@ export const SITE_DATA = {
 
   // Tech Stack Band - CORE CAPABILITIES
   techStack: {
-    title: "Enterprise-Grade Technology Capabilities",
+    title: "Cutting-Edge Technologies",
+    themedTitle: "Powering Your Success",
     subtitle:
-      "Modern, battle-tested technologies for speed, scale, and security",
+      "Modern, scalable, and battle-tested tools used by leading tech companies to build enterprise solutions",
     coreCapabilities: [
       {
         icon: "frontend",
@@ -431,7 +434,8 @@ export const SITE_DATA = {
 
   // Client Logos & Trust Badges
   clientLogos: {
-    title: "Trusted by Leading Startups & Enterprises",
+    title: "Trusted by Leading",
+    themedTitle: " Startups & Enterprises",
     subtitle: "Join 50+ international clients who've transformed their vision into world-class software",
     trustBadges: [
       {

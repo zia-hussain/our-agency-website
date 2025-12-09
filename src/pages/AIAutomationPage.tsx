@@ -202,8 +202,6 @@ const AIAutomationPage: React.FC = () => {
       />
 
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <motion.div

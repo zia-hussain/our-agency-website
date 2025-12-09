@@ -1,5 +1,5 @@
 import React from "react";
-import { ExternalLink, Calendar, Linkedin, Github } from "lucide-react";
+import { Calendar, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 
@@ -16,10 +16,13 @@ const FoundersStrip: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="text-center mb-12 sm:mb-16 lg:mb-20 px-4"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 sm:mb-4 tracking-tight leading-[1.1]">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
             {foundersStrip.title}
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              {foundersStrip.themedTitle}
+            </span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.6] font-light">
             {foundersStrip.subtitle}
           </p>
         </motion.div>
@@ -36,7 +39,7 @@ const FoundersStrip: React.FC = () => {
               className="group h-full"
             >
               <div className="bg-card/60 backdrop-blur-xl border border-border rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 hover:border-primary/30 group-hover:bg-card/80 group-hover:shadow-card-hover transition-all duration-150 h-full flex flex-col">
-                
+
                 {/* Founder Image & Basic Info */}
                 <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-4 sm:mb-6 text-center sm:text-left">
                   <motion.img

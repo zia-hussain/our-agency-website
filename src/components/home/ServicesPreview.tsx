@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Rocket, Brain, Monitor, CheckCircle } from "lucide-react";
+import { ArrowRight, Rocket, Brain, Monitor } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 
@@ -14,7 +14,7 @@ const ServicesPreview: React.FC = () => {
   };
 
   return (
-    <section className="py-20 lg:py-24 bg-background relative overflow-hidden">
+    <section className="py-28 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -47,10 +47,11 @@ const ServicesPreview: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Services Grid - Equal Height Cards */}
+        {/* Bento Grid Layout */}
         <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {servicesPreview.services.map((service, index) => {
             const IconComponent = iconMap[service.icon as keyof typeof iconMap];
+            const isFeatured = index === 0;
 
             return (
               <motion.div
@@ -58,108 +59,55 @@ const ServicesPreview: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
+                whileHover={{ y: -4, scale: 1.01 }}
                 transition={{ duration: 0.15, delay: index * 0.1 }}
-                className="group h-full"
+                className={`group ${
+                  isFeatured ? "lg:col-span-2 lg:row-span-2" : ""
+                }`}
               >
                 <div
-                  className={`bg-card/50 backdrop-blur-xl p-6 lg:p-8 rounded-2xl border h-full flex flex-col transition-all duration-150 ${
-                    service.popular
-                      ? "border-primary/50 shadow-glow"
-                      : "border-border hover:border-primary/30"
-                  } group-hover:bg-card/80 group-hover:shadow-card-hover`}
+                  className={`bg-card/30 backdrop-blur-xl p-8 rounded-2xl border border-border h-full flex flex-col transition-all duration-150 hover:border-primary/30 hover:bg-card/50 hover:shadow-lg ${
+                    isFeatured ? "lg:p-12" : ""
+                  }`}
                 >
-                  {/* Popular Badge */}
-                  {service.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                      <span className="bg-beige-gradient text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
-                        Most Popular
-                      </span>
-                    </div>
-                  )}
-
                   {/* Icon */}
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.15 }}
-                    className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 ${
-                      service.popular
-                        ? "bg-gradient-to-r from-primary to-primary/80 shadow-glow"
-                        : "bg-primary/10 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-primary/80"
-                    }`}
+                    className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-6 bg-primary/10 group-hover:bg-primary/20"
                   >
-                    <IconComponent
-                      size={28}
-                      className={
-                        service.popular
-                          ? "text-primary-foreground"
-                          : "text-primary group-hover:text-primary-foreground"
-                      }
-                    />
+                    <IconComponent size={24} className="text-primary" />
                   </motion.div>
 
                   {/* Content */}
-                  <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-150">
+                  <h3
+                    className={`${
+                      isFeatured
+                        ? "text-3xl lg:text-4xl"
+                        : "text-2xl lg:text-3xl"
+                    } font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-150`}
+                  >
                     {service.title}
                   </h3>
 
-                  <p className="text-primary/80 text-sm font-medium mb-4">
+                  <p className="text-primary font-medium mb-6">
                     {service.oneLiner}
                   </p>
 
-                  <p className="text-muted-foreground mb-6 leading-[1.6] flex-grow">
-                    {service.description}
+                  <p className="text-lg font-bold text-foreground mb-6">
+                    {service.pricing}
                   </p>
 
-                  {/* Pricing & Timeline */}
-                  <div className="flex items-center justify-between mb-6 p-3 bg-primary/5 rounded-lg border border-primary/20">
-                    <div>
-                      <div className="text-lg font-bold text-primary">
-                        {service.pricing}
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        {service.timeline}
-                      </div>
-                    </div>
-                    <div className="text-xs text-primary text-center font-medium bg-primary/10 px-2 py-1 rounded-full">
-                      Enterprise Grade
-                    </div>
-                  </div>
-
-                  {/* Key Bullets */}
-                  <ul className="space-y-2 mb-8">
-                    {service.bullets.slice(0, 3).map((bullet, idx) => (
-                      <li
-                        key={idx}
-                        className="text-sm text-muted-foreground flex items-start gap-3"
-                      >
-                        <CheckCircle
-                          size={14}
-                          className="text-primary flex-shrink-0 mt-0.5"
-                        />
-                        <span className="leading-[1.5]">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Learn More Button */}
+                  {/* Learn More Link */}
                   <Link to={service.link} className="mt-auto">
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                    <motion.div
+                      whileHover={{ x: 4 }}
                       transition={{ duration: 0.15 }}
-                      className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-150 flex items-center justify-center gap-2 ${
-                        service.popular
-                          ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:shadow-glow"
-                          : "bg-card border border-border text-foreground hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
-                      }`}
+                      className="flex items-center gap-2 text-primary font-medium group-hover:gap-3"
                     >
                       Learn More
-                      <ArrowRight
-                        size={16}
-                        className="group-hover:translate-x-1 transition-transform duration-150"
-                      />
-                    </motion.button>
+                      <ArrowRight size={18} />
+                    </motion.div>
                   </Link>
                 </div>
               </motion.div>
@@ -173,16 +121,16 @@ const ServicesPreview: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.3 }}
-          className="text-center mt-12 lg:mt-16"
+          className="text-center mt-16"
         >
           <Link to="/services">
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.15 }}
-              className="group text-muted-foreground hover:text-primary font-medium px-8 py-4 
+              className="group text-foreground hover:text-primary font-medium px-8 py-4
                        transition-colors duration-150 text-lg flex items-center gap-3 mx-auto
-                       bg-card/50 backdrop-blur-xl border border-border rounded-xl hover:border-primary/30 hover:bg-card/80"
+                       bg-card/30 backdrop-blur-xl border border-border rounded-xl hover:border-primary/30 hover:bg-card/50"
             >
               Explore All Services
               <ArrowRight

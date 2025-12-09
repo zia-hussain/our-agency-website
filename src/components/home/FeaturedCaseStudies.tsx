@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, MapPin, TrendingUp, ExternalLink, Building, Calendar } from "lucide-react";
+import { ArrowRight, Badge, File, MapPin, PartyPopper } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 import { getFeaturedProjects } from "../../data/projects";
@@ -8,11 +8,12 @@ import { getFeaturedProjects } from "../../data/projects";
 const FeaturedCaseStudies: React.FC = () => {
   const { featuredCaseStudies } = getSiteData();
   const projects = getFeaturedProjects().slice(0, 3);
+  const [hero, ...sidebar] = projects;
 
   return (
-    <section className="py-20 lg:py-24 bg-background relative overflow-hidden">
+    <section className="py-28 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
+         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -20,6 +21,17 @@ const FeaturedCaseStudies: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="text-center mb-16 lg:mb-20"
         >
+             {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
+            className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm font-medium text-primary mb-6"
+          >
+            <Badge className="w-4 h-4 mr-2"  />
+            Success Stories
+          </motion.div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
             Success Stories from
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
@@ -32,132 +44,122 @@ const FeaturedCaseStudies: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Case Studies Grid - Equal Height Cards */}
-        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -12, scale: 1.02 }}
-              transition={{ duration: 0.15, delay: index * 0.1 }}
-              className="group h-full"
-            >
-              <Link to={`/portfolio/${project.slug}`}>
-                <div className="bg-card/50 backdrop-blur-xl border border-border rounded-2xl overflow-hidden hover:border-primary/30 h-full flex flex-col group-hover:bg-card/80 group-hover:shadow-card-hover transition-all duration-150">
-                  
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs font-medium px-3 py-1 text-center">
-                      Featured Project
-                    </div>
-                  )}
+        {/* Hero + Sidebar Layout */}
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-16 ">
+          {/* Hero Project - Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="group lg:row-span-2 "
+          >
+            <Link to={`/portfolio/${hero.slug}`}>
+              <div className="relative h-full min-h-[500px] lg:min-h-[600px] rounded-2xl overflow-hidden border border-transparent hover:border-primary/30 transition-all duration-150">
+                <motion.img
+                  src={hero.image}
+                  alt={hero.title}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4 }}
+                  className="w-full h-full object-cover rounded-2xl"
+                />
 
-                  {/* Project Image */}
-                  <div className="relative aspect-[16/9] overflow-hidden">
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+
+                {/* Content - Bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10">
+                  <div className="flex items-center gap-2 mb-4">
+                    <MapPin size={16} className="text-primary" />
+                    <span className="text-sm text-primary font-medium">
+                      {hero.client.country}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-150">
+                    {hero.title}
+                  </h3>
+
+                  <p className="text-base text-muted-foreground mb-4">
+                    {hero.client.name}
+                  </p>
+
+                  <motion.div
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.15 }}
+                    className="inline-flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                  >
+                    View Case Study
+                    <ArrowRight size={18} />
+                  </motion.div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* Sidebar Projects - Right */}
+          <div className="flex flex-col gap-6 lg:gap-8">
+            {sidebar.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="group"
+              >
+                <Link to={`/portfolio/${project.slug}`}>
+                  <div className="relative h-[250px] lg:h-[285px] rounded-2xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-150">
                     <motion.img
                       src={project.image}
                       alt={project.title}
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.4 }}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-2xl"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
 
-                    {/* Country Badge */}
-                    <div className="absolute top-4 left-4">
-                      <div className="flex items-center gap-2 px-3 py-1 bg-card/90 backdrop-blur-xl text-foreground text-xs font-medium rounded-full border border-border">
-                        <MapPin size={12} />
-                        {project.client.country}
-                      </div>
-                    </div>
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
 
-                    {/* Category Badge */}
-                    <div className="absolute bottom-4 left-4">
-                      <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full backdrop-blur-xl border border-primary/30">
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 lg:p-8 flex-grow flex flex-col">
-                    <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-150 line-clamp-2 leading-tight">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-muted-foreground leading-[1.6] mb-6 line-clamp-3 flex-grow">
-                      {project.description}
-                    </p>
-
-                    {/* Client Info */}
-                    <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
-                      <div className="flex items-center gap-2">
-                        <Building size={14} className="text-primary flex-shrink-0" />
-                        <div className="min-w-0">
-                          <span className="text-muted-foreground block">Client:</span>
-                          <div className="font-medium text-foreground truncate">
-                            {project.client.name}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar size={14} className="text-primary flex-shrink-0" />
-                        <div>
-                          <span className="text-muted-foreground block">Duration:</span>
-                          <div className="font-medium text-foreground">
-                            {project.duration}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Key Result */}
-                    {project.kpis && project.kpis[0] && (
-                      <div className="flex items-center gap-2 mb-6 p-3 bg-primary/5 rounded-lg border border-primary/20">
-                        <TrendingUp size={16} className="text-primary flex-shrink-0" />
-                        <span className="text-sm font-semibold text-primary">
-                          {project.kpis[0].label}: {project.kpis[0].value}
+                    {/* Content - Bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <MapPin size={14} className="text-primary" />
+                        <span className="text-xs text-primary font-medium">
+                          {project.client.country}
                         </span>
                       </div>
-                    )}
 
-                    {/* Tech Stack Pills */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                      <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-150 line-clamp-2">
+                        {project.title}
+                      </h3>
 
-                    {/* Read Case Study Link */}
-                    <div className="flex items-center justify-between mt-auto">
-                      <div className="flex items-center text-primary font-medium">
-                        <span>Read Case Study</span>
-                        <ArrowRight
-                          size={16}
-                          className="ml-2 group-hover:translate-x-1 transition-transform duration-150"
-                        />
-                      </div>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {project.client.name}
+                      </p>
+
+                      <motion.div
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.15 }}
+                        className="inline-flex items-center gap-2 text-sm text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                      >
+                        View Case Study
+                        <ArrowRight size={16} />
+                      </motion.div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* See All Projects Button */}
+        {/* View All CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.4 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
           className="text-center"
         >
           <Link to={featuredCaseStudies.cta.link}>
@@ -165,13 +167,13 @@ const FeaturedCaseStudies: React.FC = () => {
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.15 }}
-              className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-xl font-medium 
-                       hover:shadow-glow transition-all duration-150
-                       flex items-center gap-3 text-lg mx-auto"
+              className="group text-foreground hover:text-primary font-medium px-8 py-4
+                       transition-colors duration-150 text-lg flex items-center gap-3 mx-auto
+                       bg-card/30 backdrop-blur-xl border border-border rounded-xl hover:border-primary/30 hover:bg-card/50"
             >
               {featuredCaseStudies.cta.text}
               <ArrowRight
-                size={20}
+                size={18}
                 className="group-hover:translate-x-1 transition-transform duration-150"
               />
             </motion.button>

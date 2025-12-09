@@ -55,16 +55,19 @@ const TechStack: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="text-center mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-tight leading-[1.1]">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
             {techStack.title}
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              {techStack.themedTitle}
+            </span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground font-light max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.6] font-light">
             {techStack.subtitle}
           </p>
         </motion.div>
 
         {/* Core Capabilities - Equal Height Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 mb-16">
           {coreCapabilities.map((capability, index) => (
             <motion.div
               key={capability.title}

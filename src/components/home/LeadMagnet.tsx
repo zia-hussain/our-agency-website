@@ -46,9 +46,7 @@ const LeadMagnet: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-primary/5 via-background to-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-
+    <section className="py-16 lg:py-20 bg-card/20 border-y border-border">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="text-center">
           <motion.div
