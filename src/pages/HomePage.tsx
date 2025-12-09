@@ -453,7 +453,7 @@ const HomePage: React.FC = () => {
         structuredData={structuredData}
       />
       <Hero />
-      <InfiniteLogoCarousel />
+      {/* <InfiniteLogoCarousel /> */}
       <TrustBand />
       <ServicesPreview />
       <AIROICalculator />

@@ -43,41 +43,19 @@ export const SITE_DATA = {
 
   // Company Logos Carousel - INFINITE SMOOTH SLIDER
   companyLogosCarousel: {
-    title: "Trusted by Industry Leaders Worldwide",
+    eyebrow: "TRUSTED BY INDUSTRY LEADERS",
+    title: "Proud to collaborate with ",
+    themedTitle:"exceptional companies",
     logos: [
-      {
-        name: "Microsoft",
-        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoft/microsoft-original.svg",
-      },
-      {
-        name: "Amazon",
-        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-      },
-      {
-        name: "Google",
-        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
-      },
-      {
-        name: "Apple",
-        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
-      },
-      {
-        name: "GitHub",
-        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-      },
-      {
-        name: "LinkedIn",
-        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
-      },
-      {
-        name: "Facebook",
-        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg",
-      },
-      {
-        name: "Twitter",
-        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg",
-      },
-    ],
+      { name: "Google", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg" },
+      { name: "Microsoft", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoft.svg" },
+      { name: "Apple", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg" },
+      { name: "Amazon", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/amazon.svg" },
+      { name: "Meta", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/meta.svg" },
+      { name: "Netflix", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/netflix.svg" },
+      { name: "Spotify", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" },
+      { name: "Tesla", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tesla.svg" },
+    ]
   },
 
   // Trust Band - GLOBAL CLIENT SHOWCASE
