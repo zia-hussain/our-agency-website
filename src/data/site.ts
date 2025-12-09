@@ -47,35 +47,35 @@ export const SITE_DATA = {
     logos: [
       {
         name: "Microsoft",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoft/microsoft-original.svg",
       },
       {
         name: "Amazon",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
       },
       {
         name: "Google",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      },
-      {
-        name: "Meta",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
+        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
       },
       {
         name: "Apple",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
       },
       {
-        name: "Netflix",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+        name: "GitHub",
+        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
       },
       {
-        name: "Stripe",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg",
+        name: "LinkedIn",
+        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
       },
       {
-        name: "Shopify",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+        name: "Facebook",
+        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg",
+      },
+      {
+        name: "Twitter",
+        imageUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg",
       },
     ],
   },
