@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play, Star } from "lucide-react";
+import { ArrowRight, Play, Star, CheckCircle, Zap, Award, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 
@@ -35,153 +35,211 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-card/20 flex items-center justify-center relative overflow-hidden pt-32 pb-20">
-      {/* Animated Gradient Background - BEAST MODE */}
+    <section className="min-h-screen bg-gradient-to-b from-background via-background to-card/30 flex items-center justify-center relative overflow-hidden pt-32 pb-20">
+      {/* PREMIUM Animated Gradient Background */}
       <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 90, 0],
+          scale: [1, 1.3, 1],
+          rotate: [0, 180, 0],
+          opacity: [0.3, 0.5, 0.3],
         }}
         transition={{
-          duration: 20,
+          duration: 25,
           repeat: Infinity,
-          ease: "linear",
+          ease: "easeInOut",
         }}
-        className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-br from-primary/5 via-primary/10 to-transparent blur-3xl rounded-full"
+        className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent blur-3xl rounded-full"
+      />
+      <motion.div
+        animate={{
+          scale: [1.3, 1, 1.3],
+          rotate: [0, -180, 0],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/15 via-primary/8 to-transparent blur-3xl rounded-full"
       />
 
-      {/* Subtle Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 opacity-[0.015]">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, #C48A64 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
+            backgroundImage: `linear-gradient(rgba(196, 138, 100, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(196, 138, 100, 0.1) 1px, transparent 1px)`,
+            backgroundSize: "80px 80px",
           }}
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
-          {/* Status Badge - MINIMAL */}
+          {/* PREMIUM Status Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
-            className="inline-flex items-center px-4 py-2 bg-card/80 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8 hover:bg-card transition-all duration-150"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 backdrop-blur-xl border border-primary/20 rounded-full text-sm font-semibold text-primary mb-8 shadow-lg shadow-primary/5"
           >
-            <span className="relative flex h-2 w-2 mr-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            <Sparkles size={16} className="mr-2 animate-pulse" />
+            <span className="mr-2">Accepting Elite Projects</span>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            Available for New Projects
           </motion.div>
 
-          {/* MASSIVE HEADLINE - 2 LINES MAX */}
+          {/* ULTIMATE HEADLINE - Maximum Impact */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground mb-6 sm:mb-8 leading-[1.15] tracking-tight px-4"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.1] tracking-tight px-4"
           >
-            <span className="block">Launch Your SaaS MVP</span>
-            <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
-              In 30 Days or Less
-            </span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="block text-foreground mb-3"
+            >
+              The World's Premier
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent"
+            >
+              Software Agency
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="block text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-4"
+            >
+              For Visionary Founders
+            </motion.span>
           </motion.h1>
 
-          {/* PUNCHY SUBTEXT - 1 LINE */}
+          {/* POWERFUL Value Proposition */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-4xl leading-relaxed px-4"
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-10 max-w-4xl leading-relaxed px-4 font-light"
           >
-            Enterprise-grade MVPs, AI automation, and mobile apps for ambitious founders. 50+ successful launches. 100% satisfaction.
+            <span className="text-foreground font-medium">Enterprise-grade SaaS MVPs in 30 days</span>, intelligent AI automation, and world-class mobile apps that{" "}
+            <span className="text-primary font-medium">raise millions</span> and{" "}
+            <span className="text-primary font-medium">dominate markets</span>.
           </motion.p>
 
-          {/* CTA BUTTONS - 20% LARGER */}
+          {/* Elite Trust Indicators */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.1 }}
+            className="flex flex-wrap items-center justify-center gap-6 mb-12 px-4"
+          >
+            <div className="flex items-center gap-2">
+              <div className="flex">
+                {[1,2,3,4,5].map((i) => (
+                  <Star key={i} size={16} className="text-primary fill-current" />
+                ))}
+              </div>
+              <span className="text-foreground font-bold">5.0</span>
+              <span className="text-muted-foreground">Perfect Rating</span>
+            </div>
+            <div className="w-px h-5 bg-border" />
+            <div className="flex items-center gap-2 text-foreground">
+              <Award size={18} className="text-primary" />
+              <span><strong className="text-foreground">50+</strong> <span className="text-muted-foreground">Elite Clients</span></span>
+            </div>
+            <div className="w-px h-5 bg-border" />
+            <div className="flex items-center gap-2 text-foreground">
+              <Zap size={18} className="text-primary" />
+              <span><strong className="text-foreground">100%</strong> <span className="text-muted-foreground">Success Rate</span></span>
+            </div>
+          </motion.div>
+
+          {/* IRRESISTIBLE CTA BUTTONS */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mb-12"
+            transition={{ duration: 0.5, delay: 1.3 }}
+            className="flex flex-col sm:flex-row gap-5 mb-16"
           >
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                animate={{
-                  boxShadow: [
-                    "0 0 0 0 rgba(196, 138, 100, 0)",
-                    "0 0 0 8px rgba(196, 138, 100, 0.1)",
-                    "0 0 0 0 rgba(196, 138, 100, 0)",
-                  ],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="group bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-10 py-5 rounded-xl font-semibold
-                         hover:shadow-glow transition-all duration-150
-                         flex items-center gap-3 text-lg shadow-lg"
+                whileHover={{ scale: 1.03, y: -3 }}
+                whileTap={{ scale: 0.97 }}
+                className="group relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-12 py-6 rounded-2xl font-bold text-lg
+                         shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-200
+                         flex items-center gap-3 overflow-hidden"
               >
-                Get Started
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/20 to-primary/0"
+                  animate={{
+                    x: ["-200%", "200%"],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+                <span className="relative">Start Your Project</span>
                 <ArrowRight
-                  size={20}
-                  className="group-hover:translate-x-1 transition-transform duration-150"
+                  size={22}
+                  className="relative group-hover:translate-x-2 transition-transform duration-200"
                 />
               </motion.button>
             </Link>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.03, y: -3 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => scrollToSection("portfolio")}
-              className="group text-foreground hover:text-primary font-semibold px-10 py-5
-                       transition-all duration-150 text-lg flex items-center gap-3
-                       bg-card/50 backdrop-blur-xl border border-border rounded-xl
-                       hover:bg-card/80 hover:border-primary/30"
+              className="group text-foreground hover:text-primary font-bold px-12 py-6 text-lg
+                       transition-all duration-200 flex items-center gap-3
+                       bg-card/60 backdrop-blur-xl border-2 border-border/50 rounded-2xl
+                       hover:bg-card hover:border-primary/40 shadow-xl"
             >
-              <Play size={18} className="text-primary" />
-              See Our Work
+              <Play size={20} className="text-primary group-hover:scale-110 transition-transform duration-200" />
+              View Success Stories
             </motion.button>
           </motion.div>
 
-          {/* Trust Band - INLINE */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="flex items-center gap-2 text-sm text-muted-foreground mb-12"
-          >
-            <Star size={16} className="text-primary fill-current" />
-            <span>5.0 Rating • 50+ Projects • 6 Countries Served</span>
-          </motion.div>
-
-          {/* Trust Metrics - MINIMAL */}
+          {/* Key Differentiators */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.5 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full max-w-4xl"
+            transition={{ duration: 0.5, delay: 1.5 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl"
           >
-            {trustMetrics.map((metric, index) => (
+            {[
+              { icon: Zap, title: "30-Day Delivery", desc: "Launch-ready MVPs" },
+              { icon: Award, title: "85% Funded", desc: "Client success rate" },
+              { icon: CheckCircle, title: "100% Satisfaction", desc: "Perfect track record" },
+            ].map((item, index) => (
               <motion.div
-                key={metric.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ y: -2, scale: 1.02 }}
-                transition={{ duration: 0.15, delay: 0.6 + index * 0.05 }}
-                className="text-center bg-card/30 backdrop-blur-xl border border-border rounded-xl px-4 py-6 hover:bg-card/50 hover:border-primary/30 transition-all duration-150 cursor-pointer group"
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 1.6 + index * 0.1 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl p-6 hover:bg-card/60 hover:border-primary/30 transition-all duration-200 group"
               >
-                <div className="text-2xl lg:text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-150 mb-2">
-                  {metric.value}
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  {metric.label}
-                </div>
+                <item.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform duration-200" />
+                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {item.desc}
+                </p>
               </motion.div>
             ))}
           </motion.div>

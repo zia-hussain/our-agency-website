@@ -11,7 +11,7 @@ const FeaturedCaseStudies: React.FC = () => {
   const [hero, ...sidebar] = projects;
 
   return (
-    <section className="py-28 bg-background relative overflow-hidden">
+    <section id="portfolio" className="py-28 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
          {/* Header */}
         <motion.div
