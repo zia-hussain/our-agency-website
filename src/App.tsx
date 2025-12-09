@@ -115,7 +115,7 @@ function App() {
       </Suspense>
       {!isAdminRoute && <Footer />}
       {!isAdminRoute && <BackToTop />}
-      {!isAdminRoute && <ChatWidget />}
+      {/* {!isAdminRoute && <ChatWidget />} */}
       {!isAdminRoute && <StickyCTABar />}
     </div>
   );
