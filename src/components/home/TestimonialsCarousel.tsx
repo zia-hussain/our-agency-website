@@ -44,25 +44,39 @@ const TestimonialsCarousel: React.FC = () => {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-16 lg:py-20 bg-background relative overflow-hidden">
+    <section className="py-28 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
+        {/* Impressive Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="text-center mb-12 lg:mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 lg:mb-6 tracking-tight leading-[1.1] px-4">
-            What Our Global
-            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              Clients Say
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
+            className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm font-medium text-primary mb-6"
+          >
+            <Star size={16} className="mr-2" />
+            Client Feedback
+          </motion.div>
+
+          {/* Headline */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
+            <span className="block text-foreground">Trusted By Founders and</span>
+            <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
+              CTOs Worldwide
             </span>
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-[1.6] font-light px-4">
-            Real feedback from international clients across the US, UK, Canada,
-            Australia, UAE, and Singapore
+
+          {/* Subtitle */}
+          <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Real feedback from international clients who transformed their businesses with our solutions
           </p>
         </motion.div>
 
@@ -111,8 +125,8 @@ const TestimonialsCarousel: React.FC = () => {
                       ))}
                     </div>
 
-                    {/* Quote Text - Responsive Typography */}
-                    <blockquote className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-foreground font-light leading-[1.4] lg:leading-[1.5] mb-8 lg:mb-10 italic text-center max-w-4xl mx-auto px-2 user-select-none">
+                    {/* Quote Text - LARGER */}
+                    <blockquote className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-foreground font-light leading-[1.5] mb-10 text-center max-w-4xl mx-auto">
                       "{testimonial.quote}"
                     </blockquote>
 
@@ -187,8 +201,8 @@ const TestimonialsCarousel: React.FC = () => {
           </motion.button>
         </div>
 
-        {/* Smooth Indicators - Mobile Optimized */}
-        <div className="flex justify-center gap-2 lg:gap-3 mt-6 lg:mt-8">
+        {/* Indicators */}
+        <div className="flex justify-center gap-2 lg:gap-3 mt-8">
           {scrollSnaps.map((_, index) => (
             <motion.button
               key={index}
@@ -198,19 +212,11 @@ const TestimonialsCarousel: React.FC = () => {
               transition={{ duration: 0.15 }}
               className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
                 selectedIndex === index
-                  ? "bg-primary shadow-glow scale-125"
+                  ? "bg-primary scale-125"
                   : "bg-border hover:bg-primary/50"
               }`}
             />
           ))}
-        </div>
-
-        {/* Auto-play Indicator - Mobile Hidden */}
-        <div className="text-center mt-4 lg:mt-6 hidden sm:block">
-          <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span>Auto-playing testimonials</span>
-          </div>
         </div>
       </div>
     </section>
