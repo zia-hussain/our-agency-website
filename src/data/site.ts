@@ -251,7 +251,7 @@ export const SITE_DATA = {
         achievements: "Built systems serving 100K+ users",
         image: "/syed-omer-shah-founder.png",
         linkedin: "https://www.linkedin.com/in/omer-gillani/",
-        calendly: "https://calendly.com/omer-shah/consultation",
+        calendly: "https://calendly.com/omer_shah/consultation",
       },
     ],
   },
