@@ -1,19 +1,22 @@
-// Portfolio Page FAQs - Project & Client Focused
 export const portfolioFAQs = [
   {
-    question: "What types of software development projects has Zumetrix Labs completed for international clients?",
-    answer: "We've successfully completed 50+ diverse software development projects across various industries including sophisticated SaaS platforms, enterprise mobile applications, complex automation systems, AI-powered tools, e-commerce solutions, custom web applications, and startup MVPs. Our international client portfolio spans the United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe, ranging from early-stage startups seeking rapid MVP development to established enterprises requiring scalable, enterprise-grade software solutions."
+    question: "What types of software projects has Zumetrix Labs delivered?",
+    answer:
+      "We’ve delivered a wide range of real-world products including SaaS dashboards, mobile applications, internal tools, automation systems, AI-powered workflows, booking systems, analytics platforms, MVPs, and custom business applications. Our portfolio includes projects built for publishers, healthcare operators, service marketplaces, logistics teams, AI startups, and founders who needed a fast, reliable technical partner to take their product from idea to reality."
   },
   {
-    question: "Can you show examples of your work with US, UK, Canadian, and other international clients?",
-    answer: "Absolutely! We've delivered exceptional results for international clients including Ifyify (US-based AI personal branding tool), WellnessTracker (Canadian healthcare mobile app), RetailOps (UK e-commerce automation platform), TaskFlow (Australian startup MVP), EduPlatform (Singapore education technology), and LogiTrack (UAE logistics mobile app). Each project showcases our ability to understand diverse market requirements, deliver world-class solutions, and exceed client expectations across different industries and geographical markets."
+    question: "Can you share examples of your work with international clients?",
+    answer:
+      "Yes. We’ve worked with founders and teams across the United States, United Kingdom, Canada, Europe, Australia, and the Middle East. Some examples include: a publishing analytics dashboard for a Norwegian company, an AI-powered voice companion app for a US startup, a handyman marketplace for a Norwegian founder, a skill-swapping mobile app for a UK client, a livestock management system for an American ranch, and multiple automation-heavy systems built using Make.com and n8n. Each project reflects our ability to understand a client’s market, design the right solution, and ship production-ready software."
   },
   {
-    question: "What industries and business sectors do you have software development experience in?",
-    answer: "We have extensive experience across multiple high-growth industries including healthcare technology, fintech and financial services, e-commerce and retail, education technology (EdTech), business services and productivity software, logistics and supply chain, AI and automation tools, SaaS platforms, and enterprise software solutions. Our diverse international portfolio demonstrates our ability to understand different business models, regulatory requirements, market dynamics, and deliver tailored software solutions that drive measurable business results."
+    question: "What industries does your portfolio cover?",
+    answer:
+      "Our work spans several industries including publishing, healthcare, service marketplaces, logistics, automation, AI, education, e-commerce, and operational tooling. We build both customer-facing products and internal business systems. Because our team works closely with founders and operators, we’re comfortable adapting to different industries and designing solutions that fit each client’s workflow, constraints, and long-term goals."
   },
   {
-    question: "How do you ensure project success and maintain 100% client satisfaction with international projects?",
-    answer: "We maintain 100% client satisfaction through our founder-led approach where Zia Hussain and Syed Omer Shah personally oversee every project, ensuring direct access to senior-level expertise. Our proven methodology includes transparent communication across time zones, agile development with weekly milestones, regular progress updates, comprehensive testing procedures, post-launch support, and ongoing consultation. We understand international business standards, cultural nuances, and market requirements, which enables us to deliver solutions that not only meet technical specifications but also drive real business growth and competitive advantages."
+    question: "How do you ensure the success of each project in your portfolio?",
+    answer:
+      "Every project is led directly by the founders, which means architecture, core features, and technical decisions are handled by senior engineers. We focus on clear scoping, weekly communication, fast iteration cycles, realistic timelines, and shipping only what matters. Most clients stay with us beyond the initial build because our approach reduces friction, avoids overbuilding, and ensures the final product is stable, maintainable, and aligned with the client’s goals. Our priority is not just delivering software—it’s making sure the product actually works in the real world."
   }
 ];

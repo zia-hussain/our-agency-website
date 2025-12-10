@@ -1,19 +1,27 @@
-// Contact Page FAQs - Client Onboarding & Process Focused
 export const contactFAQs = [
   {
-    question: "How quickly can Zumetrix Labs start my software development project?",
-    answer: "We typically begin new projects within 1-2 weeks of contract signing, depending on our current workload and project complexity. For urgent projects or time-sensitive launches, we can often accommodate faster start times with our dedicated rapid development process. We'll provide a clear timeline and project roadmap during our initial consultation, ensuring transparency and alignment with your business objectives and market launch requirements."
+    question: "How soon can we start working together?",
+    answer:
+      "Most projects begin within 7–10 days after the initial call and proposal approval. If your timeline is tight or you have a launch deadline, we’ll do our best to accommodate earlier starts. The goal is to give you a clear plan, not rush you into unclear work."
   },
   {
-    question: "What information do you need to provide an accurate project quote and timeline?",
-    answer: "To provide an accurate quote and development timeline, we need comprehensive details about your project scope, target audience and markets, desired features and functionality, technical requirements and integrations, preferred timeline and launch date, budget range, and business objectives. The more specific information you provide about your vision, the more accurate our estimate will be. We offer free 30-minute strategy consultations to discuss your requirements in detail and provide expert guidance on the optimal approach."
+    question: "What do you need from me before sending a quote?",
+    answer:
+      "You don’t need a full specification — a simple description of your idea, your goals, and the problem you’re trying to solve is enough for us to start. If you already have wireframes, references, or feature notes, we’ll gladly look at them. Our first call is designed to help shape the project so we can give an accurate timeline and proposal."
   },
   {
-    question: "Do you work with clients across different time zones and markets?",
-    answer: "Absolutely! We specialize in working with international clients across the United States, United Kingdom, Canada, Australia, European Union, UAE, Singapore, and worldwide. We're highly experienced in managing projects across different time zones and have established proven processes for remote collaboration, cross-cultural communication, and international project management. Our founders understand global business standards, market requirements, and regulatory considerations for different regions."
+    question: "Do you work with clients in different countries and time zones?",
+    answer:
+      "Yes. Most of our clients are in the US, UK, Europe, Australia, and the Middle East. We structure communication around your time zone, keep updates predictable, and use tools like Slack, email, WhatsApp, and Loom for smooth async collaboration. Working globally is a normal part of our process."
   },
   {
-    question: "What are your payment terms, pricing structure, and project management approach?",
-    answer: "Our pricing varies based on project scope, complexity, and timeline requirements. We typically work with milestone-based payments for larger projects and offer flexible payment terms for international clients. We provide detailed proposals with transparent pricing, clear deliverables, realistic timelines, and no hidden costs. All pricing is in USD and includes comprehensive project management, regular progress updates, testing, deployment, and initial post-launch support. We accept various international payment methods for client convenience."
+    question: "How do payment and project milestones work?",
+    answer:
+      "For fixed-scope projects like SaaS MVPs, we use milestone-based payments: an upfront start payment, one or two progress milestones, and a final delivery milestone. For ongoing work, we use monthly retainers or flexible blocks of hours. All proposals clearly outline scope, deliverables, pricing, and timelines with no hidden fees."
+  },
+  {
+    question: "What happens after I submit the contact form?",
+    answer:
+      "You’ll get a reply within 24 hours with next steps. Usually this includes a short message from one of the founders, a link to book a call, and a request for any details you’d like to share. The goal is simple: understand your idea, confirm fit, and outline a clear path forward."
   }
 ];

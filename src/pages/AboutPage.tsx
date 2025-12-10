@@ -4,6 +4,7 @@ import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, Target, Award, Globe, Code, Heart, Plus, BookOpen } from "lucide-react";
+import { aboutFAQs } from "../data/faqs/about";
 
 const AboutPage: React.FC = () => {
   const [openFAQ, setOpenFAQ] = React.useState<number | null>(null);
@@ -12,53 +13,37 @@ const AboutPage: React.FC = () => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
 
-  const aboutFAQs = [
-    {
-      question: "Who are Zia Hussain and Syed Omer Shah?",
-      answer: "Zia Hussain (CEO) and Syed Omer Shah (CTO) are expert software developers and the co-founders of Zumetrix Labs. With combined 6+ years of experience in modern web development, they specialize in React/Node.js development, SaaS MVP building, AI automation, and enterprise software solutions. They personally oversee all client projects to ensure exceptional quality and results."
-    },
-    {
-      question: "What makes Zumetrix Labs different from other development agencies?",
-      answer: "Zumetrix Labs is founder-led, meaning Zia and Omer are directly involved in every project. As expert developers themselves, they bring hands-on technical expertise rather than just project management. They specialize in modern technologies like React, TypeScript, Node.js, and AI automation, serving international clients with world-class quality standards."
-    },
-    {
-      question: "Which countries and markets do you serve?",
-      answer: "We serve international clients across the United States, United Kingdom, Canada, Australia, UAE, Singapore, and worldwide. Our founders understand global market requirements and international business standards, making us ideal partners for ambitious tech projects regardless of location."
-    },
-    {
-      question: "What types of projects do Zia and Omer specialize in?",
-      answer: "Our founders specialize in SaaS MVP development, React/TypeScript applications, Node.js backend systems, mobile app development, AI automation workflows, and enterprise software solutions. They're particularly skilled at helping startups build their first products and enterprises scale their existing systems."
-    },
-    {
-      question: "How experienced are the founders in software development?",
-      answer: "Zia Hussain brings expertise in full-stack development, business strategy, and client success, while Syed Omer Shah specializes in scalable architecture, modern web stacks, and AI automation. Together, they've delivered 50+ successful projects and maintain a 100% client satisfaction rate with their hands-on approach."
-    }
-  ];
+const founders = [
+  {
+    name: "Syed Zia Hussain Shah",
+    role: "Co-Founder · CEO · Product & Growth",
+    bio: "Zia leads product and growth at Zumetrix Labs. He lives in the space between founders, users, and engineering—turning messy ideas into clear roadmaps, offers, and shipped products. He cares about clean execution, simple user flows, and making sure every build actually moves revenue, not just adds more features. Most clients know him as the person who will challenge their ideas, sharpen the vision, and then help lead it all the way to launch.",
+    image: "/zia-hussain-founder.png",
+    skills: [
+      "SaaS Product Strategy",
+      "MVP Scoping & Roadmapping",
+      "Client Acquisition & Sales",
+      "Offer & Pricing Design",
+      "Agency & Delivery Operations",
+    ],
+  },
+  {
+    name: "Syed Omer Shah",
+    role: "Co-Founder · CTO · Engineering & Automation",
+    bio: "Omer leads engineering and automation at Zumetrix Labs. He takes complex requirements, constraints, and integrations—and turns them into systems that are fast, reliable, and easy to grow. He thinks in terms of architecture, data flows, and long-term maintainability, making sure what we ship today doesn’t become tomorrow’s technical debt. Most clients rely on him as their technical backbone: the person who quietly keeps everything stable, scalable, and efficient.",
+    image: "/syed-omer-shah-founder.png",
+    skills: [
+      "Technical Architecture & System Design",
+      "AI & Automation Workflows",
+      "Scalable Backend & Infrastructure",
+      "Integration & Platform Engineering",
+      "Code Quality, Reviews & Standards",
+    ],
+  },
+];
 
-  const founders = [
-    {
-      name: "Syed Zia Hussain Shah",
-      role: "Co-Founder · Product & Growth",
-      bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn't just built well — it solves the right problem, beautifully.",
-      image: "/zia-hussain-founder.png",
-      skills: [
-        "Strategy",
-        "Client Acquisition",
-        "React",
-        "Node.js",
-        "Growth Systems",
-      ],
-    },
-    {
-      name: "Syed Omer Shah",
-      role: "Co-Founder · Engineering & Automation",
-      bio: "Umer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
-      image: "/syed-omer-shah-founder.png",
-      skills: ["Next.js", "TypeScript", "Firebase", "Python", "AI Automation"],
-    },
-  ];
 
-  const values = [
+const values = [
     {
       icon: Target,
       title: "Precision",

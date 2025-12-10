@@ -1,44 +1,64 @@
 // Home Page FAQs - SEO Optimized for Global Markets & AEO Ready
 export const homeFAQs = [
   {
-    question: "What is Zumetrix Labs and what makes them the world's leading software development agency?",
-    answer: "Zumetrix Labs is the world's premier software development agency founded by expert developers Zia Hussain (CEO) and Syed Omer Shah (CTO). We are globally recognized for delivering enterprise-grade SaaS MVP development in 30 days, React/Node.js web applications, mobile app development using React Native & Flutter, AI automation services with OpenAI integration, Firebase development, custom enterprise software, and intelligent automation solutions. We serve 50+ international clients across the United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe with a 100% client satisfaction rate and 85% funding success rate for startup MVPs."
+    question: "What is Zumetrix Labs and what do you specialize in?",
+    answer:
+      "Zumetrix Labs is a founder-led software studio focused on building production-ready SaaS products, web applications, mobile apps, and AI-driven automation systems. We specialize in React/Next.js and Node.js web apps, 30-day SaaS MVP development, React Native mobile applications, AI integrations with OpenAI, and automation workflows using tools like Zapier, Make.com, and n8n. Most of our work is for international clients in the United States, United Kingdom, Canada, Europe, Australia, and the Middle East who want a technical partner, not a faceless outsourcing agency."
   },
   {
-    question: "Who are Zia Hussain and Syed Omer Shah, and what makes them different from other software development experts globally?",
-    answer: "Zia Hussain (Co-Founder & CEO) and Syed Omer Shah (Co-Founder & CTO) are world-class software development experts and the visionary founders behind Zumetrix Labs. Unlike typical agencies, they are hands-on technical leaders who personally architect and oversee every project. Zia Hussain is a React/Node.js expert specializing in SaaS MVP development, TypeScript architecture, Firebase integration, business strategy, and international client success. Syed Omer Shah is an AI automation expert specializing in scalable system architecture, Python development, cloud infrastructure, OpenAI integration, and cutting-edge web technologies. Together, they have 6+ years of combined experience delivering 50+ successful projects for international clients with 100% satisfaction rate and zero project failures."
+    question: "Who are the founders behind Zumetrix Labs?",
+    answer:
+      "Zumetrix Labs is led by two hands-on technical founders: Zia Hussain (Co-Founder & CEO) and Syed Omer Shah (Co-Founder & CTO). Zia focuses on product strategy and full-stack development using React, Next.js, TypeScript, Node.js, and Firebase. He has led multiple SaaS MVPs from idea to launch for international clients. Omer focuses on backend systems, AI automation, and scalable architecture using Node.js, Python, cloud infrastructure, and OpenAI integrations. Instead of delegating everything to juniors, both founders stay directly involved in architecture, code reviews, and critical technical decisions on every project."
   },
   {
     question: "How fast can Zumetrix Labs build a production-ready SaaS MVP?",
-    answer: "Zumetrix Labs builds production-ready SaaS MVPs in exactly 30 days using our proven methodology and enterprise-grade tech stack including React, Next.js, TypeScript, Node.js, Firebase, and Stripe integration. Our rapid development process includes strategic planning, professional UI/UX design, agile development, comprehensive testing, cloud deployment, and post-launch support. 85% of our MVPs successfully secure follow-up funding within 6 months. Our enterprise-grade architecture ensures your MVP can scale from hundreds to millions of users without rebuilding, making us the fastest and most reliable MVP development agency globally."
+    answer:
+      "For most projects, we can take you from idea to a production-ready SaaS MVP in about 30 days. Our process includes an initial strategy and scoping call, a clear technical architecture, UI/UX layout, weekly development sprints, QA, and deployment to production (usually on Vercel, AWS, or similar). Timelines depend on scope, but the 30-day MVP model works well for focused products like dashboards, internal tools, niche SaaS products, or marketplaces with a clear first feature set."
   },
   {
-    question: "What are the qualifications and expertise of Zumetrix Labs founders?",
-    answer: "Zia Hussain (Co-Founder & CEO) is a world-class full-stack developer with expertise in React/TypeScript development, Node.js backend architecture, SaaS MVP building, Firebase integration, business strategy, and international client success. He has led 30+ successful MVP launches with 100% client satisfaction. Syed Omer Shah (Co-Founder & CTO) is an AI automation expert and system architect specializing in scalable cloud architecture, Python development, OpenAI integration, performance optimization, and cutting-edge web technologies. He has built systems serving 100K+ users globally. Together, they have 6+ years of combined experience delivering 50+ successful projects for international clients with zero project failures."
+    question: "What does your 30-day SaaS MVP process look like?",
+    answer:
+      "Our 30-day SaaS MVP process is structured and transparent: (1) Product discovery and requirements clarification, (2) Technical architecture and database design, (3) UI/UX layout and core flows, (4) Backend and frontend implementation, (5) Integrations such as Stripe, OpenAI, or Firebase, (6) QA and bug-fixing, and (7) Production deployment and handover. You get weekly progress updates, Loom walkthroughs, and a clear list of what will be included in your V1 so there are no surprises."
   },
   {
-    question: "What AI automation services does Zumetrix Labs provide for global businesses?",
-    answer: "Zumetrix Labs provides comprehensive AI automation services including OpenAI API integration, ChatGPT automation, custom AI workflows, business process automation, intelligent chatbot development, document processing automation, and no-code automation solutions using Zapier, Make.com, and n8n. Our AI automation services help global businesses reduce operational costs by 40-70%, eliminate manual errors by 95%, and scale efficiently. We've successfully implemented AI solutions for clients in healthcare, e-commerce, education, logistics, and enterprise sectors across international markets with measurable ROI improvements."
+    question: "What AI automation services does Zumetrix Labs provide?",
+    answer:
+      "We help companies turn manual, repetitive work into automated, AI-assisted workflows. This includes OpenAI and ChatGPT integrations, custom AI endpoints, document and email processing automation, customer support assistants, internal tools powered by AI, and no-code/low-code automation using Zapier, Make.com, and n8n. We often connect AI flows to CRMs, marketing tools, databases, or internal systems so your team saves hours every week while keeping full control over the business logic."
   },
   {
-    question: "Which global markets and countries does Zumetrix Labs serve?",
-    answer: "Zumetrix Labs serves international clients across major global markets including the United States, United Kingdom, Canada, Australia, United Arab Emirates, Singapore, European Union countries, and worldwide. We have extensive experience with international business requirements, different time zones, global market standards, regulatory compliance (GDPR, SOC2), and cross-cultural communication. Our founders understand international business needs and global software development standards, making us ideal technical partners for ambitious global projects, international enterprises, and startups seeking worldwide expansion."
+    question: "Which technologies and tech stack do you use?",
+    answer:
+      "Our primary tech stack includes React, Next.js, TypeScript, Node.js, Express, React Native, Expo, Firebase, Supabase, PostgreSQL, MongoDB, Stripe, OpenAI APIs, TailwindCSS, and modern deployment platforms like Vercel and AWS. For automations and internal tools, we frequently use Airtable, Notion, Zapier, Make.com, and n8n. We choose technologies based on performance, maintainability, and your team’s long-term needs so you are not locked into something you can’t scale or hire for later."
   },
   {
-    question: "What technologies and tech stack does Zumetrix Labs use for software development?",
-    answer: "Zumetrix Labs uses cutting-edge technologies including React.js, Next.js, TypeScript, Node.js, Python, Firebase, PostgreSQL, MongoDB, AWS, Vercel, Supabase, Stripe, OpenAI APIs, React Native, Flutter, TailwindCSS, Docker, and cloud-native architectures. Our tech stack is carefully chosen for performance, scalability, security, and maintainability. We stay current with industry trends and best practices, ensuring your software solution is built with future-proof technologies that adapt and scale as your business grows internationally. Our technology decisions align with enterprise-grade standards and global market requirements."
+    question: "What types of projects are the best fit for Zumetrix Labs?",
+    answer:
+      "We are a great fit if you want to build: (1) a SaaS MVP or internal tool, (2) a React/Next.js dashboard or analytics platform, (3) a React Native mobile app, (4) an AI-powered product or assistant, or (5) a serious automation system that connects tools like Stripe, Airtable, Notion, or your CRM. We are usually not the right fit for one-off landing pages only, pure WordPress sites, or projects where there is no clear owner on your side."
   },
   {
-    question: "How much does it cost to hire Zumetrix Labs for software development projects?",
-    answer: "Zumetrix Labs pricing varies by project scope and complexity. SaaS MVP development starts at $12,000, AI automation services start at $5,000, mobile app development starts at $18,000, and enterprise web applications start at $15,000. All pricing includes comprehensive project management, testing, deployment, and initial post-launch support. We provide detailed proposals with transparent pricing, clear deliverables, realistic timelines, and no hidden costs. Our pricing is competitive globally while maintaining world-class quality standards. Contact us for a free consultation and custom quote based on your specific requirements."
+    question: "How much does it cost to work with Zumetrix Labs?",
+    answer:
+      "Budgets depend on scope, complexity, and timeline. As a rough guideline: focused SaaS MVPs typically start around $8,000–$15,000, AI automation projects usually start from $3,000–$7,000, and larger web or mobile applications can go higher depending on advanced features, integrations, and long-term support. After an initial call, we send a clear proposal with scope, timeline, pricing, and responsibilities so you know exactly what you’re getting."
   },
   {
-    question: "How does Zumetrix Labs ensure project success and maintain 100% client satisfaction globally?",
-    answer: "Zumetrix Labs maintains 100% client satisfaction through our founder-led approach where Zia Hussain and Syed Omer Shah personally oversee every project. Our methodology includes transparent communication across time zones, agile development with weekly milestones, comprehensive testing, regular progress updates, post-launch support, and ongoing consultation. We understand international business standards and global market requirements, enabling us to deliver solutions that drive real business growth, competitive advantages, and measurable ROI for clients worldwide. Our zero-failure track record and 85% funding success rate for startup MVPs demonstrate our commitment to excellence."
+    question: "Do I own the code and intellectual property (IP)?",
+    answer:
+      "Yes. Once the project is paid for, you own the code, the IP, and the production infrastructure. We can host it for you or deploy it to your own accounts (GitHub, AWS, Vercel, Firebase, etc.). We also provide handover documentation and can stay on as a long-term technical partner if you want ongoing improvements and maintenance."
   },
   {
-    question: "Can Zumetrix Labs handle complex enterprise software development projects?",
-    answer: "Yes, Zumetrix Labs excels at complex enterprise software development projects. We build scalable web applications, custom enterprise solutions, advanced data analytics platforms, multi-tenant SaaS systems, and AI-powered business tools that serve thousands of users globally. Our enterprise clients include companies processing 10,000+ daily transactions, managing complex workflows, and requiring high-performance, secure, and compliant software solutions. We use enterprise-grade technologies, implement robust security measures, ensure GDPR compliance, and provide comprehensive documentation and support for mission-critical business applications."
+    question: "How do you communicate and manage projects across time zones?",
+    answer:
+      "Most of our clients are in US, UK, Europe, and the Middle East, so we are used to working across time zones. We typically use Slack, email, or WhatsApp for day-to-day updates, and schedule weekly or bi-weekly Zoom/Google Meet calls. You’ll get Loom video walkthroughs for key milestones, and we keep everything organized in shared documents or project boards so you can see progress without chasing us."
+  },
+  {
+    question: "Can you work with my existing team or codebase?",
+    answer:
+      "Yes. We regularly join existing teams as React/Node/React Native experts, fix complex bugs, refactor legacy code, or build new modules on top of an existing system. Before touching your code, we’ll review the repository, discuss architecture constraints, and agree on a clear scope so we add value without creating new technical debt."
+  },
+  {
+    question: "What happens after launch? Do you offer ongoing support?",
+    answer:
+      "Yes. After we launch your product, we can either hand everything over to your internal team or stay on as your technical partner. Many clients keep us for monthly retainers to handle new features, performance improvements, bug fixes, monitoring, and further automation of their operations. We prefer long-term relationships where we can keep improving the product over time instead of just doing a one-off build and disappearing."
   }
 ];
 
