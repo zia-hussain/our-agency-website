@@ -105,33 +105,72 @@ const FinalCTA: React.FC = () => {
           </div>
 
           {/* Trust Signals - Responsive Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 text-center max-w-4xl mx-auto mb-8 sm:mb-12 px-4">
-            {finalCTA.trustSignals.map((signal, index) => (
-              <motion.div
-                key={signal}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -2, scale: 1.02 }}
-                transition={{ duration: 0.15, delay: index * 0.05 }}
-                className="group"
-              >
-                <div className="bg-card/50 backdrop-blur-xl p-4 sm:p-6 rounded-lg lg:rounded-xl border border-border hover:border-primary/30 group-hover:bg-card/80 transition-all duration-150 h-full">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.15 }}
-                    className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-primary/80 transition-all duration-150"
-                  >
-                    <CheckCircle size={16} className="sm:hidden text-primary group-hover:text-primary-foreground transition-colors duration-150" />
-                    <CheckCircle size={20} className="hidden sm:block text-primary group-hover:text-primary-foreground transition-colors duration-150" />
-                  </motion.div>
-                  <h3 className="text-sm sm:text-base font-semibold text-foreground group-hover:text-primary transition-colors duration-150 leading-tight">
-                    {signal}
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 max-w-4xl mx-auto mb-12 px-4">
+  {finalCTA.trustSignals.map((signal, index) => (
+    <motion.div
+      key={signal}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      transition={{ duration: 0.2, delay: index * 0.06 }}
+      className="relative group h-full hover:border-primary/30 bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 flex flex-col"
+    >
+      {/* Soft glow ring */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/0 to-primary/0 opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-300 pointer-events-none" />
+
+      {/* Main Glass Card */}
+      <div
+        className="
+          relative h-full overflow-hidden rounded-2xl
+          border border-white/5
+          bg-white/[0.02]
+          backdrop-blur-md
+          px-5 py-6
+          flex flex-col items-center text-center
+          transition-all duration-300
+          group-hover:border-white/15
+          group-hover:bg-white/[0.04]
+        "
+      >
+        {/* Top accent line */}
+        <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-70" />
+
+        {/* Icon Container */}
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.18 }}
+          className="
+            h-10 w-10 sm:h-12 sm:w-12
+            flex items-center justify-center
+            rounded-xl
+            border border-white/10
+            bg-white/[0.04]
+            shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+            mb-4
+            transition-all duration-300
+            group-hover:bg-white/[0.08]
+            group-hover:border-white/20
+          "
+        >
+          <CheckCircle
+            size={20}
+            className="text-primary group-hover:text-primary transition-colors duration-300"
+          />
+        </motion.div>
+
+        {/* Text */}
+        <h3 className="text-sm sm:text-base font-medium text-white/80 leading-relaxed">
+          {signal}
+        </h3>
+
+        {/* Bottom accent line */}
+        <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-white/12 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+    </motion.div>
+  ))}
+</div>
+
 
         </motion.div>
       </div>

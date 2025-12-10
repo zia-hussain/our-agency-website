@@ -3,7 +3,7 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, Target, Award, Globe, Code, Heart, Plus } from "lucide-react";
+import { Users, Target, Award, Globe, Code, Heart, Plus, BookOpen } from "lucide-react";
 
 const AboutPage: React.FC = () => {
   const [openFAQ, setOpenFAQ] = React.useState<number | null>(null);
@@ -126,6 +126,7 @@ const AboutPage: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
+            <BookOpen size={16} className="mr-2" />
               Our Story
             </motion.div>
 

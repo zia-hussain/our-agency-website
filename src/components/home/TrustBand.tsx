@@ -50,45 +50,94 @@ const TrustBand: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Global Stats - Enhanced Design */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-20">
-          {trustBand.globalStats.map((stat, index) => {
-            const iconMap = {
-              globe: Globe,
-              projects: Users,
-              success: Award,
-              response: Clock,
-            };
-            const IconComponent = iconMap[stat.icon as keyof typeof iconMap];
 
-            return (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -6, scale: 1.03 }}
-                transition={{ duration: 0.2, delay: index * 0.08 }}
-                className="relative text-center bg-gradient-to-br from-card/70 to-card/40 backdrop-blur-xl border border-border/60 rounded-2xl px-5 py-8 hover:bg-card hover:border-primary/40 transition-all duration-200 cursor-pointer group shadow-lg hover:shadow-2xl hover:shadow-primary/10"
-              >
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-2xl" />
-                <div className="relative">
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200">
-                      <IconComponent size={24} className="text-primary" />
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          className="w-full px-4 sm:px-0 cursor-default"
+        >
+          {/* Global Stats - Enhanced Design */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6 mb-20 shadow-lg">
+            {trustBand.globalStats.map((stat, index) => {
+              const iconMap = {
+                globe: Globe,
+                projects: Users,
+                success: Award,
+                response: Clock,
+              };
+              const IconComponent = iconMap[stat.icon as keyof typeof iconMap];
+
+              return (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -6, scale: 1.03 }}
+                  transition={{ duration: 0.2, delay: index * 0.08 }}
+                  className="relative group h-full hover:border-primary/30 bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 flex flex-col"
+                >
+                  {/* Glow ring on hover */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/0 to-primary/0 opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-300 pointer-events-none" />
+
+      <div
+            className="
+            relative h-full overflow-hidden rounded-2xl
+            border border-white/5
+            bg-white/[0.02]
+            backdrop-blur-md
+            px-5 py-6
+            flex flex-col
+            transition-all duration-300
+            group-hover:border-white/15
+            group-hover:bg-white/[0.04]
+          "
+       >
+                    {/* Subtle top accent line */}
+                    <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-60" />
+
+                    {/* Icon + label */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="
+                relative flex items-center justify-center
+                h-10 w-10 rounded-xl
+                border border-white/10
+                bg-white/[0.04]
+                shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+                transition-all duration-300
+                group-hover:bg-white/[0.06]
+                group-hover:border-white/20
+              "
+                      >
+
+                        <IconComponent strokeWidth={1.6} size={24} className="w-5 h-5 text-primary" />
+                      </div>
                     </div>
+
+                    {/* Title */}
+                    <h2 className="text-4xl font-semibold text-white/45 tracking-tight mb-2 text-center">
+                      {stat.value}
+                    </h2>
+
+                    {/* Description */}
+                    <p className="text-sm text-white/60 leading-relaxed mb-4 text-center">
+                      {stat.label}
+                    </p>
+
+                    {/* Bottom accent line */}
+                    <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/12 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <div className="text-3xl lg:text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-200 mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm lg:text-base font-semibold text-muted-foreground">
-                    {stat.label}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+
+
+
+                </motion.div>
+              );
+            })}
+          </div>
+
+        </motion.div>
 
         {/* Client Showcase - Premium Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

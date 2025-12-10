@@ -3,7 +3,7 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { services, process } from "../data/services.ts";
 import { servicesFAQs } from "../data/faqs/services";
@@ -139,7 +139,9 @@ const ServicesPage: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
-              🚀 Premium Software Development Services in Pakistan
+                            <Rocket size={16} className="mr-2" />
+
+              Premium Software Development Services in Pakistan
             </motion.div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">

@@ -1,6 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play, Star, CheckCircle, Zap, Award, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Play,
+  Star,
+  CheckCircle,
+  Zap,
+  Award,
+  Sparkles,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 
@@ -15,24 +23,47 @@ const Hero: React.FC = () => {
     }
   };
 
-  const trustMetrics = [
+  const stats = [
     {
-      value: "5.0★",
-      label: "Rating",
+      icon: Zap,
+      title: "30-Day Delivery",
+      desc: "Launch-ready MVPs",
     },
     {
-      value: "50+",
-      label: "Projects",
+      icon: Award,
+      title: "85% Funded",
+      desc: "Client success rate",
     },
     {
-      value: "30d",
-      label: "Delivery",
-    },
-    {
-      value: "100%",
-      label: "Success",
+      icon: CheckCircle,
+      title: "100% Satisfaction",
+      desc: "Perfect track record",
     },
   ];
+
+  const keyDiffContainer = {
+    hidden: { opacity: 0, y: 24 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        staggerChildren: 0.12,
+        delayChildren: 0.6,
+      },
+    },
+  };
+
+  const keyDiffItem = {
+    hidden: { opacity: 0, y: 20, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.35, ease: "easeOut" },
+    },
+  };
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-background via-background to-card/30 flex items-center justify-center relative overflow-hidden pt-20 sm:pt-32 pb-20">
@@ -84,7 +115,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 backdrop-blur-xl border border-primary/20 rounded-full text-sm font-semibold text-primary mb-8 shadow-lg shadow-primary/5"
           >
-            <Sparkles size={16} className="mr-2 animate-pulse" />
+            <Sparkles size={16} className="mr-2" />
             <span className="mr-2">Accepting Elite Projects</span>
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -132,7 +163,10 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.9 }}
             className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-4xl leading-relaxed px-2 sm:px-4 font-light"
           >
-            <span className="text-foreground font-medium">Enterprise-grade SaaS MVPs in 30 days</span>, intelligent AI automation, and world-class mobile apps that{" "}
+            <span className="text-foreground font-medium">
+              Enterprise-grade SaaS MVPs in 30 days
+            </span>
+            , intelligent AI automation, and world-class mobile apps that{" "}
             <span className="text-primary font-medium">raise millions</span> and{" "}
             <span className="text-primary font-medium">dominate markets</span>.
           </motion.p>
@@ -146,8 +180,12 @@ const Hero: React.FC = () => {
           >
             <div className="flex items-center gap-2">
               <div className="flex">
-                {[1,2,3,4,5].map((i) => (
-                  <Star key={i} size={16} className="text-primary fill-current" />
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    className="text-primary fill-current"
+                  />
                 ))}
               </div>
               <span className="text-foreground font-bold">5.0</span>
@@ -156,16 +194,22 @@ const Hero: React.FC = () => {
             <div className="w-px h-5 bg-border" />
             <div className="flex items-center gap-2 text-foreground">
               <Award size={18} className="text-primary" />
-              <span><strong className="text-foreground">50+</strong> <span className="text-muted-foreground">Elite Clients</span></span>
+              <span>
+                <strong className="text-foreground">50+</strong>{" "}
+                <span className="text-muted-foreground">Elite Clients</span>
+              </span>
             </div>
             <div className="w-px h-5 bg-border" />
             <div className="flex items-center gap-2 text-foreground">
               <Zap size={18} className="text-primary" />
-              <span><strong className="text-foreground">100%</strong> <span className="text-muted-foreground">Success Rate</span></span>
+              <span>
+                <strong className="text-foreground">100%</strong>{" "}
+                <span className="text-muted-foreground">Success Rate</span>
+              </span>
             </div>
           </motion.div>
 
-           <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1 }}
@@ -207,40 +251,91 @@ const Hero: React.FC = () => {
                        bg-card/60 backdrop-blur-xl border-2 border-border/50 
                        hover:bg-card hover:border-primary/40 shadow-xl"
             >
-              <Play size={20} className="text-primary group-hover:scale-110 transition-transform duration-200" />
+              <Play
+                size={20}
+                className="text-primary group-hover:scale-110 transition-transform duration-200"
+              />
               View Success Stories
             </motion.button>
           </motion.div>
 
           {/* Key Differentiators */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.5 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full max-w-5xl px-2 sm:px-0"
+            variants={keyDiffContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            className="w-full max-w-5xl mx-auto px-4 sm:px-0 cursor-default"
           >
-            {[
-              { icon: Zap, title: "30-Day Delivery", desc: "Launch-ready MVPs" },
-              { icon: Award, title: "85% Funded", desc: "Client success rate" },
-              { icon: CheckCircle, title: "100% Satisfaction", desc: "Perfect track record" },
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 1.6 + index * 0.1 }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl p-5 sm:p-6 hover:bg-card/60 hover:border-primary/30 transition-all duration-200 group"
-              >
-                <item.icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-200" />
-                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground text-xs sm:text-sm">
-                  {item.desc}
-                </p>
-              </motion.div>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+              {stats.map((item) => (
+                <motion.div
+                  key={item.title}
+                  variants={keyDiffItem}
+                  whileHover={{
+                    y: -6,
+                    scale: 1.015,
+                    transition: { duration: 0.22, ease: "easeOut" },
+                  }}
+                  className="relative group h-full hover:border-primary/30 bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 flex flex-col"
+                >
+                  {/* Glow ring on hover */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/0 to-primary/0 opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-300 pointer-events-none" />
+
+                  <div
+                    className="
+            relative h-full overflow-hidden rounded-2xl
+            border border-white/5
+            bg-white/[0.02]
+            backdrop-blur-md
+            px-5 py-6
+            flex flex-col
+            transition-all duration-300
+            group-hover:border-white/15
+            group-hover:bg-white/[0.04]
+          "
+                  >
+                    {/* Subtle top accent line */}
+                    <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-60" />
+
+                    {/* Icon + label */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="
+                relative flex items-center justify-center
+                h-10 w-10 rounded-xl
+                border border-white/10
+                bg-white/[0.04]
+                shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+                transition-all duration-300
+                group-hover:bg-white/[0.06]
+                group-hover:border-white/20
+              "
+                      >
+                        <item.icon
+                          className="w-5 h-5 text-primary"
+                          strokeWidth={1.6}
+                        />
+                      </div>
+
+                    </div>
+
+                    {/* Title */}
+                    <h2 className="text-2xl font-semibold text-white/45 tracking-tight mb-2">
+                      {item.title}
+                    </h2>
+
+                    {/* Description */}
+                    <p className="text-sm text-white/60 leading-relaxed mb-4">
+                      {item.desc}
+                    </p>
+
+                    {/* Bottom accent line */}
+                    <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/12 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>

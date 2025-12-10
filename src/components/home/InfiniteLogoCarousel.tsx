@@ -48,7 +48,7 @@ const InfiniteLogoCarousel: React.FC = () => {
   if (!logos.length) return null;
 
   return (
-    <section className="py-28 bg-background relative overflow-hidden">
+    <section className="py-20 bg-background relative overflow-hidden border-t border-b border-zinc-800/50">
       {/* Ambient background */}
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,10 +60,10 @@ const InfiniteLogoCarousel: React.FC = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16 sm:mb-20"
         >
-          <p className="text-xl font-medium tracking-[0.3em] uppercase text-zinc-500/80 mb-3">
+          <p className="am:text-xl font-medium tracking-[0.3em] uppercase text-zinc-500/80 mb-3">
             {companyLogosCarousel?.eyebrow || "TRUSTED BY"}
           </p>
-          <h2 className="text-5xl !text-zinc-400/90 font-light tracking-wide">
+          <h2 className="text-2xl sm:text-5xl !text-zinc-400/90 font-light tracking-wide">
             {companyLogosCarousel?.title || "Companies building the future"}
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">{companyLogosCarousel?.themedTitle}</span>
           </h2>
