@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-background via-background to-card/30 flex items-center justify-center relative overflow-hidden pt-32 pb-20">
+    <section className="min-h-screen bg-gradient-to-b from-background via-background to-card/30 flex items-center justify-center relative overflow-hidden pt-20 sm:pt-32 pb-20">
       {/* PREMIUM Animated Gradient Background */}
       <motion.div
         animate={{
@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.15] tracking-tight px-2 sm:px-4"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.15] tracking-tight sm:px-4"
           >
             <motion.span
               initial={{ opacity: 0 }}
@@ -168,15 +168,15 @@ const Hero: React.FC = () => {
            <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.3 }}
-            className="flex flex-col sm:flex-row gap-5 mb-16"
+            transition={{ duration: 0.5, delay: 1 }}
+            className="flex flex-col justify-center items-center sm:flex-row gap-5 mb-24"
           >
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.03, y: -3 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="group relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-12 py-6 rounded-2xl font-bold text-lg
-                         shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-200
+                className="group relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl font-bold text-lg
+                         shadow-2xl shadow-primary/25 hover:shadow-primary/40 
                          flex items-center gap-3 overflow-hidden"
               >
                 <motion.div
@@ -199,12 +199,12 @@ const Hero: React.FC = () => {
             </Link>
 
             <motion.button
-              whileHover={{ scale: 1.03, y: -3 }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => scrollToSection("portfolio")}
-              className="group text-foreground hover:text-primary font-bold px-12 py-6 text-lg
-                       transition-all duration-200 flex items-center gap-3
-                       bg-card/60 backdrop-blur-xl border-2 border-border/50 rounded-2xl
+              className="group text-foreground hover:text-primary font-bold px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl text-lg
+                        flex items-center gap-3
+                       bg-card/60 backdrop-blur-xl border-2 border-border/50 
                        hover:bg-card hover:border-primary/40 shadow-xl"
             >
               <Play size={20} className="text-primary group-hover:scale-110 transition-transform duration-200" />

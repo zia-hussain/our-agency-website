@@ -76,8 +76,8 @@ const InfiniteLogoCarousel: React.FC = () => {
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Edge fade masks */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 sm:w-40 md:w-56 bg-gradient-to-r from-zinc-950 via-zinc-950/90 to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 sm:w-40 md:w-56 bg-gradient-to-l from-zinc-950 via-zinc-950/90 to-transparent z-10" />
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 sm:w-40 md:w-56 bg-gradient-to-r from-background via-background to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 sm:w-40 md:w-56 bg-gradient-to-l from-background via-background to-transparent z-10" />
           
           {/* Logo track */}
           <div className="overflow-hidden py-4">
