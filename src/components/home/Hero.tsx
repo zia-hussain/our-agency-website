@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent"
+              className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent lg:pb-2"
             >
               Software Agency
             </motion.span>
