@@ -63,7 +63,7 @@ const InfiniteLogoCarousel: React.FC = () => {
           <p className="am:text-xl font-medium tracking-[0.3em] uppercase text-zinc-500/80 mb-3">
             {companyLogosCarousel?.eyebrow || "TRUSTED BY"}
           </p>
-          <h2 className="text-2xl sm:text-5xl !text-zinc-400/90 font-light tracking-wide">
+          <h2 className="text-2xl sm:text-5xl !text-foreground font-light tracking-wide">
             {companyLogosCarousel?.title || "Companies building the future"}
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">{companyLogosCarousel?.themedTitle}</span>
           </h2>
