@@ -27,15 +27,15 @@ const BackToTop = () => {
       whileHover={{ scale: 1.1, y: -2 }}
       whileTap={{ scale: 0.95 }}
       transition={{ 
-        duration: 0.15,
+        duration: 0.2,
         type: "spring",
         stiffness: 400,
         damping: 17
       }}
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 bg-beige-gradient text-primary-foreground p-3 rounded-full shadow-xl hover:shadow-glow transition-all duration-200"
+      className="fixed bottom-12 right-6 z-50 bg-beige-gradient text-primary-foreground p-4 rounded-full shadow-xl hover:shadow-glow"
     >
-      <ArrowUp size={20} />
+      <ArrowUp size={26} />
     </motion.button>
   ) : null;
 };

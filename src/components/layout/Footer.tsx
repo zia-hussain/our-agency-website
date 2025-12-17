@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-background border-t border-border pb-12">
+    <footer className="bg-background border-t border-border pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Section */}
@@ -195,7 +195,7 @@ const Footer: React.FC = () => {
           className="border-t border-border mt-12 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm mb-4 md:mb-0">
+            <p className="text-muted-foreground text-sm mb-4 md:mb-0 w-3/4">
               © {currentYear} {SITE_CONFIG.company.name}. All rights reserved.
               Crafted with ❤️ by expert founders
               <strong> {SITE_CONFIG.founders[0].name}</strong> and{" "}
