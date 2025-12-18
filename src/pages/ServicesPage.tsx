@@ -28,7 +28,7 @@ const ServicesPage: React.FC = () => {
         name: "Zumetrix Labs",
         url: "https://zumetrix.com",
         description:
-          "Pakistan's #1 software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, mobile app development, and custom software solutions.",
+          "Zumetrix Labs provides software development services specializing in SaaS MVP development, React/Node.js applications, AI automation, mobile app development, and custom software. Top Rated on Upwork.",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Software Development Services",
@@ -122,9 +122,9 @@ const ServicesPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Software Development Services Pakistan | SaaS MVP, React, AI Automation | Zumetrix Labs"
-        description="World-class software development services by Zumetrix Labs. Enterprise SaaS MVP development, React/Node.js applications, mobile apps, AI automation, Firebase integration, custom dashboards for international markets. Founded by expert developers Zia Hussain & Syed Omer Shah. Serving US, UK, Canada, Australia, UAE, Singapore & worldwide."
-        keywords="software development services, SaaS MVP development, React development agency, Node.js developers, mobile app development, AI automation services, Firebase experts, custom software solutions, web application development, enterprise software development, startup MVP builder, business automation, international software agency, Zia Hussain, Syed Omer Shah, Zumetrix Labs services, hire React developers, global software development"
+        title="Software Development Services | SaaS MVP, React, AI Automation | Zumetrix Labs"
+        description="Software development services by Zumetrix Labs. SaaS MVP development, React/Node.js applications, mobile apps, AI automation, Firebase integration. Founded by Zia Hussain & Syed Omer Shah. Top Rated on Upwork with 100% Job Success Score."
+        keywords="software development services, SaaS MVP development, React development, mobile app development, AI automation, custom software"
         url="https://zumetrix.com/services"
         structuredData={structuredData}
       />
@@ -141,29 +141,22 @@ const ServicesPage: React.FC = () => {
             >
                             <Rocket size={16} className="mr-2" />
 
-              Premium Software Development Services in Pakistan
+              Software Development Services
             </motion.div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-              World-Class Software Development Services for
+              Services Built for Founders
               <span className="block bg-shimmer bg-clip-text text-transparent">
-                Global Markets
+                Who Need Thinking Partners
               </span>
             </h1>
 
             <div className="max-w-5xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                <strong>Zumetrix Labs</strong> delivers the world's most advanced{" "} 
-                <strong>software development services</strong> for global markets and ambitious businesses worldwide. Founded by world-class expert developers{" "}
-                <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>
-                , we are globally recognized for <strong>enterprise-grade SaaS MVP development</strong>,{" "}
-                <strong>React/Node.js applications</strong>,{" "}
-                <strong>mobile app development</strong>,
-                <strong> AI automation services</strong>, and{" "}
-                <strong>custom enterprise software solutions</strong> that scale globally, dominate markets, and drive exceptional business results.
+                We build <strong>SaaS MVPs</strong>, <strong>mobile apps</strong>, and <strong>AI automation</strong> for founders who've done their customer research and know what problem they're solving. 50+ projects delivered over 3 years, most launched in 4-8 weeks.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed"> 
-                Our <strong>world-class international software development agency</strong> serves high-value clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe</strong>. We build enterprise-grade web applications, sophisticated custom dashboards, advanced Firebase integrations, intelligent AI automations, and scalable enterprise software using cutting-edge tech stacks including React.js, Next.js, TypeScript, Node.js, Python, cloud-native architectures, and AI technologies that give your business an unbeatable competitive advantage in global markets.
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Founded by <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>. Top Rated on Upwork with 100% Job Success Score. Serving clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>. We use React, Next.js, TypeScript, Node.js, Firebase, and Supabase to build maintainable systems that scale.
               </p>
             </div>
           </AnimatedSection>

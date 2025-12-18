@@ -1,5 +1,4 @@
-// Zumetrix Labs - Complete Site Data (Ultimate Premium Version)
-// World-class content optimized for global markets and high-converting experiences
+// Zumetrix Labs - Complete Site Data
 
 export const SITE_DATA = {
   // Company Information
@@ -14,12 +13,11 @@ export const SITE_DATA = {
     website: import.meta.env.VITE_COMPANY_WEBSITE || "https://www.zumetrix.com",
   },
 
-  // Hero Section Data - PREMIUM & SEO OPTIMIZED
   // Hero Section Data
   hero: {
-    overline: "World-Class Software for Global Startups & Enterprises",
-    headline: "Transform Your Vision Into World-Class Software That Scales Globally",
-    subtext: "Zumetrix Labs is the world's premier software development agency building enterprise-grade SaaS MVPs in 30 days, AI automation systems, and mobile apps for ambitious global startups and enterprises. Founded by world-class developers Zia Hussain & Syed Omer Shah. Trusted by 50+ international clients across US, UK, Canada, Australia, UAE & Europe with 100% satisfaction rate and 85% funding success.",
+    overline: "Software Development for Founders",
+    headline: "We build software for founders who need thinking partners, not order-takers",
+    subtext: "50+ projects built. Some raised funding. Some didn't. The difference was usually how clear the problem was. We push back on unclear ideas, challenge assumptions, and say no when it makes sense. That's uncomfortable. It's also why our projects actually launch.",
     primaryCTA: {
       text: "Start Your Project",
       link: "/contact",
@@ -64,7 +62,7 @@ export const SITE_DATA = {
       "Trusted by Leading Global Companies ",
     themedTitle: "Across International Markets",
     subtitle:
-      "From Silicon Valley startups to London enterprises - we deliver world-class results that dominate markets",
+      "From Silicon Valley startups to London enterprises - we deliver software that solves real problems",
     globalStats: [
       { icon: "globe", value: "Global", label: "Market Reach" },
       { icon: "projects", value: "50+", label: "Projects Delivered" },
@@ -179,30 +177,30 @@ export const SITE_DATA = {
 
   // Signature Method - WHY CHOOSE ZUMETRIX
   signatureMethod: {
-    title: "Why Global Enterprises Choose Zumetrix Labs",
+    title: "Why Founders Choose Us (And Why Some Don't)",
     subtitle:
-      "Our proven methodology delivers exceptional results for international clients",
+      "We're technical. We're direct. We've done this before.",
     sections: [
       {
         icon: "problem",
-        title: "The Industry Problem",
+        title: "The Problem With Most Agencies",
         description:
-          "90% of software projects fail due to poor planning, generic solutions, and agencies that don't understand business needs. Startups waste 6+ months on MVPs that never launch. Enterprises struggle with legacy systems that can't scale.",
-        stats: "90% projects fail globally",
+          "Most agencies say yes to everything. Vague ideas become vague products. Six months later, nothing works. We ask uncomfortable questions early because we'd rather lose a deal than build something that fails.",
+        stats: "Most projects fail from unclear thinking",
       },
       {
         icon: "approach",
-        title: "Our Proven Approach",
+        title: "How We Work Different",
         description:
-          "We combine technical excellence with business strategy. Our founders personally architect every solution using modern tech stacks, ensuring scalable foundations that grow with your business across international markets.",
-        stats: "100% client satisfaction",
+          "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Our founders personally architect every solution. Not order-takers—thinking partners.",
+        stats: "Top Rated on Upwork",
       },
       {
         icon: "results",
-        title: "Measurable Results",
+        title: "What Actually Happens",
         description:
-          "85% of our MVPs secure funding within 6 months. Enterprise clients see 40-70% operational improvements. 100% client satisfaction with our founder-led approach and world-class delivery standards.",
-        stats: "60% faster delivery",
+          "50+ projects delivered in the last 3 years. Some raised funding. Some didn't. The difference? How clear the problem was before we started building. We help with that clarity.",
+        stats: "4-6 week average delivery",
       },
     ],
     cta: {
@@ -275,7 +273,7 @@ export const SITE_DATA = {
 
   // Tech Stack Band - CORE CAPABILITIES
   techStack: {
-    title: "Cutting-Edge Technologies",
+    title: "Modern Technologies",
     themedTitle: "Powering Your Success",
     subtitle:
       "Modern, scalable, and battle-tested tools used by leading tech companies to build enterprise solutions",
@@ -410,11 +408,11 @@ export const SITE_DATA = {
     },
   ],
 
-  // Final CTA - CONVERSION MACHINE
+  // Final CTA
   finalCTA: {
-    headline: "Ready to Transform Your Business Vision Into Reality?",
+    headline: "Have a project? Let's talk.",
     subtitle:
-      "Join 50+ successful international clients who've scaled their businesses with Zumetrix Labs",
+      "Book a 30-minute call. No pitch, no pressure. We'll ask questions, challenge assumptions, and tell you honestly if we're the right fit.",
     primaryCTA: {
       text: "Book Free Strategy Call",
       link: "https://calendly.com/zumetrix-labs/consultation",
@@ -453,7 +451,7 @@ export const SITE_DATA = {
   clientLogos: {
     title: "Trusted by Leading",
     themedTitle: " Startups & Enterprises",
-    subtitle: "Join 50+ international clients who've transformed their vision into world-class software",
+    subtitle: "50+ projects delivered across US, UK, Canada, Australia, UAE, and Singapore",
     trustBadges: [
       {
         value: '5.0',
@@ -474,9 +472,9 @@ export const SITE_DATA = {
         icon: 'briefcase'
       },
       {
-        value: 'Elite',
-        label: 'Developers',
-        subtext: 'World-class team',
+        value: 'Top Rated',
+        label: 'On Upwork',
+        subtext: '100% Job Success',
         icon: 'star'
       }
     ],

@@ -26,18 +26,18 @@ const Hero: React.FC = () => {
   const stats = [
     {
       icon: Zap,
-      title: "30-Day Delivery",
-      desc: "Launch-ready MVPs",
+      title: "4-6 Week MVPs",
+      desc: "Most launch in 30-45 days",
     },
     {
       icon: Award,
-      title: "85% Funded",
-      desc: "Client success rate",
+      title: "Top Rated on Upwork",
+      desc: "100% Job Success Score",
     },
     {
       icon: CheckCircle,
-      title: "100% Satisfaction",
-      desc: "Perfect track record",
+      title: "50+ Projects",
+      desc: "Built in the last 3 years",
     },
   ];
 
@@ -116,7 +116,7 @@ const Hero: React.FC = () => {
             className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 backdrop-blur-xl border border-primary/20 rounded-full text-sm font-semibold text-primary mb-8 shadow-lg shadow-primary/5"
           >
             <Sparkles size={16} className="mr-2" />
-            <span className="mr-2">Accepting Elite Projects</span>
+            <span className="mr-2">Now accepting new projects</span>
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -136,7 +136,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="block text-foreground mb-2 sm:mb-3"
             >
-              The World's Premier
+              We build software for founders
             </motion.span>
             <motion.span
               initial={{ opacity: 0, scale: 0.95 }}
@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent lg:pb-2"
             >
-              Software Agency
+              who need thinking partners,
             </motion.span>
             <motion.span
               initial={{ opacity: 0 }}
@@ -152,7 +152,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.7 }}
               className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-3 sm:mt-4"
             >
-              For Visionary Founders
+              not order-takers
             </motion.span>
           </motion.h1>
 
@@ -164,47 +164,44 @@ const Hero: React.FC = () => {
             className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-4xl leading-relaxed px-2 sm:px-4 font-light"
           >
             <span className="text-foreground font-medium">
-              Enterprise-grade SaaS MVPs in 30 days
-            </span>
-            , intelligent AI automation, and world-class mobile apps that{" "}
-            <span className="text-primary font-medium">raise millions</span> and{" "}
-            <span className="text-primary font-medium">dominate markets</span>.
+              50+ projects built. Some raised funding. Some didn't.
+            </span>{" "}
+            The difference was usually how clear the problem was before we started building.
+            <br /><br />
+            We push back on unclear ideas. We challenge assumptions. We say no when it makes sense.{" "}
+            <span className="text-primary font-medium">That's uncomfortable.</span>{" "}
+            It's also why our projects actually launch.
           </motion.p>
 
-          {/* Elite Trust Indicators */}
+          {/* Trust Badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.1 }}
-            className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4 text-sm sm:text-base"
+            className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4"
           >
-            <div className="flex items-center gap-2">
-              <div className="flex">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className="text-primary fill-current"
-                  />
-                ))}
+            <a
+              href="https://www.upwork.com/freelancers/ziahussain1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-card/50 backdrop-blur-xl px-4 py-3 rounded-lg border border-border hover:border-primary/40 transition-colors"
+            >
+              <Award size={24} className="text-primary" />
+              <div className="text-left">
+                <div className="text-sm font-semibold text-foreground">
+                  Top Rated on Upwork
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  100% Job Success Score
+                </div>
               </div>
-              <span className="text-foreground font-bold">5.0</span>
-              <span className="text-muted-foreground">Perfect Rating</span>
-            </div>
+            </a>
             <div className="w-px h-5 bg-border" />
             <div className="flex items-center gap-2 text-foreground">
-              <Award size={18} className="text-primary" />
+              <CheckCircle size={18} className="text-primary" />
               <span>
                 <strong className="text-foreground">50+</strong>{" "}
-                <span className="text-muted-foreground">Elite Clients</span>
-              </span>
-            </div>
-            <div className="w-px h-5 bg-border" />
-            <div className="flex items-center gap-2 text-foreground">
-              <Zap size={18} className="text-primary" />
-              <span>
-                <strong className="text-foreground">100%</strong>{" "}
-                <span className="text-muted-foreground">Success Rate</span>
+                <span className="text-muted-foreground">Projects Delivered</span>
               </span>
             </div>
           </motion.div>

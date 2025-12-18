@@ -87,9 +87,9 @@ const values = [
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Meet Zia Hussain & Syed Omer Shah | Expert Software Developers & Zumetrix Labs Founders"
-        description="Meet Zia Hussain (CEO) and Syed Omer Shah (CTO), expert software developers and co-founders of Zumetrix Labs. World-class React/Node.js developers, SaaS MVP specialists, and AI automation experts serving international clients across United States, United Kingdom, Canada, Australia, UAE, Singapore, and Europe. Hire top-tier software development talent for your startup MVP, enterprise application, or custom software project. Our founder-led approach ensures direct access to senior-level expertise and exceptional results."
-        keywords="Zia Hussain software developer, Syed Omer Shah CTO, hire React developers, Node.js development services, SaaS MVP development agency, AI automation consultants, Firebase experts for hire, startup CTO services, enterprise software development, international software team, remote development experts, full stack developers for hire, software development agency founders, React TypeScript specialists, startup MVP builders, custom software consultants"
+        title="About Zumetrix Labs | Meet Zia Hussain & Syed Omer Shah | Technical Founders"
+        description="Meet Zia Hussain (CEO) and Syed Omer Shah (CTO), technical founders of Zumetrix Labs. 50+ projects delivered across US, UK, Canada, Australia, UAE, and Singapore. Top Rated on Upwork. Specializing in SaaS MVP development, React/Node.js applications, and AI automation. Founder-led approach means direct access to senior developers."
+        keywords="Zia Hussain, Syed Omer Shah, software development agency, SaaS MVP development, React development, AI automation"
         url="https://zumetrix.com/about"
       />
 
@@ -125,10 +125,10 @@ const values = [
             {/* ✅ SEO RICH CONTENT */}
             <div className="max-w-4xl mx-auto">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong> are world-class software developers and the visionary co-founders behind <strong>Zumetrix Labs</strong>, the world's premier software development agency. With deep expertise in React/Node.js development, SaaS MVP building, AI automation services, Firebase integration, and enterprise software solutions, they've successfully delivered 50+ projects for international clients, helping transform ambitious business ideas into profitable digital products that scale globally and dominate their markets.
+                <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong> are the technical founders behind <strong>Zumetrix Labs</strong>, a software development company that builds for founders who need thinking partners, not order-takers. With experience in React/Node.js development, SaaS MVP building, AI automation, and mobile apps, they've delivered 50+ projects for international clients.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Founded in 2021, <strong>Zumetrix Labs</strong> serves ambitious startups, growing enterprises, and established businesses across the <strong>United States, United Kingdom, European Union, Canada, Australia, UAE, Singapore</strong>, and worldwide. Our founder-led approach ensures every <strong>SaaS MVP</strong>, <strong>React/TypeScript application</strong>, <strong>mobile app</strong>, <strong>AI automation project</strong>, and <strong>custom software solution</strong> receives direct attention from world-class senior-level developers who understand international market requirements, cutting-edge tech stacks, and enterprise-grade scalable architecture principles.
+                Founded in 2021, <strong>Zumetrix Labs</strong> works with startups and businesses across the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>. The founder-led approach means every project gets direct attention from senior developers who've built this before.
               </p>
             </div>
           </AnimatedSection>
@@ -141,16 +141,16 @@ const values = [
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Pakistan's Premier Software Development Agency
+                Technical Founders Who Build
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                <strong>Zia Hussain (CEO)</strong> and <strong>Syed Omer Shah (CTO)</strong> bring world-class expertise in modern software development to every project. As hands-on technical founders, they personally architect and oversee all client work, ensuring exceptional quality and measurable business results. Their combined experience spans <strong>React/TypeScript development</strong>, <strong>Node.js backend architecture</strong>, <strong>Firebase integration and optimization</strong>, <strong>AI automation workflows</strong>, <strong>startup MVP development</strong>, <strong>enterprise software solutions</strong>, and <strong>mobile app development using React Native</strong>.
+                <strong>Zia Hussain (CEO)</strong> and <strong>Syed Omer Shah (CTO)</strong> are hands-on technical founders who personally architect and oversee all client work. Their combined experience spans <strong>React/TypeScript development</strong>, <strong>Node.js backend architecture</strong>, <strong>Firebase integration</strong>, <strong>AI automation workflows</strong>, <strong>startup MVP development</strong>, and <strong>mobile app development using React Native</strong>.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Serving high-value international markets including the <strong>United States, United Kingdom, European Union, Canada, Australia, UAE, and Singapore</strong>, Zumetrix Labs has delivered <strong>50+ successful projects</strong> ranging from early-stage startup MVPs to enterprise-scale applications. Our founders' deep expertise in <strong>modern JavaScript frameworks (React, Next.js, TypeScript)</strong>, <strong>scalable cloud architecture (AWS, Firebase, Vercel)</strong>, <strong>AI automation tools (OpenAI, Make.com, Zapier)</strong>, and <strong>business process optimization</strong> makes them ideal technical partners for ambitious entrepreneurs, growing startups, and forward-thinking enterprises.
+                Serving clients in the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>, Zumetrix Labs has delivered <strong>50+ projects</strong> ranging from early-stage startup MVPs to business applications. Top Rated on Upwork with 100% Job Success Score.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Whether you're a startup founder looking to <strong>build your first SaaS MVP</strong>, an enterprise needing <strong>custom software solutions</strong>, a business seeking <strong>AI automation services</strong>, or an agency requiring <strong>white-label development partnerships</strong>, Zia and Omer provide the technical leadership, strategic guidance, and hands-on development expertise to bring your vision to life with world-class quality, international standards, and measurable business impact.
+                Whether you're building your <strong>first SaaS MVP</strong>, need <strong>custom software</strong>, want <strong>AI automation</strong>, or require <strong>white-label development</strong>, Zia and Omer provide technical leadership and hands-on development to ship products that work.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">

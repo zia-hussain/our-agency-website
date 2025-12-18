@@ -48,7 +48,7 @@ const FinalCTA: React.FC = () => {
 
           {/* Headline */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-6 sm:mb-8 tracking-tight leading-[1.1] px-4">
-            Ready to Transform Your
+            Have a project?
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -56,7 +56,7 @@ const FinalCTA: React.FC = () => {
               transition={{ duration: 0.4, delay: 0.2 }}
               className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-1 sm:mt-2"
             >
-              Business Vision Into Reality?
+              Let's talk.
             </motion.span>
           </h2>
 
