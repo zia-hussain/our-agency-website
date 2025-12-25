@@ -8,9 +8,11 @@ import {
   Phone,
   MapPin,
   Instagram,
+  Award,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../../config/site";
+import { BRAND_CONTENT } from "../../config/content";
 
 import { COMPANY, SOCIAL_LINKS } from "../../config/constants.js";
 
@@ -91,8 +93,26 @@ const Footer: React.FC = () => {
               </motion.div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              World-class software development agency founded by expert developers Zia Hussain and Syed Omer Shah. Global leaders in enterprise-grade SaaS MVP development, React/Node.js applications, mobile app development, AI automation services, Firebase integration, and custom software solutions. Serving ambitious startups and established enterprises across the United States, United Kingdom, Canada, Australia, UAE, Singapore, Europe, and global markets with 100% satisfaction rate and 85% funding success for startup MVPs.
+              {BRAND_CONTENT.footer.description}
             </p>
+
+            {/* Trust Badge */}
+            <a
+              href={BRAND_CONTENT.trust.upwork.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-card/30 backdrop-blur-xl px-3 py-2 rounded-lg border border-border hover:border-primary/40 transition-colors mb-6"
+            >
+              <Award size={18} className="text-primary" />
+              <div className="text-left">
+                <div className="text-xs font-semibold text-foreground">
+                  {BRAND_CONTENT.trust.upwork.badge}
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  {BRAND_CONTENT.trust.upwork.score}
+                </div>
+              </div>
+            </a>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <motion.a
@@ -195,14 +215,8 @@ const Footer: React.FC = () => {
           className="border-t border-border mt-12 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm mb-4 md:mb-0 w-3/4">
-              © {currentYear} {SITE_CONFIG.company.name}. All rights reserved.
-              Crafted with ❤️ by expert founders
-              <strong> {SITE_CONFIG.founders[0].name}</strong> and{" "}
-              <strong>{SITE_CONFIG.founders[1].name}</strong>. World-class
-              software development agency serving international clients across
-              the United States, United Kingdom, Canada, Australia, UAE,
-              Singapore, and global markets.
+            <p className="text-muted-foreground text-sm mb-4 md:mb-0">
+              © {currentYear} {SITE_CONFIG.company.name}. All rights reserved. {BRAND_CONTENT.footer.copyright}.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link

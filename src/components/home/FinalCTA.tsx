@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Calendar, Mail, ArrowRight, CheckCircle, Sparkles, Star } from "lucide-react";
 import { motion } from "framer-motion";
-import { getSiteData } from "../../data/site";
+import { BRAND_CONTENT } from "../../config/content";
 
 const FinalCTA: React.FC = () => {
-  const { finalCTA } = getSiteData();
+  const finalCTA = BRAND_CONTENT.finalCTA;
 
   return (
     <section className="py-20 lg:py-24 bg-background relative overflow-hidden">
@@ -43,12 +43,12 @@ const FinalCTA: React.FC = () => {
           >
             <Sparkles size={16} className="mr-2" />
             <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
-            Ready to Start?
+            {finalCTA.badge}
           </motion.div>
 
           {/* Headline */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-6 sm:mb-8 tracking-tight leading-[1.1] px-4">
-            Have a project?
+            {finalCTA.headline.line1}
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -56,7 +56,7 @@ const FinalCTA: React.FC = () => {
               transition={{ duration: 0.4, delay: 0.2 }}
               className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-1 sm:mt-2"
             >
-              Let's talk.
+              {finalCTA.headline.line2}
             </motion.span>
           </h2>
 

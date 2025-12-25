@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
+import { BRAND_CONTENT } from "../../config/content";
 
 const Hero: React.FC = () => {
   const siteData = getSiteData();
@@ -26,18 +27,18 @@ const Hero: React.FC = () => {
   const stats = [
     {
       icon: Zap,
-      title: "4-6 Week MVPs",
-      desc: "Most launch in 30-45 days",
+      title: BRAND_CONTENT.hero.stats[0].title,
+      desc: BRAND_CONTENT.hero.stats[0].description,
     },
     {
       icon: Award,
-      title: "Top Rated on Upwork",
-      desc: "100% Job Success Score",
+      title: BRAND_CONTENT.hero.stats[1].title,
+      desc: BRAND_CONTENT.hero.stats[1].description,
     },
     {
       icon: CheckCircle,
-      title: "50+ Projects",
-      desc: "Built in the last 3 years",
+      title: BRAND_CONTENT.hero.stats[2].title,
+      desc: BRAND_CONTENT.hero.stats[2].description,
     },
   ];
 
@@ -116,7 +117,7 @@ const Hero: React.FC = () => {
             className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 backdrop-blur-xl border border-primary/20 rounded-full text-sm font-semibold text-primary mb-8 shadow-lg shadow-primary/5"
           >
             <Sparkles size={16} className="mr-2" />
-            <span className="mr-2">Now accepting new projects</span>
+            <span className="mr-2">{BRAND_CONTENT.hero.badge}</span>
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -136,7 +137,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="block text-foreground mb-2 sm:mb-3"
             >
-              We build software for founders
+              {BRAND_CONTENT.hero.headline.line1}
             </motion.span>
             <motion.span
               initial={{ opacity: 0, scale: 0.95 }}
@@ -144,7 +145,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent lg:pb-2"
             >
-              who need thinking partners,
+              {BRAND_CONTENT.hero.headline.line2}
             </motion.span>
             <motion.span
               initial={{ opacity: 0 }}
@@ -152,7 +153,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.7 }}
               className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl mt-3 sm:mt-4"
             >
-              not order-takers
+              {BRAND_CONTENT.hero.headline.line3}
             </motion.span>
           </motion.h1>
 
@@ -161,16 +162,9 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-4xl leading-relaxed px-2 sm:px-4 font-light"
+            className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-4xl leading-relaxed px-2 sm:px-4 font-light whitespace-pre-line"
           >
-            <span className="text-foreground font-medium">
-              50+ projects built. Some raised funding. Some didn't.
-            </span>{" "}
-            The difference was usually how clear the problem was before we started building.
-            <br /><br />
-            We push back on unclear ideas. We challenge assumptions. We say no when it makes sense.{" "}
-            <span className="text-primary font-medium">That's uncomfortable.</span>{" "}
-            It's also why our projects actually launch.
+            {BRAND_CONTENT.hero.subheadline}
           </motion.p>
 
           {/* Trust Badge */}
@@ -181,7 +175,7 @@ const Hero: React.FC = () => {
             className="flex flex-wrap items-center justify-center gap-6 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4"
           >
             <a
-              href="https://www.upwork.com/freelancers/ziahussain1"
+              href={BRAND_CONTENT.hero.trustBadge.link}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 bg-card/50 backdrop-blur-xl px-4 py-3 rounded-lg border border-border hover:border-primary/40 transition-colors"
@@ -189,10 +183,10 @@ const Hero: React.FC = () => {
               <Award size={24} className="text-primary" />
               <div className="text-left">
                 <div className="text-sm font-semibold text-foreground">
-                  Top Rated on Upwork
+                  {BRAND_CONTENT.hero.trustBadge.text}
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  100% Job Success Score
+                  {BRAND_CONTENT.hero.trustBadge.subtext}
                 </div>
               </div>
             </a>
@@ -200,8 +194,8 @@ const Hero: React.FC = () => {
             <div className="flex items-center gap-2 text-foreground">
               <CheckCircle size={18} className="text-primary" />
               <span>
-                <strong className="text-foreground">50+</strong>{" "}
-                <span className="text-muted-foreground">Projects Delivered</span>
+                <strong className="text-foreground">{BRAND_CONTENT.trust.metrics.projects}</strong>{" "}
+                <span className="text-muted-foreground">{BRAND_CONTENT.trust.metrics.projectsDescription}</span>
               </span>
             </div>
           </motion.div>
@@ -212,12 +206,12 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 1 }}
             className="flex flex-col justify-center items-center sm:flex-row gap-5 mb-24"
           >
-            <Link to="/contact">
+            <Link to={BRAND_CONTENT.hero.primaryCTA.link}>
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="group relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl font-bold text-lg
-                         shadow-2xl shadow-primary/25 hover:shadow-primary/40 
+                         shadow-2xl shadow-primary/25 hover:shadow-primary/40
                          flex items-center gap-3 overflow-hidden"
               >
                 <motion.div
@@ -231,7 +225,7 @@ const Hero: React.FC = () => {
                     ease: "linear",
                   }}
                 />
-                <span className="relative">Start Your Project</span>
+                <span className="relative">{BRAND_CONTENT.hero.primaryCTA.text}</span>
                 <ArrowRight
                   size={22}
                   className="relative group-hover:translate-x-2 transition-transform duration-200"
@@ -245,14 +239,14 @@ const Hero: React.FC = () => {
               onClick={() => scrollToSection("portfolio")}
               className="group text-foreground hover:text-primary font-bold px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl text-lg
                         flex items-center gap-3
-                       bg-card/60 backdrop-blur-xl border-2 border-border/50 
+                       bg-card/60 backdrop-blur-xl border-2 border-border/50
                        hover:bg-card hover:border-primary/40 shadow-xl"
             >
               <Play
                 size={20}
                 className="text-primary group-hover:scale-110 transition-transform duration-200"
               />
-              View Success Stories
+              {BRAND_CONTENT.hero.secondaryCTA.text}
             </motion.button>
           </motion.div>
 

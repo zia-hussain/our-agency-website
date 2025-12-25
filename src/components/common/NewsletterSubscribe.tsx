@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, CheckCircle, AlertCircle } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
-import { trackCTAClick } from '../../utils/analytics';
+import { routeLead } from '../../services/leadRouter';
 
 interface NewsletterSubscribeProps {
   source?: string;
@@ -26,25 +25,13 @@ const NewsletterSubscribe: React.FC<NewsletterSubscribeProps> = ({
     setStatus('loading');
 
     try {
-      const { error } = await supabase
-        .from('newsletter_subscribers')
-        .insert({
-          email,
-          name: name || null,
-          source,
-          is_active: true,
-          tags: [source]
-        });
+      const result = await routeLead({
+        email,
+        name: name || undefined,
+        source: `newsletter_${source}`,
+      });
 
-      if (error) {
-        if (error.code === '23505') {
-          setMessage('You\'re already subscribed!');
-          setStatus('error');
-        } else {
-          throw error;
-        }
-      } else {
-        trackCTAClick(`Newsletter Subscribe - ${source}`, window.location.pathname);
+      if (result.success) {
         setMessage('Success! Check your email for confirmation.');
         setStatus('success');
         setEmail('');
@@ -54,6 +41,8 @@ const NewsletterSubscribe: React.FC<NewsletterSubscribeProps> = ({
           setStatus('idle');
           setMessage('');
         }, 5000);
+      } else {
+        throw new Error(result.error || 'Subscription failed');
       }
     } catch (error) {
       console.error('Newsletter subscription error:', error);

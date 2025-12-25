@@ -1,5 +1,26 @@
 export const articles = [
   {
+    id: 0,
+    slug: "what-we-learned-building-50-projects",
+    title: "What We Learned Building 50+ Projects for Founders",
+    excerpt: "Three years, 50+ projects, countless lessons. The real difference between projects that succeed and those that fail isn't the code—it's everything that happens before.",
+    contentFile: "/BLOG_ARTICLES/what-we-learned-building-50-projects.md",
+    image: "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800",
+    author: "Zia Hussain & Syed Omer Shah",
+    authorRole: "Co-Founders",
+    authorImage: "/zia-hussain-founder.png",
+    publishedAt: "2024-12-25",
+    readTime: "12 min read",
+    tags: ["Founders", "Lessons", "Agency Life", "Real Talk"],
+    category: "Insights",
+    featured: true,
+    seo: {
+      title: "What We Learned Building 50+ Projects | Zumetrix Labs",
+      description: "Honest lessons from 3 years building software for founders. What works, what doesn't, and why most projects fail before the first line of code.",
+      keywords: "software development lessons, founder advice, MVP development, agency insights, project management"
+    }
+  },
+  {
     id: 1,
     slug: "build-saas-mvp-in-30-days",
     title: "How to Build Your SaaS MVP in 30 Days: Complete Guide for Pakistani Startups",
