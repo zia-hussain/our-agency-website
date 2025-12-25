@@ -28,9 +28,9 @@ const SignatureMethod: React.FC = () => {
           className="text-center mb-16 lg:mb-20"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
-            Why Global Enterprises
+           Why Founders Choose Us 
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              Choose Zumetrix Labs
+              (And Why Some Don't)
             </span>
           </h2>
 
