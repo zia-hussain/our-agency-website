@@ -100,6 +100,7 @@ export const BRAND_CONTENT = {
 
     sections: [
       {
+        icon: "problem",
         title: "The Problem With Most Agencies",
         description: [
           { text: "Most agencies say yes to everything. Vague ideas become vague products. Six months later, nothing works. We ask uncomfortable questions early because ", type: "normal" },
@@ -108,6 +109,7 @@ export const BRAND_CONTENT = {
         stat: "Most projects fail from unclear thinking"
       },
       {
+        icon: "approach",
         title: "How We Work Different",
         description: [
           { text: "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Our founders personally architect every solution. ", type: "normal" },
@@ -116,6 +118,7 @@ export const BRAND_CONTENT = {
         stat: "Top Rated on Upwork"
       },
       {
+        icon: "results",
         title: "What Actually Happens",
         description: [
           { text: "50+ projects delivered in the last 3 years. Some raised funding. Some didn't. The difference? ", type: "normal" },
