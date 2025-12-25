@@ -22,33 +22,29 @@ import { ContentSegment } from '../config/content';
  *   {renderContentSegments(BRAND_CONTENT.hero.subheadline)}
  * </p>
  */
-export const renderContentSegments = (segments: ContentSegment[]): JSX.Element => {
-  return (
-    <>
-      {segments.map((segment, index) => {
-        if (segment.type === "break") {
-          return <br key={index} />;
-        }
+export const renderContentSegments = (segments: ContentSegment[]) => {
+  return segments.map((segment, index) => {
+    if (segment.type === "break") {
+      return <br key={index} />;
+    }
 
-        if (segment.type === "emphasis") {
-          return (
-            <span key={index} className="text-foreground font-medium">
-              {segment.text}
-            </span>
-          );
-        }
+    if (segment.type === "emphasis") {
+      return (
+        <span key={index} className="text-foreground font-medium">
+          {segment.text}
+        </span>
+      );
+    }
 
-        if (segment.type === "accent") {
-          return (
-            <span key={index} className="text-primary font-medium">
-              {segment.text}
-            </span>
-          );
-        }
+    if (segment.type === "accent") {
+      return (
+        <span key={index} className="text-primary font-medium">
+          {segment.text}
+        </span>
+      );
+    }
 
-        // type === "normal"
-        return <span key={index}>{segment.text}</span>;
-      })}
-    </>
-  );
+    // type === "normal"
+    return <span key={index}>{segment.text}</span>;
+  });
 };
