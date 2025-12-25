@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
           {/* PREMIUM Status Badge */}
           <motion.div
@@ -128,7 +128,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.15] tracking-tight sm:px-4"
+            className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.15] tracking-tight sm:px-4"
           >
             <motion.span
               initial={{ opacity: 0 }}
@@ -150,7 +150,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.7 }}
-              className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-3 sm:mt-4"
+              className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl mt-3 sm:mt-4"
             >
               not order-takers
             </motion.span>
@@ -178,7 +178,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.1 }}
-            className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4"
+            className="flex flex-wrap items-center justify-center gap-6 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4"
           >
             <a
               href="https://www.upwork.com/freelancers/ziahussain1"
@@ -196,7 +196,7 @@ const Hero: React.FC = () => {
                 </div>
               </div>
             </a>
-            <div className="w-px h-5 bg-border" />
+            <div className="w-px h-5 bg-border hidden sm:block" />
             <div className="flex items-center gap-2 text-foreground">
               <CheckCircle size={18} className="text-primary" />
               <span>
