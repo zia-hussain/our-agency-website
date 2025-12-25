@@ -12,6 +12,7 @@ import {
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 import { BRAND_CONTENT } from "../../config/content";
+import { renderContentSegments } from "../../utils/contentRenderer";
 
 const Hero: React.FC = () => {
   const siteData = getSiteData();
@@ -162,9 +163,9 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-4xl leading-relaxed px-2 sm:px-4 font-light whitespace-pre-line"
+            className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-4xl leading-relaxed px-2 sm:px-4 font-light"
           >
-            {BRAND_CONTENT.hero.subheadline}
+            {renderContentSegments(BRAND_CONTENT.hero.subheadline)}
           </motion.p>
 
           {/* Trust Badge */}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Calendar, Mail, ArrowRight, CheckCircle, Sparkles, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
+import { renderContentSegments } from "../../utils/contentRenderer";
 
 const FinalCTA: React.FC = () => {
   const finalCTA = BRAND_CONTENT.finalCTA;
@@ -62,7 +63,7 @@ const FinalCTA: React.FC = () => {
 
           {/* Subtitle */}
           <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-4xl mx-auto mb-8 sm:mb-12 lg:mb-16 leading-[1.6] font-light px-4">
-            {finalCTA.subtitle}
+            {renderContentSegments(finalCTA.subtitle)}
           </p>
 
           {/* CTA Buttons */}

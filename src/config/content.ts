@@ -5,7 +5,20 @@
  * Update this file to change positioning, messaging, and CTAs across the entire site.
  *
  * DO NOT hardcode brand content in components. Pull from this file instead.
+ *
+ * CONTENT SEGMENT TYPES:
+ * - "normal": Regular body text (text-muted-foreground)
+ * - "emphasis": Bold, standout text (font-medium text-foreground)
+ * - "accent": Primary color highlight (text-primary font-medium)
+ * - "break": Line break
  */
+
+export type ContentSegment = {
+  text: string;
+  type: "normal" | "emphasis" | "accent";
+} | {
+  type: "break";
+};
 
 export const BRAND_CONTENT = {
   /**
@@ -35,7 +48,15 @@ export const BRAND_CONTENT = {
       line3: "not order-takers"
     },
 
-    subheadline: "50+ projects built. Some raised funding. Some didn't. The difference was usually how clear the problem was before we started building.\n\nWe push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also why our projects actually launch.",
+    subheadline: [
+      { text: "50+ projects built. Some raised funding. Some didn't.", type: "emphasis" },
+      { text: " The difference was usually how clear the problem was before we started building.", type: "normal" },
+      { type: "break" },
+      { type: "break" },
+      { text: "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. ", type: "normal" },
+      { text: "That's uncomfortable.", type: "accent" },
+      { text: " It's also why our projects actually launch.", type: "normal" }
+    ] as ContentSegment[],
 
     primaryCTA: {
       text: "Start Your Project",
@@ -80,17 +101,27 @@ export const BRAND_CONTENT = {
     sections: [
       {
         title: "The Problem With Most Agencies",
-        description: "Most agencies say yes to everything. Vague ideas become vague products. Six months later, nothing works. We ask uncomfortable questions early because we'd rather lose a deal than build something that fails.",
+        description: [
+          { text: "Most agencies say yes to everything. Vague ideas become vague products. Six months later, nothing works. We ask uncomfortable questions early because ", type: "normal" },
+          { text: "we'd rather lose a deal than build something that fails.", type: "emphasis" }
+        ] as ContentSegment[],
         stat: "Most projects fail from unclear thinking"
       },
       {
         title: "How We Work Different",
-        description: "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Our founders personally architect every solution. Not order-takers—thinking partners.",
+        description: [
+          { text: "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Our founders personally architect every solution. ", type: "normal" },
+          { text: "Not order-takers—thinking partners.", type: "accent" }
+        ] as ContentSegment[],
         stat: "Top Rated on Upwork"
       },
       {
         title: "What Actually Happens",
-        description: "50+ projects delivered in the last 3 years. Some raised funding. Some didn't. The difference? How clear the problem was before we started building. We help with that clarity.",
+        description: [
+          { text: "50+ projects delivered in the last 3 years. Some raised funding. Some didn't. The difference? ", type: "normal" },
+          { text: "How clear the problem was before we started building.", type: "emphasis" },
+          { text: " We help with that clarity.", type: "normal" }
+        ] as ContentSegment[],
         stat: "4-6 week average delivery"
       }
     ]
@@ -108,7 +139,10 @@ export const BRAND_CONTENT = {
       line2: "Let's talk."
     },
 
-    subtitle: "Book a 30-minute call. No pitch, no pressure. We'll ask questions, challenge assumptions, and tell you honestly if we're the right fit.",
+    subtitle: [
+      { text: "Book a 30-minute call. No pitch, no pressure. We'll ask questions, challenge assumptions, and ", type: "normal" },
+      { text: "tell you honestly if we're the right fit.", type: "emphasis" }
+    ] as ContentSegment[],
 
     primaryCTA: {
       text: "Book Free Strategy Call",
@@ -183,10 +217,13 @@ export const BRAND_CONTENT = {
 /**
  * USAGE EXAMPLES:
  *
- * In components:
- * import { BRAND_CONTENT } from '@/config/content';
- *
+ * Simple strings:
  * <h1>{BRAND_CONTENT.hero.headline.line1}</h1>
- * <p>{BRAND_CONTENT.brand.shortDescription}</p>
+ *
+ * Content with semantic emphasis:
+ * import { renderContentSegments } from '@/utils/contentRenderer';
+ * <p>{renderContentSegments(BRAND_CONTENT.hero.subheadline)}</p>
+ *
+ * Links:
  * <a href={BRAND_CONTENT.trust.upwork.link}>{BRAND_CONTENT.trust.upwork.badge}</a>
  */

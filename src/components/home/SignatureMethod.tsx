@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { AlertTriangle, Target, TrendingUp, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
+import { BRAND_CONTENT } from "../../config/content";
+import { renderContentSegments } from "../../utils/contentRenderer";
 
 const SignatureMethod: React.FC = () => {
-  const { signatureMethod } = getSiteData();
+  const siteData = getSiteData();
+  const signatureMethod = BRAND_CONTENT.signatureMethod;
 
   const iconMap = {
     problem: AlertTriangle,
@@ -66,12 +69,12 @@ const SignatureMethod: React.FC = () => {
                   </h3>
 
                   <p className="text-muted-foreground leading-[1.6] mb-6 flex-grow">
-                    {section.description}
+                    {renderContentSegments(section.description)}
                   </p>
 
                   {/* Stats Badge */}
                   <div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20 mx-auto">
-                    {section.stats}
+                    {section.stat}
                   </div>
                 </div>
               </motion.div>
@@ -87,16 +90,16 @@ const SignatureMethod: React.FC = () => {
           transition={{ duration: 0.4, delay: 0.3 }}
           className="text-center mt-12 lg:mt-16"
         >
-          <Link to={signatureMethod.cta.link}>
+          <Link to={siteData.signatureMethod.cta.link}>
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.15 }}
-              className="group text-muted-foreground hover:text-primary font-medium px-8 py-4 
+              className="group text-muted-foreground hover:text-primary font-medium px-8 py-4
                        transition-colors duration-150 text-lg flex items-center gap-3 mx-auto
                        bg-card/50 backdrop-blur-xl border border-border rounded-xl hover:border-primary/30 hover:bg-card/80"
             >
-              {signatureMethod.cta.text}
+              {siteData.signatureMethod.cta.text}
               <ArrowRight
                 size={18}
                 className="group-hover:translate-x-1 transition-transform duration-150"
