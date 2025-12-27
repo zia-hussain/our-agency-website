@@ -741,7 +741,7 @@ Line Height: 1.6-1.8
 
 **Code/Technical:**
 ```
-Font: Monospace
+Font: Inter
 Use: Code snippets, technical details
 ```
 
