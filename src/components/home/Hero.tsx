@@ -3,20 +3,16 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Play,
-  Star,
   CheckCircle,
   Zap,
   Award,
   Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { getSiteData } from "../../data/site";
 import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";
 
 const Hero: React.FC = () => {
-  const siteData = getSiteData();
-  const { metrics } = siteData;
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -111,19 +107,45 @@ const Hero: React.FC = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
           {/* PREMIUM Status Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 backdrop-blur-xl border border-primary/20 rounded-full text-sm font-semibold text-primary mb-8 shadow-lg shadow-primary/5"
-          >
-            <Sparkles size={16} className="mr-2" />
-            <span className="mr-2">{BRAND_CONTENT.hero.badge}</span>
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-          </motion.div>
+         <motion.div
+  initial={{ opacity: 0, y: -14, filter: "blur(6px)" }}
+  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+  transition={{ duration: 0.55, ease: "easeOut" }}
+  className="flex justify-center"
+>
+  <Link
+    to="/contact"
+    className="
+      group relative inline-flex items-center gap-2
+      rounded-full px-5 py-2.5
+      text-sm font-semibold
+      text-primary
+      border border-primary/20
+      bg-gradient from-primary/10 via-background/40 to-background/20
+      backdrop-blur-xl
+      shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_14px_50px_rgba(0,0,0,0.35)]
+      transition-all duration-300
+      hover:border-primary/30 hover:from-primary/15
+      active:scale-[0.99]
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 mb-8
+    "
+  >
+    {/* subtle top highlight (Bolt feel) */}
+    <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/10 via-white/5 to-transparent opacity-70" />
+
+    {/* ultra-soft glow using your primary */}
+    <span className="pointer-events-none absolute -inset-1 rounded-full bg-primary/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
+
+    <Sparkles size={16} className="opacity-80" />
+    <span className="relative">{BRAND_CONTENT.hero.badge}</span>
+
+    {/* clean right dot (no ping, premium) */}
+    <span className="relative ml-2 flex h-2 w-2">
+      <span className="absolute inset-0 rounded-full bg-primary/70 blur-[2px]" />
+      <span className="relative h-2 w-2 rounded-full bg-primary" />
+    </span>
+  </Link>
+</motion.div>
 
           {/* ULTIMATE HEADLINE - Maximum Impact */}
           <motion.h1
