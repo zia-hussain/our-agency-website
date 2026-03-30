@@ -95,9 +95,9 @@ export const projects: Project[] = [
     type: "mobile",
     description: "An intuitive health and wellness tracking application with personalized AI insights, goal management, social features, and seamless device integrations for motivation and progress tracking.",
     longDescription: "WellnessTracker Mobile represents the future of personal health management technology. This comprehensive React Native application empowers users to take complete control of their wellness journey through advanced health tracking capabilities, AI-powered personalized insights, engaging social challenges, and seamless integration with popular fitness devices and wearables. Built with scalable architecture to support millions of users, the app features real-time data synchronization, offline capabilities, push notifications, and sophisticated analytics dashboards for both users and healthcare providers.",
-    image: "/public/project_images/PHOTO-2026-03-30-02-03-32.jpg",
+    image: "/project_images/PHOTO-2026-03-30-02-03-32.jpg",
     gallery: [
-      "/project_images/task_manager_portfolio_img.jpg",
+      "/project_images/PHOTO-2026-03-30-02-03-32.jpg",
     ],
     tags: ["React Native", "Firebase", "Machine Learning", "Redux", "GraphQL", "Health Tech"],
     client: {

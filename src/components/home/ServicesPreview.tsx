@@ -99,7 +99,7 @@ const ServicesPreview: React.FC = () => {
                   </p>
 
                   <div className={`${isFeatured? 'block':"hidden"} bg-[#0E0A07] w-full my-8 rounded-2xl`}>
-                    <img src="/public/services_images/PHOTO-2026-03-30-00-56-21.jpg" alt="" className="xs:h-[500px] w-full object-contain rounded-2xl border-3 border-border" />
+                    <img src="/services_images/PHOTO-2026-03-30-00-56-21.jpg" alt="" className="xs:h-[500px] w-full object-contain rounded-2xl border-3 border-border" />
                   </div>
 
                   {/* Learn More Link */}
