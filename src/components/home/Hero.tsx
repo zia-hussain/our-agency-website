@@ -13,7 +13,6 @@ import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";
 
 const Hero: React.FC = () => {
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -107,15 +106,15 @@ const Hero: React.FC = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
           {/* PREMIUM Status Badge */}
-         <motion.div
-  initial={{ opacity: 0, y: -14, filter: "blur(6px)" }}
-  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-  transition={{ duration: 0.55, ease: "easeOut" }}
-  className="flex justify-center"
->
-  <Link
-    to="/contact"
-    className="
+          <motion.div
+            initial={{ opacity: 0, y: -14, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            className="flex justify-center"
+          >
+            <Link
+              to="/contact"
+              className="
       group relative inline-flex items-center gap-2
       rounded-full px-5 py-2.5
       text-sm font-semibold
@@ -129,23 +128,23 @@ const Hero: React.FC = () => {
       active:scale-[0.99]
       focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 mb-8
     "
-  >
-    {/* subtle top highlight (Bolt feel) */}
-    <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/10 via-white/5 to-transparent opacity-70" />
+            >
+              {/* subtle top highlight (Bolt feel) */}
+              <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/10 via-white/5 to-transparent opacity-70" />
 
-    {/* ultra-soft glow using your primary */}
-    <span className="pointer-events-none absolute -inset-1 rounded-full bg-primary/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
+              {/* ultra-soft glow using your primary */}
+              <span className="pointer-events-none absolute -inset-1 rounded-full bg-primary/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
 
-    <Sparkles size={16} className="opacity-80" />
-    <span className="relative">{BRAND_CONTENT.hero.badge}</span>
+              <Sparkles size={16} className="opacity-80" />
+              <span className="relative">{BRAND_CONTENT.hero.badge}</span>
 
-    {/* clean right dot (no ping, premium) */}
-    <span className="relative ml-2 flex h-2 w-2">
-      <span className="absolute inset-0 rounded-full bg-primary/70 blur-[2px]" />
-      <span className="relative h-2 w-2 rounded-full bg-primary" />
-    </span>
-  </Link>
-</motion.div>
+              {/* clean right dot (no ping, premium) */}
+              <span className="relative ml-2 flex h-2 w-2">
+                <span className="absolute inset-0 rounded-full bg-primary/70 blur-[2px]" />
+                <span className="relative h-2 w-2 rounded-full bg-primary" />
+              </span>
+            </Link>
+          </motion.div>
 
           {/* ULTIMATE HEADLINE - Maximum Impact */}
           <motion.h1
@@ -217,8 +216,12 @@ const Hero: React.FC = () => {
             <div className="flex items-center gap-2 text-foreground">
               <CheckCircle size={18} className="text-primary" />
               <span>
-                <strong className="text-foreground">{BRAND_CONTENT.trust.metrics.projects}</strong>{" "}
-                <span className="text-muted-foreground">{BRAND_CONTENT.trust.metrics.projectsDescription}</span>
+                <strong className="text-foreground">
+                  {BRAND_CONTENT.trust.metrics.projects}
+                </strong>{" "}
+                <span className="text-muted-foreground">
+                  {BRAND_CONTENT.trust.metrics.projectsDescription}
+                </span>
               </span>
             </div>
           </motion.div>
@@ -248,7 +251,9 @@ const Hero: React.FC = () => {
                     ease: "linear",
                   }}
                 />
-                <span className="relative">{BRAND_CONTENT.hero.primaryCTA.text}</span>
+                <span className="relative">
+                  {BRAND_CONTENT.hero.primaryCTA.text}
+                </span>
                 <ArrowRight
                   size={22}
                   className="relative group-hover:translate-x-2 transition-transform duration-200"
@@ -275,9 +280,10 @@ const Hero: React.FC = () => {
 
           {/* Key Differentiators */}
           <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
             variants={keyDiffContainer}
-            initial="hidden"
-            whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
             className="w-full max-w-5xl mx-auto px-4 sm:px-0 cursor-default"
           >
@@ -331,7 +337,6 @@ const Hero: React.FC = () => {
                           strokeWidth={1.6}
                         />
                       </div>
-
                     </div>
 
                     {/* Title */}
