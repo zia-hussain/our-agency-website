@@ -142,7 +142,7 @@ const PortfolioPage: React.FC = () => {
                   <motion.div
                     whileHover={{ y: -8, scale: 1.01 }}
                     transition={{ duration: 0.15 }}
-                    className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden cursor-pointer h-full flex flex-col hover:border-primary/30 group-hover:bg-card/70 group-hover:shadow-card-hover"
+                    className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden cursor-pointer h-full flex flex-col"
                   >
                     {project.featured && (
                       <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs font-medium px-3 py-1 text-center">
@@ -151,7 +151,7 @@ const PortfolioPage: React.FC = () => {
                     )}
 
                     {/* Project Image */}
-                    <div className="relative w-full aspect-[16/9] overflow-hidden">
+                    <div className="relative w-full  overflow-hidden">
                       <motion.img
                         src={project.image}
                         alt={project.title}
@@ -159,7 +159,7 @@ const PortfolioPage: React.FC = () => {
                         transition={{ duration: 0.3 }}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
+                      
 
                       {/* Client Location Badge */}
                       <div className="absolute top-4 left-4">
