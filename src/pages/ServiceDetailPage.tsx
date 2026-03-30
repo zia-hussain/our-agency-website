@@ -178,7 +178,7 @@ const ServiceDetailPage: React.FC = () => {
                   transition={{ duration: 0.6 }}
                   src={service.image}
                   alt={service.title}
-                  className="w-full rounded-2xl shadow-2xl border border-border"
+                  className="w-full h-full rounded-2xl shadow-2xl border border-border"
                 />
               </div>
             </AnimatedSection>
