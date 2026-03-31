@@ -187,7 +187,7 @@ export const services: Service[] = [
     technologies: ["React Native", "Expo", "Swift", "Kotlin", "Firebase", "Redux", "TypeScript", "Node.js"],
     price: "Starting at $8,000",
     popular: false,
-    image: "/public/services_images/APP.jpg",
+    image: "/services_images/APP.jpg",
     methodology: [
       "Mobile Strategy & Platform Selection",
       "User Experience Design & Prototyping",
@@ -250,7 +250,7 @@ export const services: Service[] = [
     technologies: ["React", "Node.js", "Firebase", "Vercel", "Stripe", "OpenAI", "TypeScript", "TailwindCSS"],
     price: "Starting at $6,500",
     popular: true,
-    image: "/public/services_images/SaaS.jpg",
+    image: "/services_images/SaaS.jpg",
     methodology: [
       "Idea Validation & Market Research",
       "Feature Prioritization & Scope Definition", 
@@ -376,7 +376,7 @@ export const services: Service[] = [
     technologies: ["Strategic Planning", "Technical Audits", "Architecture Design", "Performance Analysis", "Security Review", "Growth Strategy"],
     price: "Starting at $3,000",
     popular: false,
-    image: "/public/services_images/Strategy.jpg",
+    image: "/services_images/Strategy.jpg",
     methodology: [
       "Business & Technical Assessment",
       "Strategic Planning & Roadmap Development",
