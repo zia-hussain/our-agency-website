@@ -18,14 +18,14 @@ export const SITE_CONFIG = {
       name: import.meta.env.VITE_FOUNDER_1_NAME || "Zia Hussain",
       fullName: import.meta.env.VITE_FOUNDER_1_FULL_NAME || "Syed Zia Hussain Shah",
       role: import.meta.env.VITE_FOUNDER_1_ROLE || "Co-Founder & CEO",
-      image: import.meta.env.VITE_FOUNDER_1_IMAGE || "/zia-hussain-founder.png",
+      image: import.meta.env.VITE_FOUNDER_1_IMAGE || "/profile_images//zia-hussain-founder.jpg",
       bio: import.meta.env.VITE_FOUNDER_1_BIO || "Zia is the visionary mind behind Zumetrix Labs.",
     },
     {
       name: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
       fullName: import.meta.env.VITE_FOUNDER_2_FULL_NAME || "Syed Omer Shah",
       role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
-      image: import.meta.env.VITE_FOUNDER_2_IMAGE || "/syed-omer-shah-founder.png",
+      image: import.meta.env.VITE_FOUNDER_2_IMAGE || "/profile_images//syed-omer-shah-founder.jpg",
       bio: import.meta.env.VITE_FOUNDER_2_BIO || "Umer is the technical backbone of Zumetrix Labs.",
     }
   ],

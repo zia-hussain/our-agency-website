@@ -12,7 +12,7 @@ export const FOUNDERS = [
     name: import.meta.env.VITE_FOUNDER_1_NAME || "Zia Hussain",
     fullName: import.meta.env.VITE_FOUNDER_1_FULL_NAME || "Syed Zia Hussain Shah",
     role: import.meta.env.VITE_FOUNDER_1_ROLE || "Co-Founder & CEO",
-    image: "/zia-hussain-founder.png",
+    image: "/profile_images//zia-hussain-founder.jpg",
     bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn't just built well — it solves the right problem, beautifully.",
     skills: ["Strategy", "Client Acquisition", "React", "Node.js", "Growth Systems"],
     social: {
@@ -26,7 +26,7 @@ export const FOUNDERS = [
     name: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
     fullName: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
     role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
-    image: "/syed-omer-shah-founder.png",
+    image: "/profile_images//syed-omer-shah-founder.jpg",
     bio: "Umer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
     skills: ["Next.js", "TypeScript", "Firebase", "Python", "AI Automation"],
     social: {

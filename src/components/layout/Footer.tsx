@@ -86,8 +86,8 @@ const Footer: React.FC = () => {
                 className="flex items-center space-x-3"
               >
                 <img
-                  className="h-52 w-52"
-                  src="/Zumetrix_Labs_Logo (7).png"
+                  className="h-60 w-60"
+                  src="/logo/Logo horizontal.png"
                   alt={SITE_CONFIG.company.name}
                 />
               </motion.div>

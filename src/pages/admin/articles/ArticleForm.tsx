@@ -42,7 +42,7 @@ const ArticleForm: React.FC = () => {
     featured_image: '',
     author: 'Zia Hussain',
     author_role: 'Co-Founder & CEO',
-    author_image: '/zia-hussain-founder.png',
+    author_image: '/profile_images//zia-hussain-founder.jpg',
     read_time: '5 min read',
     tags: [],
     category: 'Development',
@@ -208,8 +208,8 @@ const ArticleForm: React.FC = () => {
   ];
 
   const authors = [
-    { name: 'Zia Hussain', role: 'Co-Founder & CEO', image: '/zia-hussain-founder.png' },
-    { name: 'Syed Omer Shah', role: 'Co-Founder & CTO', image: '/syed-omer-shah-founder.png' }
+    { name: 'Zia Hussain', role: 'Co-Founder & CEO', image: '/profile_images//zia-hussain-founder.jpg' },
+    { name: 'Syed Omer Shah', role: 'Co-Founder & CTO', image: '/profile_images//syed-omer-shah-founder.jpg' }
   ];
 
   if (loading) {

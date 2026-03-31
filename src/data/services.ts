@@ -59,9 +59,9 @@ export const services: Service[] = [
       "Advanced Analytics & Business Intelligence Integration"
     ],
     technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Docker", "Redis"],
-    price: "Starting at $15,000",
+    price: "Starting at $3,999",
     popular: false,
-    image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/services_images/Website.jpg",
     methodology: [
       "Strategic Discovery & Requirements Analysis",
       "System Architecture & Technical Planning", 
@@ -102,7 +102,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "saas-dashboards", 
+    id: "saas-mvp-development", 
     slug: "saas-mvp-development",
     icon: Database,
     title: "SaaS MVP Development",
@@ -122,9 +122,9 @@ export const services: Service[] = [
       "Comprehensive Admin Panel for Business Management"
     ],
     technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Stripe", "Firebase", "Vercel"],
-    price: "Starting at $12,000",
+    price: "Starting at $4,999",
     popular: true,
-    image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/services_images/mvp.jpg",
     methodology: [
       "Business Model Validation & Market Research",
       "Feature Prioritization & MVP Scope Definition",
@@ -185,9 +185,9 @@ export const services: Service[] = [
       "Social Features & User-Generated Content Systems"
     ],
     technologies: ["React Native", "Expo", "Swift", "Kotlin", "Firebase", "Redux", "TypeScript", "Node.js"],
-    price: "Starting at $18,000",
+    price: "Starting at $8,000",
     popular: false,
-    image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/public/services_images/APP.jpg",
     methodology: [
       "Mobile Strategy & Platform Selection",
       "User Experience Design & Prototyping",
@@ -248,9 +248,9 @@ export const services: Service[] = [
       "Comprehensive Documentation & Handover Process"
     ],
     technologies: ["React", "Node.js", "Firebase", "Vercel", "Stripe", "OpenAI", "TypeScript", "TailwindCSS"],
-    price: "Starting at $8,000",
+    price: "Starting at $6,500",
     popular: true,
-    image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/public/services_images/SaaS.jpg",
     methodology: [
       "Idea Validation & Market Research",
       "Feature Prioritization & Scope Definition", 
@@ -311,9 +311,9 @@ export const services: Service[] = [
       "Customer Support Chatbots with AI Intelligence"
     ],
     technologies: ["Python", "OpenAI", "Zapier", "Make.com", "n8n", "AWS Lambda", "Node.js", "MongoDB"],
-    price: "Starting at $5,000",
+    price: "Starting at $5,200",
     popular: false,
-    image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/services_images/Ai.jpg",
     methodology: [
       "Process Analysis & Automation Opportunity Assessment",
       "Workflow Design & Automation Architecture Planning",
@@ -376,7 +376,7 @@ export const services: Service[] = [
     technologies: ["Strategic Planning", "Technical Audits", "Architecture Design", "Performance Analysis", "Security Review", "Growth Strategy"],
     price: "Starting at $3,000",
     popular: false,
-    image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/public/services_images/Strategy.jpg",
     methodology: [
       "Business & Technical Assessment",
       "Strategic Planning & Roadmap Development",

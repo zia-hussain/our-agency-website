@@ -102,7 +102,7 @@ CREDIBILITY = TRUST = HIGHER CONVERSIONS = MORE CLIENTS
 <div className="flex items-center gap-6">
   {/* Founder 1 */}
   <div className="flex items-center gap-4">
-    <img src="/zia-hussain-founder.png" alt="Zia Hussain" />
+    <img src="/profile_images//zia-hussain-founder.jpg" alt="Zia Hussain" />
     <div>
       <h3>Zia Hussain</h3>
       <p>Lead Developer</p>
@@ -112,7 +112,7 @@ CREDIBILITY = TRUST = HIGHER CONVERSIONS = MORE CLIENTS
 
   {/* Founder 2 */}
   <div className="flex items-center gap-4">
-    <img src="/syed-omer-shah-founder.png" alt="Syed Omer Shah" />
+    <img src="/profile_images//syed-omer-shah-founder.jpg" alt="Syed Omer Shah" />
     <div>
       <h3>Syed Omer Shah</h3>
       <p>Full Stack Developer</p>
