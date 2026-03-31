@@ -49,9 +49,9 @@ export const projects: Project[] = [
     type: "saas",
     description: "A sophisticated React-based AI platform that helps users craft professional bios, taglines, and brand personas using custom-built prompt flows and style selectors.",
     longDescription: "Ifyify represents the cutting edge of AI-driven personal branding technology. Built from the ground up with React, TailwindCSS, Supabase, and OpenAI integration, this platform revolutionizes how professionals create their personal brand content. The system features beautifully animated style selector interfaces, intelligent prompt-based generation flows, and comprehensive multi-step user onboarding experiences. Our development team implemented advanced AI workflow automation, secure authentication systems, and scalable cloud architecture to support rapid user growth and feature expansion.",
-    image: "/project_images/image.png",
+    image: "/project_images/YOU AS ART.png",
     gallery: [
-      "/project_images/image.png",
+      "/project_images/YOU AS ART.png",
     ],
     tags: ["React", "TailwindCSS", "Supabase", "OpenAI", "JavaScript", "Responsive UI", "AI Integration"],
     client: {
@@ -95,9 +95,9 @@ export const projects: Project[] = [
     type: "mobile",
     description: "An intuitive health and wellness tracking application with personalized AI insights, goal management, social features, and seamless device integrations for motivation and progress tracking.",
     longDescription: "WellnessTracker Mobile represents the future of personal health management technology. This comprehensive React Native application empowers users to take complete control of their wellness journey through advanced health tracking capabilities, AI-powered personalized insights, engaging social challenges, and seamless integration with popular fitness devices and wearables. Built with scalable architecture to support millions of users, the app features real-time data synchronization, offline capabilities, push notifications, and sophisticated analytics dashboards for both users and healthcare providers.",
-    image: "/project_images/PHOTO-2026-03-30-02-03-32.jpg",
+    image: "/project_images/image.png",
     gallery: [
-      "/project_images/PHOTO-2026-03-30-02-03-32.jpg",
+      "/project_images/image.png",
     ],
     tags: ["React Native", "Firebase", "Machine Learning", "Redux", "GraphQL", "Health Tech"],
     client: {
