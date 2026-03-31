@@ -123,7 +123,7 @@ export const SITE_DATA = {
           "Launch your SaaS product in 30 days with enterprise-grade architecture",
         description:
           "Transform your business idea into a production-ready SaaS platform using React, Node.js, and Firebase. Complete with user authentication, payment processing, and real-time features.",
-        pricing: "Starting at $12,000",
+        pricing: "Starting at $4,999",
         timeline: "4-8 weeks",
         popular: true,
         bullets: [
@@ -142,7 +142,7 @@ export const SITE_DATA = {
           "Automate business processes and scale operations intelligently",
         description:
           "Streamline your operations with custom AI workflows, OpenAI integration, and no-code automation solutions that reduce manual work by 70%.",
-        pricing: "Starting at $8,000",
+        pricing: "Starting at $5,200",
         timeline: "2-6 weeks",
         popular: false,
         bullets: [
@@ -161,7 +161,7 @@ export const SITE_DATA = {
           "Cross-platform applications that feel native and perform flawlessly",
         description:
           "Build responsive web applications and cross-platform mobile apps using React Native and modern web technologies for global audiences.",
-        pricing: "Starting at $15,000",
+        pricing: "Starting at $8,000",
         timeline: "6-12 weeks",
         popular: false,
         bullets: [
