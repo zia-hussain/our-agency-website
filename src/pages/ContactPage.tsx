@@ -37,7 +37,7 @@ const ContactPage: React.FC = () => {
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     setFormData({
       ...formData,
@@ -52,7 +52,7 @@ const ContactPage: React.FC = () => {
     try {
       const formEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
       const webhookEndpoint = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK;
-      
+
       if (!formEndpoint) {
         throw new Error("Contact form endpoint not configured");
       }
@@ -66,18 +66,23 @@ const ContactPage: React.FC = () => {
       formspreeData.append("budget", formData.budget);
       formspreeData.append("timeline", formData.timeline);
       formspreeData.append("message", formData.message);
-      formspreeData.append("_subject", `New Project Inquiry from ${formData.name}`);
+      formspreeData.append(
+        "_subject",
+        `New Project Inquiry from ${formData.name}`,
+      );
 
       const formspreeResponse = await fetch(formEndpoint, {
         method: "POST",
         body: formspreeData,
         headers: {
-          Accept: "application/json"
-        }
+          Accept: "application/json",
+        },
       });
 
       if (!formspreeResponse.ok) {
-        throw new Error(`Form submission failed: ${formspreeResponse.statusText}`);
+        throw new Error(
+          `Form submission failed: ${formspreeResponse.statusText}`,
+        );
       }
 
       // Send to Google Sheets webhook (Zapier)
@@ -97,7 +102,7 @@ const ContactPage: React.FC = () => {
               timeline: formData.timeline,
               message: formData.message,
               timestamp: new Date().toISOString(),
-              source: "Zumetrix Contact Form"
+              source: "Zumetrix Contact Form",
             }),
           });
         } catch (webhookError) {
@@ -105,7 +110,7 @@ const ContactPage: React.FC = () => {
         }
       }
 
-      trackFormSubmit('contact_form');
+      trackFormSubmit("contact_form");
 
       setIsSubmitted(true);
       setTimeout(() => {
@@ -122,7 +127,10 @@ const ContactPage: React.FC = () => {
       }, 3000);
     } catch (err) {
       console.error("Form submission error:", err);
-      alert("There was an error submitting the form. Please try again or contact us directly at " + SITE_CONFIG.company.email);
+      alert(
+        "There was an error submitting the form. Please try again or contact us directly at " +
+          SITE_CONFIG.company.email,
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -202,20 +210,16 @@ const ContactPage: React.FC = () => {
   // };
 
   const handleScheduleCall = () => {
-    trackCTAClick('Schedule Consultation', '/contact');
-    window.open(
-      SITE_CONFIG.contact.calendlyUrl ||
-        "https://calendly.com/zumetrix-labs/consultation",
-      "_blank"
-    );
+    trackCTAClick("Schedule Consultation", "/contact");
+    window.open("https://calendly.com/zumetrix-labs/consultation", "_blank");
   };
 
   const handleQuickEstimate = () => {
-    trackCTAClick('Quick Estimate', '/contact');
+    trackCTAClick("Quick Estimate", "/contact");
     window.open(
       SITE_CONFIG.contact.calendlyUrl ||
         "https://calendly.com/zumetrix-labs/project-estimate",
-      "_blank"
+      "_blank",
     );
   };
 
@@ -285,15 +289,17 @@ const ContactPage: React.FC = () => {
           "@context": "https://schema.org",
           "@type": "ContactPage",
           name: "Contact Zumetrix Labs - Software Development Agency",
-          description: "Contact Pakistan's leading software development agency for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
+          description:
+            "Contact Pakistan's leading software development agency for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
           mainEntity: {
             "@type": "LocalBusiness",
             name: "Zumetrix Labs",
-            description: "Pakistan's premier software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development for international clients.",
+            description:
+              "Pakistan's premier software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development for international clients.",
             address: {
               "@type": "PostalAddress",
               addressCountry: "Pakistan",
-              addressRegion: "Punjab"
+              addressRegion: "Punjab",
             },
             areaServed: "Worldwide",
             contactPoint: {
@@ -304,23 +310,35 @@ const ContactPage: React.FC = () => {
               availableLanguage: ["English", "Urdu"],
               hoursAvailable: {
                 "@type": "OpeningHoursSpecification",
-                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                ],
                 opens: "09:00",
                 closes: "18:00",
-                timeZone: "Asia/Karachi"
-              }
+                timeZone: "Asia/Karachi",
+              },
             },
             priceRange: "$5,000 - $50,000",
-            paymentAccepted: ["Cash", "Credit Card", "Bank Transfer", "PayPal", "Stripe"],
+            paymentAccepted: [
+              "Cash",
+              "Credit Card",
+              "Bank Transfer",
+              "PayPal",
+              "Stripe",
+            ],
             currenciesAccepted: "USD",
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "5.0",
               reviewCount: "50",
               bestRating: "5",
-              worstRating: "5"
-            }
-          }
+              worstRating: "5",
+            },
+          },
         }}
       />
 
