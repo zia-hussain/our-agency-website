@@ -94,7 +94,7 @@ const ServicesPreview: React.FC = () => {
                     {service.oneLiner}
                   </p>
 
-                  <p className="text-lg font-bold text-foreground mb-6">
+                  <p className="text-lg font-bold text-foreground">
                     {service.pricing}
                   </p>
 
