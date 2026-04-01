@@ -78,7 +78,6 @@ const Navigation: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 group">
             <motion.div
-              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.15 }}
               className="flex items-center space-x-3"
             >
