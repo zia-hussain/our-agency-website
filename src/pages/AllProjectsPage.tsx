@@ -153,7 +153,7 @@ const AllProjectsPage: React.FC = () => {
                     )}
 
                     {/* Project Image */}
-                    <div className="relative w-full aspect-[16/9] overflow-hidden">
+                    <div className="relative w-full overflow-hidden">
                       <motion.img
                         src={project.image}
                         alt={project.title}

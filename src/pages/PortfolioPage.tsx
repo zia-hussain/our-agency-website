@@ -151,13 +151,13 @@ const PortfolioPage: React.FC = () => {
                     )}
 
                     {/* Project Image */}
-                    <div className="relative w-full  overflow-hidden">
+                    <div className="relative w-full overflow-hidden">
                       <motion.img
                         src={project.image}
                         alt={project.title}
                         whileHover={{ scale: 1.03 }}
                         transition={{ duration: 0.3 }}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                       
 
