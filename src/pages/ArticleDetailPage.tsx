@@ -288,7 +288,7 @@ const ArticleDetailPage: React.FC = () => {
     },
     keywords: article.tags.join(", "),
     articleSection: article.category,
-    wordCount: article.content.split(" ").length,
+    wordCount: (article.content || "").split(" ").length,
   };
 
   return (
