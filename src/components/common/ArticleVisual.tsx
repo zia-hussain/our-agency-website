@@ -6,20 +6,72 @@ interface ArticleVisualProps {
   variant?: "card" | "hero";
 }
 
-const HIGHLIGHT_STOP_WORDS = new Set([
+const SKIP_WORDS = new Set([
   "a", "an", "the", "and", "or", "but", "for", "in", "on", "at", "to",
   "of", "by", "with", "from", "how", "what", "why", "when", "is", "are",
   "was", "were", "be", "been", "have", "has", "do", "does", "your", "our",
-  "we", "i", "my", "vs", "vs.", "complete", "guide",
+  "we", "i", "my", "vs", "that", "this", "it", "its", "not", "no", "can",
+  "will", "get", "make", "use", "also", "just", "about", "into", "over",
 ]);
+
+const HOOK_SCORES: Record<string, number> = {
+  "secret": 10, "secrets": 10, "never": 10, "hidden": 10, "truth": 9,
+  "mistake": 9, "mistakes": 9, "fail": 9, "failing": 9, "failed": 9,
+  "million": 10, "billion": 10, "money": 9, "profit": 9, "revenue": 9,
+  "growth": 9, "scale": 9, "scaling": 9, "dominate": 10, "dominating": 10,
+  "transform": 9, "transforming": 9, "transformed": 9, "transformation": 9,
+  "launch": 8, "launching": 8, "launched": 8, "ship": 8, "shipped": 8,
+  "real": 8, "reality": 8, "honest": 8, "brutal": 9, "raw": 8,
+  "ultimate": 8, "masterclass": 10, "blueprint": 9, "framework": 8, "system": 8,
+  "proven": 9, "worked": 9, "works": 8, "success": 8, "winning": 9, "won": 8,
+  "best": 7, "fastest": 8, "easiest": 7, "powerful": 8, "powerful": 8,
+  "lessons": 8, "learned": 8, "learn": 7, "taught": 8,
+  "founder": 8, "founders": 8, "startup": 8, "startups": 8, "entrepreneur": 8,
+  "mvp": 9, "saas": 9, "ai": 8, "automation": 8, "product": 7,
+  "pakistani": 7, "pakistan": 7, "local": 6,
+  "30": 8, "50": 8, "100": 9, "days": 7, "hours": 7, "minutes": 7,
+  "projects": 7, "clients": 7, "users": 7, "team": 6,
+  "broke": 9, "built": 8, "building": 7, "build": 7,
+  "game": 8, "changed": 8, "change": 7, "changer": 9,
+  "stop": 8, "avoid": 8, "warning": 9, "danger": 9,
+  "free": 7, "fast": 7, "instant": 7, "quick": 6,
+  "dead": 9, "death": 9, "killing": 9, "dying": 9, "dead": 9,
+  "simple": 7, "easy": 6, "hard": 7, "impossible": 9,
+  "everyone": 7, "nobody": 9, "nobody": 9, "someone": 6,
+  "first": 7, "only": 8, "ever": 8, "finally": 8,
+};
 
 function pickHighlightWord(title: string): string {
   const words = title.split(" ");
+  let bestWord = "";
+  let bestScore = -1;
+
+  for (const word of words) {
+    const clean = word.replace(/[^a-zA-Z0-9+]/g, "").toLowerCase();
+    if (clean.length < 3 || SKIP_WORDS.has(clean)) continue;
+
+    let score = 0;
+
+    if (HOOK_SCORES[clean] !== undefined) {
+      score += HOOK_SCORES[clean];
+    }
+
+    if (clean.length >= 6) score += 1;
+    if (clean.length >= 8) score += 1;
+
+    if (/^\d+\+?$/.test(clean)) score += 3;
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestWord = word;
+    }
+  }
+
+  if (bestWord) return bestWord;
+
   for (let i = words.length - 1; i >= 0; i--) {
     const clean = words[i].replace(/[^a-zA-Z0-9+]/g, "").toLowerCase();
-    if (clean.length >= 4 && !HIGHLIGHT_STOP_WORDS.has(clean)) {
-      return words[i];
-    }
+    if (clean.length >= 4 && !SKIP_WORDS.has(clean)) return words[i];
   }
   return words[words.length - 1];
 }
