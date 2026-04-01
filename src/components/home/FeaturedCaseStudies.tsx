@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Badge, File, MapPin, PartyPopper } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
-import { getFeaturedProjects } from "../../data/projects";
+import { getFeaturedProjects } from "../../data/homepageProjects/projects";
 
 const FeaturedCaseStudies: React.FC = () => {
   const { featuredCaseStudies } = getSiteData();

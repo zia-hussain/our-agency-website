@@ -49,9 +49,9 @@ export const projects: Project[] = [
     type: "saas",
     description: "A sophisticated React-based AI platform that helps users craft professional bios, taglines, and brand personas using custom-built prompt flows and style selectors.",
     longDescription: "Ifyify represents the cutting edge of AI-driven personal branding technology. Built from the ground up with React, TailwindCSS, Supabase, and OpenAI integration, this platform revolutionizes how professionals create their personal brand content. The system features beautifully animated style selector interfaces, intelligent prompt-based generation flows, and comprehensive multi-step user onboarding experiences. Our development team implemented advanced AI workflow automation, secure authentication systems, and scalable cloud architecture to support rapid user growth and feature expansion.",
-    image: "/project_images/image.png",
+    image: "/project_images/homePage/ifyify.jpg",
     gallery: [
-      "/project_images/image.png",
+      "/project_images/homePage/ifyify.jpg",
     ],
     tags: ["React", "TailwindCSS", "Supabase", "OpenAI", "JavaScript", "Responsive UI", "AI Integration"],
     client: {
@@ -95,9 +95,9 @@ export const projects: Project[] = [
     type: "mobile",
     description: "An intuitive health and wellness tracking application with personalized AI insights, goal management, social features, and seamless device integrations for motivation and progress tracking.",
     longDescription: "WellnessTracker Mobile represents the future of personal health management technology. This comprehensive React Native application empowers users to take complete control of their wellness journey through advanced health tracking capabilities, AI-powered personalized insights, engaging social challenges, and seamless integration with popular fitness devices and wearables. Built with scalable architecture to support millions of users, the app features real-time data synchronization, offline capabilities, push notifications, and sophisticated analytics dashboards for both users and healthcare providers.",
-    image: "/project_images/welnesspath.jpg",
+    image: "/project_images/homePage/wellnesspath.jpg",
     gallery: [
-      "/project_images/welnesspath.jpg",
+      "/project_images/homePage/wellnesspath.jpg",
     ],
     tags: ["React Native", "Firebase", "Machine Learning", "Redux", "GraphQL", "Health Tech"],
     client: {
@@ -140,9 +140,9 @@ export const projects: Project[] = [
     type: "enterprise",
     description: "End-to-end inventory management and order processing automation platform for growing e-commerce businesses with multiple sales channels and complex logistics requirements.",
     longDescription: "RetailOps Automation represents a revolutionary approach to e-commerce operations management. This comprehensive enterprise platform streamlines complex multi-channel e-commerce operations through intelligent automation of inventory management, order processing, supplier communications, and financial reporting systems. Built with Python and AWS cloud infrastructure, the system processes thousands of orders daily while maintaining 99.5% accuracy rates. The platform integrates seamlessly with existing e-commerce systems, ERP solutions, and third-party logistics providers to create a unified operational ecosystem.",
-    image: "/project_images/Retailops.jpg",
+    image: "/project_images/homePage/retailops.jpg",
     gallery: [
-      "/project_images/Retailops.jpg",
+      "/project_images/homePage/retailops.jpg",
     ],
     tags: ["Python", "AWS", "PostgreSQL", "REST API", "Docker", "Redis", "Enterprise"],
     client: {
@@ -185,9 +185,9 @@ export const projects: Project[] = [
     type: "mvp",
     description: "A rapid prototype project management platform built to validate market demand, secure seed funding, and onboard early users with essential collaboration features.",
     longDescription: "TaskFlow MVP was strategically developed in just 6 weeks to help an ambitious startup validate their innovative project management concept and secure crucial seed funding. The platform features comprehensive team collaboration tools, intelligent task management systems, accurate time tracking capabilities, and insightful reporting dashboards. Built with modern React and Firebase technologies, the MVP successfully demonstrated product-market fit and user engagement metrics that directly contributed to securing $500K in seed funding from prominent venture capital firms.",
-    image: "/project_images/Taskflow.jpg",
+    image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
     gallery: [
-      "/project_images/Taskflow.jpg",
+      "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
     ],
     tags: ["React", "Node.js", "Firebase", "Stripe", "Vercel", "MVP"],
     client: {
@@ -230,9 +230,9 @@ export const projects: Project[] = [
     type: "saas",
     description: "A comprehensive online learning platform with video streaming, interactive quizzes, progress tracking, and instructor tools for educational institutions and corporate training.",
     longDescription: "EduPlatform Web transforms traditional education delivery through cutting-edge technology and user-centered design. This comprehensive learning management system supports high-quality video lectures, interactive educational content, detailed student progress tracking, and powerful instructor management tools. Built to scale seamlessly for thousands of concurrent users with optimized video delivery, real-time collaboration features, and advanced analytics dashboards for educational insights and performance monitoring.",
-    image: "/project_images/eduplatform.jpg",
+    image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
     gallery: [
-      "/project_images/eduplatform.jpg",
+      "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
     ],
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "AWS S3", "Stripe", "Education"],
     client: {
@@ -275,9 +275,9 @@ export const projects: Project[] = [
     type: "mobile",
     description: "A comprehensive logistics tracking application for delivery companies with real-time GPS tracking, intelligent route optimization, and automated customer notifications.",
     longDescription: "LogiTrack Mobile revolutionizes delivery operations through intelligent automation and real-time tracking capabilities. This sophisticated logistics application provides comprehensive GPS tracking, AI-powered route optimization, automated customer communication systems, and detailed analytics for fleet management. The system integrates seamlessly with existing logistics infrastructure while providing actionable insights for operational efficiency, cost reduction, and customer satisfaction improvement.",
-    image: "/project_images/logitrack.jpg",
+    image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
     gallery: [
-      "/project_images/logitrack.jpg",
+      "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
     ],
     tags: ["React Native", "Google Maps API", "Node.js", "MongoDB", "Socket.io", "Logistics"],
     client: {
@@ -321,9 +321,11 @@ export const projects: Project[] = [
   type: "saas",
   description: "An end-to-end analytics dashboard for a Norwegian publishing company, turning raw CSV files into live sales, inventory, and customer insights.",
   longDescription: "Forlag is a data-driven analytics platform built specifically for a Norwegian publishing company that needed clarity across sales, inventory, and customer performance. The system is designed as a fully frontend-powered dashboard that reads Sales and Inventory CSV/XLSX files, computes KPIs on the fly, and stores structured aggregates in localStorage for instant load times. Each page—Dashboard, Orders, Inventory, Customers, and Upload CSV—has been engineered to work 100% from uploaded files without a backend database. The UI features a modern glass-style layout, responsive grid-based KPIs, Nivo-powered charts, and carefully tuned performance to handle thousands of records. From MTD/YTD comparisons to inventory valuation and dead-stock detection, Forlag gives executives a clear, reliable, and beautiful way to understand their business at a glance.",
-  image: "/project_images/forlag.jpg",
+  image: "/project_images/forlag-dashboard.png",
   gallery: [
-    "/project_images/forlag.jpg"
+    "/project_images/forlag-dashboard.png",
+    "/project_images/forlag-inventory.png",
+    "/project_images/forlag-orders.png"
   ],
   tags: [
     "React", "TypeScript", "TailwindCSS", "CSV Parsing", "Frontend Architecture",
@@ -396,9 +398,9 @@ export const projects: Project[] = [
   type: "enterprise",
   description: "An Airtable + Make.com powered intake and logistics engine for a beef processor, handling carcass tracking, boxing, and shipping flows.",
   longDescription: "Floating Stone Ranch needed a robust system to manage beef processing logistics—from carcass intake to boxing, lot tracking, and shipping documentation. We designed an Airtable base that acts as the single source of truth for all cattle, carcasses, boxes, and shipments. On top of that, we built Make.com scenarios that automate status changes, generate Bill of Lading structures, and connect different tables via stable relationships. The system transforms manual, error-prone workflows into a streamlined digital process where each carcass, box, and shipment is traceable with clear data relationships and reporting capabilities.",
-  image: "/project_images/floating-stone.jpg",
+  image: "/project_images/floating-stone-intake.png",
   gallery: [
-    "/project_images/floating-stone.jpg"
+    "/project_images/floating-stone-intake.png"
   ],
   tags: [
     "Airtable", "Make.com", "Database Design", "Process Automation",
@@ -465,9 +467,9 @@ export const projects: Project[] = [
   type: "mvp",
   description: "A React Native MVP that lets users trade skills using a monthly credit system and earned swap credits, powered by Firebase and Stripe-ready architecture.",
   longDescription: "Skill x Swap is a modern skill trading marketplace where users can offer their skills and request others' skills using a credit-based system. We built the MVP using React Native and Firebase, with a clean onboarding flow, Core vs Lite Pro user tiers, and a monthly credit allowance system. The platform also supports earned credits that accumulate as users successfully complete swaps. The app includes skills you offer and skills you want, a matchmaking flow, sending swap requests, and managing pending requests. The architecture is designed to plug in Stripe for subscription-based Pro accounts and an enterprise edition in future phases.",
-  image: "/project_images/skillxswap.jpg",
+  image: "/project_images/skill-x-swap.png",
   gallery: [
-    "/project_images/skillxswap.jpg"
+    "/project_images/skill-x-swap.png"
   ],
   tags: [
     "React Native", "Expo", "Firebase", "TypeScript",
@@ -528,9 +530,9 @@ export const projects: Project[] = [
   type: "mobile",
   description: "A voice-first AI companion built with React Native and voice SDKs, delivering smooth, real-time conversations in a premium UI.",
   longDescription: "Tomo is a voice-first AI companion designed to feel like a friendly assistant you can just talk to. We built the mobile app using React Native and a voice SDK, focusing on low-latency request handling, clean audio pipeline management, and a beautifully minimal UI that fits the brand. The app maintains conversation state, handles streaming responses, and gives users a natural voice experience with subtle animations and gradients to keep the interface feeling alive.",
-  image: "/project_images/tomo.jpg",
+  image: "/project_images/tomo-voice-ai.png",
   gallery: [
-    "/project_images/tomo.jpg"
+    "/project_images/tomo-voice-ai.png"
   ],
   tags: [
     "React Native", "Voice SDK", "AI Integration", "Real-time UX",
@@ -584,9 +586,9 @@ export const projects: Project[] = [
   type: "mvp",
   description: "A Bubble.io-based PWA marketplace for local handyman services in Norway, including job posting, bidding, subscriptions, and chat.",
   longDescription: "HjelpNå is a Norwegian handyman marketplace similar to local service platforms like Minsmåjobb and TaskRabbit, built using Bubble.io as a Progressive Web App. The platform allows homeowners to post jobs, receive bids from service providers, and choose between standard and instant-help flows. It includes provider subscription tiers, Stripe-based escrow payments, real-time chat between clients and providers, and geo-targeting filters for relevant matches. We supported architecture recommendations, data structure design, and best-practice setup for scaling the PWA.",
-  image: "/project_images/helpna.jpg",
+  image: "/project_images/hjelpna-marketplace.png",
   gallery: [
-    "/project_images/helpna.jpg"
+    "/project_images/hjelpna-marketplace.png"
   ],
   tags: [
     "Bubble.io", "Stripe", "PWA", "Marketplace", "Chat", "Geo-location"
@@ -639,9 +641,9 @@ export const projects: Project[] = [
   type: "mvp",
   description: "An MVP concept for analyzing uploaded utility bills using OCR and AI to recommend cheaper plans and deals.",
   longDescription: "The Utility Bill Deal Finder is an MVP planned with Imane to help users reduce monthly utility costs by analyzing their bills. The concept includes a React/Next.js web app where users upload bills, an OCR layer using Tesseract or Google Vision, and an AI-backed rules engine that compares usage patterns against better available deals. The roadmap includes alerts when better deals are detected, a recommendation dashboard, and integration with payment providers and CRMs.",
-  image: "/project_images/utility-bill-finder.jpg",
+  image: "/project_images/utility-bill-deal-finder.png",
   gallery: [
-    "/project_images/utility-bill-finder.jpg"
+    "/project_images/utility-bill-deal-finder.png"
   ],
   tags: [
     "React", "Next.js", "OCR", "AI Analysis", "Node.js", "Stripe"
@@ -694,9 +696,9 @@ export const projects: Project[] = [
   type: "mobile",
   description: "A React Native marketplace for pet services, including sitter listings, booking flows, and owner-provider coordination.",
   longDescription: "PawSpace is a pet services marketplace app built with React Native, providing a clean way for pet owners to find and book sitters, walkers, and other services. The app features provider onboarding, profile creation, service listings, booking management, and a streamlined experience for both owners and providers. The UI focuses on trust, simplicity, and clarity, particularly around availability and booking flows.",
-  image: "/project_images/pawspace.jpg",
+  image: "/project_images/pawspace.png",
   gallery: [
-    "/project_images/pawspace.jpg"
+    "/project_images/pawspace.png"
   ],
   tags: [
     "React Native", "Expo", "Firebase", "Marketplace", "Mobile UI"
@@ -748,9 +750,9 @@ export const projects: Project[] = [
   type: "mobile",
   description: "React Native app stabilization for an event booking product, including bug fixes, feature updates, and TestFlight deployments.",
   longDescription: "Bondfire is an event-focused app that needed stability, bug fixes, and feature completion. We worked inside an existing React Native codebase to resolve merge conflicts, fix navigation bugs, improve booking flows, and prepare builds for TestFlight distribution. The project included collaborating with another developer, cleaning up branches, and ensuring successful iOS builds.",
-  image: "/project_images/bondfire.jpg",
+  image: "/project_images/bondfire.png",
   gallery: [
-    "/project_images/bondfire.jpg"
+    "/project_images/bondfire.png"
   ],
   tags: [
     "React Native", "Expo", "iOS Build", "Git", "Bug Fixing"
@@ -803,9 +805,9 @@ export const projects: Project[] = [
   type: "saas",
   description: "A MERN-based hostel management system with dashboards for rooms, bookings, billing, and staff.",
   longDescription: "The Hostel Management System is a full-stack MERN application built as a portfolio-grade project and a real-world style solution for managing hostels. It includes role-based access, room and bed management, booking records, payment tracking, and staff overviews. The UI is dashboard-driven, making it easy for admins to see occupancy, upcoming check-ins, and revenue at a glance.",
-  image: "/project_images/Hostel-Management.jpg",
+  image: "/project_images/hostel-management.png",
   gallery: [
-    "/project_images/Hostel-Management.jpg"
+    "/project_images/hostel-management.png"
   ],
   tags: [
     "React", "Node.js", "MongoDB", "Express", "Dashboard", "Admin Panel"
@@ -856,9 +858,9 @@ export const projects: Project[] = [
   type: "automation",
   description: "Make.com/Zapier automations that sync Stripe subscription events into Airtable for reporting, support, and internal operations.",
   longDescription: "This automation bridges Stripe and Airtable to keep subscription data in sync for internal teams. Whenever a subscription is created, updated, or canceled in Stripe, the automation updates Airtable records with customer details, plan info, billing cycles, and status. This eliminates manual data copying and gives customer support and finance teams a real-time view of subscriptions in a familiar Airtable interface.",
-  image: "/project_images/stripe-to-airtable.jpg",
+  image: "/project_images/stripe-airtable-sync.png",
   gallery: [
-    "/project_images/stripe-to-airtable.jpg"
+    "/project_images/stripe-airtable-sync.png"
   ],
   tags: [
     "Stripe", "Airtable", "Make.com", "Zapier", "Webhooks", "Automation"
@@ -910,9 +912,9 @@ export const projects: Project[] = [
   type: "automation",
   description: "An automation flow that pushes Shopify order data into Notion to generate near real-time profit and loss views.",
   longDescription: "For e-commerce clients running on Shopify, we created an automation flow that exports order and revenue data into Notion databases, enabling a living P&L report. The system pulls order details, fees, and key metadata, and maps them into Notion properties where the client can apply formulas, filters, and dashboards. This gives founders a quick, visual handle on performance without having to export CSVs every week.",
-  image: "/project_images/shopify-to-airtable.jpg",
+  image: "/project_images/shopify-notion-automation.png",
   gallery: [
-    "/project_images/shopify-to-airtable.jpg"
+    "/project_images/shopify-notion-automation.png"
   ],
   tags: [
     "Shopify", "Notion", "Make.com", "Zapier", "Automation", "E-commerce"
@@ -964,9 +966,9 @@ export const projects: Project[] = [
   type: "automation",
   description: "A Twilio-powered auto dialer that calls through a list of contacts, detects call completion, and moves to the next lead.",
   longDescription: "The Twilio Auto Dialer is a backend + Twilio integration that automatically calls through a JSON list of contacts. It detects when a call ends, logs the status, and moves on to the next contact, giving sales or support teams a semi-automatic calling experience. The system is designed for integration with CRMs and flexible campaign logic.",
-  image: "/project_images/twilio-call.jpg",
+  image: "/project_images/twilio-auto-dialer.png",
   gallery: [
-    "/project_images/twilio-call.jpg"
+    "/project_images/twilio-auto-dialer.png"
   ],
   tags: [
     "Twilio", "Node.js", "Call Automation", "Backend"
@@ -1018,9 +1020,9 @@ export const projects: Project[] = [
   type: "automation",
   description: "A Twilio-based conference calling solution that supports adding and removing participants dynamically from React Native apps.",
   longDescription: "We implemented Twilio conference call logic that allows a call host to add or remove participants from a running call, powered by Twilio Voice and backed by a clean backend API layer. This supports use cases like team calls, support triage, or escalation, especially in mobile apps where call flows need to be managed with minimal friction.",
-  image: "/project_images/twilio-auto-dialer.jpg",
+  image: "/project_images/twilio-conference.png",
   gallery: [
-    "/project_images/twilio-auto-dialer.jpg"
+    "/project_images/twilio-conference.png"
   ],
   tags: [
     "Twilio", "React Native", "Voice", "Node.js", "Conference Calls"
@@ -1073,9 +1075,9 @@ export const projects: Project[] = [
   type: "enterprise",
   description: "A collection of internal tools, trackers, and automations that power Zumetrix Labs operations, deals, tasks, and client pipelines.",
   longDescription: "Over time, Zumetrix Labs has developed its own internal ecosystem of tools: deal trackers, task boards, income and expense sheets, lead trackers, and notification flows. These systems, built using Airtable, Google Sheets, Notion, and automation tools like Make.com and Zapier, act as the operational backbone of the agency. Together, they track project pipelines, finances, recurring tasks, and growth experiments, letting the team focus on closing deals and delivering work instead of managing chaos.",
-  image: "/project_images/zumetrix.jpg",
+  image: "/project_images/zumetrix-internal-tools.png",
   gallery: [
-    "/project_images/zumetrix.jpg"
+    "/project_images/zumetrix-internal-tools.png"
   ],
   tags: [
     "Airtable", "Notion", "Make.com", "Zapier", "Google Sheets", "Automation"
