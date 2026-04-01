@@ -14,9 +14,9 @@ const ArticleVisual: React.FC<ArticleVisualProps> = ({
   const isHero = variant === "hero";
   const uid = `av-${title.slice(0, 8).replace(/\s/g, "")}`;
 
-  const titleFontSize = isHero ? 38 : 24;
-  const titleLineHeight = isHero ? 50 : 34;
-  const maxCharsPerLine = isHero ? 36 : 28;
+  const titleFontSize = isHero ? 54 : 34;
+  const titleLineHeight = isHero ? 60 : 40;
+  const maxCharsPerLine = isHero ? 30 : 30;
 
   const words = title.split(" ");
   const lines: string[] = [];
@@ -150,7 +150,7 @@ const ArticleVisual: React.FC<ArticleVisualProps> = ({
                 color: "rgba(196,138,100,0.9)",
                 background: "rgba(196,138,100,0.08)",
                 border: "1px solid rgba(196,138,100,0.22)",
-                borderRadius: "6px",
+                borderRadius: "50px",
                 padding: isHero ? "5px 12px" : "4px 10px",
               }}
             >
@@ -161,7 +161,7 @@ const ArticleVisual: React.FC<ArticleVisualProps> = ({
 
         <div
           className="flex flex-col justify-end"
-          style={{ flex: 1, paddingTop: category ? 0 : "auto" }}
+          style={{ flex: 1, alignItems:"center", justifyContent:"center" }}
         >
           {clampedLines.map((line, i) => (
             <div
@@ -169,9 +169,9 @@ const ArticleVisual: React.FC<ArticleVisualProps> = ({
               style={{
                 fontSize: `${titleFontSize}px`,
                 lineHeight: `${titleLineHeight}px`,
-                fontWeight: 700,
-                color: "#EDEDED",
-                letterSpacing: "-0.025em",
+                fontWeight: 900,
+                color: "#A8A8A7",
+                letterSpacing: "-0.020em",
                 textShadow: "0 2px 24px rgba(0,0,0,0.55)",
                 fontFamily: "Inter, system-ui, sans-serif",
               }}
