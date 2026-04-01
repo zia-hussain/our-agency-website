@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
+import ArticleVisual from "../components/common/ArticleVisual";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -503,21 +504,15 @@ const ArticleDetailPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Image */}
+      {/* Article Hero Visual */}
       <section className="pb-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="relative overflow-hidden rounded-2xl aspect-[16/9] shadow-2xl border border-border">
-              <motion.img
-                initial={{ scale: 1.02 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6 }}
-                src={article.image}
-                alt={article.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
-            </div>
+            <ArticleVisual
+              title={article.title}
+              category={article.category}
+              variant="hero"
+            />
           </AnimatedSection>
         </div>
       </section>
@@ -676,22 +671,12 @@ const ArticleDetailPage: React.FC = () => {
                         transition={{ duration: 0.2 }}
                         className="group bg-card/60 backdrop-blur-xl border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-2xl transition-all duration-100 h-full"
                       >
-                        <div className="relative overflow-hidden aspect-[16/10]">
-                          <motion.img
-                            src={relatedArticle.image}
-                            alt={relatedArticle.title}
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3 }}
-                            className="w-full h-full object-cover"
+                        <div className="relative overflow-hidden">
+                          <ArticleVisual
+                            title={relatedArticle.title}
+                            category={relatedArticle.category}
+                            variant="card"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
-
-                          {/* Category Badge */}
-                          <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 bg-card/80 backdrop-blur-xl text-foreground text-xs font-medium rounded-full border border-border">
-                              {relatedArticle.category}
-                            </span>
-                          </div>
                         </div>
 
                         <div className="p-8">

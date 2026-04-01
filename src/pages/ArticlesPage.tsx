@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
+import ArticleVisual from "../components/common/ArticleVisual";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Clock, User, ArrowRight, BookOpen, Plus } from "lucide-react";
 import { articles, categories } from "../data/articles.js";
@@ -180,24 +181,13 @@ const ArticlesPage: React.FC = () => {
                       </div>
                     )}
 
-                    {/* Article Image */}
-                    <div className="relative overflow-hidden aspect-[16/9]">
-                      <motion.img
-                        src={article.image}
-                        alt={article.title}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.15 }}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
+                    {/* Article Visual */}
+                    <div className="relative overflow-hidden">
+                      <ArticleVisual
+                        title={article.title}
+                        category={article.category}
+                        variant="card"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
-
-                      {/* Category Badge */}
-                      <div className="absolute top-4 left-4">
-                        <span className="px-4 py-2 bg-card/90 backdrop-blur-xl text-foreground text-sm font-semibold rounded-full border border-border shadow-lg">
-                          {article.category}
-                        </span>
-                      </div>
                     </div>
 
                     {/* Article Content */}

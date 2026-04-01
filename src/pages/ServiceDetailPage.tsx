@@ -171,16 +171,26 @@ const ServiceDetailPage: React.FC = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <div className="relative">
-                <motion.img
-                  initial={{ scale: 1.02 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.6 }}
+              <motion.div
+                className="relative overflow-hidden rounded-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                style={{
+                  boxShadow: "0 8px 40px rgba(0,0,0,0.5), 0 0 0 1.5px rgba(196,138,100,0.3)",
+                }}
+              >
+                <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full rounded-2xl shadow-2xl border-2 border-border"
+                  className="w-full aspect-[16/9] object-cover block"
+                  loading="lazy"
                 />
-              </div>
+                <div
+                  className="absolute inset-0 rounded-2xl pointer-events-none"
+                  style={{ boxShadow: "inset 0 0 0 1.5px rgba(196,138,100,0.18)" }}
+                />
+              </motion.div>
             </AnimatedSection>
           </div>
         </div>
