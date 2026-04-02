@@ -12,29 +12,65 @@ const MobileAppPage: React.FC = () => {
       title: 'Native iOS & Android',
       description: 'Platform-specific apps built with Swift and Kotlin for maximum performance',
       features: ['Best performance', 'Native UI/UX', 'Full device access', 'App Store optimized'],
-      bestFor: 'Gaming, AR/VR, performance-critical apps'
+      bestFor: 'Gaming, AR/VR, performance-critical apps',
+      badge: null,
     },
     {
       icon: '⚛️',
       title: 'React Native',
       description: 'Cross-platform apps with 95% code sharing between iOS and Android',
       features: ['Single codebase', '95% code reuse', 'Fast development', 'Native performance'],
-      bestFor: 'Business apps, social platforms, e-commerce'
+      bestFor: 'Business apps, social platforms, e-commerce',
+      badge: 'Most Popular',
     },
     {
       icon: '🦋',
       title: 'Flutter',
       description: 'Beautiful, natively compiled apps with Google-backed technology',
       features: ['Stunning UI', 'Fast rendering', 'Hot reload', 'Web support'],
-      bestFor: 'MVP apps, fintech, healthcare apps'
+      bestFor: 'MVP apps, fintech, healthcare apps',
+      badge: null,
     },
     {
       icon: '🌐',
       title: 'Progressive Web Apps',
       description: 'Web apps that feel native with offline capabilities and app-like experience',
       features: ['No app store', 'Cross-platform', 'Instant updates', 'SEO friendly'],
-      bestFor: 'Content apps, dashboards, lightweight apps'
-    }
+      bestFor: 'Content apps, dashboards, lightweight apps',
+      badge: null,
+    },
+    {
+      icon: '🫧',
+      title: 'Bubble',
+      description: 'Full-stack no-code apps with complex workflows, databases and custom logic',
+      features: ['No code required', 'Complex workflows', 'Custom database', 'Fast deployment'],
+      bestFor: 'MVPs, marketplaces, internal tools',
+      badge: 'No-Code',
+    },
+    {
+      icon: '🎯',
+      title: 'FlutterFlow',
+      description: 'Visual Flutter builder — native mobile quality with no-code speed',
+      features: ['Native Flutter output', 'Firebase native', 'Visual builder', 'Code export'],
+      bestFor: 'Startups, MVPs, client apps',
+      badge: 'No-Code',
+    },
+    {
+      icon: '🧩',
+      title: 'Adalo',
+      description: 'Drag-and-drop mobile apps published to App Store and Google Play',
+      features: ['App Store publish', 'Database built-in', 'API integrations', 'Custom actions'],
+      bestFor: 'Simple business apps, MVPs, prototypes',
+      badge: 'No-Code',
+    },
+    {
+      icon: '🏗️',
+      title: 'Softr',
+      description: 'Turn Airtable or Google Sheets into a polished client-facing web app',
+      features: ['Airtable powered', 'Client portals', 'Membership sites', 'Instant deploy'],
+      bestFor: 'Portals, directories, internal dashboards',
+      badge: 'No-Code',
+    },
   ];
 
   const features = [
@@ -77,7 +113,27 @@ const MobileAppPage: React.FC = () => {
       icon: '🌍',
       title: 'Multi-language',
       description: 'Localization, RTL support, regional customization'
-    }
+    },
+    {
+      icon: '🤖',
+      title: 'AI Features',
+      description: 'ChatGPT integration, smart recommendations, voice AI'
+    },
+    {
+      icon: '🔗',
+      title: 'API Integrations',
+      description: 'Zapier, Make.com, Airtable, Shopify, HubSpot and more'
+    },
+    {
+      icon: '🛒',
+      title: 'E-Commerce',
+      description: 'Product catalog, cart, checkout, order tracking'
+    },
+    {
+      icon: '👥',
+      title: 'Social Features',
+      description: 'User profiles, feeds, messaging, follow systems'
+    },
   ];
 
   const process = [
@@ -103,55 +159,51 @@ const MobileAppPage: React.FC = () => {
 
   const pricingTiers = [
     {
-      name: 'Starter App',
-      price: '$15,000',
-      duration: '8 weeks',
-      description: 'Perfect for MVPs and validating your app idea',
+      name: 'No-Code MVP',
+      price: 'From $2,000',
+      duration: '2–3 weeks',
+      description: 'Validate your idea fast using no-code tools like Bubble, FlutterFlow, or Adalo',
       features: [
-        'Single platform (iOS or Android)',
-        'Up to 5 key screens',
-        'User authentication',
-        'Basic API integration',
-        'Push notifications',
-        'App Store submission',
-        '30 days support'
+        'Bubble / FlutterFlow / Adalo',
+        'Core user flows built',
+        'Auth + database included',
+        'App Store or web publish',
+        '2 weeks post-launch support',
       ],
-      popular: false
+      popular: false,
+      tag: 'No-Code',
     },
     {
-      name: 'Growth App',
-      price: '$28,000',
-      duration: '10-12 weeks',
-      description: 'Best for feature-rich apps targeting both platforms',
+      name: 'Cross-Platform App',
+      price: 'From $8,000',
+      duration: '6–10 weeks',
+      description: 'A production-ready iOS + Android app built with React Native or Flutter',
       features: [
-        'iOS + Android (React Native)',
-        'Up to 15 screens',
-        'Advanced features',
-        'Payment integration',
-        'Real-time features',
-        'Analytics integration',
+        'iOS + Android (one codebase)',
+        'Custom UI/UX design',
+        'Auth, payments, notifications',
+        'Backend API integration',
         'Both store submissions',
-        '60 days support'
+        '30 days support',
       ],
-      popular: true
+      popular: true,
+      tag: null,
     },
     {
-      name: 'Enterprise App',
-      price: '$50,000+',
-      duration: '12-16 weeks',
-      description: 'For complex apps with custom requirements',
+      name: 'Custom / Enterprise',
+      price: 'Custom Quote',
+      duration: '10–16 weeks',
+      description: 'Native or complex apps with advanced requirements — scoped to your exact needs',
       features: [
-        'Native iOS + Android',
-        'Unlimited screens',
-        'Complex integrations',
-        'Offline functionality',
-        'Advanced security',
-        'Custom backend',
-        'Full deployment',
-        '90 days priority support'
+        'Native iOS or Android or both',
+        'Unlimited screens & complexity',
+        'Custom backend + admin panel',
+        'Offline, AI, or advanced features',
+        'Priority delivery & support',
       ],
-      popular: false
-    }
+      popular: false,
+      tag: null,
+    },
   ];
 
   const caseStudies = [
@@ -278,30 +330,41 @@ const MobileAppPage: React.FC = () => {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {appTypes.map((type, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-all duration-300"
+                transition={{ delay: index * 0.06 }}
+                className={`relative bg-card border rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 flex flex-col ${
+                  type.badge === 'Most Popular' ? 'border-primary/40' : 'border-border'
+                }`}
               >
-                <div className="text-4xl mb-4">{type.icon}</div>
-                <h3 className="text-xl font-bold text-foreground mb-2">{type.title}</h3>
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{type.description}</p>
-                <div className="space-y-2 mb-4">
+                {type.badge && (
+                  <div className={`absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full ${
+                    type.badge === 'Most Popular'
+                      ? 'bg-primary/15 text-primary border border-primary/25'
+                      : 'bg-card border border-border text-muted-foreground'
+                  }`}>
+                    {type.badge}
+                  </div>
+                )}
+                <div className="text-3xl mb-4">{type.icon}</div>
+                <h3 className="text-lg font-bold text-foreground mb-2 pr-16">{type.title}</h3>
+                <p className="text-muted-foreground mb-4 text-sm leading-relaxed flex-grow">{type.description}</p>
+                <div className="space-y-1.5 mb-4">
                   {type.features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-2">
-                      <CheckCircle2 size={14} className="text-primary mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 size={13} className="text-primary mt-0.5 flex-shrink-0" />
                       <span className="text-xs text-muted-foreground">{feature}</span>
                     </div>
                   ))}
                 </div>
-                <div className="pt-4 border-t border-border">
-                  <div className="text-xs text-muted-foreground">Best for:</div>
-                  <div className="text-sm font-medium text-foreground">{type.bestFor}</div>
+                <div className="pt-4 border-t border-border mt-auto">
+                  <div className="text-xs text-muted-foreground mb-0.5">Best for:</div>
+                  <div className="text-xs font-medium text-foreground">{type.bestFor}</div>
                 </div>
               </motion.div>
             ))}
@@ -391,7 +454,7 @@ const MobileAppPage: React.FC = () => {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {pricingTiers.map((tier, index) => (
               <motion.div
                 key={index}
@@ -399,39 +462,46 @@ const MobileAppPage: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`bg-card border rounded-2xl p-8 hover:shadow-xl transition-all duration-300 ${
-                  tier.popular ? 'border-primary shadow-glow' : 'border-border'
+                className={`relative bg-card border rounded-2xl p-8 transition-all duration-300 flex flex-col ${
+                  tier.popular ? 'border-primary/50' : 'border-border'
                 }`}
               >
-                {tier.popular && (
-                  <div className="inline-flex items-center px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-xs font-semibold text-primary mb-4">
-                    <Star size={12} className="mr-1" />
-                    Most Popular
-                  </div>
-                )}
-                <h3 className="text-2xl font-bold text-foreground mb-2">{tier.name}</h3>
-                <p className="text-muted-foreground mb-4">{tier.description}</p>
-                <div className="mb-6">
-                  <div className="text-4xl font-bold text-foreground">{tier.price}</div>
-                  <div className="text-sm text-muted-foreground">{tier.duration} delivery</div>
+                <div className="flex items-start justify-between mb-1">
+                  <h3 className="text-xl font-bold text-foreground">{tier.name}</h3>
+                  {tier.popular && (
+                    <div className="inline-flex items-center gap-1 px-2.5 py-1 bg-primary/10 border border-primary/20 rounded-full text-xs font-semibold text-primary shrink-0 ml-2">
+                      <Star size={11} />
+                      Popular
+                    </div>
+                  )}
+                  {tier.tag && (
+                    <div className="inline-flex items-center px-2.5 py-1 bg-card border border-border rounded-full text-xs text-muted-foreground shrink-0 ml-2">
+                      {tier.tag}
+                    </div>
+                  )}
                 </div>
-                <ul className="space-y-3 mb-8">
+                <p className="text-sm text-muted-foreground mb-5">{tier.description}</p>
+                <div className="mb-6 pb-6 border-b border-border">
+                  <div className="text-3xl font-bold text-foreground">{tier.price}</div>
+                  <div className="text-sm text-muted-foreground mt-1">{tier.duration} delivery</div>
+                </div>
+                <ul className="space-y-2.5 mb-8 flex-grow">
                   {tier.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                    <li key={i} className="flex items-start gap-2.5">
+                      <CheckCircle2 size={15} className="text-primary mt-0.5 flex-shrink-0" />
                       <span className="text-sm text-muted-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 <a
                   href="/contact"
-                  className={`block text-center px-6 py-3 rounded-xl font-semibold transition-all duration-150 ${
+                  className={`block text-center px-6 py-3 rounded-xl font-semibold transition-all duration-150 text-sm mt-auto ${
                     tier.popular
                       ? 'bg-foreground text-background hover:opacity-90'
-                      : 'bg-card border border-border text-foreground hover:border-primary/50'
+                      : 'bg-transparent border border-border text-foreground hover:border-primary/40 hover:text-primary'
                   }`}
                 >
-                  Get Started
+                  Get a Quote
                 </a>
               </motion.div>
             ))}
