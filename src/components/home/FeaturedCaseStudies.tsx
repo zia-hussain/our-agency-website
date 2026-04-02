@@ -5,13 +5,6 @@ import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 import { getFeaturedProjects } from "../../data/homepageProjects/projects";
 
-const categoryColors: Record<string, string> = {
-  "Web Application": "bg-blue-500/15 text-blue-400 border-blue-500/20",
-  "Mobile Application": "bg-emerald-500/15 text-emerald-400 border-emerald-500/20",
-  "Enterprise Solution": "bg-amber-500/15 text-amber-400 border-amber-500/20",
-  "Startup MVP": "bg-rose-500/15 text-rose-400 border-rose-500/20",
-};
-
 const FeaturedCaseStudies: React.FC = () => {
   const { featuredCaseStudies } = getSiteData();
   const projects = getFeaturedProjects().slice(0, 3);
@@ -21,33 +14,36 @@ const FeaturedCaseStudies: React.FC = () => {
     <section id="portfolio" className="py-24 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="mb-14"
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14"
         >
-          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-4">
-            Case Studies
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground leading-[1.08] tracking-tight max-w-xl">
+          <div>
+            <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
+              Case Studies
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-foreground leading-[1.08] tracking-tight">
               Success Stories from<br />
               <span className="text-primary">Global Markets</span>
             </h2>
-            <Link
-              to={featuredCaseStudies.cta.link}
-              className="group inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150 shrink-0 pb-1"
-            >
-              {featuredCaseStudies.cta.text}
-              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-150" />
-            </Link>
           </div>
+          <Link
+            to={featuredCaseStudies.cta.link}
+            className="group inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150 shrink-0 pb-1"
+          >
+            {featuredCaseStudies.cta.text}
+            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-150" />
+          </Link>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-4">
-          {/* HERO — left large card */}
+        {/* Grid */}
+        <div className="grid lg:grid-cols-12 gap-5">
+
+          {/* HERO CARD — large left */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -56,31 +52,36 @@ const FeaturedCaseStudies: React.FC = () => {
             className="lg:col-span-7 group"
           >
             <Link to={`/portfolio/${hero.slug}`}>
-              <div className="relative rounded-2xl overflow-hidden bg-neutral-900" style={{ height: "480px" }}>
-                <img
-                  src={hero.image}
-                  alt={hero.title}
-                  className="absolute inset-0 w-full h-full object-cover object-top opacity-40 transition-opacity duration-500 group-hover:opacity-50"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-transparent" />
+              <div className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/25 transition-all duration-300 h-full flex flex-col">
+                {/* Image */}
+                <div className="relative overflow-hidden" style={{ height: "300px" }}>
+                  <img
+                    src={hero.image}
+                    alt={hero.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  {/* Subtle top vignette only */}
+                  <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-card to-transparent" />
+                </div>
 
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full border ${categoryColors[hero.category] ?? 'bg-white/10 text-white/70 border-white/15'}`}>
+                {/* Content */}
+                <div className="p-7 flex flex-col flex-grow">
+                  <div className="flex items-center gap-2.5 mb-4">
+                    <span className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
                       {hero.category}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-xs text-white/50">
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
                       <MapPin size={11} />
                       {hero.client.country}
                     </span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white leading-snug mb-3 group-hover:text-primary transition-colors duration-200 max-w-lg">
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-snug mb-3 group-hover:text-primary transition-colors duration-200">
                     {hero.title}
                   </h3>
-                  <p className="text-sm text-white/50 leading-relaxed max-w-md line-clamp-2 mb-5">
+                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-6 flex-grow">
                     {hero.description}
                   </p>
-                  <div className="flex items-center gap-2 text-sm font-medium text-white/40 group-hover:text-primary transition-colors duration-200">
+                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors duration-200">
                     View case study
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-150" />
                   </div>
@@ -90,7 +91,7 @@ const FeaturedCaseStudies: React.FC = () => {
           </motion.div>
 
           {/* RIGHT COLUMN — two stacked cards */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
+          <div className="lg:col-span-5 flex flex-col gap-5">
             {[second, third].map((project, index) => (
               <motion.div
                 key={project.id}
@@ -101,28 +102,32 @@ const FeaturedCaseStudies: React.FC = () => {
                 className="group flex-1"
               >
                 <Link to={`/portfolio/${project.slug}`}>
-                  <div className="relative rounded-2xl overflow-hidden bg-neutral-900 h-full" style={{ minHeight: "228px" }}>
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover object-top opacity-35 transition-opacity duration-500 group-hover:opacity-45"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/65 to-transparent" />
+                  <div className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/25 transition-all duration-300 h-full flex flex-col">
+                    {/* Image */}
+                    <div className="relative overflow-hidden" style={{ height: "160px" }}>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-card to-transparent" />
+                    </div>
 
-                    <div className="absolute inset-0 flex flex-col justify-end p-6">
+                    {/* Content */}
+                    <div className="p-5 flex flex-col flex-grow">
                       <div className="flex items-center gap-2 mb-3">
-                        <span className={`inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full border ${categoryColors[project.category] ?? 'bg-white/10 text-white/70 border-white/15'}`}>
+                        <span className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full">
                           {project.category}
                         </span>
-                        <span className="inline-flex items-center gap-1 text-xs text-white/45">
+                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
                           <MapPin size={10} />
                           {project.client.country}
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold text-white leading-snug mb-4 group-hover:text-primary transition-colors duration-200 line-clamp-2">
+                      <h3 className="text-base font-bold text-foreground leading-snug mb-4 flex-grow group-hover:text-primary transition-colors duration-200 line-clamp-2">
                         {project.title}
                       </h3>
-                      <div className="flex items-center gap-1.5 text-xs font-medium text-white/40 group-hover:text-primary transition-colors duration-200">
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors duration-200">
                         View case study
                         <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-150" />
                       </div>
@@ -132,6 +137,7 @@ const FeaturedCaseStudies: React.FC = () => {
               </motion.div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
