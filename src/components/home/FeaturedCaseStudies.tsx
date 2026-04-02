@@ -84,8 +84,7 @@ const FeaturedCaseStudies: React.FC = () => {
                   <img
                     src={hero.image}
                     alt={hero.title}
-                    className="w-full h-full object-contain rounded-2xl"
-                    style={{ maxHeight: "360px" }}
+                    className="w-full h-full object-cover rounded-2xl"
                   />
                 </div>
 
@@ -114,7 +113,7 @@ const FeaturedCaseStudies: React.FC = () => {
                 className="group flex-1"
               >
                 <Link to={`/portfolio/${project.slug}`}>
-                  <div className="bg-card/30 backdrop-blur-xl p-8 rounded-2xl border border-border h-full flex flex-col transition-all duration-150 hover:border-primary/30 hover:bg-card/50 hover:shadow-lg">
+                  <div className="bg-card/30 backdrop-blur-xl p-6 rounded-2xl border border-border h-full flex flex-col transition-all duration-150 hover:border-primary/30 hover:bg-card/50 hover:shadow-lg">
 
                     <div className="flex items-center gap-2 mb-4">
                       <span className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full">
@@ -126,23 +125,24 @@ const FeaturedCaseStudies: React.FC = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-150 line-clamp-2">
+                    {/* Image preview */}
+                    <div className="mb-5 overflow-hidden rounded-2xl border border-border bg-[#0E0A07] p-3">
+                      <div className="aspect-[16/10] w-full overflow-hidden rounded-[18px] bg-[#120d08] flex items-center justify-center">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="h-full w-full object-cover object-center"
+                        />
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-150 line-clamp-2 leading-tight">
                       {project.title}
                     </h3>
 
-                    <p className="text-primary font-medium mb-5 text-sm line-clamp-2">
+                    <p className="text-muted-foreground mb-5 text-sm leading-6 line-clamp-2">
                       {project.description}
                     </p>
-
-                    {/* Image container */}
-                    <div className="bg-[#0E0A07] w-full rounded-2xl flex-grow flex items-center justify-center overflow-hidden mb-5" style={{ minHeight: "180px" }}>
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-contain rounded-2xl"
-                        style={{ maxHeight: "220px" }}
-                      />
-                    </div>
 
                     <motion.div
                       whileHover={{ x: 4 }}
