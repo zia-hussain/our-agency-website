@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  User, Building2, Briefcase, Image, ChevronRight, ChevronLeft,
+  User, Image, ChevronRight, ChevronLeft,
   Star, Upload, Link, Video, CheckCircle2, AlertCircle, X,
   Sparkles, TrendingUp, MessageSquareQuote, Play, FileVideo
 } from 'lucide-react';
@@ -581,6 +582,11 @@ export default function ReviewPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <Helmet>
+        <title>Share Your Experience | Zumetrix Labs</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+      </Helmet>
       <div className="flex-1 flex flex-col items-center justify-start px-4 py-12 sm:py-20">
         <div className="w-full max-w-xl">
           <motion.div
