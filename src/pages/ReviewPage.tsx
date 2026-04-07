@@ -2,21 +2,21 @@ import { useState, useRef, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  User, Image, ChevronRight, ChevronLeft,
-  Star, Upload, Link, Video, CheckCircle2, AlertCircle, X,
-  Sparkles, TrendingUp, MessageSquareQuote, Play, FileVideo
+  User, Image, ChevronRight, ChevronLeft, Layers,
+  Star, Upload, Link2, Video, CheckCircle2, AlertCircle, X,
+  Sparkles, TrendingUp, Quote, Play, FileVideo, ArrowRight
 } from 'lucide-react';
 import { submitReviewToAirtable, ReviewFormData } from '../services/airtable';
 
 const TOTAL_STEPS = 6;
 
 const STEP_META = [
-  { icon: User, label: 'Your Info', short: 'Info' },
-  { icon: Briefcase, label: 'Project', short: 'Project' },
-  { icon: TrendingUp, label: 'Results', short: 'Results' },
-  { icon: MessageSquareQuote, label: 'Review', short: 'Review' },
-  { icon: Video, label: 'Media', short: 'Media' },
-  { icon: CheckCircle2, label: 'Confirm', short: 'Confirm' },
+  { icon: User,         label: 'Your Info',   desc: 'Who are you?' },
+  { icon: Layers,       label: 'Project',     desc: 'What we built' },
+  { icon: TrendingUp,   label: 'Results',     desc: 'The outcome' },
+  { icon: Quote,        label: 'Testimonial', desc: 'Your words' },
+  { icon: Video,        label: 'Media',       desc: 'Optional video' },
+  { icon: CheckCircle2, label: 'Confirm',     desc: 'Review & submit' },
 ];
 
 const INITIAL_DATA: ReviewFormData = {
@@ -36,504 +36,346 @@ const INITIAL_DATA: ReviewFormData = {
   videoFile: null,
 };
 
-function ProgressBar({ step }: { step: number }) {
-  const pct = Math.round(((step - 1) / (TOTAL_STEPS - 1)) * 100);
+const variants = {
+  enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 40 : -40 }),
+  center: { opacity: 1, x: 0 },
+  exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -40 : 40 }),
+};
+
+function Label({ text, required }: { text: string; required?: boolean }) {
   return (
-    <div className="w-full h-0.5 bg-border rounded-full overflow-hidden">
-      <motion.div
-        className="h-full bg-primary rounded-full"
-        initial={{ width: 0 }}
-        animate={{ width: `${pct}%` }}
-        transition={{ duration: 0.4, ease: 'easeInOut' }}
-      />
-    </div>
+    <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+      {text}{required && <span className="text-primary ml-1">*</span>}
+    </label>
   );
 }
 
-function StepIndicator({ step }: { step: number }) {
-  return (
-    <div className="flex items-center justify-center gap-1.5 mb-2">
-      {STEP_META.map((meta, i) => {
-        const idx = i + 1;
-        const done = idx < step;
-        const active = idx === step;
-        return (
-          <div key={i} className="flex items-center gap-1.5">
-            <div className={`
-              flex items-center justify-center rounded-full transition-all duration-300
-              ${active ? 'w-8 h-8 bg-primary text-black' : done ? 'w-6 h-6 bg-primary/20 text-primary' : 'w-6 h-6 bg-border text-muted-foreground'}
-            `}>
-              {done ? (
-                <CheckCircle2 className="w-3.5 h-3.5" />
-              ) : (
-                <span className={`font-semibold ${active ? 'text-xs' : 'text-[10px]'}`}>{idx}</span>
-              )}
-            </div>
-            {i < STEP_META.length - 1 && (
-              <div className={`w-4 h-px transition-colors duration-300 ${done ? 'bg-primary/40' : 'bg-border'}`} />
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function FieldWrapper({ label, hint, children, required }: { label: string; hint?: string; children: React.ReactNode; required?: boolean }) {
-  return (
-    <div className="flex flex-col gap-2">
-      <label className="text-sm font-medium text-foreground">
-        {label}
-        {required && <span className="text-primary ml-1">*</span>}
-      </label>
-      {children}
-      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
-    </div>
-  );
-}
-
-const inputCls = "w-full bg-card border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/10 transition-all duration-200 text-sm";
+const inputCls =
+  'w-full bg-[#0f0f0f] border border-[#222] rounded-2xl px-5 py-3.5 text-foreground text-sm placeholder:text-[#444] focus:outline-none focus:border-primary/50 focus:bg-[#111] transition-all duration-200';
 const textareaCls = `${inputCls} resize-none`;
+
+function Field({ label, required, hint, children }: { label: string; required?: boolean; hint?: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <Label text={label} required={required} />
+      {children}
+      {hint && <p className="mt-1.5 text-[11px] text-[#444] leading-relaxed">{hint}</p>}
+    </div>
+  );
+}
+
+function LogoDropzone({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const ref = useRef<HTMLInputElement>(null);
+  const [drag, setDrag] = useState(false);
+  const handle = (file: File) => {
+    const r = new FileReader();
+    r.onload = e => onChange(e.target?.result as string);
+    r.readAsDataURL(file);
+  };
+  return (
+    <div
+      onDragOver={e => { e.preventDefault(); setDrag(true); }}
+      onDragLeave={() => setDrag(false)}
+      onDrop={e => { e.preventDefault(); setDrag(false); const f = e.dataTransfer.files[0]; if (f) handle(f); }}
+      onClick={() => ref.current?.click()}
+      className={`flex flex-col items-center justify-center gap-2 h-28 border-2 border-dashed rounded-2xl cursor-pointer transition-all duration-200 ${drag ? 'border-primary bg-primary/5' : 'border-[#222] hover:border-[#333] bg-[#0a0a0a]'}`}
+    >
+      <Image className="w-5 h-5 text-[#444]" />
+      <span className="text-xs text-[#444]">Drop logo or <span className="text-primary">browse</span></span>
+      <input ref={ref} type="file" accept="image/*" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) handle(f); }} />
+    </div>
+  );
+}
+
+function VideoDropzone({ file, onFile }: { file: File | null | undefined; onFile: (f: File) => void }) {
+  const ref = useRef<HTMLInputElement>(null);
+  const [drag, setDrag] = useState(false);
+  const handle = (f: File) => { if (f.type.startsWith('video/')) onFile(f); };
+  return (
+    <div
+      onDragOver={e => { e.preventDefault(); setDrag(true); }}
+      onDragLeave={() => setDrag(false)}
+      onDrop={e => { e.preventDefault(); setDrag(false); const f = e.dataTransfer.files[0]; if (f) handle(f); }}
+      onClick={() => ref.current?.click()}
+      className={`flex flex-col items-center justify-center gap-3 h-40 border-2 border-dashed rounded-2xl cursor-pointer transition-all duration-200 ${drag ? 'border-primary bg-primary/5' : 'border-[#222] hover:border-[#333] bg-[#0a0a0a]'}`}
+    >
+      {file ? (
+        <>
+          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+            <FileVideo className="w-5 h-5 text-primary" />
+          </div>
+          <div className="text-center">
+            <p className="text-sm font-medium text-foreground">{file.name}</p>
+            <p className="text-xs text-[#444] mt-0.5">{(file.size / 1024 / 1024).toFixed(1)} MB · Click to change</p>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="w-12 h-12 rounded-full bg-primary/8 border border-primary/20 flex items-center justify-center">
+            <Play className="w-5 h-5 text-primary ml-0.5" />
+          </div>
+          <div className="text-center">
+            <p className="text-sm text-foreground font-medium">Drop your video here</p>
+            <p className="text-xs text-[#444] mt-0.5">or <span className="text-primary">browse files</span> · MP4, MOV, WebM</p>
+          </div>
+        </>
+      )}
+      <input ref={ref} type="file" accept="video/*" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) handle(f); }} />
+    </div>
+  );
+}
+
+function StarRating({ value, onChange }: { value: number; onChange: (n: number) => void }) {
+  const [hov, setHov] = useState(0);
+  const labels = ['Terrible', 'Poor', 'Okay', 'Great', 'Outstanding'];
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex gap-3">
+        {[1, 2, 3, 4, 5].map(i => (
+          <button
+            key={i}
+            type="button"
+            onMouseEnter={() => setHov(i)}
+            onMouseLeave={() => setHov(0)}
+            onClick={() => onChange(i)}
+            className="transition-all duration-150 hover:scale-110 active:scale-95"
+          >
+            <Star className={`w-9 h-9 transition-all duration-150 ${i <= (hov || value) ? 'fill-primary text-primary drop-shadow-[0_0_8px_rgba(196,138,100,0.5)]' : 'text-[#2a2a2a]'}`} />
+          </button>
+        ))}
+      </div>
+      <p className="text-xs text-primary font-medium">{labels[(hov || value) - 1]}</p>
+    </div>
+  );
+}
+
+function ReviewSummaryBlock({ title, rows }: { title: string; rows: { label: string; value: React.ReactNode }[] }) {
+  const filtered = rows.filter(r => r.value);
+  if (!filtered.length) return null;
+  return (
+    <div className="rounded-2xl border border-[#1a1a1a] overflow-hidden">
+      <div className="px-5 py-3 bg-[#0f0f0f] border-b border-[#1a1a1a]">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-[#444]">{title}</span>
+      </div>
+      <div className="divide-y divide-[#111]">
+        {filtered.map((r, i) => (
+          <div key={i} className="px-5 py-3.5">
+            <p className="text-[10px] uppercase tracking-widest text-[#3a3a3a] mb-1">{r.label}</p>
+            <div className="text-sm text-foreground leading-relaxed">{r.value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Step1({ data, update }: { data: ReviewFormData; update: (k: keyof ReviewFormData, v: string) => void }) {
   const [logoMode, setLogoMode] = useState<'url' | 'upload'>('url');
-
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h2 className="text-2xl font-bold text-foreground">Tell us about yourself</h2>
-        <p className="text-muted-foreground text-sm">Your information will appear with your testimonial.</p>
-      </div>
+    <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <FieldWrapper label="Your Full Name" required>
-          <input
-            type="text"
-            className={inputCls}
-            placeholder="e.g. John Smith"
-            value={data.clientName}
-            onChange={e => update('clientName', e.target.value)}
-          />
-        </FieldWrapper>
-        <FieldWrapper label="Your Role / Title" required>
-          <input
-            type="text"
-            className={inputCls}
-            placeholder="e.g. CEO, CTO, Founder"
-            value={data.role}
-            onChange={e => update('role', e.target.value)}
-          />
-        </FieldWrapper>
+        <Field label="Full Name" required>
+          <input type="text" className={inputCls} placeholder="John Smith" value={data.clientName} onChange={e => update('clientName', e.target.value)} />
+        </Field>
+        <Field label="Role / Title" required>
+          <input type="text" className={inputCls} placeholder="CEO, Founder, CTO" value={data.role} onChange={e => update('role', e.target.value)} />
+        </Field>
       </div>
-      <FieldWrapper label="Company Name" required>
-        <input
-          type="text"
-          className={inputCls}
-          placeholder="e.g. Acme Inc."
-          value={data.companyName}
-          onChange={e => update('companyName', e.target.value)}
-        />
-      </FieldWrapper>
-      <FieldWrapper label="Company Logo">
+      <Field label="Company Name" required>
+        <input type="text" className={inputCls} placeholder="Acme Inc." value={data.companyName} onChange={e => update('companyName', e.target.value)} />
+      </Field>
+      <Field label="Company Logo" hint="Optional — appears alongside your testimonial.">
         <div className="flex gap-2 mb-3">
           {(['url', 'upload'] as const).map(m => (
-            <button
-              key={m}
-              type="button"
-              onClick={() => setLogoMode(m)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 flex items-center gap-1.5 ${logoMode === m ? 'bg-primary text-black' : 'bg-card border border-border text-muted-foreground hover:border-primary/40'}`}
-            >
-              {m === 'url' ? <Link className="w-3 h-3" /> : <Upload className="w-3 h-3" />}
-              {m === 'url' ? 'Paste URL' : 'Upload file'}
+            <button key={m} type="button" onClick={() => setLogoMode(m)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 ${logoMode === m ? 'bg-primary text-black' : 'bg-[#111] border border-[#222] text-[#555] hover:border-[#333]'}`}>
+              {m === 'url' ? <Link2 className="w-3 h-3" /> : <Upload className="w-3 h-3" />}
+              {m === 'url' ? 'Paste URL' : 'Upload'}
             </button>
           ))}
         </div>
-        {logoMode === 'url' ? (
-          <input
-            type="url"
-            className={inputCls}
-            placeholder="https://yourcompany.com/logo.png"
-            value={data.companyLogoUrl}
-            onChange={e => update('companyLogoUrl', e.target.value)}
-          />
-        ) : (
-          <LogoUploader value={data.companyLogoUrl} onChange={v => update('companyLogoUrl', v)} />
-        )}
+        {logoMode === 'url'
+          ? <input type="url" className={inputCls} placeholder="https://yourcompany.com/logo.png" value={data.companyLogoUrl} onChange={e => update('companyLogoUrl', e.target.value)} />
+          : <LogoDropzone value={data.companyLogoUrl} onChange={v => update('companyLogoUrl', v)} />
+        }
         {data.companyLogoUrl && (
-          <div className="mt-3 flex items-center gap-3 p-3 bg-card border border-border/60 rounded-xl">
-            <img src={data.companyLogoUrl} alt="logo preview" className="h-8 w-auto object-contain grayscale opacity-70" onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
-            <span className="text-xs text-muted-foreground">Logo preview</span>
+          <div className="mt-3 inline-flex items-center gap-3 px-4 py-2.5 bg-[#0f0f0f] border border-[#1a1a1a] rounded-xl">
+            <img src={data.companyLogoUrl} alt="preview" className="h-6 w-auto object-contain grayscale opacity-60" onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+            <span className="text-[11px] text-[#444]">Logo preview</span>
           </div>
         )}
-      </FieldWrapper>
-    </div>
-  );
-}
-
-function LogoUploader({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  const ref = useRef<HTMLInputElement>(null);
-  const [dragging, setDragging] = useState(false);
-
-  const handleFile = (file: File) => {
-    const reader = new FileReader();
-    reader.onload = e => onChange(e.target?.result as string);
-    reader.readAsDataURL(file);
-  };
-
-  return (
-    <div
-      onDragOver={e => { e.preventDefault(); setDragging(true); }}
-      onDragLeave={() => setDragging(false)}
-      onDrop={e => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files[0]; if (f) handleFile(f); }}
-      onClick={() => ref.current?.click()}
-      className={`relative flex flex-col items-center justify-center gap-2 border-2 border-dashed rounded-xl p-6 cursor-pointer transition-all duration-200 ${dragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/40 bg-card'}`}
-    >
-      <Image className="w-6 h-6 text-muted-foreground" />
-      <span className="text-xs text-muted-foreground text-center">Drag & drop your logo or <span className="text-primary">browse</span></span>
-      <span className="text-[10px] text-muted-foreground/60">PNG, SVG, JPG up to 5MB</span>
-      <input ref={ref} type="file" accept="image/*" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f); }} />
+      </Field>
     </div>
   );
 }
 
 function Step2({ data, update }: { data: ReviewFormData; update: (k: keyof ReviewFormData, v: string) => void }) {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h2 className="text-2xl font-bold text-foreground">About the project</h2>
-        <p className="text-muted-foreground text-sm">Help us showcase the work we did together.</p>
-      </div>
-      <FieldWrapper label="Project Name" required>
-        <input
-          type="text"
-          className={inputCls}
-          placeholder="e.g. E-commerce SaaS Dashboard"
-          value={data.projectName}
-          onChange={e => update('projectName', e.target.value)}
-        />
-      </FieldWrapper>
-      <FieldWrapper label="What did we build for you?" required hint="Describe the solution, product, or system in a few sentences.">
-        <textarea
-          className={textareaCls}
-          rows={3}
-          placeholder="We built a custom SaaS platform with real-time analytics, user management, and automated billing..."
-          value={data.whatWeBuilt}
-          onChange={e => update('whatWeBuilt', e.target.value)}
-        />
-      </FieldWrapper>
-      <FieldWrapper label="What problem were you facing before working with us?" required hint="Be specific — this makes your story compelling.">
-        <textarea
-          className={textareaCls}
-          rows={3}
-          placeholder="Our operations were entirely manual. We spent 20+ hours a week on tasks that should have been automated..."
-          value={data.problemBefore}
-          onChange={e => update('problemBefore', e.target.value)}
-        />
-      </FieldWrapper>
+    <div className="space-y-6">
+      <Field label="Project Name" required>
+        <input type="text" className={inputCls} placeholder="e.g. E-commerce SaaS Dashboard" value={data.projectName} onChange={e => update('projectName', e.target.value)} />
+      </Field>
+      <Field label="What did we build for you?" required hint="Describe the solution in a few sentences.">
+        <textarea className={textareaCls} rows={3} placeholder="We built a custom SaaS platform with real-time analytics, user management, and automated billing..." value={data.whatWeBuilt} onChange={e => update('whatWeBuilt', e.target.value)} />
+      </Field>
+      <Field label="What problem were you facing before?" required hint="The more specific, the more powerful your story.">
+        <textarea className={textareaCls} rows={3} placeholder="Our operations were entirely manual. We spent 20+ hours a week on tasks that should have been automated..." value={data.problemBefore} onChange={e => update('problemBefore', e.target.value)} />
+      </Field>
     </div>
   );
 }
 
 function Step3({ data, update }: { data: ReviewFormData; update: (k: keyof ReviewFormData, v: string) => void }) {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h2 className="text-2xl font-bold text-foreground">The results</h2>
-        <p className="text-muted-foreground text-sm">What changed after we worked together? Numbers speak volumes.</p>
-      </div>
-      <FieldWrapper label="What changed after working with us?" required hint="Describe the transformation — time saved, revenue gained, problems solved.">
-        <textarea
-          className={textareaCls}
-          rows={3}
-          placeholder="After launch, our onboarding time dropped from 2 weeks to 2 days. The team can now focus on growth instead of operations..."
-          value={data.resultsAfter}
-          onChange={e => update('resultsAfter', e.target.value)}
-        />
-      </FieldWrapper>
-      <FieldWrapper label="Key metrics or numbers" hint="Optional but powerful. E.g. 40% faster, $10K saved monthly, 3x more users.">
-        <input
-          type="text"
-          className={inputCls}
-          placeholder="e.g. 60% reduction in manual work, 2x revenue in 3 months"
-          value={data.metrics}
-          onChange={e => update('metrics', e.target.value)}
-        />
-      </FieldWrapper>
-      <FieldWrapper label="What was the biggest single impact?" required>
-        <input
-          type="text"
-          className={inputCls}
-          placeholder="e.g. We finally launched the product we had been delaying for 2 years"
-          value={data.biggestImpact}
-          onChange={e => update('biggestImpact', e.target.value)}
-        />
-      </FieldWrapper>
-    </div>
-  );
-}
-
-function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
-  const [hovered, setHovered] = useState(0);
-  return (
-    <div className="flex gap-2">
-      {[1, 2, 3, 4, 5].map(i => (
-        <button
-          key={i}
-          type="button"
-          onMouseEnter={() => setHovered(i)}
-          onMouseLeave={() => setHovered(0)}
-          onClick={() => onChange(i)}
-          className="transition-transform duration-150 hover:scale-110"
-        >
-          <Star
-            className={`w-8 h-8 transition-colors duration-150 ${i <= (hovered || value) ? 'fill-primary text-primary' : 'text-border'}`}
-          />
-        </button>
-      ))}
+    <div className="space-y-6">
+      <Field label="What changed after working with us?" required hint="Describe the transformation — time saved, revenue gained, problems solved.">
+        <textarea className={textareaCls} rows={3} placeholder="After launch, our onboarding time dropped from 2 weeks to 2 days. The team can now focus on growth..." value={data.resultsAfter} onChange={e => update('resultsAfter', e.target.value)} />
+      </Field>
+      <Field label="Key metrics or numbers" hint="Optional but powerful. E.g. 40% faster, $10K saved monthly, 3x more users.">
+        <input type="text" className={inputCls} placeholder="60% reduction in manual work, 2x revenue in 3 months" value={data.metrics} onChange={e => update('metrics', e.target.value)} />
+      </Field>
+      <Field label="Biggest single impact?" required>
+        <input type="text" className={inputCls} placeholder="We finally launched the product we had been delaying for 2 years" value={data.biggestImpact} onChange={e => update('biggestImpact', e.target.value)} />
+      </Field>
     </div>
   );
 }
 
 function Step4({ data, update, updateNum }: { data: ReviewFormData; update: (k: keyof ReviewFormData, v: string) => void; updateNum: (k: keyof ReviewFormData, v: number) => void }) {
-  const wordCount = data.writtenTestimonial.trim().split(/\s+/).filter(Boolean).length;
+  const words = data.writtenTestimonial.trim().split(/\s+/).filter(Boolean).length;
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h2 className="text-2xl font-bold text-foreground">Your testimonial</h2>
-        <p className="text-muted-foreground text-sm">In your own words — what would you tell someone considering working with us?</p>
-      </div>
-      <FieldWrapper label="Your written testimonial" required hint="Write as if you are telling a friend. Authentic language works best.">
+    <div className="space-y-6">
+      <Field label="Your testimonial" required hint="Write as if you're telling a friend. Authentic language always wins.">
         <div className="relative">
-          <textarea
-            className={`${textareaCls} pr-16`}
-            rows={6}
-            placeholder="Working with Zumetrix Labs was one of the best decisions we made for our business. From day one, they understood our vision and turned it into a real product that our customers love..."
-            value={data.writtenTestimonial}
-            onChange={e => update('writtenTestimonial', e.target.value)}
-          />
-          <span className={`absolute bottom-3 right-3 text-[10px] ${wordCount >= 30 ? 'text-primary' : 'text-muted-foreground'}`}>
-            {wordCount} words
-          </span>
+          <textarea className={`${textareaCls} pb-8`} rows={7}
+            placeholder="Working with Zumetrix Labs was one of the best decisions we made. From day one, they understood our vision and turned it into something our customers love..."
+            value={data.writtenTestimonial} onChange={e => update('writtenTestimonial', e.target.value)} />
+          <div className="absolute bottom-3 right-4 flex items-center gap-2">
+            {words > 0 && words < 30 && <span className="text-[11px] text-amber-500/70">Aim for 30+ words</span>}
+            <span className={`text-[11px] font-medium ${words >= 30 ? 'text-primary' : 'text-[#333]'}`}>{words}w</span>
+          </div>
         </div>
-        {wordCount > 0 && wordCount < 30 && (
-          <p className="text-xs text-amber-500/80">Aim for at least 30 words — it makes a stronger impression.</p>
-        )}
-      </FieldWrapper>
-      <FieldWrapper label="Overall rating">
+      </Field>
+      <Field label="Overall rating">
         <StarRating value={data.rating} onChange={v => updateNum('rating', v)} />
-      </FieldWrapper>
-    </div>
-  );
-}
-
-function VideoUploader({ onFile, file }: { onFile: (f: File) => void; file: File | null | undefined }) {
-  const ref = useRef<HTMLInputElement>(null);
-  const [dragging, setDragging] = useState(false);
-
-  const handleFile = (f: File) => {
-    if (f.type.startsWith('video/')) onFile(f);
-  };
-
-  return (
-    <div
-      onDragOver={e => { e.preventDefault(); setDragging(true); }}
-      onDragLeave={() => setDragging(false)}
-      onDrop={e => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files[0]; if (f) handleFile(f); }}
-      onClick={() => ref.current?.click()}
-      className={`relative flex flex-col items-center justify-center gap-3 border-2 border-dashed rounded-xl p-8 cursor-pointer transition-all duration-200 ${dragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/40 bg-card'}`}
-    >
-      {file ? (
-        <>
-          <div className="flex items-center gap-2 text-primary">
-            <FileVideo className="w-6 h-6" />
-            <span className="text-sm font-medium">{file.name}</span>
-          </div>
-          <span className="text-xs text-muted-foreground">{(file.size / (1024 * 1024)).toFixed(1)} MB · Click to change</span>
-        </>
-      ) : (
-        <>
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-            <Play className="w-5 h-5 text-primary ml-0.5" />
-          </div>
-          <div className="text-center">
-            <p className="text-sm text-foreground font-medium">Drop your video here</p>
-            <p className="text-xs text-muted-foreground mt-1">or <span className="text-primary">browse files</span></p>
-          </div>
-          <span className="text-[10px] text-muted-foreground/60">MP4, MOV, WebM · Max 100MB</span>
-        </>
-      )}
-      <input ref={ref} type="file" accept="video/*" className="hidden" onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f); }} />
+      </Field>
     </div>
   );
 }
 
 function Step5({ data, update, updateFile }: { data: ReviewFormData; update: (k: keyof ReviewFormData, v: string) => void; updateFile: (f: File | null) => void }) {
   const [mode, setMode] = useState<'upload' | 'link'>(data.videoFile ? 'upload' : 'link');
-
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h2 className="text-2xl font-bold text-foreground">Video testimonial</h2>
-        <p className="text-muted-foreground text-sm">Optional — but video testimonials are incredibly powerful. Even a 60-second phone recording is perfect.</p>
-      </div>
+    <div className="space-y-6">
       <div className="flex gap-2">
         {(['upload', 'link'] as const).map(m => (
-          <button
-            key={m}
-            type="button"
-            onClick={() => setMode(m)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-2 ${mode === m ? 'bg-primary text-black' : 'bg-card border border-border text-muted-foreground hover:border-primary/40'}`}
-          >
-            {m === 'upload' ? <Upload className="w-4 h-4" /> : <Link className="w-4 h-4" />}
+          <button key={m} type="button" onClick={() => setMode(m)}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${mode === m ? 'bg-primary text-black' : 'bg-[#111] border border-[#222] text-[#555] hover:border-[#333]'}`}>
+            {m === 'upload' ? <Upload className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
             {m === 'upload' ? 'Upload video' : 'Paste link'}
           </button>
         ))}
       </div>
-      {mode === 'upload' ? (
-        <VideoUploader file={data.videoFile} onFile={f => { updateFile(f); update('videoUrl', ''); }} />
-      ) : (
-        <FieldWrapper label="Video URL" hint="Loom, YouTube, Google Drive, or any shareable link works.">
-          <input
-            type="url"
-            className={inputCls}
-            placeholder="https://loom.com/share/your-video"
-            value={data.videoUrl}
-            onChange={e => { update('videoUrl', e.target.value); updateFile(null); }}
-          />
-        </FieldWrapper>
-      )}
-      <div className="flex items-start gap-3 p-4 bg-primary/5 border border-primary/20 rounded-xl">
-        <Sparkles className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-        <p className="text-xs text-muted-foreground leading-relaxed">
-          Video testimonials are 5x more effective than written ones. A simple selfie video talking for 60 seconds about your experience makes a huge impact.
+      {mode === 'upload'
+        ? <VideoDropzone file={data.videoFile} onFile={f => { updateFile(f); update('videoUrl', ''); }} />
+        : <Field label="Video URL" hint="Loom, YouTube, Google Drive, or any shareable link.">
+            <input type="url" className={inputCls} placeholder="https://loom.com/share/..." value={data.videoUrl} onChange={e => { update('videoUrl', e.target.value); updateFile(null); }} />
+          </Field>
+      }
+      <div className="flex items-start gap-3 p-4 bg-primary/5 border border-primary/15 rounded-2xl">
+        <Sparkles className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+        <p className="text-xs text-[#666] leading-relaxed">
+          A 60-second phone selfie video is 5x more powerful than text alone. You don't need anything fancy — just speak naturally about your experience.
         </p>
       </div>
-    </div>
-  );
-}
-
-function ReviewRow({ label, value }: { label: string; value: string | number | React.ReactNode }) {
-  if (!value && value !== 0) return null;
-  return (
-    <div className="flex flex-col gap-1 py-3 border-b border-border/50 last:border-0">
-      <span className="text-xs text-muted-foreground uppercase tracking-wider">{label}</span>
-      <span className="text-sm text-foreground leading-relaxed">{value}</span>
     </div>
   );
 }
 
 function Step6({ data }: { data: ReviewFormData }) {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h2 className="text-2xl font-bold text-foreground">Review & submit</h2>
-        <p className="text-muted-foreground text-sm">Take a moment to review everything before we save it.</p>
-      </div>
-      <div className="rounded-2xl border border-border bg-card/60 overflow-hidden">
-        <div className="px-5 py-3 border-b border-border bg-card">
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Your Information</span>
-        </div>
-        <div className="px-5">
-          <ReviewRow label="Name" value={data.clientName} />
-          <ReviewRow label="Role" value={data.role} />
-          <ReviewRow label="Company" value={data.companyName} />
-          {data.companyLogoUrl && (
-            <ReviewRow label="Logo" value={
-              <img src={data.companyLogoUrl} alt="logo" className="h-6 w-auto object-contain grayscale opacity-70" onError={e => { (e.target as HTMLImageElement).style.display='none'; }} />
-            } />
-          )}
-        </div>
-      </div>
-      <div className="rounded-2xl border border-border bg-card/60 overflow-hidden">
-        <div className="px-5 py-3 border-b border-border bg-card">
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Project & Results</span>
-        </div>
-        <div className="px-5">
-          <ReviewRow label="Project" value={data.projectName} />
-          <ReviewRow label="What was built" value={data.whatWeBuilt} />
-          <ReviewRow label="Problem before" value={data.problemBefore} />
-          <ReviewRow label="Results after" value={data.resultsAfter} />
-          {data.metrics && <ReviewRow label="Metrics" value={data.metrics} />}
-          <ReviewRow label="Biggest impact" value={data.biggestImpact} />
-        </div>
-      </div>
-      <div className="rounded-2xl border border-border bg-card/60 overflow-hidden">
-        <div className="px-5 py-3 border-b border-border bg-card">
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Testimonial</span>
-        </div>
-        <div className="px-5">
-          <ReviewRow label="Rating" value={
-            <div className="flex gap-1 mt-1">
-              {[1,2,3,4,5].map(i => <Star key={i} className={`w-4 h-4 ${i <= data.rating ? 'fill-primary text-primary' : 'text-border'}`} />)}
-            </div>
-          } />
-          <ReviewRow label="Testimonial" value={data.writtenTestimonial} />
-          {(data.videoUrl || data.videoFile) && (
-            <ReviewRow label="Video" value={data.videoFile ? `${data.videoFile.name} (${(data.videoFile.size/1024/1024).toFixed(1)} MB)` : data.videoUrl} />
-          )}
-        </div>
-      </div>
+    <div className="space-y-4">
+      <ReviewSummaryBlock title="Your Information" rows={[
+        { label: 'Name', value: data.clientName },
+        { label: 'Role', value: data.role },
+        { label: 'Company', value: data.companyName },
+        { label: 'Logo', value: data.companyLogoUrl ? <img src={data.companyLogoUrl} alt="logo" className="h-5 w-auto object-contain grayscale opacity-60" onError={e => { (e.target as HTMLImageElement).style.display='none'; }} /> : null },
+      ]} />
+      <ReviewSummaryBlock title="Project & Results" rows={[
+        { label: 'Project', value: data.projectName },
+        { label: 'What was built', value: data.whatWeBuilt },
+        { label: 'Problem before', value: data.problemBefore },
+        { label: 'Results after', value: data.resultsAfter },
+        { label: 'Metrics', value: data.metrics },
+        { label: 'Biggest impact', value: data.biggestImpact },
+      ]} />
+      <ReviewSummaryBlock title="Testimonial" rows={[
+        { label: 'Rating', value: (
+          <div className="flex gap-1 mt-0.5">
+            {[1,2,3,4,5].map(i => <Star key={i} className={`w-4 h-4 ${i <= data.rating ? 'fill-primary text-primary' : 'text-[#2a2a2a]'}`} />)}
+          </div>
+        )},
+        { label: 'Your testimonial', value: data.writtenTestimonial },
+        { label: 'Video', value: data.videoFile ? `${data.videoFile.name}` : data.videoUrl || null },
+      ]} />
     </div>
   );
 }
 
 function SuccessScreen() {
   return (
-    <div className="flex flex-col items-center justify-center py-16 gap-6 text-center">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="flex flex-col items-center justify-center py-16 text-center gap-8"
+    >
       <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-        className="w-20 h-20 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 180, damping: 12, delay: 0.1 }}
+        className="relative"
       >
-        <CheckCircle2 className="w-10 h-10 text-primary" />
+        <div className="w-24 h-24 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+          <CheckCircle2 className="w-12 h-12 text-primary" />
+        </div>
+        <motion.div
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1.4, opacity: 0 }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeOut' }}
+          className="absolute inset-0 rounded-full border border-primary/30"
+        />
       </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="flex flex-col gap-3"
-      >
-        <h2 className="text-2xl font-bold text-foreground">Thank you so much!</h2>
-        <p className="text-muted-foreground text-sm max-w-sm leading-relaxed">
-          Your testimonial has been saved. We deeply appreciate you taking the time to share your experience. It means the world to us.
+      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+        <h2 className="text-3xl font-bold text-foreground mb-3">Thank you so much.</h2>
+        <p className="text-[#555] text-sm max-w-xs leading-relaxed mx-auto">
+          Your testimonial has been saved. We deeply appreciate you taking the time — it means everything to us.
         </p>
       </motion.div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-xl"
-      >
-        <Sparkles className="w-4 h-4 text-primary" />
-        <span className="text-xs text-muted-foreground">Your review will appear on our website after approval.</span>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+        className="flex items-center gap-2 px-5 py-3 bg-[#0f0f0f] border border-[#1a1a1a] rounded-2xl">
+        <Sparkles className="w-3.5 h-3.5 text-primary" />
+        <span className="text-xs text-[#444]">Your review will appear on our website after approval.</span>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
 export default function ReviewPage() {
   const [step, setStep] = useState(1);
+  const [dir, setDir] = useState(1);
   const [data, setData] = useState<ReviewFormData>(INITIAL_DATA);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  const update = useCallback((k: keyof ReviewFormData, v: string) => {
-    setData(prev => ({ ...prev, [k]: v }));
-  }, []);
-
-  const updateNum = useCallback((k: keyof ReviewFormData, v: number) => {
-    setData(prev => ({ ...prev, [k]: v }));
-  }, []);
-
-  const updateFile = useCallback((f: File | null) => {
-    setData(prev => ({ ...prev, videoFile: f }));
-  }, []);
+  const update = useCallback((k: keyof ReviewFormData, v: string) => setData(p => ({ ...p, [k]: v })), []);
+  const updateNum = useCallback((k: keyof ReviewFormData, v: number) => setData(p => ({ ...p, [k]: v })), []);
+  const updateFile = useCallback((f: File | null) => setData(p => ({ ...p, videoFile: f })), []);
 
   const validate = (): string => {
     if (step === 1) {
-      if (!data.clientName.trim()) return 'Please enter your name.';
-      if (!data.role.trim()) return 'Please enter your role.';
+      if (!data.clientName.trim()) return 'Please enter your full name.';
+      if (!data.role.trim()) return 'Please enter your role or title.';
       if (!data.companyName.trim()) return 'Please enter your company name.';
     }
     if (step === 2) {
@@ -547,7 +389,8 @@ export default function ReviewPage() {
     }
     if (step === 4) {
       if (!data.writtenTestimonial.trim()) return 'Please write your testimonial.';
-      if (data.writtenTestimonial.trim().split(/\s+/).filter(Boolean).length < 10) return 'Please write at least 10 words.';
+      const words = data.writtenTestimonial.trim().split(/\s+/).filter(Boolean).length;
+      if (words < 10) return 'Please write at least 10 words.';
     }
     return '';
   };
@@ -556,14 +399,14 @@ export default function ReviewPage() {
     const err = validate();
     if (err) { setError(err); return; }
     setError('');
+    setDir(1);
     setStep(s => Math.min(s + 1, TOTAL_STEPS));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const prev = () => {
     setError('');
+    setDir(-1);
     setStep(s => Math.max(s - 1, 1));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const submit = async () => {
@@ -571,162 +414,185 @@ export default function ReviewPage() {
     setError('');
     const result = await submitReviewToAirtable(data);
     setSubmitting(false);
-    if (result.success) {
-      setSubmitted(true);
-    } else {
-      setError(result.error || 'Something went wrong. Please try again.');
-    }
+    if (result.success) setSubmitted(true);
+    else setError(result.error || 'Something went wrong. Please try again.');
   };
 
+  const pct = Math.round(((step - 1) / (TOTAL_STEPS - 1)) * 100);
   const stepProps = { data, update };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <>
       <Helmet>
         <title>Share Your Experience | Zumetrix Labs</title>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="googlebot" content="noindex, nofollow" />
       </Helmet>
-      <div className="flex-1 flex flex-col items-center justify-start px-4 py-12 sm:py-20">
-        <div className="w-full max-w-xl">
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center gap-1 mb-10"
-          >
-            <div className="flex items-center gap-2 mb-3">
-              <img src="/logo/Logo Icon.png" alt="Zumetrix Labs" className="h-7 w-auto" onError={e => { (e.target as HTMLImageElement).style.display='none'; }} />
-              <span className="text-sm font-semibold text-foreground">Zumetrix Labs</span>
+
+      <div className="min-h-screen bg-[#080808] flex">
+        {/* LEFT PANEL — desktop only */}
+        <div className="hidden lg:flex lg:w-[420px] xl:w-[480px] shrink-0 flex-col justify-between p-12 border-r border-[#111] bg-[#060606]">
+          <div>
+            <div className="flex items-center gap-2.5 mb-14">
+              <img src="/logo/Logo Icon.png" alt="Zumetrix Labs" className="h-8 w-auto" onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+              <span className="text-sm font-semibold text-foreground tracking-tight">Zumetrix Labs</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground text-center leading-tight">
-              Share your <span className="text-primary">experience</span>
+            <h1 className="text-4xl font-bold text-foreground leading-tight mb-4">
+              Share your<br /><span className="text-primary">experience</span>
             </h1>
-            <p className="text-muted-foreground text-center text-sm max-w-sm mt-1">
-              Your story helps other founders make the right decision. Thank you for taking the time.
+            <p className="text-[#444] text-sm leading-relaxed mb-12 max-w-xs">
+              Your story helps other founders make the right decision. It takes about 5 minutes.
             </p>
-          </motion.div>
 
-          <AnimatePresence mode="wait">
-            {submitted ? (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <SuccessScreen />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="form"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="bg-card border border-border rounded-2xl overflow-hidden shadow-dark"
-              >
-                <div className="px-6 pt-6 pb-4 border-b border-border/60">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs text-muted-foreground font-medium">
-                      Step {step} of {TOTAL_STEPS} — {STEP_META[step - 1].label}
-                    </span>
-                    <span className="text-xs text-primary font-semibold">
-                      {Math.round(((step - 1) / (TOTAL_STEPS - 1)) * 100)}%
-                    </span>
+            {/* Step list */}
+            <div className="space-y-1">
+              {STEP_META.map((s, i) => {
+                const idx = i + 1;
+                const done = idx < step;
+                const active = idx === step;
+                const Icon = s.icon;
+                return (
+                  <div key={i} className={`flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300 ${active ? 'bg-[#0f0f0f] border border-[#1a1a1a]' : ''}`}>
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${done ? 'bg-primary/15 text-primary' : active ? 'bg-primary text-black' : 'bg-[#111] text-[#333]'}`}>
+                      {done ? <CheckCircle2 className="w-4 h-4" /> : <Icon className="w-4 h-4" />}
+                    </div>
+                    <div>
+                      <p className={`text-sm font-medium leading-none mb-0.5 transition-colors duration-300 ${active ? 'text-foreground' : done ? 'text-[#444]' : 'text-[#2a2a2a]'}`}>{s.label}</p>
+                      <p className={`text-[11px] transition-colors duration-300 ${active ? 'text-[#555]' : 'text-[#2a2a2a]'}`}>{s.desc}</p>
+                    </div>
+                    {done && <ArrowRight className="w-3.5 h-3.5 text-primary/40 ml-auto" />}
                   </div>
-                  <ProgressBar step={step} />
-                  <div className="mt-4">
-                    <StepIndicator step={step} />
-                  </div>
-                </div>
+                );
+              })}
+            </div>
+          </div>
 
-                <div className="px-6 py-8">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={step}
-                      initial={{ opacity: 0, x: 16 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -16 }}
-                      transition={{ duration: 0.2, ease: 'easeInOut' }}
-                    >
-                      {step === 1 && <Step1 {...stepProps} />}
-                      {step === 2 && <Step2 {...stepProps} />}
-                      {step === 3 && <Step3 {...stepProps} />}
-                      {step === 4 && <Step4 data={data} update={update} updateNum={updateNum} />}
-                      {step === 5 && <Step5 data={data} update={update} updateFile={updateFile} />}
-                      {step === 6 && <Step6 data={data} />}
-                    </motion.div>
-                  </AnimatePresence>
+          <p className="text-[11px] text-[#2a2a2a]">Zumetrix Labs · Private & Confidential</p>
+        </div>
 
-                  <AnimatePresence>
-                    {error && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="flex items-center gap-2 mt-5 p-3 bg-destructive/10 border border-destructive/30 rounded-xl"
-                      >
-                        <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0" />
-                        <p className="text-sm text-destructive">{error}</p>
-                        <button onClick={() => setError('')} className="ml-auto">
-                          <X className="w-3.5 h-3.5 text-destructive/60 hover:text-destructive" />
-                        </button>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+        {/* RIGHT PANEL — form */}
+        <div className="flex-1 flex flex-col min-h-screen">
+          {/* Top bar */}
+          <div className="px-6 sm:px-10 py-5 flex items-center gap-4 border-b border-[#0f0f0f]">
+            {/* Mobile logo */}
+            <div className="flex items-center gap-2 lg:hidden mr-auto">
+              <img src="/logo/Logo Icon.png" alt="" className="h-6 w-auto" onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+              <span className="text-xs font-semibold text-foreground">Zumetrix Labs</span>
+            </div>
+            <div className="flex items-center gap-3 ml-auto lg:ml-0 lg:w-full">
+              <span className="text-xs text-[#333] whitespace-nowrap">{step} / {TOTAL_STEPS}</span>
+              <div className="flex-1 h-px bg-[#111] rounded-full overflow-hidden min-w-[80px] sm:min-w-[160px]">
+                <motion.div
+                  className="h-full bg-primary rounded-full"
+                  initial={false}
+                  animate={{ width: `${pct}%` }}
+                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                />
+              </div>
+              <span className="text-xs font-semibold text-primary whitespace-nowrap">{pct}%</span>
+            </div>
+          </div>
 
-                <div className="px-6 pb-6 flex items-center justify-between gap-3 border-t border-border/60 pt-4">
-                  {step > 1 ? (
-                    <button
-                      type="button"
-                      onClick={prev}
-                      className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all duration-200"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                      Back
-                    </button>
-                  ) : (
-                    <div />
-                  )}
+          {/* Form content */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="max-w-xl mx-auto px-6 sm:px-10 py-10 sm:py-14">
+              <AnimatePresence mode="wait" custom={dir}>
+                {submitted ? (
+                  <SuccessScreen key="success" />
+                ) : (
+                  <motion.div
+                    key={step}
+                    custom={dir}
+                    variants={variants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                  >
+                    {/* Step header */}
+                    <div className="mb-8">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-7 h-7 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                          {(() => { const Icon = STEP_META[step - 1].icon; return <Icon className="w-3.5 h-3.5 text-primary" />; })()}
+                        </div>
+                        <span className="text-xs font-semibold uppercase tracking-widest text-primary">{STEP_META[step - 1].label}</span>
+                      </div>
+                      <h2 className="text-2xl sm:text-3xl font-bold text-foreground leading-snug">
+                        {step === 1 && <>Who are <span className="text-primary">you?</span></>}
+                        {step === 2 && <>About the <span className="text-primary">project</span></>}
+                        {step === 3 && <>The <span className="text-primary">results</span></>}
+                        {step === 4 && <>Your <span className="text-primary">testimonial</span></>}
+                        {step === 5 && <>Video <span className="text-primary">testimonial</span></>}
+                        {step === 6 && <>Review & <span className="text-primary">submit</span></>}
+                      </h2>
+                      <p className="text-sm text-[#444] mt-1.5">
+                        {step === 1 && 'Your name and company will appear with your testimonial.'}
+                        {step === 2 && 'Help us tell the story of what we built together.'}
+                        {step === 3 && "Numbers and outcomes make your story 10x more compelling."}
+                        {step === 4 && 'Write as if you are telling a trusted friend. Be real.'}
+                        {step === 5 && 'Optional — but incredibly powerful. Even a phone video works.'}
+                        {step === 6 && 'Take a final look before we save your review.'}
+                      </p>
+                    </div>
 
-                  {step < TOTAL_STEPS ? (
-                    <button
-                      type="button"
-                      onClick={next}
-                      className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-black text-sm font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all duration-200 shadow-glow"
-                    >
-                      Continue
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={submit}
-                      disabled={submitting}
-                      className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-black text-sm font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all duration-200 shadow-glow disabled:opacity-60 disabled:cursor-not-allowed"
-                    >
-                      {submitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          <CheckCircle2 className="w-4 h-4" />
-                          Submit Review
-                        </>
+                    {/* Step body */}
+                    {step === 1 && <Step1 {...stepProps} />}
+                    {step === 2 && <Step2 {...stepProps} />}
+                    {step === 3 && <Step3 {...stepProps} />}
+                    {step === 4 && <Step4 data={data} update={update} updateNum={updateNum} />}
+                    {step === 5 && <Step5 data={data} update={update} updateFile={updateFile} />}
+                    {step === 6 && <Step6 data={data} />}
+
+                    {/* Error */}
+                    <AnimatePresence>
+                      {error && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-3 mt-6 p-4 bg-red-500/8 border border-red-500/20 rounded-2xl"
+                        >
+                          <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+                          <p className="text-sm text-red-400 flex-1">{error}</p>
+                          <button onClick={() => setError('')}><X className="w-4 h-4 text-red-400/50 hover:text-red-400" /></button>
+                        </motion.div>
                       )}
-                    </button>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                    </AnimatePresence>
 
-          <p className="text-center text-xs text-muted-foreground/50 mt-6">
-            Your review is private until approved by our team.
-          </p>
+                    {/* Navigation */}
+                    <div className="flex items-center justify-between mt-10 pt-8 border-t border-[#0f0f0f]">
+                      {step > 1 ? (
+                        <button type="button" onClick={prev}
+                          className="flex items-center gap-2 px-5 py-3 rounded-2xl border border-[#1a1a1a] text-sm text-[#444] hover:text-foreground hover:border-[#2a2a2a] transition-all duration-200">
+                          <ChevronLeft className="w-4 h-4" />
+                          Back
+                        </button>
+                      ) : <div />}
+
+                      {step < TOTAL_STEPS ? (
+                        <button type="button" onClick={next}
+                          className="flex items-center gap-2 px-7 py-3 rounded-2xl bg-primary text-black text-sm font-semibold hover:bg-primary/90 active:scale-[0.97] transition-all duration-200 shadow-[0_0_24px_rgba(196,138,100,0.25)]">
+                          Continue
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
+                      ) : (
+                        <button type="button" onClick={submit} disabled={submitting}
+                          className="flex items-center gap-2 px-7 py-3 rounded-2xl bg-primary text-black text-sm font-semibold hover:bg-primary/90 active:scale-[0.97] transition-all duration-200 shadow-[0_0_24px_rgba(196,138,100,0.25)] disabled:opacity-50 disabled:cursor-not-allowed">
+                          {submitting ? (
+                            <><div className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin" />Submitting...</>
+                          ) : (
+                            <><CheckCircle2 className="w-4 h-4" />Submit Review</>
+                          )}
+                        </button>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
