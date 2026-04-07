@@ -23,6 +23,7 @@ const ServiceDetailPage = lazy(() => import("./pages/ServiceDetailPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const AllProjectsPage = lazy(() => import("./pages/AllProjectsPage"));
+const ReviewPage = lazy(() => import("./pages/ReviewPage"));
 const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
 const ProtectedRoute = lazy(() => import("./components/admin/ProtectedRoute"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
@@ -48,6 +49,7 @@ const LoadingFallback = () => (
 function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
+  const isReviewRoute = location.pathname === '/review';
 
   useEffect(() => {
     // Smooth scrolling for the entire page
@@ -61,7 +63,7 @@ function App() {
   return (
     <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden">
       <ScrollToTop />
-      {!isAdminRoute && <Navigation />}
+      {!isAdminRoute && !isReviewRoute && <Navigation />}
       <Suspense fallback={<LoadingFallback />}>
         <AnimatePresence mode="wait">
           <Routes>
@@ -80,6 +82,7 @@ function App() {
           <Route path="/articles/:slug" element={<ArticleDetailPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          <Route path="/review" element={<ReviewPage />} />
           
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AuthForm />} />
@@ -113,10 +116,10 @@ function App() {
         </Routes>
       </AnimatePresence>
       </Suspense>
-      {!isAdminRoute && <Footer />}
-      {!isAdminRoute && <BackToTop />}
+      {!isAdminRoute && !isReviewRoute && <Footer />}
+      {!isAdminRoute && !isReviewRoute && <BackToTop />}
       {/* {!isAdminRoute && <ChatWidget />} */}
-      {!isAdminRoute && <StickyCTABar />}
+      {!isAdminRoute && !isReviewRoute && <StickyCTABar />}
     </div>
   );
 }
