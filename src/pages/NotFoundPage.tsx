@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useAnimationFrame } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, Home, Search } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@!%&';
 
 function GlitchText({ text, className }: { text: string; className?: string }) {
-  const [displayed, setDisplayed] = useState(text);
+  const [displayed, setDisplayed] = useState('');
   const iterRef = useRef(0);
   const frameRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -23,35 +23,25 @@ function GlitchText({ text, className }: { text: string; className?: string }) {
           })
           .join('')
       );
-      iterRef.current += 0.5;
+      iterRef.current += 0.6;
       if (iterRef.current >= text.length) {
         setDisplayed(text);
         if (frameRef.current) clearInterval(frameRef.current);
       }
-    }, 30);
+    }, 28);
     return () => { if (frameRef.current) clearInterval(frameRef.current); };
   }, [text]);
 
   return <span className={className}>{displayed}</span>;
 }
 
-function FloatingOrb({ x, y, size, delay }: { x: string; y: string; size: number; delay: number }) {
-  return (
-    <motion.div
-      className="absolute rounded-full pointer-events-none"
-      style={{ left: x, top: y, width: size, height: size, background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)' }}
-      animate={{ y: [0, -20, 0], opacity: [0.3, 0.6, 0.3] }}
-      transition={{ duration: 6, delay, repeat: Infinity, ease: 'easeInOut' }}
-    />
-  );
-}
-
 const LINKS = [
-  { label: 'Home',      href: '/' },
-  { label: 'Work',      href: '/portfolio' },
-  { label: 'Services',  href: '/services' },
-  { label: 'About',     href: '/about' },
-  { label: 'Contact',   href: '/contact' },
+  { label: 'Home',     href: '/' },
+  { label: 'Our Work', href: '/portfolio' },
+  { label: 'Services', href: '/services' },
+  { label: 'About',    href: '/about' },
+  { label: 'Contact',  href: '/contact' },
+  { label: 'Blog',     href: '/articles' },
 ];
 
 export default function NotFoundPage() {
@@ -59,59 +49,61 @@ export default function NotFoundPage() {
   const path = location.pathname;
 
   return (
-    <div className="relative min-h-screen bg-[#070707] overflow-hidden flex flex-col">
-      {/* Ambient orbs */}
-      <FloatingOrb x="10%" y="20%" size={400} delay={0} />
-      <FloatingOrb x="70%" y="60%" size={300} delay={2} />
-      <FloatingOrb x="40%" y="80%" size={500} delay={1} />
+    <div className="relative min-h-screen bg-[#0C0C0C] overflow-hidden flex flex-col">
 
-      {/* Grid overlay */}
+      {/* Subtle beige radial glow top-left */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
+        className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(196,138,100,0.05) 0%, transparent 70%)' }}
       />
-
-      {/* Scanline */}
-      <motion.div
-        className="absolute left-0 right-0 h-px bg-white/5 pointer-events-none"
-        animate={{ top: ['0%', '100%'] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+      {/* Subtle beige radial glow bottom-right */}
+      <div
+        className="absolute -bottom-60 -right-40 w-[700px] h-[700px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(196,138,100,0.03) 0%, transparent 70%)' }}
       />
 
       {/* Nav */}
-      <div className="relative z-10 flex items-center justify-between px-6 sm:px-12 py-6">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="relative z-10 flex items-center justify-between px-6 sm:px-12 py-6"
+      >
         <Link to="/" className="flex items-center gap-2.5 group">
           <img
             src="/logo/Logo Icon.png"
             alt="Zumetrix Labs"
-            className="h-7 w-auto opacity-50 group-hover:opacity-80 transition-opacity duration-300"
+            className="h-7 w-auto"
+            style={{ filter: 'brightness(0.5) sepia(1) saturate(2) hue-rotate(-20deg)' }}
             onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
           />
-          <span className="text-white/30 text-sm font-medium group-hover:text-white/60 transition-colors duration-300">Zumetrix Labs</span>
+          <span className="text-[#EDEDED]/30 text-sm font-medium group-hover:text-[#EDEDED]/60 transition-colors duration-300">
+            Zumetrix Labs
+          </span>
         </Link>
-        <Link to="/"
-          className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-full text-white/30 hover:text-white/70 hover:border-white/20 text-sm transition-all duration-200">
-          <Home className="w-3.5 h-3.5" />
-          <span className="hidden sm:block">Go home</span>
+        <Link
+          to="/"
+          className="flex items-center gap-2 px-5 py-2.5 border border-[#1E1E1E] rounded-full text-[#EDEDED]/30 hover:text-[#EDEDED]/70 hover:border-[#C48A64]/30 text-sm transition-all duration-300"
+        >
+          Back to site
+          <ArrowRight className="w-3.5 h-3.5" />
         </Link>
-      </div>
+      </motion.div>
 
       {/* Main content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 text-center">
-        {/* 404 */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 text-center pb-10">
+
+        {/* 404 number */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.88 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className="relative mb-6 select-none"
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          className="relative mb-2 select-none"
         >
           <div
-            className="text-[160px] sm:text-[220px] lg:text-[280px] font-black leading-none tracking-tighter"
+            className="text-[140px] sm:text-[200px] lg:text-[240px] font-black leading-none tracking-tighter"
             style={{
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%)',
+              background: 'linear-gradient(180deg, rgba(196,138,100,0.22) 0%, rgba(196,138,100,0.04) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -121,75 +113,105 @@ export default function NotFoundPage() {
           </div>
           {/* Glitch layer */}
           <motion.div
-            className="absolute inset-0 text-[160px] sm:text-[220px] lg:text-[280px] font-black leading-none tracking-tighter text-white/5"
-            animate={{ x: [0, -3, 3, 0], opacity: [0, 1, 0] }}
-            transition={{ duration: 0.15, repeat: Infinity, repeatDelay: 4 }}
+            className="absolute inset-0 text-[140px] sm:text-[200px] lg:text-[240px] font-black leading-none tracking-tighter"
+            style={{
+              background: 'linear-gradient(180deg, rgba(196,138,100,0.10) 0%, transparent 60%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+            animate={{ x: [0, -2, 2, 0], opacity: [0, 0.8, 0] }}
+            transition={{ duration: 0.12, repeat: Infinity, repeatDelay: 5 }}
           >
             404
           </motion.div>
         </motion.div>
 
-        {/* Headline */}
+        {/* Divider */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="max-w-xl"
-        >
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-4">
-            <GlitchText text="This page doesn't exist." />
-          </h1>
-          <p className="text-white/30 text-base sm:text-lg font-light leading-relaxed mb-3">
-            Whatever you were looking for — it's not here. Maybe it moved, maybe it never existed, maybe the internet ate it.
-          </p>
-          {path && path !== '/' && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-white/15 text-sm font-mono mt-2"
-            >
-              <span className="text-white/20">tried:</span> {path}
-            </motion.p>
-          )}
-        </motion.div>
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          className="w-16 h-px bg-[#C48A64]/30 mb-10"
+        />
 
-        {/* CTA buttons */}
+        {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center gap-3 mt-10"
+          transition={{ delay: 0.25, duration: 0.5 }}
+          className="max-w-lg mb-4"
+        >
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#EDEDED] leading-tight tracking-tight">
+            <GlitchText text="This page got lost" />
+            <br />
+            <span className="text-[#C48A64]">
+              <GlitchText text="somewhere in the build." />
+            </span>
+          </h1>
+        </motion.div>
+
+        {/* Sub copy */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.4 }}
+          className="text-[#EDEDED]/35 text-base sm:text-lg font-light max-w-md leading-relaxed mb-3"
+        >
+          The URL you hit doesn't match anything we've built — yet. Maybe it moved, maybe it never existed, maybe you were just exploring.
+        </motion.p>
+
+        {/* Path display */}
+        {path && path !== '/' && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.55 }}
+            className="text-[#EDEDED]/15 text-xs font-mono mb-10"
+          >
+            <span className="text-[#C48A64]/30">GET</span> {path}{' '}
+            <span className="text-[#C48A64]/30 ml-2">404</span>
+          </motion.p>
+        )}
+
+        {(!path || path === '/') && <div className="mb-10" />}
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.4 }}
+          className="flex flex-col sm:flex-row items-center gap-3 mb-16"
         >
           <Link
             to="/"
-            className="group flex items-center gap-3 px-8 py-4 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 active:scale-[0.97] transition-all duration-200 shadow-[0_0_40px_rgba(255,255,255,0.08)]"
+            className="group flex items-center gap-3 px-8 py-4 bg-[#C48A64] text-black text-sm font-semibold rounded-full hover:bg-[#DCA973] active:scale-[0.97] transition-all duration-200 shadow-[0_0_32px_rgba(196,138,100,0.2)]"
           >
-            <Home className="w-4 h-4" />
             Take me home
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
           <Link
-            to="/portfolio"
-            className="flex items-center gap-2 px-8 py-4 border border-white/10 text-white/50 text-sm font-medium rounded-full hover:border-white/20 hover:text-white/80 active:scale-[0.97] transition-all duration-200"
+            to="/contact"
+            className="flex items-center gap-2 px-8 py-4 border border-[#1E1E1E] text-[#EDEDED]/40 text-sm font-medium rounded-full hover:border-[#C48A64]/25 hover:text-[#EDEDED]/70 active:scale-[0.97] transition-all duration-300"
           >
-            Browse our work
+            Talk to us
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </motion.div>
 
-        {/* Quick nav */}
+        {/* Quick nav links */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.55 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-2"
+          transition={{ delay: 0.7 }}
+          className="flex flex-wrap items-center justify-center gap-2"
         >
-          <span className="text-white/15 text-xs mr-1">or jump to</span>
+          <span className="text-[#EDEDED]/15 text-xs mr-1">Or find what you need —</span>
           {LINKS.map((link, i) => (
             <Link
               key={i}
               to={link.href}
-              className="px-3 py-1.5 rounded-full border border-white/6 text-white/25 text-xs hover:border-white/15 hover:text-white/50 transition-all duration-200"
+              className="px-3.5 py-1.5 rounded-full border border-[#1E1E1E] text-[#EDEDED]/25 text-xs hover:border-[#C48A64]/25 hover:text-[#C48A64]/70 transition-all duration-200"
             >
               {link.label}
             </Link>
@@ -201,11 +223,11 @@ export default function NotFoundPage() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="relative z-10 text-center pb-8"
+        transition={{ delay: 0.9 }}
+        className="relative z-10 flex items-center justify-center pb-7"
       >
-        <p className="text-white/10 text-xs font-mono">
-          ERR_ROUTE_NOT_FOUND · Zumetrix Labs · {new Date().getFullYear()}
+        <p className="text-[#EDEDED]/8 text-[11px] font-mono tracking-wider">
+          ZUMETRIX LABS · ERR_ROUTE_NOT_FOUND · {new Date().getFullYear()}
         </p>
       </motion.div>
     </div>
