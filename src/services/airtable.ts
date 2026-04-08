@@ -4,45 +4,61 @@ const AIRTABLE_TABLE_NAME = import.meta.env.VITE_AIRTABLE_TABLE_NAME || 'Client 
 
 export interface ReviewFormData {
   clientName: string;
+  title: string;
   companyName: string;
-  role: string;
-  companyLogoUrl: string;
+  companyLogo?: { url: string }[];  // Attachment format
+  country: string;
   projectName: string;
-  whatWeBuilt: string;
-  problemBefore: string;
-  resultsAfter: string;
-  metrics: string;
-  biggestImpact: string;
+  projectDescription: string;
+  projectType: string;
+  servicesReceived: string;
+  projectStartDate: string;  // Format: YYYY-MM-DD
+  projectEndDate: string;    // Format: YYYY-MM-DD
+  problemSolved: string;
+  outcomes: string;
+  keyMetricsOrWins: string;
   writtenTestimonial: string;
-  rating: number;
-  videoUrl: string;
-  videoFile?: File | null;
+  starRating: number;
+  videoTestimonialUrl: string;
+  videoTestimonialUpload?: { url: string }[];  // Attachment format
 }
 
 export async function submitReviewToAirtable(data: ReviewFormData): Promise<{ success: boolean; error?: string }> {
-  if (!AIRTABLE_API_KEY || AIRTABLE_API_KEY === 'your_airtable_personal_access_token_here') {
+  if (!AIRTABLE_API_KEY) {
     console.warn('Airtable API key not configured. Submission logged to console only.');
     console.log('Review submission data:', data);
     return { success: true };
   }
 
-  const fields: Record<string, string | number> = {
+  const fields: Record<string, any> = {
     'Client Name': data.clientName,
+    'Title': data.title,
     'Company Name': data.companyName,
-    'Role / Title': data.role,
-    'Company Logo URL': data.companyLogoUrl,
+    'Country': data.country,
     'Project Name': data.projectName,
-    'What We Built': data.whatWeBuilt,
-    'Problem Before': data.problemBefore,
-    'Results After': data.resultsAfter,
-    'Metrics': data.metrics,
-    'Biggest Impact': data.biggestImpact,
+    'Project Description': data.projectDescription,
+    'Project Type': data.projectType,
+    'Services Received': data.servicesReceived,
+    'Project Start Date': data.projectStartDate,
+    'Project End Date': data.projectEndDate,
+    'Problem Solved': data.problemSolved,
+    'Outcomes': data.outcomes,
+    'Key Metrics or Wins': data.keyMetricsOrWins,
     'Written Testimonial': data.writtenTestimonial,
-    'Rating': data.rating,
-    'Video URL': data.videoUrl,
-    'Status': 'Pending Review',
-    'Submitted At': new Date().toISOString(),
+    'Star Rating': data.starRating,
+    'Video Testimonial URL': data.videoTestimonialUrl,
+    'Approved/Published': false,  // Checkbox: starts as unchecked
+    'Submission Date': new Date().toISOString().split('T')[0],  // Date only: YYYY-MM-DD
   };
+
+  // Add attachments only if provided
+  if (data.companyLogo && data.companyLogo.length > 0) {
+    fields['Company Logo'] = data.companyLogo;
+  }
+  
+  if (data.videoTestimonialUpload && data.videoTestimonialUpload.length > 0) {
+    fields['Video Testimonial Upload'] = data.videoTestimonialUpload;
+  }
 
   try {
     const encodedTable = encodeURIComponent(AIRTABLE_TABLE_NAME);
