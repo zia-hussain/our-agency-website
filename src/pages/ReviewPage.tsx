@@ -345,15 +345,16 @@ export default function ReviewPage() {
 
       <div className="min-h-screen bg-[#070707] flex flex-col">
         {/* Minimal top bar */}
-        <div className="flex items-center justify-between px-6 sm:px-10 py-5">
+        <div className='max-w-7xl w-full mx-auto py-1 px-4 sm:px-6 lg:px-8'>
+
+        <div className="flex items-center justify-between px-6 sm:px-10 h-20 lg:h-24 ">
           <div className="flex items-center gap-2.5">
             <img
-              src="/logo/Logo Icon.png"
+              src="/logo/Logo horizontal.png"
               alt="Zumetrix Labs"
-              className="h-6 w-auto opacity-60"
+              className="h-40 w-40 lg:h-52 lg:w-52 opacity-80 select-none"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
-            <span className="text-white/30 text-sm font-medium tracking-tight">Zumetrix Labs</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex gap-1">
@@ -374,6 +375,9 @@ export default function ReviewPage() {
             <span className="text-white/20 text-xs hidden sm:block">{pct}%</span>
           </div>
         </div>
+
+        </div>
+
 
         {/* Thin progress line */}
         <div className="relative h-px bg-white/4 mx-6 sm:mx-10 rounded-full overflow-hidden">

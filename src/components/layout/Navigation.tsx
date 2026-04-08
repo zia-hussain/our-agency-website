@@ -82,7 +82,7 @@ const Navigation: React.FC = () => {
               className="flex items-center space-x-3"
             >
               <img
-                className="h-40 w-40 lg:h-52 lg:w-52"
+                className="h-40 w-40 lg:h-52 lg:w-52 select-none"
                 src="/logo/Logo horizontal.png"
                 alt={SITE_CONFIG.company.name}
               />

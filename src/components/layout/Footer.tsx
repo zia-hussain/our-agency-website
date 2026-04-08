@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
                 className="flex items-center space-x-3"
               >
                 <img
-                  className="h-60 w-60"
+                  className="h-60 w-60 select-none"
                   src="/logo/Logo horizontal.png"
                   alt={SITE_CONFIG.company.name}
                 />
