@@ -36,6 +36,7 @@ const TestimonialForm = lazy(() => import("./pages/admin/testimonials/Testimonia
 const SiteSettings = lazy(() => import("./pages/admin/SiteSettings"));
 const AuthForm = lazy(() => import("./components/admin/AuthForm"));
 const HomePageContent = lazy(() => import("./pages/admin/HomePageContent"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -50,6 +51,15 @@ function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isReviewRoute = location.pathname === '/review';
+  const isNotFoundRoute = !([
+    '/', '/about', '/services', '/services/mvp-development', '/services/ai-automation',
+    '/services/mobile-app-development', '/portfolio', '/portfolio/all', '/contact',
+    '/articles', '/privacy-policy', '/terms-of-service', '/review',
+  ].includes(location.pathname) ||
+    location.pathname.startsWith('/services/') ||
+    location.pathname.startsWith('/portfolio/') ||
+    location.pathname.startsWith('/articles/') ||
+    location.pathname.startsWith('/admin'));
 
   useEffect(() => {
     // Smooth scrolling for the entire page
@@ -63,7 +73,7 @@ function App() {
   return (
     <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden">
       <ScrollToTop />
-      {!isAdminRoute && !isReviewRoute && <Navigation />}
+      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Navigation />}
       <Suspense fallback={<LoadingFallback />}>
         <AnimatePresence mode="wait">
           <Routes>
@@ -113,13 +123,16 @@ function App() {
             <Route path="founders" element={<div className="p-8 text-center text-muted-foreground">Founder Management - Coming Soon</div>} />
             <Route path="settings" element={<SiteSettings />} />
           </Route>
+
+          {/* 404 catch-all */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AnimatePresence>
       </Suspense>
-      {!isAdminRoute && !isReviewRoute && <Footer />}
-      {!isAdminRoute && !isReviewRoute && <BackToTop />}
+      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Footer />}
+      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <BackToTop />}
       {/* {!isAdminRoute && <ChatWidget />} */}
-      {!isAdminRoute && !isReviewRoute && <StickyCTABar />}
+      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <StickyCTABar />}
     </div>
   );
 }
