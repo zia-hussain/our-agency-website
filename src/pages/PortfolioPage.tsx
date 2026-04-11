@@ -84,7 +84,7 @@ const PortfolioPage: React.FC = () => {
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-              Portfolio of
+              Portfolio of 
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Excellence
               </span>
