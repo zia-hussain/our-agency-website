@@ -6,6 +6,7 @@ import {
   Sparkles, Play, FileVideo, ArrowRight, ChevronLeft
 } from 'lucide-react';
 import { submitReviewToAirtable, ReviewFormData } from '../services/airtable';
+import { Link } from 'react-router-dom';
 
 const PROJECT_TYPES = ['SaaS Product', 'Mobile App', 'Web App', 'AI / Automation', 'MVP', 'E-commerce', 'Custom Software', 'Other'];
 const SERVICES_LIST = ['Full-Stack Development', 'Mobile App Development', 'AI & Automation', 'MVP Development', 'UI/UX Design', 'Strategy & Consulting', 'API Integration', 'Other'];
@@ -395,11 +396,17 @@ export default function ReviewPage() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <div className="min-h-screen bg-[#0C0C0C] flex flex-col">
-        {/* Top bar */}
-        <div className="flex items-center justify-between px-6 sm:px-12 py-5">
-          <img src="/logo/Logo horizontal.png" alt="Zumetrix Labs" className="h-10 w-auto select-none"
-            onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+      <div className='w-full mx-auto py-1 px-4 sm:px-6 lg:px-8'>
+
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-10 h-20 lg:h-24 ">
+          <Link to={'/'} className="flex items-center gap-2.5">
+            <img
+              src="/logo/Logo horizontal.png"
+              alt="Zumetrix Labs"
+              className="h-40 w-40 lg:h-52 lg:w-52 opacity-80 select-none"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
+          </Link>
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex gap-1.5 items-center">
               {STEPS.map((_, i) => (
@@ -420,7 +427,7 @@ export default function ReviewPage() {
         </div>
 
         {/* Form area */}
-        <div className="flex-1 flex items-center justify-center px-6 sm:px-10 py-12">
+        <div className="flex-1 flex items-center justify-center min-h-[85vh] px-6 sm:px-10">
           <div className="w-full max-w-2xl">
             <AnimatePresence mode="wait" custom={dir}>
               <motion.div key={step} custom={dir} variants={slideVariants}
