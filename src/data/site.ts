@@ -45,10 +45,10 @@ export const SITE_DATA = {
     title: "Proud to collaborate with ",
     themedTitle:"exceptional companies",
     logos: [
-      { name: "Tech Skills", imageUrl: "/companies_logos/image.png" },
       { name: "Google", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg" },
       { name: "Microsoft", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoft.svg" },
       { name: "Apple", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg" },
+      { name: "Tech Skills", imageUrl: "/companies_logos/image.png" },
       { name: "Amazon", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/amazon.svg" },
       { name: "Meta", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/meta.svg" },
       { name: "Netflix", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/netflix.svg" },
