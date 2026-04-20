@@ -45,7 +45,7 @@ export const SITE_DATA = {
     title: "Proud to collaborate with ",
     themedTitle:"exceptional companies",
     logos: [
-      { name: "Tech Skills", imageUrl: "/public/companies_logos/image.png" },
+      { name: "Tech Skills", imageUrl: "/companies_logos/image.png" },
       { name: "Google", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg" },
       { name: "Microsoft", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoft.svg" },
       { name: "Apple", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg" },
