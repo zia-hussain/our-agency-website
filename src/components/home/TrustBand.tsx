@@ -7,7 +7,7 @@ const TrustBand: React.FC = () => {
   const { trustBand } = getSiteData();
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-b from-card/10 via-card/30 to-card/10 border-y border-border/50 relative overflow-hidden">
+    <section className="py-20 lg:py-28 border-y border-border/50 relative overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div
