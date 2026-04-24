@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -26,8 +26,31 @@ const InfiniteLogoCarousel: React.FC = () => {
     restDelta: 0.001,
   });
 
-  const logos = companyLogosCarousel?.logos ?? [];
-  const repeatedLogos = [...logos, ...logos, ...logos, ...logos, ...logos, ...logos];
+  const logos = useMemo(
+    () => companyLogosCarousel?.logos ?? [],
+    [companyLogosCarousel?.logos]
+  );
+
+  const repeatedLogos = useMemo(
+    () => [...logos, ...logos, ...logos, ...logos, ...logos, ...logos],
+    [logos]
+  );
+
+  useEffect(() => {
+    if (!logos.length) return;
+
+    const preloadedImages: HTMLImageElement[] = [];
+
+    logos.forEach((logo) => {
+      const img = new Image();
+      img.src = logo.imageUrl;
+      preloadedImages.push(img);
+    });
+
+    return () => {
+      preloadedImages.length = 0;
+    };
+  }, [logos]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -153,6 +176,9 @@ hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_4
                     <img
                       src={logo.imageUrl}
                       alt={logo.name}
+                      loading={index < logos.length ? "eager" : "lazy"}
+                      decoding="async"
+                      fetchPriority={index < logos.length ? "high" : "low"}
                       className="relative h-[100%] w-full object-contain 
     opacity-35 brightness-0 invert grayscale 
     transition-all duration-700 
