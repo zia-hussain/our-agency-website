@@ -4,7 +4,7 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion, AnimatePresence } from "framer-motion";
-import { projects, projectCategories } from "../data/projects";
+import { projects } from "../data/projects";
 import { portfolioFAQs } from "../data/faqs/portfolio";
 import { Plus } from "lucide-react";
 import {
@@ -62,8 +62,8 @@ const PortfolioPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Software Development Portfolio | SaaS MVP, React, Mobile Apps | Zumetrix Labs"
-        description="Explore Zumetrix Labs' portfolio of successful software projects including SaaS MVPs, React/Node.js applications, mobile apps, and enterprise solutions for international clients in US, UK, Canada, Australia, UAE, and worldwide. Founded by expert developers Zia Hussain and Syed Omer Shah."
+        title="Software Development Portfolio | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
+        description="Forge Clear Ideas Into Shipped Software. Explore Zumetrix Labs case studies across SaaS MVPs, React/Node.js applications, mobile apps, AI automation, and enterprise systems."
         keywords="software development portfolio, SaaS MVP projects, React development projects, mobile app portfolio, enterprise software solutions, startup MVP case studies, international software projects, web application portfolio, Zia Hussain projects, Syed Omer Shah portfolio"
         url="https://zumetrix.com/portfolio"
         structuredData={structuredData}

@@ -66,8 +66,8 @@ const ArticlesPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="Expert Software Development Articles | SaaS MVP, AI Automation, React/Node.js Insights | Zumetrix Labs"
-        description="Read expert insights on software development, SaaS MVP building, AI automation, React/Node.js development, and mobile app development from Zumetrix Labs founders Zia Hussain and Syed Omer Shah. Learn from Pakistan's leading software development experts."
+        title="Software Development Articles | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
+        description="Forge Clear Ideas Into Shipped Software. Read Zumetrix Labs insights on SaaS MVPs, AI automation, React/Node.js development, mobile apps, and product strategy."
         keywords="software development blog, SaaS MVP guide, AI automation insights, React Node.js tutorials, mobile app development, Firebase guides, Zia Hussain articles, Syed Omer Shah blog, Pakistan software development, startup development guides, tech insights Pakistan"
         url="https://zumetrix.com/articles"
         structuredData={structuredData}

@@ -84,7 +84,7 @@ const TestimonialsCarousel: React.FC = () => {
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
-              {testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
                   className="flex-[0_0_100%] min-w-0 px-4"

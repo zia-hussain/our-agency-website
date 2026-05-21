@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calculator, TrendingUp, Clock, DollarSign, Zap, CheckCircle2, Download } from 'lucide-react';
-import AnimatedSection from '../common/AnimatedSection';
 import { supabase } from '../../lib/supabase';
 import { trackCTAClick } from '../../utils/analytics';
 
@@ -29,10 +28,6 @@ const AIROICalculator: React.FC = () => {
     const reduction = processTypes[processType as keyof typeof processTypes].reduction;
 
     const weeklyHours = employees * hoursPerWeek;
-    const weeklyCost = weeklyHours * avgHourlyRate;
-    const monthlyCost = weeklyCost * 4;
-    const yearlyCost = monthlyCost * 12;
-
     const hoursSaved = (weeklyHours * reduction) / 100;
     const weeklySavings = hoursSaved * avgHourlyRate;
     const monthlySavings = weeklySavings * 4;

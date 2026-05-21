@@ -238,7 +238,7 @@ export interface PageSection {
   page_slug: string;
   section_key: string;
   section_title?: string;
-  section_data: Record<string, any>;
+  section_data: Record<string, unknown>;
   section_order: number;
   is_active: boolean;
   created_at: string;
@@ -289,7 +289,7 @@ export interface ActivityLog {
   record_id?: string;
   record_title?: string;
   user_email?: string;
-  changes: Record<string, any>;
+  changes: Record<string, unknown>;
   ip_address?: string;
   user_agent?: string;
   created_at: string;

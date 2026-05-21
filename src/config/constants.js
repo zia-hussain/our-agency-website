@@ -13,7 +13,7 @@ export const FOUNDERS = [
     fullName: import.meta.env.VITE_FOUNDER_1_FULL_NAME || "Syed Zia Hussain Shah",
     role: import.meta.env.VITE_FOUNDER_1_ROLE || "Co-Founder & CEO",
     image: "/profile_images//zia-hussain-founder.jpg",
-    bio: "Zia is the visionary mind behind Zumetrix Labs. As the bridge between strategy, clients, and execution, he leads product direction, client success, and growth. With a strong background in full-stack development and a sharp instinct for business, Zia ensures every solution isn't just built well — it solves the right problem, beautifully.",
+    bio: "Zia leads product direction, client strategy, and growth at Zumetrix Labs. With a strong background in full-stack development and a sharp instinct for business, he helps founders turn messy ideas into clear roadmaps and shipped products.",
     skills: ["Strategy", "Client Acquisition", "React", "Node.js", "Growth Systems"],
     social: {
       upwork: "https://www.upwork.com/freelancers/ziahussain1",

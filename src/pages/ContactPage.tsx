@@ -12,7 +12,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  Send,
   Calendar,
   MessageCircle,
   Clock,
@@ -281,8 +280,8 @@ const ContactPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Contact Us - Start Your Project | Zumetrix Labs"
-        description="Ready to start your software project? Contact Zumetrix Labs for a free consultation. We respond within 24 hours and offer honest advice with no obligation."
+        title="Contact Zumetrix Labs | Forge Clear Ideas Into Shipped Software"
+        description="Forge Clear Ideas Into Shipped Software. Contact Zumetrix Labs to discuss your SaaS MVP, React/Node.js app, AI automation, or mobile app project."
         keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Syed Zia Hussain Shah contact, Syed Omer Shah contact"
         url="https://zumetrix.com/contact"
         structuredData={{
@@ -290,12 +289,12 @@ const ContactPage: React.FC = () => {
           "@type": "ContactPage",
           name: "Contact Zumetrix Labs - Software Development Agency",
           description:
-            "Contact Pakistan's leading software development agency for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
+            "Contact Zumetrix Labs for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
           mainEntity: {
             "@type": "LocalBusiness",
             name: "Zumetrix Labs",
             description:
-              "Pakistan's premier software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development for international clients.",
+              "Zumetrix Labs builds software for founders who need thinking partners, not order-takers. Services include SaaS MVPs, React/Node.js applications, AI automation, and mobile apps for international clients.",
             address: {
               "@type": "PostalAddress",
               addressCountry: "Pakistan",
@@ -413,7 +412,7 @@ const ContactPage: React.FC = () => {
     const labelCls = "block text-[13px] font-medium text-muted-foreground mb-1.5";
     const fieldCls = "w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
                       focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                      hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]";
+                      hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]";
     const selectWrapCls = "relative";
     const selectChevron = (
       <svg className='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60'
@@ -440,7 +439,7 @@ const ContactPage: React.FC = () => {
                           onChange={handleInputChange}
                           className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
                    focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                   hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                   hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
                           placeholder="Your full name"
                         />
                       </div>
@@ -463,7 +462,7 @@ const ContactPage: React.FC = () => {
                           onChange={handleInputChange}
                           className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
                    focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                   hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                   hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -485,7 +484,7 @@ const ContactPage: React.FC = () => {
                         onChange={handleInputChange}
                         className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
                  focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                 hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                 hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
                         placeholder="Your company name"
                       />
                     </div>
@@ -506,7 +505,7 @@ const ContactPage: React.FC = () => {
                           onChange={handleInputChange}
                           className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
                    focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                   hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                   hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
                         >
                           <option value="">Select a service</option>
                           {services.map((service) => (
@@ -542,7 +541,7 @@ const ContactPage: React.FC = () => {
                             onChange={handleInputChange}
                             className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
                      focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                     hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                     hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
                           >
                             <option value="">Select budget range</option>
                             {budgetRanges.map((range) => (
@@ -576,7 +575,7 @@ const ContactPage: React.FC = () => {
                             onChange={handleInputChange}
                             className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
                      focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                     hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                     hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
                           >
                             <option value="">Select timeline</option>
                             {timelines.map((t) => (
@@ -613,7 +612,7 @@ const ContactPage: React.FC = () => {
                         onChange={handleInputChange}
                         className="w-full min-h-[144px] px-4 py-3 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none resize-y
                  focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                 hover:border-border focus:shadow-[0_0_0_1px_theme(colors.primary/60)]"
+                 hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
                         placeholder="Tell us about your project, goals, and any specific requirements…"
                       />
                       <p className="mt-1 text-xs text-muted-foreground/70">

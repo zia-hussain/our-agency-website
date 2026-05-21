@@ -28,7 +28,7 @@ export interface LeadData {
   company?: string;
   message?: string;
   source: string;
-  [key: string]: any; // Allow additional fields
+  [key: string]: unknown; // Allow additional fields
 }
 
 export interface LeadResponse {
@@ -51,7 +51,7 @@ export async function routeLead(leadData: LeadData): Promise<LeadResponse> {
 
   let webhookSuccess = false;
   let supabaseSuccess = false;
-  let errors: string[] = [];
+  const errors: string[] = [];
 
   // Enrich lead data with timestamp
   const enrichedData = {

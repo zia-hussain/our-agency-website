@@ -10,11 +10,9 @@ import {
   MessageSquare, 
   Globe, 
   Star,
-  Building,
   MapPin,
   User,
   Quote,
-  Award,
   Image as ImageIcon
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../../../lib/supabase';
@@ -52,6 +50,7 @@ const TestimonialForm: React.FC = () => {
     if (isEditing && id && isSupabaseConfigured && supabase) {
       loadTestimonial();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, isEditing]);
 
   const loadTestimonial = async () => {

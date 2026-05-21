@@ -122,8 +122,8 @@ const ServicesPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Software Development Services | SaaS MVP, React, AI Automation | Zumetrix Labs"
-        description="Software development services by Zumetrix Labs. SaaS MVP development, React/Node.js applications, mobile apps, AI automation, Firebase integration. Founded by Zia Hussain & Syed Omer Shah. Top Rated on Upwork with 100% Job Success Score."
+        title="Software Development Services | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
+        description="Forge Clear Ideas Into Shipped Software. Explore Zumetrix Labs services for SaaS MVP development, React/Node.js applications, mobile apps, and AI automation."
         keywords="software development services, SaaS MVP development, React development, mobile app development, AI automation, custom software"
         url="https://zumetrix.com/services"
         structuredData={structuredData}

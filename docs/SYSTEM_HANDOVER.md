@@ -99,9 +99,9 @@ Zumetrix Labs Website
 **Purpose:** First impression and primary conversion point
 
 **Key Elements:**
-- **Headline:** "The World's Premier Software Agency For Visionary Founders"
-- **Value Prop:** Enterprise-grade SaaS MVPs in 30 days
-- **Trust Indicators:** 5.0★ Rating, 50+ Projects, 100% Success
+- **Tagline:** "Forge Clear Ideas Into Shipped Software"
+- **Value Prop:** SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners
+- **Trust Indicators:** Top Rated on Upwork, 50+ Projects, 100% Job Success Score
 - **CTAs:**
   - Primary: "Start Your Project" → /contact
   - Secondary: "View Success Stories" → Portfolio

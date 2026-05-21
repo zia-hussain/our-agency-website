@@ -9,7 +9,6 @@ import {
   Calendar,
   Clock,
   ArrowLeft,
-  Share2,
   ChevronRight,
   Copy,
   Check,
@@ -19,13 +18,10 @@ import {
   User,
   Twitter,
   Linkedin,
-  Hash,
   Eye,
-  TrendingUp,
   BookOpen,
 } from "lucide-react";
 import { articles } from "../data/articles.js";
-import { articlesFAQs } from "../data/faqs/articles";
 
 const ArticleDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -201,8 +197,8 @@ const ArticleDetailPage: React.FC = () => {
       name: article.author,
       jobTitle: article.authorRole,
       description: article.author === "Zia Hussain" 
-        ? "World-class full-stack developer and visionary co-founder of Zumetrix Labs. Global expert in React/TypeScript development, Node.js architecture, SaaS MVP building, Firebase integration, and international business strategy. Led 30+ successful MVP launches with 100% client satisfaction rate."
-        : "Technical mastermind and co-founder of Zumetrix Labs. World-class expert in scalable system architecture, AI automation workflows, Python development, cloud infrastructure optimization, and cutting-edge web technologies. Architect of systems serving 100K+ users globally.",
+        ? "Co-founder of Zumetrix Labs leading product, growth, SaaS MVP strategy, React/Node.js delivery, and client success."
+        : "Co-founder of Zumetrix Labs leading architecture, AI automation workflows, Python development, cloud infrastructure, and scalable systems.",
       knowsAbout: article.author === "Zia Hussain"
         ? [
             "React Development", 

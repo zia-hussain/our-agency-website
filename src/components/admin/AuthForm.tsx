@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, LogIn, Sparkles, Shield } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, LogIn, Shield } from "lucide-react";
 import { supabase } from "../../lib/supabase";
 
 const AuthForm: React.FC = () => {

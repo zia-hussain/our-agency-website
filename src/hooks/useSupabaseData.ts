@@ -5,9 +5,6 @@ import type {
   PortfolioProject,
   Testimonial,
   ContentMigration,
-  Service, 
-  Project, 
-  Founder, 
   SiteSettings, 
   PageSection, 
   NavigationItem, 
@@ -236,6 +233,7 @@ export const usePageSections = (pageSlug?: string) => {
 
   useEffect(() => {
     fetchPageSections();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageSlug]);
 
   return { pageSections, loading, error, refetch: fetchPageSections };
@@ -277,6 +275,7 @@ export const useNavigationItems = (type?: string) => {
 
   useEffect(() => {
     fetchNavigationItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
 
   return { navigationItems, loading, error, refetch: fetchNavigationItems };
@@ -318,6 +317,7 @@ export const useFAQs = (pageSlug?: string) => {
 
   useEffect(() => {
     fetchFAQs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageSlug]);
 
   return { faqs, loading, error, refetch: fetchFAQs };
@@ -353,6 +353,7 @@ export const useActivityLogs = (limit: number = 10) => {
 
   useEffect(() => {
     fetchActivityLogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [limit]);
 
   return { activityLogs, loading, error, refetch: fetchActivityLogs };
@@ -398,7 +399,7 @@ export const logActivity = async (
   tableName: string,
   recordId?: string,
   recordTitle?: string,
-  changes?: Record<string, any>
+  changes?: Record<string, unknown>
 ) => {
   if (!isSupabaseConfigured || !supabase) return;
 
@@ -422,6 +423,7 @@ export const logActivity = async (
 
 // Utility function for Cloudinary uploads
 export const uploadToCloudinary = async (file: File): Promise<string> => {
+  void file;
   // 🔥 CLOUDINARY PLACEHOLDER - Replace with actual implementation
   // This simulates upload and returns professional Pexels images
   const placeholderImages = [

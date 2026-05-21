@@ -11,7 +11,7 @@ interface LeadMagnetCaptureProps {
   magnetName: string;
   title: string;
   description: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   onSuccess?: (email: string) => void;
 }
 

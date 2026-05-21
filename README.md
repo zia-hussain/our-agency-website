@@ -167,4 +167,4 @@ For technical support or questions about updating content, contact the developme
 
 ---
 
-Built with ❤️ by Zumetrix Labs - Pakistan's #1 Software Development Agency
+Built by Zumetrix Labs - Forge Clear Ideas Into Shipped Software.

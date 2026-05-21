@@ -30,7 +30,7 @@ export async function submitReviewToAirtable(data: ReviewFormData): Promise<{ su
     return { success: true };
   }
 
-  const fields: Record<string, any> = {
+  const fields: Record<string, unknown> = {
     'Client Name': data.clientName,
     'Title': data.title,
     'Company Name': data.companyName,
@@ -80,7 +80,7 @@ export async function submitReviewToAirtable(data: ReviewFormData): Promise<{ su
     }
 
     return { success: true };
-  } catch (e) {
+  } catch {
     return { success: false, error: 'Network error. Please try again.' };
   }
 }

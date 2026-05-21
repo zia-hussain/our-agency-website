@@ -138,7 +138,7 @@ const CTA: React.FC = () => {
                 description: "Honest advice with no pressure to commit",
                 delay: 0.3,
               },
-            ].map((item, index) => (
+            ].map((item) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 30 }}

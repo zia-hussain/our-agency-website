@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { projects, projectCategories } from "../data/projects";
 import {
   Calendar,
-  Users,
   Filter,
   MapPin,
   Building,

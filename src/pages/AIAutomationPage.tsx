@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, CheckCircle2, Clock, DollarSign, Zap, ArrowRight, Star, TrendingUp, BarChart3 } from 'lucide-react';
+import { Brain, CheckCircle2, ArrowRight, Star, TrendingUp } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import PageTransition from '../components/common/PageTransition';
 import AnimatedSection from '../components/common/AnimatedSection';
@@ -48,29 +48,6 @@ const AIAutomationPage: React.FC = () => {
       description: 'Generate marketing copy, product descriptions, and personalized content at scale',
       timeSaved: '85%',
       examples: ['Product descriptions', 'Email campaigns', 'Social media posts']
-    }
-  ];
-
-  const technologies = [
-    {
-      name: 'OpenAI GPT-4',
-      description: 'Advanced natural language processing and generation',
-      use: 'Chatbots, content generation, document analysis'
-    },
-    {
-      name: 'Zapier & Make.com',
-      description: 'No-code automation platforms connecting 5,000+ apps',
-      use: 'Workflow automation, app integrations'
-    },
-    {
-      name: 'n8n',
-      description: 'Self-hosted automation for complete control',
-      use: 'Custom workflows, data processing'
-    },
-    {
-      name: 'Custom AI Models',
-      description: 'Tailored machine learning solutions',
-      use: 'Specialized automation, predictive analytics'
     }
   ];
 
@@ -196,8 +173,8 @@ const AIAutomationPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="AI Automation Services | Save 70% Time & Costs | Zumetrix Labs"
-        description="Transform your operations with AI automation. OpenAI integration, workflow automation, custom chatbots. $5K starting price. Average client saves $50K+ annually. 100% satisfaction."
+        title="AI Automation Services | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
+        description="Forge Clear Ideas Into Shipped Software. Build AI automation workflows, OpenAI integrations, custom chatbots, and business process automation with Zumetrix Labs."
         keywords="AI automation, OpenAI integration, workflow automation, business process automation, chatbot development, RPA, intelligent automation, AI consulting"
       />
 

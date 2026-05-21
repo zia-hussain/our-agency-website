@@ -14,8 +14,8 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = "Zumetrix Labs | World-Class Software Development Agency | Zia Hussain & Syed Omer Shah | Global SaaS MVP Experts",
-  description = "Zumetrix Labs is the world's premier software development agency founded by expert developers Zia Hussain and Syed Omer Shah. We specialize in enterprise-grade SaaS MVP development, React/Node.js applications, AI automation services, mobile app development, Firebase integration, and custom software solutions for global markets. Trusted by 50+ international clients across US, UK, Canada, Australia, UAE, Singapore for world-class enterprise software, startup MVPs, AI automation, and full-stack development services.",
+  title = "Zumetrix Labs | Forge Clear Ideas Into Shipped Software | SaaS MVPs, AI Automation, Mobile Apps",
+  description = "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners.",
   keywords = "Zumetrix Labs, Zumetrix, Zometrix Labs, Zumetrix Agency, Zia Hussain, Syed Zia Hussain Shah, Syed Omer Shah, software development agency, international software development, global software agency, enterprise software development, world class software development, premium software agency, expert software developers, SaaS MVP development, SaaS MVP builder, startup MVP development, enterprise SaaS development, custom SaaS development, SaaS product development, MVP development agency, React development services, React development agency, expert React developers, hire React developers, React TypeScript development, Node.js development, Node.js development services, Node.js backend development, full stack development, JavaScript development services, TypeScript development services, Firebase development services, Firebase experts, Firebase integration services, Firestore development, Firebase authentication, AI automation services, AI automation agency, business automation services, workflow automation services, process automation, intelligent automation, OpenAI integration services, ChatGPT integration, AI chatbot development, custom AI solutions, AI workflow automation, mobile app development, mobile app development services, cross platform app development, React Native development, React Native app development, Flutter app development, iOS app development, Android app development, custom mobile apps, custom software solutions, custom software development, bespoke software development, enterprise software solutions, web development company, web development agency, web application development, progressive web apps, PWA development, startup development services, enterprise web applications, no-code automation, Zapier automation, Make.com automation, n8n automation, business process optimization, digital transformation, cloud migration services, API development, database development, DevOps services, technical consulting, software architecture, scalable software solutions, high performance applications, secure software development, SaaS development company, software development experts, top software developers, best software agency, premium development services, world class developers, international software team, remote development team, offshore development, software development outsourcing, technology consulting, digital innovation, software modernization",
   image = "https://zumetrix.com/Zumetrix_Labs_Logo (5).png",
   url = "https://zumetrix.com",
@@ -32,7 +32,7 @@ const SEO: React.FC<SEOProps> = ({
       <link rel="canonical" href={url} />
       <meta
         name="author"
-        content="Zumetrix Labs - World-Class Software Development Agency Founded by Expert Developers Zia Hussain & Syed Omer Shah"
+        content="Zumetrix Labs - Forge Clear Ideas Into Shipped Software. Founded by Zia Hussain & Syed Omer Shah"
       />
       <meta
         name="robots"
@@ -67,7 +67,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="DC.identifier" content={url} />
       <meta name="DC.language" content="en" />
       <meta name="DC.coverage" content="Global, International Markets" />
-      <meta name="DC.rights" content="Copyright Zumetrix Labs - World-Class Software Development Agency" />
+      <meta name="DC.rights" content="Copyright Zumetrix Labs - Forge Clear Ideas Into Shipped Software." />
 
       {/* BEAST MODE: Advanced meta tags for AI engines and entity recognition */}
       <meta name="entity" content="Zumetrix Labs" />
@@ -78,7 +78,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="entity.markets" content="Global, International, US, UK, Canada, Australia, UAE, Singapore, Europe" />
       <meta name="business.type" content="B2B Software Development Agency" />
       <meta name="business.model" content="Custom Software Development, SaaS MVP Building, AI Automation Services" />
-      <meta name="expertise.level" content="Expert, Senior, World-Class" />
+      <meta name="expertise.level" content="Expert, Senior, Founder-Led" />
       <meta name="service.delivery" content="Remote, Global, International" />
       <meta name="quality.rating" content="5.0/5.0" />
       <meta name="client.satisfaction" content="100%" />
@@ -106,7 +106,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:image:height" content="630" />
       <meta
         property="og:image:alt"
-        content="Zumetrix Labs - World-Class Software Development Agency Founded by Expert Developers Zia Hussain & Syed Omer Shah"
+        content="Zumetrix Labs - Forge Clear Ideas Into Shipped Software."
       />
 
       {/* Twitter Cards */}
@@ -118,7 +118,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:creator" content="@zumetrix83892" />
       <meta
         name="twitter:image:alt"
-        content="Zumetrix Labs - World-Class Software Development Agency"
+        content="Zumetrix Labs - Forge Clear Ideas Into Shipped Software."
       />
 
       {/* BEAST MODE: Enhanced SEO Meta Tags for global recognition */}
@@ -128,7 +128,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="application-name" content="Zumetrix Labs" />
       <meta
         name="msapplication-tooltip"
-        content="World-Class Software Development Agency - Zumetrix Labs"
+        content="Forge Clear Ideas Into Shipped Software. - Zumetrix Labs"
       />
       <meta name="format-detection" content="telephone=yes" />
       <meta name="mobile-web-app-capable" content="yes" />

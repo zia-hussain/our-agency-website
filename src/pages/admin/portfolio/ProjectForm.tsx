@@ -7,20 +7,11 @@ import {
   Eye, 
   Upload, 
   X, 
-  Plus, 
   FileText, 
   Globe, 
-  Star,
   Building,
   MapPin,
   Calendar,
-  Users,
-  ExternalLink,
-  Github,
-  Target,
-  TrendingUp,
-  CheckCircle,
-  AlertCircle,
   Image as ImageIcon
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../../../lib/supabase';
@@ -79,17 +70,12 @@ const ProjectForm: React.FC = () => {
     canonical_url: '',
   });
 
-  const [newTag, setNewTag] = useState('');
-  const [newStackItem, setNewStackItem] = useState('');
-  const [newService, setNewService] = useState('');
-  const [newResult, setNewResult] = useState('');
-  const [newKpi, setNewKpi] = useState({ label: '', value: '', description: '' });
-
   // Load existing project for editing
   useEffect(() => {
     if (isEditing && id && isSupabaseConfigured && supabase) {
       loadProject();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, isEditing]);
 
   const loadProject = async () => {
@@ -161,91 +147,6 @@ const ProjectForm: React.FC = () => {
     } finally {
       setUploadingImage(false);
     }
-  };
-
-  const addTag = () => {
-    if (newTag.trim() && !formData.tags?.includes(newTag.trim())) {
-      setFormData(prev => ({
-        ...prev,
-        tags: [...(prev.tags || []), newTag.trim()]
-      }));
-      setNewTag('');
-    }
-  };
-
-  const removeTag = (tagToRemove: string) => {
-    setFormData(prev => ({
-      ...prev,
-      tags: prev.tags?.filter(tag => tag !== tagToRemove) || []
-    }));
-  };
-
-  const addStackItem = () => {
-    if (newStackItem.trim() && !formData.stack?.includes(newStackItem.trim())) {
-      setFormData(prev => ({
-        ...prev,
-        stack: [...(prev.stack || []), newStackItem.trim()]
-      }));
-      setNewStackItem('');
-    }
-  };
-
-  const removeStackItem = (item: string) => {
-    setFormData(prev => ({
-      ...prev,
-      stack: prev.stack?.filter(tech => tech !== item) || []
-    }));
-  };
-
-  const addService = () => {
-    if (newService.trim() && !formData.services?.includes(newService.trim())) {
-      setFormData(prev => ({
-        ...prev,
-        services: [...(prev.services || []), newService.trim()]
-      }));
-      setNewService('');
-    }
-  };
-
-  const removeService = (service: string) => {
-    setFormData(prev => ({
-      ...prev,
-      services: prev.services?.filter(s => s !== service) || []
-    }));
-  };
-
-  const addResult = () => {
-    if (newResult.trim()) {
-      setFormData(prev => ({
-        ...prev,
-        results: [...(prev.results || []), newResult.trim()]
-      }));
-      setNewResult('');
-    }
-  };
-
-  const removeResult = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      results: prev.results?.filter((_, i) => i !== index) || []
-    }));
-  };
-
-  const addKpi = () => {
-    if (newKpi.label.trim() && newKpi.value.trim()) {
-      setFormData(prev => ({
-        ...prev,
-        kpis: [...(prev.kpis || []), newKpi]
-      }));
-      setNewKpi({ label: '', value: '', description: '' });
-    }
-  };
-
-  const removeKpi = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      kpis: prev.kpis?.filter((_, i) => i !== index) || []
-    }));
   };
 
   const handleSave = async (e: React.FormEvent) => {

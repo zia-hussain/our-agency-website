@@ -15,13 +15,10 @@ import {
   CheckCircle,
   Quote,
   ChevronRight,
-  Star,
   Globe,
   Code2,
   AlertTriangle,
-  Target,
   TrendingUp,
-  Award,
   Zap
 } from "lucide-react";
 import { getProjectBySlug } from "../data/projects";

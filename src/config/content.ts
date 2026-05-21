@@ -27,10 +27,10 @@ export const BRAND_CONTENT = {
    */
   brand: {
     name: "Zumetrix Labs",
-    tagline: "Software for founders who need thinking partners, not order-takers",
+    tagline: "Forge Clear Ideas Into Shipped Software.",
     positioningStatement: "We build software for founders who need thinking partners, not order-takers",
 
-    shortDescription: "Founded by Zia Hussain and Syed Omer Shah. We build software for founders who need thinking partners, not order-takers. Top Rated on Upwork with 100% Job Success Score.",
+    shortDescription: "Forge Clear Ideas Into Shipped Software. Founded by Zia Hussain and Syed Omer Shah, Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners.",
 
     longDescription: "50+ projects built. Some raised funding. Some didn't. The difference was usually how clear the problem was before we started building. We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also why our projects actually launch.",
   },
@@ -201,8 +201,8 @@ export const BRAND_CONTENT = {
    */
   meta: {
     home: {
-      title: "Zumetrix Labs | Software Development for Founders | SaaS MVP, React, AI Automation | Top Rated",
-      description: "We build software for founders who need thinking partners, not order-takers. 50+ projects delivered. Top Rated on Upwork with 100% Job Success Score. SaaS MVPs, mobile apps, AI automation. Founded by Zia Hussain & Syed Omer Shah."
+      title: "Zumetrix Labs | Forge Clear Ideas Into Shipped Software | SaaS MVP, React, AI Automation",
+      description: "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners."
     },
 
     about: {

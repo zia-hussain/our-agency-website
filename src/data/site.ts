@@ -1,4 +1,5 @@
 // Zumetrix Labs - Complete Site Data
+import { BRAND_CONTENT } from "../config/content";
 
 export const SITE_DATA = {
   // Company Information
@@ -6,7 +7,7 @@ export const SITE_DATA = {
     name: import.meta.env.VITE_COMPANY_NAME || "Zumetrix Labs",
     tagline:
       import.meta.env.VITE_COMPANY_TAGLINE ||
-      "Forge Your Digital Empire. Conquer Tomorrow.",
+      BRAND_CONTENT.brand.tagline,
     email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
     phone: import.meta.env.VITE_COMPANY_PHONE || "+92 XXX XXXXXXX",
     address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",
@@ -16,15 +17,15 @@ export const SITE_DATA = {
   // Hero Section Data
   hero: {
     overline: "Software Development for Founders",
-    headline: "We build software for founders who need thinking partners, not order-takers",
-    subtext: "50+ projects built. Some raised funding. Some didn't. The difference was usually how clear the problem was. We push back on unclear ideas, challenge assumptions, and say no when it makes sense. That's uncomfortable. It's also why our projects actually launch.",
+    headline: BRAND_CONTENT.brand.positioningStatement,
+    subtext: BRAND_CONTENT.brand.longDescription,
     primaryCTA: {
-      text: "Start Your Project",
-      link: "/contact",
+      text: BRAND_CONTENT.hero.primaryCTA.text,
+      link: BRAND_CONTENT.hero.primaryCTA.link,
     },
     secondaryCTA: {
-      text: "View Our Work",
-      link: "/portfolio",
+      text: BRAND_CONTENT.hero.secondaryCTA.text,
+      link: BRAND_CONTENT.hero.secondaryCTA.link,
     },
     proofPoints: [
       { icon: "star", text: "5.0 rating" },
@@ -415,22 +416,18 @@ export const SITE_DATA = {
 
   // Final CTA
   finalCTA: {
-    headline: "Have a project? Let's talk.",
+    headline: `${BRAND_CONTENT.finalCTA.headline.line1} ${BRAND_CONTENT.finalCTA.headline.line2}`,
     subtitle:
       "Book a 30-minute call. No pitch, no pressure. We'll ask questions, challenge assumptions, and tell you honestly if we're the right fit.",
     primaryCTA: {
-      text: "Book Free Strategy Call",
-      link: "https://calendly.com/zumetrix-labs/consultation",
+      text: BRAND_CONTENT.finalCTA.primaryCTA.text,
+      link: BRAND_CONTENT.finalCTA.primaryCTA.link,
     },
     secondaryCTA: {
-      text: "Send Project Brief",
-      link: "/contact",
+      text: BRAND_CONTENT.finalCTA.secondaryCTA.text,
+      link: BRAND_CONTENT.finalCTA.secondaryCTA.link,
     },
-    trustSignals: [
-      "24-hour response guaranteed",
-      "Expert insights & strategy",
-      "No obligation consultation",
-    ],
+    trustSignals: [...BRAND_CONTENT.finalCTA.trustSignals],
     globalProof: {
       clients: "50+ international clients",
       countries: "6 countries served",
@@ -467,7 +464,7 @@ export const SITE_DATA = {
       {
         value: '100%',
         label: 'Satisfaction',
-        subtext: 'Client success rate',
+        subtext: 'Verified client outcomes',
         icon: 'users'
       },
       {

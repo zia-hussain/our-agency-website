@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Eye, Upload, Home, Users, Briefcase, Zap, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
+import { Save, Eye, Home, Users, Briefcase, Zap, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
 import { useSiteSettings } from '../../hooks/useSupabaseData';
 import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import { logActivity } from '../../hooks/useSupabaseData';
@@ -38,7 +38,7 @@ const HomePageContent: React.FC = () => {
     if (settings) {
       setFormData({
         hero_headline: settings.hero_headline || 'Transform Your Vision Into World-Class Software That Scales Globally',
-        hero_subtext: settings.hero_subtext || 'Zumetrix Labs is the world\'s premier software development agency building enterprise-grade SaaS MVPs in 30 days, AI automation systems, and mobile apps for ambitious global startups and enterprises.',
+        hero_subtext: settings.hero_subtext || 'Zumetrix Labs builds software for founders who need thinking partners, not order-takers. We push back on unclear ideas, challenge assumptions, and help projects actually launch.',
         hero_primary_cta_text: settings.hero_primary_cta_text || 'Start Your Project',
         hero_primary_cta_link: settings.hero_primary_cta_link || '/contact',
         hero_secondary_cta_text: settings.hero_secondary_cta_text || 'View Our Work',
@@ -292,7 +292,7 @@ const HomePageContent: React.FC = () => {
                       required
                       rows={4}
                       className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150 resize-y"
-                      placeholder="Zumetrix Labs is the world's premier software development agency..."
+                      placeholder="Zumetrix Labs builds software for founders who need thinking partners..."
                     />
                     <p className="text-xs text-muted-foreground mt-1">
                       Supporting text that explains your value proposition

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, CheckCircle2, Clock, DollarSign, Code, ArrowRight, Star, Zap, Globe } from 'lucide-react';
+import { Smartphone, CheckCircle2, ArrowRight, Star } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import PageTransition from '../components/common/PageTransition';
 import AnimatedSection from '../components/common/AnimatedSection';
@@ -206,23 +206,6 @@ const MobileAppPage: React.FC = () => {
     },
   ];
 
-  const caseStudies = [
-    {
-      name: 'WellnessTracker',
-      type: 'Health & Fitness',
-      result: '50K+ downloads in 30 days',
-      rating: '4.8/5',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400'
-    },
-    {
-      name: 'LogiTrack',
-      type: 'Logistics',
-      result: '30% faster deliveries',
-      rating: '4.9/5',
-      image: 'https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=400'
-    }
-  ];
-
   const faqs = [
     {
       question: 'Should I build for iOS, Android, or both?',
@@ -253,8 +236,8 @@ const MobileAppPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="Mobile App Development | iOS & Android Apps | Zumetrix Labs"
-        description="Expert mobile app development services. React Native, Flutter, native iOS/Android. $15K starting price. 50K+ downloads achieved. 4.8+ average rating. 100% satisfaction."
+        title="Mobile App Development | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
+        description="Forge Clear Ideas Into Shipped Software. Build React Native, Flutter, iOS, and Android apps with Zumetrix Labs for founders who need launch-ready mobile products."
         keywords="mobile app development, iOS development, Android development, React Native, Flutter, cross-platform apps, native app development, app design"
       />
 

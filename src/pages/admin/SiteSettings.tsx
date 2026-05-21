@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, RefreshCw, Building, Globe, Mail, Phone, MapPin, BarChart3, Calendar, Eye } from 'lucide-react';
+import { Save, Building, Globe, Mail, Phone, MapPin, BarChart3, Calendar, Eye } from 'lucide-react';
 import { useSiteSettings } from '../../hooks/useSupabaseData';
 import { supabase } from '../../lib/supabase';
 
@@ -176,7 +176,7 @@ const SiteSettings: React.FC = () => {
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
-                placeholder="Forge Your Digital Empire. Conquer Tomorrow."
+                placeholder="Forge Clear Ideas Into Shipped Software."
               />
             </div>
             <div>

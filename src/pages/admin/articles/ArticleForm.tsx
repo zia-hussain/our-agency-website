@@ -10,15 +10,10 @@ import {
   Plus, 
   BookOpen, 
   Globe, 
-  Star,
-  Calendar,
   User,
   Tag,
   Image as ImageIcon,
   FileText,
-  Search,
-  CheckCircle,
-  AlertCircle
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../../../lib/supabase';
 import { uploadToCloudinary, logActivity } from '../../../hooks/useSupabaseData';
@@ -67,6 +62,7 @@ const ArticleForm: React.FC = () => {
     if (isEditing && id && isSupabaseConfigured && supabase) {
       loadArticle();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, isEditing]);
 
   const loadArticle = async () => {

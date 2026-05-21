@@ -17,20 +17,16 @@ import {
   Clock,
   Award,
   Activity,
-  Calendar,
   Target,
   Zap,
-  Code,
   Building,
   MapPin,
   Home,
   Navigation as NavigationIcon,
-  CheckCircle,
-  AlertCircle,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import {
   useServices,
-  useProjects,
   useArticles,
   useTestimonials,
   useActivityLogs,
@@ -492,7 +488,7 @@ const AdminDashboard: React.FC = () => {
           </h3>
           <div className="space-y-4">
             {activityLogs.length > 0 ? activityLogs.map((activity, index) => {
-              const iconMap: Record<string, any> = {
+              const iconMap: Record<string, LucideIcon> = {
                 'site_settings': Settings,
                 'projects': FileText,
                 'services': Briefcase,

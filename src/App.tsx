@@ -5,7 +5,6 @@ import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/common/ScrollToTop";
 import BackToTop from "./components/common/BackToTop";
-import ChatWidget from "./components/common/ChatWidget";
 import StickyCTABar from "./components/common/StickyCTABar";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -131,7 +130,6 @@ function App() {
       </Suspense>
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Footer />}
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <BackToTop />}
-      {/* {!isAdminRoute && <ChatWidget />} */}
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <StickyCTABar />}
     </div>
   );

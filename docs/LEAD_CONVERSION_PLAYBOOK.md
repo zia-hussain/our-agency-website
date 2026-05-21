@@ -39,9 +39,9 @@ This website is a **premium agency lead-generation engine**.
 **Homepage Hero Section**
 
 **What they see:**
-- Bold headline: "The World's Premier Software Agency For Visionary Founders"
-- Trust indicators: 5.0★ rating, 50+ projects, 100% success
-- Clear value prop: "Enterprise-grade SaaS MVPs in 30 days"
+- Bold tagline: "Forge Clear Ideas Into Shipped Software"
+- Trust indicators: Top Rated on Upwork, 50+ projects, 100% Job Success Score
+- Clear value prop: SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners
 
 **Psychology:**
 - **Premium positioning** = Higher perceived value

@@ -66,10 +66,6 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function normalizeComparableText(value: string): string {
-  return value.replace(/\s+/g, " ").trim().toLowerCase();
-}
-
 function titleContainsPhraseInSingleLine(lines: string[], phrase: string): boolean {
   const phrasePattern = new RegExp(escapeRegExp(phrase), "i");
   return lines.some((line) => phrasePattern.test(line));

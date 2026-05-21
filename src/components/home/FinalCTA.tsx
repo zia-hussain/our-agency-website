@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Calendar, Mail, ArrowRight, CheckCircle, Sparkles, Star } from "lucide-react";
+import { Calendar, Mail, ArrowRight, CheckCircle, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";

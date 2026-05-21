@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Rocket, CheckCircle2, Clock, DollarSign, Code, Zap, ArrowRight, Star } from 'lucide-react';
+import { Rocket, CheckCircle2, ArrowRight, Star } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import PageTransition from '../components/common/PageTransition';
 import AnimatedSection from '../components/common/AnimatedSection';
@@ -16,7 +16,7 @@ const MVPDevelopmentPage: React.FC = () => {
     {
       phase: 'Week 2-3',
       title: 'Design & Development Sprint',
-      description: 'Our elite developers build your MVP using modern tech stack (React, Node.js, Firebase). We follow agile methodology with daily progress updates and weekly demo sessions.',
+      description: 'Our founders and developers build your MVP using a modern stack like React, Node.js, and Firebase. We work in focused sprints with clear progress updates and weekly demo sessions.',
       deliverables: ['Core features built', 'Authentication system', 'Database schema', 'UI components']
     },
     {
@@ -25,21 +25,6 @@ const MVPDevelopmentPage: React.FC = () => {
       description: 'Comprehensive testing, bug fixes, performance optimization, and deployment. We ensure your MVP is production-ready with proper security, monitoring, and analytics in place.',
       deliverables: ['QA testing complete', 'Production deployment', 'Documentation', 'Training session']
     }
-  ];
-
-  const features = [
-    'User Authentication (Email, Social Login)',
-    'Responsive UI/UX Design',
-    'Database Architecture',
-    'API Development',
-    'Payment Integration (Stripe)',
-    'Admin Dashboard',
-    'Real-time Features',
-    'Cloud Deployment',
-    'Analytics Integration',
-    'Email Notifications',
-    'Security Best Practices',
-    'Documentation'
   ];
 
   const pricingTiers = [
@@ -95,21 +80,6 @@ const MVPDevelopmentPage: React.FC = () => {
     }
   ];
 
-  const caseStudies = [
-    {
-      company: 'TaskFlow',
-      result: 'Secured $500K seed funding',
-      time: '6 weeks',
-      image: 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=400'
-    },
-    {
-      company: 'Ifyify',
-      result: 'Launched to 1,000+ users',
-      time: '2 weeks',
-      image: 'https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=400'
-    }
-  ];
-
   const faqs = [
     {
       question: 'What exactly is included in an MVP?',
@@ -140,8 +110,8 @@ const MVPDevelopmentPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="SaaS MVP Development | Build & Launch in 30 Days | Zumetrix Labs"
-        description="Launch your SaaS MVP in 30 days with Zumetrix Labs. Expert React, Node.js & Firebase development. $12K starting price. 100% client satisfaction. 85% funding success rate."
+        title="SaaS MVP Development | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
+        description="Forge Clear Ideas Into Shipped Software. Launch a focused SaaS MVP with React, Node.js, and Firebase development for founders who need strategic product thinking."
         keywords="MVP development, SaaS MVP, startup MVP, rapid prototyping, React development, Firebase, MVP in 30 days, startup development, venture capital MVP"
       />
 

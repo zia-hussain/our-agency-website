@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import AnimatedSection from '../common/AnimatedSection';
-import { Award, Users, Briefcase, Star, Globe2 } from 'lucide-react';
+import { Award, Users, Briefcase, Star } from 'lucide-react';
 import { getClientLogosData } from '../../data/site';
 
 const iconMap = {

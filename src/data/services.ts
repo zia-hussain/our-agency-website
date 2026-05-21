@@ -6,11 +6,12 @@ import {
   Rocket,
   Palette,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 export interface Service {
   id: string;
   slug: string;
-  icon: any;
+  icon: LucideIcon;
   title: string;
   subtitle: string;
   description: string;
@@ -450,4 +451,7 @@ export const process = [
 export const getServices = () => services;
 export const getServiceBySlug = (slug: string) => services.find(s => s.slug === slug);
 export const getFeaturedServices = () => services.filter(s => s.popular);
-export const getServicesByCategory = (category: string) => services; // Can be expanded later
+export const getServicesByCategory = (category: string) => {
+  void category;
+  return services;
+}; // Can be expanded later

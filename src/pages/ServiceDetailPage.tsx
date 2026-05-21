@@ -9,13 +9,9 @@ import {
   CheckCircle,
   Quote,
   ChevronRight,
-  Target,
   Code2,
   AlertTriangle,
   TrendingUp,
-  Users,
-  Calendar,
-  Award,
   ExternalLink,
   ArrowRight,
 } from "lucide-react";

@@ -160,7 +160,7 @@ headline: "We build software for founders who need thinking partners, not order-
 
 **Current:**
 ```ts
-subtext: "Zumetrix Labs is the world's premier software development agency building enterprise-grade SaaS MVPs in 30 days..."
+subtext: "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners..."
 ```
 
 **Replace With:**
@@ -234,7 +234,7 @@ description: "Most agencies say yes to everything. Vague ideas become vague prod
 
 **Current:**
 ```tsx
-description: "Pakistan's #1 software development agency specializing in..."
+description: "Forge Clear Ideas Into Shipped Software. Zumetrix Labs specializes in..."
 ```
 
 **Replace With:**

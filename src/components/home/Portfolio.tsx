@@ -135,7 +135,7 @@ const Portfolio: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
           className="grid lg:grid-cols-3 gap-8 lg:gap-12"
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
               key={project.title}
               variants={cardVariants}

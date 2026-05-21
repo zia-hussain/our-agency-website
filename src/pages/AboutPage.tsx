@@ -87,8 +87,8 @@ const values = [
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="About Zumetrix Labs | Meet Zia Hussain & Syed Omer Shah | Technical Founders"
-        description="Meet Zia Hussain (CEO) and Syed Omer Shah (CTO), technical founders of Zumetrix Labs. 50+ projects delivered across US, UK, Canada, Australia, UAE, and Singapore. Top Rated on Upwork. Specializing in SaaS MVP development, React/Node.js applications, and AI automation. Founder-led approach means direct access to senior developers."
+        title="About Zumetrix Labs | Forge Clear Ideas Into Shipped Software"
+        description="Forge Clear Ideas Into Shipped Software. Meet Zia Hussain and Syed Omer Shah, the technical founders behind Zumetrix Labs and 50+ shipped SaaS, AI automation, and mobile app projects."
         keywords="Zia Hussain, Syed Omer Shah, software development agency, SaaS MVP development, React development, AI automation"
         url="https://zumetrix.com/about"
       />
@@ -195,10 +195,10 @@ const values = [
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
               <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>{" "}
-              are the expert developers and visionary founders behind Zumetrix
-              Labs. With combined 6+ years of experience in modern software
-              development, they lead Pakistan's most innovative software
-              development agency.
+              are the technical founders behind Zumetrix Labs. With combined
+              6+ years of experience in modern software development, they help
+              founders turn messy ideas into clear roadmaps and shipped
+              products.
             </p>
           </AnimatedSection>
 
