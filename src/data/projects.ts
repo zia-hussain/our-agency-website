@@ -21,6 +21,7 @@ export interface Project {
   team: string;
   year: string;
   featured: boolean;
+  homepageFeatured?: boolean;
   results: string[];
   problem: string;
   solution: string;
@@ -335,9 +336,10 @@ export const projects: Project[] = [
     industry: "Publishing & Book Sales"
   },
   duration: "6–8 weeks (Phased)",
-  team: "Lead Frontend Developer & Architect",
+  team: "Zumetrix Labs Team",
   year: "2025",
   featured: true,
+  homepageFeatured: true,
   results: [
     "Replaced fragile Excel workflows with a visual, always-up-to-date dashboard.",
     "Implemented MTD/YTD comparisons with correct same-period logic across years.",
@@ -410,9 +412,10 @@ export const projects: Project[] = [
     industry: "Beef Processing & Logistics"
   },
   duration: "4–6 weeks (Phase 1 Engine)",
-  team: "Lead Systems Designer & Automation Engineer",
+  team: "Zumetrix Labs Team",
   year: "2025",
   featured: true,
+  homepageFeatured: true,
   results: [
     "Centralized carcass, box, and shipment data into a single Airtable base.",
     "Replaced manual spreadsheets and papers with structured digital records.",
@@ -479,9 +482,10 @@ export const projects: Project[] = [
     industry: "EdTech & Skill Sharing"
   },
   duration: "6 weeks (MVP Phase 1)",
-  team: "Lead Mobile Developer & Product Architect",
+  team: "Zumetrix Labs Team",
   year: "2025",
   featured: true,
+  homepageFeatured: true,
   results: [
     "Completed a full-featured MVP including onboarding, skill management, and swap flows.",
     "Implemented monthly credit allowances and persistent earned credits logic.",
@@ -1138,6 +1142,7 @@ export const projectTechnologies = [
 // API-ready data access functions (ready for backend migration)
 export const getProjects = () => projects;
 export const getFeaturedProjects = () => projects.filter(p => p.featured);
+export const getHomepageFeaturedProjects = () => projects.filter(p => p.homepageFeatured);
 export const getProjectBySlug = (slug: string) => projects.find(p => p.slug === slug);
 export const getProjectsByCategory = (category: string) => 
   category === "all" ? projects : projects.filter(p => p.type === category);

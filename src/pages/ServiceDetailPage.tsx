@@ -65,12 +65,7 @@ const ServiceDetailPage: React.FC = () => {
       url: "https://zumetrix.com"
     },
     serviceType: service.technologies,
-    areaServed: ["Pakistan", "United States", "United Kingdom", "Canada", "Australia", "UAE", "Singapore", "Worldwide"],
-    offers: {
-      "@type": "Offer",
-      price: service.price,
-      priceCurrency: "USD"
-    }
+    areaServed: "Worldwide",
   };
 
   return (

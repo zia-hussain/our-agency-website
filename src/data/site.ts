@@ -11,7 +11,7 @@ export const SITE_DATA = {
     email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
     phone: import.meta.env.VITE_COMPANY_PHONE || "+92 XXX XXXXXXX",
     address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",
-    website: import.meta.env.VITE_COMPANY_WEBSITE || "https://www.zumetrix.com",
+    website: import.meta.env.VITE_COMPANY_WEBSITE || "https://zumetrix.com",
   },
 
   // Hero Section Data
@@ -215,11 +215,11 @@ export const SITE_DATA = {
     },
   },
 
-  // Featured Case Studies - SUCCESS STORIES
+  // Featured Case Studies - SELECTED CLIENT WORK
   featuredCaseStudies: {
-    title: "Success Stories from Global Markets",
+    title: "Selected Client Work",
     subtitle:
-      "Real results for real businesses across US, UK, Canada, Australia, UAE & Singapore",
+      "Delivered across publishing, operations and marketplace products for teams in Norway, Canada and the United Kingdom.",
     cta: {
       text: "View All Projects",
       link: "/portfolio",
@@ -249,7 +249,7 @@ export const SITE_DATA = {
           "SaaS Architecture",
         ],
         achievements: "Led 30+ successful MVP launches",
-        image: "/profile_images//zia-hussain-founder.jpg",
+        image: "/profile_images/zia-hussain-founder.jpg",
         linkedin: "https://www.linkedin.com/in/zia-hussain-404-/",
         calendly: "https://calendly.com/zia-hussain/consultation",
       },
@@ -270,7 +270,7 @@ export const SITE_DATA = {
           "Performance Optimization",
         ],
         achievements: "Built systems serving 100K+ users",
-        image: "/profile_images//syed-omer-shah-founder.jpg",
+        image: "/profile_images/syed-omer-shah-founder.jpg",
         linkedin: "https://www.linkedin.com/in/omer-gillani/",
         calendly: "https://calendly.com/omer_shah/consultation",
       },

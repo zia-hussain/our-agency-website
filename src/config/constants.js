@@ -4,7 +4,7 @@ export const COMPANY = {
   email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
   phone: import.meta.env.VITE_COMPANY_PHONE || "+92 (317) 259-6525",
   address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",
-  website: import.meta.env.VITE_COMPANY_WEBSITE || "https://www.zumetrix.com",
+  website: import.meta.env.VITE_COMPANY_WEBSITE || "https://zumetrix.com",
 };
 
 export const FOUNDERS = [
@@ -12,7 +12,7 @@ export const FOUNDERS = [
     name: import.meta.env.VITE_FOUNDER_1_NAME || "Zia Hussain",
     fullName: import.meta.env.VITE_FOUNDER_1_FULL_NAME || "Syed Zia Hussain Shah",
     role: import.meta.env.VITE_FOUNDER_1_ROLE || "Co-Founder & CEO",
-    image: "/profile_images//zia-hussain-founder.jpg",
+    image: "/profile_images/zia-hussain-founder.jpg",
     bio: "Zia leads product direction, client strategy, and growth at Zumetrix Labs. With a strong background in full-stack development and a sharp instinct for business, he helps founders turn messy ideas into clear roadmaps and shipped products.",
     skills: ["Strategy", "Client Acquisition", "React", "Node.js", "Growth Systems"],
     social: {
@@ -26,7 +26,7 @@ export const FOUNDERS = [
     name: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
     fullName: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
     role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
-    image: "/profile_images//syed-omer-shah-founder.jpg",
+    image: "/profile_images/syed-omer-shah-founder.jpg",
     bio: "Umer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
     skills: ["Next.js", "TypeScript", "Firebase", "Python", "AI Automation"],
     social: {
@@ -46,8 +46,8 @@ export const SOCIAL_LINKS = {
 };
 
 export const SEO_CONFIG = {
-  title: import.meta.env.VITE_META_TITLE || "Zumetrix Labs | #1 Software Development Agency Pakistan",
-  description: import.meta.env.VITE_META_DESCRIPTION || "Pakistan's top software development agency founded by expert developers Zia Hussain and Syed Omer Shah.",
+  title: import.meta.env.VITE_META_TITLE || "Zumetrix Labs | Forge Clear Ideas Into Shipped Software",
+  description: import.meta.env.VITE_META_DESCRIPTION || "Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders. Founded by Zia Hussain and Syed Omer Shah.",
   keywords: import.meta.env.VITE_META_KEYWORDS || "Zumetrix Labs, Zia Hussain, Syed Omer Shah, software development agency Pakistan",
   gaTagId: import.meta.env.VITE_GA_TAG_ID || "G-PRSP59FL20",
   googleVerification: import.meta.env.VITE_GOOGLE_VERIFICATION || "XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs",

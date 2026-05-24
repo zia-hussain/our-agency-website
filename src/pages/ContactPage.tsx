@@ -10,7 +10,6 @@ import { Plus } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import {
   Mail,
-  Phone,
   MapPin,
   Calendar,
   MessageCircle,
@@ -235,13 +234,6 @@ const ContactPage: React.FC = () => {
       action: `mailto:${SITE_CONFIG.company.email}`,
     },
     {
-      icon: Phone,
-      title: "Call Us",
-      details: SITE_CONFIG.company.phone,
-      description: "Speak directly with our team during business hours",
-      action: `tel:${SITE_CONFIG.company.phone.replace(/\s/g, "")}`,
-    },
-    {
       icon: MapPin,
       title: "Location",
       details: SITE_CONFIG.company.address,
@@ -291,51 +283,16 @@ const ContactPage: React.FC = () => {
           description:
             "Contact Zumetrix Labs for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
           mainEntity: {
-            "@type": "LocalBusiness",
+            "@type": "Organization",
+            "@id": "https://zumetrix.com/#organization",
             name: "Zumetrix Labs",
             description:
               "Zumetrix Labs builds software for founders who need thinking partners, not order-takers. Services include SaaS MVPs, React/Node.js applications, AI automation, and mobile apps for international clients.",
-            address: {
-              "@type": "PostalAddress",
-              addressCountry: "Pakistan",
-              addressRegion: "Punjab",
-            },
-            areaServed: "Worldwide",
             contactPoint: {
               "@type": "ContactPoint",
-              telephone: "+92-XXX-XXXXXXX",
-              contactType: "customer service",
+              contactType: "sales",
               email: "hello@zumetrix.com",
               availableLanguage: ["English", "Urdu"],
-              hoursAvailable: {
-                "@type": "OpeningHoursSpecification",
-                dayOfWeek: [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                ],
-                opens: "09:00",
-                closes: "18:00",
-                timeZone: "Asia/Karachi",
-              },
-            },
-            priceRange: "$5,000 - $50,000",
-            paymentAccepted: [
-              "Cash",
-              "Credit Card",
-              "Bank Transfer",
-              "PayPal",
-              "Stripe",
-            ],
-            currenciesAccepted: "USD",
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5.0",
-              reviewCount: "50",
-              bestRating: "5",
-              worstRating: "5",
             },
           },
         }}

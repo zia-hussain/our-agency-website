@@ -3,7 +3,7 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
-import { Shield, Mail, Phone } from "lucide-react";
+import { Shield, Mail } from "lucide-react";
 import { COMPANY } from "../config/constants.js";
 
 const PrivacyPolicyPage: React.FC = () => {
@@ -191,10 +191,6 @@ const PrivacyPolicyPage: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <Mail size={20} className="text-primary" />
                     <span className="text-foreground">{COMPANY.email}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Phone size={20} className="text-primary" />
-                    <span className="text-foreground">{COMPANY.phone}</span>
                   </div>
                 </div>
               </div>

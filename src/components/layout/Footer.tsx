@@ -5,7 +5,6 @@ import {
   Linkedin,
   Twitter,
   Mail,
-  Phone,
   MapPin,
   Instagram,
   Award,
@@ -22,6 +21,8 @@ const Footer: React.FC = () => {
   const footerLinks = {
     company: [
       { name: "About Us", path: "/about" },
+      { name: "Zia Hussain", path: "/founders/zia-hussain" },
+      { name: "Syed Omer Shah", path: "/founders/syed-omer-shah" },
       { name: "Services", path: "/services" },
       { name: "Portfolio", path: "/portfolio" },
       { name: "Contact", path: "/contact" },
@@ -40,11 +41,6 @@ const Footer: React.FC = () => {
         icon: Mail,
         text: COMPANY.email,
         href: `mailto:${COMPANY.email}`,
-      },
-      {
-        icon: Phone,
-        text: COMPANY.phone,
-        href: `tel:${COMPANY.phone.replace(/\s/g, "")}`,
       },
       { icon: MapPin, text: COMPANY.address, href: "#" },
     ],

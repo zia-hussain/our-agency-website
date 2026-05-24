@@ -185,95 +185,34 @@ const ArticleDetailPage: React.FC = () => {
     );
   }
 
+  const structuredAuthors = article.author.split(" & ").map((authorName) => ({
+    "@type": "Person",
+    "@id": authorName === "Zia Hussain"
+      ? "https://zumetrix.com/founders/zia-hussain#person"
+      : "https://zumetrix.com/founders/syed-omer-shah#person",
+    name: authorName,
+    jobTitle: authorName === "Zia Hussain" ? "Co-Founder & CEO" : "Co-Founder & CTO",
+    url: authorName === "Zia Hussain"
+      ? "https://zumetrix.com/founders/zia-hussain"
+      : "https://zumetrix.com/founders/syed-omer-shah",
+    worksFor: {
+      "@id": "https://zumetrix.com/#organization",
+    },
+  }));
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     headline: article.title,
     description: article.excerpt,
     image: article.image,
-    author: {
-      "@type": "Person",
-      "@id": `https://zumetrix.com/about#${article.author.toLowerCase().replace(/\s+/g, '-')}`,
-      name: article.author,
-      jobTitle: article.authorRole,
-      description: article.author === "Zia Hussain" 
-        ? "Co-founder of Zumetrix Labs leading product, growth, SaaS MVP strategy, React/Node.js delivery, and client success."
-        : "Co-founder of Zumetrix Labs leading architecture, AI automation workflows, Python development, cloud infrastructure, and scalable systems.",
-      knowsAbout: article.author === "Zia Hussain"
-        ? [
-            "React Development", 
-            "Node.js Development", 
-            "SaaS MVP Development", 
-            "TypeScript Development",
-            "Firebase Integration",
-            "Business Strategy", 
-            "Client Success",
-            "Enterprise Web Applications",
-            "Startup MVP Strategy",
-            "International Software Development",
-            "Full Stack Development",
-            "Software Architecture"
-          ]
-        : [
-            "AI Automation", 
-            "OpenAI Integration",
-            "System Architecture", 
-            "Cloud Infrastructure", 
-            "Performance Optimization", 
-            "Python Development",
-            "Machine Learning Implementation",
-            "Database Optimization",
-            "API Development",
-            "DevOps Engineering",
-            "Scalable Web Applications",
-            "Enterprise Software Architecture"
-          ],
-      sameAs: article.author === "Zia Hussain"
-        ? [
-            "https://www.upwork.com/freelancers/ziahussain1",
-            "https://www.fiverr.com/syedziashahgill", 
-            "https://www.linkedin.com/in/zia-hussain-404-/",
-            "https://github.com/zia-hussain"
-          ]
-        : [
-            "https://www.linkedin.com/in/omer-gillani/",
-            "https://github.com/UmerGillani36"
-          ],
-      hasOccupation: {
-        "@type": "Occupation",
-        name: article.author === "Zia Hussain" ? "Software Development Expert & CEO" : "Chief Technology Officer & AI Automation Expert",
-        occupationLocation: {
-          "@type": "Place",
-          name: "Worldwide"
-        },
-        skills: article.author === "Zia Hussain" 
-          ? "React, Node.js, TypeScript, Firebase, SaaS Development, Business Strategy"
-          : "AI Automation, System Architecture, Python, Cloud Infrastructure, Performance Optimization"
-      },
-      award: article.author === "Zia Hussain"
-        ? [
-            "100% Client Satisfaction Rate",
-            "30+ Successful MVP Launches", 
-            "Expert React/Node.js Developer Recognition"
-          ]
-        : [
-            "Systems Serving 100K+ Users",
-            "AI Automation Expert Recognition",
-            "Scalable Architecture Specialist"
-          ],
-      worksFor: {
-        "@type": "Organization",
-        "@id": "https://zumetrix.com/#organization",
-        name: "Zumetrix Labs",
-        url: "https://zumetrix.com"
-      },
-    },
+    author: structuredAuthors,
     publisher: {
       "@type": "Organization",
       name: "Zumetrix Labs",
       logo: {
         "@type": "ImageObject",
-        url: "https://zumetrix.com/logo.png",
+        url: "https://zumetrix.com/logo/Logo%20Icon.png",
       },
     },
     datePublished: article.publishedAt,

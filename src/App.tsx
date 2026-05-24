@@ -9,6 +9,7 @@ import StickyCTABar from "./components/common/StickyCTABar";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
+const FounderProfilePage = lazy(() => import("./pages/FounderProfilePage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const MVPDevelopmentPage = lazy(() => import("./pages/MVPDevelopmentPage"));
 const AIAutomationPage = lazy(() => import("./pages/AIAutomationPage"));
@@ -58,6 +59,7 @@ function App() {
     location.pathname.startsWith('/services/') ||
     location.pathname.startsWith('/portfolio/') ||
     location.pathname.startsWith('/articles/') ||
+    location.pathname.startsWith('/founders/') ||
     location.pathname.startsWith('/admin'));
 
   useEffect(() => {
@@ -78,6 +80,7 @@ function App() {
           <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/founders/:slug" element={<FounderProfilePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/mvp-development" element={<MVPDevelopmentPage />} />
           <Route path="/services/ai-automation" element={<AIAutomationPage />} />

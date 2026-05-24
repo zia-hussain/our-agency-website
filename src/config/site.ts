@@ -9,7 +9,7 @@ export const SITE_CONFIG = {
     email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
     phone: import.meta.env.VITE_COMPANY_PHONE || "+92 XXX XXXXXXX",
     address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",
-    website: import.meta.env.VITE_COMPANY_WEBSITE || "https://www.zumetrix.com",
+    website: import.meta.env.VITE_COMPANY_WEBSITE || "https://zumetrix.com",
   },
 
   // Founders Information
@@ -18,14 +18,14 @@ export const SITE_CONFIG = {
       name: import.meta.env.VITE_FOUNDER_1_NAME || "Zia Hussain",
       fullName: import.meta.env.VITE_FOUNDER_1_FULL_NAME || "Syed Zia Hussain Shah",
       role: import.meta.env.VITE_FOUNDER_1_ROLE || "Co-Founder & CEO",
-      image: import.meta.env.VITE_FOUNDER_1_IMAGE || "/profile_images//zia-hussain-founder.jpg",
+      image: import.meta.env.VITE_FOUNDER_1_IMAGE || "/profile_images/zia-hussain-founder.jpg",
       bio: import.meta.env.VITE_FOUNDER_1_BIO || "Zia leads product, growth, and client strategy at Zumetrix Labs.",
     },
     {
       name: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
       fullName: import.meta.env.VITE_FOUNDER_2_FULL_NAME || "Syed Omer Shah",
       role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
-      image: import.meta.env.VITE_FOUNDER_2_IMAGE || "/profile_images//syed-omer-shah-founder.jpg",
+      image: import.meta.env.VITE_FOUNDER_2_IMAGE || "/profile_images/syed-omer-shah-founder.jpg",
       bio: import.meta.env.VITE_FOUNDER_2_BIO || "Omer leads architecture, automation, and engineering at Zumetrix Labs.",
     }
   ],

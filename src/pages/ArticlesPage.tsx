@@ -44,10 +44,11 @@ const ArticlesPage: React.FC = () => {
     url: "https://zumetrix.com/articles",
     publisher: {
       "@type": "Organization",
+      "@id": "https://zumetrix.com/#organization",
       name: "Zumetrix Labs",
       logo: {
         "@type": "ImageObject",
-        url: "https://zumetrix.com/logo.png",
+        url: "https://zumetrix.com/logo/Logo%20Icon.png",
       },
     },
     blogPost: articles.map((article) => ({
@@ -56,10 +57,13 @@ const ArticlesPage: React.FC = () => {
       description: article.excerpt,
       url: `https://zumetrix.com/articles/${article.slug}`,
       datePublished: article.publishedAt,
-      author: {
+      author: article.author.split(" & ").map((authorName) => ({
         "@type": "Person",
-        name: article.author,
-      },
+        "@id": authorName === "Zia Hussain"
+          ? "https://zumetrix.com/founders/zia-hussain#person"
+          : "https://zumetrix.com/founders/syed-omer-shah#person",
+        name: authorName,
+      })),
     })),
   };
 

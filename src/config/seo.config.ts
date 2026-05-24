@@ -239,18 +239,20 @@ export const SEO_CONFIG = {
     "url": "https://zumetrix.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://zumetrix.com/logo.png",
+      "url": "https://zumetrix.com/logo/Logo%20Icon.png",
       "width": 512,
       "height": 512
     },
-    "description": "Pakistan's leading software development agency specializing in SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
+    "description": "Zumetrix Labs builds SaaS MVPs, React/Node.js applications, AI automation services, and mobile apps for founders.",
     "foundingDate": "2021",
-    "founders": [
+    "founder": [
       {
         "@type": "Person",
+        "@id": "https://zumetrix.com/founders/zia-hussain#person",
         "name": "Zia Hussain",
         "alternateName": "Syed Zia Hussain Shah",
         "jobTitle": "Co-Founder & CEO",
+        "url": "https://zumetrix.com/founders/zia-hussain",
         "worksFor": {
           "@id": "https://zumetrix.com/#organization"
         },
@@ -263,8 +265,10 @@ export const SEO_CONFIG = {
       },
       {
         "@type": "Person", 
+        "@id": "https://zumetrix.com/founders/syed-omer-shah#person",
         "name": "Syed Omer Shah",
         "jobTitle": "Co-Founder & CTO",
+        "url": "https://zumetrix.com/founders/syed-omer-shah",
         "worksFor": {
           "@id": "https://zumetrix.com/#organization"
         },
@@ -274,11 +278,9 @@ export const SEO_CONFIG = {
         ]
       }
     ],
-    "address": {
-      "@type": "PostalAddress", "addressCountry": "Pakistan" }, "contactPoint": {
+    "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+92-XXX-XXXXXXX",
-      "contactType": "customer service",
+      "contactType": "sales",
       "email": "hello@zumetrix.com",
       "availableLanguage": ["English", "Urdu"]
     },

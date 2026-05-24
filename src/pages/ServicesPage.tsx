@@ -41,19 +41,6 @@ const ServicesPage: React.FC = () => {
               provider: {
                 "@id": "https://zumetrix.com/#organization",
               },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5.0",
-                reviewCount: "50",
-                bestRating: "5",
-                worstRating: "5"
-              },
-              offers: {
-                "@type": "Offer",
-                price: service.price.replace(/[^0-9]/g, ''),
-                priceCurrency: "USD",
-                availability: "https://schema.org/InStock"
-              }
             },
           })),
         },
@@ -62,13 +49,6 @@ const ServicesPage: React.FC = () => {
         "@type": "Service",
         name: service.title,
         description: service.description,
-        aggregateRating: {
-          "@type": "AggregateRating", 
-          ratingValue: "5.0",
-          reviewCount: "50",
-          bestRating: "5",
-          worstRating: "5"
-        },
         provider: {
           "@id": "https://zumetrix.com/#organization",
         },
@@ -107,12 +87,6 @@ const ServicesPage: React.FC = () => {
           }
         ],
         serviceType: service.technologies,
-        offers: {
-          "@type": "Offer",
-          price: service.price.replace(/[^0-9]/g, ''),
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock"
-        }
       })),
     ],
   };

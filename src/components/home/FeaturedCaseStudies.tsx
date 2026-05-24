@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Monitor } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
-import { getFeaturedProjects } from "../../data/homepageProjects/projects";
+import { getHomepageFeaturedProjects } from "../../data/projects";
 
 const FeaturedCaseStudies: React.FC = () => {
   const { featuredCaseStudies } = getSiteData();
-  const projects = getFeaturedProjects().slice(0, 3);
+  const projects = getHomepageFeaturedProjects().slice(0, 3);
   const [hero, second, third] = projects;
 
   return (
@@ -30,7 +30,7 @@ const FeaturedCaseStudies: React.FC = () => {
             className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
           >
             <Monitor size={16} className="mr-2" />
-            Success Stories from Global Markets
+            Selected Client Work
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
@@ -41,7 +41,7 @@ const FeaturedCaseStudies: React.FC = () => {
           </h2>
 
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-[1.6] font-light">
-            Across US, UK, Canada, Australia, UAE & Singapore — we build products that move the needle.
+            Delivered across publishing, operations and marketplace products for teams in Norway, Canada and the United Kingdom.
           </p>
         </motion.div>
 
