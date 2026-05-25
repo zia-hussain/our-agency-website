@@ -313,6 +313,8 @@ const founders: Record<string, FounderProfile> = {
     profiles: [
       { label: "LinkedIn", url: "https://www.linkedin.com/in/omer-gillani/" },
       { label: "GitHub", url: "https://github.com/UmerGillani36" },
+        { label: "Upwork", url: "https://www.upwork.com/freelancers/~019551f0a911e24660" },
+      { label: "Fiverr", url: "https://www.fiverr.com/omershahgillani" },
     ],
     faqs: [
       {
