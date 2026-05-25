@@ -433,12 +433,27 @@ const FounderProfilePage: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="max-w-[760px]"
             >
-              <div className="mb-8 flex items-center gap-4 text-xs uppercase text-muted-foreground sm:mb-10">
-                <span className="text-primary">Official Founder Profile</span>
-                <span className="h-px w-9 bg-primary/60" />
-                <span>Zumetrix Labs</span>
+              <div className="-mt-3 mb-8 sm:mt-0 sm:mb-10">
+                <div className="inline-flex items-center gap-3 rounded-lg border border-white/[0.09] border-l-2 border-l-primary bg-[#111111]/95 px-3 py-3 pr-5 shadow-[0_18px_44px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:hidden">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary/[0.08] text-primary">
+                    <CheckCircle2 size={16} />
+                  </span>
+                  <span className="flex flex-col gap-1">
+                    <span className="text-[10px] font-medium uppercase text-muted-foreground">Zumetrix Labs</span>
+                    <span className="text-xs font-semibold uppercase text-foreground">Official Founder Profile</span>
+                  </span>
+                </div>
+                <div className="hidden items-center gap-4 text-xs uppercase text-muted-foreground sm:flex">
+                  <span className="text-primary">Official Founder Profile</span>
+                  <span className="h-px w-9 bg-primary/60" />
+                  <span>Zumetrix Labs</span>
+                </div>
               </div>
-              <h1 className="mb-7 text-[clamp(4rem,15vw,7.5rem)] font-semibold leading-[0.91] tracking-normal text-foreground lg:text-[clamp(6.2rem,10vw,9.1rem)]">
+              <h1 className={`mb-7 font-semibold leading-[0.91] tracking-normal text-foreground lg:text-[clamp(6.2rem,10vw,9.1rem)] ${
+                founder.displayName[0].length > 5
+                  ? "text-[clamp(3.25rem,15vw,7.5rem)]"
+                  : "text-[clamp(4rem,15vw,7.5rem)]"
+              }`}>
                 <span className="block">{founder.displayName[0]}</span>
                 <span className="block text-primary">{founder.displayName[1]}</span>
               </h1>
