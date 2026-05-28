@@ -13,7 +13,6 @@ import {
   MapPin,
   Building,
   CheckCircle,
-  Quote,
   ChevronRight,
   Globe,
   Code2,
@@ -22,6 +21,7 @@ import {
   Zap
 } from "lucide-react";
 import { getProjectBySlug } from "../data/projects";
+import TestimonialCarousel from "../components/common/TestimonialCarousel";
 
 const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -54,12 +54,18 @@ const ProjectDetailPage: React.FC = () => {
     );
   }
 
+  const pageUrl = `https://zumetrix.com/portfolio/${project.slug}`;
+  const shareImage = project.image.startsWith("http")
+    ? project.image
+    : `https://zumetrix.com${project.image}`;
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: project.title,
     description: project.description,
-    image: project.image,
+    image: shareImage,
+    url: pageUrl,
     creator: {
       "@type": "Organization",
       name: "Zumetrix Labs",
@@ -80,8 +86,8 @@ const ProjectDetailPage: React.FC = () => {
         title={`${project.title} - Case Study | Zumetrix Labs Portfolio`}
         description={project.description}
         keywords={`${project.tags.join(", ")}, case study, portfolio, ${project.client.country}`}
-        image={project.image}
-        url={`https://zumetrix.com/portfolio/${project.slug}`}
+        image={shareImage}
+        url={pageUrl}
         structuredData={structuredData}
       />
 
@@ -383,28 +389,16 @@ const ProjectDetailPage: React.FC = () => {
 
       {/* Testimonial */}
       {project.testimonial && (
-        <section className="py-24 bg-card/20 border-y border-border">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/30 border border-primary/30 rounded-full flex items-center justify-center mx-auto mb-8">
-                <Quote size={24} className="text-primary" />
-              </div>
-              
-              <blockquote className="text-2xl md:text-3xl text-foreground font-light leading-relaxed mb-8 italic">
-                "{project.testimonial.quote}"
-              </blockquote>
-              
-              <div className="text-center">
-                <div className="font-semibold text-foreground text-lg">
-                  {project.testimonial.author}
-                </div>
-                <div className="text-primary font-medium">
-                  {project.testimonial.role}
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
+        <TestimonialCarousel
+          eyebrow={project.title}
+          testimonials={[
+            {
+              quote: project.testimonial.quote,
+              author: project.testimonial.author,
+              role: project.testimonial.role,
+            },
+          ]}
+        />
       )}
 
       {/* Gallery */}

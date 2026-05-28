@@ -1,5 +1,141 @@
 {
+  "headers": [
+    {
+      "source": "/admin/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/review",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/services/mvp-development",
+      "destination": "/services/saas-mvp-development",
+      "permanent": true
+    },
+    {
+      "source": "/services/ai-automation",
+      "destination": "/services/ai-automation-solutions",
+      "permanent": true
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/about/index.html"
+    },
+    {
+      "source": "/founders/zia-hussain",
+      "destination": "/founders/zia-hussain/index.html"
+    },
+    {
+      "source": "/founders/syed-omer-shah",
+      "destination": "/founders/syed-omer-shah/index.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/services/index.html"
+    },
+    {
+      "source": "/services/mobile-app-development",
+      "destination": "/services/mobile-app-development/index.html"
+    },
+    {
+      "source": "/services/enterprise-web-applications",
+      "destination": "/services/enterprise-web-applications/index.html"
+    },
+    {
+      "source": "/services/saas-mvp-development",
+      "destination": "/services/saas-mvp-development/index.html"
+    },
+    {
+      "source": "/services/startup-mvp-development",
+      "destination": "/services/startup-mvp-development/index.html"
+    },
+    {
+      "source": "/services/ai-automation-solutions",
+      "destination": "/services/ai-automation-solutions/index.html"
+    },
+    {
+      "source": "/services/digital-strategy-consulting",
+      "destination": "/services/digital-strategy-consulting/index.html"
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio/index.html"
+    },
+    {
+      "source": "/portfolio/all",
+      "destination": "/portfolio/all/index.html"
+    },
+    {
+      "source": "/portfolio/forlag-publishing-sales-inventory-dashboard",
+      "destination": "/portfolio/forlag-publishing-sales-inventory-dashboard/index.html"
+    },
+    {
+      "source": "/portfolio/floating-stone-ranch-processor-intake-engine",
+      "destination": "/portfolio/floating-stone-ranch-processor-intake-engine/index.html"
+    },
+    {
+      "source": "/portfolio/skill-x-swap-mvp",
+      "destination": "/portfolio/skill-x-swap-mvp/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact/index.html"
+    },
+    {
+      "source": "/articles",
+      "destination": "/articles/index.html"
+    },
+    {
+      "source": "/articles/what-we-learned-building-50-projects",
+      "destination": "/articles/what-we-learned-building-50-projects/index.html"
+    },
+    {
+      "source": "/articles/build-saas-mvp-in-30-days",
+      "destination": "/articles/build-saas-mvp-in-30-days/index.html"
+    },
+    {
+      "source": "/articles/ai-automation-business-growth",
+      "destination": "/articles/ai-automation-business-growth/index.html"
+    },
+    {
+      "source": "/articles/react-nodejs-best-practices-2024",
+      "destination": "/articles/react-nodejs-best-practices-2024/index.html"
+    },
+    {
+      "source": "/articles/mobile-app-development-flutter-react-native",
+      "destination": "/articles/mobile-app-development-flutter-react-native/index.html"
+    },
+    {
+      "source": "/articles/firebase-complete-guide-pakistani-developers",
+      "destination": "/articles/firebase-complete-guide-pakistani-developers/index.html"
+    },
+    {
+      "source": "/articles/no-code-automation-zapier-make-n8n",
+      "destination": "/articles/no-code-automation-zapier-make-n8n/index.html"
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy/index.html"
+    },
+    {
+      "source": "/terms-of-service",
+      "destination": "/terms-of-service/index.html"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

@@ -147,7 +147,7 @@ const founders: Record<string, FounderProfile> = {
       {
         title: "SaaS MVP Development",
         description: "For founders who need to turn a new software idea into a focused, launchable first product.",
-        path: "/services/mvp-development",
+        path: "/services/saas-mvp-development",
       },
       {
         title: "Web Applications",
@@ -290,7 +290,7 @@ const founders: Record<string, FounderProfile> = {
       {
         title: "AI Automation",
         description: "For teams that want to reduce recurring manual work through intentional workflows and AI integrations.",
-        path: "/services/ai-automation",
+        path: "/services/ai-automation-solutions",
       },
       {
         title: "Custom Software Systems",

@@ -44,22 +44,40 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zumetrix.com/services/mvp-development</loc>
-    <lastmod>2026-05-24</lastmod>
+    <loc>https://zumetrix.com/services/saas-mvp-development</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zumetrix.com/services/ai-automation</loc>
-    <lastmod>2026-05-24</lastmod>
+    <loc>https://zumetrix.com/services/ai-automation-solutions</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zumetrix.com/services/mobile-app-development</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/services/enterprise-web-applications</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/services/digital-strategy-consulting</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/services/startup-mvp-development</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://zumetrix.com/portfolio</loc>
@@ -72,6 +90,36 @@
     <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/portfolio/forlag-publishing-sales-inventory-dashboard</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zumetrix.com/project_images/forlag.jpg</image:loc>
+      <image:title>Forlag publishing sales and inventory dashboard</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/portfolio/floating-stone-ranch-processor-intake-engine</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zumetrix.com/project_images/floating-stone.jpg</image:loc>
+      <image:title>Floating Stone Ranch processor intake engine</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/portfolio/skill-x-swap-mvp</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zumetrix.com/project_images/skillxswap.jpg</image:loc>
+      <image:title>Skill x Swap mobile marketplace MVP</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://zumetrix.com/contact</loc>

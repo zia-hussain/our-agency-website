@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
@@ -11,9 +11,6 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const FounderProfilePage = lazy(() => import("./pages/FounderProfilePage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
-const MVPDevelopmentPage = lazy(() => import("./pages/MVPDevelopmentPage"));
-const AIAutomationPage = lazy(() => import("./pages/AIAutomationPage"));
-const MobileAppPage = lazy(() => import("./pages/MobileAppPage"));
 const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ArticlesPage = lazy(() => import("./pages/ArticlesPage"));
@@ -52,8 +49,7 @@ function App() {
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isReviewRoute = location.pathname === '/review';
   const isNotFoundRoute = !([
-    '/', '/about', '/services', '/services/mvp-development', '/services/ai-automation',
-    '/services/mobile-app-development', '/portfolio', '/portfolio/all', '/contact',
+    '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact',
     '/articles', '/privacy-policy', '/terms-of-service', '/review',
   ].includes(location.pathname) ||
     location.pathname.startsWith('/services/') ||
@@ -82,9 +78,8 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/founders/:slug" element={<FounderProfilePage />} />
           <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/mvp-development" element={<MVPDevelopmentPage />} />
-          <Route path="/services/ai-automation" element={<AIAutomationPage />} />
-          <Route path="/services/mobile-app-development" element={<MobileAppPage />} />
+          <Route path="/services/mvp-development" element={<Navigate to="/services/saas-mvp-development" replace />} />
+          <Route path="/services/ai-automation" element={<Navigate to="/services/ai-automation-solutions" replace />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/all" element={<AllProjectsPage />} />

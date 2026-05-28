@@ -45,8 +45,8 @@ export const services: Service[] = [
     icon: Monitor,
     title: "Enterprise Web Applications",
     subtitle: "Scalable, high-performance digital solutions for global markets",
-    description: "Transform your ambitious business vision into powerful, enterprise-grade web applications that scale globally and drive exceptional ROI. We build custom platforms using cutting-edge React, Next.js, and TypeScript technologies with cloud-native architecture designed for international markets and enterprise-level performance requirements.",
-    longDescription: "Our enterprise web application development services combine technical excellence with strategic business insight to create digital solutions that transform how your organization operates and serves customers globally. We specialize in building scalable, high-performance web applications using modern React.js, Next.js, TypeScript, and Node.js technologies that can handle millions of users while maintaining exceptional speed and reliability. Our applications are designed with international markets in mind, featuring multi-language support, global CDN optimization, advanced security protocols, and enterprise-grade infrastructure that scales seamlessly as your business grows across different regions and time zones.",
+    description: "Transform your ambitious business vision into powerful, enterprise-grade web applications built for scale, clarity, and long-term maintainability. We build custom platforms using React, Next.js, and TypeScript with cloud-ready architecture designed for serious business workflows.",
+    longDescription: "Our enterprise web application development services combine technical excellence with strategic business insight to create digital solutions that transform how your organization operates and serves customers globally. We specialize in building scalable, high-performance web applications using modern React.js, Next.js, TypeScript, and Node.js technologies designed for demanding user loads, speed, and reliability. Our applications are designed with international markets in mind, featuring multi-language support, global CDN optimization, advanced security protocols, and enterprise-grade infrastructure that scales as your business grows across different regions and time zones.",
     features: [
       "React & TypeScript Development with Modern Architecture",
       "Progressive Web App (PWA) Support for Mobile-First Experience", 
@@ -59,7 +59,7 @@ export const services: Service[] = [
       "Multi-language Support & Internationalization (i18n)",
       "Advanced Analytics & Business Intelligence Integration"
     ],
-    technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Docker", "Redis"],
+    technologies: ["React", "Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "MongoDB", "Prisma", "GraphQL", "REST APIs", "AWS", "Vercel", "Docker", "Redis", "WebSockets", "CI/CD"],
     price: "Starting at $3,999",
     popular: false,
     image: "/services_images/Website.jpg",
@@ -80,12 +80,12 @@ export const services: Service[] = [
       "High maintenance costs and technical debt"
     ],
     results: [
-      "75% improvement in application performance and speed",
-      "60% reduction in operational costs through automation",
-      "90% increase in user engagement and satisfaction",
-      "50% faster time-to-market for new features",
-      "99.9% uptime with enterprise-grade reliability",
-      "100% compliance with international security standards"
+      "Faster application performance through modern front-end architecture",
+      "Lower operational friction through cleaner software workflows",
+      "Improved user experience across desktop and mobile screens",
+      "Faster feature iteration with maintainable code foundations",
+      "More reliable deployment patterns for production environments",
+      "Security-conscious architecture aligned with business requirements"
     ],
     relatedProjects: ["ifyify-ai-personal-branding", "eduplatform-online-learning"],
     testimonials: [
@@ -108,7 +108,7 @@ export const services: Service[] = [
     icon: Database,
     title: "SaaS MVP Development",
     subtitle: "Launch your SaaS product in weeks, not months",
-    description: "Accelerate your startup journey with our proven SaaS MVP development process that has helped 25+ startups secure funding and scale globally. We transform ambitious business ideas into market-ready products using React, Node.js, and modern cloud technologies with enterprise-grade architecture from day one.",
+    description: "Accelerate your startup journey with a focused SaaS MVP development process built around validation, launch speed, and long-term product clarity. We transform ambitious business ideas into market-ready products using React, Node.js, and modern cloud technologies.",
     longDescription: "Our SaaS MVP development service is specifically designed for ambitious entrepreneurs and startups who need to validate their business concepts quickly while building a solid foundation for long-term growth. We've perfected a streamlined development process that delivers production-ready SaaS applications in 4-8 weeks, complete with user authentication, payment processing, real-time features, and scalable cloud infrastructure. Our MVPs aren't just prototypes - they're enterprise-grade applications built with the same quality standards as our full-scale projects, ensuring you can confidently scale from your first users to millions without rebuilding your core platform.",
     features: [
       "Rapid MVP Development (4-8 weeks from concept to launch)",
@@ -122,7 +122,7 @@ export const services: Service[] = [
       "A/B Testing Framework for Growth Optimization",
       "Comprehensive Admin Panel for Business Management"
     ],
-    technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Stripe", "Firebase", "Vercel"],
+    technologies: ["React", "Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "Supabase", "Firebase", "Stripe", "Clerk", "Prisma", "REST APIs", "Vercel", "TailwindCSS", "Analytics", "Admin Dashboards"],
     price: "Starting at $4,999",
     popular: true,
     image: "/services_images/mvp.jpg",
@@ -144,16 +144,16 @@ export const services: Service[] = [
     ],
     results: [
       "Average 6-week timeline from concept to live product",
-      "85% of our MVPs successfully secure follow-up funding",
-      "50% faster user acquisition through optimized onboarding",
-      "90% client satisfaction with final MVP delivery",
-      "Zero technical debt - built for long-term scaling",
-      "Average 40% cost savings compared to traditional development"
+      "Focused launch scope designed for fast validation",
+      "Cleaner onboarding flows for early user learning",
+      "Founder-led product thinking throughout delivery",
+      "Strong technical foundation designed for future scaling",
+      "Practical delivery model that avoids unnecessary build waste"
     ],
     relatedProjects: ["taskflow-startup-mvp", "ifyify-ai-personal-branding"],
     testimonials: [
       {
-        quote: "Zumetrix Labs helped us build and launch our MVP in record time. The quality was exceptional and it directly contributed to our successful $500K funding round.",
+        quote: "Zumetrix Labs helped us turn a rough product idea into a launch-ready MVP with the right core features, clean execution, and a foundation we could keep building on.",
         author: "Michael Chen", 
         role: "Founder",
         company: "TaskFlow"
@@ -161,7 +161,7 @@ export const services: Service[] = [
     ],
     seo: {
       title: "SaaS MVP Development Services | React, Node.js, Firebase | Launch in 4-8 Weeks | Zumetrix Labs",
-      description: "Build production-ready SaaS MVPs in 4-8 weeks with React, Node.js, and Firebase. Expert MVP development services helping startups validate ideas and secure funding.",
+      description: "Build production-ready SaaS MVPs in 4-8 weeks with React, Node.js, and Firebase. Expert MVP development services helping startups validate ideas and launch focused products.",
       keywords: "SaaS MVP development, startup MVP development, React SaaS development, MVP development services, SaaS product development, startup development agency, MVP builder, SaaS development company"
     }
   },
@@ -172,7 +172,7 @@ export const services: Service[] = [
     title: "Mobile App Development",
     subtitle: "Cross-platform apps that feel native and perform flawlessly",
     description: "Create powerful, cross-platform mobile applications that deliver exceptional user experiences across iOS and Android platforms. Using React Native, Expo, and native development tools, we build apps that feel native, perform flawlessly, and scale to millions of users while maintaining consistent branding and functionality.",
-    longDescription: "Our mobile app development expertise spans the complete mobile ecosystem, from initial concept and user experience design to App Store deployment and ongoing maintenance. We specialize in React Native development for cross-platform efficiency, but also provide native iOS and Android development when platform-specific features are required. Our mobile applications are built with performance, security, and scalability in mind, incorporating offline functionality, push notifications, real-time synchronization, and seamless integration with backend services and third-party APIs.",
+    longDescription: "Our mobile app development expertise spans the complete mobile ecosystem, from initial concept and user experience design to App Store deployment and ongoing maintenance. We specialize in React Native and Flutter development for cross-platform efficiency, but also provide native iOS and Android development when platform-specific features are required. Our mobile applications are built with performance, security, and scalability in mind, incorporating offline functionality, push notifications, real-time synchronization, and seamless integration with backend services and third-party APIs.",
     features: [
       "React Native & Expo Development for Cross-platform Efficiency",
       "Native iOS (Swift) & Android (Kotlin) Development When Needed",
@@ -185,7 +185,7 @@ export const services: Service[] = [
       "In-App Purchases & Subscription Management",
       "Social Features & User-Generated Content Systems"
     ],
-    technologies: ["React Native", "Expo", "Swift", "Kotlin", "Firebase", "Redux", "TypeScript", "Node.js"],
+    technologies: ["React Native", "Expo", "Flutter", "FlutterFlow", "Swift", "Kotlin", "Firebase", "Supabase", "TypeScript", "Node.js", "Redux Toolkit", "Zustand", "REST APIs", "GraphQL", "Push Notifications", "App Store", "Google Play", "Stripe"],
     price: "Starting at $8,000",
     popular: false,
     image: "/services_images/APP.jpg",
@@ -206,12 +206,12 @@ export const services: Service[] = [
       "Difficulty maintaining and updating multiple codebases"
     ],
     results: [
-      "50% cost savings compared to separate native development",
-      "90% code sharing between iOS and Android platforms",
-      "Average 4.8/5 app store rating across all projects",
-      "60% faster development timeline than native approaches",
-      "99% crash-free user sessions with proper error handling",
-      "Average 85% user retention rate after 30 days"
+      "Efficient delivery compared to separate native builds",
+      "Shared product foundation between iOS and Android platforms",
+      "Native-feeling experiences across iOS and Android",
+      "Faster delivery timelines than separate native builds for many business apps",
+      "Crash-aware architecture with proper monitoring foundations",
+      "Launch-ready app flows designed for real user adoption"
     ],
     relatedProjects: ["wellnesstracker-mobile-app", "logitrack-delivery-mobile"],
     testimonials: [
@@ -233,9 +233,9 @@ export const services: Service[] = [
     slug: "startup-mvp-development",
     icon: Rocket,
     title: "Startup MVP Development", 
-    subtitle: "Validate your business idea and secure funding fast",
-    description: "Transform your startup vision into a market-ready MVP in just 4-8 weeks using our proven methodology that has helped entrepreneurs validate business concepts, attract early users, secure funding, and build scalable foundations for long-term growth with enterprise-grade quality standards.",
-    longDescription: "Our startup MVP development service is specifically crafted for ambitious entrepreneurs who need to move fast without compromising on quality. We understand the unique challenges startups face - limited budgets, tight timelines, and the need to validate concepts quickly. Our proven methodology focuses on building lean but powerful MVPs that solve real problems, attract early adopters, and demonstrate clear value to potential investors. Every MVP we build is designed with scalability in mind, using enterprise-grade architecture and best practices that allow seamless growth from hundreds to millions of users.",
+    subtitle: "Validate your business idea with a focused first release",
+    description: "Transform your startup vision into a market-ready MVP in 4-8 weeks using a practical methodology that helps entrepreneurs validate business concepts, attract early users, and build scalable foundations for long-term growth.",
+    longDescription: "Our startup MVP development service is specifically crafted for ambitious entrepreneurs who need to move fast without compromising on quality. We understand the unique challenges startups face - limited budgets, tight timelines, and the need to validate concepts quickly. Our methodology focuses on building lean but powerful MVPs that solve real problems, attract early adopters, and demonstrate clear value. Every MVP we build is designed with scalability in mind, using architecture and best practices that can support future product growth.",
     features: [
       "Rapid UI/UX Prototyping with User-Centered Design",
       "MVP-First Architecture with Scalability Planning",
@@ -243,12 +243,12 @@ export const services: Service[] = [
       "Stripe Payments & Firebase Authentication for Quick Launch", 
       "Real-time Feature Support with WebSocket Integration",
       "Analytics & Early User Feedback Systems for Data-Driven Decisions",
-      "Investor-Ready Demos with Professional Presentation Materials",
+      "Demo-Ready Product Flows with Professional Presentation Materials",
       "Growth Hacking Tools & User Acquisition Features",
       "A/B Testing Framework for Feature Validation",
       "Comprehensive Documentation & Handover Process"
     ],
-    technologies: ["React", "Node.js", "Firebase", "Vercel", "Stripe", "OpenAI", "TypeScript", "TailwindCSS"],
+    technologies: ["React", "Next.js", "Node.js", "Firebase", "Supabase", "Vercel", "Stripe", "OpenAI", "TypeScript", "TailwindCSS", "Framer Motion", "Airtable", "Make.com", "Analytics", "Admin Panels", "MVP Architecture"],
     price: "Starting at $6,500",
     popular: true,
     image: "/services_images/SaaS.jpg",
@@ -265,30 +265,30 @@ export const services: Service[] = [
       "Running out of funding before reaching market validation",
       "Building too many features without user feedback",
       "Technical challenges that slow down development",
-      "Inability to attract early users and investors",
+      "Inability to attract early users or clearly communicate product value",
       "Lack of proper foundation for future scaling"
     ],
     results: [
       "Average 6-week timeline from concept to live MVP",
-      "80% of our MVPs successfully secure seed funding",
-      "90% client satisfaction with delivery quality and timeline",
-      "Average 1000+ early users within first month of launch",
-      "Zero technical debt - built for long-term growth",
-      "50% faster user acquisition through optimized onboarding"
+      "Focused MVP scope aligned with business validation",
+      "Clearer delivery quality through weekly demos and feedback",
+      "Launch-ready flows for early user testing",
+      "Scalable foundation designed for long-term product growth",
+      "Cleaner onboarding paths for faster user understanding"
     ],
     relatedProjects: ["taskflow-startup-mvp", "ifyify-ai-personal-branding"],
     testimonials: [
       {
-        quote: "Zumetrix Labs helped us validate our concept and build an MVP that directly led to our $500K seed round. Their expertise and speed were game-changing for our startup.",
+        quote: "Zumetrix Labs helped us validate our concept and build an MVP that gave our team a clear product foundation to present, test, and improve.",
         author: "Michael Chen",
         role: "Founder",
         company: "TaskFlow"
       }
     ],
     seo: {
-      title: "Startup MVP Development Services | Validate Ideas & Secure Funding | React, Firebase | Zumetrix Labs",
-      description: "Build market-ready startup MVPs in 4-8 weeks. Expert MVP development services helping entrepreneurs validate ideas, attract users, and secure funding with React and Firebase.",
-      keywords: "startup MVP development, MVP development services, startup development agency, validate business idea, secure startup funding, rapid prototyping, lean startup development, MVP builder"
+      title: "Startup MVP Development Services | Validate Ideas & Launch Faster | React, Firebase | Zumetrix Labs",
+      description: "Build market-ready startup MVPs in 4-8 weeks. Expert MVP development services helping entrepreneurs validate ideas, attract users, and launch focused products with React and Firebase.",
+      keywords: "startup MVP development, MVP development services, startup development agency, validate business idea, rapid prototyping, lean startup development, MVP builder"
     }
   },
   {
@@ -297,7 +297,7 @@ export const services: Service[] = [
     icon: Cog,
     title: "AI Automation Solutions",
     subtitle: "Automate workflows and scale your business intelligently", 
-    description: "Revolutionize your business operations with intelligent AI automation solutions that eliminate manual work, reduce errors by 95%, and accelerate growth by 40-70%. We design and implement custom automation workflows using OpenAI, no-code platforms, and custom development to streamline your processes.",
+    description: "Improve your business operations with intelligent AI automation solutions that reduce manual work, clean up handoffs, and make repeated processes easier to manage. We design and implement custom automation workflows using OpenAI, no-code platforms, and custom development.",
     longDescription: "Our AI automation services transform how businesses operate by implementing intelligent workflows that handle repetitive tasks, process data automatically, and make smart decisions without human intervention. We specialize in creating custom automation solutions using cutting-edge AI technologies like OpenAI's GPT models, combined with powerful no-code platforms like Make.com, Zapier, and n8n. Our automation solutions integrate seamlessly with your existing business tools and processes, creating efficient workflows that save time, reduce costs, and eliminate human errors while providing valuable insights for business optimization.",
     features: [
       "No-Code & Low-Code Automation (Zapier, Make.com, n8n)",
@@ -311,7 +311,7 @@ export const services: Service[] = [
       "Social Media & Marketing Automation Workflows",
       "Customer Support Chatbots with AI Intelligence"
     ],
-    technologies: ["Python", "OpenAI", "Zapier", "Make.com", "n8n", "AWS Lambda", "Node.js", "MongoDB"],
+    technologies: ["OpenAI", "ChatGPT API", "Python", "Node.js", "LangChain", "Zapier", "Make.com", "n8n", "Airtable", "Google Sheets", "HubSpot", "Slack", "Webhook APIs", "AWS Lambda", "Supabase", "MongoDB", "Vector Search", "Document AI"],
     price: "Starting at $5,200",
     popular: false,
     image: "/services_images/Ai.jpg",
@@ -332,17 +332,17 @@ export const services: Service[] = [
       "High operational costs due to manual labor"
     ],
     results: [
-      "Average 70% reduction in manual work and processing time",
-      "95% elimination of human errors in automated processes",
-      "50% cost savings in operational expenses",
-      "300% improvement in process consistency and reliability",
-      "Real-time business insights and automated reporting",
-      "24/7 automated operations without human intervention"
+      "Reduced manual work in repetitive operational workflows",
+      "Fewer avoidable errors through structured automation",
+      "Lower operational friction across connected tools",
+      "More consistent process execution and handoffs",
+      "Clearer business insights through automated reporting",
+      "Reliable background workflows for recurring tasks"
     ],
     relatedProjects: ["retailops-automation-platform"],
     testimonials: [
       {
-        quote: "The automation solutions from Zumetrix Labs have completely transformed our operations. We've saved hundreds of hours monthly and our error rate has dropped to nearly zero.",
+        quote: "The automation solutions from Zumetrix Labs made our operations cleaner, easier to track, and much less dependent on repetitive manual work.",
         author: "James Mitchell",
         role: "Operations Director",
         company: "RetailOps Enterprise"
@@ -374,7 +374,7 @@ export const services: Service[] = [
       "Product-Market Fit Analysis & Optimization",
       "Investor Pitch Deck Technical Review & Enhancement"
     ],
-    technologies: ["Strategic Planning", "Technical Audits", "Architecture Design", "Performance Analysis", "Security Review", "Growth Strategy"],
+    technologies: ["Product Strategy", "Technical Audits", "Architecture Design", "UX Review", "SEO Review", "Performance Analysis", "Security Review", "Growth Strategy", "Roadmapping", "MVP Scoping", "Analytics Planning", "System Design"],
     price: "Starting at $3,000",
     popular: false,
     image: "/services_images/Strategy.jpg",

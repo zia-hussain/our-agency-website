@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import {
   ArrowLeft,
   CheckCircle,
-  Quote,
   ChevronRight,
   Code2,
   AlertTriangle,
@@ -17,6 +16,7 @@ import {
 } from "lucide-react";
 import { getServiceBySlug } from "../data/services";
 import { getProjectBySlug } from "../data/projects";
+import TestimonialCarousel from "../components/common/TestimonialCarousel";
 
 const ServiceDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -49,16 +49,23 @@ const ServiceDetailPage: React.FC = () => {
     );
   }
 
+  const pageUrl = `https://zumetrix.com/services/${service.slug}`;
+  const shareImage = service.image.startsWith("http")
+    ? service.image
+    : `https://zumetrix.com${service.image}`;
+
   // Get related projects
   const relatedProjects = service.relatedProjects?.map(projectSlug => 
     getProjectBySlug(projectSlug)
   ).filter(Boolean) || [];
+  const testimonials = service.testimonials || [];
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.title,
     description: service.description,
+    url: pageUrl,
     provider: {
       "@type": "Organization",
       name: "Zumetrix Labs",
@@ -74,8 +81,8 @@ const ServiceDetailPage: React.FC = () => {
         title={service.seo.title}
         description={service.seo.description}
         keywords={service.seo.keywords}
-        image={service.image}
-        url={`https://zumetrix.com/services/${service.slug}`}
+        image={shareImage}
+        url={pageUrl}
         structuredData={structuredData}
       />
 
@@ -88,16 +95,32 @@ const ServiceDetailPage: React.FC = () => {
                 Home
               </Link>
               <ChevronRight size={16} />
-              <Link to="/services" className="hover:text-primary transition-colors duration-150">
+              <a
+                href="/services"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.location.assign("/services");
+                }}
+                className="cursor-pointer bg-transparent p-0 text-left text-muted-foreground transition-colors duration-150 hover:text-primary"
+                aria-label="Go to services page"
+              >
                 Services
-              </Link>
+              </a>
               <ChevronRight size={16} />
               <span className="text-foreground font-medium line-clamp-1">
                 {service.title}
               </span>
             </nav>
 
-            <Link to="/services">
+            <a
+              href="/services"
+              onClick={(event) => {
+                event.preventDefault();
+                window.location.assign("/services");
+              }}
+              className="block"
+              aria-label="Back to services page"
+            >
               <motion.div
                 whileHover={{ x: -2 }}
                 transition={{ duration: 0.15 }}
@@ -106,7 +129,7 @@ const ServiceDetailPage: React.FC = () => {
                 <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-0.5 transition-transform duration-150" />
                 Back to Services
               </motion.div>
-            </Link>
+            </a>
           </AnimatedSection>
         </div>
       </section>
@@ -340,33 +363,54 @@ const ServiceDetailPage: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-8">
               {relatedProjects.map((project, index) => (
                 <AnimatedSection key={project.id} delay={index * 0.05}>
-                  <Link to={`/portfolio/${project.slug}`}>
+                  <Link to={`/portfolio/${project.slug}`} className="block h-full">
                     <motion.div
-                      whileHover={{ y: -8, scale: 1.01 }}
-                      transition={{ duration: 0.15 }}
-                      className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden hover:border-primary/30 hover:bg-card/70 hover:shadow-card-hover transition-all duration-150 group"
+                      whileHover={{ y: -6 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="group h-full overflow-hidden rounded-2xl border border-border bg-card/55 backdrop-blur-xl transition-all duration-200 hover:border-primary/35 hover:bg-card/75 hover:shadow-card-hover"
                     >
-                      <div className="relative aspect-[16/9] overflow-hidden">
+                      <div className="relative aspect-[16/11] overflow-hidden bg-background/60">
                         <motion.img
                           src={project.image}
                           alt={project.title}
-                          whileHover={{ scale: 1.03 }}
-                          transition={{ duration: 0.3 }}
+                          whileHover={{ scale: 1.04 }}
+                          transition={{ duration: 0.35, ease: "easeOut" }}
                           className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent"></div>
+                        <div className="absolute right-0 top-6 max-w-[64%] translate-x-px rounded-l-full border-y border-l border-primary/25 bg-background/80 px-4 py-2 text-xs font-semibold text-primary shadow-lg shadow-black/25 backdrop-blur-md">
+                          {project.category}
+                        </div>
                       </div>
 
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-150">
+                      <div className="flex min-h-[250px] flex-col p-6 md:p-7">
+                        <div className="mb-3 flex flex-wrap gap-2">
+                          {project.stack.slice(0, 4).map((tech) => (
+                            <span
+                              key={tech}
+                              className="rounded-full border border-border/70 bg-background/35 px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        <h3 className="mb-3 text-xl font-bold leading-tight text-foreground transition-colors duration-150 group-hover:text-primary">
                           {project.title}
                         </h3>
-                        <p className="text-muted-foreground leading-relaxed mb-4 line-clamp-2">
+                        <p className="mb-6 line-clamp-3 flex-grow text-muted-foreground leading-relaxed">
                           {project.description}
                         </p>
-                        <div className="flex items-center text-primary font-medium">
-                          <span>View Case Study</span>
-                          <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-150" />
+
+                        <div className="mt-auto flex items-center justify-between border-t border-border/60 pt-5">
+                          <div>
+                            <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Project</div>
+                            <div className="text-sm font-semibold text-foreground">{project.client.industry}</div>
+                          </div>
+                          <div className="flex items-center text-sm font-semibold text-primary">
+                            <span>View</span>
+                            <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-150" />
+                          </div>
                         </div>
                       </div>
                     </motion.div>
@@ -378,52 +422,7 @@ const ServiceDetailPage: React.FC = () => {
         </section>
       )}
 
-      {/* Testimonials */}
-      {service.testimonials && service.testimonials.length > 0 && (
-        <section className="py-24 bg-card/20 border-y border-border">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
-                Client
-                <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                  Success Stories
-                </span>
-              </h2>
-            </AnimatedSection>
-
-            <div className="space-y-8">
-              {service.testimonials.map((testimonial, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <motion.div
-                    whileHover={{ scale: 1.01, y: -2 }}
-                    transition={{ duration: 0.15 }}
-                    className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-8 hover:border-primary/30 hover:bg-card/70 transition-all duration-150"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/30 border border-primary/30 rounded-full flex items-center justify-center mb-6">
-                      <Quote size={20} className="text-primary" />
-                    </div>
-                    
-                    <blockquote className="text-xl text-foreground font-light leading-relaxed mb-6 italic">
-                      "{testimonial.quote}"
-                    </blockquote>
-                    
-                    <div className="flex items-center gap-4">
-                      <div>
-                        <div className="font-semibold text-foreground text-lg">
-                          {testimonial.author}
-                        </div>
-                        <div className="text-primary font-medium">
-                          {testimonial.role}, {testimonial.company}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <TestimonialCarousel eyebrow={service.title} testimonials={testimonials} />
 
       {/* CTA Section */}
       <section className="py-24 bg-background">
