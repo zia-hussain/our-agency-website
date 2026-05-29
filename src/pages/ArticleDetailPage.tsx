@@ -9,6 +9,7 @@ import {
   Calendar,
   Clock,
   ArrowLeft,
+  ChevronLeft,
   ChevronRight,
   Copy,
   Check,
@@ -27,6 +28,7 @@ const ArticleDetailPage: React.FC = () => {
   const article = articles.find((a) => a.slug === slug);
   const [copied, setCopied] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
+  const [activeRelated, setActiveRelated] = useState(0);
 
   // Get related articles (same category, excluding current)
   const relatedArticles = articles
@@ -41,6 +43,7 @@ const ArticleDetailPage: React.FC = () => {
 
   useEffect(() => {
     if (!article) return;
+    setActiveRelated(0);
 
     // Reading progress
     const handleScroll = () => {
@@ -69,6 +72,14 @@ const ArticleDetailPage: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [article]);
+
+  const visibleRelatedArticles =
+    relatedArticles.length <= 2
+      ? relatedArticles
+      : [
+          relatedArticles[activeRelated],
+          relatedArticles[(activeRelated + 1) % relatedArticles.length],
+        ];
 
   const copyToClipboard = async () => {
     try {
@@ -585,69 +596,123 @@ const ArticleDetailPage: React.FC = () => {
           {/* Related Articles */}
           {relatedArticles.length > 0 && (
             <AnimatedSection>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
-                  Related
-                  <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                    Articles
-                  </span>
-                </h2>
-                <p className="text-xl text-muted-foreground font-light">
-                  More expert insights from our team
-                </p>
-              </div>
+              <div className="mx-auto max-w-5xl">
+                <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+                      Keep reading
+                    </p>
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                      Related articles
+                    </h2>
+                    <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
+                      More field notes connected to this topic, without pulling
+                      you out of the reading flow.
+                    </p>
+                  </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {relatedArticles.map((relatedArticle, index) => (
-                  <AnimatedSection key={relatedArticle.id} delay={index * 0.05}>
-                    <Link to={`/articles/${relatedArticle.slug}`}>
-                      <motion.article
-                        whileHover={{ y: -8, scale: 1.02 }}
-                        transition={{ duration: 0.2 }}
-                        className="group bg-card/60 backdrop-blur-xl border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-2xl transition-all duration-100 h-full"
+                  {relatedArticles.length > 2 && (
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        aria-label="Previous related article"
+                        onClick={() =>
+                          setActiveRelated((current) =>
+                            current === 0 ? relatedArticles.length - 1 : current - 1,
+                          )
+                        }
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/70 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
                       >
-                        <div className="relative overflow-hidden">
-                          <ArticleVisual
-                            title={relatedArticle.title}
-                            category={relatedArticle.category}
-                            variant="card"
-                          />
+                        <ChevronLeft size={18} />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Next related article"
+                        onClick={() =>
+                          setActiveRelated((current) => (current + 1) % relatedArticles.length)
+                        }
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/70 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
+                      >
+                        <ChevronRight size={18} />
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-background/45 p-1 backdrop-blur-xl">
+                  <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background via-background/80 to-transparent" />
+                  <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background via-background/80 to-transparent" />
+
+                  <motion.div
+                    key={activeRelated}
+                    initial={{ opacity: 0, x: 18 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="grid gap-3 rounded-[20px] bg-card/35 p-3 sm:grid-cols-2"
+                  >
+                    {visibleRelatedArticles.map((relatedArticle) => (
+                      <Link
+                        key={relatedArticle.id}
+                        to={`/articles/${relatedArticle.slug}`}
+                        className="group min-h-[260px] rounded-2xl border border-border/70 bg-background/55 p-6 transition-colors duration-150 hover:border-primary/35 hover:bg-card/55 sm:p-7"
+                      >
+                        <div className="mb-8 flex items-center justify-between gap-4">
+                          <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+                            {relatedArticle.category}
+                          </span>
+                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Clock size={13} />
+                            {relatedArticle.readTime}
+                          </span>
                         </div>
 
-                        <div className="p-8">
-                          <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-100 line-clamp-2 leading-tight">
-                            {relatedArticle.title}
-                          </h3>
+                        <h3 className="max-w-xl text-2xl font-bold leading-tight tracking-tight text-foreground transition-colors duration-150 group-hover:text-primary">
+                          {relatedArticle.title}
+                        </h3>
 
-                          <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3 font-light">
-                            {relatedArticle.excerpt}
-                          </p>
+                        <p className="mt-5 line-clamp-3 max-w-xl text-sm leading-7 text-muted-foreground">
+                          {relatedArticle.excerpt}
+                        </p>
 
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                              <div className="flex items-center gap-1">
-                                <User size={12} />
-                                <span>{relatedArticle.author}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Clock size={12} />
-                                <span>{relatedArticle.readTime}</span>
-                              </div>
+                        <div className="mt-8 flex items-end justify-between gap-4 border-t border-border/60 pt-5">
+                          <div className="min-w-0 text-xs text-muted-foreground">
+                            <div className="mb-1 flex items-center gap-1">
+                              <User size={12} />
+                              <span className="line-clamp-1">{relatedArticle.author}</span>
                             </div>
-
-                            <div className="flex items-center text-primary font-medium text-sm transition-all duration-100">
-                              <span>Read More</span>
-                              <ArrowRight
-                                size={14}
-                                className="group-hover:translate-x-0.5 transition-transform duration-100"
-                              />
-                            </div>
+                            <span>{relatedArticle.category}</span>
                           </div>
+
+                          <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                            Read
+                            <ArrowRight
+                              size={15}
+                              className="transition-transform duration-150 group-hover:translate-x-1"
+                            />
+                          </span>
                         </div>
-                      </motion.article>
-                    </Link>
-                  </AnimatedSection>
-                ))}
+                      </Link>
+                    ))}
+                  </motion.div>
+                </div>
+
+                {relatedArticles.length > 2 && (
+                  <div className="mt-6 flex justify-center gap-2">
+                    {relatedArticles.map((relatedArticle, index) => (
+                      <button
+                        key={relatedArticle.id}
+                        type="button"
+                        aria-label={`Show related article ${index + 1}`}
+                        onClick={() => setActiveRelated(index)}
+                        className={`h-2 rounded-full transition-all duration-200 ${
+                          index === activeRelated
+                            ? "w-8 bg-primary"
+                            : "w-2 bg-muted-foreground/30 hover:bg-primary/60"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             </AnimatedSection>
           )}
