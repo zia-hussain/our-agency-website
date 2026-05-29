@@ -88,31 +88,33 @@ Use a simple filter:
 
 ### Week 2: Core Development Sprint (Days 8-14)
 
+This week is where the product starts becoming real. The mistake is trying to build every screen at once. We prefer building one complete path first, even if it is simple, because a real path exposes more truth than ten unfinished screens.
+
 **Day 8-9: Foundation**
-- Set up React/Next.js project
-- Configure Firebase/Supabase backend
-- Implement authentication (email + social login)
-- Create base layouts and navigation
+- Set up the frontend and backend
+- Configure authentication and protected routes
+- Create the main app layout and navigation
+- Build the database structure around the first workflow
 
-**Day 10-11: Core Features (Part 1)**
-- Build first "must-have" feature completely
-- Implement real-time data synchronization
-- Add basic error handling
-- Write initial tests
+**Day 10-11: First complete workflow**
+- Build the first must-have action end to end
+- Save and retrieve real data
+- Add loading, empty, success, and error states
+- Test the journey as a real user, not only as a developer
 
-**Day 12-13: Core Features (Part 2)**
-- Complete remaining "must-have" features
-- Connect frontend to backend
-- Implement state management
-- Add loading states
+**Day 12-13: Supporting workflow**
+- Add the remaining must-have screens
+- Connect admin or owner controls where needed
+- Make the data flow understandable
+- Remove steps that create confusion
 
-**Day 14: Integration & Testing**
-- Connect all features together
-- End-to-end testing
+**Day 14: Integration and staging**
+- Connect the product into one working experience
+- Test the main flow on desktop and mobile
 - Fix critical bugs
-- Deploy to staging environment
+- Deploy to a staging environment for review
 
-**Deliverable:** Working MVP with core features functional
+**Deliverable:** a working MVP path that can be clicked, tested, and discussed honestly.
 
 ---
 
@@ -142,7 +144,9 @@ Use a simple filter:
 - Code splitting
 - SEO basics
 
-**Deliverable:** Polished, production-ready MVP
+Week three is not about decorating the product. It is about removing friction. The product should feel obvious enough that a new user can understand the main action without a walkthrough.
+
+**Deliverable:** a polished MVP that feels ready for serious beta users.
 
 ---
 
@@ -172,7 +176,9 @@ Use a simple filter:
 - Collect early feedback
 - Decide the next product move from real usage
 
-**Deliverable:** Live MVP with real users
+The first launch should usually be controlled. A small group of real users gives better learning than a loud launch into confusion. Watch them use it. Ask where they got stuck. Fix the parts that block the core workflow before pushing wider.
+
+**Deliverable:** a live MVP with real users, real feedback, and a clear next release decision.
 
 ---
 
@@ -212,6 +218,8 @@ The stack should reduce risk, not create a portfolio of trendy tools. For most f
 - Excellent documentation
 - Subscription billing built-in
 - Strong subscription and checkout tools
+
+Payments should only enter the first release when revenue is part of the validation. If the first test is only workflow proof, billing can sometimes wait. If the business model depends on subscriptions from day one, Stripe should be planned carefully before launch.
 
 ### Hosting: Vercel or Netlify
 **Why:**
@@ -385,6 +393,8 @@ The best post-launch work is usually not dramatic. It is small, honest improveme
 - [ ] Timeline committed (30-60 days)
 - [ ] Tech stack decided
 
+This checklist is not paperwork. It is protection. If these decisions are unclear before development starts, they will show up later as delays, rework, or awkward calls.
+
 **Week 1:**
 - [ ] MVP specification completed
 - [ ] Wireframes finalized
@@ -408,6 +418,8 @@ The best post-launch work is usually not dramatic. It is small, honest improveme
 - [ ] Monitoring active
 - [ ] Support system ready
 - [ ] Marketing materials published
+
+After launch, the question changes. It is no longer "Can we build it?" It becomes "What are users telling us with their behavior?"
 
 ---
 
