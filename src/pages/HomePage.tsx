@@ -15,6 +15,7 @@ import FAQ from "../components/home/FAQ";
 import FinalCTA from "../components/home/FinalCTA";
 import AIROICalculator from "../components/home/AIROICalculator";
 import { BRAND_CONTENT } from "../config/content";
+import { SITE_CONFIG } from "../config/site";
 
 const HomePage: React.FC = () => {
   const structuredData = {
@@ -41,6 +42,7 @@ const HomePage: React.FC = () => {
           "@type": "ContactPoint",
           contactType: "sales",
           email: "hello@zumetrix.com",
+          telephone: SITE_CONFIG.company.phone,
         },
         sameAs: [
           "https://www.linkedin.com/company/zumetrix-labs",

@@ -11,6 +11,7 @@ import { AnimatePresence } from "framer-motion";
 import {
   Mail,
   MapPin,
+  Phone,
   Calendar,
   MessageCircle,
   Clock,
@@ -234,6 +235,13 @@ const ContactPage: React.FC = () => {
       action: `mailto:${SITE_CONFIG.company.email}`,
     },
     {
+      icon: Phone,
+      title: "Call or WhatsApp",
+      details: SITE_CONFIG.company.phone,
+      description: "Use this number for direct project conversations",
+      action: `tel:${SITE_CONFIG.company.phone.replace(/[^\d+]/g, "")}`,
+    },
+    {
       icon: MapPin,
       title: "Location",
       details: SITE_CONFIG.company.address,
@@ -288,10 +296,11 @@ const ContactPage: React.FC = () => {
             name: "Zumetrix Labs",
             description:
               "Zumetrix Labs builds software for founders who need thinking partners, not order-takers. Services include SaaS MVPs, React/Node.js applications, AI automation, and mobile apps for international clients.",
-            contactPoint: {
+              contactPoint: {
               "@type": "ContactPoint",
               contactType: "sales",
               email: "hello@zumetrix.com",
+              telephone: SITE_CONFIG.company.phone,
               availableLanguage: ["English", "Urdu"],
             },
           },

@@ -205,7 +205,7 @@ const SiteSettings: React.FC = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
-                placeholder="+92 XXX XXXXXXX"
+                placeholder="+92 (317) 259-6525"
               />
             </div>
             <div>

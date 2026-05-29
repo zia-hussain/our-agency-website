@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
     name: import.meta.env.VITE_COMPANY_NAME || "Zumetrix Labs",
     tagline: import.meta.env.VITE_COMPANY_TAGLINE || "Forge Clear Ideas Into Shipped Software.",
     email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
-    phone: import.meta.env.VITE_COMPANY_PHONE || "+92 XXX XXXXXXX",
+    phone: import.meta.env.VITE_COMPANY_PHONE || "+92 (317) 259-6525",
     address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",
     website: import.meta.env.VITE_COMPANY_WEBSITE || "https://zumetrix.com",
   },

@@ -19,7 +19,6 @@ import {
   Twitter,
   Linkedin,
   Eye,
-  BookOpen,
 } from "lucide-react";
 import { articles } from "../data/articles.js";
 
@@ -27,11 +26,7 @@ const ArticleDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const article = articles.find((a) => a.slug === slug);
   const [copied, setCopied] = useState(false);
-  const [activeHeading, setActiveHeading] = useState("");
   const [readingProgress, setReadingProgress] = useState(0);
-  const [tableOfContents, setTableOfContents] = useState<
-    Array<{ id: string; text: string; level: number }>
-  >([]);
 
   // Get related articles (same category, excluding current)
   const relatedArticles = articles
@@ -47,49 +42,13 @@ const ArticleDetailPage: React.FC = () => {
   useEffect(() => {
     if (!article) return;
 
-    // Extract headings for TOC and set up intersection observer
-    const headings = document.querySelectorAll(
-      ".article-content h2, .article-content h3"
-    );
-
-    // Build table of contents
-    const toc: Array<{ id: string; text: string; level: number }> = [];
-    headings.forEach((heading, index) => {
-      const id = `heading-${index}`;
-      heading.id = id;
-      toc.push({
-        id,
-        text: heading.textContent || "",
-        level: parseInt(heading.tagName.charAt(1)),
-      });
-    });
-
-    setTableOfContents(toc);
-
-    // Set up intersection observer for active heading
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveHeading(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: "-20% 0px -70% 0px",
-        threshold: 0.1,
-      }
-    );
-
-    headings.forEach((heading) => observer.observe(heading));
-
     // Reading progress
     const handleScroll = () => {
-      const article = document.querySelector(".article-content");
-      if (!article) return;
+      const articleContent = document.querySelector(".article-content");
+      if (!articleContent) return;
 
-      const articleTop = article.offsetTop;
-      const articleHeight = article.offsetHeight;
+      const articleTop = articleContent.getBoundingClientRect().top + window.scrollY;
+      const articleHeight = articleContent.clientHeight;
       const windowHeight = window.innerHeight;
       const scrollTop = window.scrollY;
 
@@ -107,25 +66,9 @@ const ArticleDetailPage: React.FC = () => {
     handleScroll(); // Initial call
 
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
   }, [article]);
-
-  // Smooth scroll to section
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 120;
-      const elementPosition = element.offsetTop;
-      const offsetPosition = elementPosition - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
 
   const copyToClipboard = async () => {
     try {
@@ -200,9 +143,9 @@ const ArticleDetailPage: React.FC = () => {
     },
   }));
 
-  const structuredData = {
-    "@context": "https://schema.org",
+  const articleStructuredData = {
     "@type": "TechArticle",
+    "@id": `https://zumetrix.com/articles/${article.slug}#article`,
     headline: article.title,
     description: article.excerpt,
     image: article.image,
@@ -224,6 +167,28 @@ const ArticleDetailPage: React.FC = () => {
     keywords: article.tags.join(", "),
     articleSection: article.category,
     wordCount: (article.content || "").split(" ").length,
+  };
+
+  const faqStructuredData = article.faqs?.length
+    ? {
+        "@type": "FAQPage",
+        "@id": `https://zumetrix.com/articles/${article.slug}#faq`,
+        mainEntity: article.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": faqStructuredData
+      ? [articleStructuredData, faqStructuredData]
+      : [articleStructuredData],
   };
 
   return (
@@ -452,76 +417,111 @@ const ArticleDetailPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Article Content with Modern Sidebar */}
+      {/* Article Content */}
       <section className="pb-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-12">
-            {/* Sticky TOC - Desktop Only */}
-            <div className="hidden lg:block w-80 flex-shrink-0">
-              <div className="sticky top-32 max-h-[calc(100vh-10rem)]">
-                <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6 flex flex-col max-h-full">
-                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2 flex-shrink-0">
-                    <BookOpen size={16} />
-                    Table of Contents
-                  </h3>
-                  <nav className="space-y-1 overflow-y-auto flex-1 pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
-                    {tableOfContents.map((heading) => (
-                      <motion.button
-                        key={heading.id}
-                        onClick={() => scrollToSection(heading.id)}
-                        whileHover={{ x: 4 }}
-                        transition={{ duration: 0.15 }}
-                        className={`block w-full text-left text-sm py-2 px-3 rounded-lg transition-all duration-150 ${
-                          activeHeading === heading.id
-                            ? "text-primary bg-primary/10 border-l-2 border-primary"
-                            : "text-muted-foreground hover:text-primary hover:bg-card/30"
-                        } ${heading.level === 3 ? "ml-4" : ""}`}
-                      >
-                        {heading.text}
-                      </motion.button>
-                    ))}
-                  </nav>
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="mx-auto mb-14 flex max-w-[820px] items-center gap-4 border-y border-border/70 py-4 text-sm text-muted-foreground">
+              <span className="h-px w-8 bg-primary/60" />
+              <p className="leading-7">
+                <span className="font-semibold text-foreground">
+                  Zumetrix field guide.
+                </span>{" "}
+                Written from real product delivery work, with the goal of
+                making the next decision clearer before the build gets
+                expensive.
+              </p>
+            </div>
 
-                  {/* Reading Progress */}
-                  <div className="mt-6 pt-4 border-t border-border flex-shrink-0">
-                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
-                      <span>Reading Progress</span>
-                      <span>{Math.round(readingProgress)}%</span>
-                    </div>
-                    <div className="w-full bg-border rounded-full h-1">
-                      <motion.div
-                        className="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full"
-                        style={{ width: `${readingProgress}%` }}
-                        transition={{ duration: 0.1 }}
-                      />
-                    </div>
-                  </div>
+            <article
+              className="article-content prose prose-lg dark:prose-invert mx-auto max-w-[820px]
+                       prose-headings:scroll-mt-28 prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
+                       prose-h2:mt-16 prose-h2:mb-6 prose-h2:border-t prose-h2:border-border/70 prose-h2:pt-10 prose-h2:text-3xl prose-h2:leading-tight md:prose-h2:text-4xl
+                       prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-2xl prose-h3:leading-snug
+                       prose-p:text-[1.0625rem] prose-p:leading-[1.95] prose-p:text-zinc-300
+                       prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium
+                       prose-strong:text-foreground prose-strong:font-semibold
+                       prose-ul:my-7 prose-ul:pl-6 prose-ul:text-zinc-300 prose-li:my-2 prose-li:leading-[1.85] marker:prose-li:text-primary/70
+                       prose-ol:my-7 prose-ol:pl-7 prose-ol:text-zinc-300
+                       prose-code:rounded-md prose-code:bg-card/70 prose-code:px-2 prose-code:py-1 prose-code:text-sm prose-code:text-primary
+                       prose-pre:rounded-2xl prose-pre:border prose-pre:border-border prose-pre:bg-card/70 prose-pre:p-6
+                       prose-blockquote:my-10 prose-blockquote:rounded-2xl prose-blockquote:border-l-0 prose-blockquote:bg-card/45 prose-blockquote:p-6 prose-blockquote:text-foreground prose-blockquote:shadow-sm prose-blockquote:ring-1 prose-blockquote:ring-border/70
+                       prose-img:my-10 prose-img:rounded-2xl prose-img:border prose-img:border-border/70 prose-img:shadow-lg
+                       [&>h2:first-of-type]:mt-0 [&>h2:first-of-type]:border-t-0 [&>h2:first-of-type]:pt-0"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            />
+
+            {article.internalLinks?.length > 0 && (
+              <div className="mx-auto mt-16 max-w-[820px] border-y border-border/70 py-8">
+                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+                  Continue with Zumetrix
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {article.internalLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className="group rounded-2xl border border-border/70 bg-card/25 p-5 transition-colors duration-150 hover:border-primary/35 hover:bg-card/45"
+                    >
+                      <span className="mb-2 block text-base font-semibold text-foreground group-hover:text-primary">
+                        {link.label}
+                      </span>
+                      <span className="text-sm leading-6 text-muted-foreground">
+                        {link.description}
+                      </span>
+                    </Link>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Article Content */}
-            <div className="flex-1 min-w-0 overflow-hidden">
-              <AnimatedSection>
-                <article
-                  className="prose prose-lg dark:prose-invert max-w-[72ch] article-content mx-auto
-                           prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
-                           prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:leading-tight
-                           prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4 prose-h3:leading-tight
-                           prose-p:text-[#DBDBDB] prose-p:leading-[1.8] prose-p:mb-6 prose-p:text-lg
-                           prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium
-                           prose-strong:text-foreground prose-strong:font-semibold
-                           prose-code:text-primary prose-code:bg-card/50 prose-code:px-3 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-medium
-                           prose-pre:bg-card/50 prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-6 prose-pre:overflow-x-auto
-                           prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:bg-card/30 prose-blockquote:p-6 prose-blockquote:rounded-r-lg prose-blockquote:my-8
-                           prose-ul:text-[#DBDBDB] prose-ul:leading-[1.8] prose-ul:text-lg
-                           prose-li:text-[#DBDBDB] prose-li:mb-2 prose-li:leading-[1.8]
-                           prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:max-w-full prose-img:h-auto"
-                  dangerouslySetInnerHTML={{ __html: article.content }}
-                />
-              </AnimatedSection>
+            {article.faqs?.length > 0 && (
+              <div className="mx-auto mt-16 max-w-[820px]">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+                  Common questions
+                </p>
+                <h2 className="mb-8 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                  Quick answers before you build
+                </h2>
+                <div className="space-y-4">
+                  {article.faqs.map((faq) => (
+                    <div
+                      key={faq.question}
+                      className="rounded-2xl border border-border/70 bg-card/30 p-6"
+                    >
+                      <h3 className="mb-3 text-lg font-semibold text-foreground">
+                        {faq.question}
+                      </h3>
+                      <p className="text-base leading-8 text-muted-foreground">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mx-auto mt-16 max-w-[820px] rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/10 via-card/45 to-card/20 p-6 sm:p-8">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+                Apply this to your product
+              </p>
+              <h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                Want a clear build plan before spending months on development?
+              </h2>
+              <p className="mb-6 max-w-2xl text-base leading-8 text-muted-foreground">
+                Share the idea, current stage, and the result you want. We will
+                help you shape the right first version, the technical path, and
+                the next move with less guesswork.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform duration-150 hover:-translate-y-0.5"
+              >
+                Talk to Zumetrix Labs
+                <ArrowRight size={16} />
+              </Link>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 

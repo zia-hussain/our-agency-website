@@ -1,222 +1,181 @@
-import React, { useCallback, useEffect } from "react";
-import { Star, Quote, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
-import { motion } from "framer-motion";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { MapPin, Quote, Star } from "lucide-react";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import { getSiteData } from "../../data/site";
 
 const TestimonialsCarousel: React.FC = () => {
   const { testimonials } = getSiteData();
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [loopWidth, setLoopWidth] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: true,
-      align: "center",
-      skipSnaps: false,
-      dragFree: false,
-      containScroll: "trimSnaps",
-    },
-    [Autoplay({ delay: 6000, stopOnInteraction: false })]
+  const baseVelocity = -30;
+  const x = useMotionValue(0);
+  const velocity = useMotionValue(baseVelocity);
+  const smoothVelocity = useSpring(velocity, {
+    damping: 85,
+    stiffness: 460,
+    restDelta: 0.001,
+  });
+
+  const repeatedTestimonials = useMemo(
+    () => [
+      ...testimonials,
+      ...testimonials,
+      ...testimonials,
+      ...testimonials,
+      ...testimonials,
+    ],
+    [testimonials]
   );
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
-
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
   useEffect(() => {
-    if (!emblaApi) return;
+    const track = trackRef.current;
+    if (!track || !testimonials.length) return;
 
-    setScrollSnaps(emblaApi.scrollSnapList());
-    emblaApi.on("select", onSelect);
-    onSelect();
-  }, [emblaApi, onSelect]);
+    const measureLoopWidth = () => {
+      const first = track.children[0] as HTMLElement | undefined;
+      const secondSet = track.children[testimonials.length] as HTMLElement | undefined;
+      if (!first || !secondSet) return;
+
+      setLoopWidth(secondSet.offsetLeft - first.offsetLeft);
+    };
+
+    measureLoopWidth();
+
+    const resizeObserver = new ResizeObserver(measureLoopWidth);
+    resizeObserver.observe(track);
+
+    return () => resizeObserver.disconnect();
+  }, [testimonials.length]);
+
+  useAnimationFrame((_, delta) => {
+    if (!testimonials.length || !loopWidth) return;
+
+    velocity.set(isHovered ? 0 : baseVelocity);
+
+    const moveBy = smoothVelocity.get() * (delta / 1000);
+    let nextX = x.get() + moveBy;
+
+    if (nextX <= -loopWidth) {
+      nextX += loopWidth;
+    } else if (nextX > 0) {
+      nextX -= loopWidth;
+    }
+
+    x.set(nextX);
+  });
+
+  if (!testimonials.length) return null;
 
   return (
-    <section className="py-28 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Impressive Header */}
+    <section className="relative overflow-hidden border-y border-border/50 bg-background py-24 lg:py-28">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mb-16 max-w-4xl text-center"
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-            className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm font-medium text-primary mb-6"
-          >
-            <Star size={16} className="mr-2" />
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-zinc-500/80">
             Client Feedback
-          </motion.div>
-
-          {/* Headline */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
-            <span className="block text-foreground">Trusted By Founders and</span>
-            <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
-              CTOs Worldwide
+          </p>
+          <h2 className="text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            What founders say after
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              the work ships
             </span>
           </h2>
-
-          {/* Subtitle */}
-          <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Real feedback from international clients who transformed their businesses with our solutions
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            Quiet proof from people who trusted us with strategy, product
+            decisions, and software delivery.
           </p>
         </motion.div>
 
-        {/* Smooth Embla Carousel */}
-        <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
-              {testimonials.map((testimonial) => (
-                <div
-                  key={testimonial.id}
-                  className="flex-[0_0_100%] min-w-0 px-4"
+        <div
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-24 bg-gradient-to-r from-background via-background to-transparent sm:w-40 md:w-56" />
+          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-24 bg-gradient-to-l from-background via-background to-transparent sm:w-40 md:w-56" />
+
+          <div className="overflow-hidden py-3">
+            <motion.div
+              ref={trackRef}
+              className="flex items-stretch gap-5 will-change-transform sm:gap-6"
+              style={{ x }}
+            >
+              {repeatedTestimonials.map((testimonial, index) => (
+                <motion.article
+                  key={`${testimonial.id}-${index}`}
+                  whileHover={{
+                    y: -4,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                  className="group relative flex h-[530px] w-[350px] flex-shrink-0 flex-col overflow-hidden rounded-2xl border border-border bg-card/45 p-6 backdrop-blur-xl transition-all duration-500 hover:border-primary/30 hover:bg-card/65 sm:h-[500px] sm:w-[500px] sm:p-7 lg:h-[470px] lg:w-[620px] lg:p-8"
                 >
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="bg-card/60 backdrop-blur-xl border border-border rounded-2xl lg:rounded-3xl p-6 sm:p-8 lg:p-12 hover:border-primary/30 transition-all duration-300 shadow-2xl max-w-5xl mx-auto"
-                  >
-                    {/* Quote Icon */}
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-primary/20 to-primary/30 border border-primary/30 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-6 lg:mb-8">
-                      <Quote size={20} className="lg:hidden text-primary" />
-                      <Quote
-                        size={28}
-                        className="hidden lg:block text-primary"
-                      />
-                    </div>
+                  <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-70" />
 
-                    {/* Rating Stars */}
-                    <div className="flex justify-center mb-6 lg:mb-8">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2, delay: i * 0.1 }}
-                        >
-                          <Star
-                            size={16}
-                            className="lg:hidden text-primary fill-current mx-0.5"
-                          />
-                          <Star
-                            size={20}
-                            className="hidden lg:block text-primary fill-current mx-0.5"
-                          />
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* Quote Text - LARGER */}
-                    <blockquote className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-foreground font-light leading-[1.5] mb-10 text-center max-w-4xl mx-auto">
-                      "{testimonial.quote}"
-                    </blockquote>
-
-                    {/* Author Section - Mobile Optimized */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-6 mb-6 lg:mb-8">
-                      <motion.img
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.15 }}
+                  <div className="mb-5 flex items-start justify-between gap-5">
+                    <div className="flex items-center gap-3">
+                      <img
                         src={testimonial.avatar}
                         alt={testimonial.author}
-                        className="w-14 h-14 lg:w-20 lg:h-20 rounded-full object-cover border-2 lg:border-3 border-border shadow-lg"
+                        loading={index < testimonials.length ? "eager" : "lazy"}
+                        decoding="async"
+                        className="h-12 w-12 rounded-full border border-border object-cover grayscale transition-all duration-500 group-hover:grayscale-0 sm:h-14 sm:w-14"
                       />
-                      <div className="text-center sm:text-left">
-                        <div className="font-bold text-foreground text-base lg:text-xl mb-1">
+                      <div>
+                        <h3 className="text-base font-semibold text-foreground">
                           {testimonial.author}
-                        </div>
-                        <div className="text-primary font-semibold text-sm lg:text-base mb-1">
+                        </h3>
+                        <p className="text-sm font-medium text-primary">
                           {testimonial.role}
-                        </div>
-                        <div className="text-xs lg:text-sm text-muted-foreground flex items-center gap-2 justify-center sm:justify-start">
-                          <span>{testimonial.company}</span>
-                          <span>•</span>
-                          <div className="flex items-center gap-1">
-                            <MapPin size={10} className="lg:hidden" />
-                            <MapPin size={12} className="hidden lg:block" />
-                            <span>{testimonial.country}</span>
-                          </div>
+                        </p>
+                        <div className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
+                          <MapPin size={12} />
+                          {testimonial.country}
                         </div>
                       </div>
                     </div>
 
-                    {/* Project Result Badge - Mobile Optimized */}
-                    <div className="text-center">
-                      <div className="inline-flex items-center px-3 lg:px-4 py-2 bg-gradient-to-r from-primary/20 to-primary/10 text-primary rounded-full text-xs lg:text-sm font-semibold border border-primary/30">
-                        <span className="hidden sm:inline">
-                          {testimonial.project} •{" "}
-                        </span>
-                        <span className="sm:hidden">
-                          {testimonial.project.split(" ").slice(0, 2).join(" ")}{" "}
-                          •{" "}
-                        </span>
+                    <div className="hidden items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-primary sm:flex">
+                      {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
+                        <Star key={starIndex} size={12} className="fill-current" />
+                      ))}
+                    </div>
+                  </div>
+
+                  <Quote size={30} className="mb-4 flex-shrink-0 text-primary/70" />
+
+                  <blockquote className="flex-grow text-lg font-light leading-relaxed tracking-tight text-foreground sm:text-xl lg:text-2xl">
+                    "{testimonial.quote}"
+                  </blockquote>
+
+                  <div className="mt-6 flex-shrink-0 border-t border-border/70 pt-5">
+                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                      {testimonial.industry}
+                    </p>
+                    <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <p className="line-clamp-1 text-sm font-semibold text-foreground">
+                        {testimonial.project}
+                      </p>
+                      <span className="w-fit rounded-full border border-primary/25 bg-background/50 px-3 py-1 text-xs font-semibold text-primary">
                         {testimonial.results}
-                      </div>
+                      </span>
                     </div>
-                  </motion.div>
-                </div>
+                  </div>
+                </motion.article>
               ))}
-            </div>
+            </motion.div>
           </div>
-
-          {/* Navigation Arrows - Mobile Optimized */}
-          <motion.button
-            onClick={scrollPrev}
-            whileHover={{ scale: 1.1, x: -2 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ duration: 0.15 }}
-            className="absolute left-2 lg:left-4 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-14 lg:h-14 bg-card/80 backdrop-blur-xl border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-card transition-all duration-150 shadow-lg z-10"
-          >
-            <ChevronLeft size={18} className="lg:hidden" />
-            <ChevronLeft size={20} className="hidden lg:block" />
-          </motion.button>
-
-          <motion.button
-            onClick={scrollNext}
-            whileHover={{ scale: 1.1, x: 2 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ duration: 0.15 }}
-            className="absolute right-2 lg:right-4 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-14 lg:h-14 bg-card/80 backdrop-blur-xl border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-card transition-all duration-150 shadow-lg z-10"
-          >
-            <ChevronRight size={18} className="lg:hidden" />
-            <ChevronRight size={20} className="hidden lg:block" />
-          </motion.button>
-        </div>
-
-        {/* Indicators */}
-        <div className="flex justify-center gap-2 lg:gap-3 mt-8">
-          {scrollSnaps.map((_, index) => (
-            <motion.button
-              key={index}
-              onClick={() => emblaApi?.scrollTo(index)}
-              whileHover={{ scale: 1.3 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ duration: 0.15 }}
-              className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
-                selectedIndex === index
-                  ? "bg-primary scale-125"
-                  : "bg-border hover:bg-primary/50"
-              }`}
-            />
-          ))}
         </div>
       </div>
     </section>

@@ -1,22 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
-useEffect(() => {
-  setTimeout(() => {
-    // Window scroll
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  useIsomorphicLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 
-    // Layout scroll (if any)
     const layout = document.getElementById("mainLayout");
     if (layout) {
-      layout.scrollTo({ top: 0, behavior: "smooth" });
+      layout.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
-  }, 0);
-}, [pathname]);
-
+  }, [pathname, search]);
 
   return null;
 };

@@ -282,6 +282,7 @@ export const SEO_CONFIG = {
       "@type": "ContactPoint",
       "contactType": "sales",
       "email": "hello@zumetrix.com",
+      "telephone": "+92 (317) 259-6525",
       "availableLanguage": ["English", "Urdu"]
     },
     "sameAs": [

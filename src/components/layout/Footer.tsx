@@ -6,6 +6,7 @@ import {
   Twitter,
   Mail,
   MapPin,
+  Phone,
   Instagram,
   Award,
 } from "lucide-react";
@@ -41,6 +42,11 @@ const Footer: React.FC = () => {
         icon: Mail,
         text: COMPANY.email,
         href: `mailto:${COMPANY.email}`,
+      },
+      {
+        icon: Phone,
+        text: COMPANY.phone,
+        href: `tel:${COMPANY.phone.replace(/[^\d+]/g, "")}`,
       },
       { icon: MapPin, text: COMPANY.address, href: "#" },
     ],

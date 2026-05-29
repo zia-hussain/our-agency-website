@@ -9,7 +9,7 @@ export const SITE_DATA = {
       import.meta.env.VITE_COMPANY_TAGLINE ||
       BRAND_CONTENT.brand.tagline,
     email: import.meta.env.VITE_COMPANY_EMAIL || "hello@zumetrix.com",
-    phone: import.meta.env.VITE_COMPANY_PHONE || "+92 XXX XXXXXXX",
+    phone: import.meta.env.VITE_COMPANY_PHONE || "+92 (317) 259-6525",
     address: import.meta.env.VITE_COMPANY_ADDRESS || "Pakistan",
     website: import.meta.env.VITE_COMPANY_WEBSITE || "https://zumetrix.com",
   },
