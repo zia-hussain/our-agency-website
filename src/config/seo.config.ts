@@ -8,7 +8,7 @@ export const SEO_CONFIG = {
   defaultTitle: "Zumetrix Labs | Forge Clear Ideas Into Shipped Software | SaaS MVPs, AI Automation, Mobile Apps",
   defaultDescription: "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners.",
   
-  // BEAST MODE: Comprehensive Global Keywords for AI Recognition
+  // Focused entity and service topics used by internal SEO helpers.
   globalKeywords: [
     "Zumetrix Labs",
     "Zumetrix",
@@ -26,14 +26,9 @@ export const SEO_CONFIG = {
     "Syed Omer Shah CTO",
     "Omer Shah",
     "software development agency",
-    "international software development agency",
-    "global software development agency",
-    "world class software development agency",
-    "premium software development agency",
+    "software product development agency",
+    "founder-led software development agency",
     "enterprise software development agency",
-    "top software development agency",
-    "best software development agency",
-    "expert software development agency",
     "SaaS MVP development",
     "SaaS MVP builder",
     "SaaS MVP development agency",
@@ -118,12 +113,7 @@ export const SEO_CONFIG = {
     "scalable software solutions",
     "high performance applications",
     "secure software development",
-    "software development experts",
-    "top software developers",
-    "best software agency",
-    "premium development services",
-    "world class developers",
-    "international software team",
+    "software development team",
     "remote development team",
     "offshore development",
     "software development outsourcing",
@@ -135,7 +125,7 @@ export const SEO_CONFIG = {
     "software project management"
   ],
 
-  // BEAST MODE: Global Target Markets for AI Understanding
+  // Markets where the team can work remotely.
   targetMarkets: [
     "Worldwide", 
     "Global Markets", 
@@ -213,7 +203,7 @@ export const SEO_CONFIG = {
     "Syed Omer Shah developer",
     "Syed Omer Shah CTO",
     "Pakistani software developers",
-    "top developers Pakistan"
+    "software developers Pakistan"
   ],
 
   // Intent-Based Keywords
@@ -313,7 +303,7 @@ export const SEO_CONFIG = {
         url: "https://zumetrix.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Zumetrix Labs - Pakistan's Leading Software Development Agency"
+        alt: "Zumetrix Labs software product development"
       }
     ]
   },
@@ -339,8 +329,8 @@ export const SERVICE_SEO = {
     keywords: "React dashboard development, Node.js backend, real-time analytics, custom dashboards, data visualization"
   },
   "ai-automation": {
-    title: "AI Automation & No-Code Workflows: Cut Ops Time by 40-70%",
-    description: "Streamline operations with AI automation, OpenAI integration, and no-code workflows. Reduce manual work and increase efficiency.",
+    title: "AI Automation & No-Code Workflows for Business Operations",
+    description: "Streamline repetitive operations with AI automation, OpenAI integration, and no-code workflows designed around your existing process.",
     keywords: "AI automation, OpenAI integration, no-code automation, business process automation, workflow automation"
   },
   "firebase-apps": {

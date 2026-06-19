@@ -30,12 +30,12 @@ const Footer: React.FC = () => {
       { name: "Articles", path: "/articles" },
     ],
     services: [
-      { name: "Web Applications", path: "/services#web-apps" },
-      { name: "SaaS Dashboards", path: "/services#saas-dashboards" },
-      { name: "Mobile Apps", path: "/services#mobile-apps" },
-      { name: "MVP Development", path: "/services#mvp" },
-      { name: "Automation Solutions", path: "/services#automation" },
-      { name: "Digital Strategy", path: "/services#digital-strategy" },
+      { name: "Web Applications", path: "/services/enterprise-web-applications" },
+      { name: "SaaS MVP Development", path: "/services/saas-mvp-development" },
+      { name: "Mobile Apps", path: "/services/mobile-app-development" },
+      { name: "Startup MVPs", path: "/services/startup-mvp-development" },
+      { name: "Automation Solutions", path: "/services/ai-automation-solutions" },
+      { name: "Digital Strategy", path: "/services/digital-strategy-consulting" },
     ],
     contact: [
       {
@@ -48,7 +48,11 @@ const Footer: React.FC = () => {
         text: COMPANY.phone,
         href: `tel:${COMPANY.phone.replace(/[^\d+]/g, "")}`,
       },
-      { icon: MapPin, text: COMPANY.address, href: "#" },
+      {
+        icon: MapPin,
+        text: COMPANY.address,
+        href: "https://www.google.com/maps/search/?api=1&query=Pakistan",
+      },
     ],
   };
 
@@ -88,8 +92,8 @@ const Footer: React.FC = () => {
                 className="flex items-center space-x-3"
               >
                 <img
-                  className="h-60 w-60 select-none"
-                  src="/logo/Logo horizontal.png"
+                  className="h-auto w-48 select-none"
+                  src="/logo/zumetrix-email.png"
                   alt={SITE_CONFIG.company.name}
                 />
               </motion.div>

@@ -179,8 +179,8 @@ hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_4
                       loading={index < logos.length ? "eager" : "lazy"}
                       decoding="async"
                       fetchpriority={index < logos.length ? "high" : "low"}
-                      className="relative h-[100%] w-full object-contain 
-    opacity-35 brightness-0 invert grayscale 
+                      className="relative h-[100%] w-full object-contain mix-blend-screen
+    opacity-35 grayscale
     transition-all duration-700 
     group-hover:scale-[1.05] 
     group-hover:opacity-90 

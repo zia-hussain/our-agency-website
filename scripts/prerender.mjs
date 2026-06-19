@@ -41,6 +41,7 @@ const routes = [
   "/articles/no-code-automation-zapier-make-n8n",
   "/privacy-policy",
   "/terms-of-service",
+  "/unsubscribe",
 ];
 
 for (const route of routes) {

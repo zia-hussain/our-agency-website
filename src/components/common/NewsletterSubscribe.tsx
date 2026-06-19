@@ -29,6 +29,8 @@ const NewsletterSubscribe: React.FC<NewsletterSubscribeProps> = ({
         email,
         name: name || undefined,
         source: `newsletter_${source}`,
+        leadType: 'newsletter',
+        metadata: { marketingConsent: true },
       });
 
       if (result.success) {

@@ -50,12 +50,12 @@ const StickyCTABar: React.FC = () => {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between py-3 gap-4">
-              <div className="flex-1 min-w-0">
+              <div className="flex min-w-0 flex-none items-center sm:flex-1">
                 <div className="flex items-center gap-3">
-                  <div className="hidden sm:flex w-9 h-9 bg-primary/10 border border-primary/20 rounded-full flex-shrink-0 items-center justify-center">
+                  <div className="flex w-9 h-9 bg-primary/10 border border-primary/20 rounded-full flex-shrink-0 items-center justify-center">
                     <MessageCircle size={18} className="text-primary" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="hidden min-w-0 sm:block">
                     <h3 className="font-semibold text-foreground text-sm sm:text-base truncate">
                       Ready to start your project?
                     </h3>

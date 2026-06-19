@@ -38,7 +38,7 @@ const PrivacyPolicyPage: React.FC = () => {
             </h1>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Last updated: December 2024
+              Last updated: June 19, 2026
             </p>
           </AnimatedSection>
         </div>
@@ -103,7 +103,9 @@ const PrivacyPolicyPage: React.FC = () => {
               <ul>
                 <li>Provide and improve our services</li>
                 <li>Respond to your inquiries and requests</li>
-                <li>Send you relevant information about our services</li>
+                <li>
+                  Send marketing emails only when you have explicitly opted in
+                </li>
                 <li>Analyze website usage and improve user experience</li>
                 <li>Comply with legal obligations</li>
               </ul>
@@ -142,7 +144,27 @@ const PrivacyPolicyPage: React.FC = () => {
                 browser preferences.
               </p>
 
-              <h2>7. Your Rights and Choices</h2>
+              <h2>7. Email Preferences and Consent</h2>
+              <p>
+                Project inquiries, requested downloads, and calculator reports
+                may trigger transactional emails needed to fulfill your
+                request. Marketing emails are separate and are sent only when
+                you actively opt in. Every marketing email includes an
+                unsubscribe link, and an unsubscribe request is recorded in our
+                suppression system so future campaigns do not contact that
+                address.
+              </p>
+
+              <h2>8. Service Providers</h2>
+              <p>
+                We use carefully selected providers to operate the website and
+                respond to requests, including Supabase for secure data storage,
+                Airtable for internal lead operations, Resend for email
+                delivery, Vercel for website hosting, and Google Analytics for
+                aggregated website measurement.
+              </p>
+
+              <h2>9. Your Rights and Choices</h2>
               <p>You have the right to:</p>
               <ul>
                 <li>Access and update your personal information</li>
@@ -151,14 +173,14 @@ const PrivacyPolicyPage: React.FC = () => {
                 <li>Object to certain processing activities</li>
               </ul>
 
-              <h2>8. Data Retention</h2>
+              <h2>10. Data Retention</h2>
               <p>
                 We retain your personal information only for as long as
                 necessary to fulfill the purposes outlined in this Privacy
                 Policy, unless a longer retention period is required by law.
               </p>
 
-              <h2>9. International Data Transfers</h2>
+              <h2>11. International Data Transfers</h2>
               <p>
                 Your information may be transferred to and processed in
                 countries other than your own. We ensure appropriate safeguards
@@ -166,21 +188,21 @@ const PrivacyPolicyPage: React.FC = () => {
                 transfers.
               </p>
 
-              <h2>10. Children's Privacy</h2>
+              <h2>12. Children's Privacy</h2>
               <p>
                 Our services are not directed to individuals under the age of
                 16. We do not knowingly collect personal information from
                 children under 16.
               </p>
 
-              <h2>11. Changes to This Privacy Policy</h2>
+              <h2>13. Changes to This Privacy Policy</h2>
               <p>
                 We may update this Privacy Policy from time to time. We will
                 notify you of any material changes by posting the new Privacy
                 Policy on this page and updating the "Last updated" date.
               </p>
 
-              <h2>12. Contact Us</h2>
+              <h2>14. Contact Us</h2>
               <p>
                 If you have any questions about this Privacy Policy or our
                 privacy practices, please contact us:

@@ -274,7 +274,7 @@ const TestimonialForm: React.FC = () => {
                     value={formData.results}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-150"
-                    placeholder="300% user engagement increase"
+                    placeholder="A specific, client-approved result"
                   />
                 </div>
               </div>

@@ -20,7 +20,7 @@ const founders = [
     slug: "zia-hussain",
     role: "Co-Founder · CEO · Product & Growth",
     bio: "Zia leads product and growth at Zumetrix Labs. He lives in the space between founders, users, and engineering—turning messy ideas into clear roadmaps, offers, and shipped products. He cares about clean execution, simple user flows, and making sure every build actually moves revenue, not just adds more features. Most clients know him as the person who will challenge their ideas, sharpen the vision, and then help lead it all the way to launch.",
-    image: "/profile_images/zia-hussain-founder.jpg",
+    image: "/profile_images/zia-hussain-founder-optimized.jpg",
     skills: [
       "SaaS Product Strategy",
       "MVP Scoping & Roadmapping",
@@ -34,7 +34,7 @@ const founders = [
     slug: "syed-omer-shah",
     role: "Co-Founder · CTO · Engineering & Automation",
     bio: "Omer leads engineering and automation at Zumetrix Labs. He takes complex requirements, constraints, and integrations—and turns them into systems that are fast, reliable, and easy to grow. He thinks in terms of architecture, data flows, and long-term maintainability, making sure what we ship today doesn’t become tomorrow’s technical debt. Most clients rely on him as their technical backbone: the person who quietly keeps everything stable, scalable, and efficient.",
-    image: "/profile_images/syed-omer-shah-founder.jpg",
+    image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     skills: [
       "Technical Architecture & System Design",
       "AI & Automation Workflows",
@@ -176,9 +176,9 @@ const values = [
                 </div>
               </div>
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
-                <div className="text-3xl font-bold text-primary mb-2">100%</div>
+                <div className="text-3xl font-bold text-primary mb-2">Top Rated</div>
                 <div className="text-sm text-muted-foreground">
-                  Client Satisfaction Rate
+                  Upwork Profile
                 </div>
               </div>
             </div>

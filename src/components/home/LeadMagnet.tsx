@@ -11,6 +11,7 @@ const LeadMagnet: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [marketingConsent, setMarketingConsent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,6 +27,7 @@ const LeadMagnet: React.FC = () => {
         metadata: {
           pdfName: '30-day-saas-mvp-blueprint.pdf',
           requestedAsset: '/downloads/30-day-saas-mvp-blueprint.pdf',
+          marketingConsent,
         },
       });
 
@@ -147,10 +149,22 @@ const LeadMagnet: React.FC = () => {
                       </>
                     )}
                   </motion.button>
+                  <label className="flex cursor-pointer items-start gap-3 text-left">
+                    <input
+                      type="checkbox"
+                      checked={marketingConsent}
+                      onChange={(event) => setMarketingConsent(event.target.checked)}
+                      className="mt-1 h-4 w-4 accent-primary"
+                    />
+                    <span className="text-xs leading-relaxed text-muted-foreground">
+                      Also send me occasional practical product and automation
+                      notes. Optional. Unsubscribe anytime.
+                    </span>
+                  </label>
                 </form>
 
                 <p className="text-xs text-muted-foreground mt-4">
-                  No spam. Unsubscribe anytime. We respect your privacy.
+                  The guide is delivered whether or not you join the mailing list.
                 </p>
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">

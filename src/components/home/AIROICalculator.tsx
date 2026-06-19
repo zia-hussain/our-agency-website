@@ -15,6 +15,7 @@ const AIROICalculator: React.FC = () => {
   const [contactInfo, setContactInfo] = useState({ name: '', email: '', company: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [marketingConsent, setMarketingConsent] = useState(false);
 
   const processTypes = {
     data_entry: { name: 'Data Entry & Processing', reduction: 80 },
@@ -85,7 +86,8 @@ const AIROICalculator: React.FC = () => {
           monthlySavings: Math.round(results.monthlySavings),
           yearlySavings: Math.round(results.yearlySavings),
           paybackMonths: results.paybackMonths.toFixed(1),
-          firstYearROI: Math.round(results.firstYearROI)
+          firstYearROI: Math.round(results.firstYearROI),
+          marketingConsent,
         },
       });
 
@@ -307,6 +309,19 @@ const AIROICalculator: React.FC = () => {
                       </>
                     )}
                   </motion.button>
+
+                  <label className="flex cursor-pointer items-start gap-3 text-left">
+                    <input
+                      type="checkbox"
+                      checked={marketingConsent}
+                      onChange={(event) => setMarketingConsent(event.target.checked)}
+                      className="mt-1 h-4 w-4 accent-primary"
+                    />
+                    <span className="text-xs leading-relaxed text-muted-foreground">
+                      Send me occasional practical automation notes. Optional,
+                      and I can unsubscribe at any time.
+                    </span>
+                  </label>
 
                   <p className="text-xs text-center text-muted-foreground">
                     We'll send you a detailed report with implementation recommendations

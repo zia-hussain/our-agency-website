@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { MapPin, Quote, Star } from "lucide-react";
+import { ArrowUpRight, MapPin, Quote, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   motion,
   useAnimationFrame,
@@ -125,19 +126,18 @@ const TestimonialsCarousel: React.FC = () => {
 
                   <div className="mb-5 flex items-start justify-between gap-5">
                     <div className="flex items-center gap-3">
-                      <img
-                        src={testimonial.avatar}
-                        alt={testimonial.author}
-                        loading={index < testimonials.length ? "eager" : "lazy"}
-                        decoding="async"
-                        className="h-12 w-12 rounded-full border border-border object-cover grayscale transition-all duration-500 group-hover:grayscale-0 sm:h-14 sm:w-14"
-                      />
+                      <div
+                        aria-hidden="true"
+                        className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/25 bg-primary/10 text-sm font-semibold text-primary sm:h-14 sm:w-14"
+                      >
+                        {testimonial.initials}
+                      </div>
                       <div>
                         <h3 className="text-base font-semibold text-foreground">
                           {testimonial.author}
                         </h3>
                         <p className="text-sm font-medium text-primary">
-                          {testimonial.role}
+                          {testimonial.role}, {testimonial.company}
                         </p>
                         <div className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
                           <MapPin size={12} />
@@ -164,11 +164,15 @@ const TestimonialsCarousel: React.FC = () => {
                       {testimonial.industry}
                     </p>
                     <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                      <p className="line-clamp-1 text-sm font-semibold text-foreground">
-                        {testimonial.project}
-                      </p>
+                      <Link
+                        to={`/portfolio/${testimonial.projectSlug}`}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+                      >
+                        <span className="line-clamp-1">{testimonial.project}</span>
+                        <ArrowUpRight size={14} className="shrink-0" />
+                      </Link>
                       <span className="w-fit rounded-full border border-primary/25 bg-background/50 px-3 py-1 text-xs font-semibold text-primary">
-                        {testimonial.results}
+                        Verified project
                       </span>
                     </div>
                   </div>

@@ -21,6 +21,7 @@ const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const AllProjectsPage = lazy(() => import("./pages/AllProjectsPage"));
 const ReviewPage = lazy(() => import("./pages/ReviewPage"));
+const UnsubscribePage = lazy(() => import("./pages/UnsubscribePage"));
 const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
 const ProtectedRoute = lazy(() => import("./components/admin/ProtectedRoute"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
@@ -49,7 +50,7 @@ function App() {
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isReviewRoute = location.pathname === '/review';
   const isNotFoundRoute = !([
-    '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact',
+    '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
     '/articles', '/privacy-policy', '/terms-of-service', '/review',
   ].includes(location.pathname) ||
     location.pathname.startsWith('/services/') ||
@@ -90,6 +91,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="/review" element={<ReviewPage />} />
+          <Route path="/unsubscribe" element={<UnsubscribePage />} />
           
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AuthForm />} />

@@ -200,7 +200,7 @@ const AdminDashboard: React.FC = () => {
               Content Management Dashboard
             </h1>
             <p className="text-lg text-muted-foreground">
-              Manage your world-class software development agency content
+              Manage Zumetrix Labs website content
             </p>
             <div className="flex items-center gap-4 mt-4 text-sm">
               <div className="flex items-center gap-2">

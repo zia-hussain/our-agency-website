@@ -2,8 +2,8 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Star, Upload, CheckCircle2, AlertCircle, X,
-  Sparkles, Play, FileVideo, ArrowRight, ChevronLeft
+  Star, CheckCircle2, AlertCircle, X,
+  Sparkles, ArrowRight, ChevronLeft
 } from 'lucide-react';
 import { submitReviewToAirtable, ReviewFormData } from '../services/airtable';
 import { Link } from 'react-router-dom';
@@ -29,7 +29,6 @@ type FormState = {
   writtenTestimonial: string;
   starRating: number;
   videoTestimonialUrl: string;
-  videoFile: File | null;
 };
 
 const INITIAL_DATA: FormState = {
@@ -50,7 +49,6 @@ const INITIAL_DATA: FormState = {
   writtenTestimonial: '',
   starRating: 5,
   videoTestimonialUrl: '',
-  videoFile: null,
 };
 
 const STEPS = [
@@ -127,41 +125,21 @@ function MultiSelect({ options, value, onChange }: { options: string[]; value: s
 }
 
 function LogoSection({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  const [mode, setMode] = useState<'skip' | 'url' | 'upload'>('skip');
-  const ref = useRef<HTMLInputElement>(null);
-  const handle = (file: File) => {
-    const r = new FileReader();
-    r.onload = e => onChange(e.target?.result as string);
-    r.readAsDataURL(file);
-  };
+  const [mode, setMode] = useState<'skip' | 'url'>('skip');
   return (
     <div className="mt-8 space-y-4">
       <p className="text-[#EDEDED]/25 text-sm uppercase tracking-widest">Company logo <span className="normal-case">(optional)</span></p>
       <div className="flex gap-2 flex-wrap">
-        {(['skip', 'url', 'upload'] as const).map(m => (
+        {(['skip', 'url'] as const).map(m => (
           <button key={m} type="button" onClick={() => { setMode(m); if (m !== 'url') onChange(''); }}
             className={`px-4 py-2 rounded-full text-sm transition-all duration-200 border ${mode === m ? pillActive : pillInactive}`}>
-            {m === 'skip' ? 'Skip' : m === 'url' ? 'Paste URL' : 'Upload file'}
+            {m === 'skip' ? 'Skip' : 'Paste logo URL'}
           </button>
         ))}
       </div>
       {mode === 'url' && (
         <input type="url" className={`${inputBase} text-base sm:text-lg`} placeholder="https://example.com/logo.png"
           value={value} onChange={e => onChange(e.target.value)} />
-      )}
-      {mode === 'upload' && (
-        <div onClick={() => ref.current?.click()}
-          className="flex items-center gap-4 p-4 border border-dashed border-[#C48A64]/15 rounded-2xl cursor-pointer hover:border-[#C48A64]/30 transition-colors duration-200">
-          <div className="w-10 h-10 rounded-xl bg-[#C48A64]/6 flex items-center justify-center">
-            <Upload className="w-4 h-4 text-[#C48A64]/50" />
-          </div>
-          <div>
-            <p className="text-[#EDEDED]/50 text-sm">Click to upload</p>
-            <p className="text-[#EDEDED]/20 text-xs">PNG, JPG, SVG — max 2MB</p>
-          </div>
-          <input ref={ref} type="file" accept="image/*" className="hidden"
-            onChange={e => { const f = e.target.files?.[0]; if (f) handle(f); }} />
-        </div>
       )}
       {value && mode !== 'skip' && (
         <div className="flex items-center gap-3">
@@ -174,65 +152,27 @@ function LogoSection({ value, onChange }: { value: string; onChange: (v: string)
   );
 }
 
-function VideoSection({ file, url, onFile, onUrl }: {
-  file: File | null | undefined; url: string; onFile: (f: File | null) => void; onUrl: (v: string) => void;
-}) {
-  const [mode, setMode] = useState<'skip' | 'link' | 'upload'>('skip');
-  const ref = useRef<HTMLInputElement>(null);
-  const [drag, setDrag] = useState(false);
+function VideoSection({ url, onUrl }: { url: string; onUrl: (v: string) => void }) {
+  const [mode, setMode] = useState<'skip' | 'link'>('skip');
   return (
     <div className="space-y-4">
       <div className="flex gap-2 flex-wrap">
-        {(['skip', 'link', 'upload'] as const).map(m => (
-          <button key={m} type="button" onClick={() => { setMode(m); if (m === 'skip') { onFile(null); onUrl(''); } }}
+        {(['skip', 'link'] as const).map(m => (
+          <button key={m} type="button" onClick={() => { setMode(m); if (m === 'skip') onUrl(''); }}
             className={`px-4 py-2 rounded-full text-sm transition-all duration-200 border ${mode === m ? pillActive : pillInactive}`}>
-            {m === 'skip' ? 'Skip for now' : m === 'link' ? 'Paste Loom / YouTube' : 'Upload video'}
+            {m === 'skip' ? 'Skip for now' : 'Paste Loom / YouTube'}
           </button>
         ))}
       </div>
       {mode === 'link' && (
         <input type="url" className={`${inputBase} text-base sm:text-lg`} placeholder="https://loom.com/share/..."
-          value={url} onChange={e => { onUrl(e.target.value); onFile(null); }} />
-      )}
-      {mode === 'upload' && (
-        !file ? (
-          <div
-            onDragOver={e => { e.preventDefault(); setDrag(true); }}
-            onDragLeave={() => setDrag(false)}
-            onDrop={e => { e.preventDefault(); setDrag(false); const f = e.dataTransfer.files[0]; if (f?.type.startsWith('video/')) onFile(f); }}
-            onClick={() => ref.current?.click()}
-            className={`flex flex-col items-center gap-4 py-12 border-2 border-dashed rounded-3xl cursor-pointer transition-all duration-300 ${drag ? 'border-[#C48A64]/40 bg-[#C48A64]/4' : 'border-[#1E1E1E] hover:border-[#C48A64]/20'}`}
-          >
-            <div className="w-16 h-16 rounded-2xl bg-[#C48A64]/6 flex items-center justify-center">
-              <Play className="w-7 h-7 text-[#C48A64]/40 ml-0.5" />
-            </div>
-            <div className="text-center">
-              <p className="text-[#EDEDED]/40 text-base">Drop your video here or <span className="text-[#C48A64]/70">browse</span></p>
-              <p className="text-[#EDEDED]/20 text-sm mt-1">MP4, MOV, WebM — max 500MB</p>
-            </div>
-            <input ref={ref} type="file" accept="video/*" className="hidden"
-              onChange={e => { const f = e.target.files?.[0]; if (f) onFile(f); }} />
-          </div>
-        ) : (
-          <div className="flex items-center gap-4 p-5 bg-[#C48A64]/4 border border-[#C48A64]/15 rounded-2xl">
-            <div className="w-12 h-12 rounded-xl bg-[#C48A64]/8 flex items-center justify-center shrink-0">
-              <FileVideo className="w-5 h-5 text-[#C48A64]/60" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[#EDEDED]/80 text-sm font-medium truncate">{file.name}</p>
-              <p className="text-[#EDEDED]/30 text-xs mt-0.5">{(file.size / 1024 / 1024).toFixed(1)} MB</p>
-            </div>
-            <button type="button" onClick={() => onFile(null)} className="text-[#EDEDED]/20 hover:text-[#EDEDED]/50 transition-colors">
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-        )
+          value={url} onChange={e => onUrl(e.target.value)} />
       )}
       {mode !== 'skip' && (
         <div className="flex items-start gap-3 py-4">
           <Sparkles className="w-4 h-4 text-[#C48A64]/50 shrink-0 mt-0.5" />
           <p className="text-[#EDEDED]/25 text-sm leading-relaxed">
-            A 60-second selfie video converts 5x better than text. No script needed — just speak naturally.
+            A short, natural video helps future clients understand the experience in your own words. No script needed.
           </p>
         </div>
       )}
@@ -251,7 +191,7 @@ function ReviewSummary({ data }: { data: FormState }) {
     { label: 'Problem',  value: data.problemSolved },
     { label: 'Outcomes', value: data.outcomes },
     { label: 'Review',   value: data.writtenTestimonial },
-    { label: 'Video',    value: data.videoFile ? data.videoFile.name : data.videoTestimonialUrl || null },
+    { label: 'Video',    value: data.videoTestimonialUrl || null },
   ].filter(i => i.value);
 
   return (
@@ -320,7 +260,6 @@ export default function ReviewPage() {
 
   const update = useCallback((k: keyof FormState, v: string) => setData(p => ({ ...p, [k]: v })), []);
   const updateNum = useCallback((k: keyof FormState, v: number) => setData(p => ({ ...p, [k]: v })), []);
-  const updateFile = useCallback((f: File | null) => setData(p => ({ ...p, videoFile: f })), []);
 
   const validate = (): string => {
     if (step === 0 && !data.clientName.trim()) return "We'd love to know your name.";
@@ -401,9 +340,9 @@ export default function ReviewPage() {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-10 h-20 lg:h-24 ">
           <Link to={'/'} className="flex items-center gap-2.5">
             <img
-              src="/logo/Logo horizontal.png"
+              src="/logo/zumetrix-email.png"
               alt="Zumetrix Labs"
-              className="h-40 w-40 lg:h-52 lg:w-52 opacity-80 select-none"
+              className="h-auto w-40 opacity-80 select-none lg:w-48"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
           </Link>
@@ -563,8 +502,8 @@ export default function ReviewPage() {
                   )}
 
                   {step === 10 && (
-                    <VideoSection file={data.videoFile} url={data.videoTestimonialUrl}
-                      onFile={updateFile} onUrl={v => update('videoTestimonialUrl', v)} />
+                    <VideoSection url={data.videoTestimonialUrl}
+                      onUrl={v => update('videoTestimonialUrl', v)} />
                   )}
 
                   {step === 11 && <ReviewSummary data={data} />}

@@ -39,7 +39,7 @@ const storeLead = async (lead) => {
       apikey: supabaseKey,
       Authorization: `Bearer ${supabaseKey}`,
       "Content-Type": "application/json",
-      Prefer: "return=minimal",
+      Prefer: "return=representation",
     },
     body: JSON.stringify({
       email: lead.email,
@@ -63,7 +63,115 @@ const storeLead = async (lead) => {
     throw new Error(`Lead storage failed: ${response.status} ${detail}`);
   }
 
-  return { stored: true };
+  const records = await response.json();
+  return { stored: true, id: records?.[0]?.id };
+};
+
+const syncLeadToAirtable = async (lead, supabaseLeadId) => {
+  const apiKey = process.env.AIRTABLE_API_KEY;
+  const baseId = process.env.AIRTABLE_BASE_ID;
+  const tableName = process.env.AIRTABLE_LEADS_TABLE || "Website Leads";
+
+  if (!apiKey || !baseId) {
+    return { synced: false, reason: "Airtable env not configured" };
+  }
+
+  const metadata = lead.metadata || {};
+  const now = new Date().toISOString();
+  const fields = {
+    Name: lead.name || lead.email,
+    Email: lead.email,
+    Company: lead.company || "",
+    Phone: lead.phone || "",
+    "Lead Type": humanize(lead.leadType || "general"),
+    Status: "New",
+    Source: humanize(lead.source || "website"),
+    "Project Type": metadata.projectType || "",
+    Budget: metadata.budget || "",
+    Timeline: metadata.timeline || "",
+    Message: lead.message || "",
+    "Magnet Name": lead.magnetName || "",
+    "Page URL": lead.pageUrl || "",
+    Referrer: lead.referrer || "",
+    "UTM Source": metadata.utmSource || "",
+    "UTM Medium": metadata.utmMedium || "",
+    "UTM Campaign": metadata.utmCampaign || "",
+    "Marketing Consent": Boolean(metadata.marketingConsent),
+    "Supabase Lead ID": supabaseLeadId || "",
+    "Created At": now,
+    "Last Activity": now,
+    Metadata: JSON.stringify(metadata, null, 2),
+  };
+
+  const response = await fetch(
+    `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fields, typecast: true }),
+    },
+  );
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`Airtable sync failed: ${response.status} ${detail}`);
+  }
+
+  const record = await response.json();
+  return { synced: true, id: record.id };
+};
+
+const syncMarketingSubscription = async (lead) => {
+  const hasConsent =
+    lead.leadType === "newsletter" || Boolean(lead.metadata?.marketingConsent);
+  if (!hasConsent) return { subscribed: false, reason: "Marketing consent not provided" };
+
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const supabaseKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_ANON_KEY ||
+    process.env.VITE_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    return { subscribed: false, reason: "Supabase env not configured" };
+  }
+
+  const now = new Date().toISOString();
+  const response = await fetch(
+    `${supabaseUrl.replace(/\/$/, "")}/rest/v1/marketing_subscribers?on_conflict=email`,
+    {
+      method: "POST",
+      headers: {
+        apikey: supabaseKey,
+        Authorization: `Bearer ${supabaseKey}`,
+        "Content-Type": "application/json",
+        Prefer: "resolution=merge-duplicates,return=representation",
+      },
+      body: JSON.stringify({
+        email: lead.email.toLowerCase(),
+        name: lead.name || null,
+        company: lead.company || null,
+        status: "subscribed",
+        consent_source: lead.source || lead.leadType || "website",
+        consent_page_url: lead.pageUrl || null,
+        consent_at: now,
+        unsubscribed_at: null,
+        metadata: lead.metadata || {},
+        updated_at: now,
+      }),
+    },
+  );
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`Marketing subscription failed: ${response.status} ${detail}`);
+  }
+
+  const records = await response.json();
+  return { subscribed: true, id: records?.[0]?.id };
 };
 
 const sendResendEmail = async ({ to, subject, html, attachments, replyTo }) => {
@@ -355,6 +463,48 @@ const blueprintEmailHtml = (lead) => emailShell({
   cta: { href: "https://www.zumetrix.com/contact", label: "Review your MVP idea" },
 });
 
+const contactEmailHtml = (lead) => {
+  const metadata = lead.metadata || {};
+
+  return emailShell({
+    preheader: "We received your project brief and the next step is clear.",
+    eyebrow: "Project brief received",
+    title: "Your project is now on our desk.",
+    intro: `Hey ${escapeHtml(lead.name || "there")}, thank you for trusting Zumetrix Labs with the first look at your project. We received your brief and will review the business goal, scope, timeline, and the decisions that matter before replying.`,
+    content: `
+      ${statLine([
+        { label: "Status", value: "Received", tone: "green" },
+        { label: "Project", value: metadata.projectType || "Software project", tone: "copper" },
+        { label: "Response", value: "Within 24 hours", tone: "blue" },
+      ])}
+      <div style="margin-top:34px;">
+        <div style="margin-bottom:14px;color:${BRAND.text};font-size:17px;font-weight:680;">What happens next</div>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+          ${[
+            ["01", "We read the complete brief and identify the actual business decision behind the build."],
+            ["02", "We review scope, timeline, technical risk, and anything that should not enter version one."],
+            ["03", "We reply with useful questions and the clearest next step, even if that means recommending a smaller starting point."],
+          ].map(([number, text]) => `
+            <tr>
+              <td valign="middle" style="width:38px;padding:8px 0;">
+                <span style="display:inline-block;width:25px;height:25px;border:1px solid #49301F;border-radius:50%;color:${BRAND.accent};font-size:11px;line-height:25px;font-weight:700;text-align:center;">${number}</span>
+              </td>
+              <td valign="middle" style="padding:8px 0;color:${BRAND.muted};font-size:14px;line-height:1.7;">${text}</td>
+            </tr>
+          `).join("")}
+        </table>
+      </div>
+      <div style="margin-top:30px;padding:0 0 0 20px;border-left:2px solid ${BRAND.accent};">
+        <div style="margin-bottom:9px;color:${BRAND.accent};font-size:11px;font-weight:650;letter-spacing:1.3px;text-transform:uppercase;">Your brief</div>
+        <div style="color:${BRAND.text};font-size:15px;line-height:1.8;">${escapeHtml(lead.message || "Project details received.")}</div>
+      </div>
+      <p style="margin:28px 0 0;color:${BRAND.muted};font-size:14px;line-height:1.75;">Need to add context, a document, or a reference link? Reply directly to this email and it will stay connected to your inquiry.</p>
+      <p style="margin:25px 0 0;color:${BRAND.text};font-size:14px;line-height:1.6;font-weight:650;">Zia &amp; Omer<br><span style="color:${BRAND.subtle};font-weight:400;">Zumetrix Labs</span></p>
+    `,
+    cta: { href: "https://calendly.com/zumetrix-labs/consultation", label: "Schedule a conversation" },
+  });
+};
+
 const roiEmailHtml = (lead) => {
   const m = lead.metadata || {};
 
@@ -414,6 +564,14 @@ export default async function handler(req, res) {
       stored: false,
       reason: error.message,
     }));
+    const airtable = await syncLeadToAirtable(normalizedLead, storage.id).catch((error) => ({
+      synced: false,
+      reason: error.message,
+    }));
+    const marketing = await syncMarketingSubscription(normalizedLead).catch((error) => ({
+      subscribed: false,
+      reason: error.message,
+    }));
 
     let userCopy = { sent: false };
 
@@ -437,6 +595,15 @@ export default async function handler(req, res) {
       }).catch((error) => ({ sent: false, reason: error.message }));
     }
 
+    if (normalizedLead.leadType === "contact") {
+      userCopy = await sendResendEmail({
+        to: normalizedLead.email,
+        subject: "We received your project brief",
+        html: contactEmailHtml(normalizedLead),
+        replyTo: "hello@zumetrix.com",
+      }).catch((error) => ({ sent: false, reason: error.message }));
+    }
+
     const ownerEmail = (process.env.LEAD_NOTIFICATION_EMAIL || "hello@zumetrix.com")
       .split(",")
       .map((email) => email.trim())
@@ -448,14 +615,22 @@ export default async function handler(req, res) {
       replyTo: normalizedLead.email,
     }).catch((error) => ({ sent: false, reason: error.message }));
 
-    const handled = Boolean(storage.stored || ownerCopy.sent || userCopy.sent);
+    const handled = Boolean(storage.stored || airtable.synced || ownerCopy.sent || userCopy.sent);
 
     return json(res, handled ? 200 : 503, {
       success: handled,
       stored: storage.stored,
+      airtableSynced: airtable.synced,
+      marketingSubscribed: marketing.subscribed,
       notificationSent: ownerCopy.sent,
       userEmailSent: userCopy.sent,
-      warnings: [storage.reason, ownerCopy.reason, userCopy.reason].filter(Boolean),
+      warnings: [
+        storage.reason,
+        airtable.reason,
+        marketing.reason === "Marketing consent not provided" ? null : marketing.reason,
+        ownerCopy.reason,
+        userCopy.reason,
+      ].filter(Boolean),
       error: handled ? undefined : "Lead delivery is not configured yet.",
     });
   } catch (error) {

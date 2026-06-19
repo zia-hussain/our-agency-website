@@ -82,8 +82,8 @@ const Navigation: React.FC = () => {
               className="flex items-center space-x-3"
             >
               <img
-                className="h-40 w-40 lg:h-52 lg:w-52 select-none"
-                src="/logo/Logo horizontal.png"
+                className="h-auto w-36 select-none lg:w-44"
+                src="/logo/zumetrix-email.png"
                 alt={SITE_CONFIG.company.name}
               />
             </motion.div>

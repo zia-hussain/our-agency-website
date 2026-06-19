@@ -17,6 +17,15 @@
           "value": "noindex, nofollow"
         }
       ]
+    },
+    {
+      "source": "/unsubscribe",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -135,6 +144,10 @@
     {
       "source": "/terms-of-service",
       "destination": "/terms-of-service/index.html"
+    },
+    {
+      "source": "/unsubscribe",
+      "destination": "/unsubscribe/index.html"
     },
     {
       "source": "/(.*)",

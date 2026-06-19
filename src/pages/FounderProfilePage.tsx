@@ -58,7 +58,7 @@ const founders: Record<string, FounderProfile> = {
     alternateName: "Syed Zia Hussain Shah",
     role: "Co-Founder & CEO",
     discipline: "Product strategy, MVP definition and launch delivery",
-    image: "/profile_images/zia-hussain-founder.jpg",
+    image: "/profile_images/zia-hussain-founder-optimized.jpg",
     statement: "A useful first release does one important job exceptionally clearly.",
     summary:
       "Zia Hussain is Co-Founder and CEO of Zumetrix Labs. He leads product direction for SaaS MVPs and web applications, translating ambitious ideas into focused releases with a clear user journey and a reason to exist.",
@@ -201,7 +201,7 @@ const founders: Record<string, FounderProfile> = {
     displayName: ["Syed Omer", "Shah"],
     role: "Co-Founder & CTO",
     discipline: "System architecture, integrations and purposeful automation",
-    image: "/profile_images/syed-omer-shah-founder.jpg",
+    image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     statement: "Reliable systems begin with a clear understanding of the work they must support.",
     summary:
       "Syed Omer Shah is Co-Founder and CTO of Zumetrix Labs. He leads system architecture, backend integrations and purposeful automation for software shaped around real operations.",

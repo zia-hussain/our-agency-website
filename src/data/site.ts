@@ -49,11 +49,11 @@ export const SITE_DATA = {
       // { name: "Google", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg" },
       // { name: "Microsoft", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoft.svg" },
       // { name: "Apple", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg" },
-      { name: "Tech Skills", imageUrl: "/companies_logos/techskills.svg" },
-      { name: "Floating Stone Ranch", imageUrl: "/companies_logos/fsr.svg" },
-      { name: "Safco", imageUrl: "/companies_logos/safco.svg" },
-      { name: "Skills X Swap", imageUrl: "/companies_logos/skillsxswap.svg" },
-      { name: "Bio Tech Energy (BTE)", imageUrl: "/companies_logos/bte.svg" },
+      { name: "Tech Skills", imageUrl: "/companies_logos/techskills.png" },
+      { name: "Floating Stone Ranch", imageUrl: "/companies_logos/fsr.png" },
+      { name: "Safco", imageUrl: "/companies_logos/safco.png" },
+      { name: "Skills X Swap", imageUrl: "/companies_logos/skillsxswap.png" },
+      { name: "Bio Tech Energy (BTE)", imageUrl: "/companies_logos/bte.png" },
       // { name: "Amazon", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/amazon.svg" },
       // { name: "Meta", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/meta.svg" },
       // { name: "Netflix", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/netflix.svg" },
@@ -65,15 +65,15 @@ export const SITE_DATA = {
   // Trust Band - GLOBAL CLIENT SHOWCASE
   trustBand: {
     title:
-      "Trusted by Leading Global Companies ",
-    themedTitle: "Across International Markets",
+      "Trusted for focused delivery ",
+    themedTitle: "Across real operating businesses",
     subtitle:
-      "From Silicon Valley startups to London enterprises - we deliver software that solves real problems",
+      "Founder-led product and engineering work across publishing, operations, marketplaces, and automation.",
     globalStats: [
       { icon: "globe", value: "Global", label: "Market Reach" },
       { icon: "projects", value: "50+", label: "Projects Delivered" },
-      { icon: "success", value: "100%", label: "Success Rate" },
-      { icon: "response", value: "85%", label: "Funding Success" },
+      { icon: "success", value: "Founder-led", label: "Every Engagement" },
+      { icon: "response", value: "3+ years", label: "Building for Clients" },
     ],
     clients: [
       {
@@ -228,19 +228,19 @@ export const SITE_DATA = {
 
   // Founders Strip - EXPERT CREDIBILITY
   foundersStrip: {
-    title: "Led By Experienced Founders",
-    themedTitle: "From Silicon Valley to Global",
+    title: "Founder-led from",
+    themedTitle: "strategy through delivery",
     subtitle:
-      "Combined 7+ years building successful products for international markets and scaling startups",
+      "Zia leads product direction and client strategy. Omer leads architecture and engineering delivery.",
     founders: [
       {
         name: "Zia Hussain",
         fullName: "Syed Zia Hussain Shah",
         role: "Co-Founder & CEO",
         credibility: [
-          "Expert React/Node.js developer",
-          "50+ international projects",
-          "Business strategy specialist",
+          "Product direction and discovery",
+          "Client strategy and scope clarity",
+          "Full-stack product experience",
         ],
         expertise: [
           "React/TypeScript",
@@ -248,8 +248,8 @@ export const SITE_DATA = {
           "Client Success",
           "SaaS Architecture",
         ],
-        achievements: "Led 30+ successful MVP launches",
-        image: "/profile_images/zia-hussain-founder.jpg",
+        achievements: "Turns business problems into focused product decisions",
+        image: "/profile_images/zia-hussain-founder-optimized.jpg",
         linkedin: "https://www.linkedin.com/in/zia-hussain-404-/",
         calendly: "https://calendly.com/zia-hussain/consultation",
       },
@@ -258,9 +258,9 @@ export const SITE_DATA = {
         fullName: "Syed Omer Shah",
         role: "Co-Founder & CTO",
         credibility: [
-          "AI automation expert",
-          "Scalable architecture specialist",
-          "Enterprise systems architect",
+          "Software architecture and delivery",
+          "Automation and systems design",
+          "Scalable full-stack engineering",
         ],
 
         expertise: [
@@ -269,8 +269,8 @@ export const SITE_DATA = {
           "Cloud Infrastructure",
           "Performance Optimization",
         ],
-        achievements: "Built systems serving 100K+ users",
-        image: "/profile_images/syed-omer-shah-founder.jpg",
+        achievements: "Turns product decisions into maintainable software",
+        image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
         linkedin: "https://www.linkedin.com/in/omer-gillani/",
         calendly: "https://calendly.com/omer_shah/consultation",
       },
@@ -325,92 +325,47 @@ export const SITE_DATA = {
     {
       id: 1,
       quote:
-        "Zumetrix Labs delivered exactly what we envisioned and more. The AI integration is seamless, the user experience is fantastic, and the code quality is exceptional. Looking forward to Phase 2 expansion!",
-      author: "Kelly Andrews",
-      role: "Founder & CEO",
-      company: "Best Business Services",
-      country: "United States",
-      project: "Ifyify - AI Personal Branding Tool",
-      avatar:
-        "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=150",
+        "The new dashboard finally gives us a clear, real-time picture of our sales and inventory. It feels tailored for our business, not like a generic off-the-shelf tool.",
+      author: "Harald",
+      role: "Co-owner",
+      company: "Forlag",
+      country: "Norway",
+      project: "Publishing Sales & Inventory Dashboard",
+      projectSlug: "forlag-publishing-sales-inventory-dashboard",
+      initials: "H",
       rating: 5,
-      results: "300% user engagement increase",
-      industry: "AI & Business Tools",
+      results: "Project-linked feedback",
+      industry: "Publishing & Book Sales",
     },
     {
       id: 2,
       quote:
-        "The team at Zumetrix Labs created an amazing wellness app that our users absolutely love. The AI insights feature is particularly impressive and has become our key differentiator in the market.",
-      author: "Sarah Johnson",
-      role: "CEO & Co-Founder",
-      company: "WellnessPath Technologies",
+        "You translated a messy, real-world processing operation into a system that actually makes sense. This will save us time and headaches as we grow.",
+      author: "James",
+      role: "Owner",
+      company: "Floating Stone Ranch",
       country: "Canada",
-      project: "WellnessTracker Mobile App",
-      avatar:
-        "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=150",
+      project: "Processor Intake & Logistics Automation",
+      projectSlug: "floating-stone-ranch-processor-intake-engine",
+      initials: "J",
       rating: 5,
-      results: "50K+ downloads in 30 days",
-      industry: "Healthcare Technology",
+      results: "Project-linked feedback",
+      industry: "Beef Processing & Logistics",
     },
     {
       id: 3,
       quote:
-        "Zumetrix Labs completely transformed our entire operation. The automation platform they built has saved us hundreds of hours monthly and significantly reduced errors while allowing us to scale confidently.",
-      author: "James Mitchell",
-      role: "Operations Director",
-      company: "RetailOps Enterprise",
+        "The MVP feels aligned with the exact vision I had in my head. The credits logic and flows are thoughtfully built for future scaling.",
+      author: "Sam",
+      role: "Founder",
+      company: "Skill X Swap",
       country: "United Kingdom",
-      project: "E-commerce Automation Platform",
-      avatar:
-        "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=150",
+      project: "Credit-Based Skill Trading Marketplace",
+      projectSlug: "skill-x-swap-mvp",
+      initials: "S",
       rating: 5,
-      results: "75% cost reduction achieved",
-      industry: "E-commerce & Retail",
-    },
-    {
-      id: 4,
-      quote:
-        "Zumetrix Labs helped us build and launch our MVP in record time. The quality was exceptional and it directly contributed to our successful $500K funding round. Their expertise was invaluable.",
-      author: "Michael Chen",
-      role: "Founder & CEO",
-      company: "TaskFlow Solutions",
-      country: "Australia",
-      project: "Project Management MVP",
-      avatar:
-        "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=150",
-      rating: 5,
-      results: "$500K funding secured",
-      industry: "Productivity Software",
-    },
-    {
-      id: 5,
-      quote:
-        "The EduPlatform has revolutionized our teaching capabilities. Students are more engaged, instructors have better tools, and our operational efficiency has improved dramatically.",
-      author: "Dr. Amanda Lee",
-      role: "Director of Technology",
-      company: "EduTech Institute",
-      country: "Singapore",
-      project: "Online Learning Platform",
-      avatar:
-        "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=150",
-      rating: 5,
-      results: "5K+ active students onboarded",
-      industry: "Education Technology",
-    },
-    {
-      id: 6,
-      quote:
-        "LogiTrack has transformed our delivery operations completely. The route optimization alone has saved us thousands in fuel costs, and our customers love the real-time tracking.",
-      author: "Ahmed Al-Rashid",
-      role: "Operations Manager",
-      company: "LogiCorp International",
-      country: "UAE",
-      project: "Smart Delivery & Logistics App",
-      avatar:
-        "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150",
-      rating: 5,
-      results: "30% delivery time reduction",
-      industry: "Logistics & Supply Chain",
+      results: "Project-linked feedback",
+      industry: "EdTech & Skill Sharing",
     },
   ],
 
@@ -429,10 +384,10 @@ export const SITE_DATA = {
     },
     trustSignals: [...BRAND_CONTENT.finalCTA.trustSignals],
     globalProof: {
-      clients: "50+ international clients",
-      countries: "6 countries served",
-      satisfaction: "100% client satisfaction",
-      delivery: "30-day average MVP delivery",
+      clients: "Founder-led delivery",
+      countries: "Remote collaboration",
+      satisfaction: "Project-specific references",
+      delivery: "Focused release planning",
     },
   },
 
@@ -440,20 +395,20 @@ export const SITE_DATA = {
   metrics: {
     projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "50+",
     happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "25+",
-    yearsExperience: import.meta.env.VITE_YEARS_EXPERIENCE || "6+",
-    successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
-    avgMVPTime: "30 days",
-    fundingSuccess: "85%",
-    clientSatisfaction: "100%",
-    countriesServed: "6",
+    yearsExperience: import.meta.env.VITE_YEARS_EXPERIENCE || "3+",
+    successRate: import.meta.env.VITE_SUCCESS_RATE || "Top Rated",
+    avgMVPTime: "Scope dependent",
+    fundingSuccess: "Not claimed",
+    clientSatisfaction: "Project references available",
+    countriesServed: "Global",
     responseTime: "24 hours",
   },
 
   // Client Logos & Trust Badges
   clientLogos: {
-    title: "Trusted by Leading",
-    themedTitle: " Startups & Enterprises",
-    subtitle: "50+ projects delivered across US, UK, Canada, Australia, UAE, and Singapore",
+    title: "Trusted across",
+    themedTitle: " real product work",
+    subtitle: "Software, automation, and product delivery for teams working across multiple markets",
     trustBadges: [
       {
         value: '5.0',
@@ -462,9 +417,9 @@ export const SITE_DATA = {
         icon: 'award'
       },
       {
-        value: '100%',
-        label: 'Satisfaction',
-        subtext: 'Verified client outcomes',
+        value: 'Founder-led',
+        label: 'Delivery',
+        subtext: 'Direct senior involvement',
         icon: 'users'
       },
       {
@@ -481,17 +436,14 @@ export const SITE_DATA = {
       }
     ],
     clients: [
-      { name: 'Ifyify', industry: 'SaaS Platform' },
-      { name: 'RetailOps', industry: 'E-Commerce' },
-      { name: 'TaskFlow', industry: 'Productivity' },
-      { name: 'EduTech', industry: 'Education' },
-      { name: 'WellnessPath', industry: 'Healthcare' },
-      { name: 'LogiCorp', industry: 'Logistics' },
+      { name: 'Forlag', industry: 'Publishing' },
+      { name: 'Floating Stone Ranch', industry: 'Operations' },
+      { name: 'Skill X Swap', industry: 'Marketplace' },
     ],
     bottomBadge: {
       rating: '5.0',
       reviews: '50+ client reviews',
-      satisfaction: '100% satisfaction rate'
+      satisfaction: 'Project references available'
     }
   },
 

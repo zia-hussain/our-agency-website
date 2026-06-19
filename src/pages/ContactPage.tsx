@@ -17,7 +17,7 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
-import { trackFormSubmit, trackCTAClick } from "../utils/analytics";
+import { trackCTAClick } from "../utils/analytics";
 import { routeLead } from "../services/leadRouter";
 
 const ContactPage: React.FC = () => {
@@ -29,9 +29,11 @@ const ContactPage: React.FC = () => {
     budget: "",
     timeline: "",
     message: "",
+    marketingConsent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [openFAQ, setOpenFAQ] = useContactState<number | null>(0);
 
   const handleInputChange = (
@@ -39,20 +41,19 @@ const ContactPage: React.FC = () => {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const value =
+      e.target instanceof HTMLInputElement && e.target.type === "checkbox"
+        ? e.target.checked
+        : e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError("");
 
     try {
-      const formEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
-      const webhookEndpoint = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK;
-
       const leadResult = await routeLead({
         name: formData.name,
         email: formData.email,
@@ -64,166 +65,34 @@ const ContactPage: React.FC = () => {
           projectType: formData.projectType,
           budget: formData.budget,
           timeline: formData.timeline,
+          marketingConsent: formData.marketingConsent,
         },
       });
 
-      if (!leadResult.success && !formEndpoint) {
-        throw new Error(leadResult.error || "Contact form endpoint not configured");
+      if (!leadResult.success) {
+        throw new Error(leadResult.error || "We could not deliver your project brief.");
       }
-
-      // Submit to Formspree
-      if (formEndpoint) {
-        const formspreeData = new FormData();
-        formspreeData.append("name", formData.name);
-        formspreeData.append("email", formData.email);
-        formspreeData.append("company", formData.company);
-        formspreeData.append("projectType", formData.projectType);
-        formspreeData.append("budget", formData.budget);
-        formspreeData.append("timeline", formData.timeline);
-        formspreeData.append("message", formData.message);
-        formspreeData.append(
-          "_subject",
-          `New Project Inquiry from ${formData.name}`,
-        );
-
-        const formspreeResponse = await fetch(formEndpoint, {
-          method: "POST",
-          body: formspreeData,
-          headers: {
-            Accept: "application/json",
-          },
-        });
-
-        if (!formspreeResponse.ok && !leadResult.success) {
-          throw new Error(
-            `Form submission failed: ${formspreeResponse.statusText}`,
-          );
-        }
-      }
-
-      // Send to Google Sheets webhook (Zapier)
-      if (webhookEndpoint) {
-        try {
-          await fetch(webhookEndpoint, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: formData.name,
-              email: formData.email,
-              company: formData.company,
-              projectType: formData.projectType,
-              budget: formData.budget,
-              timeline: formData.timeline,
-              message: formData.message,
-              timestamp: new Date().toISOString(),
-              source: "Zumetrix Contact Form",
-            }),
-          });
-        } catch (webhookError) {
-          console.warn("Webhook submission failed:", webhookError);
-        }
-      }
-
-      trackFormSubmit("contact_form");
 
       setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          projectType: "",
-          budget: "",
-          timeline: "",
-          message: "",
-        });
-      }, 3000);
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        projectType: "",
+        budget: "",
+        timeline: "",
+        message: "",
+        marketingConsent: false,
+      });
     } catch (err) {
       console.error("Form submission error:", err);
-      alert(
-        "There was an error submitting the form. Please try again or contact us directly at " +
-          SITE_CONFIG.company.email,
+      setSubmitError(
+        `We could not send your brief. Please try again or email ${SITE_CONFIG.company.email}.`,
       );
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-
-  //   try {
-  //     // Submit to Formspree (replace with your actual endpoint)
-  //     const formDataToSend = new FormData();
-  //     formDataToSend.append("name", formData.name);
-  //     formDataToSend.append("email", formData.email);
-  //     formDataToSend.append("company", formData.company);
-  //     formDataToSend.append("projectType", formData.projectType);
-  //     formDataToSend.append("budget", formData.budget);
-  //     formDataToSend.append("timeline", formData.timeline);
-  //     formDataToSend.append("message", formData.message);
-  //     formDataToSend.append(
-  //       "_subject",
-  //       `New Project Inquiry from ${formData.name}`
-  //     );
-
-  //     const formspreeResponse = await fetch(
-  //       import.meta.env.VITE_CONTACT_FORM_ENDPOINT,
-  //       {
-  //         method: "POST",
-  //         body: formDataToSend,
-  //         headers: { Accept: "application/json" }, // only Accept, not Content-Type
-  //       }
-  //     );
-
-  //     // Submit to Google Sheets via Zapier webhook (replace with your actual webhook)
-  //     const zapierResponse = await fetch(
-  //       import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK,
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           name: formData.name,
-  //           email: formData.email,
-  //           company: formData.company,
-  //           projectType: formData.projectType,
-  //           budget: formData.budget,
-  //           timeline: formData.timeline,
-  //           message: formData.message,
-  //           timestamp: new Date().toISOString(),
-  //         }),
-  //       }
-  //     );
-
-  //     if (formspreeResponse.ok) {
-  //       setIsSubmitted(true);
-  //       // Reset form after 3 seconds
-  //       setTimeout(() => {
-  //         setIsSubmitted(false);
-  //         setFormData({
-  //           name: "",
-  //           email: "",
-  //           company: "",
-  //           projectType: "",
-  //           budget: "",
-  //           timeline: "",
-  //           message: "",
-  //         });
-  //       }, 3000);
-  //     }
-  //   } catch (error) {
-  //     console.error("Form submission error:", error);
-  //     alert("There was an error submitting the form. Please try again.");
-  //   }
-
-  //   setIsSubmitting(false);
-  // };
 
   const handleScheduleCall = () => {
     trackCTAClick("Schedule Consultation", "/contact");
@@ -338,17 +207,17 @@ const ContactPage: React.FC = () => {
               Let's Talk
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight">
-              Start Your
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
-                Project Today
+            <h1 className="mx-auto max-w-full text-[2.55rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight leading-[1.08]">
+              Bring Us the
+              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.08]">
+                Real Problem
               </span>
             </h1>
 
-            <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-              Ready to transform your vision into reality? Let's discuss your
-              project requirements and create a solution that exceeds your
-              expectations.
+            <p className="mx-auto max-w-[22rem] px-1 text-base leading-[1.75] text-muted-foreground font-light sm:max-w-4xl sm:text-xl lg:text-2xl">
+              Tell us what is blocked, what is changing in the business, and
+              what a successful first release must prove. We will reply with
+              useful questions and the clearest next step.
             </p>
           </AnimatedSection>
         </div>
@@ -380,11 +249,11 @@ const ContactPage: React.FC = () => {
                       <CheckCircle size={32} className="text-primary" />
                     </motion.div>
                     <h3 className="text-2xl font-bold text-foreground mb-4">
-                      Thank You!
+                      Project brief received
                     </h3>
                     <p className="text-muted-foreground">
-                      We've received your message and will get back to you
-                      within 24 hours.
+                      A confirmation is on its way to your inbox. We will review
+                      the full context and reply within 24 hours.
                     </p>
                   </motion.div>
                 ) : (
@@ -604,6 +473,21 @@ const ContactPage: React.FC = () => {
                       </p>
                     </div>
 
+                    <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border/70 bg-background/35 p-4">
+                      <input
+                        type="checkbox"
+                        name="marketingConsent"
+                        checked={formData.marketingConsent}
+                        onChange={handleInputChange}
+                        className="mt-1 h-4 w-4 accent-primary"
+                      />
+                      <span className="text-sm leading-relaxed text-muted-foreground">
+                        Send me occasional practical notes about product strategy,
+                        automation, and software delivery. Optional, and I can
+                        unsubscribe at any time.
+                      </span>
+                    </label>
+
                     <motion.button
                       type="submit"
                       disabled={isSubmitting}
@@ -633,6 +517,11 @@ const ContactPage: React.FC = () => {
                         "Send Message"
                       )}
                     </motion.button>
+                    {submitError && (
+                      <p role="alert" className="text-sm text-red-400/80 leading-relaxed">
+                        {submitError}
+                      </p>
+                    )}
                   </form>
                 )}
               </div>
@@ -646,9 +535,9 @@ const ContactPage: React.FC = () => {
                     Get In Touch
                   </h2>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                    We're here to help bring your vision to life. Reach out
-                    through any of these channels and we'll get back to you
-                    promptly.
+                    Send the context you already have. We will help turn it into
+                    a focused product decision, a sensible scope, and a clear
+                    next move.
                   </p>
                 </div>
 

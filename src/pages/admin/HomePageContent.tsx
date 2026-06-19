@@ -37,14 +37,14 @@ const HomePageContent: React.FC = () => {
   useEffect(() => {
     if (settings) {
       setFormData({
-        hero_headline: settings.hero_headline || 'Transform Your Vision Into World-Class Software That Scales Globally',
+        hero_headline: settings.hero_headline || 'We build software for founders who need thinking partners',
         hero_subtext: settings.hero_subtext || 'Zumetrix Labs builds software for founders who need thinking partners, not order-takers. We push back on unclear ideas, challenge assumptions, and help projects actually launch.',
         hero_primary_cta_text: settings.hero_primary_cta_text || 'Start Your Project',
         hero_primary_cta_link: settings.hero_primary_cta_link || '/contact',
         hero_secondary_cta_text: settings.hero_secondary_cta_text || 'View Our Work',
         hero_secondary_cta_link: settings.hero_secondary_cta_link || '/portfolio',
-        trust_band_title: settings.trust_band_title || 'Trusted by Leading Global Companies Across International Markets',
-        trust_band_subtitle: settings.trust_band_subtitle || 'From Silicon Valley startups to London enterprises - we deliver world-class results that dominate markets',
+        trust_band_title: settings.trust_band_title || 'Trusted for focused delivery across real operating businesses',
+        trust_band_subtitle: settings.trust_band_subtitle || 'Founder-led product and engineering work across publishing, operations, marketplaces, and automation',
         services_preview_title: settings.services_preview_title || 'Enterprise-Grade Software Development Services',
         services_preview_subtitle: settings.services_preview_subtitle || 'From SaaS MVPs to AI automation - we deliver solutions that drive measurable business growth',
         final_cta_headline: settings.final_cta_headline || 'Ready to Transform Your Business Vision Into Reality?',

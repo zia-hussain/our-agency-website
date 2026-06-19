@@ -115,7 +115,7 @@ const ArticlesPage: React.FC = () => {
 
             <div className="max-w-5xl mx-auto">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                Learn from Pakistan's leading software development experts about
+                Practical lessons from the team building software products,
                 building SaaS MVPs, React/Node.js applications, AI automation,
                 and scaling tech businesses globally.
               </p>

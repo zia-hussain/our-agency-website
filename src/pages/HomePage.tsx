@@ -101,12 +101,12 @@ const HomePage: React.FC = () => {
       <InfiniteLogoCarousel />
       <TrustBand />
       <ServicesPreview />
-      <AIROICalculator />
-      <SignatureMethod />
       <FeaturedCaseStudies />
+      <SignatureMethod />
       <FoundersStrip />
-      <TechStack />
       <TestimonialsCarousel />
+      <AIROICalculator />
+      <TechStack />
       <LeadMagnet />
       <FAQ />
       <FinalCTA />

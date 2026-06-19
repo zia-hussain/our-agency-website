@@ -73,7 +73,7 @@ const Services: React.FC = () => {
           </motion.div>
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-            World-Class Software
+            Focused Software
             <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
               Development Services
             </span>
@@ -81,9 +81,8 @@ const Services: React.FC = () => {
 
           <p className="text-xl lg:text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed font-light mb-12">
             From enterprise web applications to mobile apps and AI automation,
-            we deliver world-class software solutions that transform businesses,
-            accelerate growth, and drive exceptional results for ambitious
-            startups and established enterprises across global markets.
+            we design and build software around real workflows, clear product
+            decisions, and maintainable technical foundations.
           </p>
 
           <Link to="/services">

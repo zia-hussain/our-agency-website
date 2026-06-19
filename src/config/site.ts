@@ -18,14 +18,14 @@ export const SITE_CONFIG = {
       name: import.meta.env.VITE_FOUNDER_1_NAME || "Zia Hussain",
       fullName: import.meta.env.VITE_FOUNDER_1_FULL_NAME || "Syed Zia Hussain Shah",
       role: import.meta.env.VITE_FOUNDER_1_ROLE || "Co-Founder & CEO",
-      image: import.meta.env.VITE_FOUNDER_1_IMAGE || "/profile_images/zia-hussain-founder.jpg",
+      image: "/profile_images/zia-hussain-founder-optimized.jpg",
       bio: import.meta.env.VITE_FOUNDER_1_BIO || "Zia leads product, growth, and client strategy at Zumetrix Labs.",
     },
     {
       name: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
       fullName: import.meta.env.VITE_FOUNDER_2_FULL_NAME || "Syed Omer Shah",
       role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
-      image: import.meta.env.VITE_FOUNDER_2_IMAGE || "/profile_images/syed-omer-shah-founder.jpg",
+      image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
       bio: import.meta.env.VITE_FOUNDER_2_BIO || "Omer leads architecture, automation, and engineering at Zumetrix Labs.",
     }
   ],
@@ -40,8 +40,6 @@ export const SITE_CONFIG = {
 
   // Contact & Integration URLs
   contact: {
-    formEndpoint: import.meta.env.VITE_CONTACT_FORM_ENDPOINT,
-    googleSheetsWebhook: import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK,
     calendlyUrl: import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/zumetrix-labs/consultation",
   },
 

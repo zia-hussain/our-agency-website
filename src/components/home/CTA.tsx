@@ -76,7 +76,9 @@ const CTA: React.FC = () => {
           </h2>
 
           <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-16 leading-relaxed font-light">
-            Ready to transform your business vision into a world-class digital solution? We're here to help you create enterprise-grade software that doesn't just meet expectations—it exceeds them, scales globally, and drives measurable business growth for your organization.
+            Bring us the business problem, the current constraints, and the
+            outcome that matters. We will help shape a focused product plan and
+            build the right first release.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
