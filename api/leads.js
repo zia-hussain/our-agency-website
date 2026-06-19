@@ -167,7 +167,9 @@ const emailShell = ({ preheader, eyebrow, title, intro, content, cta }) => `
                   <tr>
                     <td valign="middle">
                       <a href="https://www.zumetrix.com" style="text-decoration:none;">
-                        <img src="https://www.zumetrix.com/logo/Logo%20horizontal.png" width="156" alt="Zumetrix Labs" style="display:block;width:156px;max-width:100%;height:auto;border:0;">
+                        <span style="display:inline-block;color:${BRAND.accent};font-size:25px;line-height:1;font-weight:850;letter-spacing:-1px;">Z</span>
+                        <span style="display:inline-block;margin-left:4px;color:${BRAND.text};font-size:20px;line-height:1;font-weight:760;letter-spacing:0;">Zumetrix</span>
+                        <span style="display:inline-block;margin-left:5px;color:${BRAND.accent};font-size:8px;line-height:1;font-weight:750;letter-spacing:1px;vertical-align:top;">LABS</span>
                       </a>
                     </td>
                     <td align="right" valign="middle" style="font-size:11px;color:${BRAND.subtle};line-height:1.55;">
@@ -182,8 +184,10 @@ const emailShell = ({ preheader, eyebrow, title, intro, content, cta }) => `
                 <div style="padding:54px 52px 24px;">
                   <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-bottom:22px;">
                     <tr>
-                      <td style="width:22px;border-top:1px solid ${BRAND.accent};font-size:0;line-height:0;">&nbsp;</td>
-                      <td style="padding-left:12px;color:${BRAND.accent};font-size:11px;font-weight:650;letter-spacing:1.7px;text-transform:uppercase;">${escapeHtml(eyebrow)}</td>
+                      <td valign="middle" style="width:22px;padding:0;">
+                        <div style="width:18px;height:1px;background:${BRAND.accent};font-size:0;line-height:1px;">&nbsp;</div>
+                      </td>
+                      <td valign="middle" style="padding:0 0 0 11px;color:${BRAND.accent};font-size:11px;line-height:1;font-weight:650;letter-spacing:1.7px;text-transform:uppercase;">${escapeHtml(eyebrow)}</td>
                     </tr>
                   </table>
                   <h1 style="margin:0;color:${BRAND.text};font-size:40px;line-height:1.12;font-weight:720;letter-spacing:0;">${escapeHtml(title)}</h1>
@@ -232,12 +236,24 @@ const detailRows = (rows) => `
 
 const statLine = (metrics) => `
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;margin-top:30px;border-top:1px solid ${BRAND.border};border-bottom:1px solid ${BRAND.border};">
-    ${metrics.map(({ label, value }, index) => `
+    ${metrics.map(({ label, value, tone = "neutral" }, index) => {
+      const tones = {
+        neutral: { background: "#171717", border: "#303030", color: BRAND.text },
+        copper: { background: "#211711", border: "#49301F", color: "#E0A47A" },
+        green: { background: "#102019", border: "#214D38", color: "#80D5A7" },
+        blue: { background: "#111C24", border: "#25475B", color: "#8CC9E8" },
+      };
+      const style = tones[tone] || tones.neutral;
+
+      return `
       <tr>
-        <td style="padding:${index === 0 ? "19px" : "17px"} 0;color:${BRAND.subtle};font-size:11px;letter-spacing:.8px;text-transform:uppercase;${index ? `border-top:1px solid ${BRAND.border};` : ""}">${escapeHtml(label)}</td>
-        <td align="right" style="padding:${index === 0 ? "19px" : "17px"} 0;color:${BRAND.text};font-size:18px;font-weight:680;${index ? `border-top:1px solid ${BRAND.border};` : ""}">${escapeHtml(value)}</td>
+        <td valign="middle" style="padding:${index === 0 ? "18px" : "16px"} 0;color:${BRAND.subtle};font-size:11px;line-height:1.4;letter-spacing:.8px;text-transform:uppercase;${index ? `border-top:1px solid ${BRAND.border};` : ""}">${escapeHtml(label)}</td>
+        <td align="right" valign="middle" style="padding:${index === 0 ? "18px" : "16px"} 0;${index ? `border-top:1px solid ${BRAND.border};` : ""}">
+          <span style="display:inline-block;padding:7px 11px;background:${style.background};border:1px solid ${style.border};border-radius:4px;color:${style.color};font-size:14px;line-height:1;font-weight:680;">${escapeHtml(value)}</span>
+        </td>
       </tr>
-    `).join("")}
+      `;
+    }).join("")}
   </table>
 `;
 
@@ -256,14 +272,29 @@ const leadNotificationHtml = (lead) => {
     { label: "Page", value: lead.pageUrl || "Unknown" },
     ...metadata,
   ];
+  const actionLabel = lead.leadType === "contact"
+    ? "Reply personally"
+    : lead.leadType === "roi_calculator"
+      ? "Review workflow"
+      : lead.leadType === "lead_magnet"
+        ? "Warm follow-up"
+        : "Review lead";
 
   return emailShell({
     preheader: `New ${type.toLowerCase()} lead from ${lead.email}`,
     eyebrow: "New website opportunity",
-    title: `${lead.name || lead.email} just reached out.`,
-    intro: `A new <strong style="color:${BRAND.text};">${escapeHtml(type)}</strong> lead arrived through ${escapeHtml(humanize(lead.source || "website"))}. The complete context is below so you can respond without opening another system.`,
+    title: `${type} lead from ${lead.name || lead.email}.`,
+    intro: `The useful context is organized by priority below. Start with the opportunity signal, then use the detailed fields only when you need them.`,
     content: `
-      ${detailRows(rows)}
+      ${statLine([
+        { label: "Lead type", value: type, tone: "copper" },
+        { label: "Source", value: humanize(lead.source || "website"), tone: "blue" },
+        { label: "Next action", value: actionLabel, tone: "green" },
+      ])}
+      <div style="margin-top:34px;">
+        <div style="margin-bottom:14px;color:${BRAND.text};font-size:17px;font-weight:680;">Lead context</div>
+        ${detailRows(rows)}
+      </div>
       ${lead.message ? `
         <div style="margin-top:30px;padding:0 0 0 20px;border-left:2px solid ${BRAND.accent};">
           <div style="margin-bottom:9px;color:${BRAND.accent};font-size:11px;font-weight:650;letter-spacing:1.3px;text-transform:uppercase;">Their message</div>
@@ -287,24 +318,30 @@ const blueprintEmailHtml = (lead) => emailShell({
       <p style="margin:13px 0 0;color:${BRAND.text};font-size:22px;line-height:1.5;font-weight:620;">A useful MVP is not the smallest product. It is the smallest version that can prove one real business decision.</p>
     </div>
     ${statLine([
-      { label: "Release window", value: "30 days" },
-      { label: "Primary goal", value: "Clarity" },
-      { label: "Guide", value: "Attached PDF" },
+      { label: "Release window", value: "30 days", tone: "blue" },
+      { label: "Primary goal", value: "Clarity", tone: "copper" },
+      { label: "Guide", value: "Attached PDF", tone: "green" },
     ])}
     <div style="margin-top:34px;">
       <div style="color:${BRAND.text};font-size:17px;font-weight:680;">Use the guide in this order</div>
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top:15px;">
         <tr>
-          <td valign="top" style="width:30px;padding:5px 0;color:${BRAND.accent};font-size:13px;font-weight:700;">01</td>
-          <td style="padding:5px 0;color:${BRAND.muted};font-size:14px;line-height:1.75;">Define the first user and the painful job they need to finish.</td>
+          <td valign="middle" style="width:38px;padding:6px 0;">
+            <span style="display:inline-block;width:25px;height:25px;border:1px solid #49301F;border-radius:50%;color:${BRAND.accent};font-size:11px;line-height:25px;font-weight:700;text-align:center;">01</span>
+          </td>
+          <td valign="middle" style="padding:6px 0;color:${BRAND.muted};font-size:14px;line-height:1.7;">Define the first user and the painful job they need to finish.</td>
         </tr>
         <tr>
-          <td valign="top" style="width:30px;padding:9px 0 5px;color:${BRAND.accent};font-size:13px;font-weight:700;">02</td>
-          <td style="padding:9px 0 5px;color:${BRAND.muted};font-size:14px;line-height:1.75;">Choose one outcome the first release must prove.</td>
+          <td valign="middle" style="width:38px;padding:9px 0;">
+            <span style="display:inline-block;width:25px;height:25px;border:1px solid #49301F;border-radius:50%;color:${BRAND.accent};font-size:11px;line-height:25px;font-weight:700;text-align:center;">02</span>
+          </td>
+          <td valign="middle" style="padding:9px 0;color:${BRAND.muted};font-size:14px;line-height:1.7;">Choose one outcome the first release must prove.</td>
         </tr>
         <tr>
-          <td valign="top" style="width:30px;padding:9px 0 5px;color:${BRAND.accent};font-size:13px;font-weight:700;">03</td>
-          <td style="padding:9px 0 5px;color:${BRAND.muted};font-size:14px;line-height:1.75;">Move every non-essential idea into a deliberate later-release list.</td>
+          <td valign="middle" style="width:38px;padding:9px 0;">
+            <span style="display:inline-block;width:25px;height:25px;border:1px solid #49301F;border-radius:50%;color:${BRAND.accent};font-size:11px;line-height:25px;font-weight:700;text-align:center;">03</span>
+          </td>
+          <td valign="middle" style="padding:9px 0;color:${BRAND.muted};font-size:14px;line-height:1.7;">Move every non-essential idea into a deliberate later-release list.</td>
         </tr>
       </table>
     </div>
@@ -324,9 +361,9 @@ const roiEmailHtml = (lead) => {
     intro: `Hey ${escapeHtml(lead.name || "there")}, here is the estimate generated for <strong style="color:${BRAND.text};">${escapeHtml(m.processName || "your workflow")}</strong>. Use it as a planning signal rather than a final quote: the real outcome depends on exceptions, data quality, connected tools, and where human judgment still matters.`,
     content: `
       ${statLine([
-        { label: "Weekly time saved", value: `${escapeHtml(m.hoursSavedWeekly || "0")} hrs` },
-        { label: "Monthly estimate", value: money(m.monthlySavings) },
-        { label: "Yearly estimate", value: money(m.yearlySavings) },
+        { label: "Weekly time saved", value: `${escapeHtml(m.hoursSavedWeekly || "0")} hrs`, tone: "blue" },
+        { label: "Monthly estimate", value: money(m.monthlySavings), tone: "copper" },
+        { label: "Yearly estimate", value: money(m.yearlySavings), tone: "green" },
       ])}
       <div style="margin-top:32px;">
         <div style="margin-bottom:14px;color:${BRAND.text};font-size:17px;font-weight:680;">Estimate assumptions</div>
