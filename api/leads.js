@@ -129,15 +129,14 @@ const readRequestBody = async (req) => {
 };
 
 const BRAND = {
-  background: "#070707",
-  surface: "#101010",
-  surfaceRaised: "#151311",
-  border: "#292421",
-  accent: "#C98F67",
-  accentSoft: "#241A15",
-  text: "#F4F2F0",
-  muted: "#A8A39F",
-  subtle: "#77716D",
+  background: "#080808",
+  surface: "#0D0D0D",
+  surfaceRaised: "#121212",
+  border: "#242424",
+  accent: "#C88D63",
+  text: "#F5F4F2",
+  muted: "#B1AEAA",
+  subtle: "#74716E",
 };
 
 const humanize = (value) =>
@@ -156,42 +155,47 @@ const emailShell = ({ preheader, eyebrow, title, intro, content, cta }) => `
     <meta name="supported-color-schemes" content="dark">
     <title>${escapeHtml(title)}</title>
   </head>
-  <body style="margin:0;padding:0;background:${BRAND.background};color:${BRAND.text};font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
+  <body style="margin:0;padding:0;background:${BRAND.background};color:${BRAND.text};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(preheader)}</div>
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:${BRAND.background};">
       <tr>
-        <td align="center" style="padding:36px 16px;">
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:680px;">
+        <td align="center" style="padding:48px 16px;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;">
             <tr>
-              <td style="padding:0 8px 22px;">
+              <td style="padding:0 4px 30px;">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                   <tr>
-                    <td style="font-size:22px;font-weight:800;color:${BRAND.text};letter-spacing:0;">
-                      <span style="color:${BRAND.accent};">Z</span>umetrix
-                      <span style="font-size:10px;color:${BRAND.accent};vertical-align:top;margin-left:3px;">LABS</span>
+                    <td valign="middle">
+                      <a href="https://www.zumetrix.com" style="text-decoration:none;">
+                        <img src="https://www.zumetrix.com/logo/Logo%20horizontal.png" width="156" alt="Zumetrix Labs" style="display:block;width:156px;max-width:100%;height:auto;border:0;">
+                      </a>
                     </td>
-                    <td align="right" style="font-size:11px;color:${BRAND.subtle};letter-spacing:1.4px;text-transform:uppercase;">
-                      Forge clear ideas<br>into shipped software
+                    <td align="right" valign="middle" style="font-size:11px;color:${BRAND.subtle};line-height:1.55;">
+                      Forge Clear Ideas<br>Into Shipped Software
                     </td>
                   </tr>
                 </table>
               </td>
             </tr>
             <tr>
-              <td style="background:${BRAND.surface};border:1px solid ${BRAND.border};border-radius:8px;overflow:hidden;">
-                <div style="height:3px;background:${BRAND.accent};font-size:0;line-height:0;">&nbsp;</div>
-                <div style="padding:44px 44px 18px;">
-                  <div style="margin:0 0 15px;color:${BRAND.accent};font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">${escapeHtml(eyebrow)}</div>
-                  <h1 style="margin:0;color:${BRAND.text};font-size:34px;line-height:1.15;font-weight:760;letter-spacing:0;">${escapeHtml(title)}</h1>
-                  ${intro ? `<p style="margin:18px 0 0;color:${BRAND.muted};font-size:16px;line-height:1.75;">${intro}</p>` : ""}
+              <td style="background:${BRAND.surface};border:1px solid ${BRAND.border};border-radius:6px;overflow:hidden;">
+                <div style="padding:54px 52px 24px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-bottom:22px;">
+                    <tr>
+                      <td style="width:22px;border-top:1px solid ${BRAND.accent};font-size:0;line-height:0;">&nbsp;</td>
+                      <td style="padding-left:12px;color:${BRAND.accent};font-size:11px;font-weight:650;letter-spacing:1.7px;text-transform:uppercase;">${escapeHtml(eyebrow)}</td>
+                    </tr>
+                  </table>
+                  <h1 style="margin:0;color:${BRAND.text};font-size:40px;line-height:1.12;font-weight:720;letter-spacing:0;">${escapeHtml(title)}</h1>
+                  ${intro ? `<p style="margin:23px 0 0;color:${BRAND.muted};font-size:16px;line-height:1.8;">${intro}</p>` : ""}
                 </div>
-                <div style="padding:12px 44px 44px;">
+                <div style="padding:18px 52px 54px;">
                   ${content}
                   ${cta ? `
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:34px;">
                       <tr>
-                        <td style="background:${BRAND.accent};border-radius:6px;">
-                          <a href="${escapeHtml(cta.href)}" style="display:inline-block;padding:14px 20px;color:#090909;text-decoration:none;font-size:14px;font-weight:750;">${escapeHtml(cta.label)} &nbsp;&#8594;</a>
+                        <td style="background:${BRAND.accent};border-radius:4px;">
+                          <a href="${escapeHtml(cta.href)}" style="display:inline-block;padding:15px 22px;color:#090909;text-decoration:none;font-size:14px;font-weight:700;">${escapeHtml(cta.label)} &nbsp;&#8594;</a>
                         </td>
                       </tr>
                     </table>
@@ -200,8 +204,8 @@ const emailShell = ({ preheader, eyebrow, title, intro, content, cta }) => `
               </td>
             </tr>
             <tr>
-              <td style="padding:22px 8px 0;text-align:center;color:${BRAND.subtle};font-size:11px;line-height:1.7;">
-                Zumetrix Labs &nbsp;&middot;&nbsp; SaaS MVPs, web and mobile products, AI automation<br>
+              <td style="padding:25px 8px 0;text-align:center;color:${BRAND.subtle};font-size:11px;line-height:1.8;">
+                Zumetrix Labs &nbsp;&middot;&nbsp; SaaS, software products and intelligent automation<br>
                 <a href="https://www.zumetrix.com" style="color:${BRAND.accent};text-decoration:none;">zumetrix.com</a>
                 &nbsp;&middot;&nbsp;
                 <a href="mailto:hello@zumetrix.com" style="color:${BRAND.accent};text-decoration:none;">hello@zumetrix.com</a>
@@ -216,26 +220,24 @@ const emailShell = ({ preheader, eyebrow, title, intro, content, cta }) => `
 `;
 
 const detailRows = (rows) => `
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:separate;border-spacing:0;background:${BRAND.surfaceRaised};border:1px solid ${BRAND.border};border-radius:7px;overflow:hidden;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;border-top:1px solid ${BRAND.border};">
     ${rows.map(({ label, value }, index) => `
       <tr>
-        <td style="width:36%;padding:13px 16px;color:${BRAND.subtle};font-size:12px;line-height:1.5;${index ? `border-top:1px solid ${BRAND.border};` : ""}">${escapeHtml(label)}</td>
-        <td style="padding:13px 16px;color:${BRAND.text};font-size:13px;font-weight:650;line-height:1.5;word-break:break-word;${index ? `border-top:1px solid ${BRAND.border};` : ""}">${escapeHtml(value || "Not provided")}</td>
+        <td style="width:34%;padding:15px 0;color:${BRAND.subtle};font-size:12px;line-height:1.5;border-bottom:1px solid ${BRAND.border};">${escapeHtml(label)}</td>
+        <td style="padding:15px 0 15px 18px;color:${BRAND.text};font-size:13px;font-weight:620;line-height:1.55;word-break:break-word;border-bottom:1px solid ${BRAND.border};">${escapeHtml(value || "Not provided")}</td>
       </tr>
     `).join("")}
   </table>
 `;
 
-const metricCards = (metrics) => `
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:separate;border-spacing:8px 0;margin:24px -8px 0;">
-    <tr>
-      ${metrics.map(({ label, value }) => `
-        <td width="${Math.floor(100 / metrics.length)}%" valign="top" style="background:${BRAND.surfaceRaised};border:1px solid ${BRAND.border};border-radius:7px;padding:17px 15px;">
-          <div style="color:${BRAND.subtle};font-size:10px;line-height:1.4;letter-spacing:1.2px;text-transform:uppercase;">${escapeHtml(label)}</div>
-          <div style="margin-top:8px;color:${BRAND.text};font-size:21px;line-height:1.2;font-weight:760;">${escapeHtml(value)}</div>
-        </td>
-      `).join("")}
-    </tr>
+const statLine = (metrics) => `
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;margin-top:30px;border-top:1px solid ${BRAND.border};border-bottom:1px solid ${BRAND.border};">
+    ${metrics.map(({ label, value }, index) => `
+      <tr>
+        <td style="padding:${index === 0 ? "19px" : "17px"} 0;color:${BRAND.subtle};font-size:11px;letter-spacing:.8px;text-transform:uppercase;${index ? `border-top:1px solid ${BRAND.border};` : ""}">${escapeHtml(label)}</td>
+        <td align="right" style="padding:${index === 0 ? "19px" : "17px"} 0;color:${BRAND.text};font-size:18px;font-weight:680;${index ? `border-top:1px solid ${BRAND.border};` : ""}">${escapeHtml(value)}</td>
+      </tr>
+    `).join("")}
   </table>
 `;
 
@@ -263,12 +265,12 @@ const leadNotificationHtml = (lead) => {
     content: `
       ${detailRows(rows)}
       ${lead.message ? `
-        <div style="margin-top:22px;padding:20px;background:${BRAND.accentSoft};border:1px solid #493124;border-radius:7px;">
-          <div style="margin-bottom:8px;color:${BRAND.accent};font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Their message</div>
-          <div style="color:${BRAND.text};font-size:14px;line-height:1.75;">${escapeHtml(lead.message)}</div>
+        <div style="margin-top:30px;padding:0 0 0 20px;border-left:2px solid ${BRAND.accent};">
+          <div style="margin-bottom:9px;color:${BRAND.accent};font-size:11px;font-weight:650;letter-spacing:1.3px;text-transform:uppercase;">Their message</div>
+          <div style="color:${BRAND.text};font-size:15px;line-height:1.8;">${escapeHtml(lead.message)}</div>
         </div>
       ` : ""}
-      <p style="margin:22px 0 0;color:${BRAND.muted};font-size:13px;line-height:1.7;">Reply directly to this email to continue the conversation with ${escapeHtml(lead.name || lead.email)}.</p>
+      <p style="margin:30px 0 0;color:${BRAND.muted};font-size:13px;line-height:1.75;">Reply directly to this email to continue the conversation with ${escapeHtml(lead.name || lead.email)}.</p>
     `,
     cta: { href: `mailto:${lead.email}`, label: "Reply to lead" },
   });
@@ -280,22 +282,31 @@ const blueprintEmailHtml = (lead) => emailShell({
   title: "Build the smallest version that proves something.",
   intro: `Hey ${escapeHtml(lead.name || "there")}, your <strong style="color:${BRAND.text};">30-day SaaS MVP blueprint</strong> is attached to this email. It gives you a practical structure for moving from an idea to a focused first release without building every possible feature.`,
   content: `
-    <div style="padding:22px;background:${BRAND.accentSoft};border:1px solid #493124;border-radius:7px;">
-      <div style="color:${BRAND.accent};font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;">The principle to remember</div>
-      <p style="margin:11px 0 0;color:${BRAND.text};font-size:19px;line-height:1.55;font-weight:650;">A useful MVP is not the smallest product. It is the smallest version that can prove one real business decision.</p>
+    <div style="padding:2px 0 2px 24px;border-left:2px solid ${BRAND.accent};">
+      <div style="color:${BRAND.accent};font-size:11px;font-weight:650;letter-spacing:1.4px;text-transform:uppercase;">The principle to remember</div>
+      <p style="margin:13px 0 0;color:${BRAND.text};font-size:22px;line-height:1.5;font-weight:620;">A useful MVP is not the smallest product. It is the smallest version that can prove one real business decision.</p>
     </div>
-    ${metricCards([
+    ${statLine([
       { label: "Release window", value: "30 days" },
       { label: "Primary goal", value: "Clarity" },
-      { label: "Format", value: "PDF guide" },
+      { label: "Guide", value: "Attached PDF" },
     ])}
-    <div style="margin-top:26px;">
-      <div style="color:${BRAND.text};font-size:15px;font-weight:700;">A good way to use it</div>
-      <ol style="margin:13px 0 0;padding-left:20px;color:${BRAND.muted};font-size:14px;line-height:1.8;">
-        <li>Write down the first user and the painful job they need to finish.</li>
-        <li>Choose one outcome the first release must prove.</li>
-        <li>Move everything else into a later-release list.</li>
-      </ol>
+    <div style="margin-top:34px;">
+      <div style="color:${BRAND.text};font-size:17px;font-weight:680;">Use the guide in this order</div>
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top:15px;">
+        <tr>
+          <td valign="top" style="width:30px;padding:5px 0;color:${BRAND.accent};font-size:13px;font-weight:700;">01</td>
+          <td style="padding:5px 0;color:${BRAND.muted};font-size:14px;line-height:1.75;">Define the first user and the painful job they need to finish.</td>
+        </tr>
+        <tr>
+          <td valign="top" style="width:30px;padding:9px 0 5px;color:${BRAND.accent};font-size:13px;font-weight:700;">02</td>
+          <td style="padding:9px 0 5px;color:${BRAND.muted};font-size:14px;line-height:1.75;">Choose one outcome the first release must prove.</td>
+        </tr>
+        <tr>
+          <td valign="top" style="width:30px;padding:9px 0 5px;color:${BRAND.accent};font-size:13px;font-weight:700;">03</td>
+          <td style="padding:9px 0 5px;color:${BRAND.muted};font-size:14px;line-height:1.75;">Move every non-essential idea into a deliberate later-release list.</td>
+        </tr>
+      </table>
     </div>
     <p style="margin:25px 0 0;color:${BRAND.muted};font-size:14px;line-height:1.75;">If you want a second opinion on your feature list, timeline, or technical direction, reply to this email. We will tell you clearly what belongs in version one and what should wait.</p>
     <p style="margin:25px 0 0;color:${BRAND.text};font-size:14px;line-height:1.6;font-weight:650;">Zia &amp; Omer<br><span style="color:${BRAND.subtle};font-weight:400;">Zumetrix Labs</span></p>
@@ -312,12 +323,13 @@ const roiEmailHtml = (lead) => {
     title: "The opportunity looks promising. Now validate the workflow.",
     intro: `Hey ${escapeHtml(lead.name || "there")}, here is the estimate generated for <strong style="color:${BRAND.text};">${escapeHtml(m.processName || "your workflow")}</strong>. Use it as a planning signal rather than a final quote: the real outcome depends on exceptions, data quality, connected tools, and where human judgment still matters.`,
     content: `
-      ${metricCards([
+      ${statLine([
         { label: "Weekly time saved", value: `${escapeHtml(m.hoursSavedWeekly || "0")} hrs` },
         { label: "Monthly estimate", value: money(m.monthlySavings) },
         { label: "Yearly estimate", value: money(m.yearlySavings) },
       ])}
-      <div style="margin-top:22px;">
+      <div style="margin-top:32px;">
+        <div style="margin-bottom:14px;color:${BRAND.text};font-size:17px;font-weight:680;">Estimate assumptions</div>
         ${detailRows([
           { label: "Workflow", value: m.processName || "Not provided" },
           { label: "Estimated payback", value: `${m.paybackMonths || "Not available"} months` },
@@ -325,9 +337,9 @@ const roiEmailHtml = (lead) => {
           { label: "Setup-cost assumption", value: money(m.automationCostAssumption) },
         ])}
       </div>
-      <div style="margin-top:22px;padding:20px;background:${BRAND.accentSoft};border:1px solid #493124;border-radius:7px;">
-        <div style="color:${BRAND.accent};font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Before automating</div>
-        <p style="margin:10px 0 0;color:${BRAND.text};font-size:14px;line-height:1.75;">Document the exact task, who touches it, what can go wrong, and what should happen when the automation is uncertain. That boundary is where profitable automation begins.</p>
+      <div style="margin-top:32px;padding:2px 0 2px 22px;border-left:2px solid ${BRAND.accent};">
+        <div style="color:${BRAND.accent};font-size:11px;font-weight:650;letter-spacing:1.4px;text-transform:uppercase;">Before automating</div>
+        <p style="margin:11px 0 0;color:${BRAND.text};font-size:16px;line-height:1.75;">Document the exact task, who touches it, what can go wrong, and what should happen when the automation is uncertain. That boundary is where profitable automation begins.</p>
       </div>
       <p style="margin:25px 0 0;color:${BRAND.muted};font-size:14px;line-height:1.75;">Reply with the workflow you are considering. We will help you identify the first automation worth building and the complexity that should stay out of phase one.</p>
       <p style="margin:25px 0 0;color:${BRAND.text};font-size:14px;line-height:1.6;font-weight:650;">Zia &amp; Omer<br><span style="color:${BRAND.subtle};font-weight:400;">Zumetrix Labs</span></p>
