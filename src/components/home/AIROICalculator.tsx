@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calculator, TrendingUp, Clock, DollarSign, Zap, CheckCircle2, Download } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { routeLead } from '../../services/leadRouter';
 import { trackCTAClick } from '../../utils/analytics';
 
 const AIROICalculator: React.FC = () => {
@@ -14,6 +14,7 @@ const AIROICalculator: React.FC = () => {
   });
   const [contactInfo, setContactInfo] = useState({ name: '', email: '', company: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   const processTypes = {
     data_entry: { name: 'Data Entry & Processing', reduction: 80 },
@@ -64,33 +65,35 @@ const AIROICalculator: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('lead_magnets')
-        .insert({
-          email: contactInfo.email,
-          name: contactInfo.name || null,
-          magnet_type: 'calculator',
-          magnet_name: 'AI ROI Calculator Report',
-          metadata: {
-            company: contactInfo.company,
-            employees: inputs.employees,
-            avgHourlyRate: inputs.avgHourlyRate,
-            hoursPerWeek: inputs.hoursPerWeek,
-            processType: inputs.processType,
-            monthlySavings: Math.round(results.monthlySavings),
-            yearlySavings: Math.round(results.yearlySavings),
-            paybackMonths: results.paybackMonths.toFixed(1),
-            firstYearROI: Math.round(results.firstYearROI)
-          },
-          page_url: window.location.href,
-          user_agent: navigator.userAgent,
-          status: 'new'
-        });
+      const process = processTypes[inputs.processType as keyof typeof processTypes];
+      const result = await routeLead({
+        email: contactInfo.email,
+        name: contactInfo.name || undefined,
+        company: contactInfo.company || undefined,
+        source: 'ai_roi_calculator',
+        leadType: 'roi_calculator',
+        magnetName: 'AI Automation ROI Estimate',
+        metadata: {
+          employees: inputs.employees,
+          avgHourlyRate: inputs.avgHourlyRate,
+          hoursPerWeek: inputs.hoursPerWeek,
+          processType: inputs.processType,
+          processName: process.name,
+          assumedReductionPercent: results.reduction,
+          automationCostAssumption: 5000,
+          hoursSavedWeekly: Math.round(results.hoursSaved),
+          monthlySavings: Math.round(results.monthlySavings),
+          yearlySavings: Math.round(results.yearlySavings),
+          paybackMonths: results.paybackMonths.toFixed(1),
+          firstYearROI: Math.round(results.firstYearROI)
+        },
+      });
 
-      if (error) throw error;
+      if (!result.success) throw new Error(result.error || 'ROI report request failed');
 
       trackCTAClick('AI ROI Calculator Report', window.location.pathname);
 
+      setEmailSent(Boolean(result.userEmailSent));
       setStep('leadCapture');
     } catch (error) {
       console.error('Error:', error);
@@ -329,10 +332,12 @@ const AIROICalculator: React.FC = () => {
                   <CheckCircle2 size={32} className="text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Report Sent!
+                  {emailSent ? 'Estimate Sent' : 'Estimate Saved'}
                 </h3>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Check your email for your custom AI automation report and ROI breakdown.
+                  {emailSent
+                    ? 'Check your email for your AI automation estimate and next-step notes.'
+                    : 'Your estimate is saved. If email delivery is not configured yet, book a call and we will review it with you directly.'}
                 </p>
                 <a
                   href="/contact"
@@ -354,7 +359,7 @@ const AIROICalculator: React.FC = () => {
                     </div>
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Based on {results.reduction}% reduction in manual work
+                    Planning estimate based on up to {results.reduction}% reduction in manual work
                   </div>
                 </div>
 
@@ -369,7 +374,7 @@ const AIROICalculator: React.FC = () => {
                     </div>
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    First year ROI: {Math.round(results.firstYearROI)}%
+                    First year estimate: {Math.round(results.firstYearROI)}% ROI after assumed setup cost
                   </div>
                 </div>
 
@@ -384,31 +389,31 @@ const AIROICalculator: React.FC = () => {
                     </div>
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Payback period: {results.paybackMonths.toFixed(1)} months
+                    Estimated payback: {results.paybackMonths.toFixed(1)} months
                   </div>
                 </div>
 
                 <div className="bg-card/70 backdrop-blur-xl border border-border rounded-2xl p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <Zap className="w-6 h-6 text-primary" />
-                    <h4 className="font-semibold text-foreground">What You Get</h4>
+                    <h4 className="font-semibold text-foreground">What We Review</h4>
                   </div>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                      <span>Custom automation strategy</span>
+                      <span>Which task is worth automating first</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                      <span>Implementation roadmap</span>
+                      <span>Where human review should stay</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                      <span>Technology recommendations</span>
+                      <span>The safest stack and workflow path</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                      <span>Cost breakdown & timeline</span>
+                      <span>A realistic build scope and timeline</span>
                     </li>
                   </ul>
                 </div>

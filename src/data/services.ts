@@ -55,7 +55,7 @@ export const services: Service[] = [
       "Real-time Interactions with WebSockets & Live Updates",
       "REST & GraphQL API Integration with Third-party Services",
       "Responsive, Accessible UI with International Design Standards",
-      "Enterprise Security & Compliance (GDPR, SOC2, ISO 27001)",
+      "Security-minded architecture, access control, and data handling",
       "Multi-language Support & Internationalization (i18n)",
       "Advanced Analytics & Business Intelligence Integration"
     ],
@@ -109,7 +109,7 @@ export const services: Service[] = [
     title: "SaaS MVP Development",
     subtitle: "Launch your SaaS product in weeks, not months",
     description: "Accelerate your startup journey with a focused SaaS MVP development process built around validation, launch speed, and long-term product clarity. We transform ambitious business ideas into market-ready products using React, Node.js, and modern cloud technologies.",
-    longDescription: "Our SaaS MVP development service is specifically designed for ambitious entrepreneurs and startups who need to validate their business concepts quickly while building a solid foundation for long-term growth. We've perfected a streamlined development process that delivers production-ready SaaS applications in 4-8 weeks, complete with user authentication, payment processing, real-time features, and scalable cloud infrastructure. Our MVPs aren't just prototypes - they're enterprise-grade applications built with the same quality standards as our full-scale projects, ensuring you can confidently scale from your first users to millions without rebuilding your core platform.",
+    longDescription: "Our SaaS MVP development service is built for ambitious founders who need to validate a real business idea without creating a bloated first release. We shape the first version around the core user journey, then build production-ready SaaS foundations in 4-8 weeks with authentication, payments, dashboards, real-time features, and cloud infrastructure where they are actually needed. The goal is not to build everything at once. The goal is to launch a focused product that can earn feedback, support early users, and grow without forcing a painful rebuild after the first serious traction.",
     features: [
       "Rapid MVP Development (4-8 weeks from concept to launch)",
       "Real-time Analytics & Business Intelligence Dashboards",
@@ -171,7 +171,7 @@ export const services: Service[] = [
     icon: Smartphone,
     title: "Mobile App Development",
     subtitle: "Cross-platform apps that feel native and perform flawlessly",
-    description: "Create powerful, cross-platform mobile applications that deliver exceptional user experiences across iOS and Android platforms. Using React Native, Expo, and native development tools, we build apps that feel native, perform flawlessly, and scale to millions of users while maintaining consistent branding and functionality.",
+    description: "Create focused, cross-platform mobile applications that feel polished across iOS and Android. Using React Native, Expo, and native tooling where needed, we build apps with clear flows, reliable performance, and a foundation that can grow as real users start depending on the product.",
     longDescription: "Our mobile app development expertise spans the complete mobile ecosystem, from initial concept and user experience design to App Store deployment and ongoing maintenance. We specialize in React Native and Flutter development for cross-platform efficiency, but also provide native iOS and Android development when platform-specific features are required. Our mobile applications are built with performance, security, and scalability in mind, incorporating offline functionality, push notifications, real-time synchronization, and seamless integration with backend services and third-party APIs.",
     features: [
       "React Native & Expo Development for Cross-platform Efficiency",

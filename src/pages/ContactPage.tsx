@@ -18,6 +18,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { trackFormSubmit, trackCTAClick } from "../utils/analytics";
+import { routeLead } from "../services/leadRouter";
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -52,36 +53,52 @@ const ContactPage: React.FC = () => {
       const formEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
       const webhookEndpoint = import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK;
 
-      if (!formEndpoint) {
-        throw new Error("Contact form endpoint not configured");
-      }
-
-      // Submit to Formspree
-      const formspreeData = new FormData();
-      formspreeData.append("name", formData.name);
-      formspreeData.append("email", formData.email);
-      formspreeData.append("company", formData.company);
-      formspreeData.append("projectType", formData.projectType);
-      formspreeData.append("budget", formData.budget);
-      formspreeData.append("timeline", formData.timeline);
-      formspreeData.append("message", formData.message);
-      formspreeData.append(
-        "_subject",
-        `New Project Inquiry from ${formData.name}`,
-      );
-
-      const formspreeResponse = await fetch(formEndpoint, {
-        method: "POST",
-        body: formspreeData,
-        headers: {
-          Accept: "application/json",
+      const leadResult = await routeLead({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || undefined,
+        source: "contact_form",
+        leadType: "contact",
+        message: formData.message,
+        metadata: {
+          projectType: formData.projectType,
+          budget: formData.budget,
+          timeline: formData.timeline,
         },
       });
 
-      if (!formspreeResponse.ok) {
-        throw new Error(
-          `Form submission failed: ${formspreeResponse.statusText}`,
+      if (!leadResult.success && !formEndpoint) {
+        throw new Error(leadResult.error || "Contact form endpoint not configured");
+      }
+
+      // Submit to Formspree
+      if (formEndpoint) {
+        const formspreeData = new FormData();
+        formspreeData.append("name", formData.name);
+        formspreeData.append("email", formData.email);
+        formspreeData.append("company", formData.company);
+        formspreeData.append("projectType", formData.projectType);
+        formspreeData.append("budget", formData.budget);
+        formspreeData.append("timeline", formData.timeline);
+        formspreeData.append("message", formData.message);
+        formspreeData.append(
+          "_subject",
+          `New Project Inquiry from ${formData.name}`,
         );
+
+        const formspreeResponse = await fetch(formEndpoint, {
+          method: "POST",
+          body: formspreeData,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (!formspreeResponse.ok && !leadResult.success) {
+          throw new Error(
+            `Form submission failed: ${formspreeResponse.statusText}`,
+          );
+        }
       }
 
       // Send to Google Sheets webhook (Zapier)
@@ -210,7 +227,7 @@ const ContactPage: React.FC = () => {
 
   const handleScheduleCall = () => {
     trackCTAClick("Schedule Consultation", "/contact");
-    window.open("https://calendly.com/zumetrix-labs/consultation", "_blank");
+    window.open(SITE_CONFIG.contact.calendlyUrl, "_blank");
   };
 
   const handleQuickEstimate = () => {
@@ -246,7 +263,7 @@ const ContactPage: React.FC = () => {
       title: "Location",
       details: SITE_CONFIG.company.address,
       description: "We work with clients globally from our base in Pakistan",
-      action: "#",
+      action: "https://www.google.com/maps/search/?api=1&query=Pakistan",
     },
   ];
 

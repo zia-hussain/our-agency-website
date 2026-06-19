@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Download, Sparkles, CheckCircle2 } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { routeLead } from '../../services/leadRouter';
 import { trackCTAClick } from '../../utils/analytics';
 
 interface LeadMagnetCaptureProps {
@@ -29,6 +29,7 @@ const LeadMagnetCapture: React.FC<LeadMagnetCaptureProps> = ({
   const [name, setName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,22 +38,19 @@ const LeadMagnetCapture: React.FC<LeadMagnetCaptureProps> = ({
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('lead_magnets')
-        .insert({
-          email,
-          name: name || null,
-          magnet_type: magnetType,
-          magnet_name: magnetName,
-          metadata,
-          page_url: window.location.href,
-          user_agent: navigator.userAgent,
-          status: 'new'
-        });
+      const result = await routeLead({
+        email,
+        name: name || undefined,
+        source: 'lead_magnet_capture',
+        leadType: magnetType === 'calculator' ? 'roi_calculator' : 'lead_magnet',
+        magnetName,
+        metadata,
+      });
 
-      if (error) throw error;
+      if (!result.success) throw new Error(result.error || 'Lead capture failed');
 
       trackCTAClick(`Lead Magnet - ${magnetName}`, window.location.pathname);
+      setEmailSent(Boolean(result.userEmailSent));
       setIsSuccess(true);
 
       if (onSuccess) {
@@ -64,6 +62,7 @@ const LeadMagnetCapture: React.FC<LeadMagnetCaptureProps> = ({
         setEmail('');
         setName('');
         setIsSuccess(false);
+        setEmailSent(false);
       }, 2000);
     } catch (error) {
       console.error('Error capturing lead:', error);
@@ -131,7 +130,7 @@ const LeadMagnetCapture: React.FC<LeadMagnetCaptureProps> = ({
                       Success!
                     </h4>
                     <p className="text-muted-foreground text-sm">
-                      Check your email for the download link
+                      {emailSent ? 'Check your email for the resource.' : 'Request saved. We will follow up shortly.'}
                     </p>
                   </motion.div>
                 ) : (

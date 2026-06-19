@@ -509,12 +509,12 @@ export const SITE_DATA = {
     bottomFeatures: [
       '10-page PDF guide',
       'Proven frameworks',
-      'Used by 50+ startups'
+      'Built from 50+ project lessons'
     ],
     formSubject: 'New Lead Magnet Download: MVP Blueprint',
     privacy: 'No spam. Unsubscribe anytime. We respect your privacy.',
     successMessage: {
-      title: 'Success! Check Your Email',
+      title: 'Success! Your request is saved',
       description: 'We\'ve sent the MVP Blueprint to',
       cta: 'While you\'re here, want to discuss your project?',
       ctaLink: '/contact',
@@ -555,7 +555,7 @@ export const SITE_DATA = {
     ],
     formSubject: 'AI ROI Calculator - Custom Report Request',
     successMessage: {
-      title: 'Report Sent Successfully!',
+      title: 'Estimate request saved',
       ctaText: 'Book Free Consultation',
       ctaLink: '/contact'
     }

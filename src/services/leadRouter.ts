@@ -19,15 +19,22 @@
  * Automatically uses Supabase configuration from .env
  */
 
-import { supabase } from '../lib/supabase';
+import { isSupabaseConfigured, supabase } from '../lib/supabase';
 import { trackFormSubmit } from '../utils/analytics';
 
 export interface LeadData {
   name?: string;
   email: string;
   company?: string;
+  phone?: string;
   message?: string;
   source: string;
+  leadType?: 'general' | 'contact' | 'lead_magnet' | 'roi_calculator' | 'newsletter';
+  magnetName?: string;
+  pageUrl?: string;
+  userAgent?: string;
+  referrer?: string;
+  metadata?: Record<string, unknown>;
   [key: string]: unknown; // Allow additional fields
 }
 
@@ -35,6 +42,9 @@ export interface LeadResponse {
   success: boolean;
   error?: string;
   destination: 'webhook' | 'supabase' | 'both' | 'failed';
+  stored?: boolean;
+  notificationSent?: boolean;
+  userEmailSent?: boolean;
 }
 
 /**
@@ -57,9 +67,38 @@ export async function routeLead(leadData: LeadData): Promise<LeadResponse> {
   const enrichedData = {
     ...leadData,
     timestamp: new Date().toISOString(),
-    userAgent: navigator.userAgent,
-    referrer: document.referrer || 'direct',
+    pageUrl: leadData.pageUrl || window.location.href,
+    userAgent: leadData.userAgent || navigator.userAgent,
+    referrer: leadData.referrer || document.referrer || 'direct',
   };
+
+  // 0. Try the first-party server route. This stores the lead, notifies Zumetrix,
+  // and sends user-facing emails for downloads/calculator estimates when configured.
+  try {
+    const response = await fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(enrichedData),
+    });
+
+    const payload = await response.json().catch(() => ({}));
+
+    if (response.ok && payload.success) {
+      trackFormSubmit(`lead_${enrichedData.source}`);
+      return {
+        success: true,
+        destination: payload.stored ? 'both' : 'webhook',
+        error: payload.warnings?.join('; '),
+        stored: payload.stored,
+        notificationSent: payload.notificationSent,
+        userEmailSent: payload.userEmailSent,
+      };
+    }
+
+    errors.push(payload.error || `Lead API returned ${response.status}`);
+  } catch (error) {
+    errors.push(`Lead API error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
 
   // 1. Try external webhook first (if configured)
   if (webhookUrl) {
@@ -92,38 +131,42 @@ export async function routeLead(leadData: LeadData): Promise<LeadResponse> {
   }
 
   // 2. Always try Supabase as backup/primary storage
-  try {
-    const { error } = await supabase
-      .from('newsletter_subscribers')
-      .insert({
-        email: enrichedData.email,
-        name: enrichedData.name || null,
-        source: enrichedData.source,
-        is_active: true,
-        tags: [enrichedData.source],
-        metadata: {
-          company: enrichedData.company,
-          message: enrichedData.message,
-          timestamp: enrichedData.timestamp,
-          referrer: enrichedData.referrer,
-        }
-      });
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert({
+          email: enrichedData.email,
+          name: enrichedData.name || null,
+          source: enrichedData.source,
+          is_active: true,
+          tags: [enrichedData.source],
+          metadata: {
+            company: enrichedData.company,
+            message: enrichedData.message,
+            timestamp: enrichedData.timestamp,
+            referrer: enrichedData.referrer,
+          }
+        });
 
-    if (error) {
-      // Ignore duplicate key errors (23505)
-      if (error.code !== '23505') {
-        throw error;
+      if (error) {
+        // Ignore duplicate key errors (23505)
+        if (error.code !== '23505') {
+          throw error;
+        } else {
+          console.log('ℹ️ Lead already exists in database');
+          supabaseSuccess = true; // Consider this a success
+        }
       } else {
-        console.log('ℹ️ Lead already exists in database');
-        supabaseSuccess = true; // Consider this a success
+        supabaseSuccess = true;
+        console.log('✅ Lead stored in Supabase successfully');
       }
-    } else {
-      supabaseSuccess = true;
-      console.log('✅ Lead stored in Supabase successfully');
+    } catch (error) {
+      console.error('❌ Supabase storage failed:', error);
+      errors.push(`Database error: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
-  } catch (error) {
-    console.error('❌ Supabase storage failed:', error);
-    errors.push(`Database error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  } else {
+    errors.push('Supabase fallback is not configured');
   }
 
   // 3. Track submission in analytics

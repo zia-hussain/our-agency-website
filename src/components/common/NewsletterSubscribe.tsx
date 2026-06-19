@@ -32,7 +32,7 @@ const NewsletterSubscribe: React.FC<NewsletterSubscribeProps> = ({
       });
 
       if (result.success) {
-        setMessage('Success! Check your email for confirmation.');
+        setMessage("You're on the list. We'll send only useful notes.");
         setStatus('success');
         setEmail('');
         setName('');

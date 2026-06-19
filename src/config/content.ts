@@ -158,7 +158,7 @@ export const BRAND_CONTENT = {
     },
 
     trustSignals: [
-      "24-hour response guaranteed",
+      "Usually replies within 24 hours",
       "Expert insights & strategy",
       "No obligation consultation"
     ]

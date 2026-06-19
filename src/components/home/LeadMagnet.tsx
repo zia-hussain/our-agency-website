@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, CheckCircle, FileText } from 'lucide-react';
 import AnimatedSection from '../common/AnimatedSection';
-import { supabase } from '../../lib/supabase';
+import { routeLead } from '../../services/leadRouter';
 import { trackCTAClick } from '../../utils/analytics';
 
 const LeadMagnet: React.FC = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -16,26 +17,23 @@ const LeadMagnet: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('lead_magnets')
-        .insert({
-          email,
-          name: name || null,
-          magnet_type: 'pdf',
-          magnet_name: '30-Day MVP Blueprint',
-          metadata: {
-            source: 'homepage_lead_magnet',
-            pdf_name: '30-day-mvp-blueprint.pdf'
-          },
-          page_url: window.location.href,
-          user_agent: navigator.userAgent,
-          status: 'new'
-        });
+      const result = await routeLead({
+        email,
+        name: name || undefined,
+        source: 'homepage_lead_magnet',
+        leadType: 'lead_magnet',
+        magnetName: '30-Day SaaS MVP Blueprint',
+        metadata: {
+          pdfName: '30-day-saas-mvp-blueprint.pdf',
+          requestedAsset: '/downloads/30-day-saas-mvp-blueprint.pdf',
+        },
+      });
 
-      if (error) throw error;
+      if (!result.success) throw new Error(result.error || 'Lead capture failed');
 
       trackCTAClick('Lead Magnet - MVP Blueprint', window.location.pathname);
 
+      setEmailSent(Boolean(result.userEmailSent));
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error:', error);
@@ -166,7 +164,7 @@ const LeadMagnet: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle size={16} className="text-primary" />
-                    <span>Used by 50+ startups</span>
+                    <span>Built from 50+ project lessons</span>
                   </div>
                 </div>
               </>
@@ -180,11 +178,27 @@ const LeadMagnet: React.FC = () => {
                   <CheckCircle size={40} className="text-primary" />
                 </div>
                 <h3 className="text-3xl font-bold text-foreground mb-4">
-                  Success! Check Your Email
+                  {emailSent ? 'Blueprint Sent' : 'Request Saved'}
                 </h3>
                 <p className="text-lg text-muted-foreground mb-6">
-                  We've sent the MVP Blueprint to <span className="font-medium text-foreground">{email}</span>
+                  {emailSent ? (
+                    <>
+                      We sent the MVP Blueprint to <span className="font-medium text-foreground">{email}</span>.
+                    </>
+                  ) : (
+                    <>
+                      Your request is saved. You can download the blueprint now, and we will follow up if email delivery is not configured yet.
+                    </>
+                  )}
                 </p>
+                <a
+                  href="/downloads/30-day-saas-mvp-blueprint.pdf"
+                  download
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity mb-6"
+                >
+                  <Download size={18} />
+                  Download PDF
+                </a>
                 <p className="text-muted-foreground">
                   While you're here, want to discuss your project?
                   <a href="/contact" className="text-primary font-medium hover:underline ml-1">
