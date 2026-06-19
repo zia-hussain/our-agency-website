@@ -167,9 +167,13 @@ const emailShell = ({ preheader, eyebrow, title, intro, content, cta }) => `
                   <tr>
                     <td valign="middle">
                       <a href="https://www.zumetrix.com" style="text-decoration:none;">
-                        <span style="display:inline-block;color:${BRAND.accent};font-size:25px;line-height:1;font-weight:850;letter-spacing:-1px;">Z</span>
-                        <span style="display:inline-block;margin-left:4px;color:${BRAND.text};font-size:20px;line-height:1;font-weight:760;letter-spacing:0;">Zumetrix</span>
-                        <span style="display:inline-block;margin-left:5px;color:${BRAND.accent};font-size:8px;line-height:1;font-weight:750;letter-spacing:1px;vertical-align:top;">LABS</span>
+                        <img
+                          src="https://www.zumetrix.com/logo/zumetrix-email.png"
+                          width="174"
+                          height="42"
+                          alt="Zumetrix Labs"
+                          style="display:block;width:174px;height:42px;max-width:100%;border:0;outline:none;text-decoration:none;object-fit:contain;"
+                        >
                       </a>
                     </td>
                     <td align="right" valign="middle" style="font-size:11px;color:${BRAND.subtle};line-height:1.55;">
