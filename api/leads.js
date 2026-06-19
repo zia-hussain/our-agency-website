@@ -22,6 +22,8 @@ const money = (value) =>
     ? `$${Math.round(value).toLocaleString("en-US")}`
     : escapeHtml(value || "Not provided");
 
+const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+
 const storeLead = async (lead) => {
   const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
   const supabaseKey =
@@ -70,27 +72,34 @@ const sendResendEmail = async ({ to, subject, html, attachments }) => {
 
   const from = process.env.LEAD_FROM_EMAIL || "Zumetrix Labs <onboarding@resend.dev>";
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: Array.isArray(to) ? to : [to],
-      subject,
-      html,
-      attachments,
-    }),
-  });
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: Array.isArray(to) ? to : [to],
+        subject,
+        html,
+        attachments,
+      }),
+    });
 
-  if (!response.ok) {
+    if (response.ok) return { sent: true };
+
     const detail = await response.text();
-    throw new Error(`Email send failed: ${response.status} ${detail}`);
+    if (response.status !== 429 || attempt === 2) {
+      throw new Error(`Email send failed: ${response.status} ${detail}`);
+    }
+
+    const retryAfter = Number(response.headers.get("retry-after"));
+    await wait(Number.isFinite(retryAfter) ? retryAfter * 1000 : 750 * (attempt + 1));
   }
 
-  return { sent: true };
+  return { sent: false, reason: "Email retry limit reached" };
 };
 
 const getBlueprintAttachment = async () => {
@@ -204,17 +213,7 @@ export default async function handler(req, res) {
       reason: error.message,
     }));
 
-    const ownerEmail = (process.env.LEAD_NOTIFICATION_EMAIL || "hello@zumetrix.com")
-      .split(",")
-      .map((email) => email.trim())
-      .filter(Boolean);
-    const ownerCopy = await sendResendEmail({
-      to: ownerEmail,
-      subject: `New ${normalizedLead.leadType} lead: ${normalizedLead.email}`,
-      html: leadNotificationHtml(normalizedLead),
-    }).catch((error) => ({ sent: false, reason: error.message }));
-
-    let userCopy = { sent: false, reason: "No user email configured for this lead type" };
+    let userCopy = { sent: false };
 
     if (normalizedLead.leadType === "lead_magnet") {
       const attachments = await getBlueprintAttachment();
@@ -225,6 +224,16 @@ export default async function handler(req, res) {
         attachments,
       }).catch((error) => ({ sent: false, reason: error.message }));
     }
+
+    const ownerEmail = (process.env.LEAD_NOTIFICATION_EMAIL || "hello@zumetrix.com")
+      .split(",")
+      .map((email) => email.trim())
+      .filter(Boolean);
+    const ownerCopy = await sendResendEmail({
+      to: ownerEmail,
+      subject: `New ${normalizedLead.leadType} lead: ${normalizedLead.email}`,
+      html: leadNotificationHtml(normalizedLead),
+    }).catch((error) => ({ sent: false, reason: error.message }));
 
     if (normalizedLead.leadType === "roi_calculator") {
       userCopy = await sendResendEmail({
