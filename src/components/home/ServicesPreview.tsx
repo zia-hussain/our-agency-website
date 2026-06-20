@@ -99,7 +99,16 @@ const ServicesPreview: React.FC = () => {
                   </p>
 
                   <div className={`${isFeatured? 'block':"hidden"} bg-[#0E0A07] w-full my-8 rounded-2xl`}>
-                    <img src="/services_images/mvp.jpg" alt="" className="xs:h-[500px] w-full object-contain rounded-2xl border-3 border-border" />
+                    <img
+                      src="/services_images/mvp.webp"
+                      alt=""
+                      width="1000"
+                      height="600"
+                      loading="lazy"
+                      decoding="async"
+                      fetchpriority="low"
+                      className="xs:h-[500px] w-full object-contain rounded-2xl border-3 border-border"
+                    />
                   </div>
 
                   {/* Learn More Link */}
@@ -109,7 +118,7 @@ const ServicesPreview: React.FC = () => {
                       transition={{ duration: 0.15 }}
                       className="flex items-center gap-2 text-primary font-medium group-hover:gap-3"
                     >
-                      Learn More
+                      Explore {service.title}
                       <ArrowRight size={18} />
                     </motion.div>
                   </Link>

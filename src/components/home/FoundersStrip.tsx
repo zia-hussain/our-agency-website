@@ -47,6 +47,10 @@ const FoundersStrip: React.FC = () => {
                     transition={{ duration: 0.15 }}
                     src={founder.image}
                     alt={founder.fullName}
+                    width="192"
+                    height="192"
+                    loading="lazy"
+                    decoding="async"
                     className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full object-cover border-2 sm:border-3 border-border group-hover:border-primary/50 transition-colors duration-150 flex-shrink-0"
                   />
                   <div className="flex-1 min-w-0">

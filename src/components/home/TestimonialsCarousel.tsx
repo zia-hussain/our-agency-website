@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   motion,
   useAnimationFrame,
+  useInView,
   useMotionValue,
   useReducedMotion,
   useSpring,
@@ -16,6 +17,7 @@ const TestimonialsCarousel: React.FC = () => {
   const [loopWidth, setLoopWidth] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const reduceMotion = useReducedMotion();
+  const isInView = useInView(trackRef, { margin: "300px 0px" });
 
   const baseVelocity = -30;
   const x = useMotionValue(0);
@@ -27,13 +29,7 @@ const TestimonialsCarousel: React.FC = () => {
   });
 
   const repeatedTestimonials = useMemo(
-    () => [
-      ...testimonials,
-      ...testimonials,
-      ...testimonials,
-      ...testimonials,
-      ...testimonials,
-    ],
+    () => [...testimonials, ...testimonials],
     [testimonials]
   );
 
@@ -58,7 +54,7 @@ const TestimonialsCarousel: React.FC = () => {
   }, [testimonials.length]);
 
   useAnimationFrame((_, delta) => {
-    if (!testimonials.length || !loopWidth) return;
+    if (!testimonials.length || !loopWidth || !isInView) return;
 
     velocity.set(isHovered || reduceMotion ? 0 : baseVelocity);
 

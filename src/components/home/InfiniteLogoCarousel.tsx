@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   motion,
   useAnimationFrame,
+  useInView,
   useMotionValue,
   useReducedMotion,
   useSpring,
@@ -15,6 +16,7 @@ const InfiniteLogoCarousel: React.FC = () => {
   const [loopWidth, setLoopWidth] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const reduceMotion = useReducedMotion();
+  const isInView = useInView(trackRef, { margin: "300px 0px" });
 
   // Negative = left scroll. Pixel-per-second based speed keeps motion consistent across devices.
   const baseVelocity = -42;
@@ -34,25 +36,9 @@ const InfiniteLogoCarousel: React.FC = () => {
   );
 
   const repeatedLogos = useMemo(
-    () => [...logos, ...logos, ...logos, ...logos, ...logos, ...logos],
+    () => [...logos, ...logos],
     [logos]
   );
-
-  useEffect(() => {
-    if (!logos.length) return;
-
-    const preloadedImages: HTMLImageElement[] = [];
-
-    logos.forEach((logo) => {
-      const img = new Image();
-      img.src = logo.imageUrl;
-      preloadedImages.push(img);
-    });
-
-    return () => {
-      preloadedImages.length = 0;
-    };
-  }, [logos]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -78,7 +64,7 @@ const InfiniteLogoCarousel: React.FC = () => {
 
   // Continuous animation. Uses measured DOM width, not estimated card width, so the loop is invisible.
   useAnimationFrame((_, delta) => {
-    if (!logos.length || !loopWidth) return;
+    if (!logos.length || !loopWidth || !isInView) return;
 
     velocity.set(isHovered || reduceMotion ? 0 : baseVelocity);
 
@@ -156,9 +142,11 @@ const InfiniteLogoCarousel: React.FC = () => {
                     <img
                       src={logo.imageUrl}
                       alt={logo.name}
-                      loading={index < logos.length ? "eager" : "lazy"}
+                      width="224"
+                      height="112"
+                      loading="lazy"
                       decoding="async"
-                      fetchpriority={index < logos.length ? "high" : "low"}
+                      fetchpriority="low"
                       className="relative h-full w-full object-contain opacity-30 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-95"
                       draggable={false}
                     />

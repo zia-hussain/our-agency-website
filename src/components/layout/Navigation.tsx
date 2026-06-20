@@ -83,8 +83,12 @@ const Navigation: React.FC = () => {
             >
               <img
                 className="h-auto w-36 select-none lg:w-44"
-                src="/logo/zumetrix-email.png"
+                src="/logo/zumetrix-email.webp"
                 alt={SITE_CONFIG.company.name}
+                width="288"
+                height="70"
+                decoding="async"
+                fetchpriority="high"
               />
             </motion.div>
           </Link>

@@ -98,18 +98,18 @@ const HomePage: React.FC = () => {
         structuredData={structuredData}
       />
       <Hero />
-      <InfiniteLogoCarousel />
-      <TrustBand />
-      <ServicesPreview />
-      <FeaturedCaseStudies />
-      <SignatureMethod />
-      <FoundersStrip />
-      <TestimonialsCarousel />
-      <AIROICalculator />
-      <TechStack />
-      <LeadMagnet />
-      <FAQ />
-      <FinalCTA />
+      <div className="performance-defer"><InfiniteLogoCarousel /></div>
+      <div className="performance-defer"><TrustBand /></div>
+      <div className="performance-defer"><ServicesPreview /></div>
+      <div className="performance-defer"><FeaturedCaseStudies /></div>
+      <div className="performance-defer"><SignatureMethod /></div>
+      <div className="performance-defer"><FoundersStrip /></div>
+      <div className="performance-defer"><TestimonialsCarousel /></div>
+      <div className="performance-defer"><AIROICalculator /></div>
+      <div className="performance-defer"><TechStack /></div>
+      <div className="performance-defer"><LeadMagnet /></div>
+      <div className="performance-defer"><FAQ /></div>
+      <div className="performance-defer"><FinalCTA /></div>
     </PageTransition>
   );
 };

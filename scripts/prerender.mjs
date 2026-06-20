@@ -4,7 +4,20 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const dist = join(root, "dist");
-const shell = await readFile(join(dist, "index.html"), "utf8");
+const builtShell = await readFile(join(dist, "index.html"), "utf8");
+const stylesheetTag = builtShell.match(
+  /<link rel="stylesheet"[^>]*href="([^"]+\.css)"[^>]*>/,
+);
+let shell = builtShell;
+
+if (stylesheetTag) {
+  const stylesheetPath = stylesheetTag[1].replace(/^\//, "");
+  const stylesheet = await readFile(join(dist, stylesheetPath), "utf8");
+  shell = builtShell.replace(
+    stylesheetTag[0],
+    `<style data-critical-css>${stylesheet}</style>`,
+  );
+}
 const { render } = await import(pathToFileURL(join(dist, "server", "entry-server.js")).href);
 
 const routes = [

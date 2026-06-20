@@ -93,8 +93,12 @@ const Footer: React.FC = () => {
               >
                 <img
                   className="h-auto w-48 select-none"
-                  src="/logo/zumetrix-email.png"
+                  src="/logo/zumetrix-email.webp"
                   alt={SITE_CONFIG.company.name}
+                  width="288"
+                  height="70"
+                  loading="lazy"
+                  decoding="async"
                 />
               </motion.div>
             </Link>

@@ -77,20 +77,42 @@ const SEO: React.FC<SEOProps> = ({
       )}
 
       {gaTagId && (
-        <>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaTagId}`}
-          ></script>
-          <script>
-            {`
+        <script>
+          {`
+            (function () {
+              if (window.__zumetrixAnalyticsScheduled) return;
+              window.__zumetrixAnalyticsScheduled = true;
               window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${gaTagId}');
-            `}
-          </script>
-        </>
+              window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+
+              function loadAnalytics() {
+                if (document.querySelector('script[data-zumetrix-ga]')) return;
+                cleanupAnalyticsTriggers();
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=${gaTagId}';
+                script.dataset.zumetrixGa = 'true';
+                document.head.appendChild(script);
+                window.gtag('js', new Date());
+                window.gtag('config', '${gaTagId}');
+              }
+
+              var triggerEvents = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+              function cleanupAnalyticsTriggers() {
+                triggerEvents.forEach(function (eventName) {
+                  window.removeEventListener(eventName, loadAnalytics);
+                });
+              }
+
+              window.addEventListener('load', function () {
+                triggerEvents.forEach(function (eventName) {
+                  window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+                });
+                window.setTimeout(loadAnalytics, 8000);
+              }, { once: true });
+            })();
+          `}
+        </script>
       )}
     </Helmet>
   );

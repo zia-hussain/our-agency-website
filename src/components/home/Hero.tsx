@@ -64,33 +64,7 @@ const Hero: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-background via-background to-card/30 flex items-center justify-center relative overflow-hidden pt-20 sm:pt-32 pb-20">
-      {/* PREMIUM Animated Gradient Background */}
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          rotate: [0, 180, 0],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent blur-3xl rounded-full"
-      />
-      <motion.div
-        animate={{
-          scale: [1.3, 1, 1.3],
-          rotate: [0, -180, 0],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/15 via-primary/8 to-transparent blur-3xl rounded-full"
-      />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_28%,rgba(196,138,100,0.11),transparent_32%),radial-gradient(circle_at_12%_72%,rgba(196,138,100,0.07),transparent_28%)]" />
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 opacity-[0.015]">
@@ -106,12 +80,7 @@ const Hero: React.FC = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
           {/* PREMIUM Status Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -14, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-            className="flex justify-center"
-          >
+          <div className="flex justify-center">
             <Link
               to="/contact"
               className="
@@ -144,58 +113,33 @@ const Hero: React.FC = () => {
                 <span className="relative h-2 w-2 rounded-full bg-primary" />
               </span>
             </Link>
-          </motion.div>
+          </div>
 
           {/* ULTIMATE HEADLINE - Maximum Impact */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.15] tracking-tight sm:px-4"
-          >
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="block text-foreground mb-2 sm:mb-3"
-            >
+          <h1 className="text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.15] tracking-tight sm:px-4">
+            <span className="block text-foreground mb-2 sm:mb-3">
               {BRAND_CONTENT.hero.headline.line1}
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent lg:pb-2"
-            >
+            </span>
+            <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent lg:pb-2">
               {BRAND_CONTENT.hero.headline.line2}
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl mt-3 sm:mt-4"
-            >
+            </span>
+            <span className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl mt-3 sm:mt-4">
               {BRAND_CONTENT.hero.headline.line3}
-            </motion.span>
-          </motion.h1>
+            </span>
+          </h1>
 
           {/* POWERFUL Value Proposition */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-4xl leading-relaxed px-2 sm:px-4 font-light"
-          >
-            {renderContentSegments(BRAND_CONTENT.hero.subheadline)}
-          </motion.p>
+          <div className="mb-8 max-w-4xl px-2 text-base font-light leading-relaxed text-muted-foreground sm:mb-10 sm:px-4 sm:text-lg lg:text-xl">
+            <p className="mb-6">
+              {renderContentSegments(BRAND_CONTENT.hero.subheadline.slice(0, 2))}
+            </p>
+            <p>
+              {renderContentSegments(BRAND_CONTENT.hero.subheadline.slice(4))}
+            </p>
+          </div>
 
           {/* Trust Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.1 }}
-            className="flex flex-wrap items-center justify-center gap-6 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4"
-          >
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4">
             <a
               href={BRAND_CONTENT.hero.trustBadge.link}
               target="_blank"
@@ -224,14 +168,9 @@ const Hero: React.FC = () => {
                 </span>
               </span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1 }}
-            className="flex flex-col justify-center items-center sm:flex-row gap-5 mb-24"
-          >
+          <div className="flex flex-col justify-center items-center sm:flex-row gap-5 mb-24">
             <Link to={BRAND_CONTENT.hero.primaryCTA.link}>
               <motion.button
                 whileHover={{ scale: 1.03 }}
@@ -240,17 +179,6 @@ const Hero: React.FC = () => {
                          shadow-2xl shadow-primary/25 hover:shadow-primary/40
                          flex items-center gap-3 overflow-hidden"
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/20 to-primary/0"
-                  animate={{
-                    x: ["-200%", "200%"],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
                 <span className="relative">
                   {BRAND_CONTENT.hero.primaryCTA.text}
                 </span>
@@ -276,16 +204,15 @@ const Hero: React.FC = () => {
               />
               {BRAND_CONTENT.hero.secondaryCTA.text}
             </motion.button>
-          </motion.div>
+          </div>
 
           {/* Key Differentiators */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+            initial="hidden"
+            whileInView="show"
             variants={keyDiffContainer}
             viewport={{ once: true, amount: 0.4 }}
-            className="w-full max-w-5xl mx-auto px-4 sm:px-0 cursor-default"
+            className="performance-defer w-full max-w-5xl mx-auto px-4 sm:px-0 cursor-default"
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
               {stats.map((item) => (

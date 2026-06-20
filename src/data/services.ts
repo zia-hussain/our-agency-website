@@ -56,7 +56,7 @@ export const services: Service[] = [
     technologies: ["React", "Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "MongoDB", "Prisma", "GraphQL", "REST APIs", "AWS", "Vercel", "Docker", "Redis", "WebSockets", "CI/CD"],
     price: "From $3,500",
     popular: false,
-    image: "/services_images/Website.jpg",
+    image: "/services_images/Website.webp",
     methodology: [
       "Strategic Discovery & Requirements Analysis",
       "System Architecture & Technical Planning", 
@@ -111,7 +111,7 @@ export const services: Service[] = [
     technologies: ["React", "Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "Supabase", "Firebase", "Stripe", "Clerk", "Prisma", "REST APIs", "Vercel", "TailwindCSS", "Analytics", "Admin Dashboards"],
     price: "From $4,800",
     popular: true,
-    image: "/services_images/mvp.jpg",
+    image: "/services_images/mvp.webp",
     methodology: [
       "Business Model Validation & Market Research",
       "Feature Prioritization & MVP Scope Definition",
@@ -166,7 +166,7 @@ export const services: Service[] = [
     technologies: ["React Native", "Expo", "Flutter", "FlutterFlow", "Swift", "Kotlin", "Firebase", "Supabase", "TypeScript", "Node.js", "Redux Toolkit", "Zustand", "REST APIs", "GraphQL", "Push Notifications", "App Store", "Google Play", "Stripe"],
     price: "From $5,500",
     popular: false,
-    image: "/services_images/APP.jpg",
+    image: "/services_images/APP.webp",
     methodology: [
       "Mobile Strategy & Platform Selection",
       "User Experience Design & Prototyping",
@@ -221,7 +221,7 @@ export const services: Service[] = [
     technologies: ["React", "Next.js", "Node.js", "Firebase", "Supabase", "Vercel", "Stripe", "OpenAI", "TypeScript", "TailwindCSS", "Framer Motion", "Airtable", "Make.com", "Analytics", "Admin Panels", "MVP Architecture"],
     price: "From $4,500",
     popular: true,
-    image: "/services_images/SaaS.jpg",
+    image: "/services_images/SaaS.webp",
     methodology: [
       "Idea Validation & Market Research",
       "Feature Prioritization & Scope Definition", 
@@ -276,7 +276,7 @@ export const services: Service[] = [
     technologies: ["OpenAI", "ChatGPT API", "Python", "Node.js", "LangChain", "Zapier", "Make.com", "n8n", "Airtable", "Google Sheets", "HubSpot", "Slack", "Webhook APIs", "AWS Lambda", "Supabase", "MongoDB", "Vector Search", "Document AI"],
     price: "From $2,500",
     popular: true,
-    image: "/services_images/ai-automation.jpg",
+    image: "/services_images/ai-automation.webp",
     methodology: [
       "Process Analysis & Automation Opportunity Assessment",
       "Workflow Design & Automation Architecture Planning",
@@ -331,7 +331,7 @@ export const services: Service[] = [
     technologies: ["Product Strategy", "Technical Audits", "Architecture Design", "UX Review", "SEO Review", "Performance Analysis", "Security Review", "Growth Strategy", "Roadmapping", "MVP Scoping", "Analytics Planning", "System Design"],
     price: "From $1,500",
     popular: false,
-    image: "/services_images/Strategy.jpg",
+    image: "/services_images/Strategy.webp",
     methodology: [
       "Business & Technical Assessment",
       "Strategic Planning & Roadmap Development",

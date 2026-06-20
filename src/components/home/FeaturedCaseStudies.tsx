@@ -84,6 +84,10 @@ const FeaturedCaseStudies: React.FC = () => {
                   <img
                     src={hero.image}
                     alt={hero.title}
+                    width="1000"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover rounded-2xl"
                   />
                 </div>
@@ -131,6 +135,10 @@ const FeaturedCaseStudies: React.FC = () => {
                         <img
                           src={project.image}
                           alt={project.title}
+                          width="1000"
+                          height="750"
+                          loading="lazy"
+                          decoding="async"
                           className="h-full w-full object-cover object-center"
                         />
                       </div>
