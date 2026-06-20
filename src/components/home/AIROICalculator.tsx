@@ -152,10 +152,12 @@ const AIROICalculator: React.FC = () => {
 
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="roi-employees" className="block text-sm font-medium text-foreground mb-2">
                       Number of Employees
                     </label>
                     <input
+                      id="roi-employees"
+                      name="employees"
                       type="number"
                       value={inputs.employees}
                       onChange={(e) => {
@@ -171,10 +173,12 @@ const AIROICalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="roi-hourly-rate" className="block text-sm font-medium text-foreground mb-2">
                       Average Hourly Rate ($)
                     </label>
                     <input
+                      id="roi-hourly-rate"
+                      name="avgHourlyRate"
                       type="number"
                       value={inputs.avgHourlyRate}
                       onChange={(e) => {
@@ -190,10 +194,12 @@ const AIROICalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="roi-hours-per-week" className="block text-sm font-medium text-foreground mb-2">
                       Hours Spent Per Week (per employee)
                     </label>
                     <input
+                      id="roi-hours-per-week"
+                      name="hoursPerWeek"
                       type="number"
                       value={inputs.hoursPerWeek}
                       onChange={(e) => {
@@ -209,17 +215,19 @@ const AIROICalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="roi-process-type" className="block text-sm font-medium text-foreground mb-2">
                       Process Type
                     </label>
                     <select
+                      id="roi-process-type"
+                      name="processType"
                       value={inputs.processType}
                       onChange={(e) => setInputs({ ...inputs, processType: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                     >
                       {Object.entries(processTypes).map(([key, value]) => (
                         <option key={key} value={key}>
-                          {value.name} ({value.reduction}% reduction)
+                          {value.name} (up to {value.reduction}% planning assumption)
                         </option>
                       ))}
                     </select>
@@ -258,9 +266,12 @@ const AIROICalculator: React.FC = () => {
 
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Your Name</label>
+                    <label htmlFor="roi-name" className="block text-sm font-medium text-foreground mb-2">Your Name</label>
                     <input
+                      id="roi-name"
+                      name="name"
                       type="text"
+                      autoComplete="name"
                       value={contactInfo.name}
                       onChange={(e) => setContactInfo({ ...contactInfo, name: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -269,9 +280,12 @@ const AIROICalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                    <label htmlFor="roi-email" className="block text-sm font-medium text-foreground mb-2">Email</label>
                     <input
+                      id="roi-email"
+                      name="email"
                       type="email"
+                      autoComplete="email"
                       value={contactInfo.email}
                       onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -280,9 +294,12 @@ const AIROICalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Company (Optional)</label>
+                    <label htmlFor="roi-company" className="block text-sm font-medium text-foreground mb-2">Company (Optional)</label>
                     <input
+                      id="roi-company"
+                      name="company"
                       type="text"
+                      autoComplete="organization"
                       value={contactInfo.company}
                       onChange={(e) => setContactInfo({ ...contactInfo, company: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"

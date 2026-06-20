@@ -534,7 +534,7 @@ export const articles = [
     category: "SaaS",
     featured: false,
     seo: {
-      title: "SaaS MVP Tech Stack: React, Node.js, Firebase, Supabase | Zumetrix Labs",
+      title: "SaaS MVP Tech Stack Guide | Zumetrix Labs",
       description: "Choose the right SaaS MVP tech stack with React, TypeScript, Node.js, Firebase, Supabase, Stripe, hosting, analytics, and monitoring.",
       keywords: "SaaS MVP tech stack, React SaaS stack, Firebase SaaS MVP, Supabase SaaS MVP, Node.js SaaS, Stripe SaaS billing"
     },
@@ -711,7 +711,7 @@ export const articles = [
     category: "SaaS",
     featured: false,
     seo: {
-      title: "SaaS MVP Validation Guide: Prove the Problem First | Zumetrix Labs",
+      title: "SaaS MVP Validation Guide | Zumetrix Labs",
       description: "Learn how to validate a SaaS MVP before building with customer conversations, landing pages, prototypes, pricing signals, and paid pilots.",
       keywords: "SaaS MVP validation, validate SaaS idea, MVP validation guide, startup validation, validate MVP before building"
     },
@@ -810,7 +810,7 @@ export const articles = [
     category: "AI & Automation",
     featured: true,
     seo: {
-      title: "AI Automation for Business: What to Automate First | Zumetrix Labs",
+      title: "AI Automation: What to Automate First | Zumetrix Labs",
       description: "Learn where to start with AI automation for business workflows, including lead routing, CRM updates, reporting, document processing, and OpenAI integration.",
       keywords: "AI automation for business, AI automation services, OpenAI integration, business automation, workflow automation, ChatGPT automation, AI workflow automation"
     },
@@ -922,7 +922,7 @@ export const articles = [
     internalLinks: [
       {
         label: "Web application development",
-        href: "/services/web-application-development",
+        href: "/services/enterprise-web-applications",
         description: "Build scalable React, Node.js, and TypeScript applications for serious business workflows."
       },
       {
@@ -1111,7 +1111,7 @@ export const articles = [
     category: "Development",
     featured: false,
     seo: {
-      title: "Firebase Development Guide: Auth, Firestore, Functions | Zumetrix Labs",
+      title: "Firebase Production Guide | Zumetrix Labs",
       description: "A practical Firebase development guide covering authentication, Firestore structure, security rules, Cloud Functions, hosting, and production readiness.",
       keywords: "Firebase development guide, Firebase development services, Firestore database design, Firebase authentication, Firebase Cloud Functions, Firebase security rules"
     },
@@ -1123,7 +1123,7 @@ export const articles = [
       },
       {
         label: "Web application development",
-        href: "/services/web-application-development",
+        href: "/services/enterprise-web-applications",
         description: "Build reliable React and backend systems with production-ready architecture."
       }
     ],

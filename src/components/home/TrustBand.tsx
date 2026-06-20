@@ -76,7 +76,7 @@ const TrustBand: React.FC = () => {
                   viewport={{ once: true }}
                   whileHover={{ y: -6, scale: 1.03 }}
                   transition={{ duration: 0.2, delay: index * 0.08 }}
-                  className="relative group h-full hover:border-primary/30 bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 flex flex-col"
+                  className="relative group h-full hover:border-primary/30 bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl p-6 flex flex-col"
                 >
                   {/* Glow ring on hover */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/0 to-primary/0 opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-300 pointer-events-none" />
@@ -117,7 +117,7 @@ const TrustBand: React.FC = () => {
                     </div>
 
                     {/* Title */}
-                    <h2 className="text-4xl font-semibold text-white/45 tracking-tight mb-2 text-center">
+                    <h2 className="text-[34px] font-semibold text-white/45 tracking-tight mb-2 text-center">
                       {stat.value}
                     </h2>
 
@@ -140,7 +140,7 @@ const TrustBand: React.FC = () => {
         </motion.div>
 
         {/* Client Showcase - Premium Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
           {trustBand.clients.map((client, index) => (
             <motion.div
               key={client.name}

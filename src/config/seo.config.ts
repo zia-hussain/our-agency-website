@@ -5,7 +5,7 @@ export const SEO_CONFIG = {
   // Basic Site Info
   siteName: "Zumetrix Labs",
   siteUrl: "https://zumetrix.com",
-  defaultTitle: "Zumetrix Labs | Forge Clear Ideas Into Shipped Software | SaaS MVPs, AI Automation, Mobile Apps",
+  defaultTitle: "Zumetrix Labs | SaaS MVPs, Apps & AI Automation",
   defaultDescription: "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners.",
   
   // Focused entity and service topics used by internal SEO helpers.

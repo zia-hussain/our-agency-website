@@ -3,7 +3,7 @@ export const servicesFAQs = [
   {
     question: "How fast can Zumetrix Labs build a production-ready SaaS MVP?",
     answer:
-      "For most focused products, we can take you from idea to a production-ready SaaS MVP in about 30 days. That timeline usually fits dashboards, internal tools, niche SaaS products, or marketplaces with a clear first feature set. Our process covers scoping, architecture, UI flows, development, integrations (such as Stripe or OpenAI), testing, and deployment to production on platforms like Vercel, Supabase, or AWS. For more complex products or multiple user roles, we’ll propose a slightly longer timeline so we don’t compromise on quality."
+      "A tightly scoped SaaS MVP can sometimes launch in about 30 days, while most focused products take 4-8 weeks. Dashboards, internal tools, and niche SaaS products usually move fastest when the first user journey is clear. Multiple user roles, complex integrations, migrations, or regulated data require a longer plan, which we explain before development begins."
   },
   {
     question: "What does your SaaS MVP development process include?",
@@ -38,7 +38,7 @@ export const servicesFAQs = [
   {
     question: "How do you structure pricing for your services?",
     answer:
-      "For clearly defined projects like SaaS MVPs, we usually work on a fixed-price, fixed-scope basis so you know exactly what you’re getting. For ongoing work, automations, and long-term partnerships, we often use monthly retainers or flexible blocks of hours. As a rough guideline, focused SaaS MVPs typically start around $8,000–$15,000, automation projects from $3,000–$7,000, and larger or more complex builds are priced after a detailed discovery call. Every proposal includes a breakdown of scope, timeline, and responsibilities."
+      "For clearly defined projects, we usually use fixed-scope milestone pricing. Current starting points are about $4,800 for a focused SaaS MVP, $2,500 for AI automation, $3,500 for a custom web application, and $5,500 for a cross-platform mobile app. Ongoing work can use a monthly retainer or a defined block of hours. Every proposal explains scope, timeline, assumptions, responsibilities, and what would change the price."
   },
   {
     question: "How do you ensure quality and reliability in the software you ship?",

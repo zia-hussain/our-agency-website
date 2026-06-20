@@ -323,6 +323,7 @@ const ArticleDetailPage: React.FC = () => {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
+                          timeZone: "UTC",
                         }
                       )}
                     </span>
@@ -346,6 +347,7 @@ const ArticleDetailPage: React.FC = () => {
                   transition={{ duration: 0.1 }}
                   className="p-3 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-all duration-100 group"
                   title="Share on Twitter"
+                  aria-label="Share this article on X"
                 >
                   <Twitter
                     size={16}
@@ -359,6 +361,7 @@ const ArticleDetailPage: React.FC = () => {
                   transition={{ duration: 0.1 }}
                   className="p-3 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-all duration-100 group"
                   title="Share on LinkedIn"
+                  aria-label="Share this article on LinkedIn"
                 >
                   <Linkedin
                     size={16}
@@ -372,6 +375,7 @@ const ArticleDetailPage: React.FC = () => {
                   transition={{ duration: 0.1 }}
                   className="p-3 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-all duration-100 group"
                   title="Share on WhatsApp"
+                  aria-label="Share this article on WhatsApp"
                 >
                   <MessageCircle
                     size={16}
@@ -385,6 +389,7 @@ const ArticleDetailPage: React.FC = () => {
                   transition={{ duration: 0.1 }}
                   className="p-3 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-all duration-100 group"
                   title="Copy link"
+                  aria-label={copied ? "Article link copied" : "Copy article link"}
                 >
                   {copied ? (
                     <Check size={16} className="text-primary" />

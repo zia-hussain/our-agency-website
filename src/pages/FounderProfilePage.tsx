@@ -409,7 +409,7 @@ const FounderProfilePage: React.FC = () => {
     <PageTransition>
       <SEO
         title={`${founder.name} | ${founder.role} of Zumetrix Labs`}
-        description={`${founder.summary} View areas of practice, published work and official profiles.`}
+        description={`${founder.name} is ${founder.role} of Zumetrix Labs. Explore their product and engineering focus, published work, and official profiles.`}
         url={url}
         image={`https://zumetrix.com${founder.image}`}
         structuredData={structuredData}

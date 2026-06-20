@@ -3,7 +3,7 @@ export const homeFAQs = [
   {
     question: "What is Zumetrix Labs and what do you specialize in?",
     answer:
-      "Zumetrix Labs is a founder-led software studio focused on building production-ready SaaS products, web applications, mobile apps, and AI-driven automation systems. We specialize in React/Next.js and Node.js web apps, 30-day SaaS MVP development, React Native mobile applications, AI integrations with OpenAI, and automation workflows using tools like Zapier, Make.com, and n8n. Most of our work is for international clients in the United States, United Kingdom, Canada, Europe, Australia, and the Middle East who want a technical partner, not a faceless outsourcing agency."
+      "Zumetrix Labs is a founder-led software studio that builds SaaS MVPs, web applications, mobile apps, and AI-assisted automation systems. We work with React, Next.js, Node.js, React Native, OpenAI, Zapier, Make.com, and n8n. Most engagements are for international founders and operating teams that want direct access to the people shaping and building the product."
   },
   {
     question: "Who are the founders behind Zumetrix Labs?",
@@ -13,12 +13,12 @@ export const homeFAQs = [
   {
     question: "How fast can Zumetrix Labs build a production-ready SaaS MVP?",
     answer:
-      "For most projects, we can take you from idea to a production-ready SaaS MVP in about 30 days. Our process includes an initial strategy and scoping call, a clear technical architecture, UI/UX layout, weekly development sprints, QA, and deployment to production (usually on Vercel, AWS, or similar). Timelines depend on scope, but the 30-day MVP model works well for focused products like dashboards, internal tools, niche SaaS products, or marketplaces with a clear first feature set."
+      "A tightly scoped SaaS MVP can sometimes launch in about 30 days, while most focused engagements take 4-8 weeks. The real timeline depends on user roles, integrations, payments, data migration, and how clearly the first release is defined. We confirm the scope and delivery plan before development begins."
   },
   {
     question: "What does your 30-day SaaS MVP process look like?",
     answer:
-      "Our 30-day SaaS MVP process is structured and transparent: (1) Product discovery and requirements clarification, (2) Technical architecture and database design, (3) UI/UX layout and core flows, (4) Backend and frontend implementation, (5) Integrations such as Stripe, OpenAI, or Firebase, (6) QA and bug-fixing, and (7) Production deployment and handover. You get weekly progress updates, Loom walkthroughs, and a clear list of what will be included in your V1 so there are no surprises."
+      "For a tightly scoped 30-day MVP, we move through seven clear stages: product discovery, scope confirmation, architecture, core UI flows, frontend and backend implementation, essential integrations, and QA with deployment. More complex products follow the same process over a longer schedule. In both cases, the first-release boundary and expected deliverables are agreed before the build starts."
   },
   {
     question: "What AI automation services does Zumetrix Labs provide?",
@@ -38,7 +38,7 @@ export const homeFAQs = [
   {
     question: "How much does it cost to work with Zumetrix Labs?",
     answer:
-      "Budgets depend on scope, complexity, and timeline. As a rough guideline: focused SaaS MVPs typically start around $8,000–$15,000, AI automation projects usually start from $3,000–$7,000, and larger web or mobile applications can go higher depending on advanced features, integrations, and long-term support. After an initial call, we send a clear proposal with scope, timeline, pricing, and responsibilities so you know exactly what you’re getting."
+      "Budgets depend on scope, complexity, and timeline. Current starting points are about $4,800 for a focused SaaS MVP, $2,500 for AI automation, $3,500 for a custom web application, and $5,500 for a cross-platform mobile app. After an initial call, we send a clear proposal covering scope, timeline, price, assumptions, and responsibilities."
   },
   {
     question: "Do I own the code and intellectual property (IP)?",

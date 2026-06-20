@@ -3,6 +3,7 @@ import {
   motion,
   useAnimationFrame,
   useMotionValue,
+  useReducedMotion,
   useSpring,
 } from "framer-motion";
 import { getSiteData } from "../../data/site";
@@ -13,6 +14,7 @@ const InfiniteLogoCarousel: React.FC = () => {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [loopWidth, setLoopWidth] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   // Negative = left scroll. Pixel-per-second based speed keeps motion consistent across devices.
   const baseVelocity = -42;
@@ -78,7 +80,7 @@ const InfiniteLogoCarousel: React.FC = () => {
   useAnimationFrame((_, delta) => {
     if (!logos.length || !loopWidth) return;
 
-    velocity.set(isHovered ? 0 : baseVelocity);
+    velocity.set(isHovered || reduceMotion ? 0 : baseVelocity);
 
     const moveBy = smoothVelocity.get() * (delta / 1000);
     let newX = x.get() + moveBy;
@@ -107,7 +109,7 @@ const InfiniteLogoCarousel: React.FC = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16 sm:mb-20"
         >
-          <p className="am:text-xl font-medium tracking-[0.3em] uppercase text-zinc-500/80 mb-3">
+          <p className="font-medium tracking-[0.3em] uppercase text-zinc-500/80 mb-3 sm:text-xl">
             {companyLogosCarousel?.eyebrow || "TRUSTED BY"}
           </p>
           <h2 className="text-2xl sm:text-5xl !text-foreground font-light tracking-wide">
@@ -148,43 +150,16 @@ const InfiniteLogoCarousel: React.FC = () => {
                     },
                   }}
                 >
-                  <div
-                    className="group relative flex py-[0.1rem] h-16 sm:h-32 w-32 sm:w-60 items-center justify-center overflow-hidden rounded-[1.35rem] 
-bg-[linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.015)_45%,rgba(255,255,255,0.035))] 
-backdrop-blur-xl transition-all duration-700 ease-out 
-hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_45%,rgba(255,255,255,0.05))]"
-                  >
-                    {/* glass border */}
-                    <div
-                      className="pointer-events-none absolute inset-0 rounded-[1.35rem] ring-1 ring-inset ring-white/[0.06] 
-  transition-all duration-700 group-hover:ring-white/[0.12]"
-                    />
 
-                    {/* top light line */}
-                    <div
-                      className="pointer-events-none absolute inset-x-6 top-0 h-px 
-  bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-40"
-                    />
-
-                    {/* subtle glow */}
-                    <div
-                      className="pointer-events-none absolute bottom-[-30%] left-1/2 h-24 w-28 -translate-x-1/2 
-  rounded-full bg-primary/10 blur-2xl opacity-0 
-  transition-all duration-700 group-hover:opacity-100"
-                    />
-
+                  <div className="group relative flex h-20 w-40 items-center justify-center sm:h-28 sm:w-56">
+                    <div className="pointer-events-none absolute inset-x-8 bottom-2 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     <img
                       src={logo.imageUrl}
                       alt={logo.name}
                       loading={index < logos.length ? "eager" : "lazy"}
                       decoding="async"
                       fetchpriority={index < logos.length ? "high" : "low"}
-                      className="relative h-[100%] w-full object-contain mix-blend-screen
-    opacity-35 grayscale
-    transition-all duration-700 
-    group-hover:scale-[1.05] 
-    group-hover:opacity-90 
-    group-hover:grayscale-0"
+                      className="relative h-full w-full object-contain opacity-30 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-95"
                       draggable={false}
                     />
                   </div>

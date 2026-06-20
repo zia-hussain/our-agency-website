@@ -58,7 +58,15 @@ const ServiceDetailPage: React.FC = () => {
   const relatedProjects = service.relatedProjects?.map(projectSlug => 
     getProjectBySlug(projectSlug)
   ).filter(Boolean) || [];
-  const testimonials = service.testimonials || [];
+  const testimonials = relatedProjects.flatMap((project) =>
+    project?.testimonial
+      ? [{
+          quote: project.testimonial.quote,
+          author: project.testimonial.author,
+          role: project.testimonial.role,
+        }]
+      : []
+  );
 
   const structuredData = {
     "@context": "https://schema.org",

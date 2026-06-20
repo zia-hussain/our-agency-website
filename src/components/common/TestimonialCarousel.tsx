@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
@@ -26,20 +26,21 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
   testimonials,
 }) => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     setActiveTestimonial(0);
   }, [eyebrow, testimonials.length]);
 
   useEffect(() => {
-    if (testimonials.length < 2) return undefined;
+    if (testimonials.length < 2 || reduceMotion) return undefined;
 
     const interval = window.setInterval(() => {
       setActiveTestimonial((current) => (current + 1) % testimonials.length);
     }, 6000);
 
     return () => window.clearInterval(interval);
-  }, [testimonials.length]);
+  }, [reduceMotion, testimonials.length]);
 
   if (testimonials.length === 0) return null;
 

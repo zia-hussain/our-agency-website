@@ -82,7 +82,7 @@ const LeadMagnet: React.FC = () => {
                 </h2>
 
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                  Download our comprehensive guide: The exact process we use to build production-ready MVPs in 30 days. Includes timeline breakdown, tech stack recommendations, feature prioritization framework, and launch checklist.
+                  A practical planning guide for moving from an idea to a focused first release. It includes a 30-day framework, stack guidance, feature prioritization, and a launch checklist.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
@@ -110,17 +110,29 @@ const LeadMagnet: React.FC = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+                  <label htmlFor="blueprint-name" className="sr-only">
+                    Your name
+                  </label>
                   <input
+                    id="blueprint-name"
+                    name="name"
                     type="text"
                     required
+                    autoComplete="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your name"
                     className="w-full px-4 py-3 rounded-xl border border-border bg-background/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                   />
+                  <label htmlFor="blueprint-email" className="sr-only">
+                    Your email address
+                  </label>
                   <input
+                    id="blueprint-email"
+                    name="email"
                     type="email"
                     required
+                    autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email"
@@ -170,7 +182,7 @@ const LeadMagnet: React.FC = () => {
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <CheckCircle size={16} className="text-primary" />
-                    <span>10-page PDF guide</span>
+                    <span>PDF planning guide</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle size={16} className="text-primary" />

@@ -70,8 +70,8 @@ const ArticlesPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="Software Development Articles | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
-        description="Forge Clear Ideas Into Shipped Software. Read Zumetrix Labs insights on SaaS MVPs, AI automation, React/Node.js development, mobile apps, and product strategy."
+        title="SaaS, Automation & Software Articles | Zumetrix Labs"
+        description="Practical articles from Zumetrix Labs on SaaS MVPs, AI automation, React and Node.js, mobile apps, product strategy, and software delivery."
         keywords="software development blog, SaaS MVP guide, AI automation insights, React Node.js tutorials, mobile app development, Firebase guides, Zia Hussain articles, Syed Omer Shah blog, Pakistan software development, startup development guides, tech insights Pakistan"
         url="https://zumetrix.com/articles"
         structuredData={structuredData}
@@ -205,7 +205,12 @@ const ArticlesPage: React.FC = () => {
                         <div className="flex items-center gap-1">
                           <Calendar size={14} />
                           <span>
-                            {new Date(article.publishedAt).toLocaleDateString()}
+                            {new Date(article.publishedAt).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                              timeZone: "UTC",
+                            })}
                           </span>
                         </div>
                         <div className="flex items-center gap-1">

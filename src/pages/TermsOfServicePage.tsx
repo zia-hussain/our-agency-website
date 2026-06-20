@@ -10,7 +10,7 @@ const TermsOfServicePage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="Terms of Service | Zumetrix Labs - Service Agreement & Terms"
+        title="Terms of Service | Zumetrix Labs"
         description="Read Zumetrix Labs' terms of service and service agreement. Understand our policies, responsibilities, and terms for using our software development services."
         keywords="terms of service, service agreement, Zumetrix Labs terms, software development terms, legal terms"
         url="https://zumetrix.com/terms-of-service"

@@ -76,8 +76,8 @@ export const BRAND_CONTENT = {
 
     stats: [
       {
-        title: "4-6 Week MVPs",
-        description: "Most launch in 30-45 days"
+        title: "4-8 Week MVPs",
+        description: "Timeline depends on scope"
       },
       {
         title: "Top Rated on Upwork",
@@ -125,7 +125,7 @@ export const BRAND_CONTENT = {
           { text: "How clear the problem was before we started building.", type: "emphasis" },
           { text: " We help with that clarity.", type: "normal" }
         ] as ContentSegment[],
-        stat: "4-6 week average delivery"
+        stat: "Focused 4-8 week delivery"
       }
     ]
   },
@@ -201,7 +201,7 @@ export const BRAND_CONTENT = {
    */
   meta: {
     home: {
-      title: "Zumetrix Labs | Forge Clear Ideas Into Shipped Software | SaaS MVP, React, AI Automation",
+      title: "Zumetrix Labs | SaaS MVPs, Apps & AI Automation",
       description: "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners."
     },
 

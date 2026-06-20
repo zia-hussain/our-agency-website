@@ -76,7 +76,7 @@ const Navigation: React.FC = () => {
       <div className="max-w-7xl mx-auto py-1 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 group">
+          <Link to="/" className="flex-shrink-0 group" aria-label="Zumetrix Labs home">
             <motion.div
               transition={{ duration: 0.15 }}
               className="flex items-center space-x-3"
@@ -138,6 +138,8 @@ const Navigation: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
               className="text-foreground hover:text-primary transition-colors duration-150 p-2 rounded-lg bg-card/50 backdrop-blur-xl border border-border/50"
             >
               {isMobileMenuOpen ? <X size={20} className="sm:hidden" /> : <Menu size={20} className="sm:hidden" />}

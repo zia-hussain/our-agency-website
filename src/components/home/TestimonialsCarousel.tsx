@@ -5,6 +5,7 @@ import {
   motion,
   useAnimationFrame,
   useMotionValue,
+  useReducedMotion,
   useSpring,
 } from "framer-motion";
 import { getSiteData } from "../../data/site";
@@ -14,6 +15,7 @@ const TestimonialsCarousel: React.FC = () => {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [loopWidth, setLoopWidth] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   const baseVelocity = -30;
   const x = useMotionValue(0);
@@ -58,7 +60,7 @@ const TestimonialsCarousel: React.FC = () => {
   useAnimationFrame((_, delta) => {
     if (!testimonials.length || !loopWidth) return;
 
-    velocity.set(isHovered ? 0 : baseVelocity);
+    velocity.set(isHovered || reduceMotion ? 0 : baseVelocity);
 
     const moveBy = smoothVelocity.get() * (delta / 1000);
     let nextX = x.get() + moveBy;

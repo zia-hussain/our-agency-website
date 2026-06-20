@@ -21,8 +21,7 @@ import {
 const PortfolioPage: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
-  // Show only featured/best projects on main portfolio page
-  const featuredProjects = projects.filter(project => project.featured);
+  const featuredProjects = projects.filter(project => project.homepageFeatured);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
@@ -32,7 +31,7 @@ const PortfolioPage: React.FC = () => {
     { icon: Code, number: "50+", label: "Projects Completed" },
     { icon: Users, number: "25+", label: "Happy Clients" },
     { icon: Calendar, number: "3+", label: "Years Experience" },
-    { icon: Award, number: "100%", label: "Success Rate" },
+    { icon: Award, number: "100%", label: "Upwork Job Success Score" },
   ];
 
   const structuredData = {
@@ -62,8 +61,8 @@ const PortfolioPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Software Development Portfolio | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
-        description="Forge Clear Ideas Into Shipped Software. Explore Zumetrix Labs case studies across SaaS MVPs, React/Node.js applications, mobile apps, AI automation, and enterprise systems."
+        title="Software Development Case Studies | Zumetrix Labs"
+        description="Explore Zumetrix Labs case studies across SaaS MVPs, business dashboards, mobile apps, workflow automation, and custom software."
         keywords="software development portfolio, SaaS MVP projects, React development projects, mobile app portfolio, enterprise software solutions, startup MVP case studies, international software projects, web application portfolio, Zia Hussain projects, Syed Omer Shah portfolio"
         url="https://zumetrix.com/portfolio"
         structuredData={structuredData}

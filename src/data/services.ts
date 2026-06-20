@@ -25,12 +25,6 @@ export interface Service {
   problems: string[];
   results: string[];
   relatedProjects?: string[]; // Project IDs
-  testimonials?: {
-    quote: string;
-    author: string;
-    role: string;
-    company: string;
-  }[];
   seo: {
     title: string;
     description: string;
@@ -51,7 +45,7 @@ export const services: Service[] = [
       "React & TypeScript Development with Modern Architecture",
       "Progressive Web App (PWA) Support for Mobile-First Experience", 
       "Optimized Cloud Architecture & Global CDN Deployment",
-      "Advanced SEO & Lighthouse Performance Optimization (90+ scores)",
+      "Technical SEO, Lighthouse Review & Performance Optimization",
       "Real-time Interactions with WebSockets & Live Updates",
       "REST & GraphQL API Integration with Third-party Services",
       "Responsive, Accessible UI with International Design Standards",
@@ -87,18 +81,10 @@ export const services: Service[] = [
       "More reliable deployment patterns for production environments",
       "Security-conscious architecture aligned with business requirements"
     ],
-    relatedProjects: ["ifyify-ai-personal-branding", "eduplatform-online-learning"],
-    testimonials: [
-      {
-        quote: "Zumetrix Labs transformed our entire digital infrastructure. The web application they built handles our global operations flawlessly and has become the backbone of our business growth.",
-        author: "Michael Chen",
-        role: "CTO",
-        company: "TechCorp International"
-      }
-    ],
+    relatedProjects: ["forlag-publishing-sales-inventory-dashboard"],
     seo: {
-      title: "Enterprise Web Application Development Services | React, Node.js, TypeScript | Zumetrix Labs",
-      description: "Build scalable enterprise web applications with React, Next.js, TypeScript, and Node.js. Expert development services for global businesses seeking high-performance digital solutions.",
+      title: "Enterprise Web App Development | Zumetrix Labs",
+      description: "Build scalable business web applications with React, Next.js, TypeScript, Node.js, and maintainable cloud-ready architecture.",
       keywords: "enterprise web application development, React development services, Next.js development, TypeScript development, Node.js backend development, scalable web applications, custom web development, enterprise software development"
     }
   },
@@ -150,18 +136,10 @@ export const services: Service[] = [
       "Strong technical foundation designed for future scaling",
       "Practical delivery model that avoids unnecessary build waste"
     ],
-    relatedProjects: ["taskflow-startup-mvp", "ifyify-ai-personal-branding"],
-    testimonials: [
-      {
-        quote: "Zumetrix Labs helped us turn a rough product idea into a launch-ready MVP with the right core features, clean execution, and a foundation we could keep building on.",
-        author: "Michael Chen", 
-        role: "Founder",
-        company: "TaskFlow"
-      }
-    ],
+    relatedProjects: ["skill-x-swap-mvp"],
     seo: {
-      title: "SaaS MVP Development Services | React, Node.js, Firebase | Launch in 4-8 Weeks | Zumetrix Labs",
-      description: "Build production-ready SaaS MVPs in 4-8 weeks with React, Node.js, and Firebase. Expert MVP development services helping startups validate ideas and launch focused products.",
+      title: "SaaS MVP Development Services | Zumetrix Labs",
+      description: "Build a focused SaaS MVP in 4-8 weeks with product strategy, UX, React, Node.js, payments, analytics, and scalable cloud foundations.",
       keywords: "SaaS MVP development, startup MVP development, React SaaS development, MVP development services, SaaS product development, startup development agency, MVP builder, SaaS development company"
     }
   },
@@ -213,18 +191,10 @@ export const services: Service[] = [
       "Crash-aware architecture with proper monitoring foundations",
       "Launch-ready app flows designed for real user adoption"
     ],
-    relatedProjects: ["wellnesstracker-mobile-app", "logitrack-delivery-mobile"],
-    testimonials: [
-      {
-        quote: "The mobile app Zumetrix Labs built for us exceeded all expectations. It's fast, beautiful, and our users love it. The cross-platform approach saved us months of development time.",
-        author: "Sarah Johnson",
-        role: "CEO", 
-        company: "WellnessPath"
-      }
-    ],
+    relatedProjects: ["skill-x-swap-mvp"],
     seo: {
-      title: "Mobile App Development Services | React Native, iOS, Android | Cross-Platform Apps | Zumetrix Labs",
-      description: "Expert mobile app development services using React Native, Swift, and Kotlin. Build cross-platform mobile apps that feel native and perform flawlessly on iOS and Android.",
+      title: "Mobile App Development Services | Zumetrix Labs",
+      description: "Build polished iOS and Android apps with React Native, Expo, Flutter, or native tools, from product flow through store deployment.",
       keywords: "mobile app development, React Native development, iOS app development, Android app development, cross-platform app development, mobile app development services, app development company"
     }
   },
@@ -276,18 +246,10 @@ export const services: Service[] = [
       "Scalable foundation designed for long-term product growth",
       "Cleaner onboarding paths for faster user understanding"
     ],
-    relatedProjects: ["taskflow-startup-mvp", "ifyify-ai-personal-branding"],
-    testimonials: [
-      {
-        quote: "Zumetrix Labs helped us validate our concept and build an MVP that gave our team a clear product foundation to present, test, and improve.",
-        author: "Michael Chen",
-        role: "Founder",
-        company: "TaskFlow"
-      }
-    ],
+    relatedProjects: ["skill-x-swap-mvp"],
     seo: {
-      title: "Startup MVP Development Services | Validate Ideas & Launch Faster | React, Firebase | Zumetrix Labs",
-      description: "Build market-ready startup MVPs in 4-8 weeks. Expert MVP development services helping entrepreneurs validate ideas, attract users, and launch focused products with React and Firebase.",
+      title: "Startup MVP Development Services | Zumetrix Labs",
+      description: "Turn a startup idea into a focused, testable MVP with clear scope, rapid prototyping, weekly demos, and launch-ready product foundations.",
       keywords: "startup MVP development, MVP development services, startup development agency, validate business idea, rapid prototyping, lean startup development, MVP builder"
     }
   },
@@ -314,7 +276,7 @@ export const services: Service[] = [
     technologies: ["OpenAI", "ChatGPT API", "Python", "Node.js", "LangChain", "Zapier", "Make.com", "n8n", "Airtable", "Google Sheets", "HubSpot", "Slack", "Webhook APIs", "AWS Lambda", "Supabase", "MongoDB", "Vector Search", "Document AI"],
     price: "From $2,500",
     popular: true,
-    image: "/services_images/Ai.jpg",
+    image: "/services_images/ai-automation.jpg",
     methodology: [
       "Process Analysis & Automation Opportunity Assessment",
       "Workflow Design & Automation Architecture Planning",
@@ -339,18 +301,10 @@ export const services: Service[] = [
       "Clearer business insights through automated reporting",
       "Reliable background workflows for recurring tasks"
     ],
-    relatedProjects: ["retailops-automation-platform"],
-    testimonials: [
-      {
-        quote: "The automation solutions from Zumetrix Labs made our operations cleaner, easier to track, and much less dependent on repetitive manual work.",
-        author: "James Mitchell",
-        role: "Operations Director",
-        company: "RetailOps Enterprise"
-      }
-    ],
+    relatedProjects: ["floating-stone-ranch-processor-intake-engine"],
     seo: {
-      title: "AI Automation Services | Business Process Automation | OpenAI Integration | Zapier, Make.com | Zumetrix Labs",
-      description: "Transform your business with AI automation services. Expert OpenAI integration, workflow automation, and business process optimization using Zapier, Make.com, and custom solutions.",
+      title: "AI Automation Services for Business | Zumetrix Labs",
+      description: "Automate repeatable business workflows with OpenAI, n8n, Make.com, Zapier, Airtable, APIs, and custom software built around your operations.",
       keywords: "AI automation services, business process automation, OpenAI integration, workflow automation, Zapier automation, Make.com automation, no-code automation, business automation solutions"
     }
   },
@@ -403,17 +357,9 @@ export const services: Service[] = [
       "Improved team productivity and technical capabilities"
     ],
     relatedProjects: [],
-    testimonials: [
-      {
-        quote: "The strategic guidance from Zumetrix Labs was invaluable. They helped us avoid costly mistakes and build a technology foundation that scales with our business.",
-        author: "David Wilson",
-        role: "CEO",
-        company: "GrowthTech Solutions"
-      }
-    ],
     seo: {
-      title: "Digital Strategy & Technical Consulting Services | CTO Advisory | Technology Roadmap | Zumetrix Labs",
-      description: "Expert digital strategy and technical consulting services. Get strategic guidance on technology decisions, architecture planning, and growth strategy from experienced technical founders.",
+      title: "Technical Strategy Consulting | Zumetrix Labs",
+      description: "Get founder-led guidance on product scope, software architecture, technology choices, technical audits, and practical delivery roadmaps.",
       keywords: "digital strategy consulting, technical consulting services, CTO advisory, technology roadmap, digital transformation consulting, startup technical advisor, enterprise technology strategy"
     }
   }

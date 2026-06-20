@@ -49,6 +49,7 @@ function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isReviewRoute = location.pathname === '/review';
+  const isUtilityRoute = ['/contact', '/privacy-policy', '/terms-of-service', '/unsubscribe'].includes(location.pathname);
   const isNotFoundRoute = !([
     '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
     '/articles', '/privacy-policy', '/terms-of-service', '/review',
@@ -60,8 +61,8 @@ function App() {
     location.pathname.startsWith('/admin'));
 
   useEffect(() => {
-    // Smooth scrolling for the entire page
-    document.documentElement.style.scrollBehavior = "smooth";
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.documentElement.style.scrollBehavior = reduceMotion ? "auto" : "smooth";
 
     return () => {
       document.documentElement.style.scrollBehavior = "auto";
@@ -69,7 +70,10 @@ function App() {
   }, []);
 
   return (
-    <div className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden">
+    <div
+      className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden"
+      style={{ paddingBottom: "var(--sticky-cta-height, 0px)" }}
+    >
       <ScrollToTop />
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Navigation />}
       <Suspense fallback={<LoadingFallback />}>
@@ -130,7 +134,7 @@ function App() {
       </Suspense>
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Footer />}
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <BackToTop />}
-      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <StickyCTABar />}
+      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && !isUtilityRoute && <StickyCTABar />}
     </div>
   );
 }

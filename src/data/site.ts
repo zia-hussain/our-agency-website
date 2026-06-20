@@ -30,8 +30,8 @@ export const SITE_DATA = {
     proofPoints: [
       { icon: "star", text: "5.0 rating" },
       { icon: "projects", text: "50+ projects" },
-      { icon: "reviews", text: "100% 5-star reviews" },
-      { icon: "speed", text: "<30d MVP delivery" },
+      { icon: "reviews", text: "Top Rated on Upwork" },
+      { icon: "speed", text: "4-8 week MVP delivery" },
     ],
     mockups: [
       "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -77,40 +77,22 @@ export const SITE_DATA = {
     ],
     clients: [
       {
-        name: "Best Business Services",
-        country: "United States",
-        industry: "AI & Business Tools",
-        project: "AI Personal Branding Platform",
+        name: "Forlag",
+        country: "Norway",
+        industry: "Publishing & Book Sales",
+        project: "Sales & Inventory Dashboard",
       },
       {
-        name: "WellnessPath Technologies",
+        name: "Floating Stone Ranch",
         country: "Canada",
-        industry: "Healthcare & Wellness",
-        project: "Mobile Health Tracking App",
+        industry: "Beef Processing & Logistics",
+        project: "Processor Intake & Logistics Automation",
       },
       {
-        name: "RetailOps Enterprise",
+        name: "Skill x Swap",
         country: "United Kingdom",
-        industry: "E-commerce & Retail",
-        project: "Automation Platform",
-      },
-      {
-        name: "TaskFlow Solutions",
-        country: "Australia",
-        industry: "Productivity Software",
-        project: "Project Management MVP",
-      },
-      {
-        name: "EduTech Institute",
-        country: "Singapore",
-        industry: "Education Technology",
-        project: "Online Learning Platform",
-      },
-      {
-        name: "LogiCorp International",
-        country: "UAE",
-        industry: "Logistics & Supply Chain",
-        project: "Smart Delivery System",
+        industry: "EdTech & Skill Sharing",
+        project: "Credit-Based Marketplace MVP",
       },
     ],
   },
@@ -126,10 +108,10 @@ export const SITE_DATA = {
         icon: "rocket",
         title: "SaaS MVP Development",
         oneLiner:
-          "Launch your SaaS product in 30 days with enterprise-grade architecture",
+          "Launch a focused SaaS product in 4-8 weeks with a foundation built to grow",
         description:
           "Transform your business idea into a production-ready SaaS platform using React, Node.js, and Firebase. Complete with user authentication, payment processing, and real-time features.",
-        pricing: "Starting at $4,999",
+        pricing: "Starting at $4,800",
         timeline: "4-8 weeks",
         popular: true,
         bullets: [
@@ -147,8 +129,8 @@ export const SITE_DATA = {
         oneLiner:
           "Automate business processes and scale operations intelligently",
         description:
-          "Streamline your operations with custom AI workflows, OpenAI integration, and no-code automation solutions that reduce manual work by 70%.",
-        pricing: "Starting at $5,200",
+          "Streamline recurring work with custom AI workflows, OpenAI integration, and practical no-code automation.",
+        pricing: "Starting at $2,500",
         timeline: "2-6 weeks",
         popular: false,
         bullets: [
@@ -167,7 +149,7 @@ export const SITE_DATA = {
           "Cross-platform applications that feel native and perform flawlessly",
         description:
           "Build responsive web applications and cross-platform mobile apps using React Native and modern web technologies for global audiences.",
-        pricing: "Starting at $8,000",
+        pricing: "Starting at $5,500",
         timeline: "6-12 weeks",
         popular: false,
         bullets: [
@@ -396,7 +378,7 @@ export const SITE_DATA = {
     projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "50+",
     happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "25+",
     yearsExperience: import.meta.env.VITE_YEARS_EXPERIENCE || "3+",
-    successRate: import.meta.env.VITE_SUCCESS_RATE || "Top Rated",
+    successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
     avgMVPTime: "Scope dependent",
     fundingSuccess: "Not claimed",
     clientSatisfaction: "Project references available",
@@ -429,9 +411,9 @@ export const SITE_DATA = {
         icon: 'briefcase'
       },
       {
-        value: 'Top Rated',
-        label: 'On Upwork',
-        subtext: '100% Job Success',
+        value: '100%',
+        label: 'Job Success',
+        subtext: 'On Upwork',
         icon: 'star'
       }
     ],
@@ -452,14 +434,14 @@ export const SITE_DATA = {
     badge: 'Free Download',
     title: 'Get Your Free',
     highlight: '30-Day SaaS MVP Blueprint',
-    description: 'Download our comprehensive guide: The exact process we use to build production-ready MVPs in 30 days. Includes timeline breakdown, tech stack recommendations, feature prioritization framework, and launch checklist.',
+    description: 'A practical planning guide for moving from an idea to a focused first release, with a 30-day framework, stack guidance, feature prioritization, and a launch checklist.',
     features: [
       { title: 'Step-by-Step Process', desc: 'From idea to launch' },
       { title: 'Tech Stack Guide', desc: 'What to use & why' },
       { title: 'Launch Checklist', desc: 'Ready-to-use template' }
     ],
     bottomFeatures: [
-      '10-page PDF guide',
+      'PDF planning guide',
       'Proven frameworks',
       'Built from 50+ project lessons'
     ],

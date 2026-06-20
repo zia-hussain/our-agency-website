@@ -30,7 +30,13 @@ export default function UnsubscribePage() {
     <>
       <Helmet>
         <title>Email Preferences | Zumetrix Labs</title>
+        <meta
+          name="description"
+          content="Manage your Zumetrix Labs marketing email preferences."
+        />
         <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+        <link rel="canonical" href="https://zumetrix.com/unsubscribe" />
       </Helmet>
       <main className="flex min-h-screen items-center justify-center bg-background px-4 py-24">
         <div className="w-full max-w-xl rounded-lg border border-border bg-card/45 p-8 text-center sm:p-12">

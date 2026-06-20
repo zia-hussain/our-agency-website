@@ -38,6 +38,11 @@
       "source": "/services/ai-automation",
       "destination": "/services/ai-automation-solutions",
       "permanent": true
+    },
+    {
+      "source": "/services/web-application-development",
+      "destination": "/services/enterprise-web-applications",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -102,6 +107,10 @@
       "destination": "/portfolio/skill-x-swap-mvp/index.html"
     },
     {
+      "source": "/portfolio/:slug",
+      "destination": "/portfolio/:slug/index.html"
+    },
+    {
       "source": "/contact",
       "destination": "/contact/index.html"
     },
@@ -150,7 +159,23 @@
       "destination": "/unsubscribe/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/articles/:slug",
+      "destination": "/articles/:slug/index.html"
+    },
+    {
+      "source": "/services/:slug",
+      "destination": "/services/:slug/index.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/review",
       "destination": "/index.html"
     }
   ]

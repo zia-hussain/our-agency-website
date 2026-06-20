@@ -11,7 +11,7 @@ const PrivacyPolicyPage: React.FC = () => {
     <PageTransition>
       <SEO
         title="Privacy Policy | Zumetrix Labs - Data Protection & Privacy"
-        description="Learn how Zumetrix Labs protects your privacy and handles your personal data. Our comprehensive privacy policy explains our data collection, usage, and protection practices."
+        description="Learn how Zumetrix Labs collects, uses, stores, and protects personal data submitted through our website, forms, and email services."
         keywords="privacy policy, data protection, Zumetrix Labs privacy, personal data, GDPR compliance"
         url="https://zumetrix.com/privacy-policy"
       />

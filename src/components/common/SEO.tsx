@@ -11,10 +11,11 @@ interface SEOProps {
   googleVerification?: string;
   gaTagId?: string;
   structuredData?: object;
+  noIndex?: boolean;
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = "Zumetrix Labs | Forge Clear Ideas Into Shipped Software | SaaS MVPs, AI Automation, Mobile Apps",
+  title = "Zumetrix Labs | SaaS MVPs, Apps & AI Automation",
   description = "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners.",
   image = "https://zumetrix.com/logo/Logo%20Icon.png",
   url = "https://zumetrix.com",
@@ -22,7 +23,12 @@ const SEO: React.FC<SEOProps> = ({
   googleVerification,
   gaTagId,
   structuredData,
+  noIndex = false,
 }) => {
+  const robots = noIndex
+    ? "noindex, follow"
+    : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+
   return (
     <Helmet>
       <title>{title}</title>
@@ -32,11 +38,8 @@ const SEO: React.FC<SEOProps> = ({
         name="author"
         content="Zumetrix Labs"
       />
-      <meta
-        name="robots"
-        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-      />
-      <meta name="googlebot" content="index, follow" />
+      <meta name="robots" content={robots} />
+      <meta name="googlebot" content={noIndex ? "noindex, follow" : "index, follow"} />
 
       {googleVerification && (
         <meta name="google-site-verification" content={googleVerification} />

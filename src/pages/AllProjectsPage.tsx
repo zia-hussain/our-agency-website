@@ -24,10 +24,11 @@ const AllProjectsPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="All Projects | Complete Portfolio | Zumetrix Labs"
-        description="Browse all Zumetrix Labs software development projects. Filter by category to see SaaS applications, mobile apps, enterprise solutions, and startup MVPs."
+        title="Project Archive | Zumetrix Labs"
+        description="Browse the wider Zumetrix Labs build archive across SaaS, mobile applications, automation, internal systems, and product concepts."
         keywords="all projects portfolio, software development projects, SaaS projects, mobile app projects, enterprise solutions, MVP development"
         url="https://zumetrix.com/portfolio/all"
+        noIndex
       />
 
       {/* Breadcrumbs */}
@@ -72,8 +73,8 @@ const AllProjectsPage: React.FC = () => {
             </h1>
 
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-              Explore our complete portfolio of successful software development projects
-              for international clients across various industries and technologies.
+              Explore a wider archive of client work, internal systems, and product
+              concepts across industries and technologies.
             </p>
           </AnimatedSection>
         </div>

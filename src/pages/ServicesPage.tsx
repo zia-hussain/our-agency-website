@@ -183,8 +183,8 @@ const ServicesPage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Software Development Services | Forge Clear Ideas Into Shipped Software | Zumetrix Labs"
-        description="Forge Clear Ideas Into Shipped Software. Explore Zumetrix Labs services for SaaS MVP development, React/Node.js applications, mobile apps, and AI automation."
+        title="Software Development Services | Zumetrix Labs"
+        description="Explore founder-led SaaS MVP, web application, mobile app, AI automation, and technical strategy services from Zumetrix Labs."
         keywords="software development services, SaaS MVP development, React development, mobile app development, AI automation, custom software"
         url="https://zumetrix.com/services"
         structuredData={structuredData}

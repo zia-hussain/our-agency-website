@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@!%&';
 
@@ -49,7 +50,17 @@ export default function NotFoundPage() {
   const path = location.pathname;
 
   return (
-    <div className="relative min-h-screen bg-[#0C0C0C] overflow-hidden flex flex-col">
+    <>
+      <Helmet>
+        <title>Page Not Found | Zumetrix Labs</title>
+        <meta
+          name="description"
+          content="The requested page could not be found. Explore Zumetrix Labs services, case studies, articles, or contact the team."
+        />
+        <meta name="robots" content="noindex, follow" />
+        <meta name="googlebot" content="noindex, follow" />
+      </Helmet>
+      <div className="relative min-h-screen bg-[#0C0C0C] overflow-hidden flex flex-col">
 
       {/* Subtle beige radial glow top-left */}
       <div
@@ -230,6 +241,7 @@ export default function NotFoundPage() {
           ZUMETRIX LABS · ERR_ROUTE_NOT_FOUND · {new Date().getFullYear()}
         </p>
       </motion.div>
-    </div>
+      </div>
+    </>
   );
 }

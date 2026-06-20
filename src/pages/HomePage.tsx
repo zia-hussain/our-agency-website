@@ -93,7 +93,7 @@ const HomePage: React.FC = () => {
       <SEO
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Zumetrix Labs | Forge Clear Ideas Into Shipped Software | SaaS MVP, React, AI Automation"
+        title="Zumetrix Labs | SaaS MVPs, Apps & AI Automation"
         description="Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, mobile apps, and AI automation for founders who need thinking partners, not order-takers."
         structuredData={structuredData}
       />

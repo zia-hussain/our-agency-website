@@ -24,6 +24,23 @@ const routes = [
   "/portfolio/forlag-publishing-sales-inventory-dashboard",
   "/portfolio/floating-stone-ranch-processor-intake-engine",
   "/portfolio/skill-x-swap-mvp",
+  "/portfolio/ifyify-ai-personal-branding",
+  "/portfolio/wellnesstracker-mobile-app",
+  "/portfolio/retailops-automation-platform",
+  "/portfolio/taskflow-startup-mvp",
+  "/portfolio/eduplatform-online-learning",
+  "/portfolio/logitrack-delivery-mobile",
+  "/portfolio/tomo-voice-ai-companion",
+  "/portfolio/hjelpna-handyman-marketplace",
+  "/portfolio/utility-bill-deal-finder",
+  "/portfolio/pawspace-pet-services-marketplace",
+  "/portfolio/bondfire-event-booking-app",
+  "/portfolio/hostel-management-system-mern",
+  "/portfolio/stripe-to-airtable-subscription-sync",
+  "/portfolio/shopify-to-notion-pnl-automation",
+  "/portfolio/twilio-auto-dialer-logic",
+  "/portfolio/twilio-conference-call-logic",
+  "/portfolio/zumetrix-labs-internal-automation-stack",
   "/contact",
   "/articles",
   "/articles/what-we-learned-building-50-projects",
@@ -58,5 +75,14 @@ for (const route of routes) {
   await writeFile(target, document);
 }
 
+const notFound = await render("/404");
+const notFoundDocument = shell
+  .replace(
+    /<!-- route-meta:start -->[\s\S]*?<!-- route-meta:end -->/,
+    `<!-- route-meta:start -->\n    ${notFound.head}\n    <!-- route-meta:end -->`,
+  )
+  .replace('<div id="root"></div>', `<div id="root">${notFound.html}</div>`);
+await writeFile(join(dist, "404.html"), notFoundDocument);
+
 await rm(join(dist, "server"), { recursive: true, force: true });
-console.log(`Pre-rendered ${routes.length} public routes with their existing page metadata.`);
+console.log(`Pre-rendered ${routes.length} public routes plus the noindex 404 page.`);

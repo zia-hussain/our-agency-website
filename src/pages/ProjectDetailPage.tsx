@@ -83,12 +83,13 @@ const ProjectDetailPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title={`${project.title} - Case Study | Zumetrix Labs Portfolio`}
+        title={`${project.title.split("–")[0].trim()} Case Study | Zumetrix Labs`}
         description={project.description}
         keywords={`${project.tags.join(", ")}, case study, portfolio, ${project.client.country}`}
         image={shareImage}
         url={pageUrl}
         structuredData={structuredData}
+        noIndex={!project.homepageFeatured}
       />
 
       {/* Breadcrumbs */}

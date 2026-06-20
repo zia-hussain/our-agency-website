@@ -91,7 +91,7 @@ const values = [
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="About Zumetrix Labs | Forge Clear Ideas Into Shipped Software"
-        description="Forge Clear Ideas Into Shipped Software. Meet Zia Hussain and Syed Omer Shah, the technical founders behind Zumetrix Labs and 50+ shipped SaaS, AI automation, and mobile app projects."
+        description="Meet Zia Hussain and Syed Omer Shah, the technical founders behind Zumetrix Labs and 50+ SaaS, automation, web, and mobile projects."
         keywords="Zia Hussain, Syed Omer Shah, software development agency, SaaS MVP development, React development, AI automation"
         url="https://zumetrix.com/about"
       />
@@ -176,9 +176,9 @@ const values = [
                 </div>
               </div>
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
-                <div className="text-3xl font-bold text-primary mb-2">Top Rated</div>
+                <div className="text-3xl font-bold text-primary mb-2">100%</div>
                 <div className="text-sm text-muted-foreground">
-                  Upwork Profile
+                  Upwork Job Success Score
                 </div>
               </div>
             </div>
