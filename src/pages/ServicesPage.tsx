@@ -132,8 +132,18 @@ const ServicesPage: React.FC = () => {
           })),
         },
       },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://zumetrix.com/services#webpage",
+        url: "https://zumetrix.com/services",
+        name: "Software Development Services",
+        isPartOf: { "@id": "https://zumetrix.com/#website" },
+        about: { "@id": "https://zumetrix.com/#organization" },
+      },
       ...services.map((service) => ({
         "@type": "Service",
+        "@id": `https://zumetrix.com/services/${service.slug}#service`,
+        url: `https://zumetrix.com/services/${service.slug}`,
         name: service.title,
         description: service.description,
         provider: {
@@ -175,6 +185,23 @@ const ServicesPage: React.FC = () => {
         ],
         serviceType: service.technologies,
       })),
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://zumetrix.com/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Software Development Services",
+            item: "https://zumetrix.com/services",
+          },
+        ],
+      },
     ],
   };
 
@@ -194,23 +221,23 @@ const ServicesPage: React.FC = () => {
       <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
-            <motion.div 
+            <motion.h1
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
-                            <Rocket size={16} className="mr-2" />
+              <Rocket size={16} className="mr-2" />
 
               Software Development Services
-            </motion.div>
+            </motion.h1>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Services Built for Founders
               <span className="block bg-shimmer bg-clip-text text-transparent">
                 Who Need Thinking Partners
               </span>
-            </h1>
+            </h2>
 
             <div className="max-w-5xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
@@ -307,7 +334,7 @@ const ServicesPage: React.FC = () => {
                           to={`/services/${service.slug}`}
                           className="inline-flex min-w-[170px] items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border bg-background/55 px-5 py-3 text-sm font-semibold text-foreground transition-all duration-200 hover:border-primary/35 hover:bg-primary/10 hover:text-primary"
                         >
-                          Explore Service
+                          Explore {service.title}
                           <ArrowRight size={16} />
                         </Link>
                       </div>

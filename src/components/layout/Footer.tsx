@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
       { name: "Zia Hussain", path: "/founders/zia-hussain" },
       { name: "Syed Omer Shah", path: "/founders/syed-omer-shah" },
       { name: "Services", path: "/services" },
-      { name: "Portfolio", path: "/portfolio" },
+      { name: "Case Studies", path: "/portfolio" },
       { name: "Contact", path: "/contact" },
       { name: "Articles", path: "/articles" },
     ],
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
       { name: "SaaS MVP Development", path: "/services/saas-mvp-development" },
       { name: "Mobile Apps", path: "/services/mobile-app-development" },
       { name: "Startup MVPs", path: "/services/startup-mvp-development" },
-      { name: "Automation Solutions", path: "/services/ai-automation-solutions" },
+      { name: "AI Automation Solutions", path: "/services/ai-automation-solutions" },
       { name: "Digital Strategy", path: "/services/digital-strategy-consulting" },
     ],
     contact: [

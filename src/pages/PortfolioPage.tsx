@@ -36,24 +36,46 @@ const PortfolioPage: React.FC = () => {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "Zumetrix Labs Portfolio - Software Development Projects",
-    description: "Explore our portfolio of successful software development projects including SaaS applications, mobile apps, enterprise solutions, and startup MVPs for international clients.",
-    url: "https://zumetrix.com/portfolio",
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: featuredProjects.map((project, index) => ({
-        "@type": "CreativeWork",
-        position: index + 1,
-        name: project.title,
-        description: project.description,
-        image: project.image,
-        creator: {
-          "@type": "Organization",
-          name: "Zumetrix Labs"
-        }
-      }))
-    }
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://zumetrix.com/portfolio#webpage",
+        name: "Software Development Case Studies",
+        description: "Explore our portfolio of successful software development projects including SaaS applications, mobile apps, enterprise solutions, and startup MVPs for international clients.",
+        url: "https://zumetrix.com/portfolio",
+        isPartOf: { "@id": "https://zumetrix.com/#website" },
+        about: { "@id": "https://zumetrix.com/#organization" },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: featuredProjects.map((project, index) => ({
+            "@type": "CreativeWork",
+            position: index + 1,
+            name: project.title,
+            description: project.description,
+            image: project.image,
+            url: `https://zumetrix.com/portfolio/${project.slug}`,
+            creator: { "@id": "https://zumetrix.com/#organization" },
+          })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://zumetrix.com/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Software Development Case Studies",
+            item: "https://zumetrix.com/portfolio",
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -72,22 +94,22 @@ const PortfolioPage: React.FC = () => {
       <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
-            <motion.div
+            <motion.h1
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
               <Eye size={16} className="mr-2" />
-              Featured Projects
-            </motion.div>
+              Software Development Case Studies
+            </motion.h1>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+            <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Portfolio of 
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Excellence
               </span>
-            </h1>
+            </h2>
 
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
               Discover how we've helped businesses transform their ideas into

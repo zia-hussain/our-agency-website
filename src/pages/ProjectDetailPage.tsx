@@ -23,6 +23,35 @@ import {
 import { getProjectBySlug } from "../data/projects";
 import TestimonialCarousel from "../components/common/TestimonialCarousel";
 
+const getServiceUrl = (serviceName: string) => {
+  const normalized = serviceName.toLowerCase();
+
+  if (normalized.includes("mobile")) {
+    return "/services/mobile-app-development";
+  }
+
+  if (
+    normalized.includes("automation") ||
+    normalized.includes("airtable") ||
+    normalized.includes("workflow") ||
+    normalized.includes("no-code") ||
+    normalized.includes("process")
+  ) {
+    return "/services/ai-automation-solutions";
+  }
+
+  if (
+    normalized.includes("mvp") ||
+    normalized.includes("saas") ||
+    normalized.includes("product consultation") ||
+    normalized.includes("rapid prototyping")
+  ) {
+    return "/services/saas-mvp-development";
+  }
+
+  return "/services/enterprise-web-applications";
+};
+
 const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? getProjectBySlug(slug) : null;
@@ -61,23 +90,54 @@ const ProjectDetailPage: React.FC = () => {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: project.title,
-    description: project.description,
-    image: shareImage,
-    url: pageUrl,
-    creator: {
-      "@type": "Organization",
-      name: "Zumetrix Labs",
-      url: "https://zumetrix.com"
-    },
-    dateCreated: project.year,
-    keywords: project.tags.join(", "),
-    client: {
-      "@type": "Organization",
-      name: project.client.name,
-      location: project.client.country
-    }
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "@id": `${pageUrl}#case-study`,
+        name: project.title,
+        description: project.description,
+        image: shareImage,
+        url: pageUrl,
+        creator: {
+          "@id": "https://zumetrix.com/#organization",
+        },
+        dateCreated: project.year,
+        keywords: project.tags.join(", "),
+        about: project.services.map((serviceName) => ({
+          "@type": "Service",
+          name: serviceName,
+          url: `https://zumetrix.com${getServiceUrl(serviceName)}`,
+        })),
+        client: {
+          "@type": "Organization",
+          name: project.client.name,
+          location: project.client.country,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://zumetrix.com/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Software Development Case Studies",
+            item: "https://zumetrix.com/portfolio",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: project.title,
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -377,10 +437,16 @@ const ProjectDetailPage: React.FC = () => {
               </h3>
               <div className="space-y-3">
                 {project.services.map((service) => (
-                  <div key={service} className="flex items-center gap-3">
+                  <Link
+                    key={service}
+                    to={getServiceUrl(service)}
+                    className="group flex items-center gap-3"
+                  >
                     <CheckCircle size={16} className="text-primary" />
-                    <span className="text-muted-foreground">{service}</span>
-                  </div>
+                    <span className="text-muted-foreground transition-colors duration-150 group-hover:text-primary">
+                      {service}
+                    </span>
+                  </Link>
                 ))}
               </div>
             </AnimatedSection>

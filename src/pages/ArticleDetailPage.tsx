@@ -198,8 +198,59 @@ const ArticleDetailPage: React.FC = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": faqStructuredData
-      ? [articleStructuredData, faqStructuredData]
-      : [articleStructuredData],
+      ? [
+          articleStructuredData,
+          faqStructuredData,
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://zumetrix.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Software Articles",
+                item: "https://zumetrix.com/articles",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: article.title,
+                item: `https://zumetrix.com/articles/${article.slug}`,
+              },
+            ],
+          },
+        ]
+      : [
+          articleStructuredData,
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://zumetrix.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Software Articles",
+                item: "https://zumetrix.com/articles",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: article.title,
+                item: `https://zumetrix.com/articles/${article.slug}`,
+              },
+            ],
+          },
+        ],
   };
 
   return (

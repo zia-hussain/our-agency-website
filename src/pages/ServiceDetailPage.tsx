@@ -70,17 +70,43 @@ const ServiceDetailPage: React.FC = () => {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.title,
-    description: service.description,
-    url: pageUrl,
-    provider: {
-      "@type": "Organization",
-      name: "Zumetrix Labs",
-      url: "https://zumetrix.com"
-    },
-    serviceType: service.technologies,
-    areaServed: "Worldwide",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `${pageUrl}#service`,
+        name: service.title,
+        description: service.description,
+        url: pageUrl,
+        provider: {
+          "@id": "https://zumetrix.com/#organization",
+        },
+        serviceType: service.technologies,
+        areaServed: "Worldwide",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://zumetrix.com/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Software Development Services",
+            item: "https://zumetrix.com/services",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: service.title,
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (

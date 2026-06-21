@@ -85,6 +85,37 @@ const values = [
     },
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://zumetrix.com/about#webpage",
+        url: "https://zumetrix.com/about",
+        name: "About Zumetrix Labs",
+        isPartOf: { "@id": "https://zumetrix.com/#website" },
+        about: { "@id": "https://zumetrix.com/#organization" },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://zumetrix.com/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "About Zumetrix Labs",
+            item: "https://zumetrix.com/about",
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <PageTransition>
       <SEO
@@ -94,6 +125,7 @@ const values = [
         description="Meet Zia Hussain and Syed Omer Shah, the technical founders behind Zumetrix Labs and 50+ SaaS, automation, web, and mobile projects."
         keywords="Zia Hussain, Syed Omer Shah, software development agency, SaaS MVP development, React development, AI automation"
         url="https://zumetrix.com/about"
+        structuredData={structuredData}
       />
 
       {/* Hero Section */}
@@ -108,22 +140,22 @@ const values = [
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center">
-            <motion.div
+            <motion.h1
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
             <BookOpen size={16} className="mr-2" />
-              Our Story
-            </motion.div>
+              About Zumetrix Labs
+            </motion.h1>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               Built on
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Vision & Values
               </span>
-            </h1>
+            </h2>
 
             {/* ✅ SEO RICH CONTENT */}
             <div className="max-w-4xl mx-auto">
