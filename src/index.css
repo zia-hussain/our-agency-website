@@ -54,6 +54,7 @@ img {
 }
 
 .performance-defer {
+  /* Use only on whole below-fold sections, never on hoverable card groups. */
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }

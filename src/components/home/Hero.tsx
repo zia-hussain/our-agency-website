@@ -212,7 +212,7 @@ const Hero: React.FC = () => {
             whileInView="show"
             variants={keyDiffContainer}
             viewport={{ once: true, amount: 0.4 }}
-            className="performance-defer w-full max-w-5xl mx-auto px-4 sm:px-0 cursor-default"
+            className="w-full max-w-5xl mx-auto px-4 sm:px-0 cursor-default"
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
               {stats.map((item) => (
