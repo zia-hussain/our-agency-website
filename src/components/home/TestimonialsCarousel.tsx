@@ -73,7 +73,7 @@ const TestimonialsCarousel: React.FC = () => {
   if (!testimonials.length) return null;
 
   return (
-    <section className="relative overflow-hidden border-y border-border/50 bg-background py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-background py-24 lg:py-28">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

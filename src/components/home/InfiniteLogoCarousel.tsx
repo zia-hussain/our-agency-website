@@ -83,7 +83,7 @@ const InfiniteLogoCarousel: React.FC = () => {
   if (!logos.length) return null;
 
   return (
-    <section className="py-20 bg-background relative overflow-hidden border-t border-b border-zinc-800/50">
+    <section className="py-20 bg-background relative overflow-hidden">
       {/* Ambient background */}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

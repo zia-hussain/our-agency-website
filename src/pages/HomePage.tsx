@@ -14,6 +14,7 @@ import LeadMagnet from "../components/home/LeadMagnet";
 import FAQ from "../components/home/FAQ";
 import FinalCTA from "../components/home/FinalCTA";
 import AIROICalculator from "../components/home/AIROICalculator";
+import SectionDivider from "../components/common/SectionDivider";
 import { BRAND_CONTENT } from "../config/content";
 import { SITE_CONFIG } from "../config/site";
 
@@ -98,17 +99,29 @@ const HomePage: React.FC = () => {
         structuredData={structuredData}
       />
       <Hero />
+      <SectionDivider />
       <div className="performance-defer"><InfiniteLogoCarousel /></div>
+      <SectionDivider />
       <div className="performance-defer"><TrustBand /></div>
+      <SectionDivider />
       <div className="performance-defer"><ServicesPreview /></div>
+      <SectionDivider />
       <div className="performance-defer"><FeaturedCaseStudies /></div>
+      <SectionDivider />
       <div className="performance-defer"><SignatureMethod /></div>
+      <SectionDivider />
       <div className="performance-defer"><FoundersStrip /></div>
+      <SectionDivider />
       <div className="performance-defer"><TestimonialsCarousel /></div>
+      <SectionDivider />
       <div className="performance-defer"><AIROICalculator /></div>
+      <SectionDivider />
       <div className="performance-defer"><TechStack /></div>
+      <SectionDivider />
       <div className="performance-defer"><LeadMagnet /></div>
+      <SectionDivider />
       <div className="performance-defer"><FAQ /></div>
+      <SectionDivider />
       <div className="performance-defer"><FinalCTA /></div>
     </PageTransition>
   );

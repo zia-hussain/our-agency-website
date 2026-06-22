@@ -106,7 +106,7 @@ const AIROICalculator: React.FC = () => {
   };
 
   return (
-    <section className="py-16 lg:py-20 bg-card/20 border-y border-border">
+    <section className="py-16 lg:py-20 bg-card/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
