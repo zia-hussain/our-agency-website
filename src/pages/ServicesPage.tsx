@@ -115,7 +115,7 @@ const ServicesPage: React.FC = () => {
         name: "Zumetrix Labs",
         url: "https://zumetrix.com",
         description:
-          "Zumetrix Labs provides software development services specializing in SaaS MVP development, React/Node.js applications, AI automation, mobile app development, and custom software. Top Rated on Upwork.",
+          "Zumetrix Labs provides software development services specializing in SaaS MVP development, React/Node.js applications, AI automation, mobile app development, and custom software.",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Software Development Services",
@@ -241,10 +241,10 @@ const ServicesPage: React.FC = () => {
 
             <div className="max-w-5xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                We build <strong>SaaS MVPs</strong>, <strong>mobile apps</strong>, and <strong>AI automation</strong> for founders who've done their customer research and know what problem they're solving. 50+ projects delivered over 3 years, most launched in 4-8 weeks.
+                We build <strong>SaaS MVPs</strong>, <strong>mobile apps</strong>, and <strong>AI automation</strong> for founders who've done their customer research and know what problem they're solving. 80+ projects delivered, most launched in 4-8 weeks.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Founded by <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>. Top Rated on Upwork with 100% Job Success Score. Serving clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>. We use React, Next.js, TypeScript, Node.js, Firebase, and Supabase to build maintainable systems that scale.
+                Founded by <strong>Zia Hussain</strong> and <strong>Omer Gillani</strong>. Serving clients across the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>. We use React, Next.js, TypeScript, Node.js, Firebase, and Supabase to build maintainable systems that scale.
               </p>
             </div>
           </AnimatedSection>

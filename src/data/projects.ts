@@ -17,14 +17,83 @@ export interface Project {
     country: string;
     industry: string;
   };
+  // Overrides the "Client" label on the case-study page — e.g. "Product" when
+  // the named entity is the product itself, or "Engagement Type" when the
+  // client identity is withheld and there's no name to attach a label to.
+  clientLabel?: string;
   duration: string;
   team: string;
   year: string;
   featured: boolean;
   homepageFeatured?: boolean;
+  visibility?: "private-proof" | "anonymous-public" | "public-seo";
+  proofStatus?: "draft" | "client-approved" | "verified";
+  heroOutcome?: string;
+  snapshot?: string;
+  proofPoints?: {
+    label: string;
+    value: string;
+    description?: string;
+    confidence?: "measured" | "client-confirmed" | "delivered" | "expected";
+  }[];
+  beforeAfter?: {
+    before?: string;
+    build?: string;
+    after?: string;
+  };
+  media?: {
+    type: "image" | "workflow" | "walkthrough" | "testimonial-video";
+    src: string;
+    title: string;
+    caption?: string;
+    privacy?: "public" | "private";
+  }[];
   results: string[];
   problem: string;
   solution: string;
+  walkthroughVideo?: {
+    title: string;
+    url: string;
+    provider?: "loom" | "youtube" | "vimeo" | "direct";
+    description?: string;
+  };
+  videoTestimonial?: {
+    title: string;
+    url: string;
+    provider?: "loom" | "youtube" | "vimeo" | "direct";
+    description?: string;
+  };
+  screenshots?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  }[];
+  workflowImages?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  }[];
+  caseStudy?: {
+    situation?: string;
+    problem?: string;
+    built?: string[];
+    workflow?: {
+      step: string;
+      title: string;
+      description: string;
+    }[];
+    decisions?: {
+      title: string;
+      description: string;
+    }[];
+    results?: {
+      title: string;
+      description: string;
+      confidence?: "measured" | "client-confirmed" | "delivered" | "expected";
+    }[];
+    proofNotes?: string[];
+    ctaAngle?: string;
+  };
   testimonial?: {
     quote: string;
     author: string;
@@ -49,7 +118,7 @@ export const projects: Project[] = [
     category: "Web Application",
     type: "saas",
     description: "A sophisticated React-based AI platform that helps users craft professional bios, taglines, and brand personas using custom-built prompt flows and style selectors.",
-    longDescription: "Ifyify represents the cutting edge of AI-driven personal branding technology. Built from the ground up with React, TailwindCSS, Supabase, and OpenAI integration, this platform revolutionizes how professionals create their personal brand content. The system features beautifully animated style selector interfaces, intelligent prompt-based generation flows, and comprehensive multi-step user onboarding experiences. Our development team implemented advanced AI workflow automation, secure authentication systems, and scalable cloud architecture to support rapid user growth and feature expansion.",
+    longDescription: "Ifyify is an AI-powered personal branding platform built with React, TailwindCSS, Supabase, and OpenAI integration. It helps professionals generate bios, taglines, and brand personas through a guided, prompt-based flow. The build included animated style-selector interfaces, a multi-step onboarding experience, OpenAI-driven generation logic, authentication, and a Supabase backend structured for future feature expansion.",
     image: "/project_images/Ifyify.jpg",
     gallery: [
       "/project_images/Ifyify.jpg",
@@ -86,231 +155,6 @@ export const projects: Project[] = [
       { label: "AI Response Time", value: "<2s", description: "Average generation speed" },
       { label: "Client Approval", value: "Strong", description: "Positive delivery feedback" },
       { label: "Code Quality", value: "Clean", description: "Maintainable architecture" }
-    ]
-  },
-  {
-    id: 2,
-    slug: "wellnesstracker-mobile-app",
-    title: "WellnessTracker - Comprehensive Health & Fitness Mobile App",
-    category: "Mobile Application",
-    type: "mobile",
-    description: "An intuitive health and wellness tracking application with personalized AI insights, goal management, social features, and seamless device integrations for motivation and progress tracking.",
-    longDescription: "WellnessTracker Mobile represents the future of personal health management technology. This comprehensive React Native application empowers users to take complete control of their wellness journey through advanced health tracking capabilities, AI-powered personalized insights, engaging social challenges, and seamless integration with popular fitness devices and wearables. Built with scalable architecture to support millions of users, the app features real-time data synchronization, offline capabilities, push notifications, and sophisticated analytics dashboards for both users and healthcare providers.",
-    image: "/project_images/welnesspath.jpg",
-    gallery: [
-      "/project_images/welnesspath.jpg",
-    ],
-    tags: ["React Native", "Firebase", "Machine Learning", "Redux", "GraphQL", "Health Tech"],
-    client: {
-      name: "WellnessPath Startup",
-      country: "Canada",
-      industry: "Healthcare Technology & Digital Wellness"
-    },
-    duration: "6 months",
-    team: "4 developers",
-    year: "2024",
-    featured: true,
-    results: [
-      "Mobile experience designed for habit-building and daily tracking",
-      "Clean onboarding flow for user goal setup and progress tracking",
-      "Retention-focused product features for repeat engagement",
-      "Health and wellness category experience with polished mobile UX",
-      "Architecture planned for fitness device and wearable integrations"
-    ],
-    problem: "The client needed a comprehensive wellness tracking application that could integrate with multiple fitness devices, provide personalized AI-driven insights, and create an engaging social experience to motivate users in their health journey.",
-    solution: "We developed a sophisticated React Native application with Firebase backend, implemented machine learning algorithms for personalized health recommendations, created seamless device integrations, and built engaging social features with real-time data synchronization.",
-    testimonial: {
-      quote: "The team at Zumetrix Labs created an amazing wellness app that our users absolutely love. The AI insights feature is particularly impressive and has become our key differentiator in the market.",
-      author: "Sarah Johnson",
-      role: "CEO, WellnessPath"
-    },
-    stack: ["React Native", "Firebase", "Node.js", "Python", "TensorFlow", "GraphQL"],
-    services: ["Mobile App Development", "AI/ML Integration", "Backend Development", "API Integration", "DevOps"],
-    kpis: [
-      { label: "Mobile UX", value: "Polished", description: "Goal-first app experience" },
-      { label: "Tracking Flow", value: "Clear", description: "Simple progress visibility" },
-      { label: "Retention Design", value: "Focused", description: "Repeat-use product loops" },
-      { label: "Integrations", value: "Planned", description: "Fitness device compatibility" }
-    ]
-  },
-  {
-    id: 3,
-    slug: "retailops-automation-platform",
-    title: "RetailOps - Enterprise E-commerce Automation Platform",
-    category: "Enterprise Solution",
-    type: "enterprise",
-    description: "End-to-end inventory management and order processing automation platform for growing e-commerce businesses with multiple sales channels and complex logistics requirements.",
-    longDescription: "RetailOps Automation represents a practical approach to e-commerce operations management. This comprehensive enterprise platform streamlines complex multi-channel e-commerce operations through intelligent automation of inventory management, order processing, supplier communications, and financial reporting systems. Built with Python and AWS cloud infrastructure, the system is structured for high-volume operational workflows and integrates with existing e-commerce systems, ERP solutions, and third-party logistics providers.",
-    image: "/project_images/Retailops.jpg",
-    gallery: [
-      "/project_images/Retailops.jpg",
-    ],
-    tags: ["Python", "AWS", "PostgreSQL", "REST API", "Docker", "Redis", "Enterprise"],
-    client: {
-      name: "RetailOps Enterprise",
-      country: "United Kingdom",
-      industry: "E-commerce & Retail Technology"
-    },
-    duration: "8 months",
-    team: "5 developers",
-    year: "2023",
-    featured: true,
-    results: [
-      "Reduced order processing friction through automation",
-      "Improved accuracy across connected operational workflows",
-      "Lowered manual workload for recurring order tasks",
-      "Structured for high-volume order handling at peak",
-      "Reduced avoidable errors through clearer process rules"
-    ],
-    problem: "The client was struggling with manual order processing across multiple sales channels, leading to frequent errors, significant delays, high operational costs, and inability to scale during peak seasons.",
-    solution: "We built a comprehensive automation platform using Python and AWS that integrates with all major e-commerce platforms, automates the entire order fulfillment process, provides real-time inventory tracking, and includes intelligent routing for optimal efficiency.",
-    testimonial: {
-      quote: "Zumetrix Labs helped us turn a messy operational process into a cleaner automation platform that made daily work easier to manage.",
-      author: "James Mitchell",
-      role: "Operations Director, RetailOps"
-    },
-    stack: ["Python", "Django", "AWS", "PostgreSQL", "Redis", "Docker", "Kubernetes"],
-    services: ["Enterprise Software", "Process Automation", "Cloud Architecture", "API Development", "DevOps"],
-    kpis: [
-      { label: "Processing Flow", value: "Faster", description: "Cleaner order processing" },
-      { label: "Order Accuracy", value: "Improved", description: "Fewer avoidable errors" },
-      { label: "Manual Work", value: "Lower", description: "Operational workload reduction" },
-      { label: "Capacity", value: "Scalable", description: "Peak processing readiness" }
-    ]
-  },
-  {
-    id: 4,
-    slug: "taskflow-startup-mvp",
-    title: "TaskFlow - Project Management Startup MVP",
-    category: "Startup MVP",
-    type: "mvp",
-    description: "A rapid prototype project management platform built to validate market demand and onboard early users with essential collaboration features.",
-    longDescription: "TaskFlow MVP was strategically developed in 6 weeks to help an ambitious startup validate a project management concept with a focused first release. The platform features team collaboration tools, task management, time tracking, and reporting dashboards. Built with modern React and Firebase technologies, the MVP created a usable foundation for early feedback, product iteration, and future fundraising conversations.",
-    image: "/project_images/Taskflow.jpg",
-    gallery: [
-      "/project_images/Taskflow.jpg",
-    ],
-    tags: ["React", "Node.js", "Firebase", "Stripe", "Vercel", "MVP"],
-    client: {
-      name: "TaskFlow Startup",
-      country: "Australia",
-      industry: "Productivity Software & SaaS"
-    },
-    duration: "6 weeks",
-    team: "2 developers",
-    year: "2024",
-    featured: false,
-    results: [
-      "Created a focused MVP for early market validation",
-      "Prepared the product for early beta onboarding",
-      "Validated strong product-market fit with user feedback",
-      "Collected clear beta feedback for product iteration",
-      "Built scalable foundation for future product growth"
-    ],
-    problem: "The startup needed to quickly validate their project management concept with a functional MVP that could demonstrate market viability, attract early users, and communicate the product's potential clearly.",
-    solution: "We rapidly developed a feature-complete MVP using React and Firebase, focusing on core functionality, exceptional user experience, and scalable architecture to demonstrate market viability and support future growth phases.",
-    testimonial: {
-      quote: "Zumetrix Labs helped us build and launch our MVP with the right level of focus. The product was clear, usable, and strong enough for serious early conversations.",
-      author: "Michael Chen",
-      role: "Founder, TaskFlow"
-    },
-    stack: ["React", "Node.js", "Firebase", "Stripe", "Material-UI", "Vercel"],
-    services: ["MVP Development", "Rapid Prototyping", "Payment Integration", "User Authentication", "Cloud Deployment"],
-    kpis: [
-      { label: "Validation", value: "Ready", description: "MVP for early market testing" },
-      { label: "Beta Onboarding", value: "Prepared", description: "Early adopter signup flow" },
-      { label: "Feedback", value: "Clear", description: "Beta learning loop" },
-      { label: "Development Speed", value: "6 weeks", description: "Concept to launch" }
-    ]
-  },
-  {
-    id: 5,
-    slug: "eduplatform-online-learning",
-    title: "EduPlatform - Comprehensive Online Learning System",
-    category: "Educational Platform",
-    type: "saas",
-    description: "A comprehensive online learning platform with video streaming, interactive quizzes, progress tracking, and instructor tools for educational institutions and corporate training.",
-    longDescription: "EduPlatform Web transforms traditional education delivery through cutting-edge technology and user-centered design. This comprehensive learning management system supports high-quality video lectures, interactive educational content, detailed student progress tracking, and powerful instructor management tools. Built to scale seamlessly for thousands of concurrent users with optimized video delivery, real-time collaboration features, and advanced analytics dashboards for educational insights and performance monitoring.",
-    image: "/project_images/eduplatform.jpg",
-    gallery: [
-      "/project_images/eduplatform.jpg",
-    ],
-    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "AWS S3", "Stripe", "Education"],
-    client: {
-      name: "EduTech Institute",
-      country: "Singapore",
-      industry: "Education Technology & Online Learning"
-    },
-    duration: "5 months",
-    team: "4 developers",
-    year: "2023",
-    featured: false,
-    results: [
-      "Successfully onboarded 5,000+ active students",
-      "Achieved 99% video streaming uptime reliability",
-      "Improved student engagement by 40% over traditional methods",
-      "Reduced infrastructure costs by 30% through optimization",
-      "Structured to support multiple educational organizations"
-    ],
-    problem: "The educational institute needed a scalable online learning platform that could handle thousands of concurrent users, deliver high-quality video content reliably, and provide comprehensive tracking and analytics for student progress.",
-    solution: "We developed a robust Next.js application with PostgreSQL database, implemented AWS S3 for optimized video delivery, created interactive learning modules, and built comprehensive analytics dashboards for educators and administrators.",
-    testimonial: {
-      quote: "The EduPlatform has revolutionized our teaching capabilities. Students are more engaged, instructors have better tools, and our operational efficiency has improved dramatically.",
-      author: "Dr. Amanda Lee",
-      role: "Director of Technology, EduTech Institute"
-    },
-    stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "AWS S3", "Stripe", "Redis"],
-    services: ["Web Application Development", "Video Streaming", "Database Design", "Payment Integration", "Cloud Architecture"],
-    kpis: [
-      { label: "Active Students", value: "5,000+", description: "Platform user base" },
-      { label: "Video Uptime", value: "99%", description: "Streaming reliability" },
-      { label: "Engagement Boost", value: "+40%", description: "vs traditional methods" },
-      { label: "Cost Reduction", value: "30%", description: "Infrastructure savings" }
-    ]
-  },
-  {
-    id: 6,
-    slug: "logitrack-delivery-mobile",
-    title: "LogiTrack - Smart Delivery & Logistics Mobile App",
-    category: "Logistics App",
-    type: "mobile",
-    description: "A comprehensive logistics tracking application for delivery companies with real-time GPS tracking, intelligent route optimization, and automated customer notifications.",
-    longDescription: "LogiTrack Mobile revolutionizes delivery operations through intelligent automation and real-time tracking capabilities. This sophisticated logistics application provides comprehensive GPS tracking, AI-powered route optimization, automated customer communication systems, and detailed analytics for fleet management. The system integrates seamlessly with existing logistics infrastructure while providing actionable insights for operational efficiency, cost reduction, and customer satisfaction improvement.",
-    image: "/project_images/logitrack.jpg",
-    gallery: [
-      "/project_images/logitrack.jpg",
-    ],
-    tags: ["React Native", "Google Maps API", "Node.js", "MongoDB", "Socket.io", "Logistics"],
-    client: {
-      name: "LogiCorp Solutions",
-      country: "United Arab Emirates",
-      industry: "Logistics & Supply Chain Technology"
-    },
-    duration: "7 months",
-    team: "3 developers",
-    year: "2023",
-    featured: false,
-    results: [
-      "Achieved 30% reduction in average delivery time",
-      "Improved customer visibility through real-time delivery updates",
-      "Generated 25% fuel cost savings through route optimization",
-      "Successfully tracks 1,000+ deliveries daily",
-      "Reduced customer service calls by 60%"
-    ],
-    problem: "The logistics company was struggling with inefficient route planning, poor customer communication, high fuel costs, and lack of real-time visibility into delivery operations across their growing fleet.",
-    solution: "We built a comprehensive React Native application with Google Maps integration, implemented intelligent route optimization algorithms, created automated customer notification systems, and developed real-time tracking dashboards for complete operational visibility.",
-    testimonial: {
-      quote: "LogiTrack has transformed our delivery operations completely. The route optimization alone has saved us thousands in fuel costs, and our customers love the real-time tracking.",
-      author: "Ahmed Al-Rashid",
-      role: "Operations Manager, LogiCorp Solutions"
-    },
-    stack: ["React Native", "Node.js", "MongoDB", "Google Maps API", "Socket.io", "AWS"],
-    services: ["Mobile App Development", "Real-time Systems", "API Integration", "Route Optimization", "Fleet Management"],
-    kpis: [
-      { label: "Delivery Time", value: "-30%", description: "Average time reduction" },
-      { label: "Customer Visibility", value: "Improved", description: "Delivery status clarity" },
-      { label: "Fuel Savings", value: "25%", description: "Cost optimization" },
-      { label: "Daily Tracking", value: "1,000+", description: "Deliveries monitored" }
     ]
   },
   // 7. Forlag – Publishing Sales & Inventory Dashboard
@@ -1121,6 +965,182 @@ export const projects: Project[] = [
       description: "Clear tracking of leads and active projects"
     }
   ]
+},
+
+// 21. Knipsr – Private Event Media-Sharing SaaS
+{
+  id: 21,
+  slug: "knipsr-event-media-saas",
+  title: "Knipsr – From Product Build to Launch-Ready SaaS",
+  category: "Web Application",
+  type: "saas",
+  description: "A private, QR-based event media platform where guests upload photos and videos into a shared gallery with no app and no account — built to hold up under real event-day load.",
+  longDescription: "Knipsr lets event hosts create a private media space guests join by scanning a QR code, then upload photos and videos directly from their phone with no app install and no account required. Behind that simple guest experience sits the harder problem: durable handling of large, growing media archives, background processing that has to survive retries and partial failures, gallery performance that stays fast as an event's archive grows, and expiry and access flows that keep private events private. Zumetrix worked on the engineering behind that reliability, not only the interface in front of it.",
+  image: "/project_images/knipsr-cover.svg",
+  gallery: ["/project_images/knipsr-cover.svg"],
+  tags: ["React", "TypeScript", "Vite", "Supabase", "PostgreSQL", "Edge Functions", "Cloudflare Stream", "Production SaaS"],
+  client: {
+    name: "Knipsr",
+    country: "",
+    industry: "Event Technology & Media SaaS"
+  },
+  clientLabel: "Product",
+  duration: "",
+  team: "",
+  year: "",
+  featured: true,
+  visibility: "anonymous-public",
+  proofStatus: "draft",
+  results: [
+    "Built a no-login, QR-based guest upload flow for private event media",
+    "Implemented durable background processing with retry and recovery for large media archives",
+    "Tuned gallery loading and caching for real event-day traffic patterns",
+    "Hardened expiry and private-access flows to protect guest and host privacy",
+    "Stress-tested the platform against real-world failure modes before production use"
+  ],
+  problem: "A private event media product needs to feel effortless for a guest tapping a QR code — but every part of that simplicity depends on infrastructure that has to survive spotty mobile connections, large photo and video files, traffic that spikes hard during an event and disappears after, and edge cases a demo never surfaces. The risk isn't writing the upload form. It's what happens when an upload fails halfway, when storage has to hold years of event archives, or when a gallery has to stay fast at scale.",
+  solution: "We worked on the production engineering layer beneath Knipsr's guest and host experience: durable background job processing with retries and recovery for media uploads, storage and delivery architecture across Supabase, Postgres, Edge Functions, and Cloudflare Stream, caching and performance work on gallery loading, and access and expiry logic to keep private events private. Deployment ran across Vercel and Railway, with real-world QA and failure-mode testing before the platform carried live event traffic.",
+  stack: ["React", "TypeScript", "Vite", "Supabase", "PostgreSQL", "Edge Functions", "Supabase Storage", "Cloudflare Stream", "Vercel", "Railway"],
+  services: ["SaaS Product Engineering", "Production Systems & Reliability", "Media Infrastructure Architecture"],
+  caseStudy: {
+    situation: "Knipsr is a private, QR-first event media-sharing SaaS: guests scan a code, then upload photos and videos into a shared event gallery with no app and no account needed.",
+    problem: "The guest-facing experience had to stay effortless while the platform underneath handled real event conditions — large and growing media archives, unreliable mobile uploads, traffic that spikes around live events, and privacy requirements around who can see what.",
+    built: [
+      "QR-based, no-login guest upload and gallery experience",
+      "Durable background processing for media with retry and recovery behavior",
+      "Storage and delivery architecture across Supabase, Postgres, Edge Functions, and Cloudflare Stream",
+      "Caching and performance tuning for gallery load under real usage",
+      "Private access and expiry flows for event and guest privacy",
+      "Deployment across Vercel and Railway with production QA and failure-mode testing"
+    ],
+    decisions: [
+      { title: "Treat reliability as the product, not a feature", description: "For a media platform, the failure states — a stalled upload, a slow gallery, a link that shouldn't have expired yet — are what guests and hosts actually notice. Retry, recovery, and caching work were prioritized ahead of visual polish." },
+      { title: "Keep the guest flow app-free on purpose", description: "No login, no install. That constraint pushed more complexity into the backend — session-less access, secure upload handling — so the guest side could stay a single tap." }
+    ],
+    results: [
+      { title: "Production-grade reliability for real events", description: "Background jobs, retries, and recovery built to hold up under real event-day conditions, not only a demo.", confidence: "delivered" },
+      { title: "Performance tuned for growing archives", description: "Gallery loading and caching addressed as event media archives grow, not only at small scale.", confidence: "delivered" }
+    ],
+    proofNotes: ["Client and founder identity withheld by request. Product name and technical scope are shared with permission. Screenshots are pending privacy review — none are published yet."],
+    ctaAngle: "Talk to us when the engineering problem is the hard part, not the interface."
+  }
+},
+
+// 22. Liftly – Operational Booking Platform (V1 Foundation)
+{
+  id: 22,
+  slug: "liftly-operational-mvp-v1",
+  title: "Liftly – Building the Version the Business Needed First",
+  category: "Startup MVP",
+  type: "mvp",
+  description: "A logistics and service booking platform where the founder's broader marketplace vision was deliberately sequenced: ship the operational foundation first, design the sophisticated pricing engine for a defined V2.",
+  longDescription: "Liftly's founder had a broader logistics marketplace vision, but the first release needed to prove the operational core before it could carry that vision. Zumetrix worked on scoping and building V1 around what the business actually needed to run: customer booking, pickup and dropoff, serviceability and distance-based eligibility, item and job details, deposits and payment, and the internal admin controls to run bookings day to day. A more sophisticated Pricing Engine — covering service minimums, distance bands, labor, stairs, urgency, specialty items, and margin protection — was designed and planned for a defined V2, not built prematurely into the first release.",
+  image: "/project_images/liftly-cover.svg",
+  gallery: ["/project_images/liftly-cover.svg"],
+  tags: ["Product Sequencing", "Booking Systems", "Operational Software", "Logistics", "MVP Scope Strategy"],
+  client: {
+    name: "Liftly",
+    country: "",
+    industry: "Logistics & Service Booking"
+  },
+  clientLabel: "Product",
+  duration: "",
+  team: "",
+  year: "",
+  featured: true,
+  visibility: "anonymous-public",
+  proofStatus: "draft",
+  results: [
+    "Shipped a working operational V1: booking, pickup/dropoff, serviceability, and payment",
+    "Built internal admin and booking controls for day-to-day operations",
+    "Designed a distance- and eligibility-based serviceability model for job intake",
+    "Scoped a more sophisticated Pricing Engine (service minimums, distance bands, labor, urgency, specialty items) as a defined V2 — not built prematurely into V1",
+    "Kept the broader marketplace vision intact while sequencing what had to ship first"
+  ],
+  problem: "The founder's real vision was a broader logistics marketplace with sophisticated, variable pricing. Building that pricing complexity first would have delayed launching a platform that first needed to prove the basic operational loop: can a customer book a job, can the business see and manage it, can payment happen reliably.",
+  solution: "We separated the vision from the first release. V1 shipped the operational foundation — booking, pickup/dropoff, serviceability and distance eligibility, job and customer details, deposit and payment, and admin controls — as a complete, usable system on its own. The Pricing Engine V2 (service minimums, distance bands, labor and movers, stairs, urgency, specialty and heavy items, junk-removal load estimation, disposal estimates, admin overrides, customer approval flows, and margin protection) was designed and documented for a later phase, once the operational core was proven. Pricing Engine V2 was planned and designed, not built — it has not shipped.",
+  stack: [],
+  services: ["Startup MVP Development", "Product Sequencing & Scope Strategy", "Operational Systems Architecture"],
+  caseStudy: {
+    situation: "Liftly's founder had a broader logistics marketplace vision, with a sophisticated variable-pricing engine as a core differentiator.",
+    problem: "Building the full pricing vision first would have delayed proving the thing the business actually needed first: a reliable, bookable operational loop.",
+    built: [
+      "Customer booking, pickup/dropoff, and job/item detail capture",
+      "Serviceability and distance-based eligibility logic",
+      "Booking deposit and payment handling",
+      "Internal admin and booking operations controls"
+    ],
+    workflow: [
+      { step: "01", title: "Separate the vision from the first release", description: "Mapped the full marketplace and pricing vision, then identified the smallest operational core that could ship and run on its own." },
+      { step: "02", title: "Build the V1 operational foundation", description: "Booking, serviceability, payment, and admin controls — the parts the business needed to actually take and fulfill jobs." },
+      { step: "03", title: "Design, don't build, the V2 complexity", description: "Documented the Pricing Engine concepts — distance bands, labor, urgency, specialty items, margin protection, admin overrides — as a defined next phase, not part of this release." }
+    ],
+    decisions: [
+      { title: "Ship the operational loop before the pricing sophistication", description: "The business needed proof that bookings, serviceability, and payment worked end to end before a variable pricing engine had anything real to price." },
+      { title: "Design V2 deliberately instead of bolting it on later", description: "Pricing Engine V2 concepts were scoped and documented during V1, so the next phase has a clear foundation instead of starting from a blank page." }
+    ],
+    proofNotes: ["Client and founder identity withheld by request. Product name and V1/V2 scope are shared with permission. Pricing Engine V2 was designed and planned only — it is described here as planned work, not as shipped functionality. Screenshots are pending privacy review — none are published yet."],
+    ctaAngle: "If you have a bigger vision than your first release can carry, this is the kind of sequencing conversation worth having before you build."
+  }
+},
+
+// 23. Learning Platform SaaS – Stabilization & Technical Clarity (anonymized)
+{
+  id: 23,
+  slug: "learning-platform-saas-stabilization",
+  title: "Learning Platform SaaS – Stabilizing a Founder-Built Product for Its Next Stage",
+  category: "Enterprise Solution",
+  type: "saas",
+  description: "A founder-built, AI-assisted SaaS that needed stabilization across frontend, backend, and routing — and a clear line between what was broken, what was unfinished, and what was future scope.",
+  longDescription: "This engagement is kept anonymized by request. The product was a founder-built, AI-assisted SaaS that had grown quickly and needed a technical partner to stabilize it rather than rebuild it. The work covered frontend and backend stabilization, API cleanup, database logic, routing fixes, completion of unfinished flows, and deployment troubleshooting — alongside business-rule clarification the founder needed but hadn't had time to resolve, such as Offers pricing changes, community invitation logic, and contact ownership rules. A recurring part of the work was simply separating signal from noise: what was actually broken, what was unfinished, what was intentional, and what was scope for later.",
+  image: "/project_images/learning-platform-saas-cover.svg",
+  gallery: ["/project_images/learning-platform-saas-cover.svg"],
+  tags: ["SaaS Stabilization", "API Cleanup", "Cloudflare Workers", "Technical Triage", "Founder Technical Partner"],
+  client: {
+    name: "Product Stabilization & Technical Clarity",
+    country: "",
+    industry: "EdTech / Learning Platform SaaS"
+  },
+  clientLabel: "Engagement Type",
+  duration: "",
+  team: "",
+  year: "",
+  featured: true,
+  visibility: "anonymous-public",
+  proofStatus: "draft",
+  results: [
+    "Stabilized frontend and backend behavior across core flows",
+    "Cleaned up API and database logic causing inconsistent behavior",
+    "Fixed and rebuilt the _worker.js routes powering transactional send-email and scheduled-messages",
+    "Completed unfinished flows the founder had left mid-build",
+    "Clarified Offers pricing update/delete behavior and community invitation logic",
+    "Resolved contact-ownership and related business-rule ambiguity",
+    "Separated bugs from unfinished work from intentional future scope, with a categorized handoff"
+  ],
+  problem: "The founder had built a fast-moving, AI-assisted SaaS solo and reached a point where it was no longer clear which parts of the product were broken, which were unfinished, which were intentional, and which were simply future scope that had never been prioritized. Marketing, email, and automation flows had drifted out of sync with the product, and some backend routes were failing silently.",
+  solution: "We stabilized the systems that mattered most first — API behavior, database logic, and routing — including diagnosing and rebuilding the _worker.js routes behind transactional send-email and scheduled-messages. We completed flows the founder had left unfinished, cleared up business-rule ambiguity around Offers pricing and community invitations, and clarified contact-ownership rules. Throughout, the priority was triage: telling the founder plainly what was a bug, what was unfinished, what was intentional, and what belonged in a later phase, with testing and handoff notes to match. Stripe subscription billing was identified and scoped as future work during this engagement — it was not implemented as part of it, and no product rewrite took place.",
+  stack: ["Cloudflare Workers / Pages Functions"],
+  services: ["SaaS Platform Stabilization", "Technical Triage & Scope Clarification", "Founder Technical Partnership"],
+  caseStudy: {
+    situation: "A founder-built, AI-assisted SaaS had grown quickly on its own and reached the point where the founder could no longer tell what was actually wrong with it.",
+    problem: "Bugs, unfinished flows, intentional decisions, and unbuilt future scope had all blurred together, alongside backend routes failing silently and marketing/automation flows drifting out of sync with the product.",
+    built: [
+      "Frontend and backend stabilization across core product flows",
+      "API and database logic cleanup",
+      "Rebuilt _worker.js routes for transactional send-email and scheduled-messages",
+      "Completion of flows left unfinished by the original build",
+      "Clarified Offers pricing update/delete and community invitation logic",
+      "Resolved contact-ownership and related business-rule ambiguity",
+      "Categorized scope for testing and handoff: bug vs. unfinished vs. intentional vs. future"
+    ],
+    decisions: [
+      { title: "Stabilize before rebuilding", description: "The instinct with a struggling SaaS is often to rewrite it. We stabilized what was already working and fixed what was actually broken instead of starting over — no product rewrite took place." },
+      { title: "Triage before touching code", description: "Before fixing anything, we categorized what was in front of us — bug, unfinished feature, intentional behavior, or future scope — so the founder could make informed calls instead of guessing." },
+      { title: "Scope Stripe subscriptions as future work, not this engagement", description: "Subscription billing was discussed and scoped for a later phase. It was not implemented here, and this case study does not claim otherwise." }
+    ],
+    proofNotes: ["Client, product, and founder identity are withheld by request — this case study is deliberately anonymized. No product screenshots are used or will be used for this project. Not every issue in the product was fixed during this engagement; scope here reflects only the work described above."],
+    ctaAngle: "If your product needs someone to tell you honestly what's actually wrong with it before touching a line of code, this is that kind of engagement."
+  }
 }
 
 ];

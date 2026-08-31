@@ -72,10 +72,12 @@ const SignatureMethod: React.FC = () => {
                     {renderContentSegments(section.description)}
                   </p>
 
-                  {/* Stats Badge */}
-                  <div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20 mx-auto">
-                    {section.stat}
-                  </div>
+                  {/* Stats Badge — only rendered when a section has one */}
+                  {section.stat && (
+                    <div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20 mx-auto">
+                      {section.stat}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             );

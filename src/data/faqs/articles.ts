@@ -7,7 +7,7 @@ export const articlesFAQs = [
   {
     question: "Who writes the articles at Zumetrix Labs?",
     answer:
-      "All articles are written by the founders, Zia Hussain and Syed Omer Shah. Both write from real-world experience while building live products, solving hard problems, fixing broken systems, and guiding founders from idea to launch. The articles reflect our actual work: architecture decisions, automation frameworks, product thinking, development trade-offs, and the patterns we’ve refined across dozens of real projects."
+      "All articles are written by the founders, Zia Hussain and Omer Gillani. Both write from real-world experience while building live products, solving hard problems, fixing broken systems, and guiding founders from idea to launch. The articles reflect our actual work: architecture decisions, automation frameworks, product thinking, development trade-offs, and the patterns we’ve refined across dozens of real projects."
   },
   {
     question: "How often do you publish new insights?",

@@ -126,7 +126,7 @@ export const articles = [
     content: markdownToHtml(founderLessonsArticle),
     contentFile: "/BLOG_ARTICLES/what-we-learned-building-50-projects.md",
     image: "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Zia Hussain & Syed Omer Shah",
+    author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2024-12-25",
@@ -174,7 +174,7 @@ export const articles = [
     content: markdownToHtml(saasMvpThirtyDaysArticle),
     contentFile: "/BLOG_ARTICLES/how-to-build-saas-mvp-30-days.md",
     image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Zia Hussain & Syed Omer Shah",
+    author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2024-12-18",
@@ -264,7 +264,7 @@ export const articles = [
       <p>The best budget is not the one with the most features inside it. It is the one that buys the clearest learning without damaging the product's future.</p>
     `,
     image: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Zia Hussain & Syed Omer Shah",
+    author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-05-29",
@@ -349,7 +349,7 @@ export const articles = [
       <p>If a feature does not help one of those moments, it is probably not a first-release feature. Keep it in the roadmap, but do not let it steal the launch.</p>
     `,
     image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Zia Hussain & Syed Omer Shah",
+    author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-05-29",
@@ -438,7 +438,7 @@ export const articles = [
       <p>Fast is good when the scope is clear. Fast is dangerous when the team is still guessing what the product is supposed to become.</p>
     `,
     image: "https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Zia Hussain & Syed Omer Shah",
+    author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-05-29",
@@ -525,7 +525,7 @@ export const articles = [
       <p>The stack should disappear into the product. If the team is spending more energy defending tools than serving users, the technical decision has become a distraction.</p>
     `,
     image: "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Syed Omer Shah",
+    author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2026-05-29",
@@ -615,7 +615,7 @@ export const articles = [
       <p>The strongest founders are not the ones who say yes to everything. They are the ones who protect the first release until it can teach the business something real.</p>
     `,
     image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Zia Hussain & Syed Omer Shah",
+    author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-05-29",
@@ -702,7 +702,7 @@ export const articles = [
       <p>Validation is not about killing ambition. It is about making sure the first version is pointed at a problem real people already recognize.</p>
     `,
     image: "https://images.pexels.com/photos/3184288/pexels-photo-3184288.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Zia Hussain & Syed Omer Shah",
+    author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-05-29",
@@ -801,7 +801,7 @@ export const articles = [
       <p>The smartest path is often phased: prove the workflow with a lean automation, then rebuild the important parts as a controlled internal system once the business knows exactly what it needs.</p>
     `,
     image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Syed Omer Shah",
+    author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2024-12-10",
@@ -1005,7 +1005,7 @@ export const articles = [
       <p>A good mobile team should talk about the app after launch, not only the app before launch.</p>
     `,
     image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Syed Omer Shah",
+    author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2024-11-28",
@@ -1198,7 +1198,7 @@ export const articles = [
       <p>The best first automation is usually boring. That is why it works. It removes a repeated problem the team already feels every week.</p>
     `,
     image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
-    author: "Syed Omer Shah",
+    author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2024-11-15",

@@ -13,6 +13,7 @@ const AIROICalculator: React.FC = () => {
     processType: 'data_entry'
   });
   const [contactInfo, setContactInfo] = useState({ name: '', email: '', company: '' });
+  const [hpToken, setHpToken] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
@@ -74,6 +75,7 @@ const AIROICalculator: React.FC = () => {
         source: 'ai_roi_calculator',
         leadType: 'roi_calculator',
         magnetName: 'AI Automation ROI Estimate',
+        hpToken: hpToken || undefined,
         metadata: {
           employees: inputs.employees,
           avgHourlyRate: inputs.avgHourlyRate,
@@ -265,6 +267,18 @@ const AIROICalculator: React.FC = () => {
                 </div>
 
                 <div className="space-y-6">
+                  <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden">
+                    <label htmlFor="roi-company-confirm">Leave this field empty</label>
+                    <input
+                      id="roi-company-confirm"
+                      name="company_confirm"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={hpToken}
+                      onChange={(e) => setHpToken(e.target.value)}
+                    />
+                  </div>
                   <div>
                     <label htmlFor="roi-name" className="block text-sm font-medium text-foreground mb-2">Your Name</label>
                     <input

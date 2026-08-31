@@ -138,25 +138,8 @@ const Hero: React.FC = () => {
             </p>
           </div>
 
-          {/* Trust Badge */}
+          {/* Trust stat — company-level, not a marketplace credential */}
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4">
-            <a
-              href={BRAND_CONTENT.hero.trustBadge.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-card/50 backdrop-blur-xl px-4 py-3 rounded-lg border border-border hover:border-primary/40 transition-colors"
-            >
-              <Award size={24} className="text-primary" />
-              <div className="text-left">
-                <div className="text-sm font-semibold text-foreground">
-                  {BRAND_CONTENT.hero.trustBadge.text}
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  {BRAND_CONTENT.hero.trustBadge.subtext}
-                </div>
-              </div>
-            </a>
-            <div className="w-px h-5 bg-border hidden sm:block" />
             <div className="flex items-center gap-2 text-foreground">
               <CheckCircle size={18} className="text-primary" />
               <span>

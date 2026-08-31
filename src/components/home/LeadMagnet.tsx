@@ -8,6 +8,7 @@ import { trackCTAClick } from '../../utils/analytics';
 const LeadMagnet: React.FC = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [hpToken, setHpToken] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,6 +25,7 @@ const LeadMagnet: React.FC = () => {
         source: 'homepage_lead_magnet',
         leadType: 'lead_magnet',
         magnetName: '30-Day SaaS MVP Blueprint',
+        hpToken: hpToken || undefined,
         metadata: {
           pdfName: '30-day-saas-mvp-blueprint.pdf',
           requestedAsset: '/downloads/30-day-saas-mvp-blueprint.pdf',
@@ -110,6 +112,18 @@ const LeadMagnet: React.FC = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+                  <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden">
+                    <label htmlFor="lm-company-confirm">Leave this field empty</label>
+                    <input
+                      id="lm-company-confirm"
+                      name="company_confirm"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={hpToken}
+                      onChange={(e) => setHpToken(e.target.value)}
+                    />
+                  </div>
                   <label htmlFor="blueprint-name" className="sr-only">
                     Your name
                   </label>
@@ -190,7 +204,7 @@ const LeadMagnet: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle size={16} className="text-primary" />
-                    <span>Built from 50+ project lessons</span>
+                    <span>Built from 80+ project lessons</span>
                   </div>
                 </div>
               </>

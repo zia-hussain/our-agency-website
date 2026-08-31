@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
@@ -20,7 +21,19 @@ import {
 import { trackCTAClick } from "../utils/analytics";
 import { routeLead } from "../services/leadRouter";
 
+// Maps a service slug (as used in /contact?service=slug links from Services
+// and Project pages) to the plain-language label this form's dropdown uses.
+const SERVICE_SLUG_TO_LABEL: Record<string, string> = {
+  "enterprise-web-applications": "Web Application Development",
+  "saas-mvp-development": "SaaS Dashboard Development",
+  "mobile-app-development": "Mobile App Development",
+  "startup-mvp-development": "MVP Development",
+  "ai-automation-solutions": "Automation Solutions",
+  "digital-strategy-consulting": "Digital Strategy Consulting",
+};
+
 const ContactPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,10 +44,32 @@ const ContactPage: React.FC = () => {
     message: "",
     marketingConsent: false,
   });
+  const [hpToken, setHpToken] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [openFAQ, setOpenFAQ] = useContactState<number | null>(0);
+  const [sourceServiceSlug, setSourceServiceSlug] = useState<string | undefined>();
+  const [sourceProjectSlug, setSourceProjectSlug] = useState<string | undefined>();
+
+  // A visitor arriving from a service or case-study page shouldn't have to
+  // re-state what they already told the site by clicking through.
+  useEffect(() => {
+    const serviceParam = searchParams.get("service") || undefined;
+    const projectParam = searchParams.get("project") || undefined;
+
+    if (serviceParam) {
+      setSourceServiceSlug(serviceParam);
+      const label = SERVICE_SLUG_TO_LABEL[serviceParam];
+      if (label) {
+        setFormData((prev) => (prev.projectType ? prev : { ...prev, projectType: label }));
+      }
+    }
+    if (projectParam) {
+      setSourceProjectSlug(projectParam);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -61,11 +96,14 @@ const ContactPage: React.FC = () => {
         source: "contact_form",
         leadType: "contact",
         message: formData.message,
+        hpToken: hpToken || undefined,
         metadata: {
           projectType: formData.projectType,
           budget: formData.budget,
           timeline: formData.timeline,
           marketingConsent: formData.marketingConsent,
+          sourceService: sourceServiceSlug || undefined,
+          sourceProject: sourceProjectSlug || undefined,
         },
       });
 
@@ -168,7 +206,7 @@ const ContactPage: React.FC = () => {
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Contact Zumetrix Labs | Forge Clear Ideas Into Shipped Software"
         description="Forge Clear Ideas Into Shipped Software. Contact Zumetrix Labs to discuss your SaaS MVP, React/Node.js app, AI automation, or mobile app project."
-        keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Syed Zia Hussain Shah contact, Syed Omer Shah contact"
+        keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Syed Zia Hussain Shah contact, Syed Omer Shah Gillani contact"
         url="https://zumetrix.com/contact"
         structuredData={{
           "@context": "https://schema.org",
@@ -258,6 +296,19 @@ const ContactPage: React.FC = () => {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot: hidden from real visitors, only a bot's form-filler completes this */}
+                    <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden">
+                      <label htmlFor="company_confirm">Leave this field empty</label>
+                      <input
+                        id="company_confirm"
+                        name="company_confirm"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={hpToken}
+                        onChange={(e) => setHpToken(e.target.value)}
+                      />
+                    </div>
                     {/* Shared style helpers */}
                     {/* Tip: put these at file top if you want, or keep inline */}
                     {/*

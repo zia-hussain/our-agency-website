@@ -30,9 +30,9 @@ export const BRAND_CONTENT = {
     tagline: "Forge Clear Ideas Into Shipped Software.",
     positioningStatement: "We build software for founders who need thinking partners, not order-takers",
 
-    shortDescription: "Forge Clear Ideas Into Shipped Software. Founded by Zia Hussain and Syed Omer Shah, Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners.",
+    shortDescription: "Forge Clear Ideas Into Shipped Software. Founded by Zia Hussain and Omer Gillani, Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners.",
 
-    longDescription: "50+ projects built. Some raised funding. Some didn't. The difference was usually how clear the problem was before we started building. We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also why our projects actually launch.",
+    longDescription: "80+ projects built. Some raised funding. Some didn't. The difference was usually how clear the problem was before we started building. We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also why our projects actually launch.",
   },
 
   /**
@@ -49,7 +49,7 @@ export const BRAND_CONTENT = {
     },
 
     subheadline: [
-      { text: "50+ projects built. Some raised funding. Some didn't.", type: "emphasis" },
+      { text: "80+ projects built. Some raised funding. Some didn't.", type: "emphasis" },
       { text: " The difference was usually how clear the problem was before we started building.", type: "normal" },
       { type: "break" },
       { type: "break" },
@@ -70,7 +70,7 @@ export const BRAND_CONTENT = {
 
     trustBadge: {
       text: "Top Rated on Upwork",
-      subtext: "100% Job Success Score",
+      subtext: "Zia Hussain · 100% Job Success Score",
       link: "https://www.upwork.com/freelancers/ziahussain1"
     },
 
@@ -80,12 +80,12 @@ export const BRAND_CONTENT = {
         description: "Timeline depends on scope"
       },
       {
-        title: "Top Rated on Upwork",
-        description: "100% Job Success Score"
+        title: "Founder-Led Delivery",
+        description: "Direct senior involvement on every project"
       },
       {
-        title: "50+ Projects",
-        description: "Built in the last 3 years"
+        title: "80+ Projects",
+        description: "Delivered by the team"
       }
     ]
   },
@@ -115,13 +115,13 @@ export const BRAND_CONTENT = {
           { text: "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Our founders personally architect every solution. ", type: "normal" },
           { text: "Not order-takers—thinking partners.", type: "accent" }
         ] as ContentSegment[],
-        stat: "Top Rated on Upwork"
+        stat: ""
       },
       {
         icon: "results",
         title: "What Actually Happens",
         description: [
-          { text: "50+ projects delivered in the last 3 years. Some raised funding. Some didn't. The difference? ", type: "normal" },
+          { text: "80+ projects delivered by the team. Some raised funding. Some didn't. The difference? ", type: "normal" },
           { text: "How clear the problem was before we started building.", type: "emphasis" },
           { text: " We help with that clarity.", type: "normal" }
         ] as ContentSegment[],
@@ -169,9 +169,9 @@ export const BRAND_CONTENT = {
    * Brand description for footer section
    */
   footer: {
-    description: "Founded by Zia Hussain and Syed Omer Shah. We build software for founders who need thinking partners, not order-takers. Top Rated on Upwork with 100% Job Success Score.",
+    description: "Founded by Zia Hussain and Omer Gillani. We build software for founders who need thinking partners, not order-takers.",
 
-    copyright: "Crafted by Zia Hussain and Syed Omer Shah"
+    copyright: "Crafted by Zia Hussain and Omer Gillani"
   },
 
   /**
@@ -181,17 +181,17 @@ export const BRAND_CONTENT = {
   trust: {
     upwork: {
       badge: "Top Rated on Upwork",
-      score: "100% Job Success Score",
+      score: "Zia Hussain · 100% Job Success Score",
       link: "https://www.upwork.com/freelancers/ziahussain1"
     },
 
     metrics: {
-      projects: "50+",
+      projects: "80+",
       projectsDescription: "Projects Delivered",
       timeline: "4-6 weeks",
       timelineDescription: "Average MVP delivery",
-      experience: "3 years",
-      experienceDescription: "Building for founders"
+      experience: "Founder-led",
+      experienceDescription: "Every engagement"
     }
   },
 
@@ -206,13 +206,13 @@ export const BRAND_CONTENT = {
     },
 
     about: {
-      title: "About Zumetrix Labs | Meet Zia Hussain & Syed Omer Shah | Technical Founders",
-      description: "Meet Zia Hussain (CEO) and Syed Omer Shah (CTO), technical founders of Zumetrix Labs. 50+ projects delivered across US, UK, Canada, Australia, UAE, and Singapore. Top Rated on Upwork. Specializing in SaaS MVP development, React/Node.js applications, and AI automation."
+      title: "About Zumetrix Labs | Meet Zia Hussain & Omer Gillani | Technical Founders",
+      description: "Meet Zia Hussain (CEO) and Omer Gillani (CTO), technical founders of Zumetrix Labs. 80+ projects delivered across US, UK, Canada, Australia, UAE, and Singapore. Zia is Top Rated on Upwork. Specializing in SaaS MVP development, React/Node.js applications, and AI automation."
     },
 
     services: {
       title: "Software Development Services | SaaS MVP, React, AI Automation | Zumetrix Labs",
-      description: "Software development services by Zumetrix Labs. SaaS MVP development, React/Node.js applications, mobile apps, AI automation, Firebase integration. Founded by Zia Hussain & Syed Omer Shah. Top Rated on Upwork with 100% Job Success Score."
+      description: "Software development services by Zumetrix Labs. SaaS MVP development, React/Node.js applications, mobile apps, AI automation, Firebase integration. Founded by Zia Hussain & Omer Gillani."
     }
   }
 } as const;

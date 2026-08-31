@@ -30,8 +30,8 @@ const founders = [
     ],
   },
   {
-    name: "Syed Omer Shah",
-    slug: "syed-omer-shah",
+    name: "Syed Omer Shah Gillani",
+    slug: "omer-gillani",
     role: "Co-Founder · CTO · Engineering & Automation",
     bio: "Omer leads engineering and automation at Zumetrix Labs. He takes complex requirements, constraints, and integrations—and turns them into systems that are fast, reliable, and easy to grow. He thinks in terms of architecture, data flows, and long-term maintainability, making sure what we ship today doesn’t become tomorrow’s technical debt. Most clients rely on him as their technical backbone: the person who quietly keeps everything stable, scalable, and efficient.",
     image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
@@ -122,8 +122,8 @@ const values = [
         gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="About Zumetrix Labs | Forge Clear Ideas Into Shipped Software"
-        description="Meet Zia Hussain and Syed Omer Shah, the technical founders behind Zumetrix Labs and 50+ SaaS, automation, web, and mobile projects."
-        keywords="Zia Hussain, Syed Omer Shah, software development agency, SaaS MVP development, React development, AI automation"
+        description="Meet Zia Hussain and Omer Gillani, the technical founders behind Zumetrix Labs and 80+ SaaS, automation, web, and mobile projects."
+        keywords="Zia Hussain, Omer Gillani, software development agency, SaaS MVP development, React development, AI automation"
         url="https://zumetrix.com/about"
         structuredData={structuredData}
       />
@@ -160,10 +160,10 @@ const values = [
             {/* ✅ SEO RICH CONTENT */}
             <div className="max-w-4xl mx-auto">
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mb-6">
-                <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong> are the technical founders behind <strong>Zumetrix Labs</strong>, a software development company that builds for founders who need thinking partners, not order-takers. With experience in React/Node.js development, SaaS MVP building, AI automation, and mobile apps, they've delivered 50+ projects for international clients.
+                <strong>Zia Hussain</strong> and <strong>Omer Gillani</strong> are the technical founders behind <strong>Zumetrix Labs</strong>, a software development company that builds for founders who need thinking partners, not order-takers. With experience in React/Node.js development, SaaS MVP building, AI automation, and mobile apps, they've delivered 80+ projects for international clients.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Founded in 2021, <strong>Zumetrix Labs</strong> works with startups and businesses across the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>. The founder-led approach means every project gets direct attention from senior developers who've built this before.
+                Founded in 2025, <strong>Zumetrix Labs</strong> works with startups and businesses across the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>. The founder-led approach means every project gets direct attention from senior developers who've built this before.
               </p>
             </div>
           </AnimatedSection>
@@ -179,10 +179,10 @@ const values = [
                 Technical Founders Who Build
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                <strong>Zia Hussain (CEO)</strong> and <strong>Syed Omer Shah (CTO)</strong> are hands-on technical founders who personally architect and oversee all client work. Their combined experience spans <strong>React/TypeScript development</strong>, <strong>Node.js backend architecture</strong>, <strong>Firebase integration</strong>, <strong>AI automation workflows</strong>, <strong>startup MVP development</strong>, and <strong>mobile app development using React Native</strong>.
+                <strong>Zia Hussain (CEO)</strong> and <strong>Omer Gillani (CTO)</strong> are hands-on technical founders who personally architect and oversee all client work. Their combined experience spans <strong>React/TypeScript development</strong>, <strong>Node.js backend architecture</strong>, <strong>Firebase integration</strong>, <strong>AI automation workflows</strong>, <strong>startup MVP development</strong>, and <strong>mobile app development using React Native</strong>.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Serving clients in the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>, Zumetrix Labs has delivered <strong>50+ projects</strong> ranging from early-stage startup MVPs to business applications. Top Rated on Upwork with 100% Job Success Score.
+                Serving clients in the <strong>United States, United Kingdom, Canada, Australia, UAE, and Singapore</strong>, Zumetrix Labs has delivered <strong>80+ projects</strong> ranging from early-stage startup MVPs to business applications. Zia is Top Rated on Upwork with a 100% Job Success Score.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Whether you're building your <strong>first SaaS MVP</strong>, need <strong>custom software</strong>, want <strong>AI automation</strong>, or require <strong>white-label development</strong>, Zia and Omer provide technical leadership and hands-on development to ship products that work.
@@ -190,27 +190,27 @@ const values = [
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
-                <div className="text-3xl font-bold text-primary mb-2">50+</div>
+                <div className="text-3xl font-bold text-primary mb-2">80+</div>
                 <div className="text-sm text-muted-foreground">
                   Successful Projects Delivered
                 </div>
               </div>
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
-                <div className="text-3xl font-bold text-primary mb-2">25+</div>
+                <div className="text-3xl font-bold text-primary mb-2">50+</div>
                 <div className="text-sm text-muted-foreground">
                   Happy Clients Worldwide
                 </div>
               </div>
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
-                <div className="text-3xl font-bold text-primary mb-2">3+</div>
+                <div className="text-3xl font-bold text-primary mb-2">6+</div>
                 <div className="text-sm text-muted-foreground">
-                  Years of Excellence
+                  Years Combined Experience
                 </div>
               </div>
               <div className="bg-card/50 backdrop-blur-xl p-6 rounded-lg border border-border">
                 <div className="text-3xl font-bold text-primary mb-2">100%</div>
                 <div className="text-sm text-muted-foreground">
-                  Upwork Job Success Score
+                  Zia's Upwork Job Success Score
                 </div>
               </div>
             </div>
@@ -229,7 +229,7 @@ const values = [
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-              <strong>Zia Hussain</strong> and <strong>Syed Omer Shah</strong>{" "}
+              <strong>Zia Hussain</strong> and <strong>Omer Gillani</strong>{" "}
               are the technical founders behind Zumetrix Labs. With combined
               6+ years of experience in modern software development, they help
               founders turn messy ideas into clear roadmaps and shipped
@@ -373,7 +373,7 @@ const values = [
                   in people's lives and businesses."
                 </p>
                 <div className="mt-6 text-primary font-medium">
-                  — Syed Zia Hussain Shah & Syed Omer Shah, Co-Founders
+                  — Syed Zia Hussain Shah & Syed Omer Shah Gillani, Co-Founders
                 </div>
               </motion.div>
             </div>
@@ -392,7 +392,7 @@ const values = [
               </span>
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed font-light">
-              Common questions about Zia Hussain, Syed Omer Shah, and Zumetrix Labs
+              Common questions about Zia Hussain, Omer Gillani, and Zumetrix Labs
             </p>
           </AnimatedSection>
 

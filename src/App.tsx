@@ -6,6 +6,7 @@ import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/common/ScrollToTop";
 import BackToTop from "./components/common/BackToTop";
 import StickyCTABar from "./components/common/StickyCTABar";
+import { trackEvent } from "./utils/analytics";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -68,6 +69,16 @@ function App() {
       document.documentElement.style.scrollBehavior = "auto";
     };
   }, []);
+
+  // React Router changes don't trigger a native page load, so GA4 never sees
+  // a page_view beyond the first one unless we fire it explicitly here.
+  useEffect(() => {
+    trackEvent('page_view', {
+      page_path: location.pathname + location.search,
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  }, [location.pathname, location.search]);
 
   return (
     <div

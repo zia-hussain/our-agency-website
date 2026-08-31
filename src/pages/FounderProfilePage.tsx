@@ -156,11 +156,11 @@ const founders: Record<string, FounderProfile> = {
       },
     ],
     collaboration:
-      "Zia leads product direction and release alignment. When the product needs backend architecture, integrations or automation, he works alongside Syed Omer Shah so product intent and technical structure are designed together.",
+      "Zia leads product direction and release alignment. When the product needs backend architecture, integrations or automation, he works alongside Omer Gillani so product intent and technical structure are designed together.",
     counterpart: {
-      name: "Syed Omer Shah",
+      name: "Omer Gillani",
       role: "Co-Founder & CTO",
-      path: "/founders/syed-omer-shah",
+      path: "/founders/omer-gillani",
     },
     cta: {
       heading: "Have a product worth shaping carefully?",
@@ -185,7 +185,7 @@ const founders: Record<string, FounderProfile> = {
           "Yes. His work can begin with an idea, a roadmap, a prototype or a live product whose scope or central user journey needs clearer direction.",
       },
       {
-        question: "How does Zia work with Syed Omer Shah?",
+        question: "How does Zia work with Omer Gillani?",
         answer:
           "Zia leads product direction and alignment around the release. Omer leads architecture, integrations and automation where the product requires deeper technical systems. Together they connect the product decision to the way it is built.",
       },
@@ -196,15 +196,16 @@ const founders: Record<string, FounderProfile> = {
       },
     ],
   },
-  "syed-omer-shah": {
-    name: "Syed Omer Shah",
-    displayName: ["Syed Omer", "Shah"],
+  "omer-gillani": {
+    name: "Omer Gillani",
+    displayName: ["Omer", "Gillani"],
+    alternateName: "Syed Omer Shah Gillani",
     role: "Co-Founder & CTO",
     discipline: "System architecture, integrations and purposeful automation",
     image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     statement: "Reliable systems begin with a clear understanding of the work they must support.",
     summary:
-      "Syed Omer Shah is Co-Founder and CTO of Zumetrix Labs. He leads system architecture, backend integrations and purposeful automation for software shaped around real operations.",
+      "Omer Gillani is Co-Founder and CTO of Zumetrix Labs. He leads system architecture, backend integrations and purposeful automation for software shaped around real operations.",
     valuePromise:
       "Omer works where software meets operations: mapping dependencies, designing stable technical boundaries and applying automation where it has a precise job to do.",
     valueSignals: [

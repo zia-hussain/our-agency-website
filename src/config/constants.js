@@ -23,11 +23,11 @@ export const FOUNDERS = [
     }
   },
   {
-    name: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
-    fullName: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
+    name: import.meta.env.VITE_FOUNDER_2_NAME || "Omer Gillani",
+    fullName: import.meta.env.VITE_FOUNDER_2_FULL_NAME || "Syed Omer Shah Gillani",
     role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
     image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
-    bio: "Umer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
+    bio: "Omer is the technical backbone of Zumetrix Labs. A focused engineering leader with deep expertise in scalable architecture, modern web stacks, and emerging AI automation, he turns complex ideas into fast, clean, production-ready systems. Currently diving deeper into intelligent automation and AI workflows to help clients stay ahead of the curve.",
     skills: ["Next.js", "TypeScript", "Firebase", "Python", "AI Automation"],
     social: {
       upwork: "https://www.upwork.com/freelancers/019551f0a911e24660",
@@ -47,8 +47,8 @@ export const SOCIAL_LINKS = {
 
 export const SEO_CONFIG = {
   title: import.meta.env.VITE_META_TITLE || "Zumetrix Labs | Forge Clear Ideas Into Shipped Software",
-  description: import.meta.env.VITE_META_DESCRIPTION || "Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders. Founded by Zia Hussain and Syed Omer Shah.",
-  keywords: import.meta.env.VITE_META_KEYWORDS || "Zumetrix Labs, Zia Hussain, Syed Omer Shah, software development agency Pakistan",
+  description: import.meta.env.VITE_META_DESCRIPTION || "Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders. Founded by Zia Hussain and Omer Gillani.",
+  keywords: import.meta.env.VITE_META_KEYWORDS || "Zumetrix Labs, Zia Hussain, Omer Gillani, software development agency Pakistan",
   gaTagId: import.meta.env.VITE_GA_TAG_ID || "G-PRSP59FL20",
   googleVerification: import.meta.env.VITE_GOOGLE_VERIFICATION || "XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs",
 };

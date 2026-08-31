@@ -205,7 +205,7 @@ const ServiceDetailPage: React.FC = () => {
                 </div>
               </div>
 
-              <Link to="/contact">
+              <Link to={`/contact?service=${service.slug}`}>
                 <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
@@ -474,7 +474,7 @@ const ServiceDetailPage: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
+              <Link to={`/contact?service=${service.slug}`}>
                 <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}

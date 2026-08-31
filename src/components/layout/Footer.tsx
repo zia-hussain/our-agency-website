@@ -8,7 +8,6 @@ import {
   MapPin,
   Phone,
   Instagram,
-  Award,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../../config/site";
@@ -23,7 +22,7 @@ const Footer: React.FC = () => {
     company: [
       { name: "About Us", path: "/about" },
       { name: "Zia Hussain", path: "/founders/zia-hussain" },
-      { name: "Syed Omer Shah", path: "/founders/syed-omer-shah" },
+      { name: "Omer Gillani", path: "/founders/omer-gillani" },
       { name: "Services", path: "/services" },
       { name: "Case Studies", path: "/portfolio" },
       { name: "Contact", path: "/contact" },
@@ -106,23 +105,6 @@ const Footer: React.FC = () => {
               {BRAND_CONTENT.footer.description}
             </p>
 
-            {/* Trust Badge */}
-            <a
-              href={BRAND_CONTENT.trust.upwork.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-card/30 backdrop-blur-xl px-3 py-2 rounded-lg border border-border hover:border-primary/40 transition-colors mb-6"
-            >
-              <Award size={18} className="text-primary" />
-              <div className="text-left">
-                <div className="text-xs font-semibold text-foreground">
-                  {BRAND_CONTENT.trust.upwork.badge}
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  {BRAND_CONTENT.trust.upwork.score}
-                </div>
-              </div>
-            </a>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <motion.a

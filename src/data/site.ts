@@ -29,7 +29,7 @@ export const SITE_DATA = {
     },
     proofPoints: [
       { icon: "star", text: "5.0 rating" },
-      { icon: "projects", text: "50+ projects" },
+      { icon: "projects", text: "80+ projects" },
       { icon: "reviews", text: "Top Rated on Upwork" },
       { icon: "speed", text: "4-8 week MVP delivery" },
     ],
@@ -71,9 +71,9 @@ export const SITE_DATA = {
       "Founder-led product and engineering work across publishing, operations, marketplaces, and automation.",
     globalStats: [
       { icon: "globe", value: "Global", label: "Market Reach" },
-      { icon: "projects", value: "50+", label: "Projects Delivered" },
+      { icon: "projects", value: "80+", label: "Projects Delivered" },
       { icon: "success", value: "Founder-led", label: "Every Engagement" },
-      { icon: "response", value: "3+ years", label: "Building for Clients" },
+      { icon: "response", value: "<24 hrs", label: "Typical Response Time" },
     ],
     clients: [
       {
@@ -181,13 +181,13 @@ export const SITE_DATA = {
         title: "How We Work Different",
         description:
           "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Our founders personally architect every solution. Not order-takers—thinking partners.",
-        stats: "Top Rated on Upwork",
+        stats: "",
       },
       {
         icon: "results",
         title: "What Actually Happens",
         description:
-          "50+ projects delivered in the last 3 years. Some raised funding. Some didn't. The difference? How clear the problem was before we started building. We help with that clarity.",
+          "80+ projects delivered by the team. Some raised funding. Some didn't. The difference? How clear the problem was before we started building. We help with that clarity.",
         stats: "4-6 week average delivery",
       },
     ],
@@ -236,8 +236,8 @@ export const SITE_DATA = {
         calendly: "https://calendly.com/zia-hussain/consultation",
       },
       {
-        name: "Syed Omer Shah",
-        fullName: "Syed Omer Shah",
+        name: "Omer Gillani",
+        fullName: "Syed Omer Shah Gillani",
         role: "Co-Founder & CTO",
         credibility: [
           "Software architecture and delivery",
@@ -375,9 +375,8 @@ export const SITE_DATA = {
 
   // Business Metrics - CREDIBILITY NUMBERS
   metrics: {
-    projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "50+",
-    happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "25+",
-    yearsExperience: import.meta.env.VITE_YEARS_EXPERIENCE || "3+",
+    projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "80+",
+    happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "50+",
     successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
     avgMVPTime: "Scope dependent",
     fundingSuccess: "Not claimed",
@@ -395,7 +394,7 @@ export const SITE_DATA = {
       {
         value: '5.0',
         label: 'Rating',
-        subtext: 'Based on 50+ projects',
+        subtext: 'Based on 80+ projects',
         icon: 'award'
       },
       {
@@ -405,7 +404,7 @@ export const SITE_DATA = {
         icon: 'users'
       },
       {
-        value: '50+',
+        value: '80+',
         label: 'Projects',
         subtext: 'Delivered globally',
         icon: 'briefcase'
@@ -413,7 +412,7 @@ export const SITE_DATA = {
       {
         value: '100%',
         label: 'Job Success',
-        subtext: 'On Upwork',
+        subtext: "On Zia's Upwork profile",
         icon: 'star'
       }
     ],
@@ -443,7 +442,7 @@ export const SITE_DATA = {
     bottomFeatures: [
       'PDF planning guide',
       'Proven frameworks',
-      'Built from 50+ project lessons'
+      'Built from 80+ project lessons'
     ],
     formSubject: 'New Lead Magnet Download: MVP Blueprint',
     privacy: 'No spam. Unsubscribe anytime. We respect your privacy.',

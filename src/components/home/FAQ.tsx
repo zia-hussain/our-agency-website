@@ -47,7 +47,7 @@ const FAQ: React.FC = () => {
             className="text-xl text-muted-foreground leading-relaxed"
           >
             Get answers to common questions about our software development
-            services, founders Zia Hussain and Syed Omer Shah, and how we can
+            services, founders Zia Hussain and Omer Gillani, and how we can
             help transform your business ideas into reality.
           </motion.p>
         </div>

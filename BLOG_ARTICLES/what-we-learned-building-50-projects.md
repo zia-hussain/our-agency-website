@@ -1,6 +1,6 @@
 # What We Learned Building 50+ Projects for Founders
 
-**By Zia Hussain & Syed Omer Shah · December 2024 · 12 min read**
+**By Zia Hussain & Omer Gillani · December 2024 · 12 min read**
 
 ---
 

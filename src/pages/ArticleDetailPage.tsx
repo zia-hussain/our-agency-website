@@ -143,12 +143,12 @@ const ArticleDetailPage: React.FC = () => {
     "@type": "Person",
     "@id": authorName === "Zia Hussain"
       ? "https://zumetrix.com/founders/zia-hussain#person"
-      : "https://zumetrix.com/founders/syed-omer-shah#person",
+      : "https://zumetrix.com/founders/omer-gillani#person",
     name: authorName,
     jobTitle: authorName === "Zia Hussain" ? "Co-Founder & CEO" : "Co-Founder & CTO",
     url: authorName === "Zia Hussain"
       ? "https://zumetrix.com/founders/zia-hussain"
-      : "https://zumetrix.com/founders/syed-omer-shah",
+      : "https://zumetrix.com/founders/omer-gillani",
     worksFor: {
       "@id": "https://zumetrix.com/#organization",
     },

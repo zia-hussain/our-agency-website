@@ -205,7 +205,7 @@ const ArticleForm: React.FC = () => {
 
   const authors = [
     { name: 'Zia Hussain', role: 'Co-Founder & CEO', image: '/profile_images/zia-hussain-founder-optimized.jpg' },
-    { name: 'Syed Omer Shah', role: 'Co-Founder & CTO', image: '/profile_images/syed-omer-shah-founder-optimized.jpg' }
+    { name: 'Omer Gillani', role: 'Co-Founder & CTO', image: '/profile_images/syed-omer-shah-founder-optimized.jpg' }
   ];
 
   if (loading) {

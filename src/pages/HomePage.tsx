@@ -34,10 +34,10 @@ const HomePage: React.FC = () => {
         },
         slogan: BRAND_CONTENT.brand.tagline,
         description: BRAND_CONTENT.brand.shortDescription,
-        foundingDate: "2021",
+        foundingDate: "2025-06",
         founder: [
           { "@id": "https://zumetrix.com/founders/zia-hussain#person" },
-          { "@id": "https://zumetrix.com/founders/syed-omer-shah#person" },
+          { "@id": "https://zumetrix.com/founders/omer-gillani#person" },
         ],
         contactPoint: {
           "@type": "ContactPoint",
@@ -76,10 +76,11 @@ const HomePage: React.FC = () => {
       },
       {
         "@type": "Person",
-        "@id": "https://zumetrix.com/founders/syed-omer-shah#person",
-        name: "Syed Omer Shah",
+        "@id": "https://zumetrix.com/founders/omer-gillani#person",
+        name: "Omer Gillani",
+        alternateName: "Syed Omer Shah Gillani",
         jobTitle: "Co-Founder & CTO",
-        url: "https://zumetrix.com/founders/syed-omer-shah",
+        url: "https://zumetrix.com/founders/omer-gillani",
         worksFor: { "@id": "https://zumetrix.com/#organization" },
         sameAs: [
           "https://www.linkedin.com/in/omer-gillani/",

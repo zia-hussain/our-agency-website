@@ -43,6 +43,11 @@
       "source": "/services/web-application-development",
       "destination": "/services/enterprise-web-applications",
       "permanent": true
+    },
+    {
+      "source": "/founders/syed-omer-shah",
+      "destination": "/founders/omer-gillani",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -55,8 +60,8 @@
       "destination": "/founders/zia-hussain/index.html"
     },
     {
-      "source": "/founders/syed-omer-shah",
-      "destination": "/founders/syed-omer-shah/index.html"
+      "source": "/founders/omer-gillani",
+      "destination": "/founders/omer-gillani/index.html"
     },
     {
       "source": "/services",

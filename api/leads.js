@@ -67,6 +67,41 @@ const storeLead = async (lead) => {
   return { stored: true, id: records?.[0]?.id };
 };
 
+// Durable, serverless-safe throttle: reads recent rows straight from Supabase
+// instead of in-memory state, which would reset on every cold start and
+// wouldn't be shared across concurrent function instances anyway.
+const RATE_LIMIT_WINDOW_MINUTES = 10;
+const RATE_LIMIT_MAX_SUBMISSIONS = 5;
+
+const checkRateLimit = async (email) => {
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const supabaseKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseKey || supabaseUrl.includes("your_supabase")) {
+    return { limited: false, reason: "Supabase env not configured" };
+  }
+
+  const since = new Date(Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000).toISOString();
+  const response = await fetch(
+    `${supabaseUrl.replace(/\/$/, "")}/rest/v1/leads?email=eq.${encodeURIComponent(email)}&created_at=gte.${encodeURIComponent(since)}&select=id`,
+    {
+      headers: {
+        apikey: supabaseKey,
+        Authorization: `Bearer ${supabaseKey}`,
+      },
+    },
+  );
+
+  if (!response.ok) {
+    // Fail open: a broken rate-limit check should never block a real lead.
+    return { limited: false, reason: `Rate limit check failed: ${response.status}` };
+  }
+
+  const rows = await response.json();
+  return { limited: rows.length >= RATE_LIMIT_MAX_SUBMISSIONS, count: rows.length };
+};
+
 const syncLeadToAirtable = async (lead, supabaseLeadId) => {
   const apiKey = process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
@@ -548,6 +583,13 @@ export default async function handler(req, res) {
   try {
     const lead = await readRequestBody(req);
 
+    // Honeypot: a hidden field real visitors never see or fill. Bots that
+    // fill every field trip it. Respond as if it succeeded so the bot gets
+    // no signal that it was caught, but do nothing with the submission.
+    if (lead.hpToken) {
+      return json(res, 200, { success: true, stored: false, honeypot: true });
+    }
+
     if (!isEmail(lead.email)) {
       return json(res, 400, { success: false, error: "A valid email is required." });
     }
@@ -559,6 +601,14 @@ export default async function handler(req, res) {
       source: lead.source || "website",
       metadata: lead.metadata || {},
     };
+
+    const rateLimit = await checkRateLimit(normalizedLead.email).catch(() => ({ limited: false }));
+    if (rateLimit.limited) {
+      return json(res, 429, {
+        success: false,
+        error: "Too many submissions from this email recently. Please try again shortly, or email hello@zumetrix.com directly.",
+      });
+    }
 
     const storage = await storeLead(normalizedLead).catch((error) => ({
       stored: false,

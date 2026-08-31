@@ -1,9 +1,9 @@
 // About Page FAQs - Founder-focused for global SEO
 export const aboutFAQs = [
   {
-    question: "Who are Zia Hussain and Syed Omer Shah?",
+    question: "Who are Zia Hussain and Omer Gillani?",
     answer:
-      "Zia Hussain and Syed Omer Shah are the co-founders of Zumetrix Labs, a founder-led software studio based in Pakistan and working with clients worldwide. Zia (Co-Founder & CEO) focuses on product strategy and full-stack development using React, Next.js, TypeScript, Node.js, and Firebase. Omer (Co-Founder & CTO) focuses on backend systems, AI automation, scalable architecture, and cloud infrastructure. Together, they personally lead architecture, critical development decisions, and client communication on every project instead of hiding behind a sales team."
+      "Zia Hussain and Omer Gillani are the co-founders of Zumetrix Labs, a founder-led software studio based in Pakistan and working with clients worldwide. Zia (Co-Founder & CEO) focuses on product strategy and full-stack development using React, Next.js, TypeScript, Node.js, and Firebase. Omer (Co-Founder & CTO) focuses on backend systems, AI automation, scalable architecture, and cloud infrastructure. Together, they personally lead architecture, critical development decisions, and client communication on every project instead of hiding behind a sales team."
   },
   {
     question: "What makes Zia and Omer different from other software developers and agencies?",

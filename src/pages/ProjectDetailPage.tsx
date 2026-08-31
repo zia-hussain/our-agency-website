@@ -101,18 +101,22 @@ const ProjectDetailPage: React.FC = () => {
         creator: {
           "@id": "https://zumetrix.com/#organization",
         },
-        dateCreated: project.year,
+        ...(project.year ? { dateCreated: project.year } : {}),
         keywords: project.tags.join(", "),
         about: project.services.map((serviceName) => ({
           "@type": "Service",
           name: serviceName,
           url: `https://zumetrix.com${getServiceUrl(serviceName)}`,
         })),
-        client: {
-          "@type": "Organization",
-          name: project.client.name,
-          location: project.client.country,
-        },
+        ...(project.client.name
+          ? {
+              client: {
+                "@type": "Organization",
+                name: project.client.name,
+                ...(project.client.country ? { location: project.client.country } : {}),
+              },
+            }
+          : {}),
       },
       {
         "@type": "BreadcrumbList",
@@ -208,44 +212,53 @@ const ProjectDetailPage: React.FC = () => {
                 {project.description}
               </p>
 
-              {/* Client Info */}
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Building size={18} className="text-primary" />
+              {/* Client Info — only real, disclosed facts are shown. No
+                  placeholder text for private or unknown fields. */}
+              <div className="flex flex-wrap gap-x-10 gap-y-5 mb-8">
+                {project.client.name && (
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Building size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">{project.clientLabel || "Client"}</div>
+                      <div className="font-semibold text-foreground">{project.client.name}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground">Client</div>
-                    <div className="font-semibold text-foreground">{project.client.name}</div>
+                )}
+                {project.client.country && (
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">Location</div>
+                      <div className="font-semibold text-foreground">{project.client.country}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <MapPin size={18} className="text-primary" />
+                )}
+                {project.duration && (
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Calendar size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">Duration</div>
+                      <div className="font-semibold text-foreground">{project.duration}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground">Location</div>
-                    <div className="font-semibold text-foreground">{project.client.country}</div>
+                )}
+                {project.team && (
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Users size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">Team</div>
+                      <div className="font-semibold text-foreground">{project.team}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Calendar size={18} className="text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground">Duration</div>
-                    <div className="font-semibold text-foreground">{project.duration}</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Users size={18} className="text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground">Team</div>
-                    <div className="font-semibold text-foreground">{project.team}</div>
-                  </div>
-                </div>
+                )}
               </div>
 
               {/* Action Buttons */}
@@ -410,25 +423,27 @@ const ProjectDetailPage: React.FC = () => {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <AnimatedSection>
-              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-                <Code2 size={24} className="text-primary" />
-                Technologies
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {project.stack.map((tech) => (
-                  <motion.span
-                    key={tech}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.15 }}
-                    className="px-4 py-2 bg-card/50 backdrop-blur-xl text-foreground rounded-lg border border-border hover:border-primary/30 transition-all duration-150"
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </div>
-            </AnimatedSection>
+          <div className={`grid gap-12 ${project.stack.length > 0 ? "md:grid-cols-2" : "md:grid-cols-1 max-w-2xl mx-auto"}`}>
+            {project.stack.length > 0 && (
+              <AnimatedSection>
+                <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                  <Code2 size={24} className="text-primary" />
+                  Technologies
+                </h3>
+                <div className="flex flex-wrap gap-3">
+                  {project.stack.map((tech) => (
+                    <motion.span
+                      key={tech}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.15 }}
+                      className="px-4 py-2 bg-card/50 backdrop-blur-xl text-foreground rounded-lg border border-border hover:border-primary/30 transition-all duration-150"
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </AnimatedSection>
+            )}
 
             <AnimatedSection delay={0.1}>
               <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
@@ -518,7 +533,7 @@ const ProjectDetailPage: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
+              <Link to={`/contact?project=${project.slug}`}>
                 <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}

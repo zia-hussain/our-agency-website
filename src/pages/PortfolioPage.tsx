@@ -28,10 +28,10 @@ const PortfolioPage: React.FC = () => {
   };
 
   const stats = [
-    { icon: Code, number: "50+", label: "Projects Completed" },
-    { icon: Users, number: "25+", label: "Happy Clients" },
-    { icon: Calendar, number: "3+", label: "Years Experience" },
-    { icon: Award, number: "100%", label: "Upwork Job Success Score" },
+    { icon: Code, number: "80+", label: "Projects Completed" },
+    { icon: Users, number: "50+", label: "Happy Clients" },
+    { icon: Users, number: "Founder-Led", label: "Every Project" },
+    { icon: Award, number: "100%", label: "Zia's Upwork Job Success Score" },
   ];
 
   const structuredData = {
@@ -85,7 +85,7 @@ const PortfolioPage: React.FC = () => {
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Software Development Case Studies | Zumetrix Labs"
         description="Explore Zumetrix Labs case studies across SaaS MVPs, business dashboards, mobile apps, workflow automation, and custom software."
-        keywords="software development portfolio, SaaS MVP projects, React development projects, mobile app portfolio, enterprise software solutions, startup MVP case studies, international software projects, web application portfolio, Zia Hussain projects, Syed Omer Shah portfolio"
+        keywords="software development portfolio, SaaS MVP projects, React development projects, mobile app portfolio, enterprise software solutions, startup MVP case studies, international software projects, web application portfolio, Zia Hussain projects, Omer Gillani portfolio"
         url="https://zumetrix.com/portfolio"
         structuredData={structuredData}
       />

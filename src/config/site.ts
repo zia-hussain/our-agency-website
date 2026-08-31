@@ -22,8 +22,8 @@ export const SITE_CONFIG = {
       bio: import.meta.env.VITE_FOUNDER_1_BIO || "Zia leads product, growth, and client strategy at Zumetrix Labs.",
     },
     {
-      name: import.meta.env.VITE_FOUNDER_2_NAME || "Syed Omer Shah",
-      fullName: import.meta.env.VITE_FOUNDER_2_FULL_NAME || "Syed Omer Shah",
+      name: import.meta.env.VITE_FOUNDER_2_NAME || "Omer Gillani",
+      fullName: import.meta.env.VITE_FOUNDER_2_FULL_NAME || "Syed Omer Shah Gillani",
       role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
       image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
       bio: import.meta.env.VITE_FOUNDER_2_BIO || "Omer leads architecture, automation, and engineering at Zumetrix Labs.",
@@ -45,9 +45,8 @@ export const SITE_CONFIG = {
 
   // Business Metrics
   metrics: {
-    projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "50+",
-    happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "25+",
-    yearsExperience: import.meta.env.VITE_YEARS_EXPERIENCE || "3+",
+    projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "80+",
+    happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "50+",
     successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
   },
 

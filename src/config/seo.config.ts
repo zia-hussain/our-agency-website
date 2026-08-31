@@ -22,9 +22,9 @@ export const SEO_CONFIG = {
     "Zia Hussain developer",
     "Zia Hussain software engineer",
     "Syed Zia Hussain Shah",
-    "Syed Omer Shah", 
-    "Syed Omer Shah CTO",
-    "Omer Shah",
+    "Omer Gillani",
+    "Omer Gillani CTO",
+    "Syed Omer Shah Gillani",
     "software development agency",
     "software product development agency",
     "founder-led software development agency",
@@ -200,8 +200,9 @@ export const SEO_CONFIG = {
     "Zia Hussain developer",
     "Syed Zia Hussain Shah",
     "Zia Hussain software engineer",
-    "Syed Omer Shah developer",
-    "Syed Omer Shah CTO",
+    "Omer Gillani developer",
+    "Omer Gillani CTO",
+    "Syed Omer Shah Gillani",
     "Pakistani software developers",
     "software developers Pakistan"
   ],
@@ -234,7 +235,7 @@ export const SEO_CONFIG = {
       "height": 512
     },
     "description": "Zumetrix Labs builds SaaS MVPs, React/Node.js applications, AI automation services, and mobile apps for founders.",
-    "foundingDate": "2021",
+    "foundingDate": "2025-06",
     "founder": [
       {
         "@type": "Person",
@@ -255,10 +256,11 @@ export const SEO_CONFIG = {
       },
       {
         "@type": "Person", 
-        "@id": "https://zumetrix.com/founders/syed-omer-shah#person",
-        "name": "Syed Omer Shah",
+        "@id": "https://zumetrix.com/founders/omer-gillani#person",
+        "name": "Omer Gillani",
+        "alternateName": "Syed Omer Shah Gillani",
         "jobTitle": "Co-Founder & CTO",
-        "url": "https://zumetrix.com/founders/syed-omer-shah",
+        "url": "https://zumetrix.com/founders/omer-gillani",
         "worksFor": {
           "@id": "https://zumetrix.com/#organization"
         },

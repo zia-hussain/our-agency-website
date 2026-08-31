@@ -40,7 +40,7 @@ const ArticlesPage: React.FC = () => {
     "@type": "Blog",
     name: "Zumetrix Labs Blog - Expert Software Development Insights",
     description:
-      "Expert insights on software development, SaaS MVP building, AI automation, React/Node.js development from Zumetrix Labs founders Zia Hussain and Syed Omer Shah.",
+      "Expert insights on software development, SaaS MVP building, AI automation, React/Node.js development from Zumetrix Labs founders Zia Hussain and Omer Gillani.",
     url: "https://zumetrix.com/articles",
     publisher: {
       "@type": "Organization",
@@ -61,7 +61,7 @@ const ArticlesPage: React.FC = () => {
         "@type": "Person",
         "@id": authorName === "Zia Hussain"
           ? "https://zumetrix.com/founders/zia-hussain#person"
-          : "https://zumetrix.com/founders/syed-omer-shah#person",
+          : "https://zumetrix.com/founders/omer-gillani#person",
         name: authorName,
       })),
     })),
@@ -72,7 +72,7 @@ const ArticlesPage: React.FC = () => {
       <SEO
         title="SaaS, Automation & Software Articles | Zumetrix Labs"
         description="Practical articles from Zumetrix Labs on SaaS MVPs, AI automation, React and Node.js, mobile apps, product strategy, and software delivery."
-        keywords="software development blog, SaaS MVP guide, AI automation insights, React Node.js tutorials, mobile app development, Firebase guides, Zia Hussain articles, Syed Omer Shah blog, Pakistan software development, startup development guides, tech insights Pakistan"
+        keywords="software development blog, SaaS MVP guide, AI automation insights, React Node.js tutorials, mobile app development, Firebase guides, Zia Hussain articles, Omer Gillani blog, Pakistan software development, startup development guides, tech insights Pakistan"
         url="https://zumetrix.com/articles"
         structuredData={structuredData}
       />
@@ -121,7 +121,7 @@ const ArticlesPage: React.FC = () => {
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Expert insights from <strong>Zia Hussain</strong> and{" "}
-                <strong>Syed Omer Shah</strong>, founders of Zumetrix Labs. Our
+                <strong>Omer Gillani</strong>, founders of Zumetrix Labs. Our
                 articles help developers and entrepreneurs master modern web
                 technologies and build successful digital products.
               </p>

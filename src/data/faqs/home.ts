@@ -8,7 +8,7 @@ export const homeFAQs = [
   {
     question: "Who are the founders behind Zumetrix Labs?",
     answer:
-      "Zumetrix Labs is led by two hands-on technical founders: Zia Hussain (Co-Founder & CEO) and Syed Omer Shah (Co-Founder & CTO). Zia focuses on product strategy and full-stack development using React, Next.js, TypeScript, Node.js, and Firebase. He has led multiple SaaS MVPs from idea to launch for international clients. Omer focuses on backend systems, AI automation, and scalable architecture using Node.js, Python, cloud infrastructure, and OpenAI integrations. Instead of delegating everything to juniors, both founders stay directly involved in architecture, code reviews, and critical technical decisions on every project."
+      "Zumetrix Labs is led by two hands-on technical founders: Zia Hussain (Co-Founder & CEO) and Omer Gillani (Co-Founder & CTO). Zia focuses on product strategy and full-stack development using React, Next.js, TypeScript, Node.js, and Firebase. He has led multiple SaaS MVPs from idea to launch for international clients. Omer focuses on backend systems, AI automation, and scalable architecture using Node.js, Python, cloud infrastructure, and OpenAI integrations. Instead of delegating everything to juniors, both founders stay directly involved in architecture, code reviews, and critical technical decisions on every project."
   },
   {
     question: "How fast can Zumetrix Labs build a production-ready SaaS MVP?",
