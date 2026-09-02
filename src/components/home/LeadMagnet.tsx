@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Download, CheckCircle, FileText } from 'lucide-react';
+import { Download, CheckCircle, FileText, ListChecks, Layers3, Rocket } from 'lucide-react';
 import AnimatedSection from '../common/AnimatedSection';
 import { routeLead } from '../../services/leadRouter';
 import { trackCTAClick } from '../../utils/analytics';
@@ -70,13 +70,13 @@ const LeadMagnet: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="inline-flex items-center px-4 py-2 bg-primary/10 backdrop-blur-xl border border-primary/20 rounded-full text-sm font-medium text-primary mb-6"
+                  className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Free Download
                 </motion.div>
 
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-tight leading-[1.1]">
                   Get Your Free
                   <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-2">
                     30-Day SaaS MVP Blueprint
@@ -89,9 +89,9 @@ const LeadMagnet: React.FC = () => {
 
                 <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
                   {[
-                    { title: 'Step-by-Step Process', desc: 'From idea to launch' },
-                    { title: 'Tech Stack Guide', desc: 'What to use & why' },
-                    { title: 'Launch Checklist', desc: 'Ready-to-use template' }
+                    { icon: ListChecks, title: 'Step-by-Step Process', desc: 'From idea to launch' },
+                    { icon: Layers3, title: 'Tech Stack Guide', desc: 'What to use & why' },
+                    { icon: Rocket, title: 'Launch Checklist', desc: 'Ready-to-use template' }
                   ].map((feature, index) => (
                     <motion.div
                       key={feature.title}
@@ -99,8 +99,9 @@ const LeadMagnet: React.FC = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.2 + index * 0.1 }}
-                      className="bg-background/50 border border-border/50 rounded-lg p-4"
+                      className="bg-background/50 border border-border/50 rounded-lg p-4 flex flex-col items-center text-center"
                     >
+                      <feature.icon size={20} className="text-primary mb-2" />
                       <div className="text-sm font-semibold text-foreground mb-1">
                         {feature.title}
                       </div>
@@ -157,7 +158,7 @@ const LeadMagnet: React.FC = () => {
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-xl font-semibold hover:shadow-glow transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-full font-semibold hover:shadow-glow transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -234,7 +235,7 @@ const LeadMagnet: React.FC = () => {
                 <a
                   href="/downloads/30-day-saas-mvp-blueprint.pdf"
                   download
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity mb-6"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity mb-6"
                 >
                   <Download size={18} />
                   Download PDF

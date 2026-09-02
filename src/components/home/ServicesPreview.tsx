@@ -32,18 +32,19 @@ const ServicesPreview: React.FC = () => {
             className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
           >
             <Monitor size={16} className="mr-2" />
-            Premium Software Development Services
+            What We Actually Build
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
-            Enterprise-Grade Software
+            Three Services.
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              Development Services
+              Real Starting Prices.
             </span>
           </h2>
 
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.6] font-light">
-            {servicesPreview.subtitle}
+            No "contact us for a quote" games. Here's what we build and what
+            it costs to start.
           </p>
         </motion.div>
 
@@ -94,21 +95,33 @@ const ServicesPreview: React.FC = () => {
                     {service.oneLiner}
                   </p>
 
-                  <p className="text-lg font-bold text-foreground">
-                    {service.pricing}
-                  </p>
+                  {isFeatured && (
+                    <p className="text-muted-foreground leading-relaxed mb-6 max-w-lg">
+                      {service.description}
+                    </p>
+                  )}
 
-                  <div className={`${isFeatured? 'block':"hidden"} bg-[#0E0A07] w-full my-8 rounded-2xl`}>
-                    <img
-                      src="/services_images/mvp.webp"
-                      alt=""
-                      width="1000"
-                      height="600"
-                      loading="lazy"
-                      decoding="async"
-                      fetchpriority="low"
-                      className="xs:h-[500px] w-full object-contain rounded-2xl border-3 border-border"
-                    />
+                  {isFeatured && (
+                    <div className="relative w-full mb-8 rounded-2xl overflow-hidden border border-primary/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)]">
+                      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06] z-10" />
+                      <img
+                        src="/services_images/mvp.webp"
+                        alt=""
+                        width="1000"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                        fetchpriority="low"
+                        className="w-full h-auto object-contain bg-background"
+                      />
+                    </div>
+                  )}
+
+                  <div className="mb-2">
+                    <span className="text-xs uppercase tracking-[0.1em] text-muted-foreground">Starting at</span>
+                    <p className={`${isFeatured ? "text-3xl" : "text-2xl"} font-bold text-foreground leading-tight`}>
+                      {service.pricing.replace(/^Starting at\s*/i, "")}
+                    </p>
                   </div>
 
                   {/* Learn More Link */}
@@ -143,7 +156,7 @@ const ServicesPreview: React.FC = () => {
               transition={{ duration: 0.15 }}
               className="group text-foreground hover:text-primary font-medium px-8 py-4
                        transition-colors duration-150 text-lg flex items-center gap-3 mx-auto
-                       bg-card/30 backdrop-blur-xl border border-border rounded-xl hover:border-primary/30 hover:bg-card/50"
+                       bg-card/30 backdrop-blur-xl border border-border rounded-full hover:border-primary/30 hover:bg-card/50"
             >
               Explore All Services
               <ArrowRight

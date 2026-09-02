@@ -49,13 +49,13 @@ export const BRAND_CONTENT = {
     },
 
     subheadline: [
-      { text: "80+ projects built. Some raised funding. Some didn't.", type: "emphasis" },
-      { text: " The difference was usually how clear the problem was before we started building.", type: "normal" },
+      { text: "80+ projects shipped. Some raised funding. Some didn't.", type: "emphasis" },
+      { text: " The pattern was never the tech — it was whether the problem was clear before we started.", type: "normal" },
       { type: "break" },
       { type: "break" },
-      { text: "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. ", type: "normal" },
-      { text: "That's uncomfortable.", type: "accent" },
-      { text: " It's also why our projects actually launch.", type: "normal" }
+      { text: "So we push back. We challenge the brief. We say no when an idea isn't ready. ", type: "normal" },
+      { text: "That's uncomfortable for some clients.", type: "accent" },
+      { text: " It's also the entire reason our projects actually launch.", type: "normal" }
     ] as ContentSegment[],
 
     primaryCTA: {
@@ -64,30 +64,9 @@ export const BRAND_CONTENT = {
     },
 
     secondaryCTA: {
-      text: "View Success Stories",
+      text: "See Real Work",
       link: "#portfolio"
-    },
-
-    trustBadge: {
-      text: "Top Rated on Upwork",
-      subtext: "Zia Hussain · 100% Job Success Score",
-      link: "https://www.upwork.com/freelancers/ziahussain1"
-    },
-
-    stats: [
-      {
-        title: "4-8 Week MVPs",
-        description: "Timeline depends on scope"
-      },
-      {
-        title: "Founder-Led Delivery",
-        description: "Direct senior involvement on every project"
-      },
-      {
-        title: "80+ Projects",
-        description: "Delivered by the team"
-      }
-    ]
+    }
   },
 
   /**
@@ -121,9 +100,9 @@ export const BRAND_CONTENT = {
         icon: "results",
         title: "What Actually Happens",
         description: [
-          { text: "80+ projects delivered by the team. Some raised funding. Some didn't. The difference? ", type: "normal" },
-          { text: "How clear the problem was before we started building.", type: "emphasis" },
-          { text: " We help with that clarity.", type: "normal" }
+          { text: "Some clients raise funding on what we build. Others don't. ", type: "normal" },
+          { text: "That was never about execution — it was about how clear the problem was on day one.", type: "emphasis" },
+          { text: " We build that clarity in before we touch a keyboard.", type: "normal" }
         ] as ContentSegment[],
         stat: "Focused 4-8 week delivery"
       }

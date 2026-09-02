@@ -4,6 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo/Logo%20Icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          if (new URLSearchParams(window.location.search).get("view") !== "proposal") return;
+
+          var robots = document.createElement("meta");
+          robots.name = "robots";
+          robots.content = "noindex, nofollow";
+          document.head.appendChild(robots);
+
+          var googlebot = document.createElement("meta");
+          googlebot.name = "googlebot";
+          googlebot.content = "noindex, nofollow";
+          document.head.appendChild(googlebot);
+        } catch (error) {
+          // Keep proposal pages usable even if URLSearchParams is unavailable.
+        }
+      })();
+    </script>
     <!-- route-meta:start -->
     <meta
       name="description"

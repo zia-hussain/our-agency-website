@@ -2,6 +2,7 @@ import React from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import Hero from "../components/home/Hero";
+import ClientVideoMoment from "../components/home/ClientVideoMoment";
 import InfiniteLogoCarousel from "../components/home/InfiniteLogoCarousel";
 import TrustBand from "../components/home/TrustBand";
 import ServicesPreview from "../components/home/ServicesPreview";
@@ -100,7 +101,7 @@ const HomePage: React.FC = () => {
         structuredData={structuredData}
       />
       <Hero />
-      <SectionDivider />
+      <div className="performance-defer"><ClientVideoMoment /></div>
       <div className="performance-defer"><InfiniteLogoCarousel /></div>
       <SectionDivider />
       <div className="performance-defer"><TrustBand /></div>
@@ -111,13 +112,13 @@ const HomePage: React.FC = () => {
       <SectionDivider />
       <div className="performance-defer"><SignatureMethod /></div>
       <SectionDivider />
+      <div className="performance-defer"><TechStack /></div>
+      <SectionDivider />
       <div className="performance-defer"><FoundersStrip /></div>
       <SectionDivider />
       <div className="performance-defer"><TestimonialsCarousel /></div>
       <SectionDivider />
       <div className="performance-defer"><AIROICalculator /></div>
-      <SectionDivider />
-      <div className="performance-defer"><TechStack /></div>
       <SectionDivider />
       <div className="performance-defer"><LeadMagnet /></div>
       <SectionDivider />

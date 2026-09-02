@@ -27,12 +27,6 @@ export const SITE_DATA = {
       text: BRAND_CONTENT.hero.secondaryCTA.text,
       link: BRAND_CONTENT.hero.secondaryCTA.link,
     },
-    proofPoints: [
-      { icon: "star", text: "5.0 rating" },
-      { icon: "projects", text: "80+ projects" },
-      { icon: "reviews", text: "Top Rated on Upwork" },
-      { icon: "speed", text: "4-8 week MVP delivery" },
-    ],
     mockups: [
       "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800",
       "https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -42,9 +36,6 @@ export const SITE_DATA = {
 
   // Company Logos Carousel - INFINITE SMOOTH SLIDER
   companyLogosCarousel: {
-    eyebrow: "TRUSTED BY INDUSTRY LEADERS",
-    title: "Proud to collaborate with ",
-    themedTitle:"exceptional companies",
     logos: [
       // { name: "Google", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg" },
       // { name: "Microsoft", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoft.svg" },
@@ -64,11 +55,6 @@ export const SITE_DATA = {
 
   // Trust Band - GLOBAL CLIENT SHOWCASE
   trustBand: {
-    title:
-      "Trusted for focused delivery ",
-    themedTitle: "Across real operating businesses",
-    subtitle:
-      "Founder-led product and engineering work across publishing, operations, marketplaces, and automation.",
     globalStats: [
       { icon: "globe", value: "Global", label: "Market Reach" },
       { icon: "projects", value: "80+", label: "Projects Delivered" },
@@ -99,9 +85,6 @@ export const SITE_DATA = {
 
   // Services Preview - CONVERSION FOCUSED
   servicesPreview: {
-    title: "Enterprise-Grade Software Development Services",
-    subtitle:
-      "From SaaS MVPs to AI automation - we deliver solutions that drive measurable business growth",
     services: [
       {
         id: "saas-mvp",
@@ -110,7 +93,7 @@ export const SITE_DATA = {
         oneLiner:
           "Launch a focused SaaS product in 4-8 weeks with a foundation built to grow",
         description:
-          "Transform your business idea into a production-ready SaaS platform using React, Node.js, and Firebase. Complete with user authentication, payment processing, and real-time features.",
+          "A production-ready SaaS platform built on React, Node.js, and Firebase — user authentication, payment processing, and real-time features included, not bolted on later.",
         pricing: "Starting at $4,800",
         timeline: "4-8 weeks",
         popular: true,
@@ -127,7 +110,7 @@ export const SITE_DATA = {
         icon: "brain",
         title: "AI Automation & Workflows",
         oneLiner:
-          "Automate business processes and scale operations intelligently",
+          "Turn repetitive manual work into workflows that run without you",
         description:
           "Streamline recurring work with custom AI workflows, OpenAI integration, and practical no-code automation.",
         pricing: "Starting at $2,500",
@@ -146,7 +129,7 @@ export const SITE_DATA = {
         icon: "devices",
         title: "Web & Mobile Applications",
         oneLiner:
-          "Cross-platform applications that feel native and perform flawlessly",
+          "One codebase, both app stores, no compromise on how it feels",
         description:
           "Build responsive web applications and cross-platform mobile apps using React Native and modern web technologies for global audiences.",
         pricing: "Starting at $5,500",
@@ -197,32 +180,22 @@ export const SITE_DATA = {
     },
   },
 
-  // Featured Case Studies - SELECTED CLIENT WORK
-  featuredCaseStudies: {
-    title: "Selected Client Work",
-    subtitle:
-      "Delivered across publishing, operations and marketplace products for teams in Norway, Canada and the United Kingdom.",
-    cta: {
-      text: "View All Projects",
-      link: "/portfolio",
-    },
-  },
 
   // Founders Strip - EXPERT CREDIBILITY
   foundersStrip: {
     title: "Founder-led from",
     themedTitle: "strategy through delivery",
     subtitle:
-      "Zia leads product direction and client strategy. Omer leads architecture and engineering delivery.",
+      "Zia leads product direction and client strategy. Omer leads architecture and engineering delivery. Every engagement is founder-led, backed by the specialists each project actually needs.",
     founders: [
       {
         name: "Zia Hussain",
         fullName: "Syed Zia Hussain Shah",
         role: "Co-Founder & CEO",
         credibility: [
-          "Product direction and discovery",
-          "Client strategy and scope clarity",
-          "Full-stack product experience",
+          "Decides what gets built first, not just what's asked for",
+          "Keeps scope honest instead of just big",
+          "Has shipped the code, not just managed it",
         ],
         expertise: [
           "React/TypeScript",
@@ -240,9 +213,9 @@ export const SITE_DATA = {
         fullName: "Syed Omer Shah Gillani",
         role: "Co-Founder & CTO",
         credibility: [
-          "Software architecture and delivery",
-          "Automation and systems design",
-          "Scalable full-stack engineering",
+          "Builds systems that survive contact with real users",
+          "Designs the automation instead of just wiring up Zapier",
+          "Writes code meant to still hold up at 10x the load",
         ],
 
         expertise: [
@@ -261,45 +234,8 @@ export const SITE_DATA = {
 
   // Tech Stack Band - CORE CAPABILITIES
   techStack: {
-    title: "Modern Technologies",
-    themedTitle: "Powering Your Success",
     subtitle:
-      "Modern, scalable, and battle-tested tools used by leading tech companies to build enterprise solutions",
-    coreCapabilities: [
-      {
-        icon: "frontend",
-        title: "Frontend Excellence",
-        description: "React, Next.js, TypeScript for scalable user interfaces",
-        technologies: ["React", "Next.js", "TypeScript", "TailwindCSS"],
-      },
-      {
-        icon: "backend",
-        title: "Backend Mastery",
-        description:
-          "Node.js, Python, databases for robust server architecture",
-        technologies: ["Node.js", "Python", "PostgreSQL", "MongoDB"],
-      },
-      {
-        icon: "cloud",
-        title: "Cloud Infrastructure",
-        description: "AWS, Firebase, Vercel for global deployment and scaling",
-        technologies: ["AWS", "Firebase", "Vercel", "Docker"],
-      },
-      {
-        icon: "ai",
-        title: "AI Integration",
-        description:
-          "OpenAI, automation workflows for intelligent business solutions",
-        technologies: ["OpenAI", "LangChain", "Zapier", "Make.com"],
-      },
-      {
-        icon: "mobile",
-        title: "Mobile Development",
-        description:
-          "React Native, Flutter for cross-platform mobile excellence",
-        technologies: ["React Native", "Flutter", "Expo", "App Store"],
-      },
-    ],
+      "React when it's right. Python when that's better. No-code when it ships faster and holds up. Here's the full range we build with.",
   },
 
   // Testimonials - SOCIAL PROOF CAROUSEL
@@ -349,6 +285,66 @@ export const SITE_DATA = {
       results: "Project-linked feedback",
       industry: "EdTech & Skill Sharing",
     },
+    {
+      id: 4,
+      quote:
+        "Zumetrix Labs delivered exactly what we envisioned and more. The AI integration is seamless, the user experience is fantastic, and the code quality is exceptional. Looking forward to Phase 2 expansion!",
+      author: "Kelly Andrews",
+      role: "Founder",
+      company: "Best Business Services",
+      country: "United States",
+      project: "Ifyify — AI-Powered Personal Branding Tool",
+      projectSlug: "ifyify-ai-personal-branding",
+      initials: "KA",
+      rating: 5,
+      results: "Project-linked feedback",
+      industry: "Business Services & AI Tools",
+    },
+    {
+      id: 5,
+      quote:
+        "Your Bubble knowledge and system thinking saved me from so many future problems. The marketplace now feels robust instead of hacked together.",
+      author: "Jenny",
+      role: "Founder",
+      company: "HjelpNå",
+      country: "Norway",
+      project: "Handyman Marketplace PWA",
+      projectSlug: "hjelpna-handyman-marketplace",
+      initials: "J",
+      rating: 5,
+      results: "Project-linked feedback",
+      industry: "Home Services Marketplace",
+    },
+    {
+      id: 6,
+      quote:
+        "The system design covered everything I needed and more. It gave me clarity on the technical path ahead.",
+      author: "Imane",
+      role: "Co-founder",
+      company: "Utility Bill Deal Finder",
+      country: "Europe",
+      project: "AI-Powered Bill Analysis MVP",
+      projectSlug: "utility-bill-deal-finder",
+      initials: "I",
+      rating: 5,
+      results: "Project-linked feedback",
+      industry: "FinTech & Utilities",
+    },
+    {
+      id: 7,
+      quote:
+        "You jumped into a messy situation and got us back to shipping. That was exactly what we needed.",
+      author: "Bharat",
+      role: "Developer",
+      company: "Bondfire",
+      country: "India",
+      project: "Event Booking App Stabilization",
+      projectSlug: "bondfire-event-booking-app",
+      initials: "B",
+      rating: 5,
+      results: "Project-linked feedback",
+      industry: "Events & Bookings",
+    },
   ],
 
   // Final CTA
@@ -383,49 +379,6 @@ export const SITE_DATA = {
     clientSatisfaction: "Project references available",
     countriesServed: "Global",
     responseTime: "24 hours",
-  },
-
-  // Client Logos & Trust Badges
-  clientLogos: {
-    title: "Trusted across",
-    themedTitle: " real product work",
-    subtitle: "Software, automation, and product delivery for teams working across multiple markets",
-    trustBadges: [
-      {
-        value: '5.0',
-        label: 'Rating',
-        subtext: 'Based on 80+ projects',
-        icon: 'award'
-      },
-      {
-        value: 'Founder-led',
-        label: 'Delivery',
-        subtext: 'Direct senior involvement',
-        icon: 'users'
-      },
-      {
-        value: '80+',
-        label: 'Projects',
-        subtext: 'Delivered globally',
-        icon: 'briefcase'
-      },
-      {
-        value: '100%',
-        label: 'Job Success',
-        subtext: "On Zia's Upwork profile",
-        icon: 'star'
-      }
-    ],
-    clients: [
-      { name: 'Forlag', industry: 'Publishing' },
-      { name: 'Floating Stone Ranch', industry: 'Operations' },
-      { name: 'Skill X Swap', industry: 'Marketplace' },
-    ],
-    bottomBadge: {
-      rating: '5.0',
-      reviews: '50+ client reviews',
-      satisfaction: 'Project references available'
-    }
   },
 
   // Lead Magnet - MVP Blueprint
@@ -503,6 +456,5 @@ export const getTestimonials = () => SITE_DATA.testimonials;
 export const getFeaturedTestimonials = () => SITE_DATA.testimonials.slice(0, 3);
 export const getFounders = () => SITE_DATA.foundersStrip.founders;
 export const getMetrics = () => SITE_DATA.metrics;
-export const getClientLogosData = () => SITE_DATA.clientLogos;
 export const getLeadMagnetData = () => SITE_DATA.leadMagnet;
 export const getAIROICalculatorData = () => SITE_DATA.aiROICalculator;

@@ -3,14 +3,27 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Play,
-  CheckCircle,
-  Zap,
-  Award,
   Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";
+
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 const Hero: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
@@ -20,71 +33,45 @@ const Hero: React.FC = () => {
     }
   };
 
-  const stats = [
-    {
-      icon: Zap,
-      title: BRAND_CONTENT.hero.stats[0].title,
-      desc: BRAND_CONTENT.hero.stats[0].description,
-    },
-    {
-      icon: Award,
-      title: BRAND_CONTENT.hero.stats[1].title,
-      desc: BRAND_CONTENT.hero.stats[1].description,
-    },
-    {
-      icon: CheckCircle,
-      title: BRAND_CONTENT.hero.stats[2].title,
-      desc: BRAND_CONTENT.hero.stats[2].description,
-    },
-  ];
-
-  const keyDiffContainer = {
-    hidden: { opacity: 0, y: 24 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-        staggerChildren: 0.12,
-        delayChildren: 0.6,
-      },
-    },
-  };
-
-  const keyDiffItem = {
-    hidden: { opacity: 0, y: 20, scale: 0.98 },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.35, ease: "easeOut" },
-    },
-  };
-
   return (
-    <section className="min-h-screen bg-gradient-to-b from-background via-background to-card/30 flex items-center justify-center relative overflow-hidden pt-20 sm:pt-32 pb-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_28%,rgba(196,138,100,0.11),transparent_32%),radial-gradient(circle_at_12%_72%,rgba(196,138,100,0.07),transparent_28%)]" />
+    <section className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden pt-20 sm:pt-32 pb-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_25%,rgba(196,138,100,0.10),transparent_32%),radial-gradient(circle_at_10%_75%,rgba(196,138,100,0.06),transparent_28%)]" />
 
       {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 opacity-[0.015]">
+      <div className="absolute inset-0 opacity-[0.02]">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: `linear-gradient(rgba(196, 138, 100, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(196, 138, 100, 0.1) 1px, transparent 1px)`,
             backgroundSize: "80px 80px",
+            maskImage: "radial-gradient(ellipse 60% 50% at 50% 40%, black 40%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 60% 50% at 50% 40%, black 40%, transparent 100%)",
           }}
         />
       </div>
 
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      {/* Fine grain texture for tactile depth */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+        }}
+      />
+
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full"
+      >
         <div className="flex flex-col items-center text-center">
-          {/* PREMIUM Status Badge */}
-          <div className="flex justify-center">
+          {/* Status Badge */}
+          <motion.div variants={item} className="flex justify-center">
             <Link
               to="/contact"
               className="
-      group relative inline-flex items-center gap-2
+      group relative inline-flex items-center gap-2 overflow-hidden
       rounded-full px-5 py-2.5
       text-sm font-semibold
       text-primary
@@ -98,67 +85,58 @@ const Hero: React.FC = () => {
       focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 mb-8
     "
             >
-              {/* subtle top highlight (Bolt feel) */}
               <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/10 via-white/5 to-transparent opacity-70" />
-
-              {/* ultra-soft glow using your primary */}
               <span className="pointer-events-none absolute -inset-1 rounded-full bg-primary/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
 
               <Sparkles size={16} className="opacity-80" />
               <span className="relative">{BRAND_CONTENT.hero.badge}</span>
 
-              {/* clean right dot (no ping, premium) */}
               <span className="relative ml-2 flex h-2 w-2">
                 <span className="absolute inset-0 rounded-full bg-primary/70 blur-[2px]" />
                 <span className="relative h-2 w-2 rounded-full bg-primary" />
               </span>
             </Link>
-          </div>
+          </motion.div>
 
-          {/* ULTIMATE HEADLINE - Maximum Impact */}
+          {/* Headline */}
           <h1 className="text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 sm:mb-8 leading-[1.15] tracking-tight sm:px-4">
-            <span className="block text-foreground mb-2 sm:mb-3">
+            <motion.span variants={item} className="block text-foreground mb-2 sm:mb-3">
               {BRAND_CONTENT.hero.headline.line1}
-            </span>
-            <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent lg:pb-2">
+            </motion.span>
+            <motion.span
+              variants={item}
+              className="block bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent lg:pb-2 [text-shadow:0_0_28px_rgba(196,138,100,0.16)]"
+            >
               {BRAND_CONTENT.hero.headline.line2}
-            </span>
-            <span className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl mt-3 sm:mt-4">
+            </motion.span>
+            <motion.span
+              variants={item}
+              className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl mt-3 sm:mt-4"
+            >
               {BRAND_CONTENT.hero.headline.line3}
-            </span>
+            </motion.span>
           </h1>
 
-          {/* POWERFUL Value Proposition */}
-          <div className="mb-8 max-w-4xl px-2 text-base font-light leading-relaxed text-muted-foreground sm:mb-10 sm:px-4 sm:text-lg lg:text-xl">
+          {/* Supporting copy */}
+          <motion.div
+            variants={item}
+            className="mb-10 sm:mb-12 max-w-4xl px-2 text-base font-light leading-relaxed text-muted-foreground sm:px-4 sm:text-lg lg:text-xl"
+          >
             <p className="mb-6">
               {renderContentSegments(BRAND_CONTENT.hero.subheadline.slice(0, 2))}
             </p>
             <p>
               {renderContentSegments(BRAND_CONTENT.hero.subheadline.slice(4))}
             </p>
-          </div>
+          </motion.div>
 
-          {/* Trust stat — company-level, not a marketplace credential */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-6 mb-10 sm:mb-12 px-2 sm:px-4">
-            <div className="flex items-center gap-2 text-foreground">
-              <CheckCircle size={18} className="text-primary" />
-              <span>
-                <strong className="text-foreground">
-                  {BRAND_CONTENT.trust.metrics.projects}
-                </strong>{" "}
-                <span className="text-muted-foreground">
-                  {BRAND_CONTENT.trust.metrics.projectsDescription}
-                </span>
-              </span>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-center items-center sm:flex-row gap-5 mb-24">
+          {/* CTAs */}
+          <motion.div variants={item} className="flex flex-col justify-center items-center sm:flex-row gap-5">
             <Link to={BRAND_CONTENT.hero.primaryCTA.link}>
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="group relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl font-bold text-lg
+                className="group relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-8 sm:px-12 py-4 sm:py-6 rounded-full font-bold text-lg
                          shadow-2xl shadow-primary/25 hover:shadow-primary/40
                          flex items-center gap-3 overflow-hidden"
               >
@@ -176,7 +154,7 @@ const Hero: React.FC = () => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => scrollToSection("portfolio")}
-              className="group text-foreground hover:text-primary font-bold px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl text-lg
+              className="group text-foreground hover:text-primary font-bold px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg
                         flex items-center gap-3
                        bg-card/60 backdrop-blur-xl border-2 border-border/50
                        hover:bg-card hover:border-primary/40 shadow-xl"
@@ -187,87 +165,9 @@ const Hero: React.FC = () => {
               />
               {BRAND_CONTENT.hero.secondaryCTA.text}
             </motion.button>
-          </div>
-
-          {/* Key Differentiators */}
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            variants={keyDiffContainer}
-            viewport={{ once: true, amount: 0.4 }}
-            className="w-full max-w-5xl mx-auto px-4 sm:px-0 cursor-default"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
-              {stats.map((item) => (
-                <motion.div
-                  key={item.title}
-                  variants={keyDiffItem}
-                  whileHover={{
-                    y: -6,
-                    scale: 1.015,
-                    transition: { duration: 0.22, ease: "easeOut" },
-                  }}
-                  className="relative group h-full hover:border-primary/30 bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 flex flex-col"
-                >
-                  {/* Glow ring on hover */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/0 to-primary/0 opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-300 pointer-events-none" />
-
-                  <div
-                    className="
-            relative h-full overflow-hidden rounded-2xl
-            border border-white/5
-            bg-white/[0.02]
-            backdrop-blur-md
-            px-5 py-6
-            flex flex-col
-            transition-all duration-300
-            group-hover:border-white/15
-            group-hover:bg-white/[0.04]
-          "
-                  >
-                    {/* Subtle top accent line */}
-                    <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-60" />
-
-                    {/* Icon + label */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div
-                        className="
-                relative flex items-center justify-center
-                h-10 w-10 rounded-xl
-                border border-white/10
-                bg-white/[0.04]
-                shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
-                transition-all duration-300
-                group-hover:bg-white/[0.06]
-                group-hover:border-white/20
-              "
-                      >
-                        <item.icon
-                          className="w-5 h-5 text-primary"
-                          strokeWidth={1.6}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Title */}
-                    <h2 className="text-2xl font-semibold text-white/45 tracking-tight mb-2">
-                      {item.title}
-                    </h2>
-
-                    {/* Description */}
-                    <p className="text-sm text-white/60 leading-relaxed mb-4">
-                      {item.desc}
-                    </p>
-
-                    {/* Bottom accent line */}
-                    <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/12 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

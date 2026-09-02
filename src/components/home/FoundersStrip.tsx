@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, Linkedin } from "lucide-react";
+import { Calendar, Linkedin, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 
@@ -16,7 +16,11 @@ const FoundersStrip: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="text-center mb-12 sm:mb-16 lg:mb-20 px-4"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
+          <div className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8">
+            <Users size={16} className="mr-2" />
+            Who You'll Work With
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
             {foundersStrip.title}
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
               {foundersStrip.themedTitle}
@@ -67,8 +71,7 @@ const FoundersStrip: React.FC = () => {
                 </div>
 
                 {/* Expertise Areas */}
-                <div className="mb-4 sm:mb-6 flex-grow">
-                  <h4 className="text-sm sm:text-base font-semibold text-foreground mb-3 text-center sm:text-left">Core Expertise:</h4>
+                <div className="mb-5 sm:mb-6 flex-grow">
                   <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                     {founder.expertise.map((skill) => (
                       <motion.span
@@ -84,8 +87,7 @@ const FoundersStrip: React.FC = () => {
                 </div>
 
                 {/* Credibility Points */}
-                <div className="mb-4 sm:mb-6">
-                  <h4 className="text-sm sm:text-base font-semibold text-foreground mb-3 text-center sm:text-left">Key Achievements:</h4>
+                <div className="mb-5 sm:mb-6">
                   <ul className="space-y-2">
                     {founder.credibility.map((point, idx) => (
                       <li key={idx} className="text-xs sm:text-sm text-muted-foreground flex items-start gap-2">
@@ -105,7 +107,7 @@ const FoundersStrip: React.FC = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
-                    className="flex-1 bg-card border border-border text-foreground hover:text-primary px-4 py-3 rounded-xl font-medium hover:border-primary/30 hover:bg-card/80 transition-all duration-150 flex items-center justify-center gap-2 text-sm sm:text-base"
+                    className="flex-1 bg-card border border-border text-foreground hover:text-primary px-4 py-3 rounded-full font-medium hover:border-primary/30 hover:bg-card/80 transition-all duration-150 flex items-center justify-center gap-2 text-sm sm:text-base"
                   >
                     <Linkedin size={14} className="sm:hidden" />
                     <Linkedin size={16} className="hidden sm:block" />
@@ -119,7 +121,7 @@ const FoundersStrip: React.FC = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
-                    className="flex-1 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-4 py-3 rounded-xl font-medium hover:shadow-glow transition-all duration-150 flex items-center justify-center gap-2 text-sm sm:text-base"
+                    className="flex-1 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-4 py-3 rounded-full font-medium hover:shadow-glow transition-all duration-150 flex items-center justify-center gap-2 text-sm sm:text-base"
                   >
                     <Calendar size={14} className="sm:hidden" />
                     <Calendar size={16} className="hidden sm:block" />

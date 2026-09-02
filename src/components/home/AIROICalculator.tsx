@@ -121,10 +121,10 @@ const AIROICalculator: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center px-4 py-2 bg-primary/10 backdrop-blur-xl border border-primary/20 rounded-full text-sm font-medium text-primary mb-6"
+            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
           >
             <Calculator className="w-4 h-4 mr-2" />
-            Interactive Calculator
+            For Teams With Recurring Manual Work
           </motion.div>
    <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
             Calculate Your
@@ -134,8 +134,10 @@ const AIROICalculator: React.FC = () => {
           </h2>
 
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.6] font-light">
-                   Discover how much time and money you could save by automating repetitive tasks
-
+            If your team is buried in repetitive manual work, this gives you a
+            real number on what fixing that could be worth. Building a
+            product instead? Skip straight to the section below — this one's
+            for a different kind of problem.
           </p>
         </motion.div>
 
@@ -239,7 +241,7 @@ const AIROICalculator: React.FC = () => {
                     onClick={handleCalculate}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-xl font-semibold hover:shadow-glow transition-all duration-150 flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-full font-semibold hover:shadow-glow transition-all duration-150 flex items-center justify-center gap-2"
                   >
                     <TrendingUp size={20} />
                     Calculate ROI
@@ -326,7 +328,7 @@ const AIROICalculator: React.FC = () => {
                     disabled={!contactInfo.email || isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-primary text-primary-foreground px-6 py-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-primary text-primary-foreground px-6 py-4 rounded-full font-semibold hover:opacity-90 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -387,7 +389,7 @@ const AIROICalculator: React.FC = () => {
                 </p>
                 <a
                   href="/contact"
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity"
+                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity"
                 >
                   Book a Free Consultation
                 </a>

@@ -6,29 +6,14 @@ export const homeFAQs = [
       "Zumetrix Labs is a founder-led software studio that builds SaaS MVPs, web applications, mobile apps, and AI-assisted automation systems. We work with React, Next.js, Node.js, React Native, OpenAI, Zapier, Make.com, and n8n. Most engagements are for international founders and operating teams that want direct access to the people shaping and building the product."
   },
   {
-    question: "Who are the founders behind Zumetrix Labs?",
-    answer:
-      "Zumetrix Labs is led by two hands-on technical founders: Zia Hussain (Co-Founder & CEO) and Omer Gillani (Co-Founder & CTO). Zia focuses on product strategy and full-stack development using React, Next.js, TypeScript, Node.js, and Firebase. He has led multiple SaaS MVPs from idea to launch for international clients. Omer focuses on backend systems, AI automation, and scalable architecture using Node.js, Python, cloud infrastructure, and OpenAI integrations. Instead of delegating everything to juniors, both founders stay directly involved in architecture, code reviews, and critical technical decisions on every project."
-  },
-  {
     question: "How fast can Zumetrix Labs build a production-ready SaaS MVP?",
     answer:
       "A tightly scoped SaaS MVP can sometimes launch in about 30 days, while most focused engagements take 4-8 weeks. The real timeline depends on user roles, integrations, payments, data migration, and how clearly the first release is defined. We confirm the scope and delivery plan before development begins."
   },
   {
-    question: "What does your 30-day SaaS MVP process look like?",
-    answer:
-      "For a tightly scoped 30-day MVP, we move through seven clear stages: product discovery, scope confirmation, architecture, core UI flows, frontend and backend implementation, essential integrations, and QA with deployment. More complex products follow the same process over a longer schedule. In both cases, the first-release boundary and expected deliverables are agreed before the build starts."
-  },
-  {
     question: "What AI automation services does Zumetrix Labs provide?",
     answer:
       "We help companies turn manual, repetitive work into automated, AI-assisted workflows. This includes OpenAI and ChatGPT integrations, custom AI endpoints, document and email processing automation, customer support assistants, internal tools powered by AI, and no-code/low-code automation using Zapier, Make.com, and n8n. We often connect AI flows to CRMs, marketing tools, databases, or internal systems so your team saves hours every week while keeping full control over the business logic."
-  },
-  {
-    question: "Which technologies and tech stack do you use?",
-    answer:
-      "Our primary tech stack includes React, Next.js, TypeScript, Node.js, Express, React Native, Expo, Firebase, Supabase, PostgreSQL, MongoDB, Stripe, OpenAI APIs, TailwindCSS, and modern deployment platforms like Vercel and AWS. For automations and internal tools, we frequently use Airtable, Notion, Zapier, Make.com, and n8n. We choose technologies based on performance, maintainability, and your team’s long-term needs so you are not locked into something you can’t scale or hire for later."
   },
   {
     question: "What types of projects are the best fit for Zumetrix Labs?",
@@ -59,6 +44,21 @@ export const homeFAQs = [
     question: "What happens after launch? Do you offer ongoing support?",
     answer:
       "Yes. After we launch your product, we can either hand everything over to your internal team or stay on as your technical partner. Many clients keep us for monthly retainers to handle new features, performance improvements, bug fixes, monitoring, and further automation of their operations. We prefer long-term relationships where we can keep improving the product over time instead of just doing a one-off build and disappearing."
+  },
+  {
+    question: "Do you sign an NDA before we start?",
+    answer:
+      "Yes. We're comfortable signing your NDA before any detailed scoping call, or we can send ours. Most founders share real product details before a contract exists, so this is a normal first step, not a special request."
+  },
+  {
+    question: "What if I only have a rough idea, not a full spec yet?",
+    answer:
+      "That's the normal starting point, not a blocker. Most engagements begin with a scoping conversation where we press on the vague parts of the idea, figure out what the first release actually needs to prove, and turn that into a scoped plan before any code gets written."
+  },
+  {
+    question: "Do you build with no-code tools, or only custom code?",
+    answer:
+      "Both, depending on what the problem actually needs. We build custom React/Node products when the product is the business, and we use no-code platforms like Bubble, Webflow, or FlutterFlow when they genuinely ship faster and hold up fine at the scale involved. We'll tell you honestly which one fits before we start."
   }
 ];
 

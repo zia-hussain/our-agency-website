@@ -51,6 +51,9 @@ function App() {
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isReviewRoute = location.pathname === '/review';
   const isUtilityRoute = ['/contact', '/privacy-policy', '/terms-of-service', '/unsubscribe'].includes(location.pathname);
+  const isProposalCaseStudy =
+    location.pathname.startsWith('/portfolio/') &&
+    new URLSearchParams(location.search).get('view') === 'proposal';
   const isNotFoundRoute = !([
     '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
     '/articles', '/privacy-policy', '/terms-of-service', '/review',
@@ -145,7 +148,7 @@ function App() {
       </Suspense>
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Footer />}
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <BackToTop />}
-      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && !isUtilityRoute && <StickyCTABar />}
+      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && !isUtilityRoute && !isProposalCaseStudy && <StickyCTABar />}
     </div>
   );
 }
