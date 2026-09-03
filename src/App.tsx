@@ -21,6 +21,7 @@ const ServiceDetailPage = lazy(() => import("./pages/ServiceDetailPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const AllProjectsPage = lazy(() => import("./pages/AllProjectsPage"));
+const ClientStoriesPage = lazy(() => import("./pages/ClientStoriesPage"));
 const ReviewPage = lazy(() => import("./pages/ReviewPage"));
 const UnsubscribePage = lazy(() => import("./pages/UnsubscribePage"));
 const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
@@ -56,7 +57,7 @@ function App() {
     new URLSearchParams(location.search).get('view') === 'proposal';
   const isNotFoundRoute = !([
     '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
-    '/articles', '/privacy-policy', '/terms-of-service', '/review',
+    '/articles', '/privacy-policy', '/terms-of-service', '/review', '/client-stories',
   ].includes(location.pathname) ||
     location.pathname.startsWith('/services/') ||
     location.pathname.startsWith('/portfolio/') ||
@@ -103,6 +104,7 @@ function App() {
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/all" element={<AllProjectsPage />} />
           <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
+          <Route path="/client-stories" element={<ClientStoriesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/articles" element={<ArticlesPage />} />
           <Route path="/articles/:slug" element={<ArticleDetailPage />} />

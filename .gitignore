@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .env
 supabase/.temp/
+
+# Private source material (client usernames, unpublished attribution notes) — never commit
+internal/

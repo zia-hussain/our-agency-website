@@ -194,7 +194,7 @@ export const projects: Project[] = [
   problem: "The client managed sales and inventory through multiple spreadsheets and manual calculations, making it difficult to understand MTD/YTD performance, inventory risk, and customer behavior across different channels and time periods.",
   solution: "We designed and built a modular React dashboard that ingests raw CSV/XLSX files, normalizes dates, aggregates metrics per page, and stores processed data in localStorage. The dashboard exposes clear KPI cards, charts, and tables for sales, customers, orders, and inventory, all with a pixel-perfect UI. An advanced upload system differentiates between initial full imports and incremental updates, ensuring inventory data stays accurate without manual reconciliation.",
   testimonial: {
-    quote: "The new dashboard finally gives us a clear, real-time picture of our sales and inventory. It feels tailored for our business, not like a generic off-the-shelf tool.",
+    quote: "He built a beautiful sales- and inventory dashboard for me over a month, and went out of his way to make it just as I wanted it. He worked around the clock, and we had meetings whenever it was nescessary.",
     author: "Harald",
     role: "Co-owner, Forlag"
   },
@@ -270,7 +270,7 @@ export const projects: Project[] = [
   problem: "The client had complex beef processing flows involving carcass intake, cutting, boxing, and shipping, but no centralized digital system that could reliably track each step, generate manifests, and support future analytics.",
   solution: "We designed a normalized Airtable schema covering animals, carcasses, boxes, lots, and shipments, and layered Make.com automation scenarios on top to drive the workflow. These scenarios handle triggers, status changes, and cross-table updates, ensuring every carcass and box remains traceable from intake to final shipment, with Bill of Lading data generated automatically.",
   testimonial: {
-    quote: "You translated a messy, real-world processing operation into a system that actually makes sense. This will save us time and headaches as we grow.",
+    quote: "The team understood the complexity of my industry and of the project quickly and were flexible with the scope as we all learned to deal with new solutions on the fly. I will continue to use this team.",
     author: "James",
     role: "Owner, Floating Stone Ranch"
   },
@@ -339,7 +339,7 @@ export const projects: Project[] = [
   problem: "The founder needed a clean, intuitive skill trading app that could handle different user tiers, monthly credit limits, and earned credits from completed swaps, while staying simple enough for a first MVP.",
   solution: "We implemented a React Native app backed by Firebase, with clear user onboarding, separated \"Skills I Offer\" and \"Skills I Want\" lists, a credit-aware swap request system, and proper differentiation between monthly allowance credits and earned credits. The system was architected for future Stripe integration and an enterprise white-label edition.",
   testimonial: {
-    quote: "The MVP feels aligned with the exact vision I had in my head. The credits logic and flows are thoughtfully built for future scaling.",
+    quote: "I'd recommend absolutely everyone to work with Omer. From my first outreach with him, he understood my requirements exactly. Even better than I did! He communicates clearly, timely and is genuinely exceptional. I wouldn't have been able to launch my startup without his expertise in app building and development. 100% will use Omer every time I need help. Super great guy through and through!",
     author: "Sam",
     role: "Founder, Skill x Swap"
   },
@@ -1023,6 +1023,11 @@ export const projects: Project[] = [
     ],
     proofNotes: ["Client and founder identity withheld by request. Product name and technical scope are shared with permission. Screenshots are pending privacy review — none are published yet."],
     ctaAngle: "Talk to us when the engineering problem is the hard part, not the interface."
+  },
+  testimonial: {
+    quote: "We could not be happier about working with Zumetrix Labs! What has started as an idea has turned into a really great projekt/product, which only evolved into its full potential through the corporation, ideas, experience, professionalism and openness from our developer. Everything was well understood, delivered on time and documented clearly. Thanks again. We can highly appreciate the work performed and couldn't recommend working with Zia and his Team enough!",
+    author: "Founder",
+    role: "Knipsr"
   }
 },
 

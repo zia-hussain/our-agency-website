@@ -238,115 +238,6 @@ export const SITE_DATA = {
       "React when it's right. Python when that's better. No-code when it ships faster and holds up. Here's the full range we build with.",
   },
 
-  // Testimonials - SOCIAL PROOF CAROUSEL
-  testimonials: [
-    {
-      id: 1,
-      quote:
-        "The new dashboard finally gives us a clear, real-time picture of our sales and inventory. It feels tailored for our business, not like a generic off-the-shelf tool.",
-      author: "Harald",
-      role: "Co-owner",
-      company: "Forlag",
-      country: "Norway",
-      project: "Publishing Sales & Inventory Dashboard",
-      projectSlug: "forlag-publishing-sales-inventory-dashboard",
-      initials: "H",
-      rating: 5,
-      results: "Project-linked feedback",
-      industry: "Publishing & Book Sales",
-    },
-    {
-      id: 2,
-      quote:
-        "You translated a messy, real-world processing operation into a system that actually makes sense. This will save us time and headaches as we grow.",
-      author: "James",
-      role: "Owner",
-      company: "Floating Stone Ranch",
-      country: "Canada",
-      project: "Processor Intake & Logistics Automation",
-      projectSlug: "floating-stone-ranch-processor-intake-engine",
-      initials: "J",
-      rating: 5,
-      results: "Project-linked feedback",
-      industry: "Beef Processing & Logistics",
-    },
-    {
-      id: 3,
-      quote:
-        "The MVP feels aligned with the exact vision I had in my head. The credits logic and flows are thoughtfully built for future scaling.",
-      author: "Sam",
-      role: "Founder",
-      company: "Skill X Swap",
-      country: "United Kingdom",
-      project: "Credit-Based Skill Trading Marketplace",
-      projectSlug: "skill-x-swap-mvp",
-      initials: "S",
-      rating: 5,
-      results: "Project-linked feedback",
-      industry: "EdTech & Skill Sharing",
-    },
-    {
-      id: 4,
-      quote:
-        "Zumetrix Labs delivered exactly what we envisioned and more. The AI integration is seamless, the user experience is fantastic, and the code quality is exceptional. Looking forward to Phase 2 expansion!",
-      author: "Kelly Andrews",
-      role: "Founder",
-      company: "Best Business Services",
-      country: "United States",
-      project: "Ifyify — AI-Powered Personal Branding Tool",
-      projectSlug: "ifyify-ai-personal-branding",
-      initials: "KA",
-      rating: 5,
-      results: "Project-linked feedback",
-      industry: "Business Services & AI Tools",
-    },
-    {
-      id: 5,
-      quote:
-        "Your Bubble knowledge and system thinking saved me from so many future problems. The marketplace now feels robust instead of hacked together.",
-      author: "Jenny",
-      role: "Founder",
-      company: "HjelpNå",
-      country: "Norway",
-      project: "Handyman Marketplace PWA",
-      projectSlug: "hjelpna-handyman-marketplace",
-      initials: "J",
-      rating: 5,
-      results: "Project-linked feedback",
-      industry: "Home Services Marketplace",
-    },
-    {
-      id: 6,
-      quote:
-        "The system design covered everything I needed and more. It gave me clarity on the technical path ahead.",
-      author: "Imane",
-      role: "Co-founder",
-      company: "Utility Bill Deal Finder",
-      country: "Europe",
-      project: "AI-Powered Bill Analysis MVP",
-      projectSlug: "utility-bill-deal-finder",
-      initials: "I",
-      rating: 5,
-      results: "Project-linked feedback",
-      industry: "FinTech & Utilities",
-    },
-    {
-      id: 7,
-      quote:
-        "You jumped into a messy situation and got us back to shipping. That was exactly what we needed.",
-      author: "Bharat",
-      role: "Developer",
-      company: "Bondfire",
-      country: "India",
-      project: "Event Booking App Stabilization",
-      projectSlug: "bondfire-event-booking-app",
-      initials: "B",
-      rating: 5,
-      results: "Project-linked feedback",
-      industry: "Events & Bookings",
-    },
-  ],
-
   // Final CTA
   finalCTA: {
     headline: `${BRAND_CONTENT.finalCTA.headline.line1} ${BRAND_CONTENT.finalCTA.headline.line2}`,
@@ -452,8 +343,6 @@ export const SITE_DATA = {
 export const getSiteData = () => SITE_DATA;
 export const getHeroData = () => SITE_DATA.hero;
 export const getServicesPreview = () => SITE_DATA.servicesPreview;
-export const getTestimonials = () => SITE_DATA.testimonials;
-export const getFeaturedTestimonials = () => SITE_DATA.testimonials.slice(0, 3);
 export const getFounders = () => SITE_DATA.foundersStrip.founders;
 export const getMetrics = () => SITE_DATA.metrics;
 export const getLeadMagnetData = () => SITE_DATA.leadMagnet;

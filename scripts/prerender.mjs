@@ -34,6 +34,7 @@ const routes = [
   "/services/digital-strategy-consulting",
   "/portfolio",
   "/portfolio/all",
+  "/client-stories",
   "/portfolio/forlag-publishing-sales-inventory-dashboard",
   "/portfolio/floating-stone-ranch-processor-intake-engine",
   "/portfolio/skill-x-swap-mvp",

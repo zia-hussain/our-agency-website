@@ -25,6 +25,7 @@ const Footer: React.FC = () => {
       { name: "Omer Gillani", path: "/founders/omer-gillani" },
       { name: "Services", path: "/services" },
       { name: "Case Studies", path: "/portfolio" },
+      { name: "Client Stories", path: "/client-stories" },
       { name: "Contact", path: "/contact" },
       { name: "Articles", path: "/articles" },
     ],
