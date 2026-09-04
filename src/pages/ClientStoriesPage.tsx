@@ -14,6 +14,28 @@ import {
   getTestimonialLibrary,
 } from "../data/testimonials";
 
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
+const initialsOf = (name: string) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+
+const Avatar: React.FC<{ name: string; size?: "sm" | "md" }> = ({ name, size = "sm" }) => (
+  <div
+    className={`flex-shrink-0 flex items-center justify-center rounded-full bg-gradient-to-br from-primary/25 to-primary/10 border border-primary/25 font-semibold text-primary ${
+      size === "md" ? "w-11 h-11 text-sm" : "w-9 h-9 text-xs"
+    }`}
+  >
+    {initialsOf(name)}
+  </div>
+);
+
 const Stars: React.FC<{ rating?: number; size?: number; center?: boolean }> = ({
   rating,
   size = 11,
@@ -29,22 +51,19 @@ const Stars: React.FC<{ rating?: number; size?: number; center?: boolean }> = ({
   );
 };
 
-const PlatformBadge: React.FC<{ t: TestimonialEntry; center?: boolean }> = ({ t, center }) => (
-  <div className={`flex items-center gap-1.5 text-muted-foreground/70 ${center ? "justify-center" : ""}`}>
-    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-card/60 border border-border/70">
-      <PlatformIcon platform={t.platform} size={12} />
-    </span>
+const PlatformBadge: React.FC<{ t: TestimonialEntry; center?: boolean; full?: boolean }> = ({
+  t,
+  center,
+  full,
+}) => (
+  <div className={`flex items-center gap-1.5 text-muted-foreground/60 ${center ? "justify-center" : ""}`}>
+    <PlatformIcon platform={t.platform} size={14} />
     <span className="text-xs">{t.platform}</span>
-    {t.corroboratedOn?.length ? (
-      <span className="flex items-center gap-1 text-xs">
+    {full && t.corroboratedOn?.length ? (
+      <span className="flex items-center gap-1.5 text-xs">
         <span className="text-muted-foreground/40">· verified on</span>
         {t.corroboratedOn.map((p) => (
-          <span
-            key={p}
-            className="flex items-center justify-center w-5 h-5 rounded-full bg-card/60 border border-border/70 ml-0.5"
-          >
-            <PlatformIcon platform={p as TestimonialEntry["platform"]} size={12} />
-          </span>
+          <PlatformIcon key={p} platform={p as TestimonialEntry["platform"]} size={14} />
         ))}
       </span>
     ) : null}
@@ -86,7 +105,11 @@ const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({
   );
 };
 
-const FactStat: React.FC<{ t: TestimonialEntry; size?: "lg" | "md" }> = ({ t, size = "md" }) => {
+const FactStat: React.FC<{ t: TestimonialEntry; size?: "lg" | "md"; caption?: boolean }> = ({
+  t,
+  size = "md",
+  caption = true,
+}) => {
   const fact = t.evidence?.fact;
   if (!fact) return null;
   const cls = size === "lg" ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl";
@@ -95,29 +118,101 @@ const FactStat: React.FC<{ t: TestimonialEntry; size?: "lg" | "md" }> = ({ t, si
       <div className={`font-bold tracking-tight tabular-nums bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent ${cls}`}>
         {fact.stat}
       </div>
-      <p className="text-sm text-muted-foreground mt-2">{fact.label}</p>
+      {caption && <p className="text-sm text-muted-foreground mt-2">{fact.label}</p>}
     </div>
   );
 };
 
-const Byline: React.FC<{ t: TestimonialEntry; center?: boolean }> = ({ t, center }) => (
-  <div className={`flex flex-col gap-1.5 ${center ? "items-center" : ""}`}>
-    <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 ${center ? "justify-center" : ""}`}>
-      <span className="text-sm font-semibold text-foreground">{t.author}</span>
-      <span className="text-sm text-muted-foreground">{t.role}</span>
-      <Stars rating={t.rating} />
-      {t.projectSlug && (
-        <Link
-          to={`/portfolio/${t.projectSlug}`}
-          className="inline-flex items-center gap-1 text-sm text-primary hover:gap-1.5 transition-all duration-150"
-        >
-          Case study
-          <ArrowUpRight size={12} />
-        </Link>
-      )}
+const Byline: React.FC<{ t: TestimonialEntry; center?: boolean; full?: boolean }> = ({
+  t,
+  center,
+  full,
+}) => {
+  if (center) {
+    return (
+      <div className="flex flex-col items-center gap-3">
+        <Avatar name={t.author} size="md" />
+        <Stars rating={t.rating} center />
+        <p className="text-sm">
+          <span className="font-semibold text-foreground">{t.author}</span>
+          <span className="text-muted-foreground">, {t.role}</span>
+        </p>
+        {t.projectSlug ? (
+          <Link
+            to={`/portfolio/${t.projectSlug}`}
+            className="inline-flex items-center gap-1 text-sm text-primary hover:gap-1.5 transition-all duration-150"
+          >
+            Case study
+            <ArrowUpRight size={12} />
+          </Link>
+        ) : (
+          <PlatformBadge t={t} center full={full} />
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-3">
+      <Avatar name={t.author} />
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
+          <p className="text-sm font-semibold text-foreground">{t.author}</p>
+          <Stars rating={t.rating} />
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5 mt-0.5">
+          <p className="text-xs text-muted-foreground">{t.role}</p>
+          {t.projectSlug ? (
+            <Link
+              to={`/portfolio/${t.projectSlug}`}
+              className="inline-flex items-center gap-1 text-xs text-primary hover:gap-1.5 transition-all duration-150 flex-shrink-0"
+            >
+              Case study
+              <ArrowUpRight size={11} />
+            </Link>
+          ) : (
+            <PlatformBadge t={t} full={full} />
+          )}
+        </div>
+      </div>
     </div>
-    {!t.projectSlug && <PlatformBadge t={t} center={center} />}
-  </div>
+  );
+};
+
+const EvidenceCard: React.FC<{ t: TestimonialEntry; large?: boolean; index: number }> = ({
+  t,
+  large,
+  index,
+}) => (
+  <motion.article
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    whileHover={{ y: -5 }}
+    transition={{ duration: 0.4, delay: index * 0.06 }}
+    className={`group relative flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-background/60 backdrop-blur-xl transition-all duration-300 hover:border-primary/30 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.6)] ring-1 ring-inset ring-white/[0.03] ${
+      large ? "p-8 lg:p-9" : "p-7 lg:p-8"
+    }`}
+  >
+    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_0%,rgba(196,138,100,0.07),transparent_55%)]" />
+    <div
+      className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay"
+      style={{ backgroundImage: GRAIN }}
+    />
+    <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+    <div className="relative">
+      {t.evidence?.before ? <BeforeAfterStat t={t} compact /> : <FactStat t={t} size={large ? "lg" : "md"} caption={large} />}
+    </div>
+
+    <blockquote className={`relative mt-5 flex-grow leading-[1.6] text-foreground/90 ${large ? "text-lg" : "text-base"}`}>
+      "{t.quote}"
+    </blockquote>
+
+    <div className="relative mt-7 flex-shrink-0">
+      <Byline t={t} />
+    </div>
+  </motion.article>
 );
 
 const FILTERS: { id: ProofCategory | "all"; label: string }[] = [
@@ -134,7 +229,9 @@ const ClientStoriesPage: React.FC = () => {
   const featured = getFeaturedTestimonials();
   const library = getTestimonialLibrary();
 
-  const [flagship, tierB1, tierB2, ...tierC] = featured;
+  const [flagship, ...rest] = featured;
+  const rows: TestimonialEntry[][] = [];
+  for (let i = 0; i < rest.length; i += 2) rows.push(rest.slice(i, i + 2));
 
   const filtered = useMemo(
     () =>
@@ -189,9 +286,18 @@ const ClientStoriesPage: React.FC = () => {
       <section className="py-20 lg:py-24 bg-card/20 border-y border-border/40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-14">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.1]">
-              Featured Stories
+            <div className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8">
+              Featured
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
+              A handful of stories,
+              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                told in full
+              </span>
             </h2>
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Not the loudest reviews — the most substantive ones.
+            </p>
           </AnimatedSection>
 
           {/* Flagship — contained, centered */}
@@ -209,10 +315,7 @@ const ClientStoriesPage: React.FC = () => {
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.10),transparent_45%)]" />
               <div
                 className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-overlay"
-                style={{
-                  backgroundImage:
-                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-                }}
+                style={{ backgroundImage: GRAIN }}
               />
 
               <motion.p
@@ -242,63 +345,24 @@ const ClientStoriesPage: React.FC = () => {
                 variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }}
                 className="relative mt-8"
               >
-                <Byline t={flagship} center />
+                <Byline t={flagship} center full />
               </motion.div>
             </motion.article>
           )}
 
-          {/* Tier B — two substantial stories, side by side cards */}
-          {(tierB1 || tierB2) && (
-            <div className="grid lg:grid-cols-2 gap-6 mb-6 lg:mb-8">
-              {[tierB1, tierB2].filter(Boolean).map((t, idx) => (
-                <motion.article
-                  key={t!.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background/60 p-7 lg:p-8 backdrop-blur-xl transition-colors duration-300 hover:border-primary/30"
-                >
-                  <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-5">
-                    {CATEGORY_LABELS[t!.category[0]]}
-                  </p>
-                  {t!.evidence?.before ? <BeforeAfterStat t={t!} compact /> : <FactStat t={t!} size="lg" />}
-                  <blockquote className="mt-5 text-base text-foreground/90 leading-[1.6]">
-                    "{t!.quote}"
-                  </blockquote>
-                  <div className="mt-5">
-                    <Byline t={t!} />
-                  </div>
-                </motion.article>
+          {/* Supporting evidence — matched pairs, strongest stories first, matching the homepage exactly */}
+          {rows.map((row, ri) => (
+            <div
+              key={ri}
+              className={`grid lg:grid-cols-2 gap-5 lg:gap-6 items-start ${
+                ri < rows.length - 1 ? "mb-5 lg:mb-6" : ""
+              }`}
+            >
+              {row.map((t, ci) => (
+                <EvidenceCard key={t.id} t={t} large index={ri * 2 + ci} />
               ))}
             </div>
-          )}
-
-          {/* Tier C — compact supporting trio */}
-          {tierC.length > 0 && (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {tierC.map((t, idx) => (
-                <motion.article
-                  key={t.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: idx * 0.06 }}
-                  className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background/40 p-6 backdrop-blur-xl transition-colors duration-300 hover:border-primary/30"
-                >
-                  <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  {t.evidence?.before ? <BeforeAfterStat t={t} compact /> : <FactStat t={t} />}
-                  <blockquote className="mt-4 text-sm text-foreground/90 leading-[1.6]">
-                    "{t.quote}"
-                  </blockquote>
-                  <div className="mt-4">
-                    <Byline t={t} />
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          )}
+          ))}
         </div>
       </section>
 
@@ -306,9 +370,18 @@ const ClientStoriesPage: React.FC = () => {
       <section className="py-20 lg:py-24 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-10">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.1]">
-              And the Fuller Record
+            <div className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8">
+              The Record
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
+              And the fuller
+              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                record
+              </span>
             </h2>
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Filterable by the kind of problem being solved.
+            </p>
           </AnimatedSection>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-12 border-b border-border pb-4">
@@ -333,7 +406,7 @@ const ClientStoriesPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
             {filtered.map((t, index) => (
               <motion.article
                 key={t.id}
@@ -341,10 +414,10 @@ const ClientStoriesPage: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: (index % 6) * 0.05 }}
-                className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/20 p-6 backdrop-blur-xl transition-colors duration-300 hover:border-primary/30"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-card/20 p-6 backdrop-blur-xl transition-colors duration-300 hover:border-primary/30"
               >
                 <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-3 flex-shrink-0">
                   <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary">
                     {CATEGORY_LABELS[t.category[0]]}
                   </span>
@@ -352,10 +425,10 @@ const ClientStoriesPage: React.FC = () => {
                     <span className="text-[11px] text-muted-foreground">· Repeat client</span>
                   )}
                 </div>
-                <blockquote className="text-sm leading-[1.6] text-foreground/90">
+                <blockquote className="flex-grow text-sm leading-[1.6] text-foreground/90">
                   "{t.quote}"
                 </blockquote>
-                <div className="mt-4">
+                <div className="mt-4 flex-shrink-0">
                   <Byline t={t} />
                 </div>
               </motion.article>

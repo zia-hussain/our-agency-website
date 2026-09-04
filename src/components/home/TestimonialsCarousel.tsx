@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import { getFeaturedTestimonials, TestimonialEntry } from "../../data/testimonials";
 import PlatformIcon from "../common/PlatformIcon";
 
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
 const Stars: React.FC<{ rating?: number; size?: number; center?: boolean }> = ({
   rating,
   size = 12,
@@ -20,46 +23,48 @@ const Stars: React.FC<{ rating?: number; size?: number; center?: boolean }> = ({
   );
 };
 
-const PlatformBadge: React.FC<{ t: TestimonialEntry; center?: boolean }> = ({ t, center }) => (
-  <div className={`flex items-center gap-1.5 text-muted-foreground/70 ${center ? "justify-center" : ""}`}>
-    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-card/60 border border-border/70">
-      <PlatformIcon platform={t.platform} size={12} />
-    </span>
-    <span className="text-xs">{t.platform}</span>
-    {t.corroboratedOn?.length ? (
-      <span className="flex items-center gap-1 text-xs">
-        <span className="text-muted-foreground/40">· verified on</span>
-        {t.corroboratedOn.map((p) => (
-          <span
-            key={p}
-            className="flex items-center justify-center w-5 h-5 rounded-full bg-card/60 border border-border/70 ml-0.5"
-          >
-            <PlatformIcon platform={p as TestimonialEntry["platform"]} size={12} />
-          </span>
-        ))}
-      </span>
-    ) : null}
+const initialsOf = (name: string) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+
+const Avatar: React.FC<{ name: string; size?: "sm" | "md" }> = ({ name, size = "sm" }) => (
+  <div
+    className={`flex-shrink-0 flex items-center justify-center rounded-full bg-gradient-to-br from-primary/25 to-primary/10 border border-primary/25 font-semibold text-primary ${
+      size === "md" ? "w-11 h-11 text-sm" : "w-9 h-9 text-xs"
+    }`}
+  >
+    {initialsOf(name)}
   </div>
 );
 
-const BeforeAfterStat: React.FC<{ t: TestimonialEntry }> = ({ t }) => {
+const PlatformMark: React.FC<{ t: TestimonialEntry }> = ({ t }) => (
+  <span className="flex items-center gap-1.5 text-muted-foreground/60">
+    <PlatformIcon platform={t.platform} size={14} />
+    <span className="text-xs">{t.platform}</span>
+  </span>
+);
+
+const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({ t, compact }) => {
   const { before, after } = t.evidence ?? {};
   if (!before || !after) return null;
+  const numCls = compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl";
 
   return (
-    <div className="flex items-center justify-center gap-5 sm:gap-8">
-      <div className="text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60 mb-2">
+    <div className={`flex items-center ${compact ? "justify-start gap-4" : "justify-center gap-6 sm:gap-10"}`}>
+      <div className={compact ? "" : "text-center"}>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/55 mb-2">
           {before.who}
         </p>
-        <div className="text-3xl sm:text-4xl font-bold tracking-tight tabular-nums text-foreground/45">
-          {before.stat}
-        </div>
-        <p className="text-xs text-muted-foreground mt-1.5 max-w-[9rem]">{before.label}</p>
+        <div className={`font-bold tracking-tight tabular-nums text-foreground/45 ${numCls}`}>{before.stat}</div>
       </div>
 
-      <div className="flex flex-col items-center gap-1 pt-5">
-        <span className="relative w-8 h-px bg-primary/30 overflow-hidden">
+      <div className={`flex flex-col items-center gap-1.5 ${compact ? "pt-4" : "pt-5"}`}>
+        <span className={`relative h-px bg-primary/30 overflow-hidden ${compact ? "w-5" : "w-8"}`}>
           <motion.span
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -68,44 +73,102 @@ const BeforeAfterStat: React.FC<{ t: TestimonialEntry }> = ({ t }) => {
             className="absolute inset-0 origin-left bg-primary"
           />
         </span>
-        <ArrowRight className="text-primary/60" size={18} />
+        <ArrowRight className="text-primary/60" size={compact ? 15 : 18} />
       </div>
 
-      <div className="text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-2">
+      <div className={compact ? "" : "text-center"}>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2">
           {after.who}
         </p>
-        <div className="text-3xl sm:text-4xl font-bold tracking-tight tabular-nums bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+        <div className={`font-bold tracking-tight tabular-nums bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent ${numCls}`}>
           {after.stat}
         </div>
-        <p className="text-xs text-muted-foreground mt-1.5 max-w-[9rem]">{after.label}</p>
       </div>
     </div>
   );
 };
 
-const FactStat: React.FC<{ t: TestimonialEntry }> = ({ t }) => {
+const FactStat: React.FC<{ t: TestimonialEntry; large?: boolean }> = ({ t, large }) => {
   const fact = t.evidence?.fact;
   if (!fact) return null;
   return (
-    <div>
-      <div className="text-xl sm:text-2xl font-bold tracking-tight tabular-nums bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-        {fact.stat}
-      </div>
-      <p className="text-sm text-muted-foreground mt-2">{fact.label}</p>
+    <div className={`font-bold tracking-tight tabular-nums bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent ${large ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}>
+      {fact.stat}
     </div>
   );
 };
+
+const EvidenceCard: React.FC<{ t: TestimonialEntry; large?: boolean; index: number }> = ({
+  t,
+  large,
+  index,
+}) => (
+  <motion.article
+    initial={{ opacity: 0, y: 24 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    whileHover={{ y: -5 }}
+    transition={{ duration: 0.45, delay: index * 0.08 }}
+    className={`group relative flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-background/60 backdrop-blur-xl transition-all duration-300 hover:border-primary/30 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.6)] ring-1 ring-inset ring-white/[0.03] ${
+      large ? "p-8 lg:p-9" : "p-7 lg:p-8"
+    }`}
+  >
+    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_0%,rgba(196,138,100,0.07),transparent_55%)]" />
+    <div
+      className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay"
+      style={{ backgroundImage: GRAIN }}
+    />
+    <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+    <div className="relative">
+      {t.evidence?.before ? <BeforeAfterStat t={t} compact /> : <FactStat t={t} large={large} />}
+    </div>
+
+    <blockquote
+      className={`relative mt-5 flex-grow leading-[1.6] text-foreground/90 ${large ? "text-lg" : "text-base"}`}
+    >
+      "{t.quote}"
+    </blockquote>
+
+    <div className="relative mt-7 flex-shrink-0 border-t border-border/50 pt-5">
+      <div className="flex items-center gap-3">
+        <Avatar name={t.author} />
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
+            <p className="text-sm font-semibold text-foreground">{t.author}</p>
+            <Stars rating={t.rating} size={11} />
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5 mt-0.5">
+            <p className="text-xs text-muted-foreground">{t.role}</p>
+            {t.projectSlug ? (
+              <Link
+                to={`/portfolio/${t.projectSlug}`}
+                className="inline-flex items-center gap-1 text-xs text-primary hover:gap-1.5 transition-all duration-150 flex-shrink-0"
+              >
+                Case study
+                <ArrowUpRight size={11} />
+              </Link>
+            ) : (
+              <PlatformMark t={t} />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </motion.article>
+);
 
 const TestimonialsCarousel: React.FC = () => {
   const featured = getFeaturedTestimonials();
   if (!featured.length) return null;
 
   const [flagship, ...rest] = featured;
+  const rows: TestimonialEntry[][] = [];
+  for (let i = 0; i < rest.length; i += 2) rows.push(rest.slice(i, i + 2));
 
   return (
     <section className="relative overflow-hidden bg-card/20 py-24 lg:py-28 border-y border-border/40">
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,22 +199,19 @@ const TestimonialsCarousel: React.FC = () => {
             viewport={{ once: true }}
             variants={{
               hidden: {},
-              show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+              show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
             }}
-            className="relative mb-6 lg:mb-8 overflow-hidden rounded-3xl border border-primary/20 bg-background/60 p-8 sm:p-10 lg:p-14 backdrop-blur-xl text-center shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-inset ring-white/[0.04]"
+            className="relative mb-6 lg:mb-8 overflow-hidden rounded-3xl border border-primary/20 bg-background/60 p-10 sm:p-14 lg:p-16 backdrop-blur-xl text-center shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-inset ring-white/[0.04]"
           >
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.10),transparent_45%)]" />
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-overlay"
-              style={{
-                backgroundImage:
-                  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-              }}
+              style={{ backgroundImage: GRAIN }}
             />
 
             <motion.p
               variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }}
-              className="relative text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-8"
+              className="relative text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-9"
             >
               Product Rescue
             </motion.p>
@@ -161,70 +221,39 @@ const TestimonialsCarousel: React.FC = () => {
 
             <motion.blockquote
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              className="relative mx-auto mt-10 max-w-2xl text-xl sm:text-2xl font-medium leading-[1.45] tracking-tight text-foreground"
+              className="relative mx-auto mt-11 max-w-2xl text-xl sm:text-2xl font-medium leading-[1.5] tracking-tight text-foreground"
             >
               "{flagship.quote}"
             </motion.blockquote>
 
             <motion.div
               variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }}
-              className="relative mt-8 flex flex-col items-center gap-3"
+              className="relative mt-9 flex flex-col items-center gap-3"
             >
+              <Avatar name={flagship.author} size="md" />
               <Stars rating={flagship.rating} size={13} center />
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm">
+              <p className="text-sm">
                 <span className="font-semibold text-foreground">{flagship.author}</span>
-                <span className="text-muted-foreground">{flagship.role}</span>
-              </div>
-              <PlatformBadge t={flagship} center />
+                <span className="text-muted-foreground">, {flagship.role}</span>
+              </p>
+              <PlatformMark t={flagship} />
             </motion.div>
           </motion.article>
         )}
 
-        {/* Supporting evidence — a card grid, matching the rest of the site */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {rest.map((t, index) => (
-            <motion.article
-              key={t.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.4, delay: index * 0.06 }}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-background/60 p-6 lg:p-7 backdrop-blur-xl transition-all duration-300 hover:border-primary/30 hover:shadow-2xl hover:shadow-black/20"
-            >
-              <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div className="flex items-center justify-between gap-3 mb-1">
-                <FactStat t={t} />
-              </div>
-
-              <blockquote className="mt-4 flex-grow text-base leading-[1.55] text-foreground/90">
-                "{t.quote}"
-              </blockquote>
-
-              <div className="mt-6 flex-shrink-0 border-t border-border/50 pt-4">
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <p className="text-sm font-semibold text-foreground">{t.author}</p>
-                  <Stars rating={t.rating} size={11} />
-                </div>
-                <div className="flex items-center justify-between gap-2">
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
-                  {t.projectSlug ? (
-                    <Link
-                      to={`/portfolio/${t.projectSlug}`}
-                      className="inline-flex items-center gap-1 text-xs text-primary hover:gap-1.5 transition-all duration-150 flex-shrink-0"
-                    >
-                      Case study
-                      <ArrowUpRight size={11} />
-                    </Link>
-                  ) : (
-                    <PlatformBadge t={t} />
-                  )}
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+        {/* Supporting evidence — matched pairs, strongest stories first */}
+        {rows.map((row, ri) => (
+          <div
+            key={ri}
+            className={`grid lg:grid-cols-2 gap-5 lg:gap-6 items-start ${
+              ri < rows.length - 1 ? "mb-5 lg:mb-6" : ""
+            }`}
+          >
+            {row.map((t, ci) => (
+              <EvidenceCard key={t.id} t={t} large index={ri * 2 + ci} />
+            ))}
+          </div>
+        ))}
 
         <motion.div
           initial={{ opacity: 0 }}

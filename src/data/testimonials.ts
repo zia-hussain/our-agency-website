@@ -78,6 +78,41 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     },
   },
   {
+    id: "founder-knipsr",
+    quote:
+      "We could not be happier about working with Zumetrix Labs! What has started as an idea has turned into a really great projekt/product, which only evolved into its full potential through the corporation, ideas, experience, professionalism and openness from our developer.",
+    isPartial: true,
+    author: "Founder",
+    role: "Knipsr",
+    project: "Knipsr",
+    projectSlug: "knipsr-event-media-saas",
+    category: ["build"],
+    platform: "Trustpilot",
+    rating: 5,
+    corroboratedOn: ["Google", "Fiverr"],
+    featured: true,
+    evidence: {
+      before: { who: "Day One", stat: "AN IDEA", label: "no product yet" },
+      after: { who: "Zumetrix", stat: "SHIPPED", label: "documented, delivered on time" },
+    },
+  },
+  {
+    id: "nathan-api-rescue",
+    quote:
+      "Zia is the kind of dev who makes you double-check the delivery time because surely no one builds something that good, that fast. But he does. I gave him a backend mess, some vague Twilio goals, and he returned with a fully functional, beautifully structured API.",
+    isPartial: true,
+    author: "Nathan",
+    role: "Backend/API client",
+    category: ["rescue", "technical"],
+    platform: "Fiverr",
+    rating: 5,
+    featured: true,
+    evidence: {
+      before: { who: "The Ask", stat: "A MESS", label: "vague Twilio goals, no structure" },
+      after: { who: "Zumetrix", stat: "CLEAN API", label: "fully functional, delivered fast" },
+    },
+  },
+  {
     id: "andi-first-north",
     quote:
       "Their combination of web development, AI integration, design, UX, and SEO into one solution was impressive.",
@@ -125,24 +160,6 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     featured: true,
     evidence: {
       fact: { stat: "2ND PROJECT", label: "same client, back for a second engagement" },
-    },
-  },
-  {
-    id: "founder-knipsr",
-    quote:
-      "We could not be happier about working with Zumetrix Labs! What has started as an idea has turned into a really great projekt/product, which only evolved into its full potential through the corporation, ideas, experience, professionalism and openness from our developer. Everything was well understood, delivered on time and documented clearly. Thanks again. We can highly appreciate the work performed and couldn't recommend working with Zia and his Team enough!",
-    author: "Founder",
-    role: "Knipsr",
-    project: "Knipsr",
-    projectSlug: "knipsr-event-media-saas",
-    category: ["build"],
-    platform: "Trustpilot",
-    rating: 5,
-    corroboratedOn: ["Google", "Fiverr"],
-    featured: true,
-    evidence: {
-      before: { who: "Day One", stat: "AN IDEA", label: "no product yet" },
-      after: { who: "Zumetrix", stat: "SHIPPED", label: "documented, delivered on time" },
     },
   },
   {
@@ -215,17 +232,6 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     platform: "Fiverr",
     rating: 5,
     repeatClient: true,
-  },
-  {
-    id: "nathan-api-rescue",
-    quote:
-      "Zia is the kind of dev who makes you double-check the delivery time because surely no one builds something that good, that fast. But he does. I gave him a backend mess, some vague Twilio goals, and he returned with a fully functional, beautifully structured API.",
-    isPartial: true,
-    author: "Nathan",
-    role: "Backend/API client",
-    category: ["rescue", "technical"],
-    platform: "Fiverr",
-    rating: 5,
   },
   {
     id: "kelly-longterm",
@@ -333,6 +339,75 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     category: ["automation", "technical"],
     platform: "Fiverr",
     rating: 5,
+  },
+  {
+    id: "biraj-detail",
+    quote:
+      "Very good to work with, attention to details, very cooperative, very skillful and professional.",
+    author: "Biraj",
+    role: "Bubble client",
+    category: ["technical"],
+    platform: "Fiverr",
+    rating: 5,
+  },
+  {
+    id: "carmen-repeat",
+    quote: "As always his expertise helped me a lot. I will come back again.",
+    author: "Carmen",
+    role: "Repeat client",
+    category: ["longterm"],
+    platform: "Fiverr",
+    rating: 5,
+    repeatClient: true,
+  },
+  {
+    id: "jay-lancaster",
+    quote: "Excellent. I may steal him from the platform altogether.",
+    author: "Jay Lancaster",
+    role: "Automation client",
+    category: ["longterm", "automation"],
+    platform: "Fiverr",
+    rating: 5,
+  },
+  {
+    id: "suday-proactive",
+    quote: "He's proactive, I will definitely hire Him for another project",
+    author: "Suday",
+    role: "Cross-platform dev client",
+    category: ["longterm", "technical"],
+    platform: "Fiverr",
+    rating: 5,
+  },
+  {
+    id: "oliver-automation-workflow",
+    quote:
+      "I had the pleasure of working with this incredibly skilled freelancer on an automation project, and I couldn't be happier with the results. From the very beginning, they demonstrated a deep understanding of the requirements and offered smart, efficient solutions that significantly improved my workflow.",
+    isPartial: true,
+    author: "Oliver",
+    role: "Automation client",
+    category: ["automation"],
+    platform: "Fiverr",
+    rating: 5,
+  },
+  {
+    id: "bubble-client-uk",
+    quote:
+      "Highly skilled and very proactive communication, I'm really glad I found your gig and really appreciate all the expertise and patience.",
+    author: "Bubble Client — UK",
+    role: "Bubble client",
+    category: ["technical", "build"],
+    platform: "Fiverr",
+    rating: 5,
+  },
+  {
+    id: "nyte-team-repeat",
+    quote: "Excellent work as always !!! Thanks so much for your pro activity Can only recomand :)",
+    author: "NYTE Team",
+    role: "Repeat client, automation",
+    category: ["longterm", "automation"],
+    platform: "Fiverr",
+    rating: 5,
+    repeatClient: true,
   },
 
   // ---- Project-linked testimonials (collected directly, not from the marketplace proof library) ----
