@@ -742,7 +742,7 @@ const AboutPage: React.FC = () => {
           className="pointer-events-none absolute inset-x-0 top-0 flex justify-center pt-4 lg:pt-8"
           style={{
             maskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 62%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 62%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 90%)",
           }}
         >
           <p className="text-[9rem] sm:text-[15rem] lg:text-[21rem] font-bold leading-none text-foreground/[0.07] tabular-nums select-none tracking-tight">
