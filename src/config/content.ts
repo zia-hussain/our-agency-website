@@ -49,14 +49,11 @@ export const BRAND_CONTENT = {
     },
 
     subheadline: [
-      { text: "80+ projects shipped. Some raised funding. Some didn't.", type: "emphasis" },
-      { text: " The pattern was never the tech — it was whether the problem was clear before we started.", type: "normal" },
-      { type: "break" },
-      { type: "break" },
-      { text: "So we push back. We challenge the brief. We say no when an idea isn't ready. ", type: "normal" },
-      { text: "That's uncomfortable for some clients.", type: "accent" },
-      { text: " It's also the entire reason our projects actually launch.", type: "normal" }
+      { text: "We don't wait for a perfect brief. Bring the idea, the stuck product, or the work your team's still doing by hand", type: "normal" },
+      { text: " — we'll figure out what needs to happen next.", type: "emphasis" }
     ] as ContentSegment[],
+
+    proofLine: "80+ projects shipped",
 
     primaryCTA: {
       text: "Start Your Project",

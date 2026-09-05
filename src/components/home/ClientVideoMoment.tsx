@@ -114,15 +114,25 @@ const ClientVideoMoment: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-20 bg-background relative overflow-hidden">
+    <section ref={sectionRef} className="pt-8 pb-16 lg:pt-10 lg:pb-20 bg-background relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="text-center text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground/50 mb-6"
+        >
+          A client, unscripted
+        </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative rounded-3xl overflow-hidden border border-border/40 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]"
+          className="relative rounded-3xl overflow-hidden border border-primary/15 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-inset ring-white/[0.03]"
         >
+          <div className="pointer-events-none absolute -inset-px rounded-3xl bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.10),transparent_60%)] z-10" />
           <div className="relative aspect-video bg-background">
             <video
               ref={videoRef}

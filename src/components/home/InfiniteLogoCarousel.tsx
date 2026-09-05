@@ -15,7 +15,7 @@ const InfiniteLogoCarousel: React.FC = () => {
   if (!logos.length) return null;
 
   return (
-    <section className="py-14 lg:py-16 bg-background relative overflow-hidden">
+    <section className="py-12 lg:py-14 bg-background relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* No heading — a quiet, dark coda directly beneath the hero */}
         <div className="relative">
@@ -48,7 +48,7 @@ const InfiniteLogoCarousel: React.FC = () => {
                       loading="lazy"
                       decoding="async"
                       fetchpriority="low"
-                      className="relative h-full w-full object-contain opacity-35 transition-all duration-500 group-hover:scale-[1.05] group-hover:opacity-90"
+                      className="relative h-full w-full object-contain opacity-40 transition-all duration-500 group-hover:scale-[1.05] group-hover:opacity-95"
                       draggable={false}
                     />
                   </div>

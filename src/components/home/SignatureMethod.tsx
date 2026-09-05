@@ -27,25 +27,25 @@ const SignatureMethod: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="text-center mb-16 lg:mb-20"
         >
-          <div className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8">
-            <MessageSquare size={16} className="mr-2" />
+          <div className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7">
+            <MessageSquare size={14} className="mr-2" />
             How We Work
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
-           Why Founders Choose Us
-            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              (And Why Some Don't)
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5 tracking-tight leading-[1.12]">
+           Why founders choose us
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-1">
+              (and why some don't)
             </span>
           </h2>
 
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.6] font-light">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
             That wasn't a lucky call. It's how every engagement works.{" "}
             {signatureMethod.subtitle}
           </p>
         </motion.div>
 
         {/* Principles — a stacked statement, not three benefit cards */}
-        <div className="max-w-5xl mx-auto border-t border-border">
+        <div className="max-w-5xl mx-auto border-t border-border/70">
           {signatureMethod.sections.map((section, index) => {
             const IconComponent = iconMap[section.icon as keyof typeof iconMap];
 
@@ -56,20 +56,20 @@ const SignatureMethod: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="group py-9 sm:py-11 border-b border-border"
+                className="group py-10 sm:py-12 border-b border-border/70"
               >
                 <div className="flex flex-wrap items-center gap-4 sm:gap-5 mb-4">
-                  <span className="text-4xl sm:text-5xl font-bold text-border group-hover:text-primary/30 transition-colors duration-300 leading-none flex-shrink-0">
+                  <span className="text-4xl sm:text-5xl font-bold text-border group-hover:text-primary/35 transition-colors duration-300 leading-none tracking-tight tabular-nums flex-shrink-0">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/10 border border-primary/20 flex-shrink-0">
-                    <IconComponent size={20} className="text-primary" />
+                  <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/[0.08] border border-primary/15 flex-shrink-0">
+                    <IconComponent size={19} className="text-primary" />
                   </div>
-                  <h3 className="text-xl lg:text-2xl font-bold text-foreground">
+                  <h3 className="text-xl lg:text-2xl font-bold text-foreground tracking-tight">
                     {section.title}
                   </h3>
                   {section.stat && (
-                    <span className="ml-auto hidden sm:inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20 flex-shrink-0">
+                    <span className="ml-auto hidden sm:inline-flex items-center px-3.5 py-1.5 bg-primary/[0.08] text-primary text-xs font-semibold uppercase tracking-wide border border-primary/15 rounded-full flex-shrink-0">
                       {section.stat}
                     </span>
                   )}
@@ -80,7 +80,7 @@ const SignatureMethod: React.FC = () => {
                 </p>
 
                 {section.stat && (
-                  <span className="sm:hidden mt-4 inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">
+                  <span className="sm:hidden mt-4 inline-flex items-center px-3.5 py-1.5 bg-primary/[0.08] text-primary text-xs font-semibold uppercase tracking-wide border border-primary/15 rounded-full">
                     {section.stat}
                   </span>
                 )}

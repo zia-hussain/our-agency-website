@@ -22,9 +22,9 @@ const FAQ: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
+            className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
           >
-            <HelpCircle size={16} className="mr-2" />
+            <HelpCircle size={14} className="mr-2" />
             Frequently Asked Questions
           </motion.div>
 
@@ -33,11 +33,11 @@ const FAQ: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5 tracking-tight leading-[1.12]"
           >
-            Before You
-            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              Reach Out
+            Before you
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-1">
+              reach out
             </span>
           </motion.h2>
 
@@ -46,7 +46,7 @@ const FAQ: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-[1.6] font-light"
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light"
           >
             The questions we actually get asked — pricing, ownership, timelines,
             and what it's like to work with Zia and Omer directly.
@@ -54,28 +54,28 @@ const FAQ: React.FC = () => {
         </div>
 
         {/* FAQ Items — individually framed, premium cards */}
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {homeFAQs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={index}
-                className={`rounded-xl border bg-card/20 backdrop-blur-xl transition-colors duration-200 ${
-                  isOpen ? "border-primary/30 bg-card/40" : "border-border/70 hover:border-border"
+                className={`rounded-xl border backdrop-blur-xl transition-all duration-300 ${
+                  isOpen ? "border-primary/25 bg-card/40 shadow-[0_16px_40px_-24px_rgba(0,0,0,0.4)]" : "border-border/60 bg-card/15 hover:border-border"
                 }`}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
                   className="w-full py-5 px-5 sm:px-6 text-left flex items-center justify-between gap-4 group"
                 >
-                  <h3 className="text-base font-medium text-foreground group-hover:text-primary transition-colors duration-150">
+                  <h3 className="text-base font-medium text-foreground group-hover:text-primary transition-colors duration-200">
                     {faq.question}
                   </h3>
                   <motion.div
                     animate={{ rotate: isOpen ? 45 : 0 }}
-                    transition={{ duration: 0.15 }}
-                    className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full transition-colors duration-150 ${
-                      isOpen ? "bg-primary/15 text-primary" : "bg-card/60 text-muted-foreground group-hover:text-primary"
+                    transition={{ duration: 0.2 }}
+                    className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full transition-colors duration-200 ${
+                      isOpen ? "bg-primary/15 text-primary" : "bg-card/50 text-muted-foreground group-hover:text-primary"
                     }`}
                   >
                     <Plus size={15} />
@@ -88,10 +88,10 @@ const FAQ: React.FC = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.15 }}
+                      transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-sm text-muted-foreground leading-relaxed px-5 sm:px-6 pb-5 pr-10">
+                      <p className="text-sm text-muted-foreground leading-[1.7] px-5 sm:px-6 pb-5 pr-10 border-t border-border/40 pt-4 mt-1">
                         {faq.answer}
                       </p>
                     </motion.div>

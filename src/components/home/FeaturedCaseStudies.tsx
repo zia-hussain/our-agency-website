@@ -62,24 +62,24 @@ const FeaturedCaseStudies: React.FC = () => {
           className="text-center mb-16 lg:mb-20"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}
-            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
+            className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
           >
-            <Target size={16} className="mr-2" />
+            <Target size={14} className="mr-2" />
             Real Work
           </motion.div>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
-            When The Vision Was
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-5 tracking-tight leading-[1.1]">
+            When the vision was
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              Bigger Than The First Release
+              bigger than the first release
             </span>
           </h2>
 
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-[1.6] font-light">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
             Here's exactly what we did about it.
           </p>
         </motion.div>
@@ -94,11 +94,11 @@ const FeaturedCaseStudies: React.FC = () => {
           className="mb-20 lg:mb-24"
         >
           <div className="flex items-center gap-4 mb-10">
-            <span className="h-px w-10 bg-primary/40 flex-shrink-0" />
-            <span className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
+            <span className="h-px w-10 bg-primary/50 flex-shrink-0" />
+            <span className="text-xs font-semibold text-primary bg-primary/[0.08] border border-primary/20 px-3 py-1 rounded-full tracking-wide">
               {flagship.category}
             </span>
-            <span className="text-xs font-medium text-muted-foreground">
+            <span className="text-xs font-medium text-muted-foreground/80">
               {flagship.clientLabel ?? "Product"}: {flagship.client.name}
             </span>
           </div>
@@ -159,7 +159,7 @@ const FeaturedCaseStudies: React.FC = () => {
 
             {/* Built vs. deferred column — a structured spec sheet, contrasting the free-flowing story */}
             <div className="lg:col-span-2">
-              <div className="rounded-2xl overflow-hidden border border-border bg-background mb-6">
+              <div className="relative rounded-2xl overflow-hidden border border-primary/15 bg-background mb-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]">
                 <img
                   src={flagship.image}
                   alt={`${flagship.client.name} system overview`}
@@ -171,33 +171,37 @@ const FeaturedCaseStudies: React.FC = () => {
                 />
               </div>
 
-              <div className="bg-card/40 border border-border rounded-2xl p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground mb-4">
-                  Shipped in V1
-                </p>
-                <ul className="space-y-2.5 mb-6">
-                  {built.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                      <Check size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="rounded-2xl border border-border/70 overflow-hidden">
+                <div className="bg-card/40 p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4">
+                    Shipped in V1
+                  </p>
+                  <ul className="space-y-2.5">
+                    {built.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                        <Check size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground mb-4">
-                  Deliberately deferred to V2
-                </p>
-                <ul className="space-y-2.5">
-                  {deferred.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground/70">
-                      <Minus size={16} className="text-muted-foreground/50 mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs text-muted-foreground/60 mt-4 italic">
-                  Planned and designed. Not built. Not shipped.
-                </p>
+                <div className="bg-background/60 p-6 border-t border-border/50">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/50 mb-4">
+                    Deliberately deferred to V2
+                  </p>
+                  <ul className="space-y-2.5">
+                    {deferred.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground/60">
+                        <Minus size={16} className="text-muted-foreground/40 mt-0.5 flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-xs text-muted-foreground/50 mt-4 italic">
+                    Planned and designed. Not built. Not shipped.
+                  </p>
+                </div>
               </div>
 
               {proofNote && (
@@ -223,9 +227,9 @@ const FeaturedCaseStudies: React.FC = () => {
                 className="group"
               >
                 <Link to={`/portfolio/${project.slug}`}>
-                  <div className="bg-card/20 border border-border/70 rounded-2xl p-6 lg:p-7 h-full flex flex-col transition-all duration-150 hover:border-primary/30 hover:bg-card/40">
+                  <div className="bg-card/15 border border-border/60 rounded-2xl p-6 lg:p-7 h-full flex flex-col transition-all duration-300 hover:border-primary/25 hover:bg-card/30">
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/85">
                         {eyebrow}
                       </span>
                       {project.client.country && (

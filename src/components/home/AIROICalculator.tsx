@@ -121,23 +121,22 @@ const AIROICalculator: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
+            className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
           >
-            <Calculator className="w-4 h-4 mr-2" />
+            <Calculator className="w-3.5 h-3.5 mr-2" />
             For Teams With Recurring Manual Work
           </motion.div>
-   <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
-            Calculate Your
-            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-2">
-              AI Automation ROI
+   <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-5 tracking-tight leading-[1.15]">
+            Calculate your
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-1.5">
+              AI automation ROI
             </span>
           </h2>
 
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.6] font-light">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
             If your team is buried in repetitive manual work, this gives you a
             real number on what fixing that could be worth. Building a
-            product instead? Skip straight to the section below — this one's
-            for a different kind of problem.
+            product instead? Skip straight to the section below.
           </p>
         </motion.div>
 
@@ -150,7 +149,7 @@ const AIROICalculator: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="bg-card/70 backdrop-blur-xl border border-border rounded-2xl p-8"
+                className="bg-card/50 backdrop-blur-xl border border-border/70 rounded-2xl p-8 ring-1 ring-inset ring-white/[0.02]"
               >
                 <h3 className="text-2xl font-bold text-foreground mb-6">Your Current Process</h3>
 
@@ -168,7 +167,7 @@ const AIROICalculator: React.FC = () => {
                         const val = parseInt(e.target.value) || 0;
                         setInputs({ ...inputs, employees: Math.min(Math.max(val, 1), 10000) });
                       }}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                       min="1"
                       max="10000"
                       step="1"
@@ -189,7 +188,7 @@ const AIROICalculator: React.FC = () => {
                         const val = parseInt(e.target.value) || 0;
                         setInputs({ ...inputs, avgHourlyRate: Math.min(Math.max(val, 1), 1000) });
                       }}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                       min="1"
                       max="1000"
                       step="1"
@@ -210,7 +209,7 @@ const AIROICalculator: React.FC = () => {
                         const val = parseInt(e.target.value) || 0;
                         setInputs({ ...inputs, hoursPerWeek: Math.min(Math.max(val, 1), 40) });
                       }}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                       min="1"
                       max="40"
                       step="1"
@@ -227,7 +226,7 @@ const AIROICalculator: React.FC = () => {
                       name="processType"
                       value={inputs.processType}
                       onChange={(e) => setInputs({ ...inputs, processType: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                     >
                       {Object.entries(processTypes).map(([key, value]) => (
                         <option key={key} value={key}>
@@ -256,7 +255,7 @@ const AIROICalculator: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="bg-card/70 backdrop-blur-xl border border-border rounded-2xl p-8"
+                className="bg-card/50 backdrop-blur-xl border border-border/70 rounded-2xl p-8 ring-1 ring-inset ring-white/[0.02]"
               >
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold text-foreground">Your Potential</h3>
@@ -290,7 +289,7 @@ const AIROICalculator: React.FC = () => {
                       autoComplete="name"
                       value={contactInfo.name}
                       onChange={(e) => setContactInfo({ ...contactInfo, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                       placeholder="John Doe"
                     />
                   </div>
@@ -304,7 +303,7 @@ const AIROICalculator: React.FC = () => {
                       autoComplete="email"
                       value={contactInfo.email}
                       onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -318,7 +317,7 @@ const AIROICalculator: React.FC = () => {
                       autoComplete="organization"
                       value={contactInfo.company}
                       onChange={(e) => setContactInfo({ ...contactInfo, company: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                       placeholder="Your Company"
                     />
                   </div>
@@ -374,7 +373,7 @@ const AIROICalculator: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-card/70 backdrop-blur-xl border border-border rounded-2xl p-8 text-center"
+                className="bg-card/50 backdrop-blur-xl border border-border/70 rounded-2xl p-8 ring-1 ring-inset ring-white/[0.02] text-center"
               >
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <CheckCircle2 size={32} className="text-primary" />
@@ -411,7 +410,7 @@ const AIROICalculator: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-card/70 backdrop-blur-xl border border-border rounded-2xl p-6">
+                <div className="bg-card/50 backdrop-blur-xl border border-border/70 rounded-2xl p-6 ring-1 ring-inset ring-white/[0.02]">
                   <div className="flex items-center gap-3 mb-3">
                     <TrendingUp className="w-8 h-8 text-primary" />
                     <div>
@@ -426,7 +425,7 @@ const AIROICalculator: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-card/70 backdrop-blur-xl border border-border rounded-2xl p-6">
+                <div className="bg-card/50 backdrop-blur-xl border border-border/70 rounded-2xl p-6 ring-1 ring-inset ring-white/[0.02]">
                   <div className="flex items-center gap-3 mb-3">
                     <Clock className="w-8 h-8 text-primary" />
                     <div>
@@ -441,7 +440,7 @@ const AIROICalculator: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-card/70 backdrop-blur-xl border border-border rounded-2xl p-6">
+                <div className="bg-card/50 backdrop-blur-xl border border-border/70 rounded-2xl p-6 ring-1 ring-inset ring-white/[0.02]">
                   <div className="flex items-center gap-3 mb-4">
                     <Zap className="w-6 h-6 text-primary" />
                     <h4 className="font-semibold text-foreground">What We Review</h4>

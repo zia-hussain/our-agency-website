@@ -14,7 +14,7 @@ const TrustBand: React.FC = () => {
   };
 
   return (
-    <section className="py-16 lg:py-20 bg-background relative overflow-hidden">
+    <section className="py-16 lg:py-20 bg-gradient-to-b from-background via-card/[0.15] to-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -29,19 +29,19 @@ const TrustBand: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
+            className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
           >
-            <TrendingUp className="w-4 h-4 mr-2" />
+            <TrendingUp className="w-3.5 h-3.5 mr-2" />
             Global Impact
           </motion.div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5 tracking-tight leading-[1.12]">
             From Beef Plants
-            <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent mt-2">
+            <span className="block bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent mt-1.5">
               to Book Publishers
             </span>
           </h2>
 
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-[1.7] font-light">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.7] font-light">
             If your business doesn't fit a neat template, good — neither do
             the ones we've already built for.
           </p>
@@ -60,14 +60,14 @@ const TrustBand: React.FC = () => {
             return (
               <div
                 key={stat.label}
-                className="group flex items-center gap-3 px-5 py-4 rounded-xl border border-border/70 bg-card/30 hover:border-primary/30 hover:bg-card/50 transition-all duration-200"
+                className="group flex items-center gap-3 px-5 py-4 rounded-xl border border-border/60 bg-card/20 hover:border-primary/25 hover:bg-card/40 transition-all duration-300"
               >
-                <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200">
-                  <IconComponent size={16} className="text-primary" />
+                <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300">
+                  <IconComponent size={15} className="text-primary/90" />
                 </div>
                 <div>
-                  <div className="text-base font-bold text-foreground leading-none">{stat.value}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+                  <div className="text-base font-bold text-foreground leading-none tracking-tight">{stat.value}</div>
+                  <div className="text-[11px] text-muted-foreground mt-1.5">{stat.label}</div>
                 </div>
               </div>
             );
@@ -75,7 +75,7 @@ const TrustBand: React.FC = () => {
         </motion.div>
 
         {/* Industries — a compact list with premium hover presence */}
-        <div className="max-w-4xl mx-auto rounded-2xl border border-border/70 bg-card/20 p-2 sm:p-3">
+        <div className="max-w-4xl mx-auto rounded-2xl border border-border/60 bg-card/10 backdrop-blur-sm p-2 sm:p-3 ring-1 ring-inset ring-white/[0.02]">
           {trustBand.clients.map((client, index) => (
             <motion.div
               key={client.name}
@@ -83,13 +83,13 @@ const TrustBand: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className={`group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 py-5 px-4 rounded-xl text-sm hover:bg-card/60 transition-colors duration-200 ${
-                index !== trustBand.clients.length - 1 ? "border-b border-border/50" : ""
+              className={`group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 py-5 px-4 rounded-xl text-sm hover:bg-card/50 transition-colors duration-300 ${
+                index !== trustBand.clients.length - 1 ? "border-b border-border/40" : ""
               }`}
             >
               <div className="flex items-center gap-3 sm:w-56 flex-shrink-0">
-                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200">
-                  <Building2 size={14} className="text-primary" />
+                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300">
+                  <Building2 size={14} className="text-primary/90" />
                 </div>
                 <span className="font-semibold text-foreground">{client.name}</span>
               </div>

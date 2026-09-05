@@ -52,16 +52,17 @@ const LeadMagnet: React.FC = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-card/70 backdrop-blur-xl border border-border rounded-3xl p-8 md:p-12 shadow-2xl"
+            className="relative bg-card/40 backdrop-blur-xl border border-border/70 rounded-3xl p-8 md:p-12 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.02] overflow-hidden"
           >
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.06),transparent_55%)]" />
             {!isSubmitted ? (
               <>
-                <div className="flex justify-center mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/30 rounded-2xl flex items-center justify-center">
-                    <FileText size={40} className="text-primary" />
+                <div className="relative flex justify-center mb-6">
+                  <div className="w-16 h-16 bg-primary/[0.08] border border-primary/15 rounded-2xl flex items-center justify-center">
+                    <FileText size={30} className="text-primary" />
                   </div>
                 </div>
 
@@ -70,24 +71,24 @@ const LeadMagnet: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
+                  className="relative inline-flex items-center px-3.5 py-1.5 bg-card/50 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
                 >
-                  <Download className="w-4 h-4 mr-2" />
+                  <Download className="w-3.5 h-3.5 mr-2" />
                   Free Download
                 </motion.div>
 
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-tight leading-[1.1]">
-                  Get Your Free
-                  <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-2">
+                <h2 className="relative text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight leading-[1.15]">
+                  Get your free
+                  <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-1.5">
                     30-Day SaaS MVP Blueprint
                   </span>
                 </h2>
 
-                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+                <p className="relative text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
                   A practical planning guide for moving from an idea to a focused first release. It includes a 30-day framework, stack guidance, feature prioritization, and a launch checklist.
                 </p>
 
-                <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
+                <div className="relative grid md:grid-cols-3 gap-3 mb-9 max-w-2xl mx-auto">
                   {[
                     { icon: ListChecks, title: 'Step-by-Step Process', desc: 'From idea to launch' },
                     { icon: Layers3, title: 'Tech Stack Guide', desc: 'What to use & why' },
@@ -99,9 +100,9 @@ const LeadMagnet: React.FC = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.2 + index * 0.1 }}
-                      className="bg-background/50 border border-border/50 rounded-lg p-4 flex flex-col items-center text-center"
+                      className="bg-background/40 border border-border/60 rounded-xl p-4 flex flex-col items-center text-center"
                     >
-                      <feature.icon size={20} className="text-primary mb-2" />
+                      <feature.icon size={18} className="text-primary/85 mb-2" />
                       <div className="text-sm font-semibold text-foreground mb-1">
                         {feature.title}
                       </div>
@@ -112,7 +113,7 @@ const LeadMagnet: React.FC = () => {
                   ))}
                 </div>
 
-                <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+                <form onSubmit={handleSubmit} className="relative max-w-md mx-auto space-y-4">
                   <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden">
                     <label htmlFor="lm-company-confirm">Leave this field empty</label>
                     <input
@@ -137,7 +138,7 @@ const LeadMagnet: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="w-full px-4 py-3 rounded-xl border border-border/70 bg-background/70 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                   />
                   <label htmlFor="blueprint-email" className="sr-only">
                     Your email address
@@ -151,7 +152,7 @@ const LeadMagnet: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email"
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="w-full px-4 py-3 rounded-xl border border-border/70 bg-background/70 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
                   />
                   <motion.button
                     type="submit"
