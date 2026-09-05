@@ -241,7 +241,9 @@ const AboutPage: React.FC = () => {
                 </p>
                 <p className="text-foreground font-medium">
                   That's the work we built Zumetrix to do — turn uncertainty
-                  into products and systems founders can actually{" "}
+                  into shipped SaaS products, mobile and web apps, and the
+                  operational systems behind them, so founders can actually
+                  {" "}
                   <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                     operate, trust, and keep building.
                   </span>
@@ -384,9 +386,9 @@ const AboutPage: React.FC = () => {
               <EvidenceNote
                 evidence={{
                   quote:
-                    "My new go to guy. I finally found him. I will use him for all my future projects.",
-                  author: "Fateh",
-                  role: "Repeat client",
+                    "Omer did an amazing job. He understood exactly what I needed, delivered the automation flawlessly, and even optimized parts I didn't think about.",
+                  author: "Mounir",
+                  role: "Automation client",
                   linkTo: "/client-stories",
                 }}
               />
@@ -395,6 +397,14 @@ const AboutPage: React.FC = () => {
               This shows up differently across{" "}
               <Link to="/services/saas-mvp-development" className="text-primary hover:underline">
                 SaaS MVPs
+              </Link>
+              ,{" "}
+              <Link to="/services/mobile-app-development" className="text-primary hover:underline">
+                mobile
+              </Link>
+              {" "}and{" "}
+              <Link to="/services/enterprise-web-applications" className="text-primary hover:underline">
+                web apps
               </Link>
               ,{" "}
               <Link to="/services/ai-automation-solutions" className="text-primary hover:underline">
@@ -475,8 +485,8 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <p className="text-center text-muted-foreground mt-20 max-w-lg mx-auto leading-relaxed text-lg">
-              That's the shape of it on paper. In practice, it looks like
-              this:
+              That's the leadership split — not the full team. In practice,
+              it looks like this:
             </p>
           </AnimatedSection>
 
@@ -549,15 +559,15 @@ const AboutPage: React.FC = () => {
             })}
           </div>
 
-          <AnimatedSection className="max-w-3xl mx-auto mt-24 lg:mt-28 text-center">
+          <AnimatedSection className="max-w-2xl mx-auto mt-24 lg:mt-28 text-center">
             <p className="text-lg text-muted-foreground leading-[1.7]">
               Zia and Omer aren't the only people who touch a Zumetrix
               project — a small group of specialists works alongside them on
-              design, QA, and delivery depending on what an engagement needs.
-              What doesn't change is who's accountable: architecture,
-              technical decisions, and client communication stay with the
-              founders, from the first call through the part after launch
-              when most agencies have already moved on.
+              design, development, QA, and automation, depending on what an
+              engagement needs. What doesn't change is who's accountable:
+              architecture, technical decisions, and client communication
+              stay with the founders, from the first call through the part
+              after launch when most agencies have already moved on.
             </p>
           </AnimatedSection>
         </div>
@@ -683,6 +693,9 @@ const AboutPage: React.FC = () => {
         />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(196,138,100,0.09),transparent_55%)]" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <p className="text-lg text-muted-foreground/70 italic mb-6">
+            None of this is theoretical.
+          </p>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/60 mb-16">
             One Verified Client Story
           </p>
@@ -729,7 +742,7 @@ const AboutPage: React.FC = () => {
           className="pointer-events-none absolute inset-x-0 top-0 flex justify-center pt-4 lg:pt-8"
           style={{
             maskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 62%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 90%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 62%)",
           }}
         >
           <p className="text-[9rem] sm:text-[15rem] lg:text-[21rem] font-bold leading-none text-foreground/[0.07] tabular-nums select-none tracking-tight">
@@ -755,11 +768,9 @@ const AboutPage: React.FC = () => {
               instead of separately.
             </p>
             <p>
-              What's changed since is the shape, not the standard: one
-              company, two founders who stay personally involved in the
-              decisions — not just the delivery — because the best software
-              work happens when the person building it understands the
-              product and the business, not just the ticket.
+              What's changed since is the shape, not the standard — the best
+              software work still happens when the person building it
+              understands the product and the business, not just the ticket.
             </p>
           </AnimatedSection>
         </div>
@@ -849,10 +860,22 @@ const AboutPage: React.FC = () => {
               </motion.span>
             </h2>
 
-            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto mb-14 leading-[1.6] font-light px-4">
+            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-[1.6] font-light px-4">
               Book a 30-minute call. We'll ask questions, tell you honestly
               whether we're the right fit, and go from there.
             </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 mb-12 px-4 text-sm text-muted-foreground/70">
+              <span>you tell us what's going on</span>
+              <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
+              <span>we push back before we scope</span>
+              <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
+              <span>the right person takes it</span>
+              <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
+              <span>it moves in the open</span>
+              <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
+              <span>we stay through launch</span>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center items-center px-4">
               <Link to="/contact">
