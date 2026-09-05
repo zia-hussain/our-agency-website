@@ -125,8 +125,8 @@ const Hero: React.FC = () => {
                 whileTap={{ scale: 0.985 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-9 pr-7 sm:pl-10 sm:pr-8 py-4 sm:py-[1.15rem] rounded-full font-semibold text-base sm:text-lg tracking-[-0.01em]
-                         shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset,0_2px_10px_-2px_rgba(0,0,0,0.35),0_20px_45px_-14px_rgba(196,138,100,0.55)]
-                         hover:shadow-[0_1px_0_0_rgba(255,255,255,0.3)_inset,0_2px_10px_-2px_rgba(0,0,0,0.4),0_24px_52px_-14px_rgba(196,138,100,0.65)]
+                         shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset,0_2px_10px_-2px_rgba(0,0,0,0.35),0_16px_36px_-16px_rgba(196,138,100,0.4)]
+                         hover:shadow-[0_1px_0_0_rgba(255,255,255,0.3)_inset,0_2px_10px_-2px_rgba(0,0,0,0.4),0_20px_42px_-16px_rgba(196,138,100,0.5)]
                          flex items-center gap-3 overflow-hidden transition-shadow duration-300"
               >
                 <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.14] via-white/0 to-black/[0.06]" />

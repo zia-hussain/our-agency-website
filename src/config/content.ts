@@ -49,7 +49,7 @@ export const BRAND_CONTENT = {
     },
 
     subheadline: [
-      { text: "We don't wait for a perfect brief. Bring the idea, the stuck product, or the work your team's still doing by hand", type: "normal" },
+      { text: "Bring us the idea, the product that's stuck, or the work your team shouldn't still be doing by hand", type: "normal" },
       { text: " — we'll figure out what needs to happen next.", type: "emphasis" }
     ] as ContentSegment[],
 
