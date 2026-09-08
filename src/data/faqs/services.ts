@@ -1,53 +1,44 @@
-// Services Page FAQs - Service & Technology Focused
+// Services Page FAQs — audited down from 10 to the 7 that resolve a real
+// objection a serious founder would actually have at this point in the page.
+// Cut: process walkthrough (duplicates How We Build above), automation-for-
+// existing-businesses (duplicates the Automation chapter), "best fit"
+// (duplicates the five chapters), and generic quality reassurance (duplicates
+// The Record's independently verified proof). Added: what happens after
+// contact, since that's the one real question the final CTA leaves open.
 export const servicesFAQs = [
   {
-    question: "How fast can Zumetrix Labs build a production-ready SaaS MVP?",
+    question: "How long does a typical project take?",
     answer:
-      "A tightly scoped SaaS MVP can sometimes launch in about 30 days, while most focused products take 4-8 weeks. Dashboards, internal tools, and niche SaaS products usually move fastest when the first user journey is clear. Multiple user roles, complex integrations, migrations, or regulated data require a longer plan, which we explain before development begins."
+      "It depends on the project, not just which service it falls under. A tightly scoped MVP can launch in about 30 days; most focused builds take 4-8 weeks. A rescue starts with an assessment before we commit to a timeline — promising a date before we've seen the code would be a guess. Whatever the project, you get a real timeline before work starts, not after."
   },
   {
-    question: "What does your SaaS MVP development process include?",
+    question: "How does pricing work?",
     answer:
-      "Our SaaS MVP service is more than just writing code. We start with a strategy and discovery call, clarify your target users and key use cases, then design the core flows and data model. From there, we implement the frontend (usually React/Next.js), backend APIs (Node.js/TypeScript), authentication, payments or subscriptions (Stripe), and any required integrations (OpenAI, Firebase, Airtable, etc.). We handle QA, deployment, and a structured handover so you have a product you can demo, onboard early users into, and build on top of."
+      "Fixed-scope milestone pricing for clearly defined projects. Starting points: $3,500 for a web application, $4,800 for a SaaS MVP, $5,500 for a mobile app, $2,500 for automation. Rescue work is scoped after we've actually looked at the code — pricing it before that would be a guess, not a plan. Every proposal spells out scope, timeline, and what would change the number."
   },
   {
-    question: "Which technologies and tech stack do you use for client projects?",
+    question: "What technologies do you actually build with?",
     answer:
-      "We primarily work with React, Next.js, TypeScript, Node.js, Express, React Native, Expo, Firebase, Supabase, PostgreSQL, MongoDB, Stripe, and OpenAI. For automations and internal tools we often use Airtable, Notion, Zapier, Make.com, and n8n. We choose the stack based on what fits your product, your team, and your long-term plans—not just what is trendy. Our goal is to give you a system that performs well, is maintainable, and can be handed over or grown without a full rewrite."
+      "React, Next.js, TypeScript, Node.js, React Native, and Expo for the product itself; Firebase, Supabase, PostgreSQL, or MongoDB depending on the data; Stripe for payments. For automation work, usually Make.com, n8n, Airtable, or Notion, tied together with OpenAI where AI actually helps. We pick the stack for the problem, not for what's trendy, and build it so it can be handed over or grown without a rewrite."
   },
   {
-    question: "Do you offer AI and automation services for existing businesses?",
+    question: "Can you join an existing codebase or team?",
     answer:
-      "Yes. A large part of our work is helping teams automate and augment existing workflows using AI and no-code tools. This can include AI-assisted support, document processing, lead qualification, internal assistants, and automated flows that connect tools like Stripe, HubSpot, Airtable, Notion, and Google Sheets. We design and build the automations, connect them to your existing systems, and make sure there is a clear way to monitor and adjust them as your business evolves."
+      "Yes — refactoring, new modules, complex integrations, performance issues. We review your architecture and repos first, agree on scope, then work alongside your team with normal code review practices. The goal is to leave things simpler than we found them, not add another layer your developers have to work around."
   },
   {
-    question: "What kind of ongoing support and maintenance do you provide?",
+    question: "What happens after launch?",
     answer:
-      "After launch, we can either hand everything over to your internal team or stay on as your technical partner. Our ongoing support typically includes bug fixes, small improvements, new features, performance tuning, and help with production incidents. Some clients prefer a fixed monthly retainer, others work with us on a block-of-hours basis. We’ll recommend a model based on how fast you expect to iterate and how critical the system is to your business."
+      "Either we hand everything over to your team, or we stay on. Ongoing work usually covers bug fixes, small improvements, new features, and production incidents — billed as a monthly retainer or a block of hours, depending on how fast you expect to iterate. We'll recommend which one fits before you have to guess."
   },
   {
-    question: "Can you integrate into an existing codebase or team?",
+    question: "I'm not technical. Can you still help?",
     answer:
-      "Yes. We regularly join existing teams or step into live codebases to help with specific problems: refactoring, new modules, complex integrations, or performance issues. Before starting, we review your existing architecture and repos, agree on scope and priorities, and then work alongside your team with clear communication and code review practices. The goal is to add value without creating more complexity for your developers later."
+      "Yes. Most of our clients aren't developers — they're operators and domain experts. Our job is turning your business logic into product decisions, in plain language, so you always know what's being built and why. You bring the idea; we handle the engineering."
   },
   {
-    question: "What types of projects are the best fit for Zumetrix Labs?",
+    question: "What happens after I reach out?",
     answer:
-      "We’re a strong fit if you need: (1) a SaaS product or internal tool, (2) a modern web dashboard or analytics platform, (3) a React Native mobile app, or (4) AI/automation flows that reduce manual work and connect multiple systems. Our sweet spot is founder-led startups and small teams that want direct access to senior engineers and a clear path from idea to shipped product."
-  },
-  {
-    question: "How do you structure pricing for your services?",
-    answer:
-      "For clearly defined projects, we usually use fixed-scope milestone pricing. Current starting points are about $4,800 for a focused SaaS MVP, $2,500 for AI automation, $3,500 for a custom web application, and $5,500 for a cross-platform mobile app. Ongoing work can use a monthly retainer or a defined block of hours. Every proposal explains scope, timeline, assumptions, responsibilities, and what would change the price."
-  },
-  {
-    question: "How do you ensure quality and reliability in the software you ship?",
-    answer:
-      "We take architecture and code quality seriously. That means: clear separation of frontend and backend concerns, typed APIs where possible, environment-based configs, proper handling of errors and edge cases, basic test coverage on critical paths, and documentation for deployment and configuration. We also keep scope focused so we can ship a solid, stable V1 instead of a fragile product overloaded with half-finished features."
-  },
-  {
-    question: "I’m not technical. Can you still help me bring my idea to life?",
-    answer:
-      "Yes. Many of our clients are non-technical founders, operators, or domain experts. Our job is to translate your vision and business logic into clear product flows, architecture, and decisions. We keep communication straightforward, avoid unnecessary jargon, and make sure you always understand what we’re building and why. You bring the idea and domain knowledge; we handle the product and engineering side."
+      "We reply within 24 hours — with real questions about your situation, and the clearest next step, not a canned response."
   }
 ];

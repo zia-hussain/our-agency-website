@@ -100,6 +100,9 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/mvp-development" element={<Navigate to="/services/saas-mvp-development" replace />} />
           <Route path="/services/ai-automation" element={<Navigate to="/services/ai-automation-solutions" replace />} />
+          <Route path="/services/startup-mvp-development" element={<Navigate to="/services/saas-mvp-development" replace />} />
+          <Route path="/services/enterprise-web-applications" element={<Navigate to="/services/web-application-development" replace />} />
+          <Route path="/services/digital-strategy-consulting" element={<Navigate to="/contact" replace />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/all" element={<AllProjectsPage />} />

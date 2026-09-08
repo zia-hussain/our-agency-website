@@ -3,12 +3,11 @@ import { useSearchParams } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
+import FAQAccordion from "../components/common/FAQAccordion";
+import SectionEyebrow from "../components/common/SectionEyebrow";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../config/site";
 import { contactFAQs } from "../data/faqs/contact";
-import { useState as useContactState } from "react";
-import { Plus } from "lucide-react";
-import { AnimatePresence } from "framer-motion";
 import {
   Mail,
   MapPin,
@@ -24,12 +23,13 @@ import { routeLead } from "../services/leadRouter";
 // Maps a service slug (as used in /contact?service=slug links from Services
 // and Project pages) to the plain-language label this form's dropdown uses.
 const SERVICE_SLUG_TO_LABEL: Record<string, string> = {
-  "enterprise-web-applications": "Web Application Development",
-  "saas-mvp-development": "SaaS Dashboard Development",
+  "web-application-development": "Web Application Development",
+  "enterprise-web-applications": "Web Application Development", // legacy slug
+  "saas-mvp-development": "SaaS Product Development",
+  "startup-mvp-development": "SaaS Product Development", // legacy slug, merged
   "mobile-app-development": "Mobile App Development",
-  "startup-mvp-development": "MVP Development",
-  "ai-automation-solutions": "Automation Solutions",
-  "digital-strategy-consulting": "Digital Strategy Consulting",
+  "ai-automation-solutions": "AI Automation & Workflows",
+  "product-rescue-stabilization": "Product Rescue & Stabilization",
 };
 
 const ContactPage: React.FC = () => {
@@ -48,7 +48,6 @@ const ContactPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [openFAQ, setOpenFAQ] = useContactState<number | null>(0);
   const [sourceServiceSlug, setSourceServiceSlug] = useState<string | undefined>();
   const [sourceProjectSlug, setSourceProjectSlug] = useState<string | undefined>();
 
@@ -146,10 +145,6 @@ const ContactPage: React.FC = () => {
     );
   };
 
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index);
-  };
-
   const contactInfo = [
     {
       icon: Mail,
@@ -175,12 +170,12 @@ const ContactPage: React.FC = () => {
   ];
 
   const services = [
+    "Not sure yet",
     "Web Application Development",
-    "SaaS Dashboard Development",
+    "SaaS Product Development",
     "Mobile App Development",
-    "MVP Development",
-    "Automation Solutions",
-    "Digital Strategy Consulting",
+    "AI Automation & Workflows",
+    "Product Rescue & Stabilization",
   ];
 
   const budgetRanges = [
@@ -667,64 +662,33 @@ const ContactPage: React.FC = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
-              Contact
-              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                Questions
-              </span>
+      {/* FAQ Section — same interaction language as Services/Home: eyebrow,   */}
+      {/* two-tone sentence, vertical thread into the list, FAQAccordion.      */}
+      {/* No bottom CTA here — the visitor is already on the contact page.     */}
+      <section className="relative overflow-hidden bg-background py-24 sm:py-28">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_18%,rgba(196,138,100,0.06),transparent_70%)]"
+        />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center">
+            <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
+              <span className="text-muted-foreground/50">Before you send this,</span>{" "}
+              <span className="text-foreground">here's what people usually ask.</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
-              Common questions about getting started with Zumetrix Labs
+            <p className="mt-5 text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Common questions about getting started with Zumetrix Labs.
             </p>
           </AnimatedSection>
 
-          <div className="space-y-4 max-w-4xl mx-auto">
-            {contactFAQs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-150"
-              >
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-card/70 transition-all duration-150"
-                >
-                  <h3 className="text-lg font-semibold text-foreground pr-4">
-                    {faq.question}
-                  </h3>
-                  <motion.div
-                    animate={{ rotate: openFAQ === index ? 45 : 0 }}
-                    transition={{ duration: 0.15 }}
-                    className="flex-shrink-0"
-                  >
-                    <Plus size={20} className="text-primary" />
-                  </motion.div>
-                </button>
-                <AnimatePresence>
-                  {openFAQ === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+          <div className="flex justify-center my-10 sm:my-12" aria-hidden="true">
+            <span className="w-px h-10 sm:h-12 bg-gradient-to-b from-primary/40 to-transparent" />
           </div>
+
+          <AnimatedSection delay={0.06}>
+            <FAQAccordion items={contactFAQs} idPrefix="contact-faq" />
+          </AnimatedSection>
         </div>
       </section>
     </PageTransition>

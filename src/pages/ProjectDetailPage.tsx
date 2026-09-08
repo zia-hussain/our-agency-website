@@ -41,6 +41,14 @@ const getServiceUrl = (serviceName: string) => {
   }
 
   if (
+    normalized.includes("stabiliz") ||
+    normalized.includes("rescue") ||
+    normalized.includes("triage")
+  ) {
+    return "/services/product-rescue-stabilization";
+  }
+
+  if (
     normalized.includes("mvp") ||
     normalized.includes("saas") ||
     normalized.includes("product consultation") ||
@@ -49,7 +57,7 @@ const getServiceUrl = (serviceName: string) => {
     return "/services/saas-mvp-development";
   }
 
-  return "/services/enterprise-web-applications";
+  return "/services/web-application-development";
 };
 
 const ProjectDetailPage: React.FC = () => {

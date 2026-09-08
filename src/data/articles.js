@@ -922,7 +922,7 @@ export const articles = [
     internalLinks: [
       {
         label: "Web application development",
-        href: "/services/enterprise-web-applications",
+        href: "/services/web-application-development",
         description: "Build scalable React, Node.js, and TypeScript applications for serious business workflows."
       },
       {
@@ -1123,7 +1123,7 @@ export const articles = [
       },
       {
         label: "Web application development",
-        href: "/services/enterprise-web-applications",
+        href: "/services/web-application-development",
         description: "Build reliable React and backend systems with production-ready architecture."
       }
     ],

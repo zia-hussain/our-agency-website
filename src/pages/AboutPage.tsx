@@ -403,14 +403,18 @@ const AboutPage: React.FC = () => {
                 mobile
               </Link>
               {" "}and{" "}
-              <Link to="/services/enterprise-web-applications" className="text-primary hover:underline">
+              <Link to="/services/web-application-development" className="text-primary hover:underline">
                 web apps
               </Link>
               ,{" "}
               <Link to="/services/ai-automation-solutions" className="text-primary hover:underline">
                 AI automation
               </Link>
-              , and product rescue work — see the full range on{" "}
+              , and{" "}
+              <Link to="/services/product-rescue-stabilization" className="text-primary hover:underline">
+                product rescue work
+              </Link>
+              {" "}— see the full range on{" "}
               <Link to="/services" className="text-primary hover:underline">
                 Services
               </Link>

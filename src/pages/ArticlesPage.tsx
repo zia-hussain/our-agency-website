@@ -4,15 +4,16 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import ArticleVisual from "../components/common/ArticleVisual";
-import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Clock, User, ArrowRight, BookOpen, Plus } from "lucide-react";
+import FAQAccordion from "../components/common/FAQAccordion";
+import SectionEyebrow from "../components/common/SectionEyebrow";
+import { motion } from "framer-motion";
+import { Calendar, Clock, User, ArrowRight, BookOpen } from "lucide-react";
 import { articles, categories } from "../data/articles.js";
 import { articlesFAQs } from "../data/faqs/articles";
 
 const ArticlesPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [visibleArticles, setVisibleArticles] = useState(6);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
   const filteredArticles =
     activeFilter === "all"
@@ -29,10 +30,6 @@ const ArticlesPage: React.FC = () => {
   const handleFilterChange = (categoryId: string) => {
     setActiveFilter(categoryId);
     setVisibleArticles(6);
-  };
-
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index);
   };
 
   const structuredData = {
@@ -311,67 +308,33 @@ const ArticlesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-card/20 border-t border-border">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
-              Articles
-              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                Questions
-              </span>
+      {/* FAQ Section — same interaction language as Services/Home: eyebrow,   */}
+      {/* two-tone sentence, vertical thread into the list, FAQAccordion. No   */}
+      {/* bottom CTA — a real CTA section precedes it immediately above.       */}
+      <section className="relative overflow-hidden bg-background py-24 sm:py-28">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_18%,rgba(196,138,100,0.06),transparent_70%)]"
+        />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center">
+            <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
+              <span className="text-muted-foreground/50">Before you start reading,</span>{" "}
+              <span className="text-foreground">here's what people usually ask.</span>
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed font-light">
-              Common questions about our expert insights and development guides
+            <p className="mt-5 text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Common questions about our expert insights and development guides.
             </p>
           </AnimatedSection>
 
-          <div className="space-y-4">
-            {articlesFAQs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-150"
-              >
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-card/70 transition-all duration-150"
-                >
-                  <h3 className="text-lg font-semibold text-foreground pr-4">
-                    {faq.question}
-                  </h3>
-                  <motion.div
-                    animate={{ rotate: openFAQ === index ? 45 : 0 }}
-                    transition={{ duration: 0.15 }}
-                    className="flex-shrink-0"
-                  >
-                    <Plus size={20} className="text-primary" />
-                  </motion.div>
-                </button>
-
-                <AnimatePresence>
-                  {openFAQ === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6">
-                        <p className="text-[#DBDBDB] leading-relaxed">
-                          {faq.answer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+          <div className="flex justify-center my-10 sm:my-12" aria-hidden="true">
+            <span className="w-px h-10 sm:h-12 bg-gradient-to-b from-primary/40 to-transparent" />
           </div>
+
+          <AnimatedSection delay={0.06}>
+            <FAQAccordion items={articlesFAQs} idPrefix="articles-faq" />
+          </AnimatedSection>
         </div>
       </section>
     </PageTransition>

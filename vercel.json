@@ -40,8 +40,18 @@
       "permanent": true
     },
     {
-      "source": "/services/web-application-development",
-      "destination": "/services/enterprise-web-applications",
+      "source": "/services/enterprise-web-applications",
+      "destination": "/services/web-application-development",
+      "permanent": true
+    },
+    {
+      "source": "/services/startup-mvp-development",
+      "destination": "/services/saas-mvp-development",
+      "permanent": true
+    },
+    {
+      "source": "/services/digital-strategy-consulting",
+      "destination": "/contact",
       "permanent": true
     },
     {
@@ -72,24 +82,20 @@
       "destination": "/services/mobile-app-development/index.html"
     },
     {
-      "source": "/services/enterprise-web-applications",
-      "destination": "/services/enterprise-web-applications/index.html"
+      "source": "/services/web-application-development",
+      "destination": "/services/web-application-development/index.html"
     },
     {
       "source": "/services/saas-mvp-development",
       "destination": "/services/saas-mvp-development/index.html"
     },
     {
-      "source": "/services/startup-mvp-development",
-      "destination": "/services/startup-mvp-development/index.html"
-    },
-    {
       "source": "/services/ai-automation-solutions",
       "destination": "/services/ai-automation-solutions/index.html"
     },
     {
-      "source": "/services/digital-strategy-consulting",
-      "destination": "/services/digital-strategy-consulting/index.html"
+      "source": "/services/product-rescue-stabilization",
+      "destination": "/services/product-rescue-stabilization/index.html"
     },
     {
       "source": "/portfolio",

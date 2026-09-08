@@ -11,7 +11,6 @@ import {
   Code2,
   AlertTriangle,
   TrendingUp,
-  ExternalLink,
   ArrowRight,
 } from "lucide-react";
 import { getServiceBySlug } from "../data/services";
@@ -129,32 +128,20 @@ const ServiceDetailPage: React.FC = () => {
                 Home
               </Link>
               <ChevronRight size={16} />
-              <a
-                href="/services"
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.location.assign("/services");
-                }}
+              <Link
+                to="/services"
                 className="cursor-pointer bg-transparent p-0 text-left text-muted-foreground transition-colors duration-150 hover:text-primary"
                 aria-label="Go to services page"
               >
                 Services
-              </a>
+              </Link>
               <ChevronRight size={16} />
               <span className="text-foreground font-medium line-clamp-1">
                 {service.title}
               </span>
             </nav>
 
-            <a
-              href="/services"
-              onClick={(event) => {
-                event.preventDefault();
-                window.location.assign("/services");
-              }}
-              className="block"
-              aria-label="Back to services page"
-            >
+            <Link to="/services" className="block" aria-label="Back to services page">
               <motion.div
                 whileHover={{ x: -2 }}
                 transition={{ duration: 0.15 }}
@@ -163,7 +150,7 @@ const ServiceDetailPage: React.FC = () => {
                 <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-0.5 transition-transform duration-150" />
                 Back to Services
               </motion.div>
-            </a>
+            </Link>
           </AnimatedSection>
         </div>
       </section>
@@ -196,13 +183,8 @@ const ServiceDetailPage: React.FC = () => {
                 {service.longDescription}
               </p>
 
-              <div className="flex items-center gap-6 mb-8">
-                <div className="text-3xl font-bold text-primary">
-                  {service.price}
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  Professional development with enterprise-grade quality
-                </div>
+              <div className="text-3xl font-bold text-primary mb-8">
+                {service.price}
               </div>
 
               <Link to={`/contact?service=${service.slug}`}>
@@ -213,7 +195,7 @@ const ServiceDetailPage: React.FC = () => {
                   className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium flex items-center gap-3 text-lg hover:shadow-glow"
                 >
                   Start Your Project
-                  <ExternalLink size={20} />
+                  <ArrowRight size={20} />
                 </motion.button>
               </Link>
             </AnimatedSection>
@@ -363,16 +345,6 @@ const ServiceDetailPage: React.FC = () => {
                   </motion.span>
                 ))}
               </div>
-              
-              <div className="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6">
-                <h3 className="font-semibold text-foreground mb-4">Why These Technologies?</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  We carefully select each technology in our stack based on proven performance, 
-                  scalability, security, and long-term maintainability. Our choices ensure your 
-                  solution is built on solid foundations that can grow with your business and 
-                  adapt to future requirements.
-                </p>
-              </div>
             </AnimatedSection>
           </div>
         </div>
@@ -482,7 +454,7 @@ const ServiceDetailPage: React.FC = () => {
                   className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium flex items-center gap-3 text-lg hover:shadow-glow"
                 >
                   Start Your Project
-                  <ExternalLink size={20} />
+                  <ArrowRight size={20} />
                 </motion.button>
               </Link>
 

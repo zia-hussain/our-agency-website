@@ -189,7 +189,7 @@ export const projects: Project[] = [
     "Implemented MTD/YTD comparisons with correct same-period logic across years.",
     "Designed a 7-KPI inventory overview including stock value, dead stock, and category breakdown.",
     "Built a CSV upload flow that supports both initial full imports and incremental updates by ISBN/SKU.",
-    "Achieved fast performance even with 7,000+ order rows using pre-computed localStorage structures."
+    "Achieved fast performance even with 30,000+ order rows using pre-computed localStorage structures."
   ],
   problem: "The client managed sales and inventory through multiple spreadsheets and manual calculations, making it difficult to understand MTD/YTD performance, inventory risk, and customer behavior across different channels and time periods.",
   solution: "We designed and built a modular React dashboard that ingests raw CSV/XLSX files, normalizes dates, aggregates metrics per page, and stores processed data in localStorage. The dashboard exposes clear KPI cards, charts, and tables for sales, customers, orders, and inventory, all with a pixel-perfect UI. An advanced upload system differentiates between initial full imports and incremental updates, ensuring inventory data stays accurate without manual reconciliation.",
@@ -212,7 +212,7 @@ export const projects: Project[] = [
   kpis: [
     {
       label: "Rows Handled",
-      value: "7,000+",
+      value: "30,000+",
       description: "Smooth performance with thousands of orders and products"
     },
     {

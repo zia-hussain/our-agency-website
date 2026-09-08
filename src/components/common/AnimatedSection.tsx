@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -8,14 +8,21 @@ interface AnimatedSectionProps {
   direction?: 'up' | 'down' | 'left' | 'right';
 }
 
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({ 
-  children, 
-  className = '', 
+const AnimatedSection: React.FC<AnimatedSectionProps> = ({
+  children,
+  className = '',
   delay = 0,
   direction = 'up'
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // Read only for `transition` below, never for `initial`/`animate`/`variants` —
+  // useReducedMotion() returns null during SSR but the real device preference
+  // synchronously on the client's first render, so branching the animate
+  // target itself on this value reintroduces the exact hydration mismatch
+  // this component exists to avoid. Transition timing isn't part of the
+  // rendered style output, so it's safe to vary.
+  const shouldReduceMotion = useReducedMotion();
 
   const variants = {
     hidden: {
@@ -36,7 +43,11 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
-      transition={{ duration: 0.8, delay, ease: "easeOut" }}
+      transition={{
+        duration: shouldReduceMotion ? 0 : 0.8,
+        delay: shouldReduceMotion ? 0 : delay,
+        ease: "easeOut",
+      }}
       className={className}
     >
       {children}

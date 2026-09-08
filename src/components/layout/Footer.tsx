@@ -30,12 +30,11 @@ const Footer: React.FC = () => {
       { name: "Articles", path: "/articles" },
     ],
     services: [
-      { name: "Web Applications", path: "/services/enterprise-web-applications" },
-      { name: "SaaS MVP Development", path: "/services/saas-mvp-development" },
-      { name: "Mobile Apps", path: "/services/mobile-app-development" },
-      { name: "Startup MVPs", path: "/services/startup-mvp-development" },
-      { name: "AI Automation Solutions", path: "/services/ai-automation-solutions" },
-      { name: "Digital Strategy", path: "/services/digital-strategy-consulting" },
+      { name: "Web Application Development", path: "/services/web-application-development" },
+      { name: "SaaS Product Development", path: "/services/saas-mvp-development" },
+      { name: "Mobile App Development", path: "/services/mobile-app-development" },
+      { name: "AI Automation & Workflows", path: "/services/ai-automation-solutions" },
+      { name: "Product Rescue & Stabilization", path: "/services/product-rescue-stabilization" },
     ],
     contact: [
       {
