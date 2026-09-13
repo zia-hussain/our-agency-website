@@ -41,9 +41,12 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     return <div className={className}>{children}</div>;
   }
 
-  const distance = mode === 'hero' ? 6 : OFFSET;
-  const restOpacity = mode === 'hero' ? 0.96 : 0.95;
-  const duration = mode === 'hero' ? 0.2 : 0.28;
+  const distance = mode === 'hero' ? 8 : OFFSET;
+  const restOpacity = mode === 'hero' ? 0.97 : 0.95;
+  const duration = mode === 'hero' ? 0.36 : 0.28;
+  // Fast response + soft deceleration ("settling"), not a linear ease —
+  // reserved for hero mode; reveal mode's easeOut is unchanged/frozen.
+  const heroEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
   const variants = {
     hidden: {
@@ -72,8 +75,11 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       variants={variants}
       transition={{
         duration,
-        delay: mode === 'hero' ? Math.min(delay, 0.15) : delay,
-        ease: 'easeOut',
+        // Micro-stagger only: a hero's own logical groups (text block vs.
+        // visual block, say) settle within ~60ms of each other, never a
+        // sequential reveal the visitor has to wait through.
+        delay: mode === 'hero' ? Math.min(delay, 0.06) : delay,
+        ease: mode === 'hero' ? heroEase : 'easeOut',
       }}
       className={className}
     >

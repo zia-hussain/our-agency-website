@@ -17,7 +17,11 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ArticlesPage = lazy(() => import("./pages/ArticlesPage"));
 const ArticleDetailPage = lazy(() => import("./pages/ArticleDetailPage"));
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
-const ServiceDetailPage = lazy(() => import("./pages/ServiceDetailPage"));
+const SaasDetailPage = lazy(() => import("./pages/service-detail/SaasDetailPage"));
+const RescueDetailPage = lazy(() => import("./pages/service-detail/RescueDetailPage"));
+const WebDetailPage = lazy(() => import("./pages/service-detail/WebDetailPage"));
+const MobileDetailPage = lazy(() => import("./pages/service-detail/MobileDetailPage"));
+const AutomationDetailPage = lazy(() => import("./pages/service-detail/AutomationDetailPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const AllProjectsPage = lazy(() => import("./pages/AllProjectsPage"));
@@ -104,7 +108,11 @@ function App() {
           <Route path="/services/startup-mvp-development" element={<Navigate to="/services/saas-mvp-development" replace />} />
           <Route path="/services/enterprise-web-applications" element={<Navigate to="/services/web-application-development" replace />} />
           <Route path="/services/digital-strategy-consulting" element={<Navigate to="/contact" replace />} />
-          <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path="/services/saas-mvp-development" element={<SaasDetailPage />} />
+          <Route path="/services/product-rescue-stabilization" element={<RescueDetailPage />} />
+          <Route path="/services/web-application-development" element={<WebDetailPage />} />
+          <Route path="/services/mobile-app-development" element={<MobileDetailPage />} />
+          <Route path="/services/ai-automation-solutions" element={<AutomationDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/all" element={<AllProjectsPage />} />
           <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />

@@ -12,19 +12,23 @@ import { renderContentSegments } from "../../utils/contentRenderer";
 // Above-the-fold: mount-triggered only, near-full opacity at rest, and a
 // short stagger — the H1 must effectively exist visually at first paint,
 // not wait through a theatrical reveal (see motion-architecture audit).
+// The settle itself (duration + easing) is what reads as premium here,
+// not a longer wait or a bigger stagger gap between lines.
+const HERO_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.03 },
+    transition: { staggerChildren: 0.04 },
   },
 };
 
 const item = {
-  hidden: { opacity: 0.94, y: 6 },
+  hidden: { opacity: 0.97, y: 8 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.2, ease: "easeOut" },
+    transition: { duration: 0.36, ease: HERO_EASE },
   },
 };
 
