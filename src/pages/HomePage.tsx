@@ -2,7 +2,7 @@ import React from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import Hero from "../components/home/Hero";
-import ClientVideoMoment from "../components/home/ClientVideoMoment";
+import BrandFilmMoment from "../components/home/BrandFilmMoment";
 import InfiniteLogoCarousel from "../components/home/InfiniteLogoCarousel";
 import TrustBand from "../components/home/TrustBand";
 import ServicesPreview from "../components/home/ServicesPreview";
@@ -11,6 +11,7 @@ import FeaturedCaseStudies from "../components/home/FeaturedCaseStudies";
 import FoundersStrip from "../components/home/FoundersStrip";
 import TechStack from "../components/home/TechStack";
 import TestimonialsCarousel from "../components/home/TestimonialsCarousel";
+import ClientProofFilm from "../components/home/ClientProofFilm";
 import LeadMagnet from "../components/home/LeadMagnet";
 import FAQ from "../components/home/FAQ";
 import FinalCTA from "../components/home/FinalCTA";
@@ -101,7 +102,7 @@ const HomePage: React.FC = () => {
         structuredData={structuredData}
       />
       <Hero />
-      <div className="performance-defer"><ClientVideoMoment /></div>
+      <div className="performance-defer"><BrandFilmMoment /></div>
       <div className="performance-defer"><InfiniteLogoCarousel /></div>
       <SectionDivider />
       <div className="performance-defer"><TrustBand /></div>
@@ -115,6 +116,8 @@ const HomePage: React.FC = () => {
       <div className="performance-defer"><TechStack /></div>
       <SectionDivider />
       <div className="performance-defer"><FoundersStrip /></div>
+      <SectionDivider />
+      <div className="performance-defer"><ClientProofFilm /></div>
       <SectionDivider />
       <div className="performance-defer"><TestimonialsCarousel /></div>
       <SectionDivider />

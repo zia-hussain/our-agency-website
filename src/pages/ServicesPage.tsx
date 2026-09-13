@@ -5,7 +5,7 @@ import AnimatedSection from "../components/common/AnimatedSection";
 import PlatformIcon from "../components/common/PlatformIcon";
 import FAQAccordion from "../components/common/FAQAccordion";
 import SectionEyebrow from "../components/common/SectionEyebrow";
-import ClientVideoPlayer from "../components/common/ClientVideoPlayer";
+import TestimonialFilm from "../components/common/TestimonialFilm";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, ChevronDown, Code2, Layers3, Lightbulb, Map, Rocket, Search, Send, ShieldCheck, TrendingDown, TrendingUp, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -789,7 +789,12 @@ const ServicesPage: React.FC = () => {
               </div>
 
               <AnimatedSection delay={0.1} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-14">
-                <ClientVideoPlayer src="/videos/Reema-Testimonial.mp4" />
+                <TestimonialFilm
+                  src="/videos/Josh.mp4"
+                  poster="/images/video-posters/josh-nyce-poster.jpg"
+                  captionsSrc="/captions/josh-nyce-testimonial.vtt"
+                  variant="proof"
+                />
               </AnimatedSection>
 
               <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
