@@ -454,7 +454,7 @@ const ServicesPage: React.FC = () => {
       <section className="bg-background pt-48 pb-32 relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_20%,rgba(196,138,100,0.1),transparent_38%),radial-gradient(circle_at_15%_80%,rgba(196,138,100,0.06),transparent_32%)]" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <AnimatedSection>
+          <AnimatedSection mode="hero">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-4 py-2 text-sm font-medium text-primary mb-10">
               Software Development Services
             </span>

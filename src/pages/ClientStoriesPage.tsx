@@ -185,7 +185,7 @@ const EvidenceCard: React.FC<{ t: TestimonialEntry; large?: boolean; index: numb
   index,
 }) => (
   <motion.article
-    initial={{ opacity: 0, y: 20 }}
+    initial={{ opacity: 0.95, y: 8 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     whileHover={{ y: -5 }}
@@ -263,7 +263,7 @@ const ClientStoriesPage: React.FC = () => {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 bg-background relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_25%,rgba(196,138,100,0.10),transparent_32%),radial-gradient(circle_at_10%_75%,rgba(196,138,100,0.06),transparent_28%)]" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
-          <AnimatedSection>
+          <AnimatedSection mode="hero">
             <div className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8">
               Client Stories
             </div>
@@ -319,16 +319,16 @@ const ClientStoriesPage: React.FC = () => {
               />
 
               <motion.p
-                variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }}
+                variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }}
                 className="relative text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-7"
               >
                 Product Rescue
               </motion.p>
-              <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }} className="relative">
+              <motion.div variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }} className="relative">
                 <BeforeAfterStat t={flagship} />
               </motion.div>
               <motion.p
-                variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+                variants={{ hidden: { opacity: 0.95 }, show: { opacity: 1 } }}
                 className="relative mx-auto mt-6 max-w-xl text-sm text-muted-foreground leading-relaxed"
               >
                 A previous development team had the app for two years without
@@ -336,13 +336,13 @@ const ClientStoriesPage: React.FC = () => {
                 production, working end to end, within three weeks.
               </motion.p>
               <motion.blockquote
-                variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+                variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }}
                 className="relative mx-auto mt-8 max-w-2xl text-xl sm:text-2xl font-medium leading-[1.45] tracking-tight text-foreground"
               >
                 "{flagship.quote}"
               </motion.blockquote>
               <motion.div
-                variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }}
+                variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }}
                 className="relative mt-8"
               >
                 <Byline t={flagship} center full />
@@ -410,7 +410,7 @@ const ClientStoriesPage: React.FC = () => {
             {filtered.map((t, index) => (
               <motion.article
                 key={t.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0.95, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: (index % 6) * 0.05 }}
@@ -448,14 +448,14 @@ const ClientStoriesPage: React.FC = () => {
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0.95, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
             className="text-center"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0.95, scale: 0.97 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3 }}
@@ -467,7 +467,7 @@ const ClientStoriesPage: React.FC = () => {
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.1] px-4">
               Have something
               <motion.span
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0.95, x: -8 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.2 }}

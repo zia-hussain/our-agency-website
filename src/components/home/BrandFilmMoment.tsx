@@ -20,10 +20,10 @@ const BrandFilmMoment: React.FC = () => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_0%,rgba(196,138,100,0.05),transparent_65%)]" />
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.28 }}
           className="text-center mb-9 sm:mb-10"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/70 mb-4">The Zumetrix Film</p>
@@ -34,10 +34,10 @@ const BrandFilmMoment: React.FC = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.05 }}
+          transition={{ duration: 0.28, delay: 0.05 }}
           className="relative aspect-video max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-border/50 bg-card/10 shadow-[0_50px_120px_-40px_rgba(0,0,0,0.6)] flex items-center justify-center"
         >
           <div className="pointer-events-none absolute -inset-px rounded-[2rem] bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.08),transparent_60%)]" />

@@ -9,19 +9,22 @@ import { motion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";
 
+// Above-the-fold: mount-triggered only, near-full opacity at rest, and a
+// short stagger — the H1 must effectively exist visually at first paint,
+// not wait through a theatrical reveal (see motion-architecture audit).
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.03 },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 22 },
+  hidden: { opacity: 0.94, y: 6 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.2, ease: "easeOut" },
   },
 };
 

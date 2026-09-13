@@ -52,7 +52,7 @@ const LeadMagnet: React.FC = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0.95, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="relative bg-card/40 backdrop-blur-xl border border-border/70 rounded-3xl p-8 md:p-12 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.02] overflow-hidden"
@@ -67,7 +67,7 @@ const LeadMagnet: React.FC = () => {
                 </div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0.95, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
@@ -96,7 +96,7 @@ const LeadMagnet: React.FC = () => {
                   ].map((feature, index) => (
                     <motion.div
                       key={feature.title}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0.95, y: 8 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.2 + index * 0.1 }}

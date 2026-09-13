@@ -66,7 +66,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
             <div className="relative overflow-hidden rounded-[14px] bg-card/55">
               <motion.div
                 key={`${testimonial.author}-${activeTestimonial}`}
-                initial={{ opacity: 0, x: 24 }}
+                initial={{ opacity: 0.95, x: 8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="min-h-[300px] p-7 sm:p-10 md:p-12"

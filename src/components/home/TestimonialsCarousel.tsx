@@ -104,7 +104,7 @@ const EvidenceCard: React.FC<{ t: TestimonialEntry; large?: boolean; index: numb
   index,
 }) => (
   <motion.article
-    initial={{ opacity: 0, y: 24 }}
+    initial={{ opacity: 0.95, y: 8 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     whileHover={{ y: -5 }}
@@ -170,10 +170,10 @@ const TestimonialsCarousel: React.FC = () => {
     <section className="relative overflow-hidden bg-card/20 py-24 lg:py-28 border-y border-border/40">
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16"
         >
           <div className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7">
@@ -210,24 +210,24 @@ const TestimonialsCarousel: React.FC = () => {
             />
 
             <motion.p
-              variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }}
               className="relative text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-9"
             >
               Product Rescue
             </motion.p>
-            <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }} className="relative">
+            <motion.div variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }} className="relative">
               <BeforeAfterStat t={flagship} />
             </motion.div>
 
             <motion.blockquote
-              variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }}
               className="relative mx-auto mt-11 max-w-2xl text-xl sm:text-2xl font-medium leading-[1.5] tracking-tight text-foreground"
             >
               "{flagship.quote}"
             </motion.blockquote>
 
             <motion.div
-              variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }}
               className="relative mt-9 flex flex-col items-center gap-3"
             >
               <Avatar name={flagship.author} size="md" />
@@ -256,10 +256,10 @@ const TestimonialsCarousel: React.FC = () => {
         ))}
 
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.95 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          transition={{ duration: 0.28, delay: 0.2 }}
           className="mt-12 text-center"
         >
           <Link

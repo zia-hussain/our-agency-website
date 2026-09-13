@@ -10,10 +10,10 @@ const FoundersStrip: React.FC = () => {
     <section className="py-20 lg:py-24 bg-card/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.28 }}
           className="text-center mb-12 sm:mb-16 lg:mb-20 px-4"
         >
           <div className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7">
@@ -35,7 +35,7 @@ const FoundersStrip: React.FC = () => {
           {foundersStrip.founders.map((founder, index) => (
             <motion.div
               key={founder.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0.95, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               whileHover={{ y: -4 }}

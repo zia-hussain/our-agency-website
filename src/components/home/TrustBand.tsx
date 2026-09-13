@@ -18,17 +18,17 @@ const TrustBand: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.28 }}
           className="text-center mb-14"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0.95, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.28 }}
             className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
           >
             <TrendingUp className="w-3.5 h-3.5 mr-2" />
@@ -49,10 +49,10 @@ const TrustBand: React.FC = () => {
 
         {/* Stats — compact bordered tiles */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.28 }}
           className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mb-14"
         >
           {trustBand.globalStats.map((stat) => {
@@ -79,10 +79,10 @@ const TrustBand: React.FC = () => {
           {trustBand.clients.map((client, index) => (
             <motion.div
               key={client.name}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0.95, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+              transition={{ duration: 0.28, delay: index * 0.05 }}
               className={`group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 py-5 px-4 rounded-xl text-sm hover:bg-card/50 transition-colors duration-300 ${
                 index !== trustBand.clients.length - 1 ? "border-b border-border/40" : ""
               }`}

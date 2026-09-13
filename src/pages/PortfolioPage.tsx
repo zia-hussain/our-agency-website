@@ -88,23 +88,23 @@ const PortfolioPage: React.FC = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection className="text-center">
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.8 }}
+          <AnimatedSection mode="hero" className="text-center">
+            <motion.p
+              initial={{ opacity: 0.95, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
               <Eye size={16} className="mr-2" />
               Software Development Case Studies
-            </motion.h1>
+            </motion.p>
 
-            <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-              Portfolio of 
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
+              Portfolio of
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
                 Excellence
               </span>
-            </h2>
+            </h1>
 
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
               Discover how we've helped businesses transform their ideas into

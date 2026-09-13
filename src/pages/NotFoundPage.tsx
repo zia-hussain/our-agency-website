@@ -75,7 +75,7 @@ export default function NotFoundPage() {
 
       {/* Nav */}
       <motion.div
-        initial={{ opacity: 0, y: -10 }}
+        initial={{ opacity: 0.95, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className="relative z-10 flex items-center justify-between px-6 sm:px-12 py-6"
@@ -106,7 +106,7 @@ export default function NotFoundPage() {
 
         {/* 404 number */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.88 }}
+          initial={{ opacity: 0.95, scale: 0.88 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
           className="relative mb-2 select-none"
@@ -148,7 +148,7 @@ export default function NotFoundPage() {
 
         {/* Headline */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0.95, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.5 }}
           className="max-w-lg mb-4"
@@ -164,7 +164,7 @@ export default function NotFoundPage() {
 
         {/* Sub copy */}
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0.95, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.4 }}
           className="text-[#EDEDED]/35 text-base sm:text-lg font-light max-w-md leading-relaxed mb-3"
@@ -175,7 +175,7 @@ export default function NotFoundPage() {
         {/* Path display */}
         {path && path !== '/' && (
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.95 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.55 }}
             className="text-[#EDEDED]/15 text-xs font-mono mb-10"
@@ -189,7 +189,7 @@ export default function NotFoundPage() {
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0.95, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.4 }}
           className="flex flex-col sm:flex-row items-center gap-3 mb-16"
@@ -212,7 +212,7 @@ export default function NotFoundPage() {
 
         {/* Quick nav links */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.95 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
           className="flex flex-wrap items-center justify-center gap-2"
@@ -232,7 +232,7 @@ export default function NotFoundPage() {
 
       {/* Bottom signature */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 0.95 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.9 }}
         className="relative z-10 flex items-center justify-center pb-7"

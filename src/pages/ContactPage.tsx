@@ -229,11 +229,11 @@ const ContactPage: React.FC = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection className="text-center">
+          <AnimatedSection mode="hero" className="text-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0.95, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
               <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse-soft"></span>

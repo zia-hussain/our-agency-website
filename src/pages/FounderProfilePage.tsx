@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link, Navigate, useParams } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
+import AnimatedSection from "../components/common/AnimatedSection";
 import { articles } from "../data/articles.js";
 
 type FounderFAQ = {
@@ -430,12 +431,7 @@ const FounderProfilePage: React.FC = () => {
           </div>
 
           <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-8 sm:px-6 sm:pb-12 lg:px-8 lg:pb-10">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-[760px]"
-            >
+            <AnimatedSection mode="hero" className="max-w-[760px]">
               <div className="-mt-3 mb-8 sm:mt-0 sm:mb-10">
                 <div className="inline-flex items-center gap-3 rounded-lg border border-white/[0.09] border-l-2 border-l-primary bg-[#111111]/95 px-3 py-3 pr-5 shadow-[0_18px_44px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:hidden">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary/[0.08] text-primary">
@@ -487,7 +483,7 @@ const FounderProfilePage: React.FC = () => {
                   <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
-            </motion.div>
+            </AnimatedSection>
 
             <div className="mt-12 grid gap-7 border-t border-white/[0.1] pt-7 sm:grid-cols-3 lg:mt-16">
               <div>
@@ -522,7 +518,7 @@ const FounderProfilePage: React.FC = () => {
         <section id="profile" className="relative overflow-hidden bg-background py-20 lg:py-28">
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0.95, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
@@ -545,7 +541,7 @@ const FounderProfilePage: React.FC = () => {
 
             <div className="grid gap-6 lg:grid-cols-[1.34fr_0.86fr] lg:gap-8">
               <motion.article
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0.95, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35 }}
@@ -566,7 +562,7 @@ const FounderProfilePage: React.FC = () => {
                 {founder.valueSignals.map((signal, index) => (
                   <motion.article
                     key={signal.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0.95, y: 8 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: index * 0.07 }}
@@ -609,7 +605,7 @@ const FounderProfilePage: React.FC = () => {
               {founder.fit.map((situation, index) => (
                 <motion.article
                   key={situation}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0.95, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.06 }}
@@ -626,7 +622,7 @@ const FounderProfilePage: React.FC = () => {
               {founder.outcomes.map((outcome, index) => (
                 <motion.article
                   key={outcome.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0.95, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -654,7 +650,7 @@ const FounderProfilePage: React.FC = () => {
               {founder.approach.map((principle, index) => (
                 <motion.article
                   key={principle}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0.95, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.06 }}
@@ -692,7 +688,7 @@ const FounderProfilePage: React.FC = () => {
               {founder.capabilities.map((capability, index) => (
                 <motion.article
                   key={capability.title}
-                  initial={{ opacity: 0, y: 22 }}
+                  initial={{ opacity: 0.95, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
@@ -822,7 +818,7 @@ const FounderProfilePage: React.FC = () => {
               {founder.faqs.map((faq, index) => (
                 <motion.div
                   key={faq.question}
-                  initial={{ opacity: 0, y: 18 }}
+                  initial={{ opacity: 0.95, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.25, delay: index * 0.04 }}

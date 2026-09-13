@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Pause, Play, Volume2, VolumeX, Captions } from "lucide-react";
 import { parseVtt, cueAt, VttCue } from "../../utils/parseVtt";
 
@@ -48,7 +48,6 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   const progressFillRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const isDraggingRef = useRef(false);
-  const shouldReduceMotion = useReducedMotion();
 
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -225,10 +224,10 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   return (
     <motion.div
       ref={sectionRef}
-      initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
-      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+      initial={{ opacity: 0.95, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.28 }}
       className={`relative overflow-hidden border border-primary/15 ring-1 ring-inset ring-white/[0.03] ${STAGE_SIZE[variant]} ${className}`}
     >
       <div className="pointer-events-none absolute -inset-px rounded-[inherit] bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.10),transparent_60%)] z-10" />

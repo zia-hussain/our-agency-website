@@ -1,6 +1,6 @@
 import { useEffect, lazy, Suspense } from "react";
 import { Navigate, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, MotionConfig } from "framer-motion";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/common/ScrollToTop";
@@ -85,6 +85,7 @@ function App() {
   }, [location.pathname, location.search]);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div
       className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden"
       style={{ paddingBottom: "var(--sticky-cta-height, 0px)" }}
@@ -155,6 +156,7 @@ function App() {
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <BackToTop />}
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && !isUtilityRoute && !isProposalCaseStudy && <StickyCTABar />}
     </div>
+    </MotionConfig>
   );
 }
 

@@ -92,11 +92,11 @@ const ArticlesPage: React.FC = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection className="text-center">
+          <AnimatedSection mode="hero" className="text-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0.95, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
             >
               <BookOpen size={16} className="mr-2" />
@@ -165,7 +165,7 @@ const ArticlesPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10">
             {displayedArticles.map((article, index) => (
-              <AnimatedSection key={article.id} delay={index * 0.1}>
+              <AnimatedSection key={article.id} delay={Math.min(index * 0.03, 0.12)}>
                 <Link to={`/articles/${article.slug}`}>
                   <motion.article
                     whileHover={{ y: -12, scale: 1.02 }}

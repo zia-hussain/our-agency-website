@@ -64,7 +64,7 @@ const AllProjectsPage: React.FC = () => {
       {/* Hero Section */}
       <section className="pb-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center">
+          <AnimatedSection mode="hero" className="text-center">
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
               All
               <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">

@@ -21,10 +21,10 @@ const SignatureMethod: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.28 }}
           className="text-center mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7">
@@ -52,10 +52,10 @@ const SignatureMethod: React.FC = () => {
             return (
               <motion.div
                 key={section.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0.95, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                transition={{ duration: 0.28, delay: index * 0.08 }}
                 className="group py-10 sm:py-12 border-b border-border/70"
               >
                 <div className="flex flex-wrap items-center gap-4 sm:gap-5 mb-4">
@@ -91,10 +91,10 @@ const SignatureMethod: React.FC = () => {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
+          transition={{ duration: 0.28, delay: 0.3 }}
           className="text-center mt-12 lg:mt-16"
         >
           <Link to={siteData.signatureMethod.cta.link}>

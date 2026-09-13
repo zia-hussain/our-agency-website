@@ -200,7 +200,7 @@ const ProjectDetailPage: React.FC = () => {
       <section className="pb-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection>
+            <AnimatedSection mode="hero">
               <div className="flex items-center gap-3 mb-6">
                 <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">
                   {project.category}
@@ -303,7 +303,7 @@ const ProjectDetailPage: React.FC = () => {
             </AnimatedSection>
 
             {/* Project Image */}
-            <AnimatedSection delay={0.1}>
+            <AnimatedSection mode="hero" delay={0.1}>
               <div className="relative">
                 <motion.img
                   initial={{ scale: 1.02 }}

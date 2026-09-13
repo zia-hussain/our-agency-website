@@ -76,9 +76,9 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Section */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.95, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.28 }}
             viewport={{ once: true }}
             className="lg:col-span-1 "
           >
@@ -126,9 +126,9 @@ const Footer: React.FC = () => {
 
           {/* Company Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.95, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2, delay: 0.05 }}
+            transition={{ duration: 0.28, delay: 0.05 }}
             viewport={{ once: true }}
           >
             <h3 className="text-lg font-semibold mb-4 text-foreground">
@@ -150,9 +150,9 @@ const Footer: React.FC = () => {
 
           {/* Services Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.95, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2, delay: 0.1 }}
+            transition={{ duration: 0.28, delay: 0.1 }}
             viewport={{ once: true }}
           >
             <h3 className="text-lg font-semibold mb-4 text-foreground">
@@ -174,9 +174,9 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.95, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2, delay: 0.15 }}
+            transition={{ duration: 0.28, delay: 0.15 }}
             viewport={{ once: true }}
           >
             <h3 className="text-lg font-semibold mb-4 text-foreground">
@@ -200,9 +200,9 @@ const Footer: React.FC = () => {
 
         {/* Bottom Section */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.95 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.2, delay: 0.2 }}
+          transition={{ duration: 0.28, delay: 0.2 }}
           viewport={{ once: true }}
           className="border-t border-border mt-12 pt-8"
         >

@@ -84,19 +84,19 @@ const ClientProofFilm: React.FC = () => {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14 sm:mb-16">
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0.95, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.28 }}
             className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/70 mb-5"
           >
             Clients, Unscripted
           </motion.p>
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0.95, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.05 }}
+            transition={{ duration: 0.28, delay: 0.05 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.12]"
           >
             <span className="block text-muted-foreground/50">Different projects.</span>
@@ -109,7 +109,7 @@ const ClientProofFilm: React.FC = () => {
           <div>
             {/* The dimension is restated here, at real scale, so the selected */}
             {/* state is legible from the film itself, not just a rail marker. */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={`${active.id}-label`}
                 initial={{ opacity: 0, x: -8 }}
@@ -122,7 +122,7 @@ const ClientProofFilm: React.FC = () => {
               </motion.p>
             </AnimatePresence>
 
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={active.id}
                 initial={{ opacity: 0 }}
@@ -139,7 +139,7 @@ const ClientProofFilm: React.FC = () => {
               </motion.div>
             </AnimatePresence>
 
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={`${active.id}-context`}
                 initial={{ opacity: 0, y: 8 }}
@@ -219,10 +219,10 @@ const ClientProofFilm: React.FC = () => {
         {/* different, broader layer of proof, not a second testimonial     */}
         {/* section repeating the same beat.                                 */}
         <motion.p
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.95 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          transition={{ duration: 0.28, delay: 0.1 }}
           className="text-center text-sm text-muted-foreground/50 italic mt-16 sm:mt-20"
         >
           A few of the voices. The fuller record is below.

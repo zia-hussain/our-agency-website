@@ -15,18 +15,18 @@ const FinalCTA: React.FC = () => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.28 }}
           className="text-center"
         >
           {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0.95, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.28 }}
             className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-9"
           >
             <Sparkles size={14} className="mr-2" />
@@ -37,10 +37,10 @@ const FinalCTA: React.FC = () => {
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-7 tracking-tight leading-[1.08] px-4">
             {finalCTA.headline.line1}
             <motion.span
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0.95, x: -8 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+              transition={{ duration: 0.28, delay: 0.2 }}
               className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-2"
             >
               {finalCTA.headline.line2}

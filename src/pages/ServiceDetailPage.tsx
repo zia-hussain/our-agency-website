@@ -122,7 +122,7 @@ const ServiceDetailPage: React.FC = () => {
       {/* Breadcrumbs */}
       <section className="pt-32 pb-8 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
+          <AnimatedSection mode="hero">
             <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
               <Link to="/" className="hover:text-primary transition-colors duration-150">
                 Home
@@ -159,7 +159,7 @@ const ServiceDetailPage: React.FC = () => {
       <section className="pb-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection>
+            <AnimatedSection mode="hero">
               <div className="flex items-center gap-3 mb-6">
                 <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">
                   {service.title}
@@ -200,12 +200,12 @@ const ServiceDetailPage: React.FC = () => {
               </Link>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.1}>
+            <AnimatedSection mode="hero" delay={0.1}>
               <motion.div
                 className="relative overflow-hidden rounded-2xl"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0.95, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.2 }}
                 style={{
                   boxShadow: "0 8px 40px rgba(0,0,0,0.5), 0 0 0 1.5px rgba(196,138,100,0.3)",
                 }}

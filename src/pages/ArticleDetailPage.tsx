@@ -277,7 +277,7 @@ const ArticleDetailPage: React.FC = () => {
       {/* Breadcrumbs */}
       <section className="pt-32 pb-8 bg-background ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
+          <AnimatedSection mode="hero">
             <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
               <Link
                 to="/"
@@ -318,7 +318,7 @@ const ArticleDetailPage: React.FC = () => {
       {/* Article Hero */}
       <section className="pb-16 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
+          <AnimatedSection mode="hero">
             {/* Category Badge */}
             <div className="flex items-center gap-3 mb-6">
               <span className="px-4 py-2 bg-gradient-to-r from-primary/20 to-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">
@@ -701,7 +701,7 @@ const ArticleDetailPage: React.FC = () => {
 
                   <motion.div
                     key={activeRelated}
-                    initial={{ opacity: 0, x: 18 }}
+                    initial={{ opacity: 0.95, x: 8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
                     className="grid gap-3 rounded-[20px] bg-card/35 p-3 sm:grid-cols-2"
