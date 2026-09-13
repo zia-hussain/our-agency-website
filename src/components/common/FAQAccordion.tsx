@@ -29,14 +29,14 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="border-t border-border/60">
+    <div className="border-t border-white/[0.07]">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         const questionId = `${idPrefix}-question-${index}`;
         const panelId = `${idPrefix}-panel-${index}`;
 
         return (
-          <div key={index} className="relative border-b border-border/60">
+          <div key={index} className="relative border-b border-white/[0.07]">
             <span
               aria-hidden="true"
               className={`absolute left-0 top-0 bottom-0 transition-all duration-300 ${
@@ -50,7 +50,7 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => setOpenIndex(isOpen ? null : index)}
-              className="group w-full py-5 sm:py-6 pl-5 sm:pl-6 pr-2 text-left flex items-start justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm"
+              className="btn-sheen group w-full py-5 sm:py-6 pl-5 sm:pl-6 pr-2 text-left flex items-start justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm"
             >
               <span
                 className={`text-base sm:text-lg font-semibold leading-snug transition-colors duration-200 ${

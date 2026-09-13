@@ -102,7 +102,7 @@ const SignatureMethod: React.FC = () => {
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.15 }}
-              className="group text-muted-foreground hover:text-primary font-medium px-8 py-4
+              className="btn-sheen group text-muted-foreground hover:text-primary font-medium px-8 py-4
                        transition-colors duration-150 text-lg flex items-center gap-3 mx-auto
                        bg-card/50 backdrop-blur-xl border border-border rounded-full hover:border-primary/30 hover:bg-card/80"
             >

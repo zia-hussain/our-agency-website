@@ -128,7 +128,7 @@ const ArticleDetailPage: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.1 }}
-                className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-lg font-medium"
+                className="btn-sheen bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-full font-medium"
               >
                 Back to Articles
               </motion.button>
@@ -396,7 +396,7 @@ const ArticleDetailPage: React.FC = () => {
                   whileHover={{ scale: 1.05, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.1 }}
-                  className="p-3 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-all duration-100 group"
+                  className="btn-sheen p-3 bg-card/50 backdrop-blur-xl border border-border rounded-full hover:border-primary/30 transition-all duration-100 group"
                   title="Share on Twitter"
                   aria-label="Share this article on X"
                 >
@@ -410,7 +410,7 @@ const ArticleDetailPage: React.FC = () => {
                   whileHover={{ scale: 1.05, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.1 }}
-                  className="p-3 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-all duration-100 group"
+                  className="btn-sheen p-3 bg-card/50 backdrop-blur-xl border border-border rounded-full hover:border-primary/30 transition-all duration-100 group"
                   title="Share on LinkedIn"
                   aria-label="Share this article on LinkedIn"
                 >
@@ -424,7 +424,7 @@ const ArticleDetailPage: React.FC = () => {
                   whileHover={{ scale: 1.05, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.1 }}
-                  className="p-3 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-all duration-100 group"
+                  className="btn-sheen p-3 bg-card/50 backdrop-blur-xl border border-border rounded-full hover:border-primary/30 transition-all duration-100 group"
                   title="Share on WhatsApp"
                   aria-label="Share this article on WhatsApp"
                 >
@@ -438,7 +438,7 @@ const ArticleDetailPage: React.FC = () => {
                   whileHover={{ scale: 1.05, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.1 }}
-                  className="p-3 bg-card/50 backdrop-blur-xl border border-border rounded-lg hover:border-primary/30 transition-all duration-100 group"
+                  className="btn-sheen p-3 bg-card/50 backdrop-blur-xl border border-border rounded-full hover:border-primary/30 transition-all duration-100 group"
                   title="Copy link"
                   aria-label={copied ? "Article link copied" : "Copy article link"}
                 >
@@ -582,7 +582,7 @@ const ArticleDetailPage: React.FC = () => {
               </p>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform duration-150 hover:-translate-y-0.5"
+                className="btn-sheen inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform duration-150 hover:-translate-y-0.5"
               >
                 Talk to Zumetrix Labs
                 <ArrowRight size={16} />
@@ -677,7 +677,7 @@ const ArticleDetailPage: React.FC = () => {
                             current === 0 ? relatedArticles.length - 1 : current - 1,
                           )
                         }
-                        className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/70 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
+                        className="btn-sheen flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/70 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
                       >
                         <ChevronLeft size={18} />
                       </button>
@@ -687,7 +687,7 @@ const ArticleDetailPage: React.FC = () => {
                         onClick={() =>
                           setActiveRelated((current) => (current + 1) % relatedArticles.length)
                         }
-                        className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/70 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
+                        className="btn-sheen flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/70 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
                       >
                         <ChevronRight size={18} />
                       </button>
@@ -803,7 +803,7 @@ const ArticleDetailPage: React.FC = () => {
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.15 }}
-                    className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                    className="btn-sheen group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-full font-medium 
                              hover:shadow-glow transition-all duration-300 
                              flex items-center gap-3 text-lg"
                   >
@@ -826,7 +826,7 @@ const ArticleDetailPage: React.FC = () => {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="group bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-8 py-4 rounded-lg font-medium 
+                  className="btn-sheen group bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-8 py-4 rounded-full font-medium 
                            hover:bg-card/70 transition-all duration-300 
                            flex items-center gap-3 text-lg border border-border hover:border-primary/30"
                 >

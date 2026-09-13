@@ -138,7 +138,7 @@ const LeadMagnet: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 rounded-xl border border-border/70 bg-background/70 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                    className="input-premium w-full px-4 py-3 rounded-xl text-foreground placeholder:text-muted-foreground"
                   />
                   <label htmlFor="blueprint-email" className="sr-only">
                     Your email address
@@ -152,14 +152,14 @@ const LeadMagnet: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email"
-                    className="w-full px-4 py-3 rounded-xl border border-border/70 bg-background/70 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                    className="input-premium w-full px-4 py-3 rounded-xl text-foreground placeholder:text-muted-foreground"
                   />
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-full font-semibold hover:shadow-glow transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="btn-sheen w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-full font-semibold hover:shadow-glow transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -236,7 +236,7 @@ const LeadMagnet: React.FC = () => {
                 <a
                   href="/downloads/30-day-saas-mvp-blueprint.pdf"
                   download
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity mb-6"
+                  className="btn-sheen inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity mb-6"
                 >
                   <Download size={18} />
                   Download PDF

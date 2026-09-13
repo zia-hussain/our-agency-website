@@ -99,7 +99,7 @@ const AllProjectsPage: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-150 ${
+                  className={`btn-sheen px-6 py-3 rounded-full font-semibold transition-all duration-150 ${
                     activeFilter === filter.id
                       ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow"
                       : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"

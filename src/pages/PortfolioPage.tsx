@@ -280,7 +280,7 @@ const PortfolioPage: React.FC = () => {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                className="btn-sheen group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-full font-medium
                          hover:shadow-glow transition-all duration-150
                          flex items-center gap-3 text-lg mx-auto"
               >
@@ -346,7 +346,7 @@ const PortfolioPage: React.FC = () => {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium 
+                className="btn-sheen group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-full font-medium
                          hover:shadow-glow transition-all duration-150
                          flex items-center gap-3 text-lg mx-auto"
               >

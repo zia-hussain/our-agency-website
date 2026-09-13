@@ -97,7 +97,7 @@ const StickyCTABar: React.FC = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={handleDismiss}
-                  className="p-2 text-muted-foreground transition-colors hover:text-foreground sm:hidden"
+                  className="btn-sheen rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground sm:hidden"
                   aria-label="Dismiss project call to action"
                 >
                   <X size={18} />
@@ -109,7 +109,7 @@ const StickyCTABar: React.FC = () => {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={handleScheduleCall}
-                  className="flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:px-6"
+                  className="btn-sheen flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:px-6"
                 >
                   <Calendar size={16} />
                   <span className="hidden sm:inline">Schedule Call</span>
@@ -121,7 +121,7 @@ const StickyCTABar: React.FC = () => {
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => trackCTAClick('Sticky CTA - Contact', window.location.pathname)}
-                    className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/30 hover:bg-card/50 sm:w-auto sm:px-6"
+                    className="btn-sheen flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/30 hover:bg-card/50 sm:w-auto sm:px-6"
                   >
                     <span>Contact</span>
                     <ArrowRight size={16} />
@@ -132,7 +132,7 @@ const StickyCTABar: React.FC = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={handleDismiss}
-                  className="hidden p-1 text-muted-foreground transition-colors hover:text-foreground sm:block"
+                  className="btn-sheen hidden rounded-full p-1 text-muted-foreground transition-colors hover:text-foreground sm:block"
                   aria-label="Dismiss project call to action"
                 >
                   <X size={18} />

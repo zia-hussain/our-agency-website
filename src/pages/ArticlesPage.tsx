@@ -146,7 +146,7 @@ const ArticlesPage: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleFilterChange(category.id)}
-                  className={`px-8 py-4 rounded-xl font-semibold shadow-lg ${
+                  className={`btn-sheen px-8 py-4 rounded-full font-semibold shadow-lg ${
                     activeFilter === category.id
                       ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-glow scale-105"
                       : "bg-card/60 backdrop-blur-xl text-muted-foreground border border-border hover:border-primary/30 hover:text-primary hover:bg-card/80"
@@ -260,7 +260,7 @@ const ArticlesPage: React.FC = () => {
                 whileHover={{ scale: 1.05, y: -4 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="bg-card/60 backdrop-blur-xl text-foreground hover:text-primary px-10 py-5 rounded-xl font-semibold 
+                className="btn-sheen bg-card/60 backdrop-blur-xl text-foreground hover:text-primary px-10 py-5 rounded-full font-semibold 
                          hover:bg-card/80 transition-all duration-300 
                          flex items-center gap-3 text-lg mx-auto border border-border hover:border-primary/30 shadow-lg hover:shadow-2xl"
               >
@@ -293,7 +293,7 @@ const ArticlesPage: React.FC = () => {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.1 }}
-                className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-10 py-5 rounded-xl font-semibold 
+                className="btn-sheen group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-10 py-5 rounded-full font-semibold 
                          hover:shadow-glow transition-all duration-100
                          flex items-center gap-3 text-lg mx-auto shadow-lg"
               >

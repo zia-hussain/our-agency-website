@@ -8,6 +8,91 @@ html {
   overflow-x: hidden;
 }
 
+/* The navbar's own material language, made reusable: a glossy inset
+   top-edge highlight plus a contact shadow that deepens smoothly on
+   hover, instead of a hard color/scale snap. Border-color-agnostic —
+   works over any button fill (copper, outline, dark). Respects
+   prefers-reduced-motion by dropping the transform, not the whole
+   effect (the shadow still reads without motion). */
+.btn-sheen {
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+    0 10px 24px -10px rgba(0, 0, 0, 0.5);
+  transition:
+    box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-sheen:hover {
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.28),
+    0 16px 34px -12px rgba(0, 0, 0, 0.6);
+}
+.btn-sheen:active {
+  transform: translateY(0.5px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-sheen:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Every text/number/select field on the site, one shared material:
+   a soft inset fill instead of a flat background, a hairline border
+   that brightens on hover and glows copper on focus, and a custom
+   chevron/spinner so native browser chrome never leaks through. */
+.input-premium {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  transition:
+    border-color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 250ms ease;
+}
+.input-premium::placeholder {
+  color: rgba(237, 237, 237, 0.32);
+}
+.input-premium:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.input-premium:focus {
+  outline: none;
+  border-color: rgba(196, 138, 100, 0.55);
+  box-shadow:
+    inset 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 0 0 3px rgba(196, 138, 100, 0.15);
+}
+.input-premium:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Native number spinners read as cheap browser chrome — hide them
+   for a flush field; the value is still fully editable by typing. */
+.input-premium[type="number"]::-webkit-inner-spin-button,
+.input-premium[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input-premium[type="number"] {
+  -moz-appearance: textfield;
+}
+/* Select — same field material, plus one consistent custom chevron
+   instead of each browser's own mismatched native arrow. */
+select.input-premium {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23A3A3A3' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='5 7.5 10 12.5 15 7.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 16px;
+  padding-right: 2.75rem;
+}
+select.input-premium option {
+  background: #14120f;
+  color: #ededed;
+}
+
 h1,
 h2,
 h3,

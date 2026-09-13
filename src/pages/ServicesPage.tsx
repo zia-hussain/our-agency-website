@@ -559,7 +559,7 @@ const ServicesPage: React.FC = () => {
               </p>
               <Link
                 to={`/services/${saas.slug}`}
-                className="group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
+                className="btn-sheen group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
               >
                 View Full Service
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
@@ -612,7 +612,7 @@ const ServicesPage: React.FC = () => {
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 <Link
                   to={`/contact?service=${saas.slug}`}
-                  className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
+                  className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
                 >
                   Build Your Product
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
@@ -668,7 +668,7 @@ const ServicesPage: React.FC = () => {
               </p>
               <Link
                 to={`/services/${rescueService.slug}`}
-                className="group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
+                className="btn-sheen group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
               >
                 View Full Service
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
@@ -751,7 +751,7 @@ const ServicesPage: React.FC = () => {
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 <Link
                   to={`/contact?service=${rescueService.slug}`}
-                  className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
+                  className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
                 >
                   Get a Free Assessment
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
@@ -860,7 +860,7 @@ const ServicesPage: React.FC = () => {
               </p>
               <Link
                 to={`/services/${webApp.slug}`}
-                className="group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
+                className="btn-sheen group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
               >
                 View Full Service
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
@@ -986,7 +986,7 @@ const ServicesPage: React.FC = () => {
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-10">
                 <Link
                   to={`/contact?service=${webApp.slug}`}
-                  className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
+                  className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
                 >
                   Build Your Web App
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
@@ -1025,7 +1025,7 @@ const ServicesPage: React.FC = () => {
               </p>
               <Link
                 to={`/services/${mobile.slug}`}
-                className="group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
+                className="btn-sheen group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
               >
                 View Full Service
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
@@ -1101,7 +1101,7 @@ const ServicesPage: React.FC = () => {
               <div>
                 <Link
                   to={`/contact?service=${mobile.slug}`}
-                  className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
+                  className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
                 >
                   Build Your Mobile App
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
@@ -1134,7 +1134,7 @@ const ServicesPage: React.FC = () => {
               </p>
               <Link
                 to={`/services/${automation.slug}`}
-                className="group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
+                className="btn-sheen group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
               >
                 View Full Service
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
@@ -1189,7 +1189,7 @@ const ServicesPage: React.FC = () => {
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-16">
                 <Link
                   to={`/contact?service=${automation.slug}`}
-                  className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
+                  className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
                 >
                   Automate Your Workflow
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
@@ -1383,7 +1383,7 @@ const ServicesPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setSelectedProcessStep(null)}
-                className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/50 text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:text-primary"
+                className="btn-sheen absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/50 text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:text-primary"
                 aria-label="Close process details"
               >
                 <X size={18} />
@@ -1553,7 +1553,7 @@ const ServicesPage: React.FC = () => {
         <div className="text-center px-4">
           <Link
             to="/client-stories"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
+            className="btn-sheen group inline-flex items-center gap-2.5 rounded-full border border-primary/30 pl-5 pr-1.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
           >
             Open the full record
             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
@@ -1588,7 +1588,7 @@ const ServicesPage: React.FC = () => {
                 whileHover={{ scale: 1.015, y: -2 }}
                 whileTap={{ scale: 0.985 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-9 pr-7 sm:pl-10 sm:pr-8 py-4 sm:py-[1.15rem] rounded-full font-semibold text-base sm:text-lg tracking-[-0.01em]
+                className="btn-sheen group relative bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-9 pr-7 sm:pl-10 sm:pr-8 py-4 sm:py-[1.15rem] rounded-full font-semibold text-base sm:text-lg tracking-[-0.01em]
                          shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset,0_2px_10px_-2px_rgba(0,0,0,0.35),0_16px_36px_-16px_rgba(196,138,100,0.4)]
                          hover:shadow-[0_1px_0_0_rgba(255,255,255,0.3)_inset,0_2px_10px_-2px_rgba(0,0,0,0.4),0_20px_42px_-16px_rgba(196,138,100,0.5)]
                          flex items-center gap-3 overflow-hidden transition-shadow duration-300"

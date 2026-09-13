@@ -335,9 +335,7 @@ const ContactPage: React.FC = () => {
                           autoComplete="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
-                   focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                   hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
+                          className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/60"
                           placeholder="Your full name"
                         />
                       </div>
@@ -358,9 +356,7 @@ const ContactPage: React.FC = () => {
                           autoComplete="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
-                   focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                   hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
+                          className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/60"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -380,9 +376,7 @@ const ContactPage: React.FC = () => {
                         autoComplete="organization"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
-                 focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                 hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
+                        className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/60"
                         placeholder="Your company name"
                       />
                     </div>
@@ -394,33 +388,21 @@ const ContactPage: React.FC = () => {
                       >
                         Project Type <span className="text-destructive">*</span>
                       </label>
-                      <div className="relative">
-                        <select
-                          id="projectType"
-                          name="projectType"
-                          required
-                          value={formData.projectType}
-                          onChange={handleInputChange}
-                          className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
-                   focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                   hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
-                        >
-                          <option value="">Select a service</option>
-                          {services.map((service) => (
-                            <option key={service} value={service}>
-                              {service}
-                            </option>
-                          ))}
-                        </select>
-                        {/* Chevron */}
-                        <svg
-                          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" />
-                        </svg>
-                      </div>
+                      <select
+                        id="projectType"
+                        name="projectType"
+                        required
+                        value={formData.projectType}
+                        onChange={handleInputChange}
+                        className="input-premium w-full h-12 px-4 rounded-xl text-foreground"
+                      >
+                        <option value="">Select a service</option>
+                        {services.map((service) => (
+                          <option key={service} value={service}>
+                            {service}
+                          </option>
+                        ))}
+                      </select>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -431,31 +413,20 @@ const ContactPage: React.FC = () => {
                         >
                           Budget Range
                         </label>
-                        <div className="relative">
-                          <select
-                            id="budget"
-                            name="budget"
-                            value={formData.budget}
-                            onChange={handleInputChange}
-                            className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
-                     focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                     hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
-                          >
-                            <option value="">Select budget range</option>
-                            {budgetRanges.map((range) => (
-                              <option key={range} value={range}>
-                                {range}
-                              </option>
-                            ))}
-                          </select>
-                          <svg
-                            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" />
-                          </svg>
-                        </div>
+                        <select
+                          id="budget"
+                          name="budget"
+                          value={formData.budget}
+                          onChange={handleInputChange}
+                          className="input-premium w-full h-12 px-4 rounded-xl text-foreground"
+                        >
+                          <option value="">Select budget range</option>
+                          {budgetRanges.map((range) => (
+                            <option key={range} value={range}>
+                              {range}
+                            </option>
+                          ))}
+                        </select>
                       </div>
 
                       <div>
@@ -465,31 +436,20 @@ const ContactPage: React.FC = () => {
                         >
                           Timeline
                         </label>
-                        <div className="relative">
-                          <select
-                            id="timeline"
-                            name="timeline"
-                            value={formData.timeline}
-                            onChange={handleInputChange}
-                            className="appearance-none w-full h-12 px-4 pr-10 rounded-xl bg-background/80 border border-border/70 text-foreground transition-all duration-200 outline-none
-                     focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                     hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
-                          >
-                            <option value="">Select timeline</option>
-                            {timelines.map((t) => (
-                              <option key={t} value={t}>
-                                {t}
-                              </option>
-                            ))}
-                          </select>
-                          <svg
-                            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" />
-                          </svg>
-                        </div>
+                        <select
+                          id="timeline"
+                          name="timeline"
+                          value={formData.timeline}
+                          onChange={handleInputChange}
+                          className="input-premium w-full h-12 px-4 rounded-xl text-foreground"
+                        >
+                          <option value="">Select timeline</option>
+                          {timelines.map((t) => (
+                            <option key={t} value={t}>
+                              {t}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </div>
 
@@ -508,9 +468,7 @@ const ContactPage: React.FC = () => {
                         rows={6}
                         value={formData.message}
                         onChange={handleInputChange}
-                        className="w-full min-h-[144px] px-4 py-3 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none resize-y
-                 focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
-                 hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]"
+                        className="input-premium w-full min-h-[144px] px-4 py-3 rounded-xl text-foreground placeholder:text-muted-foreground/60 resize-y"
                         placeholder="Tell us about your project, goals, and any specific requirements…"
                       />
                       <p className="mt-1 text-xs text-muted-foreground/70">
@@ -519,7 +477,7 @@ const ContactPage: React.FC = () => {
                       </p>
                     </div>
 
-                    <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border/70 bg-background/35 p-4">
+                    <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
                       <input
                         type="checkbox"
                         name="marketingConsent"
@@ -540,7 +498,7 @@ const ContactPage: React.FC = () => {
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="w-full bg-foreground text-background px-8 h-12 rounded-xl font-medium tracking-wide
+                      className="btn-sheen w-full bg-foreground text-background px-8 h-12 rounded-full font-medium tracking-wide
                hover:opacity-95 hover:shadow-lg hover:shadow-foreground/10
                disabled:opacity-50 disabled:cursor-not-allowed"
                       aria-busy={isSubmitting}
@@ -631,7 +589,7 @@ const ContactPage: React.FC = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="w-full text-left p-3 bg-card/50 rounded-lg border border-border hover:border-primary/30 transition-colors duration-150 group"
+                      className="btn-sheen w-full text-left px-5 py-3 bg-card/50 rounded-full border border-border hover:border-primary/30 transition-colors duration-150 group"
                     >
                       <div className="flex items-center gap-3">
                         <MessageCircle size={16} className="text-primary" />
@@ -645,7 +603,7 @@ const ContactPage: React.FC = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="w-full text-left p-3 bg-card/50 rounded-lg border border-border hover:border-primary/30 transition-colors duration-150 group"
+                      className="btn-sheen w-full text-left px-5 py-3 bg-card/50 rounded-full border border-border hover:border-primary/30 transition-colors duration-150 group"
                     >
                       <div className="flex items-center gap-3">
                         <Clock size={16} className="text-primary" />

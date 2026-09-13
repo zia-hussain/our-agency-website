@@ -488,7 +488,7 @@ const ClientStoriesPage: React.FC = () => {
                   whileHover={{ scale: 1.02, y: -3 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-full font-semibold
+                  className="btn-sheen group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-full font-semibold
                            hover:shadow-glow transition-all duration-150
                            flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg shadow-lg w-full sm:w-auto justify-center"
                 >
@@ -503,7 +503,7 @@ const ClientStoriesPage: React.FC = () => {
                   whileHover={{ scale: 1.02, y: -3 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="group bg-card/50 backdrop-blur-xl text-muted-foreground hover:text-primary px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-full font-semibold
+                  className="btn-sheen group bg-card/50 backdrop-blur-xl text-muted-foreground hover:text-primary px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-full font-semibold
                            hover:bg-card/80 transition-all duration-150
                            flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg border border-border hover:border-primary/30 w-full sm:w-auto justify-center"
                 >

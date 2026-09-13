@@ -98,7 +98,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
                             current === 0 ? testimonials.length - 1 : current - 1,
                           )
                         }
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/60 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
+                        className="btn-sheen flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/60 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
                       >
                         <ChevronLeft size={18} />
                       </button>
@@ -108,7 +108,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
                         onClick={() =>
                           setActiveTestimonial((current) => (current + 1) % testimonials.length)
                         }
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/60 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
+                        className="btn-sheen flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/60 text-muted-foreground transition-colors duration-150 hover:border-primary/35 hover:text-primary"
                       >
                         <ChevronRight size={18} />
                       </button>
@@ -139,7 +139,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
                           type="button"
                           aria-label={`Show testimonial ${index + 1}`}
                           onClick={() => setActiveTestimonial(index)}
-                          className={`h-2 rounded-full transition-all duration-200 ${
+                          className={`btn-sheen h-2 rounded-full transition-all duration-200 ${
                             index === activeTestimonial
                               ? "w-8 bg-primary"
                               : "w-2 bg-muted-foreground/30 hover:bg-primary/60"

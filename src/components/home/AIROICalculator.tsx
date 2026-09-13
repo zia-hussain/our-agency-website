@@ -167,7 +167,7 @@ const AIROICalculator: React.FC = () => {
                         const val = parseInt(e.target.value) || 0;
                         setInputs({ ...inputs, employees: Math.min(Math.max(val, 1), 10000) });
                       }}
-                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                      className="input-premium w-full px-4 py-3 rounded-xl text-foreground"
                       min="1"
                       max="10000"
                       step="1"
@@ -188,7 +188,7 @@ const AIROICalculator: React.FC = () => {
                         const val = parseInt(e.target.value) || 0;
                         setInputs({ ...inputs, avgHourlyRate: Math.min(Math.max(val, 1), 1000) });
                       }}
-                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                      className="input-premium w-full px-4 py-3 rounded-xl text-foreground"
                       min="1"
                       max="1000"
                       step="1"
@@ -209,7 +209,7 @@ const AIROICalculator: React.FC = () => {
                         const val = parseInt(e.target.value) || 0;
                         setInputs({ ...inputs, hoursPerWeek: Math.min(Math.max(val, 1), 40) });
                       }}
-                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                      className="input-premium w-full px-4 py-3 rounded-xl text-foreground"
                       min="1"
                       max="40"
                       step="1"
@@ -226,7 +226,7 @@ const AIROICalculator: React.FC = () => {
                       name="processType"
                       value={inputs.processType}
                       onChange={(e) => setInputs({ ...inputs, processType: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                      className="input-premium w-full px-4 py-3 rounded-xl text-foreground"
                     >
                       {Object.entries(processTypes).map(([key, value]) => (
                         <option key={key} value={key}>
@@ -240,7 +240,7 @@ const AIROICalculator: React.FC = () => {
                     onClick={handleCalculate}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-full font-semibold hover:shadow-glow transition-all duration-150 flex items-center justify-center gap-2"
+                    className="btn-sheen w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-4 rounded-full font-semibold hover:shadow-glow transition-all duration-150 flex items-center justify-center gap-2"
                   >
                     <TrendingUp size={20} />
                     Calculate ROI
@@ -289,7 +289,7 @@ const AIROICalculator: React.FC = () => {
                       autoComplete="name"
                       value={contactInfo.name}
                       onChange={(e) => setContactInfo({ ...contactInfo, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                      className="input-premium w-full px-4 py-3 rounded-xl text-foreground"
                       placeholder="John Doe"
                     />
                   </div>
@@ -303,7 +303,7 @@ const AIROICalculator: React.FC = () => {
                       autoComplete="email"
                       value={contactInfo.email}
                       onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                      className="input-premium w-full px-4 py-3 rounded-xl text-foreground"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -317,7 +317,7 @@ const AIROICalculator: React.FC = () => {
                       autoComplete="organization"
                       value={contactInfo.company}
                       onChange={(e) => setContactInfo({ ...contactInfo, company: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border/70 bg-background/80 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors duration-200"
+                      className="input-premium w-full px-4 py-3 rounded-xl text-foreground"
                       placeholder="Your Company"
                     />
                   </div>
@@ -327,7 +327,7 @@ const AIROICalculator: React.FC = () => {
                     disabled={!contactInfo.email || isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-primary text-primary-foreground px-6 py-4 rounded-full font-semibold hover:opacity-90 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="btn-sheen w-full bg-primary text-primary-foreground px-6 py-4 rounded-full font-semibold hover:opacity-90 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -388,7 +388,7 @@ const AIROICalculator: React.FC = () => {
                 </p>
                 <a
                   href="/contact"
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity"
+                  className="btn-sheen inline-block bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity"
                 >
                   Book a Free Consultation
                 </a>

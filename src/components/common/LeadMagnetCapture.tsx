@@ -144,7 +144,7 @@ const LeadMagnetCapture: React.FC<LeadMagnetCaptureProps> = ({
                         placeholder="John Doe"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                        className="input-premium w-full px-4 py-3 rounded-xl text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
 
@@ -158,7 +158,7 @@ const LeadMagnetCapture: React.FC<LeadMagnetCaptureProps> = ({
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                        className="input-premium w-full px-4 py-3 rounded-xl text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
 
@@ -173,7 +173,7 @@ const LeadMagnetCapture: React.FC<LeadMagnetCaptureProps> = ({
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       disabled={isSubmitting || !email}
-                      className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                      className="btn-sheen w-full bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
                     >
                       {isSubmitting ? (
                         <>

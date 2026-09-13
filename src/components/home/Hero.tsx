@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ChevronDown,
-  Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
@@ -41,7 +40,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="bg-background relative overflow-hidden pt-28 pb-20 sm:pb-28">
+    <section className="bg-background relative overflow-hidden pt-24 sm:pt-36 pb-20 sm:pb-28">
       {/* The light is motivated — it gathers around the one line that
           matters most, not the block as a whole */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_40%,rgba(196,138,100,0.10),transparent_68%)]" />
@@ -70,19 +69,17 @@ const Hero: React.FC = () => {
             <Link
               to="/contact"
               className="
-      group relative inline-flex items-center gap-2.5
-      rounded-full px-4 py-2
-      text-xs font-medium uppercase tracking-[0.14em]
+      btn-sheen group relative inline-flex items-center gap-3
+      rounded-full pl-5 pr-5 py-2.5
+      text-xs font-semibold uppercase tracking-[0.14em]
       text-primary/90
-      border border-primary/15
-      bg-background/40
-      backdrop-blur-xl
-      transition-all duration-300
-      hover:border-primary/30 hover:text-primary
+      border border-white/[0.06]
+      transition-colors duration-300
+      hover:text-primary hover:border-white/[0.1]
       focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 mb-10 sm:mb-12
     "
+              style={{ background: "linear-gradient(180deg, #18150F 0%, #0B0A08 100%)" }}
             >
-              <Sparkles size={13} className="opacity-70" />
               <span>{BRAND_CONTENT.hero.badge}</span>
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
@@ -131,7 +128,7 @@ const Hero: React.FC = () => {
                 whileHover={{ scale: 1.015, y: -2 }}
                 whileTap={{ scale: 0.985 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-9 pr-7 sm:pl-10 sm:pr-8 py-4 sm:py-[1.15rem] rounded-full font-semibold text-base sm:text-lg tracking-[-0.01em]
+                className="btn-sheen group relative bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-9 pr-7 sm:pl-10 sm:pr-8 py-4 sm:py-[1.15rem] rounded-full font-semibold text-base sm:text-lg tracking-[-0.01em]
                          shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset,0_2px_10px_-2px_rgba(0,0,0,0.35),0_16px_36px_-16px_rgba(196,138,100,0.4)]
                          hover:shadow-[0_1px_0_0_rgba(255,255,255,0.3)_inset,0_2px_10px_-2px_rgba(0,0,0,0.4),0_20px_42px_-16px_rgba(196,138,100,0.5)]
                          flex items-center gap-3 overflow-hidden transition-shadow duration-300"

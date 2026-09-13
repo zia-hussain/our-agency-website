@@ -40,7 +40,7 @@ export const BRAND_CONTENT = {
    * Primary landing content that sets expectations
    */
   hero: {
-    badge: "Now accepting new projects",
+    badge: "Where stalled projects get shipped",
 
     headline: {
       line1: "We build software for founders",

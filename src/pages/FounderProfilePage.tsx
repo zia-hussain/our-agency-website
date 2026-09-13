@@ -470,7 +470,7 @@ const FounderProfilePage: React.FC = () => {
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-3 rounded-md bg-primary px-6 py-3.5 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                  className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
                 >
                   Discuss your project
                   <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
@@ -503,7 +503,7 @@ const FounderProfilePage: React.FC = () => {
                       href={profile.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-2 text-sm text-foreground transition-all hover:border-primary/30 hover:bg-primary/[0.06] hover:text-primary"
+                      className="btn-sheen inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-2 text-sm text-foreground transition-all hover:border-primary/30 hover:bg-primary/[0.06] hover:text-primary"
                     >
                       {profile.label}
                       <ExternalLink size={12} />
@@ -750,7 +750,7 @@ const FounderProfilePage: React.FC = () => {
             </p>
             <Link
               to={founder.counterpart.path}
-              className="group inline-flex items-center gap-3 rounded-xl border border-border bg-card/50 px-7 py-4 font-medium text-foreground transition-colors hover:border-primary/30 hover:text-primary"
+              className="btn-sheen group inline-flex items-center gap-3 rounded-full border border-border bg-card/50 px-7 py-4 font-medium text-foreground transition-colors hover:border-primary/30 hover:text-primary"
             >
               Meet {founder.counterpart.name}, {founder.counterpart.role}
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -828,7 +828,7 @@ const FounderProfilePage: React.FC = () => {
                     type="button"
                     onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
                     aria-expanded={openFAQ === index}
-                    className="flex w-full items-center justify-between gap-5 px-6 py-6 text-left transition-colors hover:bg-card/70"
+                    className="btn-sheen flex w-full items-center justify-between gap-5 px-6 py-6 text-left transition-colors hover:bg-card/70"
                   >
                     <span className="text-lg font-semibold leading-relaxed text-foreground">{faq.question}</span>
                     <motion.span
@@ -873,7 +873,7 @@ const FounderProfilePage: React.FC = () => {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 to="/contact"
-                className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-primary px-8 py-4 font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:w-auto"
+                className="btn-sheen inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:w-auto"
               >
                 <Mail size={18} />
                 Discuss your project
@@ -881,7 +881,7 @@ const FounderProfilePage: React.FC = () => {
               </Link>
               <Link
                 to="/portfolio"
-                className="inline-flex w-full items-center justify-center gap-3 rounded-xl border border-border bg-card/50 px-8 py-4 font-semibold text-foreground transition-colors hover:border-primary/30 hover:text-primary sm:w-auto"
+                className="btn-sheen inline-flex w-full items-center justify-center gap-3 rounded-full border border-border bg-card/50 px-8 py-4 font-semibold text-foreground transition-colors hover:border-primary/30 hover:text-primary sm:w-auto"
               >
                 View our work
                 <ArrowRight size={18} />

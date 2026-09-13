@@ -202,7 +202,7 @@ const ClientProofFilm: React.FC = () => {
                     key={story.id}
                     onClick={() => setActiveId(story.id)}
                     aria-pressed={isActive}
-                    className={`flex-shrink-0 snap-start rounded-full border px-4 py-2.5 text-left transition-colors duration-200 ${
+                    className={`btn-sheen flex-shrink-0 snap-start rounded-full border px-4 py-2.5 text-left transition-colors duration-200 ${
                       isActive ? "border-primary/50 bg-primary/10" : "border-border/50 bg-card/10"
                     }`}
                   >

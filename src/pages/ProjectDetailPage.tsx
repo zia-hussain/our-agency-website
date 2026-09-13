@@ -80,7 +80,7 @@ const ProjectDetailPage: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-lg font-medium"
+                className="btn-sheen bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-full font-medium"
               >
                 Back to Portfolio
               </motion.button>
@@ -279,7 +279,7 @@ const ProjectDetailPage: React.FC = () => {
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
-                    className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:shadow-glow"
+                    className="btn-sheen bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:shadow-glow"
                   >
                     <ExternalLink size={18} />
                     View Live Project
@@ -293,7 +293,7 @@ const ProjectDetailPage: React.FC = () => {
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.15 }}
-                    className="bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-6 py-3 rounded-lg font-medium border border-border hover:border-primary/30 flex items-center gap-2"
+                    className="btn-sheen bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-6 py-3 rounded-full font-medium border border-border hover:border-primary/30 flex items-center gap-2"
                   >
                     <Github size={18} />
                     View Code
@@ -546,7 +546,7 @@ const ProjectDetailPage: React.FC = () => {
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-medium flex items-center gap-3 text-lg hover:shadow-glow"
+                  className="btn-sheen bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-full font-medium flex items-center gap-3 text-lg hover:shadow-glow"
                 >
                   Start Your Project
                   <ExternalLink size={20} />
@@ -558,7 +558,7 @@ const ProjectDetailPage: React.FC = () => {
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-8 py-4 rounded-lg font-medium border border-border hover:border-primary/30 flex items-center gap-3 text-lg"
+                  className="btn-sheen bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-8 py-4 rounded-full font-medium border border-border hover:border-primary/30 flex items-center gap-3 text-lg"
                 >
                   View More Projects
                   <Globe size={20} />

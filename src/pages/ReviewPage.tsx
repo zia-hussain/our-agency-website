@@ -116,7 +116,7 @@ function MultiSelect({ options, value, onChange }: { options: string[]; value: s
     <div className="flex flex-wrap gap-2">
       {options.map(opt => (
         <button key={opt} type="button" onClick={() => toggle(opt)}
-          className={`px-4 py-2 rounded-full text-sm transition-all duration-200 border ${selected.includes(opt) ? pillActive : pillInactive}`}>
+          className={`btn-sheen px-4 py-2 rounded-full text-sm transition-all duration-200 border ${selected.includes(opt) ? pillActive : pillInactive}`}>
           {opt}
         </button>
       ))}
@@ -132,7 +132,7 @@ function LogoSection({ value, onChange }: { value: string; onChange: (v: string)
       <div className="flex gap-2 flex-wrap">
         {(['skip', 'url'] as const).map(m => (
           <button key={m} type="button" onClick={() => { setMode(m); if (m !== 'url') onChange(''); }}
-            className={`px-4 py-2 rounded-full text-sm transition-all duration-200 border ${mode === m ? pillActive : pillInactive}`}>
+            className={`btn-sheen px-4 py-2 rounded-full text-sm transition-all duration-200 border ${mode === m ? pillActive : pillInactive}`}>
             {m === 'skip' ? 'Skip' : 'Paste logo URL'}
           </button>
         ))}
@@ -159,7 +159,7 @@ function VideoSection({ url, onUrl }: { url: string; onUrl: (v: string) => void 
       <div className="flex gap-2 flex-wrap">
         {(['skip', 'link'] as const).map(m => (
           <button key={m} type="button" onClick={() => { setMode(m); if (m === 'skip') onUrl(''); }}
-            className={`px-4 py-2 rounded-full text-sm transition-all duration-200 border ${mode === m ? pillActive : pillInactive}`}>
+            className={`btn-sheen px-4 py-2 rounded-full text-sm transition-all duration-200 border ${mode === m ? pillActive : pillInactive}`}>
             {m === 'skip' ? 'Skip for now' : 'Paste Loom / YouTube'}
           </button>
         ))}
@@ -426,7 +426,7 @@ export default function ReviewPage() {
                         <div className="flex flex-wrap gap-2">
                           {PROJECT_TYPES.map(t => (
                             <button key={t} type="button" onClick={() => update('projectType', t)}
-                              className={`px-4 py-2 rounded-full text-sm transition-all duration-200 border ${data.projectType === t ? pillActive : pillInactive}`}>
+                              className={`btn-sheen px-4 py-2 rounded-full text-sm transition-all duration-200 border ${data.projectType === t ? pillActive : pillInactive}`}>
                               {t}
                             </button>
                           ))}
@@ -534,13 +534,13 @@ export default function ReviewPage() {
 
                   {!isLast ? (
                     <button type="button" onClick={next}
-                      className="group flex items-center gap-3 px-8 py-4 bg-[#C48A64] text-black text-sm font-semibold rounded-full hover:bg-[#DCA973] active:scale-[0.97] transition-all duration-200 shadow-[0_0_32px_rgba(196,138,100,0.2)]">
+                      className="btn-sheen group flex items-center gap-3 px-8 py-4 bg-[#C48A64] text-black text-sm font-semibold rounded-full hover:bg-[#DCA973] active:scale-[0.97] transition-all duration-200 shadow-[0_0_32px_rgba(196,138,100,0.2)]">
                       {step === 5 || step === 10 ? 'Skip & Continue' : 'Continue'}
                       <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                     </button>
                   ) : (
                     <button type="button" onClick={submit} disabled={submitting}
-                      className="group flex items-center gap-3 px-8 py-4 bg-[#C48A64] text-black text-sm font-semibold rounded-full hover:bg-[#DCA973] active:scale-[0.97] transition-all duration-200 shadow-[0_0_32px_rgba(196,138,100,0.2)] disabled:opacity-30 disabled:cursor-not-allowed">
+                      className="btn-sheen group flex items-center gap-3 px-8 py-4 bg-[#C48A64] text-black text-sm font-semibold rounded-full hover:bg-[#DCA973] active:scale-[0.97] transition-all duration-200 shadow-[0_0_32px_rgba(196,138,100,0.2)] disabled:opacity-30 disabled:cursor-not-allowed">
                       {submitting ? (
                         <><div className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin" />Submitting...</>
                       ) : (

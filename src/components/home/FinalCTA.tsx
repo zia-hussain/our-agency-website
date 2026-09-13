@@ -61,7 +61,7 @@ const FinalCTA: React.FC = () => {
               whileHover={{ scale: 1.02, y: -3 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.15 }}
-              className="group bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 sm:px-8 lg:px-10 py-3.5 sm:py-4 lg:py-5 rounded-full font-semibold
+              className="btn-sheen group bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 sm:px-8 lg:px-10 py-3.5 sm:py-4 lg:py-5 rounded-full font-semibold
                        shadow-[0_16px_40px_-14px_rgba(196,138,100,0.5)] hover:shadow-[0_20px_48px_-14px_rgba(196,138,100,0.6)] transition-all duration-300
                        flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg w-full sm:w-auto justify-center"
             >
@@ -79,7 +79,7 @@ const FinalCTA: React.FC = () => {
                 whileHover={{ scale: 1.02, y: -3 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="group bg-card/30 backdrop-blur-xl text-foreground/80 hover:text-primary px-6 sm:px-8 lg:px-10 py-3.5 sm:py-4 lg:py-5 rounded-full font-semibold
+                className="btn-sheen group bg-card/30 backdrop-blur-xl text-foreground/80 hover:text-primary px-6 sm:px-8 lg:px-10 py-3.5 sm:py-4 lg:py-5 rounded-full font-semibold
                          hover:bg-card/50 transition-all duration-300
                          flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg border border-border/70 hover:border-primary/25 w-full sm:w-auto justify-center"
               >
