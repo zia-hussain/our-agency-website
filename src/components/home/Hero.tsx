@@ -19,16 +19,16 @@ const HERO_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.04 },
+    transition: { staggerChildren: 0.07 },
   },
 };
 
 const item = {
-  hidden: { opacity: 0.97, y: 8 },
+  hidden: { opacity: 0.96, y: 12 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.36, ease: HERO_EASE },
+    transition: { duration: 0.48, ease: HERO_EASE },
   },
 };
 
@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="bg-background relative overflow-hidden pt-24 sm:pt-40 pb-20 sm:pb-28">
+    <section className="bg-background relative overflow-hidden pt-28 pb-20 sm:pb-28">
       {/* The light is motivated — it gathers around the one line that
           matters most, not the block as a whole */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_40%,rgba(196,138,100,0.10),transparent_68%)]" />
