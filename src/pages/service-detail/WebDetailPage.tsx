@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, TrendingUp, TrendingDown, Network, Database, Plug, ShieldCheck, Compass, Layers, Rocket } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, TrendingUp, TrendingDown, Network, Database, Plug, ShieldCheck, Compass, Layers, Rocket, LifeBuoy } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
@@ -28,7 +28,7 @@ const ENGAGEMENT = [
   { icon: Layers, title: "Model", description: "Architecture built around your real data and workflows." },
   { icon: Layers, title: "Build", description: "Weekly milestones. Real progress, not a reveal at the end." },
   { icon: Plug, title: "Integrate", description: "Connected to the tools you already run the business on." },
-  { icon: Rocket, title: "Deploy", description: "Hardened, shipped, with post-launch support in place." },
+  { icon: Rocket, title: "Deploy", description: "Hardened, shipped, monitored from day one." },
 ];
 
 const WebDetailPage: React.FC = () => {
@@ -258,6 +258,56 @@ const WebDetailPage: React.FC = () => {
               </AnimatedSection>
             ))}
           </div>
+
+          <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
+            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+              <motion.path
+                d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M25 71 L38 81 L48 68"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: 0.75 }}
+              />
+            </svg>
+          </div>
+
+          <AnimatedSection delay={0.08} className="max-w-2xl mx-auto">
+            <div className="btn-sheen relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
+              <div className="relative">
+                <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
+                  <LifeBuoy size={26} className="text-primary" />
+                </span>
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <span className="relative flex h-2 w-2 flex-shrink-0">
+                    <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
+                    <span className="relative h-2 w-2 rounded-full bg-primary" />
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Deploy — Ongoing</span>
+                </div>
+                <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Support</p>
+                <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
+                  We stay on after launch — fixes, changes, and the next phase, handled by the team that already knows the system.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

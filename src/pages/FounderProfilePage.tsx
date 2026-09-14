@@ -418,7 +418,7 @@ const FounderProfilePage: React.FC = () => {
       />
 
       <main className="min-h-screen overflow-x-hidden bg-background">
-        <section className="relative overflow-hidden border-b border-white/[0.07] pt-[350px] sm:pt-[480px] lg:flex lg:min-h-[100svh] lg:items-end lg:pt-28">
+        <section className="relative overflow-hidden border-b border-white/[0.07] pt-[350px] sm:pt-[480px] lg:flex lg:min-h-[100svh] lg:items-end lg:pt-44">
           <div className="absolute inset-0">
             {/* Desaturated + contrast-lifted rather than just dimmed —
                 a flat opacity drop reads muddy, a graded still reads

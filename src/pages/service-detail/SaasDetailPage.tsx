@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -53,10 +53,51 @@ const WORKING_TOGETHER = [
   { icon: Flag, title: "Kickoff", description: "Scope and priorities confirmed before a sprint starts." },
   { icon: CalendarClock, title: "Sprints", description: "Working builds to review on a fixed cadence — never a black box." },
   { icon: MessageCircle, title: "Review", description: "You approve direction at each milestone, not just at the end." },
-  { icon: LifeBuoy, title: "After launch", description: "Ongoing support available once the product is live." },
 ];
 
 const SaasDetailPage: React.FC = () => {
+  // The loop arc has to land exactly on the Build and Validate icons, but
+  // those icons aren't at clean percentage marks — they're left-aligned
+  // inside four unevenly-gapped grid columns. Guessing percentages drifted
+  // by a viewport's worth of pixels, so this measures the real rendered
+  // positions instead and redraws the arc to match them exactly.
+  const loopContainerRef = useRef<HTMLDivElement>(null);
+  const buildIconRef = useRef<HTMLSpanElement>(null);
+  const validateIconRef = useRef<HTMLSpanElement>(null);
+  const [loopArc, setLoopArc] = useState<{ containerWidth: number; x1: number; x2: number; tipX: number; startX: number } | null>(null);
+
+  useEffect(() => {
+    const measure = () => {
+      const container = loopContainerRef.current;
+      const buildEl = buildIconRef.current;
+      const validateEl = validateIconRef.current;
+      if (!container || !buildEl || !validateEl) return;
+      const containerRect = container.getBoundingClientRect();
+      const buildRect = buildEl.getBoundingClientRect();
+      const validateRect = validateEl.getBoundingClientRect();
+      const x1 = buildRect.left + buildRect.width / 2 - containerRect.left;
+      const x2 = validateRect.left + validateRect.width / 2 - containerRect.left;
+      // Inset both ends by the same fraction of the Build–Validate gap so the
+      // arc's own midpoint lands exactly on the gap's midpoint — centered
+      // between the two icons, not just shortened from one side.
+      const inset = (x2 - x1) * 0.15;
+      setLoopArc({
+        containerWidth: containerRect.width,
+        x1,
+        x2,
+        tipX: x1 + inset,
+        startX: x2 - inset,
+      });
+    };
+    measure();
+    const raf = requestAnimationFrame(measure);
+    window.addEventListener("resize", measure);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -252,13 +293,99 @@ const SaasDetailPage: React.FC = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Decide, scope, build — then loop.</h2>
           </AnimatedSection>
 
-          <div className="relative pb-14 sm:pb-16">
-            <span aria-hidden="true" className="hidden sm:block absolute left-[12.5%] right-[12.5%] top-8 h-px bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20" />
+          <div ref={loopContainerRef} className="relative pb-14 sm:pb-16 sm:pt-32">
+            {/* The loop — arcs above the row, from Validate back into Build, */}
+            {/* hand-drawn like the rest of the site's arrows rather than a   */}
+            {/* dashed technical-diagram line, with real clearance before it  */}
+            {/* reaches the icons instead of touching them. Positioned from   */}
+            {/* measured icon centers, not guessed percentages — the icons    */}
+            {/* sit left-aligned inside unevenly-gapped columns, so           */}
+            {/* percentage math never lined up with the actual circles.       */}
+            {loopArc && (
+              <>
+                {/* One bold, confident stroke — the same weight and hand-     */}
+                {/* drawn character as the squiggle arrows used everywhere     */}
+                {/* else on the site, not a busier "look how premium this is"  */}
+                {/* composition. The arrowhead is a filled triangle, not a     */}
+                {/* stroked chevron — a stroked V can render very slightly     */}
+                {/* uneven depending on how the two segments join; a filled    */}
+                {/* shape is exact by construction, every time.                */}
+                <div aria-hidden="true" className="hidden sm:block absolute left-0 top-10 h-16" style={{ width: loopArc.containerWidth }}>
+                  <svg width={loopArc.containerWidth} height={64} viewBox={`0 0 ${loopArc.containerWidth} 64`} className="overflow-visible text-primary/80">
+                    {/* Pulled in from Validate's icon toward Build's — a short, */}
+                    {/* contained swoosh instead of a line stretched across the */}
+                    {/* whole row — and it now ends exactly at the arrowhead's  */}
+                    {/* base, not a few px past it, so line and arrowhead read  */}
+                    {/* as one continuous stroke instead of two shapes glued    */}
+                    {/* together off-register.                                 */}
+                    <path
+                      id="saas-loop-path"
+                      d={`M ${loopArc.startX} 46 C ${loopArc.startX} 6, ${loopArc.tipX} 6, ${loopArc.tipX} 36`}
+                      fill="none"
+                      stroke="none"
+                    />
+                    <motion.path
+                      d={`M ${loopArc.startX} 46 C ${loopArc.startX} 6, ${loopArc.tipX} 6, ${loopArc.tipX} 36`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      opacity="0.35"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      whileInView={{ pathLength: 1, opacity: 0.35 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.9, ease: "easeInOut" }}
+                    />
+                    {/* Base sits exactly at the line's new endpoint (y=36) —   */}
+                    {/* no overlap, no gap — tip extends on past it toward     */}
+                    {/* Build, dead center on the line's own x-axis.           */}
+                    <motion.path
+                      d={`M ${loopArc.tipX - 6.5} 36 L ${loopArc.tipX + 6.5} 36 L ${loopArc.tipX} 49 Z`}
+                      fill="currentColor"
+                      opacity="0.6"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 0.6, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.25, delay: 0.8 }}
+                      style={{ transformOrigin: `${loopArc.tipX}px 42px` }}
+                    />
+                    {/* The loop itself, shown happening rather than implied —  */}
+                    {/* a lit dot with a soft trailing glow, endlessly          */}
+                    {/* traveling the path. This is the "it never really       */}
+                    {/* stops" idea, made literal instead of just labeled.     */}
+                    <circle r="7" fill="#DCA973" opacity="0.25" style={{ filter: "blur(4px)" }}>
+                      <animateMotion dur="2.4s" repeatCount="indefinite" rotate="auto">
+                        <mpath href="#saas-loop-path" />
+                      </animateMotion>
+                    </circle>
+                    <circle r="3.5" fill="#F3D9BE">
+                      <animateMotion dur="2.4s" repeatCount="indefinite" rotate="auto">
+                        <mpath href="#saas-loop-path" />
+                      </animateMotion>
+                    </circle>
+                  </svg>
+                </div>
+                {/* True center over the arrowhead's own axis (-50%), not a    */}
+                {/* partial nudge that left the label reading off to one side. */}
+                <p
+                  aria-hidden="true"
+                  className="hidden sm:block absolute text-xs font-semibold text-primary/70 whitespace-nowrap"
+                  style={{ left: loopArc.tipX, top: 0, transform: "translateX(-50%)" }}
+                >
+                  Loops until ready
+                </p>
+              </>
+            )}
+
+            <span aria-hidden="true" className="hidden sm:block absolute left-[12.5%] right-[12.5%] top-40 h-px bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20" />
             <div className="grid sm:grid-cols-4 gap-10 sm:gap-6">
               {ENGAGEMENT.map((step, i) => (
                 <AnimatedSection key={step.title} delay={i * 0.06}>
                   <div className="text-center sm:text-left">
-                    <span className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full border-2 border-primary/40 bg-background shadow-[0_25px_50px_-22px_rgba(196,138,100,0.4)] mb-5 mx-auto sm:mx-0">
+                    <span
+                      ref={i === 2 ? buildIconRef : i === 3 ? validateIconRef : undefined}
+                      className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full border-2 border-primary/40 bg-background shadow-[0_25px_50px_-22px_rgba(196,138,100,0.4)] mb-5 mx-auto sm:mx-0"
+                    >
                       <step.icon size={22} className="text-primary" />
                     </span>
                     <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/60 mb-2">Step 0{i + 1}</p>
@@ -269,24 +396,16 @@ const SaasDetailPage: React.FC = () => {
               ))}
             </div>
 
-            {/* The loop — drawn from Validate back into Build, not stated   */}
-            {/* in italic caption text.                                      */}
-            <div aria-hidden="true" className="hidden sm:block absolute left-[62.5%] right-[12.5%] top-16 h-10">
-              <svg viewBox="0 0 200 44" className="w-full h-full overflow-visible text-primary/55">
-                <path d="M 192 4 C 192 40, 8 40, 8 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#loop-arrow)" />
-                <defs>
-                  <marker id="loop-arrow" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
-                    <path d="M0,0 L7,3.5 L0,7 Z" fill="currentColor" />
-                  </marker>
-                </defs>
-              </svg>
-            </div>
-            <p className="text-center text-xs text-muted-foreground/60 italic mt-6 sm:mt-0 sm:absolute sm:left-[62.5%] sm:right-[12.5%] sm:top-[6.7rem]">
+            <p className="sm:hidden text-center text-xs text-muted-foreground/60 italic mt-6">
               Loops back into Build until the first version is ready.
             </p>
           </div>
         </div>
       </section>
+
+      <div className="relative flex justify-center" aria-hidden="true">
+        <span className="w-px h-12 sm:h-16 bg-gradient-to-b from-border to-primary/50" />
+      </div>
 
       {/* ================================================================ */}
       {/* SIGNATURE SCENE — THE FORK, IN PRACTICE. The decision philosophy   */}
@@ -428,7 +547,7 @@ const SaasDetailPage: React.FC = () => {
                 />
               ))}
             </div>
-            <div className="grid sm:grid-cols-4 gap-8 sm:gap-6">
+            <div className="grid sm:grid-cols-3 gap-8 sm:gap-6">
               {WORKING_TOGETHER.map((step) => (
                 <div key={step.title} className="text-center sm:text-left">
                   <span className="flex items-center justify-center w-11 h-11 rounded-full border border-border/60 bg-background mb-4 mx-auto sm:mx-0">
@@ -438,6 +557,56 @@ const SaasDetailPage: React.FC = () => {
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
               ))}
+            </div>
+          </AnimatedSection>
+
+          <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
+            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+              <motion.path
+                d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M25 71 L38 81 L48 68"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: 0.75 }}
+              />
+            </svg>
+          </div>
+
+          <AnimatedSection delay={0.08} className="max-w-2xl mx-auto">
+            <div className="btn-sheen relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
+              <div className="relative">
+                <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
+                  <LifeBuoy size={26} className="text-primary" />
+                </span>
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <span className="relative flex h-2 w-2 flex-shrink-0">
+                    <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
+                    <span className="relative h-2 w-2 rounded-full bg-primary" />
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Launch — Ongoing</span>
+                </div>
+                <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Support</p>
+                <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
+                  Ongoing support available once the product is live — the same team, still reachable, still accountable.
+                </p>
+              </div>
             </div>
           </AnimatedSection>
         </div>

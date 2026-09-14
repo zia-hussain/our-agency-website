@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Search, FileSearch, GitFork, Wrench, ShieldCheck, Send, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Search, FileSearch, GitFork, Wrench, ShieldCheck, Send, LifeBuoy, X } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
@@ -252,7 +252,7 @@ const RescueDetailPage: React.FC = () => {
             {[
               { icon: Wrench, title: "Stabilize", description: "Fixes delivered in reviewable milestones, not a black box you wait on." },
               { icon: ShieldCheck, title: "Verify", description: "Testing and reliability verification before we call it done." },
-              { icon: Send, title: "Move forward", description: "Documentation and handover, or we stay on as ongoing support." },
+              { icon: Send, title: "Move forward", description: "Full documentation and handover, so your team understands what changed and why." },
             ].map((step, i, arr) => (
               <div key={step.title} className={i < arr.length - 1 ? "relative pb-9 pt-2" : "relative pt-2"}>
                 <span className="absolute -left-9 sm:-left-11 top-2.5 flex items-center justify-center w-7 h-7 rounded-full border border-primary/30 bg-background text-primary flex-shrink-0">
@@ -263,8 +263,60 @@ const RescueDetailPage: React.FC = () => {
               </div>
             ))}
           </div>
+
+          <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
+            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+              <motion.path
+                d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M25 71 L38 81 L48 68"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: 0.75 }}
+              />
+            </svg>
+          </div>
+
+          <div className="btn-sheen relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
+            <div className="relative">
+              <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
+                <LifeBuoy size={26} className="text-primary" />
+              </span>
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <span className="relative flex h-2 w-2 flex-shrink-0">
+                  <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
+                  <span className="relative h-2 w-2 rounded-full bg-primary" />
+                </span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Handover — Ongoing</span>
+              </div>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Stay on</p>
+              <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
+                Most clients keep us on retainer after a rescue — the system stays known, not handed off into silence.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
+
+      <div className="relative flex justify-center" aria-hidden="true">
+        <span className="w-px h-12 sm:h-16 bg-gradient-to-b from-border to-primary/50" />
+      </div>
 
       {/* ================================================================ */}
       {/* THE PROOF — one continuous experience: stat, name it RECOVER,     */}

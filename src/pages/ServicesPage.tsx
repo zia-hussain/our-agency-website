@@ -7,9 +7,9 @@ import FAQAccordion from "../components/common/FAQAccordion";
 import SectionEyebrow from "../components/common/SectionEyebrow";
 import TestimonialFilm from "../components/common/TestimonialFilm";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check, ChevronDown, Code2, Layers3, Lightbulb, Map, Rocket, Search, Send, ShieldCheck, TrendingDown, TrendingUp, X } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Code2, Layers3, Lightbulb, LifeBuoy, Map, Rocket, Search, Send, ShieldCheck, TrendingDown, TrendingUp, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { services, process, rescueService } from "../data/services.ts";
+import { services, rescueService } from "../data/services.ts";
 import { servicesFAQs } from "../data/faqs/services";
 import { getProjectBySlug } from "../data/projects";
 import { TESTIMONIALS } from "../data/testimonials";
@@ -331,6 +331,22 @@ const ServicesPage: React.FC = () => {
       ],
       done: "This step is done when the product is live, handed over, and ready for real users or the next phase.",
       why: "This turns the project into a live asset, not just a finished development task.",
+    },
+    {
+      icon: LifeBuoy,
+      title: "Support",
+      line: "We stay on after launch — fixes, small changes, and the next release.",
+      output: "Ongoing support",
+      receive:
+        "A team that already knows the codebase, available for fixes, small changes, and the next round of features instead of a handover into silence.",
+      approve: "The support arrangement that fits what you need next — retainer, per-request, or a scoped phase two.",
+      details: [
+        "Launch is a starting point, not an exit. We watch how the product behaves with real users and real data.",
+        "Bugs get fixed by the people who built the system, not a new team relearning it from scratch.",
+        "When you are ready for the next feature or phase, we already have the context to move fast.",
+      ],
+      done: "This step is done when you have a clear, standing way to reach us and know we are still accountable for what we built.",
+      why: "This is why clients come back for a second and third project instead of finding a new team every time.",
     },
   ];
 
@@ -1233,21 +1249,20 @@ const ServicesPage: React.FC = () => {
             <SectionEyebrow className="mb-6">The Process</SectionEyebrow>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15]">
               <span className="text-muted-foreground/50">Nothing, then a live product.</span>{" "}
-              <span className="text-foreground">Five frames, five approvals.</span>
+              <span className="text-foreground">Five frames, then we stay.</span>
             </p>
           </AnimatedSection>
         </div>
 
         <AnimatedSection delay={0.08} className="max-w-3xl sm:max-w-6xl mx-auto">
           <div className="flex gap-3.5 sm:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory px-4 sm:px-6 lg:px-8 pb-2 sm:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {process.map((step, index) => {
-              const phase = processPhaseDetails[index];
+            {processPhaseDetails.slice(0, 5).map((phase, index) => {
               const Icon = phase.icon;
-              const isLast = index === process.length - 1;
+              const isLast = index === 4;
 
               return (
                 <button
-                  key={step.step}
+                  key={phase.title}
                   type="button"
                   onClick={() => setSelectedProcessStep(index)}
                   className={`group relative flex-shrink-0 snap-center w-[64%] sm:w-auto sm:flex-1 text-left focus:outline-none transition-transform duration-300 ${isLast ? "sm:-translate-y-1.5" : ""}`}
@@ -1266,12 +1281,6 @@ const ServicesPage: React.FC = () => {
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/40" />
                       </div>
                       <span className="h-1.5 flex-1 max-w-[44px] rounded-full bg-background/50" />
-                      {isLast && (
-                        <span className="flex items-center gap-1 flex-shrink-0">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                          <span className="text-[8px] font-bold text-primary uppercase tracking-wide">Live</span>
-                        </span>
-                      )}
                     </div>
 
                     <div aria-hidden="true" className="relative h-28 sm:h-32 p-3">
@@ -1353,6 +1362,69 @@ const ServicesPage: React.FC = () => {
               );
             })}
           </div>
+        </AnimatedSection>
+
+        <div className="flex justify-center my-4 sm:my-6" aria-hidden="true">
+          <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+            <motion.path
+              d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              fill="none"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
+            />
+            <motion.path
+              d="M25 71 L38 81 L48 68"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: 0.75 }}
+            />
+          </svg>
+        </div>
+
+        <AnimatedSection delay={0.18} className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <button
+            type="button"
+            onClick={() => setSelectedProcessStep(5)}
+            className="btn-sheen group relative block w-full rounded-[1.75rem] text-center focus:outline-none"
+          >
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)] transition-all duration-300 group-hover:border-primary/65">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
+              <div className="relative">
+                <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
+                  <LifeBuoy size={26} className="text-primary" />
+                </span>
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <span className="relative flex h-2 w-2 flex-shrink-0">
+                    <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
+                    <span className="relative h-2 w-2 rounded-full bg-primary" />
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">Step 6 — Ongoing</span>
+                </div>
+                <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">{processPhaseDetails[5].title}</p>
+                <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto mb-7">{processPhaseDetails[5].line}</p>
+                <div className="flex flex-wrap items-center justify-center gap-2 mb-7">
+                  <span className="rounded-full border border-primary/25 bg-primary/[0.06] px-3.5 py-1.5 text-xs font-medium text-foreground/80">Retainer</span>
+                  <span className="rounded-full border border-primary/25 bg-primary/[0.06] px-3.5 py-1.5 text-xs font-medium text-foreground/80">Per-request</span>
+                  <span className="rounded-full border border-primary/25 bg-primary/[0.06] px-3.5 py-1.5 text-xs font-medium text-foreground/80">Scoped phase two</span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-300">
+                  See what this includes
+                  <Plus size={14} className="group-hover:rotate-90 transition-transform duration-300" />
+                </span>
+              </div>
+            </div>
+          </button>
         </AnimatedSection>
 
         <p className="text-center text-sm text-muted-foreground mt-10 sm:mt-14 px-4">

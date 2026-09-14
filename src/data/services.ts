@@ -325,34 +325,6 @@ export const rescueService: Service = {
   }
 };
 
-export const process = [
-  {
-    step: "01",
-    title: "Discovery & Strategy",
-    description: "We start by understanding your business goals, target market, and technical requirements through comprehensive consultation and strategic planning sessions.",
-  },
-  {
-    step: "02",
-    title: "Architecture & Planning",
-    description: "Our expert team develops a detailed technical roadmap, system architecture, and project timeline tailored to your specific business objectives and growth plans.",
-  },
-  {
-    step: "03",
-    title: "Design & Prototyping",
-    description: "We create intuitive user interfaces, interactive prototypes, and comprehensive design systems that align with your brand identity and user expectations.",
-  },
-  {
-    step: "04",
-    title: "Development & Testing",
-    description: "Our developers build your solution using industry best practices, clean code standards, and rigorous testing procedures to ensure exceptional quality and performance.",
-  },
-  {
-    step: "05",
-    title: "Launch & Scale",
-    description: "We deploy your solution with optimized performance, provide comprehensive training, and offer ongoing support to ensure continued success and growth.",
-  },
-];
-
 // API-ready data access functions
 export const getServices = () => services;
 export const getServiceBySlug = (slug: string) =>

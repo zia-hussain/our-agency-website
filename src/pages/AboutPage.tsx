@@ -3,7 +3,7 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
-import { BookOpen, Calendar, Mail, ArrowRight } from "lucide-react";
+import { BookOpen, Calendar, Mail, ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const GRAIN =
@@ -869,16 +869,24 @@ const AboutPage: React.FC = () => {
               whether we're the right fit, and go from there.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 mb-12 px-4 text-sm text-muted-foreground/70">
-              <span>you tell us what's going on</span>
-              <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
-              <span>we push back before we scope</span>
-              <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
-              <span>the right person takes it</span>
-              <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
-              <span>it moves in the open</span>
-              <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
-              <span>we stay through launch</span>
+            <div className="mb-12 px-4">
+              <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-sm text-muted-foreground/70">
+                <span>you tell us what's going on</span>
+                <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
+                <span>we push back before we scope</span>
+                <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
+                <span>the right person takes it</span>
+                <ArrowRight size={12} className="text-primary/40 flex-shrink-0" />
+                <span>it moves in the open</span>
+              </div>
+              <div className="flex justify-center my-2.5" aria-hidden="true">
+                <ArrowDown size={14} className="text-primary/50" />
+              </div>
+              <div className="flex justify-center">
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.07] px-4 py-1.5 text-sm font-semibold text-primary">
+                  we stay on after launch
+                </span>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center items-center px-4">
