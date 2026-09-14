@@ -510,7 +510,7 @@ const AboutPage: React.FC = () => {
                     <div className="relative aspect-[4/5] max-w-sm mx-auto lg:max-w-none rounded-2xl overflow-hidden shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
                       <img
                         src={founder.image}
-                        alt={founder.name}
+                        alt={`${founder.name}, ${founder.role} at Zumetrix Labs`}
                         className="absolute inset-0 w-full h-full object-cover object-top"
                       />
                       <div className="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/70 to-transparent">

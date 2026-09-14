@@ -420,13 +420,21 @@ const FounderProfilePage: React.FC = () => {
       <main className="min-h-screen overflow-x-hidden bg-background">
         <section className="relative overflow-hidden border-b border-white/[0.07] pt-[350px] sm:pt-[480px] lg:flex lg:min-h-[100svh] lg:items-end lg:pt-28">
           <div className="absolute inset-0">
+            {/* Desaturated + contrast-lifted rather than just dimmed —
+                a flat opacity drop reads muddy, a graded still reads
+                editorial. Blacks stay crushed, the little light that
+                survives (eyes, shirt collar) still has some snap to it. */}
             <img
               src={founder.image}
               alt=""
               aria-hidden="true"
-              className="absolute right-0 top-0 h-[380px] w-full object-cover object-top opacity-80 sm:h-[505px] lg:h-full lg:w-[58%] lg:opacity-90"
+              className="absolute right-0 top-0 h-[380px] w-full object-cover object-top opacity-55 [filter:grayscale(0.5)_contrast(1.2)_brightness(0.85)] sm:h-[505px] lg:h-full lg:w-[58%] lg:opacity-60"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,12,0.03)_0%,rgba(12,12,12,0.1)_28%,#0c0c0c_380px)] sm:bg-[linear-gradient(180deg,rgba(12,12,12,0.03)_0%,rgba(12,12,12,0.1)_34%,#0c0c0c_505px)] lg:bg-[linear-gradient(90deg,#0c0c0c_0%,#0c0c0c_42%,rgba(12,12,12,0.78)_58%,rgba(12,12,12,0.12)_100%)]" />
+            {/* Warm copper grade on the shadows, via blend mode — so the
+                dark reads as the brand's own near-black, not flat neutral. */}
+            <div className="absolute inset-0 bg-[#3a2414] mix-blend-overlay opacity-40" />
+            <div className="absolute inset-0 bg-[#0c0c0c]/60" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,12,0.35)_0%,rgba(12,12,12,0.4)_28%,#0c0c0c_380px)] sm:bg-[linear-gradient(180deg,rgba(12,12,12,0.35)_0%,rgba(12,12,12,0.4)_34%,#0c0c0c_505px)] lg:bg-[linear-gradient(90deg,#0c0c0c_0%,#0c0c0c_42%,rgba(12,12,12,0.88)_58%,rgba(12,12,12,0.45)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(0deg,#0c0c0c_20%,transparent_100%)]" />
           </div>
 
