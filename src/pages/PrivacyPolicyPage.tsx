@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import LegalTOC from "../components/common/LegalTOC";
+import DocumentProgress from "../components/common/DocumentProgress";
 import { Shield, Mail, Phone } from "lucide-react";
 import { COMPANY } from "../config/constants.js";
 
@@ -24,8 +25,11 @@ const TOC_ITEMS = [
 ];
 
 const PrivacyPolicyPage: React.FC = () => {
+  const contentRef = useRef<HTMLElement>(null);
+
   return (
     <PageTransition>
+      <DocumentProgress targetRef={contentRef} />
       <SEO
         title="Privacy Policy | Zumetrix Labs - Data Protection & Privacy"
         description="Learn how Zumetrix Labs collects, uses, stores, and protects personal data submitted through our website, forms, and email services."
@@ -62,7 +66,7 @@ const PrivacyPolicyPage: React.FC = () => {
       {/* Privacy Policy Content — same prose system as the Articles detail */}
       {/* page (border-top dividers between h2s, scroll-mt for the anchor   */}
       {/* jumps below) instead of the thinner default prose treatment.      */}
-      <section className="py-24 bg-background">
+      <section ref={contentRef} className="py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <LegalTOC items={TOC_ITEMS} />
