@@ -165,14 +165,14 @@ export const projects: Project[] = [
   category: "Web Application",
   type: "saas",
   description: "An end-to-end analytics dashboard for a Norwegian publishing company, turning raw CSV files into live sales, inventory, and customer insights.",
-  longDescription: "Forlag is a data-driven analytics platform built specifically for a Norwegian publishing company that needed clarity across sales, inventory, and customer performance. The system is designed as a fully frontend-powered dashboard that reads Sales and Inventory CSV/XLSX files, computes KPIs on the fly, and stores structured aggregates in localStorage for instant load times. Each page—Dashboard, Orders, Inventory, Customers, and Upload CSV—has been engineered to work 100% from uploaded files without a backend database. The UI features a modern glass-style layout, responsive grid-based KPIs, Nivo-powered charts, and carefully tuned performance to handle thousands of records. From MTD/YTD comparisons to inventory valuation and dead-stock detection, Forlag gives executives a clear, reliable, and beautiful way to understand their business at a glance.",
+  longDescription: "Forlag is a data-driven analytics platform built specifically for a Norwegian publishing company that needed clarity across sales, inventory, and customer performance. Phase 1 shipped as a fully frontend-powered dashboard that reads Sales and Inventory CSV/XLSX files, computes KPIs on the fly, and stores structured aggregates in localStorage for instant load times. Phase 2 replaced that with a real backend — Node.js, PostgreSQL, and Supabase — and added a fully automated ingestion pipeline: incoming files land on the client's SMTP server, a GitHub Actions workflow picks them up, and the pipeline parses and inserts the data straight into the dashboard with no manual upload step at all. The UI features a modern glass-style layout, responsive grid-based KPIs, Nivo-powered charts, and carefully tuned performance to handle thousands of records. From MTD/YTD comparisons to inventory valuation and dead-stock detection, Forlag gives executives a clear, reliable, and beautiful way to understand their business at a glance — now updating itself.",
   image: "/project_images/forlag.jpg",
   gallery: [
     "/project_images/forlag.jpg"
   ],
   tags: [
-    "React", "TypeScript", "TailwindCSS", "CSV Parsing", "Frontend Architecture",
-    "Nivo Charts", "LocalStorage", "Data Visualization", "Responsive UI"
+    "React", "TypeScript", "TailwindCSS", "Node.js", "PostgreSQL", "Supabase",
+    "GitHub Actions", "Nivo Charts", "Data Visualization", "Responsive UI"
   ],
   client: {
     name: "Harald & Eivind – Forlag (Publishing Company)",
@@ -188,11 +188,12 @@ export const projects: Project[] = [
     "Replaced fragile Excel workflows with a visual, always-up-to-date dashboard.",
     "Implemented MTD/YTD comparisons with correct same-period logic across years.",
     "Designed a 7-KPI inventory overview including stock value, dead stock, and category breakdown.",
-    "Built a CSV upload flow that supports both initial full imports and incremental updates by ISBN/SKU.",
-    "Achieved fast performance even with 30,000+ order rows using pre-computed localStorage structures."
+    "Phase 2: rebuilt on a real Node.js + PostgreSQL + Supabase backend, replacing the original localStorage-only architecture.",
+    "Phase 2: fully automated data ingestion — a GitHub Actions workflow watches the client's SMTP server and inserts incoming files straight into the dashboard with zero manual upload.",
+    "Achieved fast performance even with 30,000+ order rows."
   ],
   problem: "The client managed sales and inventory through multiple spreadsheets and manual calculations, making it difficult to understand MTD/YTD performance, inventory risk, and customer behavior across different channels and time periods.",
-  solution: "We designed and built a modular React dashboard that ingests raw CSV/XLSX files, normalizes dates, aggregates metrics per page, and stores processed data in localStorage. The dashboard exposes clear KPI cards, charts, and tables for sales, customers, orders, and inventory, all with a pixel-perfect UI. An advanced upload system differentiates between initial full imports and incremental updates, ensuring inventory data stays accurate without manual reconciliation.",
+  solution: "Phase 1 was a modular React dashboard that ingested raw CSV/XLSX files, normalized dates, aggregated metrics per page, and stored processed data in localStorage. Phase 2 replaced that foundation with a real backend — Node.js, PostgreSQL, and Supabase — and added a GitHub Actions pipeline that watches the client's SMTP server for incoming files and inserts them directly into the dashboard, end to end, with no manual step left in the workflow.",
   testimonial: {
     quote: "He built a beautiful sales- and inventory dashboard for me over a month, and went out of his way to make it just as I wanted it. He worked around the clock, and we had meetings whenever it was nescessary.",
     author: "Harald",
@@ -200,13 +201,15 @@ export const projects: Project[] = [
   },
   liveLink: "",
   stack: [
-    "React", "TypeScript", "TailwindCSS", "Nivo", "Vite", "LocalStorage APIs"
+    "React", "TypeScript", "TailwindCSS", "Nivo", "Vite",
+    "Node.js", "PostgreSQL", "Supabase", "GitHub Actions"
   ],
   services: [
     "Dashboard Development",
     "Data Modeling & Aggregation",
     "UI/UX Design",
-    "Frontend Architecture",
+    "Backend Architecture",
+    "Workflow Automation",
     "CSV/XLSX Processing"
   ],
   kpis: [
@@ -221,9 +224,9 @@ export const projects: Project[] = [
       description: "Reduction in manual Excel calculations and analysis"
     },
     {
-      label: "Tech Stack",
-      value: "Frontend-only",
-      description: "No backend; powered fully by CSV uploads & localStorage"
+      label: "Data Ingestion",
+      value: "Fully Automated",
+      description: "GitHub Actions watches the client's SMTP server and inserts incoming files straight into the dashboard — no manual upload step"
     },
     {
       label: "Inventory Visibility",

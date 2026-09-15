@@ -67,7 +67,19 @@ const STORIES: ClientStory[] = [
   },
 ];
 
-const ClientProofFilm: React.FC = () => {
+interface ClientProofFilmProps {
+  eyebrow?: string;
+  headingLead?: string;
+  headingMain?: string;
+  exitLine?: string;
+}
+
+const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
+  eyebrow = "Clients, Unscripted",
+  headingLead = "Different projects.",
+  headingMain = "Different reasons they trusted the same team.",
+  exitLine = "A few of the voices. The fuller record is below.",
+}) => {
   const [activeId, setActiveId] = useState(STORIES[0].id);
   const active = STORIES.find((s) => s.id === activeId)!;
 
@@ -90,7 +102,7 @@ const ClientProofFilm: React.FC = () => {
             transition={{ duration: 0.28 }}
             className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/70 mb-5"
           >
-            Clients, Unscripted
+            {eyebrow}
           </motion.p>
           <motion.p
             initial={{ opacity: 0.95, y: 8 }}
@@ -99,8 +111,8 @@ const ClientProofFilm: React.FC = () => {
             transition={{ duration: 0.28, delay: 0.05 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.12]"
           >
-            <span className="block text-muted-foreground/50">Different projects.</span>
-            <span className="block text-foreground mt-1.5">Different reasons they trusted the same team.</span>
+            <span className="block text-muted-foreground/50">{headingLead}</span>
+            <span className="block text-foreground mt-1.5">{headingMain}</span>
           </motion.p>
         </div>
 
@@ -225,7 +237,7 @@ const ClientProofFilm: React.FC = () => {
           transition={{ duration: 0.28, delay: 0.1 }}
           className="text-center text-sm text-muted-foreground/50 italic mt-16 sm:mt-20"
         >
-          A few of the voices. The fuller record is below.
+          {exitLine}
         </motion.p>
       </div>
     </section>

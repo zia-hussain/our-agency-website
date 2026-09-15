@@ -5,29 +5,28 @@ import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import FAQAccordion from "../components/common/FAQAccordion";
 import SectionEyebrow from "../components/common/SectionEyebrow";
+import ClosingGlow from "../components/common/ClosingGlow";
+import ProjectSpotlight from "../components/portfolio/ProjectSpotlight";
+import AnimatedStat from "../components/portfolio/AnimatedStat";
+import ProofMarquee from "../components/portfolio/ProofMarquee";
+import ClientProofFilm from "../components/home/ClientProofFilm";
 import { motion } from "framer-motion";
 import { projects } from "../data/projects";
 import { portfolioFAQs } from "../data/faqs/portfolio";
-import {
-  Calendar,
-  Users,
-  Code,
-  Award,
-  MapPin,
-  Building,
-  ArrowRight,
-  Eye
-} from "lucide-react";
+import { ArrowRight, Eye, Code, Users, Award, Sparkles } from "lucide-react";
+
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
+const stats = [
+  { icon: Code, number: "80+", label: "Projects completed" },
+  { icon: Users, number: "50+", label: "Happy clients" },
+  { icon: Sparkles, number: "Founder-led", label: "Every single project" },
+  { icon: Award, number: "100%", label: "Upwork job success" },
+];
 
 const PortfolioPage: React.FC = () => {
-  const featuredProjects = projects.filter(project => project.homepageFeatured);
-
-  const stats = [
-    { icon: Code, number: "80+", label: "Projects Completed" },
-    { icon: Users, number: "50+", label: "Happy Clients" },
-    { icon: Users, number: "Founder-Led", label: "Every Project" },
-    { icon: Award, number: "100%", label: "Zia's Upwork Job Success Score" },
-  ];
+  const featuredProjects = projects.filter((project) => project.homepageFeatured);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -56,18 +55,8 @@ const PortfolioPage: React.FC = () => {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: "https://zumetrix.com/",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Software Development Case Studies",
-            item: "https://zumetrix.com/portfolio",
-          },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://zumetrix.com/" },
+          { "@type": "ListItem", position: 2, name: "Software Development Case Studies", item: "https://zumetrix.com/portfolio" },
         ],
       },
     ],
@@ -85,219 +74,120 @@ const PortfolioPage: React.FC = () => {
         structuredData={structuredData}
       />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-background relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection mode="hero" className="text-center">
-            <motion.p
-              initial={{ opacity: 0.95, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
-            >
-              <Eye size={16} className="mr-2" />
+      {/* ================================================================ */}
+      {/* HERO — same badge/H1/gradient-line language as the Services hero,  */}
+      {/* copy grounded in the real archive instead of a superlative claim.  */}
+      {/* ================================================================ */}
+      <section className="pt-40 pb-24 bg-background relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_20%,rgba(196,138,100,0.1),transparent_38%),radial-gradient(circle_at_15%_80%,rgba(196,138,100,0.06),transparent_32%)]"
+        />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <AnimatedSection mode="hero">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-4 py-2 text-sm font-medium text-primary mb-10">
+              <Eye size={16} />
               Software Development Case Studies
-            </motion.p>
+            </span>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-              Portfolio of
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
-                Excellence
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.15] sm:leading-[1.05] mb-8">
+              <span className="block text-foreground">Every project here</span>
+              <span className="block bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent">
+                actually shipped.
               </span>
             </h1>
 
-            <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-              Discover how we've helped businesses transform their ideas into
-              successful digital solutions that drive growth and user
-              engagement across global markets.
+            <p className="text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              No concepts, no mockups — real builds for real clients, each one led
+              end-to-end by the founders who wrote the code.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {/* ================================================================ */}
+      {/* STATS — numbers count up on scroll-in instead of just appearing;  */}
+      {/* each tile lifts and lights up on hover instead of sitting flat.   */}
+      {/* ================================================================ */}
+      <section className="py-16 bg-card/10 border-y border-border/40 relative overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgba(196,138,100,0.05),transparent_70%)]" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {stats.map((stat, index) => (
-              <AnimatedSection
+              <AnimatedStat
                 key={stat.label}
-                delay={index * 0.05}
-                className="text-center group"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  transition={{ duration: 0.15 }}
-                  className="w-16 h-16 bg-card/50 backdrop-blur-xl border border-border rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/10 group-hover:border-primary/30"
-                >
-                  <stat.icon size={24} className="text-primary" />
-                </motion.div>
-                <div className="text-5xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-150">
-                  {stat.number}
-                </div>
-                <div className="text-muted-foreground text-sm font-medium">
-                  {stat.label}
-                </div>
-              </AnimatedSection>
+                icon={stat.icon}
+                value={stat.number}
+                label={stat.label}
+                delay={index * 0.08}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Grid */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
-            {featuredProjects.map((project, index) => (
-              <AnimatedSection
-                key={project.id}
-                delay={index * 0.05}
-                className="group"
-              >
-                <Link to={`/portfolio/${project.slug}`}>
-                  <motion.div
-                    whileHover={{ y: -8, scale: 1.01 }}
-                    transition={{ duration: 0.15 }}
-                    className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden cursor-pointer h-full flex flex-col"
-                  >
-                    {project.featured && (
-                      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs font-medium px-3 py-1 text-center">
-                        Featured Project
-                      </div>
-                    )}
+      {/* ================================================================ */}
+      {/* PROOF MARQUEE — every real KPI across the full 20-project         */}
+      {/* archive, scrolling continuously. Not decorative: it's the         */}
+      {/* answer to "this is only three" before anyone has to ask it.       */}
+      {/* ================================================================ */}
+      <ProofMarquee />
 
-                    {/* Project Image */}
-                    <div className="relative w-full overflow-hidden">
-                      <motion.img
-                        src={project.image}
-                        alt={project.title}
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ duration: 0.3 }}
-                        className="w-full h-full object-contain"
-                      />
-                      
+      {/* ================================================================ */}
+      {/* FEATURED PROJECTS — three signature scenes, not a card grid.      */}
+      {/* Each earns its own space; real proof numbers, full-weight quote,  */}
+      {/* alternating composition so three in a row read as curated.       */}
+      {/* ================================================================ */}
+      <section className="py-24 sm:py-28 bg-background relative overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <AnimatedSection className="text-center mb-24 sm:mb-28">
+            <SectionEyebrow className="mb-6">Featured Work</SectionEyebrow>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
+              <span className="text-muted-foreground/50">A few we'd show first.</span>{" "}
+              <span className="text-foreground">Every one strong enough to stand alone.</span>
+            </h2>
+          </AnimatedSection>
 
-                      {/* Client Location Badge */}
-                      <div className="absolute top-4 left-4">
-                        <div className="flex items-center gap-2 px-3 py-1 bg-card/80 backdrop-blur-xl text-foreground text-xs font-medium rounded-full border border-border">
-                          <MapPin size={12} />
-                          {project.client.country}
-                        </div>
-                      </div>
+          {featuredProjects.map((project, index) => (
+            <React.Fragment key={project.id}>
+              <ProjectSpotlight project={project} index={index} />
+              {index < featuredProjects.length - 1 && (
+                <div className="relative flex justify-center my-16 sm:my-20" aria-hidden="true">
+                  <span className="w-px h-14 sm:h-20 bg-gradient-to-b from-border via-primary/50 to-border" />
+                </div>
+              )}
+            </React.Fragment>
+          ))}
 
-                      {/* Category Badge */}
-                      <div className="absolute bottom-4 left-4">
-                        <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full backdrop-blur-xl border border-primary/30">
-                          {project.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Project Content */}
-                    <div className="p-8 flex-grow flex flex-col">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-150 line-clamp-2 leading-tight">
-                          {project.title}
-                        </h3>
-                        <span className="text-sm text-muted-foreground font-medium">
-                          {project.year}
-                        </span>
-                      </div>
-
-                      <p className="text-muted-foreground leading-relaxed mb-6 line-clamp-3">
-                        {project.description}
-                      </p>
-
-                      {/* Client Info */}
-                      <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
-                        <div className="flex items-center gap-2">
-                          <Building size={14} className="text-primary" />
-                          <div>
-                            <span className="text-muted-foreground">Client:</span>
-                            <div className="font-medium text-foreground line-clamp-1">
-                              {project.client.name}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Calendar size={14} className="text-primary" />
-                          <div>
-                            <span className="text-muted-foreground">Duration:</span>
-                            <div className="font-medium text-foreground">
-                              {project.duration}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Key Results */}
-                      <div className="mb-6">
-                        <h4 className="font-semibold text-foreground mb-3">
-                          Key Results:
-                        </h4>
-                        <div className="grid grid-cols-1 gap-2">
-                          {project.results.slice(0, 2).map((result, idx) => (
-                            <div
-                              key={idx}
-                              className="text-sm text-muted-foreground flex items-center gap-2"
-                            >
-                              <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
-                              <span className="line-clamp-1">{result}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Technologies */}
-                      <div className="flex flex-wrap gap-2 mt-auto">
-                        {project.tags.slice(0, 4).map((tag) => (
-                          <motion.span
-                            key={tag}
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.15 }}
-                            className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors duration-150 cursor-pointer"
-                          >
-                            {tag}
-                          </motion.span>
-                        ))}
-                        {project.tags.length > 4 && (
-                          <span className="text-xs px-3 py-1 bg-muted/20 text-muted-foreground rounded-full">
-                            +{project.tags.length - 4} more
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                </Link>
-              </AnimatedSection>
-            ))}
-          </div>
-
-          {/* See All Projects Button */}
-          <AnimatedSection className="text-center">
-            <Link to="/portfolio/all">
-              <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.15 }}
-                className="btn-sheen group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-full font-medium
-                         hover:shadow-glow transition-all duration-150
-                         flex items-center gap-3 text-lg mx-auto"
-              >
-                See All Projects
-                <ArrowRight
-                  size={20}
-                  className="group-hover:translate-x-1 transition-transform duration-150"
-                />
-              </motion.button>
+          <AnimatedSection className="text-center mt-28 sm:mt-32">
+            <p className="text-sm text-muted-foreground mb-6">
+              Twenty builds in the full archive — different industries, same standard.
+            </p>
+            <Link to="/portfolio/all" className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200 btn-sheen">
+              See All Projects
+              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
+                <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
+              </span>
             </Link>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* FAQ Section — same interaction language as Services/Home: eyebrow,   */}
-      {/* two-tone sentence, vertical thread into the list, FAQAccordion. No   */}
-      {/* bottom CTA — a real CTA section follows immediately below.          */}
+      {/* ================================================================ */}
+      {/* CLIENTS, ON CAMERA — the written case studies above, then the     */}
+      {/* same clients saying it themselves. Shared with Home, contextual   */}
+      {/* copy so the two pages don't read as literal duplicates.           */}
+      {/* ================================================================ */}
+      <ClientProofFilm
+        eyebrow="Clients, On Camera"
+        headingLead="You've read the case studies."
+        headingMain="Here's the same clients, unscripted."
+        exitLine="Every one of these is also a full case study above."
+      />
+
+      {/* FAQ — unchanged; already the current design system's pattern. */}
       <section className="relative overflow-hidden bg-background py-24 sm:py-28">
         <div
           aria-hidden="true"
@@ -325,36 +215,34 @@ const PortfolioPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center">
-            <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight">
-              Ready to Create
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.1]">
-                Your Success Story?
-              </span>
-            </h2>
-
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-              Let's discuss your project and create a solution that drives real
-              business results for your global audience.
+      {/* CLOSE — same richest-tier button + breathing glow the service       */}
+      {/* pages reserve for their final CTA, not the mid-page button style.   */}
+      <section className="relative overflow-hidden bg-background py-32 sm:py-44">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_55%_at_50%_50%,rgba(196,138,100,0.07),transparent_70%)]" />
+        <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
+              <span className="block text-muted-foreground/50">Yours could be</span>
+              <span className="block text-foreground mt-2">the next one on this page.</span>
             </p>
-
+          </AnimatedSection>
+          <AnimatedSection delay={0.06} className="relative inline-block">
+            <ClosingGlow />
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
+                whileHover={{ scale: 1.02, y: -3 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="btn-sheen group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-full font-medium
-                         hover:shadow-glow transition-all duration-150
-                         flex items-center gap-3 text-lg mx-auto"
+                className="group relative bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-9 pr-7 sm:pl-11 sm:pr-9 py-4 sm:py-[1.35rem] rounded-full font-semibold text-base sm:text-xl tracking-[-0.01em]
+                         shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset,0_2px_10px_-2px_rgba(0,0,0,0.35),0_16px_36px_-16px_rgba(196,138,100,0.4)]
+                         hover:shadow-[0_1px_0_0_rgba(255,255,255,0.3)_inset,0_2px_10px_-2px_rgba(0,0,0,0.4),0_20px_42px_-16px_rgba(196,138,100,0.5)]
+                         flex items-center gap-3 sm:gap-4 overflow-hidden transition-shadow duration-300 btn-sheen mx-auto"
               >
-                Start Your Project
-                <ArrowRight
-                  size={20}
-                  className="group-hover:translate-x-1 transition-transform duration-150"
-                />
+                <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.14] via-white/0 to-black/[0.06]" />
+                <span className="relative">Start Your Project</span>
+                <span className="relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/10 group-hover:bg-black/[0.14] transition-colors duration-300">
+                  <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
+                </span>
               </motion.button>
             </Link>
           </AnimatedSection>
