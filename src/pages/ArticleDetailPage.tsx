@@ -275,7 +275,7 @@ const ArticleDetailPage: React.FC = () => {
       </div>
 
       {/* Breadcrumbs */}
-      <section className="pt-32 pb-8 bg-background ">
+      <section className="pt-40 pb-8 bg-background ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection mode="hero">
             <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">

@@ -147,7 +147,7 @@ const ProjectDetailPage: React.FC = () => {
       {/* ================================================================ */}
       {/* HERO                                                               */}
       {/* ================================================================ */}
-      <section className="relative overflow-hidden bg-background pt-28 sm:pt-32 pb-20">
+      <section className="relative overflow-hidden bg-background pt-32 sm:pt-40 pb-20">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_15%,rgba(196,138,100,0.09),transparent_38%),radial-gradient(circle_at_15%_85%,rgba(196,138,100,0.05),transparent_32%)]" />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -195,7 +195,7 @@ const Navigation: React.FC = () => {
               onMouseEnter={() => openDropdown("services")}
               onMouseLeave={closeDropdownSoon}
               style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-              className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[640px] rounded-3xl border border-white/[0.06] p-3"
+              className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[640px] rounded-3xl border border-white/[0.06] p-3 z-[70]"
             >
               <div className="grid grid-cols-2 gap-1.5 p-1.5">
                 {services.map((service) => (
@@ -271,7 +271,7 @@ const Navigation: React.FC = () => {
               onMouseEnter={() => openDropdown("articles")}
               onMouseLeave={closeDropdownSoon}
               style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-              className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[420px] rounded-3xl border border-white/[0.06] p-3"
+              className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[420px] rounded-3xl border border-white/[0.06] p-3 z-[70]"
             >
               <div className="px-1 pt-1 pb-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary/70 px-2.5">Featured Reading</p>
