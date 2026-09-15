@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Camera, MapPin, Fingerprint, Bell, WifiOff, Smartphone, Compass, Sliders, FlaskConical, Send, Store, Radio, LifeBuoy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Camera, MapPin, Fingerprint, Bell, WifiOff, Smartphone, Compass, Sliders, FlaskConical, Send, Store, Radio } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
@@ -26,18 +26,55 @@ const DEVICE_FEATURES = [
   { icon: WifiOff, label: "Offline mode" },
 ];
 
-// A miniature phone frame, reused at three scales through the page so the
-// device itself becomes the page's visual spine — not just a hero prop.
-const MiniPhone: React.FC<{ className?: string; children?: React.ReactNode }> = ({ className = "", children }) => (
-  <div className={`relative rounded-[1.1rem] border border-border bg-gradient-to-b from-card to-card/50 p-[2px] ${className}`}>
-    <div className="relative w-full h-full rounded-[0.95rem] overflow-hidden bg-background border border-border/50">
-      <span className="absolute top-1.5 left-1/2 -translate-x-1/2 w-6 h-1.5 rounded-full bg-foreground/80 z-10" />
-      {children}
-    </div>
-  </div>
-);
+// Six environments a product actually moves through, not six identical
+// nodes — the container shape itself changes as the product gets more
+// real: dashed while it's still logic, solid once it's on hardware, a
+// gate shape at store review (a real threshold, not another circle),
+// solid-and-lit once it's live.
+const JOURNEY_STAGES = [
+  { icon: Compass, label: "Product flow", description: "The journey on a phone, mapped first.", stage: "logic" as const },
+  { icon: Sliders, label: "Device features", description: "Camera, location, biometrics.", stage: "logic" as const },
+  { icon: FlaskConical, label: "Real device testing", description: "Real hardware, not simulators.", stage: "hardware" as const },
+  { icon: Send, label: "TestFlight / Play testing", description: "In real hands first.", stage: "hardware" as const },
+  { icon: Store, label: "Store review", description: "App Store & Play Store.", stage: "gate" as const },
+  { icon: Radio, label: "Production", description: "Live, monitored, updatable.", stage: "live" as const },
+];
 
 const MobileDetailPage: React.FC = () => {
+  // The rail has to span exactly from the first stage's icon to the
+  // last's, but the grid's six columns aren't evenly spaced in fixed
+  // pixels — same lesson as the SaaS loop arc: measure the real rendered
+  // positions instead of assuming the grid math.
+  const railContainerRef = useRef<HTMLDivElement>(null);
+  const firstStageRef = useRef<HTMLSpanElement>(null);
+  const lastStageRef = useRef<HTMLSpanElement>(null);
+  const [rail, setRail] = useState<{ containerWidth: number; x1: number; x2: number; y: number } | null>(null);
+
+  useEffect(() => {
+    const measure = () => {
+      const container = railContainerRef.current;
+      const first = firstStageRef.current;
+      const last = lastStageRef.current;
+      if (!container || !first || !last) return;
+      const containerRect = container.getBoundingClientRect();
+      const firstRect = first.getBoundingClientRect();
+      const lastRect = last.getBoundingClientRect();
+      setRail({
+        containerWidth: containerRect.width,
+        x1: firstRect.left + firstRect.width / 2 - containerRect.left,
+        x2: lastRect.left + lastRect.width / 2 - containerRect.left,
+        y: firstRect.top + firstRect.height / 2 - containerRect.top,
+      });
+    };
+    measure();
+    const raf = requestAnimationFrame(measure);
+    window.addEventListener("resize", measure);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -155,32 +192,38 @@ const MobileDetailPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* SHRUNK VS. REAL — two miniature phones side by side, one cramped, */}
-      {/* one native. The distinction made physically visible.              */}
+      {/* SHRUNK VS. REAL — the hero already spent one detailed phone on    */}
+      {/* this page; a second and third mini-phone here just to make the    */}
+      {/* same contrast again was decorative repetition, not a new idea.    */}
+      {/* Same asymmetric compare grammar as Web's "website vs business     */}
+      {/* software," in the site's shared visual language, without another  */}
+      {/* device render.                                                    */}
       {/* ================================================================ */}
       <section className="relative bg-background py-20 sm:py-28 border-b border-border/40">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="flex items-center justify-center gap-8 sm:gap-14">
-            <div className="text-center">
-              <MiniPhone className="w-24 h-48 sm:w-28 sm:h-56 opacity-50 mb-3 mx-auto">
-                <div className="p-2 pt-6 space-y-1">
-                  {[1, 2, 3, 4, 5].map((i) => (<span key={i} className="block h-1 rounded-full bg-foreground/15" style={{ width: `${90 - i * 8}%` }} />))}
-                </div>
-              </MiniPhone>
-              <p className="text-xs font-semibold text-muted-foreground">A website, shrunk</p>
-              <p className="text-[11px] text-muted-foreground/50 mt-0.5">Tiny text, no real gestures</p>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-10">
+            <SectionEyebrow className="mb-6">The Difference</SectionEyebrow>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Not a website, resized.</h2>
+          </AnimatedSection>
+          <AnimatedSection delay={0.05} className="grid sm:grid-cols-5 gap-4 sm:gap-5 items-stretch">
+            <div className="sm:col-span-2 rounded-2xl border border-border/40 bg-card/10 p-7 sm:p-9 opacity-55 flex flex-col justify-center">
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-muted-foreground mb-5">A website, shrunk</p>
+              <ul className="space-y-3 text-base text-muted-foreground">
+                <li>Tiny tap targets, pinch-to-zoom</li>
+                <li>No real offline behavior</li>
+                <li>Browser chrome eating the screen</li>
+              </ul>
             </div>
-            <ArrowRight size={18} className="text-primary/50 flex-shrink-0" />
-            <div className="text-center">
-              <MiniPhone className="w-24 h-48 sm:w-28 sm:h-56 mb-3 mx-auto shadow-[0_25px_60px_-25px_rgba(196,138,100,0.3)] border-primary/30">
-                <div className="p-2 pt-6 space-y-1.5">
-                  <span className="block h-6 rounded-lg bg-primary/25 border border-primary/30" />
-                  <span className="block h-3 rounded-md bg-foreground/10" />
-                  <span className="block h-3 rounded-md bg-foreground/10" />
-                </div>
-              </MiniPhone>
-              <p className="text-xs font-semibold text-foreground">A real app</p>
-              <p className="text-[11px] text-muted-foreground/60 mt-0.5">Native gestures, proper touch targets</p>
+            <div className="sm:col-span-3 rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/[0.09] to-transparent p-7 sm:p-9 shadow-[0_35px_80px_-30px_rgba(196,138,100,0.28)]">
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-primary mb-5">A real app</p>
+              <div className="flex flex-wrap gap-2.5">
+                {["Native gestures", "Proper touch targets", "Push notifications", "Offline mode", "Home screen icon", "No browser chrome"].map((item) => (
+                  <span key={item} className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-background/50 pl-3 pr-3.5 py-1.5 text-sm text-foreground/90">
+                    <Check size={11} strokeWidth={2.5} className="text-primary flex-shrink-0" />
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           </AnimatedSection>
         </div>
@@ -236,82 +279,109 @@ const MobileDetailPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* SIGNATURE SCENE — THE REAL-WORLD SHIPPING JOURNEY. The device      */}
-      {/* itself evolves through the delivery reality — the page's visual   */}
-      {/* spine, made explicit as its own moment.                          */}
+      {/* HOW WE WORK — RELEASE RAIL. One product, moving through six real   */}
+      {/* environments — not six identical circles standing for six steps.  */}
+      {/* The container shape itself changes as the product gets more real  */}
+      {/* (dashed logic -> solid hardware -> a gate at store review -> lit  */}
+      {/* once live), and a single lit point continuously travels the rail  */}
+      {/* connecting them, the same "still moving" idea as the SaaS loop's  */}
+      {/* traveling dot, applied to a one-way release pipeline instead of   */}
+      {/* a loop.                                                           */}
       {/* ================================================================ */}
       <section className="py-24 sm:py-32 overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
           <AnimatedSection>
             <SectionEyebrow className="mb-6">How We Work</SectionEyebrow>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">A phone travels from idea to production.</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">One product, moving through six real environments.</h2>
           </AnimatedSection>
         </div>
 
-        <AnimatedSection delay={0.06} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative">
-            <span aria-hidden="true" className="hidden sm:block absolute left-[8%] right-[8%] top-14 h-px bg-gradient-to-r from-border/20 via-primary/40 to-primary" />
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-x-3 gap-y-12 sm:gap-x-2">
-              {[
-                { icon: Compass, badge: "Flow", fill: 1, tone: "border-border/50", label: "Product flow", description: "The journey on a phone, mapped first." },
-                { icon: Sliders, badge: "Features", fill: 2, tone: "border-border/50", label: "Device features", description: "Camera, location, biometrics." },
-                { icon: FlaskConical, badge: "Testing", fill: 3, tone: "border-primary/30", label: "Real device testing", description: "Real hardware, not simulators." },
-                { icon: Send, badge: "TestFlight", fill: 4, tone: "border-primary/40", label: "TestFlight / Play testing", description: "In real hands first." },
-                { icon: Store, badge: "Review", fill: 5, tone: "border-primary/50", label: "Store review", description: "App Store & Play Store." },
-                { icon: Radio, badge: "Live", fill: 6, tone: "border-primary", label: "Production", description: "Live, monitored, updatable." },
-              ].map((stage) => (
-                <div key={stage.label} className="relative z-10 flex flex-col items-center text-center px-1">
-                  <div className={`relative w-14 h-28 sm:w-16 sm:h-32 rounded-[1rem] border-2 bg-background shadow-[0_20px_40px_-18px_rgba(0,0,0,0.5)] ${stage.tone} p-[3px] mb-4`}>
-                    <div className="relative w-full h-full rounded-[0.8rem] overflow-hidden bg-card/40 border border-border/40 flex flex-col items-center justify-end p-1.5 gap-1">
-                      <stage.icon size={13} className={stage.fill >= 5 ? "text-primary mb-auto mt-2.5" : "text-muted-foreground/40 mb-auto mt-2.5"} />
-                      {Array.from({ length: 4 }).map((_, layer) => (
-                        <span key={layer} className={`h-[4px] w-full rounded-sm ${layer < stage.fill ? "bg-primary" : "bg-transparent"}`} style={{ opacity: layer < stage.fill ? 0.5 + (0.5 * stage.fill) / 6 : 0 }} />
-                      ))}
-                    </div>
+        <AnimatedSection delay={0.06} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={railContainerRef} className="relative pt-2">
+            {rail && (
+              <div aria-hidden="true" className="hidden sm:block absolute left-0 top-0 h-16" style={{ width: rail.containerWidth }}>
+                <svg width={rail.containerWidth} height={64} viewBox={`0 0 ${rail.containerWidth} 64`} className="overflow-visible text-primary/60">
+                  <path id="mobile-rail-path" d={`M ${rail.x1} ${rail.y} L ${rail.x2} ${rail.y}`} fill="none" stroke="none" />
+                  <motion.path
+                    d={`M ${rail.x1} ${rail.y} L ${rail.x2} ${rail.y}`}
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 0.4 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: "easeInOut" }}
+                  />
+                  <circle r="6" fill="#DCA973" opacity="0.22" style={{ filter: "blur(3px)" }}>
+                    <animateMotion dur="3.2s" repeatCount="indefinite">
+                      <mpath href="#mobile-rail-path" />
+                    </animateMotion>
+                  </circle>
+                  <circle r="3" fill="#F3D9BE">
+                    <animateMotion dur="3.2s" repeatCount="indefinite">
+                      <mpath href="#mobile-rail-path" />
+                    </animateMotion>
+                  </circle>
+                </svg>
+              </div>
+            )}
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-x-3 gap-y-10 sm:gap-x-2">
+              {JOURNEY_STAGES.map((stage, i) => {
+                const stageRef = i === 0 ? firstStageRef : i === JOURNEY_STAGES.length - 1 ? lastStageRef : undefined;
+                return (
+                  <div key={stage.label} className="relative z-10 flex flex-col items-center text-center px-1">
+                    {stage.stage === "gate" ? (
+                      <span ref={stageRef} className="relative flex items-center justify-center w-14 h-14 mb-4">
+                        <span className="absolute left-1 top-0 bottom-0 w-[3px] rounded-full bg-primary/70" aria-hidden="true" />
+                        <span className="absolute right-1 top-0 bottom-0 w-[3px] rounded-full bg-primary/70" aria-hidden="true" />
+                        <stage.icon size={18} className="text-primary relative" />
+                      </span>
+                    ) : (
+                      <span
+                        ref={stageRef}
+                        className={`flex items-center justify-center w-14 h-14 rounded-full mb-4 ${
+                          stage.stage === "logic"
+                            ? "border-2 border-dashed border-border/50 bg-background"
+                            : stage.stage === "hardware"
+                              ? "border-2 border-border/70 bg-background"
+                              : "border-2 border-primary bg-primary/10 shadow-[0_18px_38px_-16px_rgba(196,138,100,0.5)]"
+                        }`}
+                      >
+                        {stage.stage === "live" ? (
+                          <span className="relative flex items-center justify-center">
+                            <span className="absolute inset-0 rounded-full bg-primary/50 animate-ping" style={{ animationDuration: "2.5s" }} />
+                            <stage.icon size={18} className="relative text-primary" />
+                          </span>
+                        ) : (
+                          <stage.icon size={18} className={stage.stage === "hardware" ? "text-foreground/70" : "text-muted-foreground/50"} />
+                        )}
+                      </span>
+                    )}
+                    <p className="text-[11px] font-bold text-primary/60 mb-1">0{i + 1}</p>
+                    <p className="text-xs sm:text-sm font-bold text-foreground leading-tight mb-1">{stage.label}</p>
+                    <p className="text-[11px] text-muted-foreground leading-snug hidden sm:block">{stage.description}</p>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-primary/70 mb-1.5">{stage.badge}</span>
-                  <p className="text-sm font-bold text-foreground leading-tight mb-1">{stage.label}</p>
-                  <p className="text-xs text-muted-foreground leading-snug hidden sm:block">{stage.description}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </AnimatedSection>
 
-        <div className="flex justify-center my-4 sm:my-6" aria-hidden="true">
-          <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
-            <motion.path
-              d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              fill="none"
-              initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, ease: "easeInOut" }}
-            />
-            <motion.path
-              d="M25 71 L38 81 L48 68"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-              initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: 0.75 }}
-            />
-          </svg>
+        {/* Plain connector dropping from the journey's own rail, not a new */}
+        {/* squiggle — Support is the next node on the same line, not a     */}
+        {/* separate component.                                             */}
+        <div className="relative flex justify-center my-4 sm:my-6" aria-hidden="true">
+          <span className="w-px h-12 sm:h-14 bg-gradient-to-b from-border to-primary/50" />
         </div>
 
         <AnimatedSection delay={0.08} className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="btn-sheen relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
             <div className="relative">
-              <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
-                <LifeBuoy size={26} className="text-primary" />
+              {/* Same ring treatment as the journey's "live" nodes — support */}
+              {/* reads as the next stop on that same rail, not a new device. */}
+              <span className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-primary bg-primary/10 mb-5 shadow-[0_18px_38px_-16px_rgba(196,138,100,0.5)]">
+                <Radio size={24} className="text-primary" />
               </span>
               <div className="flex items-center justify-center gap-2 mb-3">
                 <span className="relative flex h-2 w-2 flex-shrink-0">

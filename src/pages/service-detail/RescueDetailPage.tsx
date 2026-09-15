@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Search, FileSearch, GitFork, Wrench, ShieldCheck, Send, LifeBuoy, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Search, FileSearch, GitFork, Wrench, ShieldCheck, Send, X } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
@@ -164,35 +164,61 @@ const RescueDetailPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* TRIAGE BOARD — capability, framed as sorting, not a checklist.    */}
+      {/* TRIAGE BOARD — everything that comes in, unsorted, feeding down    */}
+      {/* into three ordered bins. The sorting happens visually instead of   */}
+      {/* being asserted by three labeled boxes that happen to sit side by   */}
+      {/* side.                                                              */}
       {/* ================================================================ */}
       <section className="relative bg-card/10 border-b border-border/40 py-24 sm:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-14">
+          <AnimatedSection className="text-center mb-12">
             <SectionEyebrow className="mb-6">What We Do</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight max-w-lg mx-auto">
               Not a rebuild before we understand what deserves to stay.
             </h2>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.06} className="grid sm:grid-cols-3 gap-4">
-            {[
-              { label: "Assess", tone: "border-border/50 bg-background/40", bar: "bg-muted-foreground/30", items: ASSESSMENT },
-              { label: "Fix", tone: "border-red-400/20 bg-background/40", bar: "bg-red-400/50", items: FIX },
-              { label: "Move forward", tone: "border-primary/30 bg-gradient-to-b from-primary/[0.06] to-transparent", bar: "bg-primary", items: FORWARD },
-            ].map((col) => (
-              <div key={col.label} className={`rounded-xl border overflow-hidden ${col.tone}`}>
-                <div className={`h-1 ${col.bar}`} />
-                <div className="p-5">
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-foreground/80 mb-4">{col.label}</p>
-                  <ul className="space-y-3">
-                    {col.items.map((item) => (
-                      <li key={item} className="text-xs text-muted-foreground leading-relaxed">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+          {/* Everything that comes in — unsorted, no category yet. */}
+          <AnimatedSection delay={0.02} className="flex flex-wrap justify-center gap-2 mb-1">
+            {["Old bugs", "Half-built features", "Unclear code", "Security gaps", "Slow queries", "No docs"].map((chip, i) => (
+              <span
+                key={chip}
+                className="text-xs font-medium text-muted-foreground/50 border border-border/40 rounded-full px-3.5 py-1.5"
+                style={{ transform: `rotate(${[-3, 2, -2, 3, -1, 2][i]}deg)` }}
+              >
+                {chip}
+              </span>
             ))}
+          </AnimatedSection>
+          <AnimatedSection delay={0.04} className="flex justify-center mb-9" aria-hidden="true">
+            <ArrowRight size={16} className="text-border rotate-90" />
+          </AnimatedSection>
+
+          {/* Sorted into three ordered bins — numbered, so it reads as a    */}
+          {/* sequence (assess, then fix, then move forward) rather than     */}
+          {/* three equal, parallel categories.                              */}
+          <AnimatedSection delay={0.08}>
+            <div className="grid sm:grid-cols-3 gap-4">
+              {[
+                { n: "1", label: "Assess", tone: "border-border/50 bg-background/40", dot: "bg-muted-foreground/40", items: ASSESSMENT },
+                { n: "2", label: "Fix", tone: "border-red-400/20 bg-background/40", dot: "bg-red-400/50", items: FIX },
+                { n: "3", label: "Move forward", tone: "border-primary/30 bg-gradient-to-b from-primary/[0.06] to-transparent", dot: "bg-primary", items: FORWARD },
+              ].map((col) => (
+                <div key={col.label} className={`relative z-10 rounded-xl border ${col.tone}`}>
+                  <div className="flex items-center gap-2.5 px-5 pt-5 pb-1">
+                    <span className={`flex items-center justify-center w-6 h-6 rounded-full text-[10px] font-bold text-background ${col.dot}`}>{col.n}</span>
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-foreground/80">{col.label}</p>
+                  </div>
+                  <div className="p-5 pt-3">
+                    <ul className="space-y-3">
+                      {col.items.map((item) => (
+                        <li key={item} className="text-xs text-muted-foreground leading-relaxed">{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
           </AnimatedSection>
         </div>
       </section>
@@ -264,45 +290,22 @@ const RescueDetailPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
-              <motion.path
-                d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: "easeInOut" }}
-              />
-              <motion.path
-                d="M25 71 L38 81 L48 68"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: 0.75 }}
-              />
-            </svg>
+          {/* Same rail the Inspect/Diagnose/Stabilize/Verify/Move-forward     */}
+          {/* timeline above already uses — support continues the line       */}
+          {/* rather than starting a new decorative arrow after it. And a     */}
+          {/* steady dot, not a pulsing one: this page reads controlled,      */}
+          {/* not urgent.                                                     */}
+          <div className="relative flex justify-center my-6 sm:my-8" aria-hidden="true">
+            <span className="w-px h-12 sm:h-14 bg-gradient-to-b from-border via-border to-primary/50" />
           </div>
 
-          <div className="btn-sheen relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
+          <div className="rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
             <div className="relative">
-              <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
-                <LifeBuoy size={26} className="text-primary" />
+              <span className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-primary/30 bg-background mb-5">
+                <ShieldCheck size={26} className="text-primary" />
               </span>
               <div className="flex items-center justify-center gap-2 mb-3">
-                <span className="relative flex h-2 w-2 flex-shrink-0">
-                  <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
-                  <span className="relative h-2 w-2 rounded-full bg-primary" />
-                </span>
+                <span className="h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                 <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Handover — Ongoing</span>
               </div>
               <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Stay on</p>
@@ -370,7 +373,7 @@ const RescueDetailPage: React.FC = () => {
             />
           </AnimatedSection>
 
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-14 mb-20">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-14 mb-4">
             <AnimatedSection delay={0.1}>
               <blockquote>
                 <p className="text-lg text-foreground/90 leading-snug mb-3">
@@ -382,10 +385,18 @@ const RescueDetailPage: React.FC = () => {
               </blockquote>
             </AnimatedSection>
           </div>
+        </section>
+      )}
 
-          {/* The transition — all three competencies named at once, so    */}
-          {/* the pattern reads before any project detail does.             */}
-          <AnimatedSection delay={0.04} className="text-center mb-14 px-4">
+      {/* ================================================================ */}
+      {/* THE OTHER TWO COMPETENCIES — its own quiet beat, not a straight    */}
+      {/* continuation of the flagship scene above. RECOVER just happened   */}
+      {/* in full color; this section is deliberately calmer before it      */}
+      {/* names what else "rescue" covers.                                  */}
+      {/* ================================================================ */}
+      <section className="relative bg-background py-20 sm:py-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-14">
             <p className="text-sm text-muted-foreground max-w-md mx-auto mb-6">
               "Rescue" isn't one kind of fix. We've handled three different kinds of broken.
             </p>
@@ -450,24 +461,27 @@ const RescueDetailPage: React.FC = () => {
             </div>
           </AnimatedSection>
 
+          {/* Folded in as a quiet, clearly-secondary coda rather than a     */}
+          {/* third equal-weight card pair — these corroborate, they don't   */}
+          {/* introduce a new doubt the way STABILIZE/UNTANGLE just did.     */}
           {(nathanTestimonial || bharatTestimonial) && (
-            <AnimatedSection delay={0.1} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 gap-6 mt-8">
+            <AnimatedSection delay={0.1} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-border/30 grid sm:grid-cols-2 gap-5 text-left">
               {nathanTestimonial && (
-                <div className="rounded-xl border border-border/50 bg-card/10 p-5">
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">"{nathanTestimonial.quote}"</p>
-                  <p className="text-xs text-muted-foreground">{nathanTestimonial.author}, {nathanTestimonial.role}</p>
+                <div>
+                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{nathanTestimonial.quote}"</p>
+                  <p className="text-[11px] text-muted-foreground/60">{nathanTestimonial.author}, {nathanTestimonial.role}</p>
                 </div>
               )}
               {bharatTestimonial && (
-                <div className="rounded-xl border border-border/50 bg-card/10 p-5">
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">"{bharatTestimonial.quote}"</p>
-                  <p className="text-xs text-muted-foreground">{bharatTestimonial.author}, {bharatTestimonial.role}</p>
+                <div>
+                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{bharatTestimonial.quote}"</p>
+                  <p className="text-[11px] text-muted-foreground/60">{bharatTestimonial.author}, {bharatTestimonial.role}</p>
                 </div>
               )}
             </AnimatedSection>
           )}
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* ================================================================ */}
       {/* THE HONEST ANSWER — repair vs rebuild, addressed directly.        */}

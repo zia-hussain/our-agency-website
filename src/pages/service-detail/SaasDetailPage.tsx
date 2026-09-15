@@ -442,12 +442,14 @@ const SaasDetailPage: React.FC = () => {
           </AnimatedSection>
 
           {/* The solid path continues — same color, same weight, straight   */}
-          {/* into the real decision it produced.                             */}
-          <AnimatedSection delay={0.1} className="flex flex-col items-end max-w-3xl mx-auto pr-0 sm:pr-[3%]">
-            <span className="w-[3px] h-14 sm:h-16 bg-primary" aria-hidden="true" />
+          {/* into the real decision it produced, arriving at a real point   */}
+          {/* instead of just fading into the next section's margin.         */}
+          <AnimatedSection delay={0.1} className="flex flex-col items-end max-w-3xl mx-auto pr-0 sm:pr-[3%]" aria-hidden="true">
+            <span className="w-[3px] h-16 sm:h-20 bg-gradient-to-b from-primary to-primary/70" />
+            <span className="w-2 h-2 rounded-full bg-primary" style={{ marginTop: "-3px", marginRight: "-2.5px" }} />
           </AnimatedSection>
 
-          <AnimatedSection delay={0.04} className="text-center mb-12 max-w-xl mx-auto -mt-2">
+          <AnimatedSection delay={0.04} className="text-center mb-12 max-w-xl mx-auto mt-4">
             <p className="text-sm text-primary/70 font-semibold italic mb-6">Liftly took exactly this path.</p>
             <SectionEyebrow className="mb-6">The Proof</SectionEyebrow>
             <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-4">
@@ -497,33 +499,28 @@ const SaasDetailPage: React.FC = () => {
               Client identity withheld by request — product name and scope shared with permission.
             </p>
           </AnimatedSection>
-        </div>
-      </section>
 
-      {/* ================================================================ */}
-      {/* MORE VOICES — supporting proof, deliberately smaller than the     */}
-      {/* Liftly scene so the hierarchy stays legible.                      */}
-      {/* ================================================================ */}
-      {(kellyTestimonial || jennyTestimonial) && (
-        <section className="relative bg-card/10 border-y border-border/40 py-16 sm:py-20">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection className="grid sm:grid-cols-2 gap-6 text-left">
+          {/* Folded into this scene as a quiet aside rather than a second   */}
+          {/* standalone section — these don't answer a different doubt      */}
+          {/* than Liftly already did, so they don't earn their own weight.  */}
+          {(kellyTestimonial || jennyTestimonial) && (
+            <AnimatedSection delay={0.16} className="max-w-2xl mx-auto mt-10 pt-8 border-t border-border/30 grid sm:grid-cols-2 gap-5 text-left">
               {kellyTestimonial && (
-                <div className="rounded-xl border border-border/50 bg-background/30 p-5">
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">"{kellyTestimonial.quote}"</p>
-                  <p className="text-xs text-muted-foreground">{kellyTestimonial.author}, {kellyTestimonial.role}</p>
+                <div>
+                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{kellyTestimonial.quote}"</p>
+                  <p className="text-[11px] text-muted-foreground/60">{kellyTestimonial.author}, {kellyTestimonial.role}</p>
                 </div>
               )}
               {jennyTestimonial && (
-                <div className="rounded-xl border border-border/50 bg-background/30 p-5">
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">"{jennyTestimonial.quote}"</p>
-                  <p className="text-xs text-muted-foreground">{jennyTestimonial.author}, {jennyTestimonial.role}</p>
+                <div>
+                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{jennyTestimonial.quote}"</p>
+                  <p className="text-[11px] text-muted-foreground/60">{jennyTestimonial.author}, {jennyTestimonial.role}</p>
                 </div>
               )}
             </AnimatedSection>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
 
       {/* ================================================================ */}
       {/* WORKING TOGETHER — a filled progress bar, not a loop. Logistics   */}
@@ -533,7 +530,7 @@ const SaasDetailPage: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-16 sm:mb-20">
             <SectionEyebrow className="mb-6">Working Together</SectionEyebrow>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">What it looks like day to day.</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Once we've decided what to build, here's the cadence.</h2>
           </AnimatedSection>
 
           <AnimatedSection delay={0.05}>
@@ -560,39 +557,22 @@ const SaasDetailPage: React.FC = () => {
             </div>
           </AnimatedSection>
 
-          <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
-              <motion.path
-                d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: "easeInOut" }}
-              />
-              <motion.path
-                d="M25 71 L38 81 L48 68"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: 0.75 }}
-              />
-            </svg>
+          {/* Connector matches the plain vertical rail already used          */}
+          {/* elsewhere on this page (between How We Work and The Fork),      */}
+          {/* rather than a second hand-drawn squiggle — that motif belongs   */}
+          {/* to the loop above, not to every section transition after it.   */}
+          <div className="relative flex justify-center my-6 sm:my-8" aria-hidden="true">
+            <span className="w-px h-12 sm:h-14 bg-gradient-to-b from-border to-primary/50" />
           </div>
 
           <AnimatedSection delay={0.08} className="max-w-2xl mx-auto">
             <div className="btn-sheen relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
               <div className="relative">
-                <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
+                {/* Same ring treatment as the Decide/Scope/Build/Validate     */}
+                {/* icons above — support reads as one more stop on the same  */}
+                {/* loop, not a new, unrelated component.                    */}
+                <span className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-primary/40 bg-background mb-5 shadow-[0_25px_50px_-22px_rgba(196,138,100,0.4)]">
                   <LifeBuoy size={26} className="text-primary" />
                 </span>
                 <div className="flex items-center justify-center gap-2 mb-3">

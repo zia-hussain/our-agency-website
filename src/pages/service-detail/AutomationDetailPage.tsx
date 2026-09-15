@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Map, Cog, Send, ShieldCheck, Search, RefreshCw, Eye, LifeBuoy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Map, Cog, Send, ShieldCheck, Search, RefreshCw, Eye, AlertCircle, UserCheck } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
@@ -269,40 +269,22 @@ const AutomationDetailPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
-              <motion.path
-                d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: "easeInOut" }}
-              />
-              <motion.path
-                d="M25 71 L38 81 L48 68"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: 0.75 }}
-              />
-            </svg>
+          {/* Plain connector — the dashed-to-solid transformation above     */}
+          {/* already carries this page's motion; a squiggle here would      */}
+          {/* just be a second, unrelated flourish.                          */}
+          <div className="relative flex justify-center my-6 sm:my-8" aria-hidden="true">
+            <span className="w-px h-12 sm:h-14 bg-gradient-to-b from-border to-primary/50" />
           </div>
 
           <AnimatedSection delay={0.08} className="max-w-2xl mx-auto">
             <div className="btn-sheen relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
               <div className="relative">
+                {/* Eye, not a buoy — the same "still watched" idea as the    */}
+                {/* Observe step and the reliability scene below: support     */}
+                {/* means the system stays observed, not just fixable.        */}
                 <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
-                  <LifeBuoy size={26} className="text-primary" />
+                  <Eye size={24} className="text-primary" />
                 </span>
                 <div className="flex items-center justify-center gap-2 mb-3">
                   <span className="relative flex h-2 w-2 flex-shrink-0">
@@ -388,19 +370,24 @@ const AutomationDetailPage: React.FC = () => {
             </blockquote>
           </AnimatedSection>
 
+          {/* Kevin's wording proves integration depth — a scalable system   */}
+          {/* tying four real tools together. Allayth's proves something     */}
+          {/* narrower — a concrete result, delivered with extra effort. Two */}
+          {/* different dimensions: Kevin leads at full weight, Allayth      */}
+          {/* responds as a smaller aside, not a second identical card.      */}
           {(kevinTestimonial || allaythTestimonial) && (
-            <AnimatedSection delay={0.14} className="grid sm:grid-cols-2 gap-6 text-left pt-8 border-t border-border/30">
+            <AnimatedSection delay={0.14} className="pt-8 border-t border-border/30 text-left max-w-xl mx-auto">
               {kevinTestimonial && (
-                <div className="rounded-xl border border-border/50 bg-background/30 p-5">
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">"{kevinTestimonial.quote}"</p>
-                  <p className="text-xs text-muted-foreground">{kevinTestimonial.author} <span className="text-muted-foreground/50">({kevinTestimonial.platform})</span></p>
-                </div>
+                <>
+                  <p className="text-lg sm:text-xl text-foreground/90 leading-snug tracking-tight mb-3">"{kevinTestimonial.quote}"</p>
+                  <p className="text-xs text-muted-foreground mb-6">{kevinTestimonial.author} <span className="text-muted-foreground/50">({kevinTestimonial.platform})</span></p>
+                </>
               )}
               {allaythTestimonial && (
-                <div className="rounded-xl border border-border/50 bg-background/30 p-5">
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">"{allaythTestimonial.quote}"</p>
-                  <p className="text-xs text-muted-foreground">{allaythTestimonial.author}, {allaythTestimonial.role}</p>
-                </div>
+                <p className="text-sm text-muted-foreground/80 leading-relaxed italic pl-6 border-l-2 border-primary/20">
+                  "{allaythTestimonial.quote}"{" "}
+                  <span className="not-italic text-muted-foreground/60">— {allaythTestimonial.author}, {allaythTestimonial.role}</span>
+                </p>
               )}
             </AnimatedSection>
           )}
@@ -408,37 +395,80 @@ const AutomationDetailPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* WHEN SOMETHING FAILS — a real branching flow: most failures       */}
-      {/* resolve themselves; the rare ones are handed to a person, never   */}
-      {/* left silent. Drawn, not listed in three cards.                    */}
+      {/* WHEN SOMETHING FAILS — four beats, not two: detection, the real    */}
+      {/* branch (retry dominant, escalate rare), and — the part that was    */}
+      {/* missing — observability as its own persistent visual, not just a   */}
+      {/* label. Reuses the hero's "workflow run" log language on purpose,   */}
+      {/* so this reads as the same system, being watched, not a new device. */}
       {/* ================================================================ */}
-      <section className="relative bg-background py-24 sm:py-28">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
+      <section className="relative bg-background py-24 sm:py-32">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-14">
           <AnimatedSection>
-            <p className="text-lg sm:text-xl font-bold text-foreground tracking-tight">Failure doesn't disappear silently.</p>
+            <SectionEyebrow className="mb-6">Reliability</SectionEyebrow>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Failure doesn't disappear silently.</h2>
+            <p className="text-sm text-muted-foreground mt-4 max-w-sm mx-auto leading-relaxed">
+              Automation isn't "it runs and we hope." Every workflow is watched, and every failure
+              is handled somewhere — automatically, or by a person.
+            </p>
           </AnimatedSection>
         </div>
 
-        <AnimatedSection delay={0.05} className="max-w-md mx-auto">
-          <div className="flex justify-center mb-1">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/15 px-4 py-2 text-sm font-semibold text-foreground">
-              Error detected
+        <AnimatedSection delay={0.06} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center mb-9">
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-semibold text-foreground shadow-[0_20px_45px_-25px_rgba(196,138,100,0.5)]">
+              <span className="relative flex h-2 w-2 flex-shrink-0">
+                <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2s" }} />
+                <span className="relative h-2 w-2 rounded-full bg-primary" />
+              </span>
+              <AlertCircle size={15} className="text-primary flex-shrink-0" />
+              Step failed — detected instantly
             </span>
           </div>
-          <svg viewBox="0 0 320 80" className="w-full h-auto" aria-hidden="true">
-            <path d="M 160 0 L 160 22 L 250 70" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="text-primary" />
-            <path d="M 160 0 L 160 22 L 70 70" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-border/50" />
+
+          <svg viewBox="0 0 400 90" className="w-full max-w-md mx-auto h-auto mb-1" aria-hidden="true">
+            <path d="M 200 0 L 200 22 L 300 70" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="text-primary" />
+            <path d="M 200 0 L 200 22 L 100 70" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-border/50" />
+            <circle cx="200" cy="2" r="4" className="fill-foreground/50" />
           </svg>
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-8 -mt-2">
-            <div className="text-center sm:text-left order-2 sm:order-1 opacity-45">
-              <p className="text-sm font-semibold text-muted-foreground mb-1">Escalates to a person</p>
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-10 max-w-md mx-auto mb-16">
+            <div className="text-center sm:text-right order-2 sm:order-1 opacity-50">
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-dashed border-border/50 bg-background mb-3">
+                <UserCheck size={16} className="text-muted-foreground/60" />
+              </span>
+              <p className="text-sm font-semibold text-muted-foreground mb-1">Escalated to a person</p>
               <p className="text-xs text-muted-foreground/60 leading-relaxed">Rare — and you're told exactly what happened, not left guessing.</p>
             </div>
-            <div className="text-center sm:text-right order-1 sm:order-2">
-              <p className="text-base font-bold text-foreground mb-1">Retry &amp; recovery succeeds</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">The common case — automatic retry logic handles it without anyone noticing.</p>
+            <div className="text-center sm:text-left order-1 sm:order-2">
+              <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-primary bg-primary/10 shadow-[0_18px_38px_-16px_rgba(196,138,100,0.5)] mb-3">
+                <RefreshCw size={18} className="text-primary" />
+              </span>
+              <p className="text-base font-bold text-foreground mb-1">Retried automatically</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">The common case — recovery logic handles it, nobody has to notice.</p>
             </div>
           </div>
+
+          {/* Observability — the fourth beat. Persistent regardless of      */}
+          {/* which branch a given failure took, which is the point.         */}
+          <div className="rounded-2xl border border-border/50 bg-card/10 overflow-hidden max-w-lg mx-auto">
+            <div className="flex items-center gap-2 px-5 py-3 border-b border-border/50 bg-card/20">
+              <Eye size={13} className="text-primary/70 flex-shrink-0" />
+              <span className="text-xs font-bold uppercase tracking-[0.14em] text-foreground/80">Observed the whole time</span>
+            </div>
+            <div className="divide-y divide-border/30">
+              {[
+                { t: "14:02:11", label: "Order sync — retried once, recovered", ok: true },
+                { t: "14:02:44", label: "Inventory update — completed", ok: true },
+                { t: "14:03:02", label: "Payment webhook — escalated", ok: false },
+              ].map((row) => (
+                <div key={row.t} className="flex items-center gap-3 px-5 py-2.5">
+                  <span className="font-mono text-[10px] text-muted-foreground/50 flex-shrink-0 w-14">{row.t}</span>
+                  <span className="text-xs text-muted-foreground flex-1">{row.label}</span>
+                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${row.ok ? "bg-primary" : "bg-muted-foreground/50"}`} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="text-center text-xs text-muted-foreground/50 italic mt-4">Illustrative — every real workflow has its own monitoring, mapped to what actually matters.</p>
         </AnimatedSection>
       </section>
 

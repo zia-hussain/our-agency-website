@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, TrendingUp, TrendingDown, Network, Database, Plug, ShieldCheck, Compass, Layers, Rocket, LifeBuoy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, TrendingUp, TrendingDown, Network, Database, Plug, ShieldCheck, Compass, Layers, Rocket } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
@@ -185,20 +185,35 @@ const WebDetailPage: React.FC = () => {
           </AnimatedSection>
         </div>
 
-        <AnimatedSection delay={0.06} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-2">
+        <AnimatedSection delay={0.06} className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Five real inputs, five real lines — each one actually drawn    */}
+          {/* from its own label down to the system, instead of one generic  */}
+          {/* V-shape that states convergence without showing it happen.     */}
+          <div className="grid grid-cols-5 gap-1 sm:gap-2 mb-1">
             {["People", "Data", "Workflows", "Rules", "Integrations"].map((item) => (
-              <span key={item} className="text-xs sm:text-sm font-semibold text-muted-foreground border border-border/50 rounded-full px-4 py-2">
+              <span key={item} className="text-[10px] sm:text-sm font-semibold text-muted-foreground text-center leading-tight px-0.5">
                 {item}
               </span>
             ))}
           </div>
-          <div className="flex justify-center py-6 sm:py-8" aria-hidden="true">
-            <svg width="220" height="48" viewBox="0 0 220 48" className="text-border/50 sm:w-[320px]">
-              <path d="M10 2 L110 40 L210 2" fill="none" stroke="currentColor" strokeWidth="1" />
-            </svg>
-          </div>
-          <div className="flex items-center gap-2.5 justify-center mb-10 sm:mb-12">
+          <svg viewBox="0 0 500 64" className="w-full h-auto" aria-hidden="true">
+            {[50, 175, 250, 325, 450].map((x) => (
+              <motion.path
+                key={x}
+                d={`M ${x} 0 L 250 56`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={x === 250 ? 1.5 : 1}
+                className="text-border/60"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+              />
+            ))}
+            <circle cx="250" cy="56" r="4" className="fill-primary" />
+          </svg>
+          <div className="flex items-center gap-2.5 justify-center mt-4 mb-10 sm:mb-12">
             <Network size={18} className="text-primary" />
             <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">One operating system</p>
           </div>
@@ -259,40 +274,20 @@ const WebDetailPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
-              <motion.path
-                d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: "easeInOut" }}
-              />
-              <motion.path
-                d="M25 71 L38 81 L48 68"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: 0.75 }}
-              />
-            </svg>
+          {/* Plain connector, not another squiggle — the accumulating-bars */}
+          {/* icon above already carries this section's motion.             */}
+          <div className="relative flex justify-center my-6 sm:my-8" aria-hidden="true">
+            <span className="w-px h-12 sm:h-14 bg-gradient-to-b from-border to-primary/50" />
           </div>
 
           <AnimatedSection delay={0.08} className="max-w-2xl mx-auto">
             <div className="btn-sheen relative overflow-hidden rounded-[1.75rem] border border-primary/40 bg-gradient-to-b from-primary/[0.11] via-card/50 to-card/20 p-8 sm:p-11 text-center shadow-[0_45px_90px_-35px_rgba(196,138,100,0.4)]">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(196,138,100,0.14),transparent_70%)]" />
               <div className="relative">
+                {/* Layers, not a buoy — support is one more layer added to    */}
+                {/* the system the page has been building this whole time.    */}
                 <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 border border-primary/30 mb-5 shadow-[0_0_44px_-10px_rgba(196,138,100,0.55)]">
-                  <LifeBuoy size={26} className="text-primary" />
+                  <Layers size={24} className="text-primary" />
                 </span>
                 <div className="flex items-center justify-center gap-2 mb-3">
                   <span className="relative flex h-2 w-2 flex-shrink-0">
@@ -385,18 +380,24 @@ const WebDetailPage: React.FC = () => {
                 {forlagProject && (<>{" · "}<Link to={`/portfolio/${forlagProject.slug}`} className="text-primary hover:underline">Case study</Link></>)}
               </footer>
             </blockquote>
-            <div className="grid sm:grid-cols-2 gap-6 text-left pt-8 border-t border-border/30">
-              <div className="rounded-xl border border-border/50 bg-background/30 p-5">
-                <p className="text-sm text-foreground/85 leading-relaxed mb-3">
-                  "Their combination of web development, AI integration, design, UX, and SEO into
-                  one solution was impressive."
-                </p>
-                <p className="text-xs text-muted-foreground">Andi, First North Peptides <span className="text-muted-foreground/50">(Clutch, verified)</span></p>
-              </div>
+            {/* Andi's wording proves breadth — several disciplines landing as */}
+            {/* one solution. Raheem's proves something narrower — individual  */}
+            {/* expertise and follow-through. Two different dimensions, so     */}
+            {/* Andi leads at full weight and Raheem responds alongside it,    */}
+            {/* not as a second identical card repeating the same claim.       */}
+            <div className="pt-8 border-t border-border/30 text-left max-w-xl mx-auto">
+              <p className="text-lg sm:text-xl text-foreground/90 leading-snug tracking-tight mb-3">
+                "Their combination of web development, AI integration, design, UX, and SEO into
+                one solution was impressive."
+              </p>
+              <p className="text-xs text-muted-foreground mb-6">Andi, First North Peptides <span className="text-muted-foreground/50">(Clutch, verified)</span></p>
               {raheemTestimonial && (
-                <div className="rounded-xl border border-border/50 bg-background/30 p-5">
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">"{raheemTestimonial.quote}"</p>
-                  <p className="text-xs text-muted-foreground">{raheemTestimonial.author}, {raheemTestimonial.role}</p>
+                <div className="flex gap-4 pt-5 border-t border-border/20">
+                  <span className="w-px flex-shrink-0 bg-border/40 mt-0.5" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-muted-foreground/80 leading-relaxed mb-2">"{raheemTestimonial.quote}"</p>
+                    <p className="text-xs text-muted-foreground/60">{raheemTestimonial.author}, {raheemTestimonial.role}</p>
+                  </div>
                 </div>
               )}
             </div>
