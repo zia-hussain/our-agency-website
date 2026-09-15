@@ -3,6 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, ChevronDown, X } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { services, rescueService } from "../../data/services";
+import { articles } from "../../data/articles.js";
+
+const FEATURED_ARTICLES = articles.filter((a) => a.featured);
 
 // One resolved object, not a UI panel: a solid, heavy instrument sitting
 // above the page, not a translucent bar blending into it. The glossy
@@ -25,20 +28,20 @@ const SHELL_SHADOW_DOCKED =
 const Navigation: React.FC = () => {
   const [isDocked, setIsDocked] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<"services" | "articles" | null>(null);
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
-  const closeServicesTimeout = useRef<number | null>(null);
+  const closeMenuTimeout = useRef<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
   // Small delay on close so crossing the gap between the nav item and the
   // panel below it doesn't flicker the menu shut mid-move.
-  const openServices = () => {
-    if (closeServicesTimeout.current) window.clearTimeout(closeServicesTimeout.current);
-    setIsServicesOpen(true);
+  const openDropdown = (menu: "services" | "articles") => {
+    if (closeMenuTimeout.current) window.clearTimeout(closeMenuTimeout.current);
+    setOpenMenu(menu);
   };
-  const closeServicesSoon = () => {
-    closeServicesTimeout.current = window.setTimeout(() => setIsServicesOpen(false), 150);
+  const closeDropdownSoon = () => {
+    closeMenuTimeout.current = window.setTimeout(() => setOpenMenu(null), 150);
   };
 
   useEffect(() => {
@@ -69,7 +72,7 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    setIsServicesOpen(false);
+    setOpenMenu(null);
   }, [location]);
 
   const isActiveRoute = (path: string) => location.pathname.startsWith(path);
@@ -132,18 +135,19 @@ const Navigation: React.FC = () => {
         >
           {NAV_ITEMS.map((item) => {
             const active = isActiveRoute(item.path);
-            const isServices = item.path === "/services";
+            const dropdownKey = item.path === "/services" ? "services" : item.path === "/articles" ? "articles" : null;
+            const isOpen = dropdownKey !== null && openMenu === dropdownKey;
             return (
               <Link
                 key={item.name}
                 to={item.path}
                 className="relative"
-                onMouseEnter={isServices ? openServices : undefined}
-                onMouseLeave={isServices ? closeServicesSoon : undefined}
-                onFocus={isServices ? openServices : undefined}
-                onBlur={isServices ? closeServicesSoon : undefined}
-                aria-expanded={isServices ? isServicesOpen : undefined}
-                aria-haspopup={isServices ? "true" : undefined}
+                onMouseEnter={dropdownKey ? () => openDropdown(dropdownKey) : undefined}
+                onMouseLeave={dropdownKey ? closeDropdownSoon : undefined}
+                onFocus={dropdownKey ? () => openDropdown(dropdownKey) : undefined}
+                onBlur={dropdownKey ? closeDropdownSoon : undefined}
+                aria-expanded={dropdownKey ? isOpen : undefined}
+                aria-haspopup={dropdownKey ? "true" : undefined}
               >
                 <span
                   className={`relative flex items-center gap-1 rounded-full transition-all duration-500 ${
@@ -155,11 +159,11 @@ const Navigation: React.FC = () => {
                   }`}
                 >
                   {item.name}
-                  {isServices && (
+                  {dropdownKey && (
                     <ChevronDown
                       size={13}
                       strokeWidth={2.5}
-                      className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180" : ""}`}
+                      className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                       aria-hidden="true"
                     />
                   )}
@@ -182,14 +186,14 @@ const Navigation: React.FC = () => {
         {/* any of them except through /services itself. Same material as   */}
         {/* the shell it hangs from, not a generic dropdown card.            */}
         <AnimatePresence>
-          {isServicesOpen && (
+          {openMenu === "services" && (
             <motion.div
               initial={{ opacity: 0, y: -8, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.22, ease: EASE }}
-              onMouseEnter={openServices}
-              onMouseLeave={closeServicesSoon}
+              onMouseEnter={() => openDropdown("services")}
+              onMouseLeave={closeDropdownSoon}
               style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
               className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[640px] rounded-3xl border border-white/[0.06] p-3"
             >
@@ -244,6 +248,58 @@ const Navigation: React.FC = () => {
                   className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
                 >
                   View all services
+                  <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Articles mega-menu — only the pieces already marked `featured`  */}
+        {/* in the data, the same editorial call already driving the       */}
+        {/* Articles hub's own spotlight section. Deliberately not a       */}
+        {/* category menu: one category has zero real articles in it and   */}
+        {/* another is missing from the filter list entirely, so a         */}
+        {/* category-based menu would link straight to a dead end.         */}
+        <AnimatePresence>
+          {openMenu === "articles" && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: EASE }}
+              onMouseEnter={() => openDropdown("articles")}
+              onMouseLeave={closeDropdownSoon}
+              style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
+              className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[420px] rounded-3xl border border-white/[0.06] p-3"
+            >
+              <div className="px-1 pt-1 pb-2">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary/70 px-2.5">Featured Reading</p>
+              </div>
+              <div className="flex flex-col gap-1">
+                {FEATURED_ARTICLES.map((article) => (
+                  <Link
+                    key={article.slug}
+                    to={`/articles/${article.slug}`}
+                    className="group rounded-2xl p-3.5 hover:bg-white/[0.04] transition-colors duration-200"
+                  >
+                    <div className="flex items-center gap-2 text-[11px] text-muted-foreground/60 mb-1">
+                      <span>{article.category}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{article.readTime}</span>
+                    </div>
+                    <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">
+                      {article.title}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-1 pt-3 px-4 pb-2 border-t border-white/[0.06]">
+                <Link
+                  to="/articles"
+                  className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  View all articles
                   <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
                 </Link>
               </div>
