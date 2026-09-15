@@ -11,6 +11,8 @@ import TestimonialFilm from "../../components/common/TestimonialFilm";
 import ClosingGlow from "../../components/common/ClosingGlow";
 import { rescueService } from "../../data/services";
 import { rescueDetailFAQs } from "../../data/faqs/service-rescue";
+import { TESTIMONIAL_FILMS } from "../../data/testimonialFilms";
+import { buildVideoObjectSchema } from "../../utils/videoSchema";
 import { TESTIMONIALS } from "../../data/testimonials";
 
 const service = rescueService;
@@ -60,6 +62,7 @@ const RescueDetailPage: React.FC = () => {
           { "@type": "ListItem", position: 3, name: service.title, item: pageUrl },
         ],
       },
+      buildVideoObjectSchema(TESTIMONIAL_FILMS.josh),
     ],
   };
 

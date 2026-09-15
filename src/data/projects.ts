@@ -5,6 +5,11 @@ export interface Project {
   id: number;
   slug: string;
   title: string;
+  // The one canonical service this case study is the strongest proof for —
+  // stored explicitly rather than guessed at render time from freeform
+  // `services` labels (that heuristic still resolves the "What We Delivered"
+  // tags below, since those are meant to show breadth, not a single owner).
+  primaryService: "saas-mvp-development" | "web-application-development" | "mobile-app-development" | "ai-automation-solutions" | "product-rescue-stabilization";
   category: string;
   type: string;
   description: string;
@@ -28,6 +33,14 @@ export interface Project {
   homepageFeatured?: boolean;
   visibility?: "private-proof" | "anonymous-public" | "public-seo";
   proofStatus?: "draft" | "client-approved" | "verified";
+  // Explicit, per-project editorial decision — deliberately NOT derived from
+  // `homepageFeatured` (that flag is about the 3-slot homepage carousel and
+  // has nothing to do with whether this page should be crawlable) and NOT a
+  // blanket default. Set false for the anonymized/proofStatus:"draft" case
+  // studies until their privacy review completes and proofStatus moves to
+  // "client-approved" or "verified" — see the Phase 1 delta report for the
+  // full per-project reasoning.
+  searchIndexable: boolean;
   heroOutcome?: string;
   snapshot?: string;
   proofPoints?: {
@@ -114,6 +127,8 @@ export const projects: Project[] = [
   {
     id: 1,
     slug: "ifyify-ai-personal-branding",
+    primaryService: "saas-mvp-development",
+    searchIndexable: true,
     title: "Ifyify - AI-Powered Personal Branding Tool",
     category: "Web Application",
     type: "saas",
@@ -161,6 +176,8 @@ export const projects: Project[] = [
 {
   id: 7,
   slug: "forlag-publishing-sales-inventory-dashboard",
+  primaryService: "web-application-development",
+  searchIndexable: true,
   title: "Forlag – Publishing Sales & Inventory Analytics Dashboard",
   category: "Web Application",
   type: "saas",
@@ -240,6 +257,8 @@ export const projects: Project[] = [
 {
   id: 8,
   slug: "floating-stone-ranch-processor-intake-engine",
+  primaryService: "ai-automation-solutions",
+  searchIndexable: true,
   title: "Floating Stone Ranch – Processor Intake & Logistics Automation",
   category: "Enterprise Solution",
   type: "enterprise",
@@ -310,6 +329,8 @@ export const projects: Project[] = [
 {
   id: 9,
   slug: "skill-x-swap-mvp",
+  primaryService: "mobile-app-development",
+  searchIndexable: true,
   title: "Skill x Swap – Credit-Based Skill Trading Marketplace (MVP)",
   category: "Mobile Application",
   type: "mvp",
@@ -374,6 +395,8 @@ export const projects: Project[] = [
 {
   id: 10,
   slug: "tomo-voice-ai-companion",
+  primaryService: "mobile-app-development",
+  searchIndexable: true,
   title: "Tomo – Voice-First AI Companion App",
   category: "Mobile Application",
   type: "mobile",
@@ -430,6 +453,8 @@ export const projects: Project[] = [
 {
   id: 11,
   slug: "hjelpna-handyman-marketplace",
+  primaryService: "web-application-development",
+  searchIndexable: true,
   title: "HjelpNå – Handyman Marketplace PWA",
   category: "Web Application",
   type: "mvp",
@@ -485,6 +510,8 @@ export const projects: Project[] = [
 {
   id: 12,
   slug: "utility-bill-deal-finder",
+  primaryService: "saas-mvp-development",
+  searchIndexable: true,
   title: "Utility Bill Deal Finder – AI-Powered Bill Analysis MVP",
   category: "Web Application",
   type: "mvp",
@@ -540,6 +567,8 @@ export const projects: Project[] = [
 {
   id: 13,
   slug: "pawspace-pet-services-marketplace",
+  primaryService: "mobile-app-development",
+  searchIndexable: true,
   title: "PawSpace – Pet Services Marketplace App",
   category: "Mobile Application",
   type: "mobile",
@@ -594,6 +623,8 @@ export const projects: Project[] = [
 {
   id: 14,
   slug: "bondfire-event-booking-app",
+  primaryService: "mobile-app-development",
+  searchIndexable: true,
   title: "Bondfire – Event Booking App Stabilization & Feature Enhancements",
   category: "Mobile Application",
   type: "mobile",
@@ -649,6 +680,8 @@ export const projects: Project[] = [
 {
   id: 15,
   slug: "hostel-management-system-mern",
+  primaryService: "web-application-development",
+  searchIndexable: true,
   title: "Hostel Management System – MERN Stack Admin Panel",
   category: "Web Application",
   type: "saas",
@@ -702,6 +735,8 @@ export const projects: Project[] = [
 {
   id: 16,
   slug: "stripe-to-airtable-subscription-sync",
+  primaryService: "ai-automation-solutions",
+  searchIndexable: true,
   title: "Stripe to Airtable – Subscription Sync Automation",
   category: "Automation System",
   type: "automation",
@@ -756,6 +791,8 @@ export const projects: Project[] = [
 {
   id: 17,
   slug: "shopify-to-notion-pnl-automation",
+  primaryService: "ai-automation-solutions",
+  searchIndexable: true,
   title: "Shopify to Notion – Automated P&L Reporting",
   category: "Automation System",
   type: "automation",
@@ -810,6 +847,8 @@ export const projects: Project[] = [
 {
   id: 18,
   slug: "twilio-auto-dialer-logic",
+  primaryService: "ai-automation-solutions",
+  searchIndexable: true,
   title: "Twilio Auto Dialer – Sequential Call Logic",
   category: "Automation System",
   type: "automation",
@@ -864,6 +903,8 @@ export const projects: Project[] = [
 {
   id: 19,
   slug: "twilio-conference-call-logic",
+  primaryService: "ai-automation-solutions",
+  searchIndexable: true,
   title: "Twilio Conference Call – Dynamic Participant Management",
   category: "Automation System",
   type: "automation",
@@ -919,6 +960,8 @@ export const projects: Project[] = [
 {
   id: 20,
   slug: "zumetrix-labs-internal-automation-stack",
+  primaryService: "ai-automation-solutions",
+  searchIndexable: true,
   title: "Zumetrix Labs – Internal Automation & CRM Stack",
   category: "Enterprise Solution",
   type: "enterprise",
@@ -974,6 +1017,8 @@ export const projects: Project[] = [
 {
   id: 21,
   slug: "knipsr-event-media-saas",
+  primaryService: "saas-mvp-development",
+  searchIndexable: false,
   title: "Knipsr – From Product Build to Launch-Ready SaaS",
   category: "Web Application",
   type: "saas",
@@ -1038,6 +1083,8 @@ export const projects: Project[] = [
 {
   id: 22,
   slug: "liftly-operational-mvp-v1",
+  primaryService: "saas-mvp-development",
+  searchIndexable: false,
   title: "Liftly – Building the Version the Business Needed First",
   category: "Startup MVP",
   type: "mvp",
@@ -1096,6 +1143,8 @@ export const projects: Project[] = [
 {
   id: 23,
   slug: "learning-platform-saas-stabilization",
+  primaryService: "product-rescue-stabilization",
+  searchIndexable: false,
   title: "Learning Platform SaaS – Stabilizing a Founder-Built Product for Its Next Stage",
   category: "Enterprise Solution",
   type: "saas",

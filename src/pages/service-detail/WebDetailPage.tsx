@@ -11,6 +11,8 @@ import ClosingGlow from "../../components/common/ClosingGlow";
 import TestimonialFilm from "../../components/common/TestimonialFilm";
 import { services } from "../../data/services";
 import { webDetailFAQs } from "../../data/faqs/service-web";
+import { TESTIMONIAL_FILMS } from "../../data/testimonialFilms";
+import { buildVideoObjectSchema } from "../../utils/videoSchema";
 import { getProjectBySlug } from "../../data/projects";
 import { TESTIMONIALS } from "../../data/testimonials";
 
@@ -53,6 +55,7 @@ const WebDetailPage: React.FC = () => {
           { "@type": "ListItem", position: 3, name: service.title, item: pageUrl },
         ],
       },
+      buildVideoObjectSchema(TESTIMONIAL_FILMS.reema),
     ],
   };
 

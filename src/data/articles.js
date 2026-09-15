@@ -194,6 +194,11 @@ export const articles = [
         description: "Our founder-led process for launching focused SaaS products without unnecessary scope."
       },
       {
+        label: "Knipsr — from product build to launch-ready SaaS",
+        href: "/portfolio/knipsr-event-media-saas",
+        description: "A real case study of taking a product from build to a shipped, launch-ready SaaS."
+      },
+      {
         label: "Start a project conversation",
         href: "/contact",
         description: "Share your SaaS idea and get clarity on scope, timeline, and the right first version."
@@ -824,6 +829,11 @@ export const articles = [
         label: "No-code automation guide",
         href: "/articles/no-code-automation-zapier-make-n8n",
         description: "Compare Zapier, Make.com, and n8n before choosing the right workflow platform."
+      },
+      {
+        label: "Stripe to Airtable — subscription sync automation",
+        href: "/portfolio/stripe-to-airtable-subscription-sync",
+        description: "A real automation build connecting billing data to reporting without manual entry."
       }
     ],
     faqs: [
@@ -1023,6 +1033,11 @@ export const articles = [
         label: "Mobile app development service",
         href: "/services/mobile-app-development",
         description: "Plan and build cross-platform mobile apps with the right backend, admin tools, and launch path."
+      },
+      {
+        label: "Skill x Swap — mobile marketplace MVP",
+        href: "/portfolio/skill-x-swap-mvp",
+        description: "A real cross-platform mobile MVP, from scope to a working credit-based marketplace."
       },
       {
         label: "See app and platform projects",
@@ -1240,12 +1255,18 @@ export const articles = [
   }
 ];
 
+// One entry per category value actually used in `articles` above. "Firebase"
+// used to sit here as its own filter with zero matching articles — the one
+// Firebase piece is tagged "Development", so the button always rendered an
+// empty grid. "Insights" existed in the data but had no filter entry at all,
+// making the site's own flagship article unreachable except via "All
+// Articles" or the featured rail.
 export const categories = [
   { id: "all", label: "All Articles" },
   { id: "Development", label: "Development" },
   { id: "AI & Automation", label: "AI & Automation" },
   { id: "Mobile Development", label: "Mobile" },
   { id: "SaaS", label: "SaaS" },
-  { id: "Firebase", label: "Firebase" },
-  { id: "Automation", label: "Automation" }
+  { id: "Automation", label: "Automation" },
+  { id: "Insights", label: "Insights" }
 ];

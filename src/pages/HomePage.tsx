@@ -19,6 +19,8 @@ import AIROICalculator from "../components/home/AIROICalculator";
 import SectionDivider from "../components/common/SectionDivider";
 import { BRAND_CONTENT } from "../config/content";
 import { SITE_CONFIG } from "../config/site";
+import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
+import { buildVideoObjectSchema } from "../utils/videoSchema";
 
 const HomePage: React.FC = () => {
   const structuredData = {
@@ -41,6 +43,10 @@ const HomePage: React.FC = () => {
           { "@id": "https://zumetrix.com/founders/zia-hussain#person" },
           { "@id": "https://zumetrix.com/founders/omer-gillani#person" },
         ],
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "Pakistan",
+        },
         contactPoint: {
           "@type": "ContactPoint",
           contactType: "sales",
@@ -89,13 +95,13 @@ const HomePage: React.FC = () => {
           "https://github.com/UmerGillani36",
         ],
       },
+      ...Object.values(TESTIMONIAL_FILMS).map(buildVideoObjectSchema),
     ],
   };
 
   return (
     <PageTransition>
       <SEO
-        gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Zumetrix Labs | SaaS MVPs, Apps & AI Automation"
         description="Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, mobile apps, and AI automation for founders who need thinking partners, not order-takers."

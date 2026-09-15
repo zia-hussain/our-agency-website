@@ -455,7 +455,6 @@ const ServicesPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Software Development Services | Zumetrix Labs"
         description="Explore founder-led SaaS MVP, web application, mobile app, AI automation, and technical strategy services from Zumetrix Labs."

@@ -61,17 +61,3 @@ export const homeFAQs = [
       "Both, depending on what the problem actually needs. We build custom React/Node products when the product is the business, and we use no-code platforms like Bubble, Webflow, or FlutterFlow when they genuinely ship faster and hold up fine at the scale involved. We'll tell you honestly which one fits before we start."
   }
 ];
-
-// Structured data for FAQ section
-export const homeFAQStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: homeFAQs.map(faq => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer
-    }
-  }))
-};

@@ -10,6 +10,8 @@ import ClientProofFilm from "../components/home/ClientProofFilm";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../config/site";
 import { contactFAQs } from "../data/faqs/contact";
+import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
+import { buildVideoObjectSchema } from "../utils/videoSchema";
 import {
   Mail,
   MapPin,
@@ -19,7 +21,7 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
-import { trackCTAClick } from "../utils/analytics";
+import { trackCTAClick, trackFormSubmit } from "../utils/analytics";
 import { routeLead } from "../services/leadRouter";
 
 const GRAIN =
@@ -115,6 +117,7 @@ const ContactPage: React.FC = () => {
         throw new Error(leadResult.error || "We could not deliver your project brief.");
       }
 
+      trackFormSubmit("contact_form");
       setIsSubmitted(true);
       setFormData({
         name: "",
@@ -202,7 +205,6 @@ const ContactPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Contact Zumetrix Labs | Forge Clear Ideas Into Shipped Software"
         description="Forge Clear Ideas Into Shipped Software. Contact Zumetrix Labs to discuss your SaaS MVP, React/Node.js app, AI automation, or mobile app project."
@@ -210,24 +212,29 @@ const ContactPage: React.FC = () => {
         url="https://zumetrix.com/contact"
         structuredData={{
           "@context": "https://schema.org",
-          "@type": "ContactPage",
-          name: "Contact Zumetrix Labs - Software Development Agency",
-          description:
-            "Contact Zumetrix Labs for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
-          mainEntity: {
-            "@type": "Organization",
-            "@id": "https://zumetrix.com/#organization",
-            name: "Zumetrix Labs",
-            description:
-              "Zumetrix Labs builds software for founders who need thinking partners, not order-takers. Services include SaaS MVPs, React/Node.js applications, AI automation, and mobile apps for international clients.",
-              contactPoint: {
-              "@type": "ContactPoint",
-              contactType: "sales",
-              email: "hello@zumetrix.com",
-              telephone: SITE_CONFIG.company.phone,
-              availableLanguage: ["English", "Urdu"],
+          "@graph": [
+            {
+              "@type": "ContactPage",
+              name: "Contact Zumetrix Labs - Software Development Agency",
+              description:
+                "Contact Zumetrix Labs for SaaS MVP development, React/Node.js applications, AI automation services, and mobile app development.",
+              mainEntity: {
+                "@type": "Organization",
+                "@id": "https://zumetrix.com/#organization",
+                name: "Zumetrix Labs",
+                description:
+                  "Zumetrix Labs builds software for founders who need thinking partners, not order-takers. Services include SaaS MVPs, React/Node.js applications, AI automation, and mobile apps for international clients.",
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  contactType: "sales",
+                  email: "hello@zumetrix.com",
+                  telephone: SITE_CONFIG.company.phone,
+                  availableLanguage: ["English", "Urdu"],
+                },
+              },
             },
-          },
+            ...Object.values(TESTIMONIAL_FILMS).map(buildVideoObjectSchema),
+          ],
         }}
       />
 

@@ -110,6 +110,10 @@ const ProjectDetailPage: React.FC = () => {
           name: serviceName,
           url: `https://zumetrix.com${getServiceUrl(serviceName)}`,
         })),
+        // Points at the exact Service entity already declared on that
+        // service's own detail page (same @id convention: {pageUrl}#service)
+        // — a real cross-page link in the entity graph, not a guessed one.
+        mentions: { "@id": `https://zumetrix.com/services/${project.primaryService}#service` },
         ...(project.client.name
           ? {
               client: {
@@ -141,7 +145,7 @@ const ProjectDetailPage: React.FC = () => {
         image={shareImage}
         url={pageUrl}
         structuredData={structuredData}
-        noIndex={!project.homepageFeatured}
+        noIndex={!project.searchIndexable}
       />
 
       {/* ================================================================ */}

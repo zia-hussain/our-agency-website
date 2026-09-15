@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Download, Sparkles, CheckCircle2 } from 'lucide-react';
 import { routeLead } from '../../services/leadRouter';
-import { trackCTAClick } from '../../utils/analytics';
+import { trackCTAClick, trackFormSubmit, trackLeadMagnetDownload } from '../../utils/analytics';
 
 interface LeadMagnetCaptureProps {
   isOpen: boolean;
@@ -49,6 +49,8 @@ const LeadMagnetCapture: React.FC<LeadMagnetCaptureProps> = ({
 
       if (!result.success) throw new Error(result.error || 'Lead capture failed');
 
+      trackFormSubmit('lead_magnet_capture');
+      trackLeadMagnetDownload(magnetName);
       trackCTAClick(`Lead Magnet - ${magnetName}`, window.location.pathname);
       setEmailSent(Boolean(result.userEmailSent));
       setIsSuccess(true);

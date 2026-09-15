@@ -51,48 +51,12 @@
     <link rel="canonical" href="https://zumetrix.com" />
     <title>Zumetrix Labs | SaaS MVPs, Apps & AI Automation</title>
     <!-- route-meta:end -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "https://zumetrix.com/#organization",
-        "name": "Zumetrix Labs",
-        "url": "https://zumetrix.com",
-        "logo": "https://zumetrix.com/logo/Logo%20Icon.png",
-        "slogan": "Forge Clear Ideas Into Shipped Software.",
-        "description": "Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners.",
-        "founder": [
-          {
-            "@type": "Person",
-            "@id": "https://zumetrix.com/founders/zia-hussain#person",
-            "name": "Zia Hussain",
-            "alternateName": "Syed Zia Hussain Shah",
-            "url": "https://zumetrix.com/founders/zia-hussain"
-          },
-          {
-            "@type": "Person",
-            "@id": "https://zumetrix.com/founders/omer-gillani#person",
-            "name": "Omer Gillani",
-            "alternateName": "Syed Omer Shah Gillani",
-            "url": "https://zumetrix.com/founders/omer-gillani"
-          }
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "Pakistan"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "sales",
-          "email": "hello@zumetrix.com",
-          "telephone": "+92 (317) 259-6525"
-        },
-        "sameAs": [
-          "https://linkedin.com/company/zumetrix-labs",
-          "https://github.com/zumetrix-labs"
-        ]
-      }
-    </script>
+    <!-- Organization JSON-LD lives only in HomePage.tsx's structuredData now.
+         This file used to ship a second, slightly different Organization
+         block (different logo shape, an extra address field, a shorter
+         sameAs list) unconditionally on every route — including the home
+         page, which already declares its own. Two conflicting definitions
+         of the same @id on one document is worse than one correct one. -->
     <script type="text/javascript">
       window.addEventListener("load", function () {
         var loadClarity = function () {

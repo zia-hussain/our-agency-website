@@ -6,6 +6,7 @@ import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/common/ScrollToTop";
 import BackToTop from "./components/common/BackToTop";
 import StickyCTABar from "./components/common/StickyCTABar";
+import Analytics from "./components/common/Analytics";
 import { trackEvent } from "./utils/analytics";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -79,14 +80,23 @@ function App() {
   }, []);
 
   // React Router changes don't trigger a native page load, so GA4 never sees
-  // a page_view beyond the first one unless we fire it explicitly here.
+  // a page_view beyond the first one unless we fire it explicitly here (and
+  // Analytics.tsx sets send_page_view:false specifically so GA4's own
+  // automatic pageview on config doesn't double-count this one). Admin is
+  // internal tooling, not organic-discoverable content, and /review is a
+  // private per-proposal link — neither belongs in "where did a qualified
+  // lead come from" reporting. page_path is pathname-only so campaign query
+  // strings don't fragment one page into dozens of distinct rows in
+  // reporting; page_location keeps the full URL for UTM attribution, which
+  // GA4 parses from there automatically.
   useEffect(() => {
+    if (isAdminRoute || isReviewRoute) return;
     trackEvent('page_view', {
-      page_path: location.pathname + location.search,
+      page_path: location.pathname,
       page_location: window.location.href,
       page_title: document.title,
     });
-  }, [location.pathname, location.search]);
+  }, [location.pathname, location.search, isAdminRoute, isReviewRoute]);
 
   return (
     <MotionConfig reducedMotion="user">
@@ -94,6 +104,7 @@ function App() {
       className="font-inter antialiased bg-cream text-charcoal relative overflow-x-hidden"
       style={{ paddingBottom: "var(--sticky-cta-height, 0px)" }}
     >
+      <Analytics />
       <ScrollToTop />
       {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Navigation />}
       <Suspense fallback={<LoadingFallback />}>

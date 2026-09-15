@@ -13,6 +13,8 @@ import ClientProofFilm from "../components/home/ClientProofFilm";
 import { motion } from "framer-motion";
 import { projects } from "../data/projects";
 import { portfolioFAQs } from "../data/faqs/portfolio";
+import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
+import { buildVideoObjectSchema } from "../utils/videoSchema";
 import { ArrowRight, Eye, Code, Users, Award, Sparkles } from "lucide-react";
 
 const GRAIN =
@@ -59,13 +61,13 @@ const PortfolioPage: React.FC = () => {
           { "@type": "ListItem", position: 2, name: "Software Development Case Studies", item: "https://zumetrix.com/portfolio" },
         ],
       },
+      ...Object.values(TESTIMONIAL_FILMS).map(buildVideoObjectSchema),
     ],
   };
 
   return (
     <PageTransition>
       <SEO
-        gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Software Development Case Studies | Zumetrix Labs"
         description="Explore Zumetrix Labs case studies across SaaS MVPs, business dashboards, mobile apps, workflow automation, and custom software."

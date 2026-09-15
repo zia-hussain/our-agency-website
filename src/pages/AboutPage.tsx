@@ -167,7 +167,6 @@ const AboutPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        gaTagId="G-PRSP59FL20"
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="About Zumetrix Labs | Founder-Led Software Studio"
         description="Zia Hussain and Omer Gillani founded Zumetrix Labs — a founder-led studio building SaaS MVPs, stabilizing stalled products, and automating operations worldwide."

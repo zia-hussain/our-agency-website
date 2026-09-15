@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calculator, TrendingUp, Clock, DollarSign, Zap, CheckCircle2, Download } from 'lucide-react';
 import { routeLead } from '../../services/leadRouter';
-import { trackCTAClick } from '../../utils/analytics';
+import { trackCTAClick, trackFormSubmit } from '../../utils/analytics';
 
 const AIROICalculator: React.FC = () => {
   const [step, setStep] = useState<'input' | 'results' | 'leadCapture'>('input');
@@ -95,6 +95,7 @@ const AIROICalculator: React.FC = () => {
 
       if (!result.success) throw new Error(result.error || 'ROI report request failed');
 
+      trackFormSubmit('ai_roi_calculator');
       trackCTAClick('AI ROI Calculator Report', window.location.pathname);
 
       setEmailSent(Boolean(result.userEmailSent));

@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { articles, categories } from "../data/articles.js";
 import { articlesFAQs } from "../data/faqs/articles";
+import { getAuthorIdentity } from "../data/authors";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -56,15 +57,14 @@ const ArticlesPage: React.FC = () => {
       headline: article.title,
       description: article.excerpt,
       url: `https://zumetrix.com/articles/${article.slug}`,
+      image: article.ogImage || article.image,
       datePublished: article.publishedAt,
-      author: article.author.split(" & ").map((authorName: string) => ({
-        "@type": "Person",
-        "@id":
-          authorName === "Zia Hussain"
-            ? "https://zumetrix.com/founders/zia-hussain#person"
-            : "https://zumetrix.com/founders/omer-gillani#person",
-        name: authorName,
-      })),
+      author: article.author.split(" & ").map((authorName: string) => {
+        const identity = getAuthorIdentity(authorName);
+        return identity
+          ? { "@type": "Person", "@id": identity.personId, name: identity.displayName }
+          : { "@type": "Person", name: authorName };
+      }),
     })),
   };
 

@@ -4,6 +4,7 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import ArticleVisual from "../components/common/ArticleVisual";
+import ResponsiveImage from "../components/common/ResponsiveImage";
 import TiltFrame from "../components/portfolio/TiltFrame";
 import ClosingGlow from "../components/common/ClosingGlow";
 import { motion } from "framer-motion";
@@ -22,6 +23,7 @@ import {
   Linkedin,
 } from "lucide-react";
 import { articles } from "../data/articles.js";
+import { getAuthorIdentity } from "../data/authors";
 
 const ArticleDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -139,27 +141,27 @@ const ArticleDetailPage: React.FC = () => {
     );
   }
 
-  const structuredAuthors = article.author.split(" & ").map((authorName) => ({
-    "@type": "Person",
-    "@id": authorName === "Zia Hussain"
-      ? "https://zumetrix.com/founders/zia-hussain#person"
-      : "https://zumetrix.com/founders/omer-gillani#person",
-    name: authorName,
-    jobTitle: authorName === "Zia Hussain" ? "Co-Founder & CEO" : "Co-Founder & CTO",
-    url: authorName === "Zia Hussain"
-      ? "https://zumetrix.com/founders/zia-hussain"
-      : "https://zumetrix.com/founders/omer-gillani",
-    worksFor: {
-      "@id": "https://zumetrix.com/#organization",
-    },
-  }));
+  const structuredAuthors = article.author
+    .split(" & ")
+    .map((authorName) => {
+      const identity = getAuthorIdentity(authorName);
+      if (!identity) return { "@type": "Person", name: authorName };
+      return {
+        "@type": "Person",
+        "@id": identity.personId,
+        name: identity.displayName,
+        jobTitle: identity.jobTitle,
+        url: `https://zumetrix.com${identity.founderUrl}`,
+        worksFor: { "@id": "https://zumetrix.com/#organization" },
+      };
+    });
 
   const articleStructuredData = {
     "@type": "TechArticle",
     "@id": `https://zumetrix.com/articles/${article.slug}#article`,
     headline: article.title,
     description: article.excerpt,
-    image: article.image,
+    image: article.ogImage || article.image,
     author: structuredAuthors,
     publisher: {
       "@type": "Organization",
@@ -259,7 +261,7 @@ const ArticleDetailPage: React.FC = () => {
         title={article.seo.title}
         description={article.seo.description}
         keywords={article.seo.keywords}
-        image={article.image}
+        image={article.ogImage || article.image}
         url={`https://zumetrix.com/articles/${article.slug}`}
         type="article"
         structuredData={structuredData}
@@ -350,7 +352,21 @@ const ArticleDetailPage: React.FC = () => {
                   />
                   <div>
                     <div className="font-semibold text-foreground text-lg">
-                      {article.author}
+                      {article.author.split(" & ").map((name: string, i: number, arr: string[]) => {
+                        const identity = getAuthorIdentity(name);
+                        return (
+                          <React.Fragment key={name}>
+                            {identity ? (
+                              <Link to={identity.founderUrl} className="hover:text-primary transition-colors duration-150">
+                                {name}
+                              </Link>
+                            ) : (
+                              name
+                            )}
+                            {i < arr.length - 1 ? " & " : ""}
+                          </React.Fragment>
+                        );
+                      })}
                     </div>
                     <div className="text-sm text-muted-foreground">
                       {article.authorRole}
@@ -466,13 +482,34 @@ const ArticleDetailPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Article Hero Visual */}
+      {/* Article Hero Visual — the generated ArticleVisual stays the default
+          for every article (it's genuinely good UX and has no per-article
+          production cost). An article only switches to a real image here
+          once it has one worth showing: set article.heroImage (plus
+          heroImageAlt/Width/Height) in the data and this renders it instead,
+          full-width, as a real indexable asset — not a replacement for
+          ArticleVisual, a per-article choice. */}
       <section className="pb-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <TiltFrame>
-              <ArticleVisual title={article.title} category={article.category} variant="hero" />
-            </TiltFrame>
+            {article.heroImage ? (
+              <ResponsiveImage
+                src={article.heroImage}
+                alt={article.heroImageAlt || article.title}
+                width={article.heroImageWidth || 1600}
+                height={article.heroImageHeight || 900}
+                avifSrc={article.heroImageAvif}
+                webpSrc={article.heroImageWebp}
+                priority
+                caption={article.heroImageCaption}
+                credit={article.heroImageCredit}
+                className="w-full rounded-2xl border border-border/60 object-cover"
+              />
+            ) : (
+              <TiltFrame>
+                <ArticleVisual title={article.title} category={article.category} variant="hero" />
+              </TiltFrame>
+            )}
           </AnimatedSection>
         </div>
       </section>
