@@ -298,18 +298,14 @@ const ArticleDetailPage: React.FC = () => {
               </span>
             </nav>
 
-            <Link to="/articles">
-              <motion.div
-                whileHover={{ x: -2 }}
-                transition={{ duration: 0.1 }}
-                className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors duration-100 mb-8 group"
-              >
-                <ArrowLeft
-                  size={16}
-                  className="mr-2 group-hover:-translate-x-0.5 transition-transform duration-100"
-                />
-                Back to Articles
-              </motion.div>
+            <Link
+              to="/articles"
+              className="group inline-flex items-center gap-2.5 rounded-full border border-border/60 bg-card/25 pl-2 pr-5 py-2 text-sm font-semibold text-muted-foreground shadow-[0_12px_30px_-16px_rgba(0,0,0,0.6)] hover:border-primary/40 hover:text-primary hover:bg-primary/5 transition-colors duration-200 mb-12 btn-sheen"
+            >
+              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-background/80 group-hover:bg-primary/10 transition-colors duration-200">
+                <ArrowLeft size={13} className="group-hover:-translate-x-0.5 transition-transform duration-200" />
+              </span>
+              Back to Articles
             </Link>
           </AnimatedSection>
         </div>

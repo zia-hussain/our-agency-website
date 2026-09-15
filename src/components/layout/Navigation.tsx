@@ -20,6 +20,16 @@ const NAV_ITEMS = [
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+// Fade + a few px of lift, nothing else — no scale pop. Asymmetric on
+// purpose: slow and silky opening, quick and quiet on the way out, the
+// same feel premium mega-menus (Linear, Stripe) reach for. Each state
+// owns its own transition so AnimatePresence picks the right one for
+// enter vs. exit automatically.
+const DROPDOWN_VARIANTS = {
+  hidden: { opacity: 0, y: -6, transition: { duration: 0.14, ease: [0.4, 0, 1, 1] as [number, number, number, number] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+};
+
 const SHELL_SHADOW_WIDE =
   "inset 0 1px 0 0 rgba(255,255,255,0.12), inset 0 0 0 1px rgba(255,255,255,0.04), 0 40px 90px -30px rgba(0,0,0,0.8), 0 14px 32px -14px rgba(0,0,0,0.55)";
 const SHELL_SHADOW_DOCKED =
@@ -176,136 +186,145 @@ const Navigation: React.FC = () => {
                     />
                   )}
                 </span>
+
+                {/* Mega-menus are anchored to their own trigger word, not   */}
+                {/* the wide nav pill — centering on the whole pill left a   */}
+                {/* dead zone between "Services"/"Articles" and the panel    */}
+                {/* below it, closing the menu before the pointer could      */}
+                {/* reach it. Nesting the panel inside the trigger's own     */}
+                {/* <Link> (already `relative`) fixes both the alignment     */}
+                {/* and the hover gap: the panel is a DOM descendant, so the */}
+                {/* browser doesn't fire mouseleave while crossing into it.  */}
+                {dropdownKey === "services" && (
+                  // A static wrapper owns the horizontal centering transform;
+                  // framer-motion owns the panel's own enter/exit transform.
+                  // Putting both `-translate-x-1/2` and motion's `y`/`scale`
+                  // on the same element let framer silently overwrite the
+                  // Tailwind transform, so the panel never actually centered.
+                  <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 z-[70]">
+                  <AnimatePresence>
+                    {openMenu === "services" && (
+                      <motion.div
+                        variants={DROPDOWN_VARIANTS}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        onMouseEnter={() => openDropdown("services")}
+                        onMouseLeave={closeDropdownSoon}
+                        style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
+                        className="w-[640px] rounded-3xl border border-white/[0.06] p-3"
+                      >
+                        <div className="grid grid-cols-2 gap-1.5 p-1.5">
+                          {services.map((service) => (
+                            <Link
+                              key={service.slug}
+                              to={`/services/${service.slug}`}
+                              className="group flex items-start gap-3.5 rounded-2xl p-3.5 hover:bg-white/[0.04] transition-colors duration-200"
+                            >
+                              <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary/25 bg-background flex-shrink-0 group-hover:border-primary/45 transition-colors duration-200">
+                                <service.icon size={17} className="text-primary" />
+                              </span>
+                              <span className="min-w-0">
+                                <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
+                                  {service.title}
+                                </span>
+                                <span className="block text-[12.5px] text-muted-foreground/70 leading-snug mt-0.5 line-clamp-2">
+                                  {service.subtitle}
+                                </span>
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+
+                        {/* Rescue stays visually distinct from the four equal cards  */}
+                        {/* above — same rule the Services hub itself already follows: */}
+                        {/* it's a different buyer state (something stuck, not         */}
+                        {/* something new), not a fifth interchangeable option.        */}
+                        <div className="px-1.5 pb-1.5">
+                          <Link
+                            to={`/services/${rescueService.slug}`}
+                            className="group flex items-center gap-3.5 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3.5 hover:bg-white/[0.05] hover:border-primary/20 transition-colors duration-200"
+                          >
+                            <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-border/60 bg-background flex-shrink-0 group-hover:border-primary/40 transition-colors duration-200">
+                              <rescueService.icon size={17} className="text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                            </span>
+                            <span className="min-w-0">
+                              <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
+                                {rescueService.title}
+                              </span>
+                              <span className="block text-[12.5px] text-muted-foreground/70 leading-snug mt-0.5">
+                                {rescueService.subtitle}
+                              </span>
+                            </span>
+                          </Link>
+                        </div>
+
+                        <div className="mt-1 pt-3 px-4 pb-2 border-t border-white/[0.06]">
+                          <Link
+                            to="/services"
+                            className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
+                          >
+                            View all services
+                            <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  </div>
+                )}
+
+                {dropdownKey === "articles" && (
+                  <AnimatePresence>
+                    {openMenu === "articles" && (
+                      <motion.div
+                        variants={DROPDOWN_VARIANTS}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        onMouseEnter={() => openDropdown("articles")}
+                        onMouseLeave={closeDropdownSoon}
+                        style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
+                        className="absolute top-full mt-3 right-0 w-[420px] rounded-3xl border border-white/[0.06] p-3 z-[70]"
+                      >
+                        <div className="px-1 pt-1 pb-2">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary/70 px-2.5">Featured Reading</p>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          {FEATURED_ARTICLES.map((article) => (
+                            <Link
+                              key={article.slug}
+                              to={`/articles/${article.slug}`}
+                              className="group rounded-2xl p-3.5 hover:bg-white/[0.04] transition-colors duration-200"
+                            >
+                              <div className="flex items-center gap-2 text-[11px] text-muted-foreground/60 mb-1">
+                                <span>{article.category}</span>
+                                <span aria-hidden="true">·</span>
+                                <span>{article.readTime}</span>
+                              </div>
+                              <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">
+                                {article.title}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-1 pt-3 px-4 pb-2 border-t border-white/[0.06]">
+                          <Link
+                            to="/articles"
+                            className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
+                          >
+                            View all articles
+                            <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
               </Link>
             );
           })}
         </div>
-
-        {/* Services mega-menu — the one real gap in an otherwise complete   */}
-        {/* nav: five distinct service pages existed with no way to reach   */}
-        {/* any of them except through /services itself. Same material as   */}
-        {/* the shell it hangs from, not a generic dropdown card.            */}
-        <AnimatePresence>
-          {openMenu === "services" && (
-            <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.22, ease: EASE }}
-              onMouseEnter={() => openDropdown("services")}
-              onMouseLeave={closeDropdownSoon}
-              style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-              className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[640px] rounded-3xl border border-white/[0.06] p-3 z-[70]"
-            >
-              <div className="grid grid-cols-2 gap-1.5 p-1.5">
-                {services.map((service) => (
-                  <Link
-                    key={service.slug}
-                    to={`/services/${service.slug}`}
-                    className="group flex items-start gap-3.5 rounded-2xl p-3.5 hover:bg-white/[0.04] transition-colors duration-200"
-                  >
-                    <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary/25 bg-background flex-shrink-0 group-hover:border-primary/45 transition-colors duration-200">
-                      <service.icon size={17} className="text-primary" />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
-                        {service.title}
-                      </span>
-                      <span className="block text-[12.5px] text-muted-foreground/70 leading-snug mt-0.5 line-clamp-2">
-                        {service.subtitle}
-                      </span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Rescue stays visually distinct from the four equal cards  */}
-              {/* above — same rule the Services hub itself already follows: */}
-              {/* it's a different buyer state (something stuck, not         */}
-              {/* something new), not a fifth interchangeable option.        */}
-              <div className="px-1.5 pb-1.5">
-                <Link
-                  to={`/services/${rescueService.slug}`}
-                  className="group flex items-center gap-3.5 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3.5 hover:bg-white/[0.05] hover:border-primary/20 transition-colors duration-200"
-                >
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-border/60 bg-background flex-shrink-0 group-hover:border-primary/40 transition-colors duration-200">
-                    <rescueService.icon size={17} className="text-muted-foreground group-hover:text-primary transition-colors duration-200" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
-                      {rescueService.title}
-                    </span>
-                    <span className="block text-[12.5px] text-muted-foreground/70 leading-snug mt-0.5">
-                      {rescueService.subtitle}
-                    </span>
-                  </span>
-                </Link>
-              </div>
-
-              <div className="mt-1 pt-3 px-4 pb-2 border-t border-white/[0.06]">
-                <Link
-                  to="/services"
-                  className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
-                >
-                  View all services
-                  <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Articles mega-menu — only the pieces already marked `featured`  */}
-        {/* in the data, the same editorial call already driving the       */}
-        {/* Articles hub's own spotlight section. Deliberately not a       */}
-        {/* category menu: one category has zero real articles in it and   */}
-        {/* another is missing from the filter list entirely, so a         */}
-        {/* category-based menu would link straight to a dead end.         */}
-        <AnimatePresence>
-          {openMenu === "articles" && (
-            <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.22, ease: EASE }}
-              onMouseEnter={() => openDropdown("articles")}
-              onMouseLeave={closeDropdownSoon}
-              style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-              className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[420px] rounded-3xl border border-white/[0.06] p-3 z-[70]"
-            >
-              <div className="px-1 pt-1 pb-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary/70 px-2.5">Featured Reading</p>
-              </div>
-              <div className="flex flex-col gap-1">
-                {FEATURED_ARTICLES.map((article) => (
-                  <Link
-                    key={article.slug}
-                    to={`/articles/${article.slug}`}
-                    className="group rounded-2xl p-3.5 hover:bg-white/[0.04] transition-colors duration-200"
-                  >
-                    <div className="flex items-center gap-2 text-[11px] text-muted-foreground/60 mb-1">
-                      <span>{article.category}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{article.readTime}</span>
-                    </div>
-                    <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">
-                      {article.title}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-1 pt-3 px-4 pb-2 border-t border-white/[0.06]">
-                <Link
-                  to="/articles"
-                  className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
-                >
-                  View all articles
-                  <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         <AnimatePresence mode="popLayout">
           {!isDocked && (

@@ -74,9 +74,15 @@ const AutomationDetailPage: React.FC = () => {
       {/* ================================================================ */}
       <section className="relative overflow-hidden bg-background pt-28 sm:pt-32 pb-20 sm:pb-24">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_10%,rgba(196,138,100,0.08),transparent_70%)]" />
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+        {/* Its own, wider row — left-aligned inside the narrow centered   */}
+        {/* content column left it stranded in empty space at wide         */}
+        {/* viewports, disconnected from everything below it. This width   */}
+        {/* anchors it near the true page edge instead, the way the        */}
+        {/* portfolio/article detail pages already do it.                  */}
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
           <AnimatedSection mode="hero">
-            <Link to="/services" className="inline-block mb-8">
+            <Link to="/services" className="inline-block">
               <motion.div
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.98 }}
@@ -89,6 +95,11 @@ const AutomationDetailPage: React.FC = () => {
                 All Services
               </motion.div>
             </Link>
+          </AnimatedSection>
+        </div>
+
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection mode="hero" delay={0.04}>
             <SectionEyebrow className="mb-7">AI Automation &amp; Workflows</SectionEyebrow>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight mb-6">{service.title}</h1>
             <p className="text-xl sm:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-xl mx-auto">
@@ -269,11 +280,32 @@ const AutomationDetailPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Plain connector — the dashed-to-solid transformation above     */}
-          {/* already carries this page's motion; a squiggle here would      */}
-          {/* just be a second, unrelated flourish.                          */}
-          <div className="relative flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <span className="w-px h-12 sm:h-14 bg-gradient-to-b from-border to-primary/50" />
+          <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
+            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+              <motion.path
+                d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M25 71 L38 81 L48 68"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: 0.75 }}
+              />
+            </svg>
           </div>
 
           <AnimatedSection delay={0.08} className="max-w-2xl mx-auto">
