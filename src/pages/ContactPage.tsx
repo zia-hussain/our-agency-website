@@ -7,7 +7,6 @@ import FAQAccordion from "../components/common/FAQAccordion";
 import SectionEyebrow from "../components/common/SectionEyebrow";
 import ClosingGlow from "../components/common/ClosingGlow";
 import ClientProofFilm from "../components/home/ClientProofFilm";
-import AnimatedStat from "../components/portfolio/AnimatedStat";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../config/site";
 import { contactFAQs } from "../data/faqs/contact";
@@ -19,21 +18,12 @@ import {
   MessageCircle,
   Clock,
   CheckCircle,
-  Zap,
-  Users,
-  Award,
 } from "lucide-react";
 import { trackCTAClick } from "../utils/analytics";
 import { routeLead } from "../services/leadRouter";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
-
-const TRUST_STATS = [
-  { icon: Zap, number: "24h", label: "Average response time" },
-  { icon: Users, number: "Founder-led", label: "Every conversation" },
-  { icon: Award, number: "100%", label: "Upwork job success" },
-];
 
 // Maps a service slug (as used in /contact?service=slug links from Services
 // and Project pages) to the plain-language label this form's dropdown uses.
@@ -271,21 +261,6 @@ const ContactPage: React.FC = () => {
               prove. We reply with real questions, not a form email.
             </p>
           </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ================================================================ */}
-      {/* TRUST STATS — same count-up ring-icon tiles as Portfolio, right   */}
-      {/* where someone is deciding whether writing this brief is worth it. */}
-      {/* ================================================================ */}
-      <section className="py-14 bg-card/10 border-y border-border/40 relative overflow-hidden">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgba(196,138,100,0.05),transparent_70%)]" />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            {TRUST_STATS.map((stat, index) => (
-              <AnimatedStat key={stat.label} icon={stat.icon} value={stat.number} label={stat.label} delay={index * 0.08} />
-            ))}
-          </div>
         </div>
       </section>
 
