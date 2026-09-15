@@ -2,8 +2,26 @@ import React from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
+import LegalTOC from "../components/common/LegalTOC";
 import { Shield, Mail, Phone } from "lucide-react";
 import { COMPANY } from "../config/constants.js";
+
+const TOC_ITEMS = [
+  { id: "introduction", label: "1. Introduction" },
+  { id: "information-we-collect", label: "2. Information We Collect" },
+  { id: "how-we-use-your-information", label: "3. How We Use Your Information" },
+  { id: "information-sharing-and-disclosure", label: "4. Information Sharing and Disclosure" },
+  { id: "data-security", label: "5. Data Security" },
+  { id: "cookies-and-tracking-technologies", label: "6. Cookies and Tracking Technologies" },
+  { id: "email-preferences-and-consent", label: "7. Email Preferences and Consent" },
+  { id: "service-providers", label: "8. Service Providers" },
+  { id: "your-rights-and-choices", label: "9. Your Rights and Choices" },
+  { id: "data-retention", label: "10. Data Retention" },
+  { id: "international-data-transfers", label: "11. International Data Transfers" },
+  { id: "childrens-privacy", label: "12. Children's Privacy" },
+  { id: "changes-to-this-privacy-policy", label: "13. Changes to This Privacy Policy" },
+  { id: "contact-us", label: "14. Contact Us" },
+];
 
 const PrivacyPolicyPage: React.FC = () => {
   return (
@@ -41,19 +59,26 @@ const PrivacyPolicyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Privacy Policy Content */}
+      {/* Privacy Policy Content — same prose system as the Articles detail */}
+      {/* page (border-top dividers between h2s, scroll-mt for the anchor   */}
+      {/* jumps below) instead of the thinner default prose treatment.      */}
       <section className="py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
+            <LegalTOC items={TOC_ITEMS} />
+
             <div
               className="prose prose-lg prose-invert max-w-none
-                           prose-headings:text-foreground prose-headings:font-bold
-                           prose-p:text-muted-foreground prose-p:leading-relaxed
+                           prose-headings:scroll-mt-28 prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
+                           prose-h2:mt-14 prose-h2:mb-5 prose-h2:border-t prose-h2:border-border/70 prose-h2:pt-10 prose-h2:text-2xl md:prose-h2:text-3xl
+                           prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl
+                           prose-p:text-muted-foreground prose-p:leading-[1.9]
                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                            prose-strong:text-foreground prose-strong:font-semibold
-                           prose-ul:text-muted-foreground prose-li:text-muted-foreground"
+                           prose-ul:text-muted-foreground prose-li:my-1.5 prose-li:leading-[1.8] marker:prose-li:text-primary/70
+                           [&>h2:first-of-type]:mt-0 [&>h2:first-of-type]:border-t-0 [&>h2:first-of-type]:pt-0"
             >
-              <h2>1. Introduction</h2>
+              <h2 id="introduction">1. Introduction</h2>
               <p>
                 Welcome to {COMPANY.name}. We are committed to protecting your
                 privacy and ensuring the security of your personal information.
@@ -62,7 +87,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 services.
               </p>
 
-              <h2>2. Information We Collect</h2>
+              <h2 id="information-we-collect">2. Information We Collect</h2>
               <h3>Personal Information</h3>
               <p>
                 We may collect personal information that you voluntarily provide
@@ -95,7 +120,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 <li>Referring website and search terms used</li>
               </ul>
 
-              <h2>3. How We Use Your Information</h2>
+              <h2 id="how-we-use-your-information">3. How We Use Your Information</h2>
               <p>We use the information we collect to:</p>
               <ul>
                 <li>Provide and improve our services</li>
@@ -107,7 +132,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 <li>Comply with legal obligations</li>
               </ul>
 
-              <h2>4. Information Sharing and Disclosure</h2>
+              <h2 id="information-sharing-and-disclosure">4. Information Sharing and Disclosure</h2>
               <p>
                 We do not sell, trade, or otherwise transfer your personal
                 information to third parties without your consent, except in the
@@ -124,7 +149,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 <li>In connection with a business transfer or acquisition</li>
               </ul>
 
-              <h2>5. Data Security</h2>
+              <h2 id="data-security">5. Data Security</h2>
               <p>
                 We implement appropriate technical and organizational security
                 measures to protect your personal information against
@@ -133,7 +158,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 secure.
               </p>
 
-              <h2>6. Cookies and Tracking Technologies</h2>
+              <h2 id="cookies-and-tracking-technologies">6. Cookies and Tracking Technologies</h2>
               <p>
                 We use cookies and similar tracking technologies to enhance your
                 browsing experience, analyze website traffic, and understand
@@ -141,7 +166,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 browser preferences.
               </p>
 
-              <h2>7. Email Preferences and Consent</h2>
+              <h2 id="email-preferences-and-consent">7. Email Preferences and Consent</h2>
               <p>
                 Project inquiries, requested downloads, and calculator reports
                 may trigger transactional emails needed to fulfill your
@@ -152,7 +177,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 address.
               </p>
 
-              <h2>8. Service Providers</h2>
+              <h2 id="service-providers">8. Service Providers</h2>
               <p>
                 We use carefully selected providers to operate the website and
                 respond to requests, including Supabase for secure data storage,
@@ -161,7 +186,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 aggregated website measurement.
               </p>
 
-              <h2>9. Your Rights and Choices</h2>
+              <h2 id="your-rights-and-choices">9. Your Rights and Choices</h2>
               <p>You have the right to:</p>
               <ul>
                 <li>Access and update your personal information</li>
@@ -170,14 +195,14 @@ const PrivacyPolicyPage: React.FC = () => {
                 <li>Object to certain processing activities</li>
               </ul>
 
-              <h2>10. Data Retention</h2>
+              <h2 id="data-retention">10. Data Retention</h2>
               <p>
                 We retain your personal information only for as long as
                 necessary to fulfill the purposes outlined in this Privacy
                 Policy, unless a longer retention period is required by law.
               </p>
 
-              <h2>11. International Data Transfers</h2>
+              <h2 id="international-data-transfers">11. International Data Transfers</h2>
               <p>
                 Your information may be transferred to and processed in
                 countries other than your own. We ensure appropriate safeguards
@@ -185,21 +210,21 @@ const PrivacyPolicyPage: React.FC = () => {
                 transfers.
               </p>
 
-              <h2>12. Children's Privacy</h2>
+              <h2 id="childrens-privacy">12. Children's Privacy</h2>
               <p>
                 Our services are not directed to individuals under the age of
                 16. We do not knowingly collect personal information from
                 children under 16.
               </p>
 
-              <h2>13. Changes to This Privacy Policy</h2>
+              <h2 id="changes-to-this-privacy-policy">13. Changes to This Privacy Policy</h2>
               <p>
                 We may update this Privacy Policy from time to time. We will
                 notify you of any material changes by posting the new Privacy
                 Policy on this page and updating the "Last updated" date.
               </p>
 
-              <h2>14. Contact Us</h2>
+              <h2 id="contact-us">14. Contact Us</h2>
               <p>
                 If you have any questions about this Privacy Policy or our
                 privacy practices, please contact us:

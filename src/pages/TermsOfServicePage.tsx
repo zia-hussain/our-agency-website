@@ -2,8 +2,26 @@ import React from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
+import LegalTOC from "../components/common/LegalTOC";
 import { FileText, Mail, Phone } from "lucide-react";
 import { COMPANY } from "../config/constants.js";
+
+const TOC_ITEMS = [
+  { id: "acceptance-of-terms", label: "1. Acceptance of Terms" },
+  { id: "description-of-service", label: "2. Description of Service" },
+  { id: "service-agreement", label: "3. Service Agreement" },
+  { id: "client-responsibilities", label: "4. Client Responsibilities" },
+  { id: "intellectual-property", label: "5. Intellectual Property" },
+  { id: "confidentiality", label: "6. Confidentiality" },
+  { id: "warranties-and-disclaimers", label: "7. Warranties and Disclaimers" },
+  { id: "limitation-of-liability", label: "8. Limitation of Liability" },
+  { id: "support-and-maintenance", label: "9. Support and Maintenance" },
+  { id: "termination", label: "10. Termination" },
+  { id: "force-majeure", label: "11. Force Majeure" },
+  { id: "governing-law", label: "12. Governing Law" },
+  { id: "modifications", label: "13. Modifications" },
+  { id: "contact-information", label: "14. Contact Information" },
+];
 
 const TermsOfServicePage: React.FC = () => {
   return (
@@ -41,19 +59,26 @@ const TermsOfServicePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Terms of Service Content */}
+      {/* Terms of Service Content — same prose system as the Articles      */}
+      {/* detail page (border-top dividers between h2s, scroll-mt for the   */}
+      {/* anchor jumps below) instead of the thinner default prose.         */}
       <section className="py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
+            <LegalTOC items={TOC_ITEMS} />
+
             <div
               className="prose prose-lg prose-invert max-w-none
-                           prose-headings:text-foreground prose-headings:font-bold
-                           prose-p:text-muted-foreground prose-p:leading-relaxed
+                           prose-headings:scroll-mt-28 prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
+                           prose-h2:mt-14 prose-h2:mb-5 prose-h2:border-t prose-h2:border-border/70 prose-h2:pt-10 prose-h2:text-2xl md:prose-h2:text-3xl
+                           prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl
+                           prose-p:text-muted-foreground prose-p:leading-[1.9]
                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                            prose-strong:text-foreground prose-strong:font-semibold
-                           prose-ul:text-muted-foreground prose-li:text-muted-foreground"
+                           prose-ul:text-muted-foreground prose-li:my-1.5 prose-li:leading-[1.8] marker:prose-li:text-primary/70
+                           [&>h2:first-of-type]:mt-0 [&>h2:first-of-type]:border-t-0 [&>h2:first-of-type]:pt-0"
             >
-              <h2>1. Acceptance of Terms</h2>
+              <h2 id="acceptance-of-terms">1. Acceptance of Terms</h2>
               <p>
                 By accessing and using the services provided by {COMPANY.name},
                 you accept and agree to be bound by the terms and provision of
@@ -61,7 +86,7 @@ const TermsOfServicePage: React.FC = () => {
                 please do not use this service.
               </p>
 
-              <h2>2. Description of Service</h2>
+              <h2 id="description-of-service">2. Description of Service</h2>
               <p>
                 {COMPANY.name} provides software development services including
                 but not limited to:
@@ -75,7 +100,7 @@ const TermsOfServicePage: React.FC = () => {
                 <li>Digital strategy consulting</li>
               </ul>
 
-              <h2>3. Service Agreement</h2>
+              <h2 id="service-agreement">3. Service Agreement</h2>
               <h3>Project Scope</h3>
               <p>
                 All projects will be clearly defined in a separate project
@@ -100,7 +125,7 @@ const TermsOfServicePage: React.FC = () => {
                 <li>All prices are in USD unless otherwise specified</li>
               </ul>
 
-              <h2>4. Client Responsibilities</h2>
+              <h2 id="client-responsibilities">4. Client Responsibilities</h2>
               <p>The client agrees to:</p>
               <ul>
                 <li>
@@ -113,7 +138,7 @@ const TermsOfServicePage: React.FC = () => {
                 <li>Provide accurate and complete project requirements</li>
               </ul>
 
-              <h2>5. Intellectual Property</h2>
+              <h2 id="intellectual-property">5. Intellectual Property</h2>
               <h3>Client-Owned Content</h3>
               <p>
                 The client retains ownership of all content, data, and materials
@@ -134,14 +159,14 @@ const TermsOfServicePage: React.FC = () => {
                 services that are subject to their own licensing terms.
               </p>
 
-              <h2>6. Confidentiality</h2>
+              <h2 id="confidentiality">6. Confidentiality</h2>
               <p>
                 {COMPANY.name} agrees to maintain the confidentiality of all
                 client information and will not disclose any confidential
                 information to third parties without prior written consent.
               </p>
 
-              <h2>7. Warranties and Disclaimers</h2>
+              <h2 id="warranties-and-disclaimers">7. Warranties and Disclaimers</h2>
               <p>
                 {COMPANY.name} warrants that services will be performed in a
                 professional manner. However, we make no warranties regarding:
@@ -154,21 +179,21 @@ const TermsOfServicePage: React.FC = () => {
                 </li>
               </ul>
 
-              <h2>8. Limitation of Liability</h2>
+              <h2 id="limitation-of-liability">8. Limitation of Liability</h2>
               <p>
                 {COMPANY.name}'s liability for any claim related to our services
                 shall not exceed the total amount paid by the client for the
                 specific project in question.
               </p>
 
-              <h2>9. Support and Maintenance</h2>
+              <h2 id="support-and-maintenance">9. Support and Maintenance</h2>
               <p>
                 Post-launch support and maintenance services are available
                 separately and will be outlined in a separate agreement if
                 requested.
               </p>
 
-              <h2>10. Termination</h2>
+              <h2 id="termination">10. Termination</h2>
               <p>
                 Either party may terminate the service agreement with written
                 notice. In case of termination:
@@ -183,7 +208,7 @@ const TermsOfServicePage: React.FC = () => {
                 <li>Confidentiality obligations will survive termination</li>
               </ul>
 
-              <h2>11. Force Majeure</h2>
+              <h2 id="force-majeure">11. Force Majeure</h2>
               <p>
                 {COMPANY.name} shall not be liable for any delay or failure to
                 perform due to circumstances beyond our reasonable control,
@@ -191,14 +216,14 @@ const TermsOfServicePage: React.FC = () => {
                 actions, or technical failures.
               </p>
 
-              <h2>12. Governing Law</h2>
+              <h2 id="governing-law">12. Governing Law</h2>
               <p>
                 These terms shall be governed by and construed in accordance
                 with the laws of Pakistan, without regard to conflict of law
                 principles.
               </p>
 
-              <h2>13. Modifications</h2>
+              <h2 id="modifications">13. Modifications</h2>
               <p>
                 {COMPANY.name} reserves the right to modify these terms at any
                 time. Clients will be notified of any material changes, and
@@ -206,7 +231,7 @@ const TermsOfServicePage: React.FC = () => {
                 modified terms.
               </p>
 
-              <h2>14. Contact Information</h2>
+              <h2 id="contact-information">14. Contact Information</h2>
               <p>
                 For questions about these Terms of Service, please contact us:
               </p>
