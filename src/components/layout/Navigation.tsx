@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, ChevronDown, X } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { services, rescueService } from "../../data/services";
 
 // One resolved object, not a UI panel: a solid, heavy instrument sitting
 // above the page, not a translucent bar blending into it. The glossy
@@ -24,9 +25,21 @@ const SHELL_SHADOW_DOCKED =
 const Navigation: React.FC = () => {
   const [isDocked, setIsDocked] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
+  const closeServicesTimeout = useRef<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
+
+  // Small delay on close so crossing the gap between the nav item and the
+  // panel below it doesn't flicker the menu shut mid-move.
+  const openServices = () => {
+    if (closeServicesTimeout.current) window.clearTimeout(closeServicesTimeout.current);
+    setIsServicesOpen(true);
+  };
+  const closeServicesSoon = () => {
+    closeServicesTimeout.current = window.setTimeout(() => setIsServicesOpen(false), 150);
+  };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -56,6 +69,7 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsServicesOpen(false);
   }, [location]);
 
   const isActiveRoute = (path: string) => location.pathname.startsWith(path);
@@ -83,7 +97,7 @@ const Navigation: React.FC = () => {
         }}
         transition={{ duration: 0.6, ease: EASE }}
         style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", width: "100%" }}
-        className="hidden lg:flex items-center justify-center border border-white/[0.04]"
+        className="relative hidden lg:flex items-center justify-center border border-white/[0.04]"
       >
         <AnimatePresence mode="popLayout">
           {!isDocked && (
@@ -118,10 +132,21 @@ const Navigation: React.FC = () => {
         >
           {NAV_ITEMS.map((item) => {
             const active = isActiveRoute(item.path);
+            const isServices = item.path === "/services";
             return (
-              <Link key={item.name} to={item.path} className="relative">
+              <Link
+                key={item.name}
+                to={item.path}
+                className="relative"
+                onMouseEnter={isServices ? openServices : undefined}
+                onMouseLeave={isServices ? closeServicesSoon : undefined}
+                onFocus={isServices ? openServices : undefined}
+                onBlur={isServices ? closeServicesSoon : undefined}
+                aria-expanded={isServices ? isServicesOpen : undefined}
+                aria-haspopup={isServices ? "true" : undefined}
+              >
                 <span
-                  className={`relative flex items-center rounded-full transition-all duration-500 ${
+                  className={`relative flex items-center gap-1 rounded-full transition-all duration-500 ${
                     isDocked ? "px-4 py-2.5 text-[14px]" : "px-0 py-1 text-[15px]"
                   } font-medium tracking-[-0.01em] ${
                     active
@@ -130,6 +155,14 @@ const Navigation: React.FC = () => {
                   }`}
                 >
                   {item.name}
+                  {isServices && (
+                    <ChevronDown
+                      size={13}
+                      strokeWidth={2.5}
+                      className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180" : ""}`}
+                      aria-hidden="true"
+                    />
+                  )}
                   {active && (
                     <motion.span
                       layoutId="nav-active-mark"
@@ -143,6 +176,80 @@ const Navigation: React.FC = () => {
             );
           })}
         </div>
+
+        {/* Services mega-menu — the one real gap in an otherwise complete   */}
+        {/* nav: five distinct service pages existed with no way to reach   */}
+        {/* any of them except through /services itself. Same material as   */}
+        {/* the shell it hangs from, not a generic dropdown card.            */}
+        <AnimatePresence>
+          {isServicesOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: EASE }}
+              onMouseEnter={openServices}
+              onMouseLeave={closeServicesSoon}
+              style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
+              className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[640px] rounded-3xl border border-white/[0.06] p-3"
+            >
+              <div className="grid grid-cols-2 gap-1.5 p-1.5">
+                {services.map((service) => (
+                  <Link
+                    key={service.slug}
+                    to={`/services/${service.slug}`}
+                    className="group flex items-start gap-3.5 rounded-2xl p-3.5 hover:bg-white/[0.04] transition-colors duration-200"
+                  >
+                    <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary/25 bg-background flex-shrink-0 group-hover:border-primary/45 transition-colors duration-200">
+                      <service.icon size={17} className="text-primary" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
+                        {service.title}
+                      </span>
+                      <span className="block text-[12.5px] text-muted-foreground/70 leading-snug mt-0.5 line-clamp-2">
+                        {service.subtitle}
+                      </span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Rescue stays visually distinct from the four equal cards  */}
+              {/* above — same rule the Services hub itself already follows: */}
+              {/* it's a different buyer state (something stuck, not         */}
+              {/* something new), not a fifth interchangeable option.        */}
+              <div className="px-1.5 pb-1.5">
+                <Link
+                  to={`/services/${rescueService.slug}`}
+                  className="group flex items-center gap-3.5 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3.5 hover:bg-white/[0.05] hover:border-primary/20 transition-colors duration-200"
+                >
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-border/60 bg-background flex-shrink-0 group-hover:border-primary/40 transition-colors duration-200">
+                    <rescueService.icon size={17} className="text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
+                      {rescueService.title}
+                    </span>
+                    <span className="block text-[12.5px] text-muted-foreground/70 leading-snug mt-0.5">
+                      {rescueService.subtitle}
+                    </span>
+                  </span>
+                </Link>
+              </div>
+
+              <div className="mt-1 pt-3 px-4 pb-2 border-t border-white/[0.06]">
+                <Link
+                  to="/services"
+                  className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  View all services
+                  <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence mode="popLayout">
           {!isDocked && (
