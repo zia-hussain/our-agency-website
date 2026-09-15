@@ -4,7 +4,7 @@ import {
   ArrowRight,
   ChevronDown,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";
 
@@ -32,6 +32,8 @@ const item = {
 };
 
 const Hero: React.FC = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -80,7 +82,36 @@ const Hero: React.FC = () => {
     "
               style={{ background: "linear-gradient(180deg, #18150F 0%, #0B0A08 100%)" }}
             >
-              <span>{BRAND_CONTENT.hero.badge}</span>
+              {/* The badge performs its own claim instead of just stating   */}
+              {/* it: "stalled" gets struck through, "shipped" lights up —   */}
+              {/* a single beat, once, timed just after the badge settles.   */}
+              <span className="inline-flex items-baseline gap-x-1.5">
+                <span>Where</span>
+                <span className="relative inline-block">
+                  <motion.span
+                    className="text-muted-foreground/60"
+                    animate={shouldReduceMotion ? undefined : { opacity: 0.5 }}
+                    transition={{ duration: 0.3, delay: 1.05 }}
+                  >
+                    stalled
+                  </motion.span>
+                  <motion.span
+                    aria-hidden="true"
+                    className="absolute left-0 right-0 top-1/2 h-px bg-muted-foreground/70 origin-left"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4, delay: 1.05, ease: [0.65, 0, 0.35, 1] }}
+                  />
+                </span>
+                <span>projects get</span>
+                <motion.span
+                  className="inline-block"
+                  animate={shouldReduceMotion ? undefined : { scale: [1, 1.1, 1] }}
+                  transition={{ duration: 0.5, delay: 1.45, times: [0, 0.45, 1], ease: "easeOut" }}
+                >
+                  shipped
+                </motion.span>
+              </span>
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
                 <span className="relative h-1.5 w-1.5 rounded-full bg-primary" />
