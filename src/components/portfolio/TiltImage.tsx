@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React from "react";
+import TiltFrame from "./TiltFrame";
 
 interface TiltImageProps {
   src: string;
@@ -8,58 +8,10 @@ interface TiltImageProps {
   frameClassName?: string;
 }
 
-// The tactile hallmark of a premium agency site — the image leans toward
-// the cursor with real depth and a light sheen that tracks it, instead of
-// sitting flat. Physics-based (spring), so it settles rather than snaps.
-const TiltImage: React.FC<TiltImageProps> = ({ src, alt, className = "", frameClassName = "" }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [hovering, setHovering] = useState(false);
-  const x = useMotionValue(0.5);
-  const y = useMotionValue(0.5);
-  const springX = useSpring(x, { stiffness: 200, damping: 20 });
-  const springY = useSpring(y, { stiffness: 200, damping: 20 });
-  const rotateX = useTransform(springY, [0, 1], [7, -7]);
-  const rotateY = useTransform(springX, [0, 1], [-7, 7]);
-  const glareX = useTransform(springX, [0, 1], ["0%", "100%"]);
-  const glareY = useTransform(springY, [0, 1], ["0%", "100%"]);
-
-  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width);
-    y.set((e.clientY - rect.top) / rect.height);
-  };
-
-  const reset = () => {
-    x.set(0.5);
-    y.set(0.5);
-    setHovering(false);
-  };
-
-  const glareBackground = useTransform(
-    [glareX, glareY],
-    ([gx, gy]) => `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,0.16), transparent 55%)`
-  );
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMove}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={reset}
-      style={{ rotateX, rotateY, transformPerspective: 1000 }}
-      className={`relative rounded-2xl border border-primary/25 bg-gradient-to-b from-primary/[0.06] to-transparent p-2 shadow-[0_40px_90px_-30px_rgba(196,138,100,0.35)] ${frameClassName}`}
-    >
-      <div className="relative overflow-hidden rounded-xl">
-        <img src={src} alt={alt} loading="lazy" className={`w-full object-cover ${className}`} />
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-          style={{ background: glareBackground, opacity: hovering ? 1 : 0 }}
-        />
-      </div>
-    </motion.div>
-  );
-};
+const TiltImage: React.FC<TiltImageProps> = ({ src, alt, className = "", frameClassName = "" }) => (
+  <TiltFrame frameClassName={frameClassName}>
+    <img src={src} alt={alt} loading="lazy" className={`w-full object-cover ${className}`} />
+  </TiltFrame>
+);
 
 export default TiltImage;

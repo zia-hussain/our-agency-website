@@ -2,7 +2,6 @@ import React from "react";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
-import { motion } from "framer-motion";
 import { FileText, Mail, Phone } from "lucide-react";
 import { COMPANY } from "../config/constants.js";
 
@@ -16,23 +15,21 @@ const TermsOfServicePage: React.FC = () => {
         url="https://zumetrix.com/terms-of-service"
       />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-background relative overflow-hidden">
+      {/* Hero Section — same hero language as the rest of the site, kept   */}
+      {/* deliberately restrained here: a legal page earns trust through    */}
+      {/* clarity, not spectacle. */}
+      <section className="pt-40 pb-20 bg-background relative overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_20%,rgba(196,138,100,0.08),transparent_38%)]" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection mode="hero" className="text-center">
-            <motion.div
-              initial={{ opacity: 0.95, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
-            >
-              <FileText size={16} className="mr-2" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-4 py-2 text-sm font-medium text-primary mb-8">
+              <FileText size={16} />
               Legal Terms & Conditions
-            </motion.div>
+            </span>
 
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-8 tracking-tight leading-tight">
-              Terms of
-              <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
+              <span className="block text-foreground">Terms of</span>
+              <span className="block bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent">
                 Service
               </span>
             </h1>
@@ -214,7 +211,7 @@ const TermsOfServicePage: React.FC = () => {
                 For questions about these Terms of Service, please contact us:
               </p>
 
-              <div className="not-prose bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 mt-8">
+              <div className="not-prose rounded-xl border border-border/60 bg-card/20 p-6 mt-8 shadow-[0_25px_50px_-28px_rgba(0,0,0,0.55)]">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <Mail size={20} className="text-primary" />

@@ -5,6 +5,9 @@ import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import FAQAccordion from "../components/common/FAQAccordion";
 import SectionEyebrow from "../components/common/SectionEyebrow";
+import ClosingGlow from "../components/common/ClosingGlow";
+import ClientProofFilm from "../components/home/ClientProofFilm";
+import AnimatedStat from "../components/portfolio/AnimatedStat";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../config/site";
 import { contactFAQs } from "../data/faqs/contact";
@@ -16,9 +19,21 @@ import {
   MessageCircle,
   Clock,
   CheckCircle,
+  Zap,
+  Users,
+  Award,
 } from "lucide-react";
 import { trackCTAClick } from "../utils/analytics";
 import { routeLead } from "../services/leadRouter";
+
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
+const TRUST_STATS = [
+  { icon: Zap, number: "24h", label: "Average response time" },
+  { icon: Users, number: "Founder-led", label: "Every conversation" },
+  { icon: Award, number: "100%", label: "Upwork job success" },
+];
 
 // Maps a service slug (as used in /contact?service=slug links from Services
 // and Project pages) to the plain-language label this form's dropdown uses.
@@ -226,33 +241,51 @@ const ContactPage: React.FC = () => {
         }}
       />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-background relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection mode="hero" className="text-center">
-            <motion.div
-              initial={{ opacity: 0.95, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center px-4 py-2 bg-card/50 backdrop-blur-xl border border-border rounded-full text-sm font-medium text-primary mb-8"
-            >
-              <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse-soft"></span>
+      {/* ================================================================ */}
+      {/* HERO — same badge/H1/gradient-line language as Portfolio/Articles/ */}
+      {/* Services. bg-shimmer was the pre-refresh pattern; dropped here     */}
+      {/* for the same reason it was dropped everywhere else it turned up.  */}
+      {/* ================================================================ */}
+      <section className="pt-40 pb-20 bg-background relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_20%,rgba(196,138,100,0.1),transparent_38%),radial-gradient(circle_at_15%_80%,rgba(196,138,100,0.06),transparent_32%)]"
+        />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <AnimatedSection mode="hero">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-4 py-2 text-sm font-medium text-primary mb-10">
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse-soft" aria-hidden="true" />
               Let's Talk
-            </motion.div>
+            </span>
 
-            <h1 className="mx-auto max-w-full text-[2.55rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight leading-[1.08]">
-              Bring Us the
-              <span className="block bg-shimmer bg-clip-text text-transparent pb-4 leading-[1.08]">
-                Real Problem
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.15] sm:leading-[1.05] mb-8">
+              <span className="block text-foreground">Bring us</span>
+              <span className="block bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent">
+                the real problem.
               </span>
             </h1>
 
-            <p className="mx-auto max-w-[22rem] px-1 text-base leading-[1.75] text-muted-foreground font-light sm:max-w-4xl sm:text-xl lg:text-2xl">
-              Tell us what is blocked, what is changing in the business, and
-              what a successful first release must prove. We will reply with
-              useful questions and the clearest next step.
+            <p className="text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              Tell us what's blocked and what a successful first release has to
+              prove. We reply with real questions, not a form email.
             </p>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* TRUST STATS — same count-up ring-icon tiles as Portfolio, right   */}
+      {/* where someone is deciding whether writing this brief is worth it. */}
+      {/* ================================================================ */}
+      <section className="py-14 bg-card/10 border-y border-border/40 relative overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgba(196,138,100,0.05),transparent_70%)]" />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            {TRUST_STATS.map((stat, index) => (
+              <AnimatedStat key={stat.label} icon={stat.icon} value={stat.number} label={stat.label} delay={index * 0.08} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -262,8 +295,8 @@ const ContactPage: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <AnimatedSection>
-              <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-8 hover:border-primary/30 ">
-                <h2 className="text-5xl font-bold text-foreground mb-8">
+              <div className="rounded-2xl border border-border/60 bg-card/20 p-8 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)]">
+                <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-8">
                   Tell Us About Your Project
                 </h2>
 
@@ -277,9 +310,9 @@ const ContactPage: React.FC = () => {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.2, type: "spring" }}
-                      className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                      className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-primary/30 bg-background mx-auto mb-6 shadow-[0_25px_50px_-22px_rgba(196,138,100,0.35)]"
                     >
-                      <CheckCircle size={32} className="text-primary" />
+                      <CheckCircle size={28} className="text-primary" />
                     </motion.div>
                     <h3 className="text-2xl font-bold text-foreground mb-4">
                       Project brief received
@@ -498,13 +531,16 @@ const ContactPage: React.FC = () => {
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="btn-sheen w-full bg-foreground text-background px-8 h-12 rounded-full font-medium tracking-wide
-               hover:opacity-95 hover:shadow-lg hover:shadow-foreground/10
+                      className="btn-sheen group relative w-full bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground px-8 h-14 rounded-full font-semibold tracking-wide
+               shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset,0_2px_10px_-2px_rgba(0,0,0,0.35),0_16px_36px_-16px_rgba(196,138,100,0.4)]
+               hover:shadow-[0_1px_0_0_rgba(255,255,255,0.3)_inset,0_2px_10px_-2px_rgba(0,0,0,0.4),0_20px_42px_-16px_rgba(196,138,100,0.5)]
+               transition-shadow duration-300
                disabled:opacity-50 disabled:cursor-not-allowed"
                       aria-busy={isSubmitting}
                     >
+                      <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.14] via-white/0 to-black/[0.06]" />
                       {isSubmitting ? (
-                        <span className="inline-flex items-center gap-3">
+                        <span className="relative inline-flex items-center gap-3">
                           <motion.span
                             animate={{ rotate: 360 }}
                             transition={{
@@ -512,13 +548,13 @@ const ContactPage: React.FC = () => {
                               repeat: Infinity,
                               ease: "linear",
                             }}
-                            className="inline-block h-4 w-4 border-2 border-background/40 border-t-background rounded-full"
+                            className="inline-block h-4 w-4 border-2 border-primary-foreground/40 border-t-primary-foreground rounded-full"
                             aria-hidden="true"
                           />
                           Sending…
                         </span>
                       ) : (
-                        "Send Message"
+                        <span className="relative">Send Message</span>
                       )}
                     </motion.button>
                     {submitError && (
@@ -535,7 +571,7 @@ const ContactPage: React.FC = () => {
             <AnimatedSection delay={0.1}>
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-5xl font-bold text-foreground mb-6">
+                  <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-6">
                     Get In Touch
                   </h2>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -545,40 +581,35 @@ const ContactPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {contactInfo.map((info) => (
                     <motion.a
                       key={info.title}
                       href={info.action}
-                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileHover={{ y: -3 }}
                       transition={{ duration: 0.15 }}
-                      className="block bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 hover:border-primary/30 hover:shadow-card-hover  group"
+                      className="group flex items-start gap-4 rounded-xl border border-border/60 bg-card/20 p-6 shadow-[0_25px_50px_-28px_rgba(0,0,0,0.55)] hover:border-primary/30 hover:bg-card/30 transition-colors duration-300"
                     >
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-beige-gradient rounded-lg flex items-center justify-center group-hover:shadow-glow ">
-                          <info.icon
-                            size={24}
-                            className="text-primary-foreground"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-150">
-                            {info.title}
-                          </h3>
-                          <p className="text-lg font-medium text-foreground mb-2">
-                            {info.details}
-                          </p>
-                          <p className="text-muted-foreground text-sm">
-                            {info.description}
-                          </p>
-                        </div>
+                      <span className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-primary/30 bg-background flex-shrink-0 shadow-[0_20px_40px_-20px_rgba(196,138,100,0.35)] group-hover:border-primary/50 transition-colors duration-300">
+                        <info.icon size={20} className="text-primary" />
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-150">
+                          {info.title}
+                        </h3>
+                        <p className="text-lg font-medium text-foreground mb-1.5 truncate">
+                          {info.details}
+                        </p>
+                        <p className="text-muted-foreground text-sm">
+                          {info.description}
+                        </p>
                       </div>
                     </motion.a>
                   ))}
                 </div>
 
                 {/* Quick Actions */}
-                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                <div className="rounded-xl border border-primary/20 bg-gradient-to-b from-primary/[0.07] to-card/20 p-6 shadow-[0_25px_50px_-28px_rgba(0,0,0,0.55)]">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                     <Calendar size={20} className="text-primary" />
                     Quick Actions
@@ -589,7 +620,7 @@ const ContactPage: React.FC = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="btn-sheen w-full text-left px-5 py-3 bg-card/50 rounded-full border border-border hover:border-primary/30 transition-colors duration-150 group"
+                      className="btn-sheen w-full text-left px-5 py-3 bg-background/40 rounded-full border border-border/60 hover:border-primary/30 transition-colors duration-150 group"
                     >
                       <div className="flex items-center gap-3">
                         <MessageCircle size={16} className="text-primary" />
@@ -603,7 +634,7 @@ const ContactPage: React.FC = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="btn-sheen w-full text-left px-5 py-3 bg-card/50 rounded-full border border-border hover:border-primary/30 transition-colors duration-150 group"
+                      className="btn-sheen w-full text-left px-5 py-3 bg-background/40 rounded-full border border-border/60 hover:border-primary/30 transition-colors duration-150 group"
                     >
                       <div className="flex items-center gap-3">
                         <Clock size={16} className="text-primary" />
@@ -619,6 +650,18 @@ const ContactPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* ================================================================ */}
+      {/* CLIENTS, ON CAMERA — real proof right before the FAQ, so the last */}
+      {/* thing before "any questions?" is someone who already sent this    */}
+      {/* same brief and is glad they did.                                  */}
+      {/* ================================================================ */}
+      <ClientProofFilm
+        eyebrow="Before You Hit Send"
+        headingLead="Here's what happens"
+        headingMain="after someone sends us exactly this."
+        exitLine="Real replies to real briefs. Yours would be next."
+      />
 
       {/* FAQ Section — same interaction language as Services/Home: eyebrow,   */}
       {/* two-tone sentence, vertical thread into the list, FAQAccordion.      */}

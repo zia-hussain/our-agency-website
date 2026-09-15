@@ -4,6 +4,8 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import ArticleVisual from "../components/common/ArticleVisual";
+import TiltFrame from "../components/portfolio/TiltFrame";
+import ClosingGlow from "../components/common/ClosingGlow";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -14,12 +16,10 @@ import {
   Copy,
   Check,
   MessageCircle,
-  ExternalLink,
   ArrowRight,
   User,
   Twitter,
   Linkedin,
-  Eye,
 } from "lucide-react";
 import { articles } from "../data/articles.js";
 
@@ -319,15 +319,14 @@ const ArticleDetailPage: React.FC = () => {
       <section className="pb-16 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection mode="hero">
-            {/* Category Badge */}
-            <div className="flex items-center gap-3 mb-6">
-              <span className="px-4 py-2 bg-gradient-to-r from-primary/20 to-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">
-                {article.category}
-              </span>
+            {/* Category / featured — plain meta row, not a pair of badges */}
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/70 mb-6">
+              <span>{article.category}</span>
               {article.featured && (
-                <span className="px-4 py-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold">
-                  Featured Article
-                </span>
+                <>
+                  <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+                  <span className="text-primary normal-case tracking-normal">Featured</span>
+                </>
               )}
             </div>
 
@@ -475,11 +474,9 @@ const ArticleDetailPage: React.FC = () => {
       <section className="pb-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <ArticleVisual
-              title={article.title}
-              category={article.category}
-              variant="hero"
-            />
+            <TiltFrame>
+              <ArticleVisual title={article.title} category={article.category} variant="hero" />
+            </TiltFrame>
           </AnimatedSection>
         </div>
       </section>
@@ -602,9 +599,9 @@ const ArticleDetailPage: React.FC = () => {
                 {prevArticle && (
                   <Link to={`/articles/${prevArticle.slug}`}>
                     <motion.div
-                      whileHover={{ x: -4, scale: 1.01 }}
-                      transition={{ duration: 0.1 }}
-                      className="bg-card/60 backdrop-blur-xl border border-border rounded-xl p-8 hover:border-primary/30 hover:shadow-2xl transition-all duration-100 group h-full"
+                      whileHover={{ x: -4 }}
+                      transition={{ duration: 0.15 }}
+                      className="rounded-xl border border-border/60 bg-card/20 p-8 shadow-[0_25px_50px_-28px_rgba(0,0,0,0.55)] hover:border-primary/30 hover:bg-card/30 transition-colors duration-300 group h-full"
                     >
                       <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
                         <ArrowLeft
@@ -625,9 +622,9 @@ const ArticleDetailPage: React.FC = () => {
                 {nextArticle && (
                   <Link to={`/articles/${nextArticle.slug}`}>
                     <motion.div
-                      whileHover={{ x: 4, scale: 1.01 }}
-                      transition={{ duration: 0.1 }}
-                      className="bg-card/60 backdrop-blur-xl border border-border rounded-xl p-8 hover:border-primary/30 hover:shadow-2xl transition-all duration-100 text-right group h-full"
+                      whileHover={{ x: 4 }}
+                      transition={{ duration: 0.15 }}
+                      className="rounded-xl border border-border/60 bg-card/20 p-8 shadow-[0_25px_50px_-28px_rgba(0,0,0,0.55)] hover:border-primary/30 hover:bg-card/30 transition-colors duration-300 text-right group h-full"
                     >
                       <div className="flex items-center justify-end gap-3 text-sm text-muted-foreground mb-4">
                         <span className="font-medium">Next Article</span>
@@ -775,75 +772,53 @@ const ArticleDetailPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Lead Magnet CTA */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center">
-            <div className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-xl border border-border rounded-2xl p-16 max-w-5xl mx-auto shadow-2xl">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg">
-                <Eye size={24} className="text-primary-foreground" />
-              </div>
-
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 tracking-tight">
-                Ready to Transform Your
-                <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                  Business Vision?
+      {/* CLOSE — same richest-tier button + breathing glow the service      */}
+      {/* pages, Portfolio, and the case study page reserve for their final  */}
+      {/* CTA, not a separate "lead magnet" visual system.                   */}
+      <section className="relative overflow-hidden bg-background py-32 sm:py-40">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_55%_at_50%_50%,rgba(196,138,100,0.07),transparent_70%)]" />
+        <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
+              <span className="block text-muted-foreground/50">Want this applied</span>
+              <span className="block text-foreground mt-2">to your own product?</span>
+            </p>
+            <p className="text-base text-muted-foreground max-w-md mx-auto mb-12 leading-relaxed">
+              A free 30-minute call with the founders — your project, your stage, a real next step.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.06} className="relative inline-block">
+            <ClosingGlow />
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.02, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className="group relative bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-9 pr-7 sm:pl-11 sm:pr-9 py-4 sm:py-[1.35rem] rounded-full font-semibold text-base sm:text-xl tracking-[-0.01em]
+                         shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset,0_2px_10px_-2px_rgba(0,0,0,0.35),0_16px_36px_-16px_rgba(196,138,100,0.4)]
+                         hover:shadow-[0_1px_0_0_rgba(255,255,255,0.3)_inset,0_2px_10px_-2px_rgba(0,0,0,0.4),0_20px_42px_-16px_rgba(196,138,100,0.5)]
+                         flex items-center gap-3 sm:gap-4 overflow-hidden transition-shadow duration-300 btn-sheen mx-auto"
+              >
+                <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.14] via-white/0 to-black/[0.06]" />
+                <span className="relative">Free Consultation</span>
+                <span className="relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/10 group-hover:bg-black/[0.14] transition-colors duration-300">
+                  <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
-              </h2>
-
-              <p className="text-xl text-muted-foreground mb-12 leading-relaxed font-light max-w-3xl mx-auto">
-                Get a free 30-minute strategy consultation with our founders.
-                We'll discuss your project requirements, provide expert
-                insights, and create a roadmap to bring your vision to life.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.15 }}
-                    className="btn-sheen group bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-full font-medium 
-                             hover:shadow-glow transition-all duration-300 
-                             flex items-center gap-3 text-lg"
-                  >
-                    Free Consultation
-                    <ExternalLink
-                      size={20}
-                      className="group-hover:translate-x-1 transition-transform duration-300"
-                    />
-                  </motion.button>
-                </Link>
-
-                <motion.button
-                  onClick={() =>
-                    window.open(
-                      import.meta.env.VITE_CALENDLY_URL ||
-                        "https://calendly.com/zumetrix-labs/consultation",
-                      "_blank"
-                    )
-                  }
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
-                  className="btn-sheen group bg-card/50 backdrop-blur-xl text-foreground hover:text-primary px-8 py-4 rounded-full font-medium 
-                           hover:bg-card/70 transition-all duration-300 
-                           flex items-center gap-3 text-lg border border-border hover:border-primary/30"
-                >
-                  Schedule Call
-                  <Calendar size={20} />
-                </motion.button>
-              </div>
-
-              <div className="mt-12 pt-8 border-t border-border/30">
-                <div className="mx-auto inline-block rounded-full bg-muted/20 px-6 py-2">
-                  <p className="text-center text-base tracking-wide text-muted-foreground">
-                    No obligation • Expert insights • Custom roadmap • 24-hour
-                    response
-                  </p>
-                </div>
-              </div>
-            </div>
+              </motion.button>
+            </Link>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1} className="mt-8">
+            <button
+              onClick={() =>
+                window.open(
+                  import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/zumetrix-labs/consultation",
+                  "_blank"
+                )
+              }
+              className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
+            >
+              Or schedule a call directly →
+            </button>
           </AnimatedSection>
         </div>
       </section>
