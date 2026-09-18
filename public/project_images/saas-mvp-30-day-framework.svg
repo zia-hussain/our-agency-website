@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="glow7" cx="50%" cy="0%" r="75%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="grain7">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg7)"/>
+  <rect width="1200" height="630" fill="url(#glow7)"/>
+  <rect width="1200" height="630" filter="url(#grain7)"/>
+
+  <text x="80" y="72" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="2.5" fill="#C48A64">THE ZUMETRIX 30-DAY MVP FRAMEWORK</text>
+  <text x="80" y="118" font-family="Georgia, serif" font-weight="600" font-size="32" fill="#F3EAE1">The aggressive end, not the average.</text>
+
+  <!-- Week blocks -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="80" y="200" width="245" height="90" rx="10" fill="#2E2118" stroke="#C48A64" stroke-width="1.5"/>
+    <text x="100" y="230" font-family="IBM Plex Mono, monospace" font-size="12" fill="#C48A64">WEEK 1 &#183; DAYS 1&#8211;7</text>
+    <text x="100" y="256" font-weight="700" font-size="15" fill="#F3EAE1">Discovery &amp; Planning</text>
+    <text x="100" y="276" font-size="12.5" fill="#A39C8C">Scope locked, priorities set</text>
+
+    <rect x="335" y="200" width="245" height="90" rx="10" fill="#2E2118" stroke="#C48A64" stroke-width="1.5"/>
+    <text x="355" y="230" font-family="IBM Plex Mono, monospace" font-size="12" fill="#C48A64">WEEK 2 &#183; DAYS 8&#8211;14</text>
+    <text x="355" y="256" font-weight="700" font-size="15" fill="#F3EAE1">Core Development</text>
+    <text x="355" y="276" font-size="12.5" fill="#A39C8C">The product's actual job</text>
+
+    <rect x="590" y="200" width="245" height="90" rx="10" fill="#2E2118" stroke="#C48A64" stroke-width="1.5"/>
+    <text x="610" y="230" font-family="IBM Plex Mono, monospace" font-size="12" fill="#C48A64">WEEK 3 &#183; DAYS 15&#8211;21</text>
+    <text x="610" y="256" font-weight="700" font-size="15" fill="#F3EAE1">Polish &amp; Enhancement</text>
+    <text x="610" y="276" font-size="12.5" fill="#A39C8C">Edge cases, real usability</text>
+
+    <rect x="845" y="200" width="245" height="90" rx="10" fill="#2E2118" stroke="#C48A64" stroke-width="1.5"/>
+    <text x="865" y="230" font-family="IBM Plex Mono, monospace" font-size="12" fill="#C48A64">WEEK 4 &#183; DAYS 22&#8211;30</text>
+    <text x="865" y="256" font-weight="700" font-size="15" fill="#F3EAE1">Launch Preparation</text>
+    <text x="865" y="276" font-size="12.5" fill="#A39C8C">Ship, watch, respond</text>
+  </g>
+
+  <!-- Connecting lines between blocks -->
+  <g stroke="#5A5044" stroke-width="2" fill="none">
+    <path d="M 325 245 L 335 245"/>
+    <path d="M 580 245 L 590 245"/>
+    <path d="M 835 245 L 845 245"/>
+  </g>
+
+  <!-- Realistic-range extension bar -->
+  <line x1="80" y1="360" x2="1090" y2="360" stroke="#332C22" stroke-width="2"/>
+  <rect x="80" y="352" width="255" height="16" rx="8" fill="#C48A64"/>
+  <rect x="335" y="352" width="510" height="16" rx="8" fill="#5A5044" opacity="0.55"/>
+  <text x="80" y="404" font-family="Public Sans, sans-serif" font-weight="700" font-size="14" fill="#C48A64">30 DAYS &#8212; the aggressive end</text>
+  <text x="335" y="404" font-family="Public Sans, sans-serif" font-weight="700" font-size="14" fill="#A39C8C">MOST REAL FIRST RELEASES: 4&#8211;8 WEEKS</text>
+
+  <text x="80" y="450" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#BFB4A2">Both are real outcomes. The honest question isn't "can it be 30 days" —</text>
+  <text x="80" y="476" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#BFB4A2">it's whether the problem was proven before the clock started.</text>
+
+  <text x="80" y="590" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="1.5" fill="#5A5044">ZUMETRIX LABS &#8212; SAAS MVP DEVELOPMENT</text>
+  <text x="1120" y="590" font-family="IBM Plex Mono, monospace" font-size="13" fill="#5A5044" text-anchor="end">FRAMEWORK &#183; NOT A GUARANTEE</text>
+</svg>

@@ -7,6 +7,7 @@ import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
 import SectionEyebrow from "../../components/common/SectionEyebrow";
 import FAQAccordion from "../../components/common/FAQAccordion";
+import RelatedReading from "../../components/common/RelatedReading";
 import ClosingGlow from "../../components/common/ClosingGlow";
 import { services } from "../../data/services";
 import { automationDetailFAQs } from "../../data/faqs/service-automation";
@@ -519,6 +520,33 @@ const AutomationDetailPage: React.FC = () => {
           <AnimatedSection delay={0.06}>
             <FAQAccordion items={automationDetailFAQs} idPrefix="automation-detail-faq" />
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* RELATED READING                                                    */}
+      {/* ================================================================ */}
+      <section className="pb-8 bg-background">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <RelatedReading
+            links={[
+              {
+                href: "/articles/when-is-ai-automation-the-wrong-choice",
+                label: "When is AI automation the wrong choice?",
+                description: "Deterministic, AI-assisted, human-in-the-loop, or not yet — how we actually decide.",
+              },
+              {
+                href: "/articles/ai-automation-business-growth",
+                label: "AI automation for business: where to start",
+                description: "Where AI automation genuinely helps, and which workflows to automate first.",
+              },
+              {
+                href: "/portfolio/stripe-to-airtable-subscription-sync",
+                label: "Stripe to Airtable — subscription sync automation",
+                description: "A real deterministic automation: no AI in the loop, because none was needed.",
+              },
+            ]}
+          />
         </div>
       </section>
 

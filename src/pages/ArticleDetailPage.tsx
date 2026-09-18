@@ -172,7 +172,7 @@ const ArticleDetailPage: React.FC = () => {
       },
     },
     datePublished: article.publishedAt,
-    dateModified: article.publishedAt,
+    dateModified: article.updatedAt || article.publishedAt,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `https://zumetrix.com/articles/${article.slug}`,
@@ -182,77 +182,37 @@ const ArticleDetailPage: React.FC = () => {
     wordCount: (article.content || "").split(" ").length,
   };
 
-  const faqStructuredData = article.faqs?.length
-    ? {
-        "@type": "FAQPage",
-        "@id": `https://zumetrix.com/articles/${article.slug}#faq`,
-        mainEntity: article.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.answer,
-          },
-        })),
-      }
-    : null;
-
+  // No FAQPage entity here, deliberately: Google deprecated FAQ rich results
+  // in May 2026 (see the Phase 1 correction pass). The FAQs still render as
+  // real page content via FAQAccordion below — this only concerns schema.
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": faqStructuredData
-      ? [
-          articleStructuredData,
-          faqStructuredData,
+    "@graph": [
+      articleStructuredData,
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
           {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://zumetrix.com/",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Software Articles",
-                item: "https://zumetrix.com/articles",
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: article.title,
-                item: `https://zumetrix.com/articles/${article.slug}`,
-              },
-            ],
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://zumetrix.com/",
           },
-        ]
-      : [
-          articleStructuredData,
           {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://zumetrix.com/",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Software Articles",
-                item: "https://zumetrix.com/articles",
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: article.title,
-                item: `https://zumetrix.com/articles/${article.slug}`,
-              },
-            ],
+            "@type": "ListItem",
+            position: 2,
+            name: "Software Articles",
+            item: "https://zumetrix.com/articles",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.title,
+            item: `https://zumetrix.com/articles/${article.slug}`,
           },
         ],
+      },
+    ],
   };
 
   return (
@@ -495,6 +455,7 @@ const ArticleDetailPage: React.FC = () => {
             {article.heroImage ? (
               <ResponsiveImage
                 src={article.heroImage}
+                mobileSrc={article.heroImageMobile}
                 alt={article.heroImageAlt || article.title}
                 width={article.heroImageWidth || 1600}
                 height={article.heroImageHeight || 900}

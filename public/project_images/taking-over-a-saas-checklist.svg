@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="glow5" cx="85%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="grain5">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg5)"/>
+  <rect width="1200" height="675" fill="url(#glow5)"/>
+  <rect width="1200" height="675" filter="url(#grain5)"/>
+
+  <text x="70" y="72" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2.5" fill="#C48A64">TAKING OVER A SAAS — THE FIRST WEEK</text>
+  <text x="70" y="118" font-family="Georgia, serif" font-weight="600" font-size="30" fill="#F3EAE1">Check in this order. Not the reverse.</text>
+
+  <!-- Vertical connecting line -->
+  <line x1="120" y1="195" x2="120" y2="600" stroke="#332C22" stroke-width="2"/>
+
+  <g font-family="Public Sans, sans-serif">
+    <!-- Step 1 -->
+    <circle cx="120" cy="210" r="22" fill="#0A0908" stroke="#C48A64" stroke-width="2.5"/>
+    <text x="120" y="217" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="700" font-size="17" fill="#C48A64">1</text>
+    <text x="168" y="205" font-weight="700" font-size="21" fill="#F3EAE1">Access &amp; ownership</text>
+    <text x="168" y="233" font-size="14.5" fill="#BFB4A2">Repo, hosting, domain/DNS, and admin accounts —</text>
+    <text x="168" y="255" font-size="14.5" fill="#BFB4A2">confirmed working, not just documented.</text>
+
+    <!-- Step 2 -->
+    <circle cx="120" cy="360" r="22" fill="#0A0908" stroke="#C48A64" stroke-width="2.5"/>
+    <text x="120" y="367" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="700" font-size="17" fill="#C48A64">2</text>
+    <text x="168" y="355" font-weight="700" font-size="21" fill="#F3EAE1">Data trust</text>
+    <text x="168" y="383" font-size="14.5" fill="#BFB4A2">Are backups actually restorable? Does production</text>
+    <text x="168" y="405" font-size="14.5" fill="#BFB4A2">data match what you were told?</text>
+
+    <!-- Step 3 -->
+    <circle cx="120" cy="510" r="22" fill="#0A0908" stroke="#C48A64" stroke-width="2.5"/>
+    <text x="120" y="517" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="700" font-size="17" fill="#C48A64">3</text>
+    <text x="168" y="505" font-weight="700" font-size="21" fill="#F3EAE1">A structural read</text>
+    <text x="168" y="533" font-size="14.5" fill="#BFB4A2">Architecture, dependency freshness, security —</text>
+    <text x="168" y="555" font-size="14.5" fill="#BFB4A2">on your own terms, not the handoff's.</text>
+
+    <!-- Right side note card -->
+    <rect x="700" y="180" width="430" height="420" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
+    <text x="728" y="222" font-weight="700" font-size="17" fill="#C48A64">Why this order</text>
+    <text x="728" y="256" font-size="14" fill="#BFB4A2">Most stalled takeovers don't stall</text>
+    <text x="728" y="278" font-size="14" fill="#BFB4A2">on architecture. They stall in week</text>
+    <text x="728" y="300" font-size="14" fill="#BFB4A2">one, on access nobody confirmed.</text>
+    <text x="728" y="340" font-size="14" fill="#BFB4A2">The previous team's account of</text>
+    <text x="728" y="362" font-size="14" fill="#BFB4A2">"why" is one perspective — not a</text>
+    <text x="728" y="384" font-size="14" fill="#BFB4A2">neutral or complete one. Verify</text>
+    <text x="728" y="406" font-size="14" fill="#BFB4A2">independently before deciding</text>
+    <text x="728" y="428" font-size="14" fill="#BFB4A2">anything about the code itself.</text>
+  </g>
+
+  <text x="70" y="655" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="#5A5044">ZUMETRIX LABS &#8212; PRODUCT RESCUE &amp; STABILIZATION</text>
+  <text x="1130" y="655" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A5044">ACCESS &#8594; DATA &#8594; STRUCTURE</text>
+</svg>

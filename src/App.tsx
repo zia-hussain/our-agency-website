@@ -18,6 +18,7 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ArticlesPage = lazy(() => import("./pages/ArticlesPage"));
 const ArticleDetailPage = lazy(() => import("./pages/ArticleDetailPage"));
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
+const RescueOrRebuildPage = lazy(() => import("./pages/RescueOrRebuildPage"));
 const SaasDetailPage = lazy(() => import("./pages/service-detail/SaasDetailPage"));
 const RescueDetailPage = lazy(() => import("./pages/service-detail/RescueDetailPage"));
 const WebDetailPage = lazy(() => import("./pages/service-detail/WebDetailPage"));
@@ -63,6 +64,7 @@ function App() {
   const isNotFoundRoute = !([
     '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
     '/articles', '/privacy-policy', '/terms-of-service', '/review', '/client-stories',
+    '/rescue-or-rebuild',
   ].includes(location.pathname) ||
     location.pathname.startsWith('/services/') ||
     location.pathname.startsWith('/portfolio/') ||
@@ -131,6 +133,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/articles" element={<ArticlesPage />} />
           <Route path="/articles/:slug" element={<ArticleDetailPage />} />
+          <Route path="/rescue-or-rebuild" element={<RescueOrRebuildPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="/review" element={<ReviewPage />} />

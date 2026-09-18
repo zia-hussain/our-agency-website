@@ -5,7 +5,6 @@ import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import FAQAccordion from "../components/common/FAQAccordion";
 import SectionEyebrow from "../components/common/SectionEyebrow";
-import ClosingGlow from "../components/common/ClosingGlow";
 import ClientProofFilm from "../components/home/ClientProofFilm";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../config/site";
@@ -63,6 +62,10 @@ const ContactPage: React.FC = () => {
   useEffect(() => {
     const serviceParam = searchParams.get("service") || undefined;
     const projectParam = searchParams.get("project") || undefined;
+    // Only ever present when a visitor explicitly opted in to carry it —
+    // see the "include my answers" checkbox on /rescue-or-rebuild. Never
+    // set automatically by any link on the site.
+    const noteParam = searchParams.get("note") || undefined;
 
     if (serviceParam) {
       setSourceServiceSlug(serviceParam);
@@ -73,6 +76,9 @@ const ContactPage: React.FC = () => {
     }
     if (projectParam) {
       setSourceProjectSlug(projectParam);
+    }
+    if (noteParam) {
+      setFormData((prev) => (prev.message ? prev : { ...prev, message: noteParam }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

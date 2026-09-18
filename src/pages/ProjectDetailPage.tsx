@@ -5,6 +5,7 @@ import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import SectionEyebrow from "../components/common/SectionEyebrow";
 import ClosingGlow from "../components/common/ClosingGlow";
+import RelatedReading from "../components/common/RelatedReading";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -18,6 +19,9 @@ import { getProjectBySlug } from "../data/projects";
 import TiltImage from "../components/portfolio/TiltImage";
 import ReadingProgress from "../components/portfolio/ReadingProgress";
 import KpiCard from "../components/portfolio/KpiCard";
+import TestimonialFilm from "../components/common/TestimonialFilm";
+import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
+import { buildVideoObjectSchema } from "../utils/videoSchema";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -85,6 +89,7 @@ const ProjectDetailPage: React.FC = () => {
   const pageUrl = `https://zumetrix.com/portfolio/${project.slug}`;
   const shareImage = project.image.startsWith("http") ? project.image : `https://zumetrix.com${project.image}`;
   const kpis = project.kpis ?? [];
+  const testimonialFilm = project.testimonialFilmKey ? TESTIMONIAL_FILMS[project.testimonialFilmKey] : undefined;
   const metaFields = [
     project.client.name && { label: project.clientLabel || "Client", value: project.client.name },
     project.client.country && { label: "Location", value: project.client.country },
@@ -132,6 +137,7 @@ const ProjectDetailPage: React.FC = () => {
           { "@type": "ListItem", position: 3, name: project.title, item: pageUrl },
         ],
       },
+      ...(testimonialFilm ? [buildVideoObjectSchema(testimonialFilm)] : []),
     ],
   };
 
@@ -240,7 +246,13 @@ const ProjectDetailPage: React.FC = () => {
             </AnimatedSection>
 
             <AnimatedSection mode="hero" delay={0.1}>
-              <TiltImage src={project.image} alt={project.title} className="aspect-[4/3]" />
+              <TiltImage
+                src={project.image}
+                alt={project.title}
+                className={project.heroImageMobile ? "aspect-auto sm:aspect-[4/3]" : "aspect-[4/3]"}
+                fit={project.heroImageFit}
+                mobileSrc={project.heroImageMobile}
+              />
             </AnimatedSection>
           </div>
         </div>
@@ -285,14 +297,14 @@ const ProjectDetailPage: React.FC = () => {
             {project.results.map((result, i) => (
               <motion.div
                 key={result}
-                initial={{ opacity: 0.001 }}
+                initial={{ opacity: 0.95 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.3, delay: i * 0.05 }}
                 className="py-6 flex items-start gap-5"
               >
                 <motion.span
-                  initial={{ opacity: 0.001, scale: 0.5 }}
+                  initial={{ opacity: 0.95, scale: 0.98 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.3, delay: i * 0.05, type: "spring", stiffness: 300, damping: 20 }}
@@ -301,7 +313,7 @@ const ProjectDetailPage: React.FC = () => {
                   0{i + 1}
                 </motion.span>
                 <motion.p
-                  initial={{ opacity: 0.001, x: -10 }}
+                  initial={{ opacity: 0.95, x: -4 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.35, delay: i * 0.05 + 0.05 }}
@@ -397,6 +409,22 @@ const ProjectDetailPage: React.FC = () => {
               </blockquote>
             </AnimatedSection>
           </div>
+
+          {testimonialFilm && (
+            <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
+              <AnimatedSection delay={0.06}>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-6 text-center">
+                  {testimonialFilm.name}, in their own words
+                </p>
+                <TestimonialFilm
+                  src={testimonialFilm.src}
+                  poster={testimonialFilm.poster}
+                  captionsSrc={testimonialFilm.captionsSrc}
+                  variant="proof"
+                />
+              </AnimatedSection>
+            </div>
+          )}
         </section>
       )}
 
@@ -422,6 +450,18 @@ const ProjectDetailPage: React.FC = () => {
                 </AnimatedSection>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ================================================================ */}
+      {/* RELATED READING — only when this case study has a real,          */}
+      {/* curated connection into an article cluster.                      */}
+      {/* ================================================================ */}
+      {project.relatedReading && project.relatedReading.length > 0 && (
+        <section className="pb-8 bg-background">
+          <div className="px-4 sm:px-6 lg:px-8">
+            <RelatedReading links={project.relatedReading} />
           </div>
         </section>
       )}

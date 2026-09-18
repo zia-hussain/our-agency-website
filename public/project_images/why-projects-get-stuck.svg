@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="glow4" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="grain4">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg4)"/>
+  <rect width="1200" height="675" fill="url(#glow4)"/>
+  <rect width="1200" height="675" filter="url(#grain4)"/>
+
+  <text x="70" y="72" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2.5" fill="#C48A64">WHY PROJECTS ACTUALLY GET STUCK</text>
+  <text x="70" y="118" font-family="Georgia, serif" font-weight="600" font-size="30" fill="#F3EAE1">Rarely the code. Usually one of these four.</text>
+
+  <g font-family="Public Sans, sans-serif">
+    <!-- 4 equal columns -->
+    <rect x="70" y="170" width="255" height="430" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
+    <text x="98" y="212" font-family="IBM Plex Mono, monospace" font-size="22" fill="#C48A64" opacity="0.6">01</text>
+    <text x="98" y="252" font-weight="700" font-size="18" fill="#F3EAE1">Ownership</text>
+    <text x="98" y="276" font-weight="700" font-size="18" fill="#F3EAE1">gaps</text>
+    <text x="98" y="312" font-size="13.5" fill="#BFB4A2">Nobody is actually</text>
+    <text x="98" y="332" font-size="13.5" fill="#BFB4A2">empowered to say</text>
+    <text x="98" y="352" font-size="13.5" fill="#BFB4A2">"this is done, ship it."</text>
+
+    <rect x="342" y="170" width="255" height="430" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
+    <text x="370" y="212" font-family="IBM Plex Mono, monospace" font-size="22" fill="#C48A64" opacity="0.6">02</text>
+    <text x="370" y="252" font-weight="700" font-size="18" fill="#F3EAE1">Scope that</text>
+    <text x="370" y="276" font-weight="700" font-size="18" fill="#F3EAE1">never stopped</text>
+    <text x="370" y="312" font-size="13.5" fill="#BFB4A2">The finish line moved</text>
+    <text x="370" y="332" font-size="13.5" fill="#BFB4A2">quietly, without anyone</text>
+    <text x="370" y="352" font-size="13.5" fill="#BFB4A2">updating the map.</text>
+
+    <rect x="614" y="170" width="255" height="430" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
+    <text x="642" y="212" font-family="IBM Plex Mono, monospace" font-size="22" fill="#C48A64" opacity="0.6">03</text>
+    <text x="642" y="252" font-weight="700" font-size="18" fill="#F3EAE1">Decision</text>
+    <text x="642" y="276" font-weight="700" font-size="18" fill="#F3EAE1">paralysis</text>
+    <text x="642" y="312" font-size="13.5" fill="#BFB4A2">Known debt gets raised,</text>
+    <text x="642" y="332" font-size="13.5" fill="#BFB4A2">then sits — unresolved,</text>
+    <text x="642" y="352" font-size="13.5" fill="#BFB4A2">unaccepted, unfixed.</text>
+
+    <rect x="886" y="170" width="244" height="430" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
+    <text x="914" y="212" font-family="IBM Plex Mono, monospace" font-size="22" fill="#C48A64" opacity="0.6">04</text>
+    <text x="914" y="252" font-weight="700" font-size="18" fill="#F3EAE1">Turnover that</text>
+    <text x="914" y="276" font-weight="700" font-size="18" fill="#F3EAE1">took the context</text>
+    <text x="914" y="312" font-size="13.5" fill="#BFB4A2">The "why" behind a</text>
+    <text x="914" y="332" font-size="13.5" fill="#BFB4A2">decision leaves with the</text>
+    <text x="914" y="352" font-size="13.5" fill="#BFB4A2">person who made it.</text>
+  </g>
+
+  <text x="70" y="655" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="#5A5044">ZUMETRIX LABS &#8212; PRODUCT RESCUE &amp; STABILIZATION</text>
+  <text x="1130" y="655" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A5044">NOT A CODE-QUALITY PROBLEM</text>
+</svg>

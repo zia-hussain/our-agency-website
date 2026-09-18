@@ -50,3 +50,13 @@ export const trackOutboundLink = (url: string, linkType: string) => {
     link_type: linkType
   });
 };
+
+// Rescue-or-Rebuild tool events. Deliberately no-payload: never log raw
+// answers, dimension states, or the resulting outcome category by default.
+// If a visitor chooses to carry their result into a contact inquiry, that is
+// an explicit opt-in on the result screen — not something these events do.
+export const trackRescueToolStarted = () => trackEvent('rescue_tool_started');
+export const trackRescueToolCompleted = () => trackEvent('rescue_tool_completed');
+export const trackRescueToolCaseClicked = () => trackEvent('rescue_tool_case_clicked');
+export const trackRescueToolServiceClicked = () => trackEvent('rescue_tool_service_clicked');
+export const trackRescueToolContactStarted = () => trackEvent('rescue_tool_contact_started');

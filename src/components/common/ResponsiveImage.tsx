@@ -18,6 +18,13 @@ interface ResponsiveImageProps {
   sizes?: string;
   caption?: string;
   credit?: string;
+  /** A genuinely different image for narrow viewports — not a resized
+   *  version of the same file, but a real alternate composition (e.g. a
+   *  dense desktop matrix redrawn as a vertical sequence for mobile).
+   *  Served via a <picture> media-query source, so it's a real swap the
+   *  browser makes before paint, not a CSS-only visual resize. */
+  mobileSrc?: string;
+  mobileBreakpoint?: string;
 }
 
 // The image-infrastructure counterpart to ArticleVisual: for the cases
@@ -40,9 +47,19 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   sizes = "(min-width: 1024px) 800px, 100vw",
   caption,
   credit,
+  mobileSrc,
+  mobileBreakpoint = "(max-width: 640px)",
 }) => {
+  // A mobile variant is a genuinely different composition (different aspect
+  // ratio on purpose — e.g. a wide desktop matrix redrawn as a tall vertical
+  // sequence), so it can't share the desktop's cropped, fixed-ratio box.
+  // h-auto lets whichever <source> actually matched render at its own real
+  // shape instead of being cropped to the desktop width/height hint.
+  const imgClassName = mobileSrc ? `${className ?? ""} h-auto`.trim() : className;
+
   const img = (
     <picture>
+      {mobileSrc && <source srcSet={mobileSrc} media={mobileBreakpoint} />}
       {avifSrc && <source srcSet={avifSrc} type="image/avif" sizes={sizes} />}
       {webpSrc && <source srcSet={webpSrc} type="image/webp" sizes={sizes} />}
       <img
@@ -50,7 +67,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
         alt={alt}
         width={width}
         height={height}
-        className={className}
+        className={imgClassName}
         loading={priority ? "eager" : "lazy"}
         decoding={priority ? "sync" : "async"}
         // @ts-expect-error fetchpriority isn't in the DOM typings this React version ships

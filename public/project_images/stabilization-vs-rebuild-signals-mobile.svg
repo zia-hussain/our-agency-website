@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 2050" width="800" height="2050">
+  <defs>
+    <radialGradient id="smglow" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="smbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="smgrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="2050" fill="url(#smbg)"/>
+  <rect width="800" height="2050" fill="url(#smglow)"/>
+  <rect width="800" height="2050" filter="url(#smgrain)"/>
+
+  <text x="48" y="72" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="2" fill="#C48A64">STABILIZATION VS. REBUILD SIGNALS</text>
+  <text x="48" y="122" font-family="Georgia, serif" font-weight="600" font-size="32" fill="#F3EAE1">Same symptom outside.</text>
+  <text x="48" y="164" font-family="Georgia, serif" font-weight="600" font-size="32" fill="#F3EAE1">Different cause.</text>
+
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="210" width="704" height="800" rx="18" fill="#182016" stroke="#3D5A40" stroke-width="2.5"/>
+    <text x="80" y="264" font-weight="700" font-size="27" fill="#9FD4A8">STABILIZE</text>
+    <text x="80" y="298" font-size="19" fill="#8A8070">foundation is sound</text>
+
+    <text x="80" y="352" font-size="21" fill="#BFB4A2">• Fear of deploying, not a</text>
+    <text x="106" y="382" font-size="21" fill="#BFB4A2">design complaint</text>
+    <text x="80" y="424" font-size="21" fill="#BFB4A2">• No meaningful test coverage</text>
+    <text x="80" y="466" font-size="21" fill="#BFB4A2">• Tribal knowledge, not</text>
+    <text x="106" y="496" font-size="21" fill="#BFB4A2">documentation</text>
+    <text x="80" y="538" font-size="21" fill="#BFB4A2">• One person is the single</text>
+    <text x="106" y="568" font-size="21" fill="#BFB4A2">point of failure</text>
+    <text x="80" y="610" font-size="21" fill="#BFB4A2">• Bugs cluster around</text>
+    <text x="106" y="640" font-size="21" fill="#BFB4A2">missed edge cases</text>
+
+    <rect x="80" y="700" width="640" height="270" rx="14" fill="#0A0908" opacity="0.5"/>
+    <text x="104" y="740" font-size="18" fill="#8A8070">THE FIX</text>
+    <text x="104" y="778" font-size="22" fill="#E8EBE6">Tests, documentation, and</text>
+    <text x="104" y="810" font-size="22" fill="#E8EBE6">process — not new architecture.</text>
+    <text x="104" y="842" font-size="22" fill="#E8EBE6">Usually weeks, not months.</text>
+  </g>
+
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="1040" width="704" height="870" rx="18" fill="#211815" stroke="#5A4038" stroke-width="2.5"/>
+    <text x="80" y="1094" font-weight="700" font-size="27" fill="#E0685A">REBUILD</text>
+    <text x="80" y="1128" font-size="19" fill="#8A8070">foundation itself is the problem</text>
+
+    <text x="80" y="1182" font-size="21" fill="#BFB4A2">• Architecture can't support</text>
+    <text x="106" y="1212" font-size="21" fill="#BFB4A2">current needs</text>
+    <text x="80" y="1254" font-size="21" fill="#BFB4A2">• Data integrity itself is in</text>
+    <text x="106" y="1284" font-size="21" fill="#BFB4A2">question</text>
+    <text x="80" y="1326" font-size="21" fill="#BFB4A2">• Structural, unpatched</text>
+    <text x="106" y="1356" font-size="21" fill="#BFB4A2">security problems</text>
+    <text x="80" y="1398" font-size="21" fill="#BFB4A2">• Problem runs through the</text>
+    <text x="106" y="1428" font-size="21" fill="#BFB4A2">whole system</text>
+    <text x="80" y="1470" font-size="21" fill="#BFB4A2">• Past migrations failed quietly</text>
+
+    <rect x="80" y="1530" width="640" height="330" rx="14" fill="#0A0908" opacity="0.5"/>
+    <text x="104" y="1570" font-size="18" fill="#8A8070">THE FIX</text>
+    <text x="104" y="1608" font-size="22" fill="#E8EBE6">Scoped rebuild of the affected</text>
+    <text x="104" y="1640" font-size="22" fill="#E8EBE6">part — or the whole system,</text>
+    <text x="104" y="1672" font-size="22" fill="#E8EBE6">only with strong, independently</text>
+    <text x="104" y="1704" font-size="22" fill="#E8EBE6">verified evidence.</text>
+  </g>
+
+  <text x="48" y="2000" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="#5A5044">ZUMETRIX LABS — DIAGNOSE BEFORE YOU SPEND</text>
+</svg>

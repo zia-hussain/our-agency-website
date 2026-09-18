@@ -12,7 +12,8 @@ import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const BASE = "http://localhost:4173";
+const BASE = process.argv[2] || process.env.QA_BASE_URL || "http://localhost:4173";
+console.log(`Base URL: ${BASE}`);
 
 const prerenderSrc = await readFile(join(root, "scripts", "prerender.mjs"), "utf8");
 const routeListMatch = prerenderSrc.match(/const routes = \[([\s\S]*?)\];/);

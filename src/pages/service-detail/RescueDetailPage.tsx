@@ -7,6 +7,7 @@ import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
 import SectionEyebrow from "../../components/common/SectionEyebrow";
 import FAQAccordion from "../../components/common/FAQAccordion";
+import RelatedReading from "../../components/common/RelatedReading";
 import TestimonialFilm from "../../components/common/TestimonialFilm";
 import ClosingGlow from "../../components/common/ClosingGlow";
 import { rescueService } from "../../data/services";
@@ -548,6 +549,38 @@ const RescueDetailPage: React.FC = () => {
           <AnimatedSection delay={0.06}>
             <FAQAccordion items={rescueDetailFAQs} idPrefix="rescue-detail-faq" />
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* RELATED READING                                                    */}
+      {/* ================================================================ */}
+      <section className="pb-8 bg-background">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <RelatedReading
+            links={[
+              {
+                href: "/articles/should-you-rescue-or-rebuild-your-saas",
+                label: "Should you rescue or rebuild your SaaS?",
+                description: "The four-dimension framework this service is built around, including the honest \"you're probably fine\" outcome.",
+              },
+              {
+                href: "/rescue-or-rebuild",
+                label: "Get a private read on your situation",
+                description: "Four questions, an honest result — no email required.",
+              },
+              {
+                href: "/portfolio/fast-track-usa-app-rescue",
+                label: "Fast Track — two years stuck, three weeks to launch",
+                description: "A real takeover engagement, told honestly.",
+              },
+              {
+                href: "/articles/taking-over-a-saas-from-another-dev-team",
+                label: "Taking over a SaaS: what to check first",
+                description: "The order that protects you when inheriting someone else's codebase.",
+              },
+            ]}
+          />
         </div>
       </section>
 

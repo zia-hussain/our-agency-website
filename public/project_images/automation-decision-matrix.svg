@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <defs>
+    <radialGradient id="glow3" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="grain3">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg3)"/>
+  <rect width="1200" height="900" fill="url(#glow3)"/>
+  <rect width="1200" height="900" filter="url(#grain3)"/>
+
+  <text x="80" y="84" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="2.5" fill="#C48A64">WHEN IS AI AUTOMATION THE WRONG CHOICE?</text>
+  <text x="80" y="140" font-family="Georgia, serif" font-weight="600" font-size="36" fill="#F3EAE1">Two questions decide the mode, not enthusiasm.</text>
+
+  <!-- Axis labels -->
+  <text x="600" y="838" text-anchor="middle" font-family="Public Sans, sans-serif" font-weight="700" font-size="15" letter-spacing="0.5" fill="#8A8070">HOW CLEAR ARE THE RULES? &#8594;</text>
+  <text x="46" y="480" text-anchor="middle" font-family="Public Sans, sans-serif" font-weight="700" font-size="15" letter-spacing="0.5" fill="#8A8070" transform="rotate(-90 46 480)">COST OF GETTING IT WRONG &#8594;</text>
+
+  <!-- Grid -->
+  <g stroke="#332C22" stroke-width="1.5">
+    <line x1="120" y1="200" x2="120" y2="790"/>
+    <line x1="640" y1="200" x2="640" y2="790"/>
+    <line x1="1160" y1="200" x2="1160" y2="790"/>
+    <line x1="120" y1="200" x2="1160" y2="200"/>
+    <line x1="120" y1="495" x2="1160" y2="495"/>
+    <line x1="120" y1="790" x2="1160" y2="790"/>
+  </g>
+  <text x="120" y="222" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A5044">FUZZY / JUDGMENT</text>
+  <text x="1160" y="222" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A5044">CLEAR / DETERMINISTIC</text>
+
+  <!-- Quadrant: top-left — Fuzzy rules, high cost -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="140" y="220" width="480" height="255" rx="14" fill="#211815" stroke="#5A4038" stroke-width="1.5"/>
+    <text x="168" y="260" font-weight="700" font-size="18" fill="#E8B78C">DO NOT AUTOMATE YET</text>
+    <text x="168" y="286" font-size="13" fill="#A39C8C">or, at most, human-in-the-loop</text>
+    <text x="168" y="330" font-size="13.5" fill="#BFB4A2">Rules aren't settled and mistakes</text>
+    <text x="168" y="352" font-size="13.5" fill="#BFB4A2">are expensive or hard to reverse.</text>
+    <text x="168" y="374" font-size="13.5" fill="#BFB4A2">AI can draft. A person must decide.</text>
+
+    <!-- top-right — clear rules, high cost -->
+    <rect x="660" y="220" width="480" height="255" rx="14" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
+    <text x="688" y="260" font-weight="700" font-size="18" fill="#F3EAE1">DETERMINISTIC + REVIEW</text>
+    <text x="688" y="286" font-size="13" fill="#A39C8C">rules-based, with a checkpoint</text>
+    <text x="688" y="330" font-size="13.5" fill="#BFB4A2">Rules are exact, but the stakes</text>
+    <text x="688" y="352" font-size="13.5" fill="#BFB4A2">mean a human should still confirm</text>
+    <text x="688" y="374" font-size="13.5" fill="#BFB4A2">before the action is final.</text>
+
+    <!-- bottom-left — fuzzy rules, low cost -->
+    <rect x="140" y="515" width="480" height="255" rx="14" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
+    <text x="168" y="555" font-weight="700" font-size="18" fill="#F3EAE1">AI-ASSISTED WORKFLOW</text>
+    <text x="168" y="581" font-size="13" fill="#A39C8C">judgment calls, cheap to redo</text>
+    <text x="168" y="625" font-size="13.5" fill="#BFB4A2">The input is messy or the decision</text>
+    <text x="168" y="647" font-size="13.5" fill="#BFB4A2">needs judgment, but a wrong answer</text>
+    <text x="168" y="669" font-size="13.5" fill="#BFB4A2">costs little to notice and fix.</text>
+
+    <!-- bottom-right — clear rules, low cost -->
+    <rect x="660" y="515" width="480" height="255" rx="14" fill="#182016" stroke="#3D5A40" stroke-width="1.5"/>
+    <text x="688" y="555" font-weight="700" font-size="18" fill="#9FD4A8">DETERMINISTIC AUTOMATION</text>
+    <text x="688" y="581" font-size="13" fill="#A39C8C">no AI required</text>
+    <text x="688" y="625" font-size="13.5" fill="#BFB4A2">The rules are exact and errors are</text>
+    <text x="688" y="647" font-size="13.5" fill="#BFB4A2">cheap. A plain webhook or rules</text>
+    <text x="688" y="669" font-size="13.5" fill="#BFB4A2">engine beats an LLM here — every time.</text>
+  </g>
+
+  <text x="80" y="864" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="1.5" fill="#5A5044">ZUMETRIX LABS &#8212; AUTOMATION DECISION MAP</text>
+  <text x="1120" y="864" font-family="IBM Plex Mono, monospace" font-size="13" fill="#5A5044" text-anchor="end">FOUR MODES &#183; NOT A DEFAULT</text>
+</svg>

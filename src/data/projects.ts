@@ -15,6 +15,15 @@ export interface Project {
   description: string;
   longDescription: string;
   image: string;
+  // "contain" for a hand-authored diagram whose composition would be
+  // damaged by the hero frame's default center-crop (see TiltImage). Leave
+  // unset for ordinary photography, where cropping to fill the frame is fine.
+  heroImageFit?: "cover" | "contain";
+  // Same real-alternate-composition mobileSrc pattern as articles.js's
+  // heroImageMobile — a case study whose hero is a dense hand-authored
+  // diagram (not a photo) needs one too, or its mobile visitors get the
+  // desktop composition scaled down to illegible size.
+  heroImageMobile?: string;
   gallery?: string[];
   tags: string[];
   client: {
@@ -114,11 +123,26 @@ export interface Project {
   };
   liveLink?: string;
   githubLink?: string;
+  // Key into TESTIMONIAL_FILMS (src/data/testimonialFilms.ts) — only set
+  // when a real, self-hosted video of this exact client exists. Same source
+  // of truth already used by RescueDetailPage/WebDetailPage's embeds, so a
+  // case study never has to re-describe video metadata that's already
+  // canonical elsewhere.
+  testimonialFilmKey?: string;
   stack: string[];
   services: string[];
   kpis?: {
     label: string;
     value: string;
+    description: string;
+  }[];
+  // Optional, curated cross-links into the article clusters this case study
+  // genuinely relates to. Deliberately not populated on every project — only
+  // where a real connection exists, per the same "don't force it" restraint
+  // as the rest of the site's internal linking.
+  relatedReading?: {
+    href: string;
+    label: string;
     description: string;
   }[];
 }
@@ -388,6 +412,13 @@ export const projects: Project[] = [
       value: "Credits, Matching, Requests",
       description: "All core marketplace flows in V1"
     }
+  ],
+  relatedReading: [
+    {
+      href: "/articles/mobile-app-development-flutter-react-native",
+      label: "Flutter vs React Native: which is right for you?",
+      description: "The framework decision behind this build, and two others like it.",
+    },
   ]
 },
 
@@ -446,6 +477,13 @@ export const projects: Project[] = [
       value: "Voice-first",
       description: "Core flows optimized for speaking, not just typing"
     }
+  ],
+  relatedReading: [
+    {
+      href: "/articles/mobile-app-development-flutter-react-native",
+      label: "Flutter vs React Native: which is right for you?",
+      description: "Five real questions to decide the framework, including how this build made the call.",
+    },
   ]
 },
 
@@ -616,6 +654,13 @@ export const projects: Project[] = [
       value: "iOS & Android",
       description: "Single codebase via React Native"
     }
+  ],
+  relatedReading: [
+    {
+      href: "/articles/mobile-app-development-flutter-react-native",
+      label: "Flutter vs React Native: which is right for you?",
+      description: "Why a two-sided marketplace app like this one is a natural React Native fit.",
+    },
   ]
 },
 
@@ -673,6 +718,18 @@ export const projects: Project[] = [
       value: "Stable",
       description: "TestFlight releases successfully delivered"
     }
+  ],
+  relatedReading: [
+    {
+      href: "/articles/taking-over-a-saas-from-another-dev-team",
+      label: "Taking over a SaaS: what to check first",
+      description: "The order that protects you when inheriting someone else's codebase.",
+    },
+    {
+      href: "/articles/signs-your-saas-needs-stabilization-not-rebuild",
+      label: "Signs your codebase needs stabilization, not a rebuild",
+      description: "How to tell a process gap apart from a genuine structural problem.",
+    },
   ]
 },
 
@@ -784,6 +841,13 @@ export const projects: Project[] = [
       value: "-90%",
       description: "Most subscription updates fully automated"
     }
+  ],
+  relatedReading: [
+    {
+      href: "/articles/when-is-ai-automation-the-wrong-choice",
+      label: "When is AI automation the wrong choice?",
+      description: "This automation runs on exact, deterministic rules — no AI in the loop, because none was needed.",
+    },
   ]
 },
 
@@ -840,6 +904,13 @@ export const projects: Project[] = [
       value: "Automatic",
       description: "New orders synced as they come in"
     }
+  ],
+  relatedReading: [
+    {
+      href: "/articles/when-is-ai-automation-the-wrong-choice",
+      label: "When is AI automation the wrong choice?",
+      description: "Another deterministic, rules-based automation — the right tool for an exact mapping problem.",
+    },
   ]
 },
 
@@ -1010,6 +1081,13 @@ export const projects: Project[] = [
       value: "High",
       description: "Clear tracking of leads and active projects"
     }
+  ],
+  relatedReading: [
+    {
+      href: "/articles/when-is-ai-automation-the-wrong-choice",
+      label: "When is AI automation the wrong choice?",
+      description: "Why most of this stack is deterministic syncing and reminders, with AI reserved for language-shaped work.",
+    },
   ]
 },
 
@@ -1076,7 +1154,14 @@ export const projects: Project[] = [
     quote: "We could not be happier about working with Zumetrix Labs! What has started as an idea has turned into a really great projekt/product, which only evolved into its full potential through the corporation, ideas, experience, professionalism and openness from our developer. Everything was well understood, delivered on time and documented clearly. Thanks again. We can highly appreciate the work performed and couldn't recommend working with Zia and his Team enough!",
     author: "Founder",
     role: "Knipsr"
-  }
+  },
+  relatedReading: [
+    {
+      href: "/articles/build-saas-mvp-in-30-days",
+      label: "How to build a SaaS MVP in 30 days",
+      description: "The framework this build followed, from validation through launch.",
+    },
+  ]
 },
 
 // 22. Liftly – Operational Booking Platform (V1 Foundation)
@@ -1136,7 +1221,14 @@ export const projects: Project[] = [
     ],
     proofNotes: ["Client and founder identity withheld by request. Product name and V1/V2 scope are shared with permission. Pricing Engine V2 was designed and planned only — it is described here as planned work, not as shipped functionality. Screenshots are pending privacy review — none are published yet."],
     ctaAngle: "If you have a bigger vision than your first release can carry, this is the kind of sequencing conversation worth having before you build."
-  }
+  },
+  relatedReading: [
+    {
+      href: "/articles/decision-room-001-liftly-sequencing",
+      label: "Decision Room #001: the full reasoning behind this sequencing",
+      description: "Why the operational core shipped first, with what was built kept visibly separate from what was only designed.",
+    },
+  ]
 },
 
 // 23. Learning Platform SaaS – Stabilization & Technical Clarity (anonymized)
@@ -1197,7 +1289,87 @@ export const projects: Project[] = [
     ],
     proofNotes: ["Client, product, and founder identity are withheld by request — this case study is deliberately anonymized. No product screenshots are used or will be used for this project. Not every issue in the product was fixed during this engagement; scope here reflects only the work described above."],
     ctaAngle: "If your product needs someone to tell you honestly what's actually wrong with it before touching a line of code, this is that kind of engagement."
-  }
+  },
+  relatedReading: [
+    {
+      href: "/articles/signs-your-saas-needs-stabilization-not-rebuild",
+      label: "Signs your codebase needs stabilization, not a rebuild",
+      description: "The distinction this engagement was built around: fixing what's broken without rewriting what already works.",
+    },
+    {
+      href: "/rescue-or-rebuild",
+      label: "Get a private read on your situation",
+      description: "Four questions, an honest result — no email required.",
+    },
+  ]
+},
+
+// 24. Fast Track USA — Recovery, not a build
+// This case study is deliberately short. Everything in it is sourced from
+// Josh Nyce's own recorded testimonial (video, public/videos/Josh.mp4) and
+// his written Trustpilot review (src/data/testimonials.ts, id:
+// "josh-fast-track", corroborated on Google). No technical detail — stack,
+// architecture, platform, feature scope — is claimed anywhere here, because
+// none is verified. What's known is the recovery story itself: a client who
+// says a previous team couldn't ship in two years, and that this one did in
+// three weeks. That's the entire evidentiary basis, stated as exactly that.
+{
+  id: 24,
+  slug: "fast-track-usa-app-rescue",
+  primaryService: "product-rescue-stabilization",
+  searchIndexable: true,
+  title: "Fast Track USA — Two Years Stuck, Three Weeks to Launch",
+  category: "Product Rescue",
+  type: "rescue",
+  description: "A previous development team spent roughly two years without a reliable launch. Zumetrix took over an existing, in-progress app and shipped it in three weeks.",
+  longDescription: "This is a recovery story, not a technical case study — we're not going to describe an architecture or a stack we can't verify. What's verified: Josh Nyce, owner and founder of Fast Track USA, says his app sat in development for about two years with a previous team without reaching a reliable launch. Zumetrix took the project over and shipped it in three weeks, which Josh has described — on video and in a separately-worded, verified Trustpilot review corroborated on Google — as launching in flawless, bug-free condition.",
+  image: "/project_images/fast-track-recovery-timeline.svg",
+  heroImageFit: "contain",
+  heroImageMobile: "/project_images/fast-track-recovery-timeline-mobile.svg",
+  gallery: ["/project_images/fast-track-recovery-timeline.svg"],
+  tags: ["Product Rescue", "Recovery", "Takeover"],
+  client: {
+    name: "Josh Nyce — Fast Track USA",
+    country: "",
+    industry: "Not disclosed"
+  },
+  clientLabel: "Founder",
+  duration: "3 weeks (post-takeover)",
+  team: "",
+  year: "",
+  featured: true,
+  results: [
+    "Took over an in-progress app after roughly two years without a reliable launch",
+    "Shipped within three weeks of taking over",
+    "Client-reported launch condition: no bugs, no issues",
+    "Independently corroborated: 5-star Trustpilot review, corroborated on Google"
+  ],
+  problem: "Fast Track USA's app had been in development for around two years with a previous team, without reaching a working, reliable launch. The specific technical causes aren't part of the public record — Josh's account describes the outcome (no launch after two years), not the underlying implementation.",
+  solution: "Zumetrix took over the existing, in-progress project and carried it to launch in three weeks. We're not claiming a specific technical method here because none is verified beyond the client's own account — this case exists to document the outcome truthfully, not to reverse-engineer a technical narrative we don't have evidence for.",
+  testimonial: {
+    quote: "They took over and within three weeks my app was launched and it was perfect. I'm talking about no bugs, no issues, no nothing, it was perfect.",
+    author: "Josh Nyce",
+    role: "Owner & Founder, Fast Track USA"
+  },
+  testimonialFilmKey: "josh",
+  stack: [],
+  services: ["Product Takeover", "Rescue & Stabilization"],
+  kpis: [
+    { label: "Time stuck with previous team", value: "~2 years", description: "Per Josh Nyce's testimonial — before Zumetrix took over" },
+    { label: "Time to launch after takeover", value: "3 weeks", description: "Client-reported, corroborated across two independent review sources" }
+  ],
+  relatedReading: [
+    {
+      href: "/articles/should-you-rescue-or-rebuild-your-saas",
+      label: "Should you rescue or rebuild your SaaS?",
+      description: "The decision framework behind engagements like this one.",
+    },
+    {
+      href: "/rescue-or-rebuild",
+      label: "Get a private read on your situation",
+      description: "Four questions, an honest result — no email required.",
+    },
+  ]
 }
 
 ];
@@ -1208,7 +1380,8 @@ export const projectCategories = [
   { id: "saas", label: "SaaS Applications", count: projects.filter(p => p.type === "saas").length },
   { id: "mobile", label: "Mobile Apps", count: projects.filter(p => p.type === "mobile").length },
   { id: "enterprise", label: "Enterprise Solutions", count: projects.filter(p => p.type === "enterprise").length },
-  { id: "mvp", label: "MVP Development", count: projects.filter(p => p.type === "mvp").length }
+  { id: "mvp", label: "MVP Development", count: projects.filter(p => p.type === "mvp").length },
+  { id: "rescue", label: "Product Rescue", count: projects.filter(p => p.type === "rescue").length }
 ];
 
 export const projectTechnologies = [

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1900" width="800" height="1900">
+  <defs>
+    <radialGradient id="wmglow" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wmbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="wmgrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="1900" fill="url(#wmbg)"/>
+  <rect width="800" height="1900" fill="url(#wmglow)"/>
+  <rect width="800" height="1900" filter="url(#wmgrain)"/>
+
+  <text x="48" y="76" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2" fill="#C48A64">WHY PROJECTS ACTUALLY GET STUCK</text>
+  <text x="48" y="128" font-family="Georgia, serif" font-weight="600" font-size="36" fill="#F3EAE1">Rarely the code.</text>
+  <text x="48" y="172" font-family="Georgia, serif" font-weight="600" font-size="36" fill="#F3EAE1">Usually one of these four.</text>
+
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="220" width="704" height="380" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="280" font-family="IBM Plex Mono, monospace" font-size="26" fill="#C48A64" opacity="0.65">01</text>
+    <text x="80" y="328" font-weight="700" font-size="30" fill="#F3EAE1">Ownership gaps</text>
+    <text x="80" y="378" font-size="21" fill="#BFB4A2">Nobody is actually empowered</text>
+    <text x="80" y="410" font-size="21" fill="#BFB4A2">to say "this is done, ship it."</text>
+    <text x="80" y="450" font-size="21" fill="#BFB4A2">Work continues, but nothing</text>
+    <text x="80" y="482" font-size="21" fill="#BFB4A2">converges.</text>
+    <text x="80" y="560" font-size="18" fill="#5A5044">Fix: name one decision-maker.</text>
+
+    <rect x="48" y="628" width="704" height="380" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="688" font-family="IBM Plex Mono, monospace" font-size="26" fill="#C48A64" opacity="0.65">02</text>
+    <text x="80" y="736" font-weight="700" font-size="30" fill="#F3EAE1">Scope that never</text>
+    <text x="80" y="772" font-weight="700" font-size="30" fill="#F3EAE1">stopped growing</text>
+    <text x="80" y="820" font-size="21" fill="#BFB4A2">The finish line moved</text>
+    <text x="80" y="852" font-size="21" fill="#BFB4A2">quietly, without anyone</text>
+    <text x="80" y="884" font-size="21" fill="#BFB4A2">updating the map.</text>
+    <text x="80" y="968" font-size="18" fill="#5A5044">Fix: re-confirm what's actually left.</text>
+
+    <rect x="48" y="1036" width="704" height="380" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="1096" font-family="IBM Plex Mono, monospace" font-size="26" fill="#C48A64" opacity="0.65">03</text>
+    <text x="80" y="1144" font-weight="700" font-size="30" fill="#F3EAE1">Decision paralysis</text>
+    <text x="80" y="1192" font-size="21" fill="#BFB4A2">Known debt gets raised,</text>
+    <text x="80" y="1224" font-size="21" fill="#BFB4A2">then sits — unresolved,</text>
+    <text x="80" y="1256" font-size="21" fill="#BFB4A2">unaccepted, unfixed.</text>
+    <text x="80" y="1376" font-size="18" fill="#5A5044">Fix: decide, even if the decision is "not now."</text>
+
+    <rect x="48" y="1444" width="704" height="380" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="1504" font-family="IBM Plex Mono, monospace" font-size="26" fill="#C48A64" opacity="0.65">04</text>
+    <text x="80" y="1552" font-weight="700" font-size="30" fill="#F3EAE1">Turnover that took</text>
+    <text x="80" y="1588" font-weight="700" font-size="30" fill="#F3EAE1">the context</text>
+    <text x="80" y="1636" font-size="21" fill="#BFB4A2">The "why" behind a decision</text>
+    <text x="80" y="1668" font-size="21" fill="#BFB4A2">leaves with the person</text>
+    <text x="80" y="1700" font-size="21" fill="#BFB4A2">who made it.</text>
+    <text x="80" y="1784" font-size="18" fill="#5A5044">Fix: document decisions, not just code.</text>
+  </g>
+
+  <text x="48" y="1860" font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="1" fill="#5A5044">ZUMETRIX LABS — NOT A CODE-QUALITY PROBLEM</text>
+</svg>

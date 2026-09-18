@@ -7,6 +7,7 @@ import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
 import SectionEyebrow from "../../components/common/SectionEyebrow";
 import FAQAccordion from "../../components/common/FAQAccordion";
+import RelatedReading from "../../components/common/RelatedReading";
 import ClosingGlow from "../../components/common/ClosingGlow";
 import TestimonialFilm from "../../components/common/TestimonialFilm";
 import { services } from "../../data/services";
@@ -497,6 +498,33 @@ const WebDetailPage: React.FC = () => {
           <AnimatedSection delay={0.06}>
             <FAQAccordion items={webDetailFAQs} idPrefix="web-detail-faq" />
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* RELATED READING                                                    */}
+      {/* ================================================================ */}
+      <section className="pb-8 bg-background">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <RelatedReading
+            links={[
+              {
+                href: "/articles/why-software-projects-get-stuck",
+                label: "Why software projects get stuck",
+                description: "Before assuming a rebuild is needed, rule out the non-technical reasons first.",
+              },
+              {
+                href: "/articles/should-you-rescue-or-rebuild-your-saas",
+                label: "Already have a codebase? Start here instead",
+                description: "If there's an existing product involved, this decides whether a new build is even the right move.",
+              },
+              {
+                href: "/portfolio/forlag-publishing-sales-inventory-dashboard",
+                label: "Forlag — sales & inventory dashboard",
+                description: "A real internal web platform built for day-to-day business operations.",
+              },
+            ]}
+          />
         </div>
       </section>
 

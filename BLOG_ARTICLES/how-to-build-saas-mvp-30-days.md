@@ -20,6 +20,8 @@ At Zumetrix Labs, we have built SaaS MVPs, dashboards, automation tools, and web
 
 **What does the first version need to prove?**
 
+One honest note before the framework: **30 days is the aggressive end, not the average.** It's realistic for a tightly scoped MVP where the problem is already validated and the core workflow is genuinely narrow. Most focused first releases we build land in the **4-8 week range** once real integrations, a second user role, or a payment flow are involved. The framework below is written as a 30-day sprint because that discipline — deciding what fits in 30 days — is what keeps a build from drifting into 4 months. If your scope needs 6 weeks instead of 4, that's not a failure of the framework; it's the framework doing its job honestly.
+
 In this guide, you'll learn:
 - When a 30-day MVP is realistic
 - What has to be decided before development starts
@@ -51,6 +53,24 @@ Shorter MVP cycles force better decisions. You cannot hide behind a giant roadma
 A 30-day MVP works when the team agrees on one rule:
 
 **The first version exists to prove the core workflow, not to include every future feature.**
+
+---
+
+## Prove the problem before the clock starts
+
+The 30-day framework below assumes one thing is already true: the problem is real, not just plausible. Skipping this step is the most common reason a fast build still fails — the team hits day 30 with a working product nobody asked for clearly enough.
+
+Validation isn't applause. A friend saying the idea "sounds good" or a prospect nodding on a call isn't proof. What counts: people already using a messy workaround, describing the problem in their own words without you prompting them, and being willing to do something — join a waitlist, book a call, pay for early access — before the product exists.
+
+**Signals worth building on:**
+- People describe the problem without a long explanation
+- They already have a workaround, even a bad one
+- The problem visibly costs time, money, or trust
+- They ask when they can try it, unprompted
+
+**How to get those signals**, roughly in order of how fast they resolve uncertainty: 10-20 customer conversations (not pitches — ask what they currently do, what breaks, what they've tried); a landing page that states the problem and collects real interest; a clickable prototype if the risk is usability rather than demand; a manual version of the workflow if the risk is operational. You rarely need all four — pick based on which kind of risk is actually unresolved.
+
+If the problem is repeated, the user is specific, and there's a real path to early users, start the clock. If those are still fuzzy, that's a landing page or a prototype, not a 30-day build yet.
 
 ---
 
@@ -455,34 +475,6 @@ At Zumetrix Labs, we help founders turn unclear product ideas into focused softw
 3. [View our portfolio →](/portfolio)
 
 **Do not spend months building around assumptions. Launch the smallest serious version and start learning from real users.**
-
----
-
-## Related Articles
-
-- [SaaS MVP Cost Guide](/articles/saas-mvp-cost-guide)
-- [SaaS MVP Feature Checklist](/articles/saas-mvp-feature-checklist)
-- [SaaS MVP Tech Stack](/articles/saas-mvp-tech-stack)
-- [SaaS MVP Mistakes Founders Make](/articles/saas-mvp-mistakes-founders-make)
-
----
-
-## FAQ
-
-**Q: Can you really build an MVP in 30 days?**
-A: Sometimes, yes. A 30-day MVP is realistic when the first version is tightly scoped around one core workflow and decisions are made quickly. More complex products need more time.
-
-**Q: What if I need more features?**
-A: Then we protect them for phase two. The first release should prove the main workflow. After real users try it, the next features become easier to choose because the decision is based on behavior, not guessing.
-
-**Q: How much does a 30-day MVP cost?**
-A: Cost depends on scope, design, integrations, user roles, payments, and backend complexity. The safest first step is to define the smallest serious version before estimating.
-
-**Q: What tech stack do you use?**
-A: We primarily use React/TypeScript, Node.js, and Firebase/Supabase. This stack allows rapid development while maintaining scalability for growth.
-
-**Q: Do you provide support after launch?**
-A: Yes. We can support the product after launch with fixes, improvements, monitoring, and phase-two development. The exact support plan depends on the project scope.
 
 ---
 

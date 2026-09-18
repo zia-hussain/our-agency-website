@@ -84,6 +84,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://zumetrix.com/rescue-or-rebuild</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://zumetrix.com/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -229,6 +234,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://zumetrix.com/portfolio/fast-track-usa-app-rescue</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zumetrix.com/project_images/fast-track-recovery-timeline.svg</image:loc>
+      <image:title>Fast Track USA — Two Years Stuck, Three Weeks to Launch</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://zumetrix.com/articles/what-we-learned-building-50-projects</loc>
     <lastmod>2024-12-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -237,42 +251,6 @@
   <url>
     <loc>https://zumetrix.com/articles/build-saas-mvp-in-30-days</loc>
     <lastmod>2024-12-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zumetrix.com/articles/saas-mvp-cost-guide</loc>
-    <lastmod>2026-05-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zumetrix.com/articles/saas-mvp-feature-checklist</loc>
-    <lastmod>2026-05-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zumetrix.com/articles/saas-mvp-timeline-guide</loc>
-    <lastmod>2026-05-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zumetrix.com/articles/saas-mvp-tech-stack</loc>
-    <lastmod>2026-05-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zumetrix.com/articles/saas-mvp-mistakes-founders-make</loc>
-    <lastmod>2026-05-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zumetrix.com/articles/saas-mvp-validation-guide</loc>
-    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -303,6 +281,42 @@
   <url>
     <loc>https://zumetrix.com/articles/no-code-automation-zapier-make-n8n</loc>
     <lastmod>2024-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/articles/should-you-rescue-or-rebuild-your-saas</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/articles/when-is-ai-automation-the-wrong-choice</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/articles/why-software-projects-get-stuck</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/articles/taking-over-a-saas-from-another-dev-team</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/articles/signs-your-saas-needs-stabilization-not-rebuild</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/articles/decision-room-001-liftly-sequencing</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

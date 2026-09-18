@@ -36,7 +36,7 @@ const ProjectSpotlight: React.FC<ProjectSpotlightProps> = ({ project, index }) =
           transition={{ duration: 0.4 }}
           className="relative"
         >
-          <TiltImage src={project.image} alt={project.title} className="aspect-[4/3]" />
+          <TiltImage src={project.image} alt={project.title} className="aspect-[4/3]" fit={project.heroImageFit} />
         </motion.div>
 
         <motion.div

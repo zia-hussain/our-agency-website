@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1400" width="800" height="1400">
+  <defs>
+    <radialGradient id="fmglow" cx="50%" cy="0%" r="75%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fmbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="fmgrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="1400" fill="url(#fmbg)"/>
+  <rect width="800" height="1400" fill="url(#fmglow)"/>
+  <rect width="800" height="1400" filter="url(#fmgrain)"/>
+
+  <text x="48" y="72" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2" fill="#C48A64" opacity="0.9">FAST TRACK USA — A RECOVERY, NOT A BUILD</text>
+  <text x="48" y="128" font-family="Georgia, serif" font-weight="600" font-size="40" fill="#F3EAE1">Two years stuck.</text>
+  <text x="48" y="176" font-family="Georgia, serif" font-weight="600" font-size="40" fill="#F3EAE1">Three weeks to launch.</text>
+
+  <!-- BEFORE block -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="240" width="704" height="260" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="292" font-weight="700" font-size="20" fill="#8A8070">PREVIOUS DEVELOPMENT TEAM</text>
+    <text x="80" y="372" font-family="IBM Plex Mono, monospace" font-weight="700" font-size="56" fill="#8A8070">~2 YEARS</text>
+    <text x="80" y="416" font-size="22" fill="#5A5044">no reliable launch</text>
+    <rect x="80" y="450" width="640" height="14" rx="7" fill="#332C22"/>
+  </g>
+
+  <!-- Handoff marker -->
+  <line x1="400" y1="524" x2="400" y2="580" stroke="#473D2E" stroke-width="2.5"/>
+  <text x="400" y="518" text-anchor="middle" font-family="Public Sans, sans-serif" font-weight="700" font-size="19" letter-spacing="0.5" fill="#C48A64">ZUMETRIX TAKES OVER</text>
+  <path d="M 386 570 L 400 590 L 414 570" fill="none" stroke="#473D2E" stroke-width="2.5"/>
+
+  <!-- AFTER block -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="620" width="704" height="260" rx="18" fill="#2E2118" stroke="#C48A64" stroke-width="2.5"/>
+    <text x="80" y="672" font-weight="700" font-size="20" fill="#C48A64">ZUMETRIX, POST-TAKEOVER</text>
+    <text x="80" y="752" font-family="IBM Plex Mono, monospace" font-weight="700" font-size="56" fill="#F3D9BE">3 WEEKS</text>
+    <text x="80" y="796" font-size="22" fill="#C48A64">shipped — "no bugs, no issues"</text>
+    <rect x="80" y="830" width="130" height="14" rx="7" fill="#C48A64"/>
+  </g>
+
+  <!-- Quote -->
+  <line x1="48" y1="944" x2="48" y2="1090" stroke="#C48A64" stroke-width="4"/>
+  <text x="80" y="980" font-family="Georgia, serif" font-style="italic" font-size="27" fill="#F3EAE1">"They took over and</text>
+  <text x="80" y="1018" font-family="Georgia, serif" font-style="italic" font-size="27" fill="#F3EAE1">within three weeks my</text>
+  <text x="80" y="1056" font-family="Georgia, serif" font-style="italic" font-size="27" fill="#F3EAE1">app was launched and</text>
+  <text x="80" y="1094" font-family="Georgia, serif" font-style="italic" font-size="27" fill="#F3EAE1">it was perfect."</text>
+  <text x="80" y="1140" font-family="Public Sans, sans-serif" font-size="19" fill="#8A8070">— Josh Nyce, Owner &amp; Founder,</text>
+  <text x="80" y="1170" font-family="Public Sans, sans-serif" font-size="19" fill="#8A8070">Fast Track USA · Trustpilot, verified</text>
+
+  <text x="48" y="1280" font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="1" fill="#5A5044">ZUMETRIX LABS — PRODUCT RESCUE &amp; STABILIZATION</text>
+  <text x="48" y="1312" font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="1" fill="#5A5044">ILLUSTRATIVE TIMELINE · NOT TO SCALE</text>
+</svg>

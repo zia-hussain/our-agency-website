@@ -58,6 +58,36 @@
       "source": "/founders/syed-omer-shah",
       "destination": "/founders/omer-gillani",
       "permanent": true
+    },
+    {
+      "source": "/articles/saas-mvp-cost-guide",
+      "destination": "/articles/build-saas-mvp-in-30-days",
+      "permanent": true
+    },
+    {
+      "source": "/articles/saas-mvp-feature-checklist",
+      "destination": "/articles/build-saas-mvp-in-30-days",
+      "permanent": true
+    },
+    {
+      "source": "/articles/saas-mvp-timeline-guide",
+      "destination": "/articles/build-saas-mvp-in-30-days",
+      "permanent": true
+    },
+    {
+      "source": "/articles/saas-mvp-tech-stack",
+      "destination": "/articles/build-saas-mvp-in-30-days",
+      "permanent": true
+    },
+    {
+      "source": "/articles/saas-mvp-mistakes-founders-make",
+      "destination": "/articles/build-saas-mvp-in-30-days",
+      "permanent": true
+    },
+    {
+      "source": "/articles/saas-mvp-validation-guide",
+      "destination": "/articles/build-saas-mvp-in-30-days",
+      "permanent": true
     }
   ],
   "rewrites": [

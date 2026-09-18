@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="glow9" cx="50%" cy="0%" r="75%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg9" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="grain9">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg9)"/>
+  <rect width="1200" height="675" fill="url(#glow9)"/>
+  <rect width="1200" height="675" filter="url(#grain9)"/>
+
+  <text x="70" y="66" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2.5" fill="#C48A64">DECISION ROOM #001 &#8212; LIFTLY</text>
+  <text x="70" y="108" font-family="Georgia, serif" font-weight="600" font-size="27" fill="#F3EAE1">The vision was V2. The business needed V1 first.</text>
+
+  <g font-family="Public Sans, sans-serif">
+    <!-- Left: BUILT, solid filled -->
+    <rect x="70" y="150" width="510" height="470" rx="16" fill="#182016" stroke="#3D5A40" stroke-width="2"/>
+    <rect x="98" y="178" width="90" height="28" rx="14" fill="#3D5A40"/>
+    <text x="143" y="197" text-anchor="middle" font-weight="700" font-size="12" fill="#EAF5EC">BUILT</text>
+    <text x="98" y="238" font-weight="700" font-size="19" fill="#F3EAE1">V1 — Operational Core</text>
+
+    <text x="98" y="278" font-size="14" fill="#BFB4A2">&#10003; Customer booking &amp; job intake</text>
+    <text x="98" y="308" font-size="14" fill="#BFB4A2">&#10003; Pickup / dropoff details</text>
+    <text x="98" y="338" font-size="14" fill="#BFB4A2">&#10003; Serviceability &amp; distance eligibility</text>
+    <text x="98" y="368" font-size="14" fill="#BFB4A2">&#10003; Deposits &amp; payment handling</text>
+    <text x="98" y="398" font-size="14" fill="#BFB4A2">&#10003; Internal admin &amp; booking controls</text>
+
+    <rect x="98" y="440" width="454" height="150" rx="12" fill="#0A0908" opacity="0.5"/>
+    <text x="120" y="470" font-size="13" fill="#8A8070">WHY THIS FIRST</text>
+    <text x="120" y="498" font-size="14" fill="#E8EBE6">A pricing engine has nothing real to</text>
+    <text x="120" y="520" font-size="14" fill="#E8EBE6">price until bookings, serviceability,</text>
+    <text x="120" y="542" font-size="14" fill="#E8EBE6">and payment work end to end.</text>
+
+    <!-- Right: DESIGNED, dashed outline -->
+    <rect x="620" y="150" width="510" height="470" rx="16" fill="none" stroke="#5A5044" stroke-width="2" stroke-dasharray="8 6"/>
+    <rect x="648" y="178" width="180" height="28" rx="14" fill="none" stroke="#8A8070" stroke-width="1.5"/>
+    <text x="738" y="197" text-anchor="middle" font-weight="700" font-size="12" fill="#A39C8C">DESIGNED &#8212; NOT BUILT</text>
+    <text x="648" y="238" font-weight="700" font-size="19" fill="#D8CFBE">V2 — Pricing Engine</text>
+
+    <text x="648" y="278" font-size="14" fill="#8A8070">&#9675; Service minimums &amp; distance bands</text>
+    <text x="648" y="308" font-size="14" fill="#8A8070">&#9675; Labor, movers &amp; stairs pricing</text>
+    <text x="648" y="338" font-size="14" fill="#8A8070">&#9675; Urgency &amp; specialty item rules</text>
+    <text x="648" y="368" font-size="14" fill="#8A8070">&#9675; Margin protection &amp; admin overrides</text>
+    <text x="648" y="398" font-size="14" fill="#8A8070">&#9675; Customer approval flows</text>
+
+    <rect x="648" y="440" width="454" height="150" rx="12" fill="none" stroke="#332C22" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="670" y="470" font-size="13" fill="#8A8070">STATUS</text>
+    <text x="670" y="498" font-size="14" fill="#A39C8C">Documented and scoped during V1,</text>
+    <text x="670" y="520" font-size="14" fill="#A39C8C">so V2 has a real foundation — but it</text>
+    <text x="670" y="542" font-size="14" fill="#A39C8C">has not shipped.</text>
+  </g>
+
+  <text x="70" y="655" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="#5A5044">ZUMETRIX LABS &#8212; PRODUCT SEQUENCING</text>
+  <text x="1130" y="655" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A5044">SOLID = SHIPPED &#183; DASHED = PLANNED</text>
+</svg>

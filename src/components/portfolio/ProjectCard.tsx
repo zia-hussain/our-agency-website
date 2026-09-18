@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = "archive" }) 
               loading="lazy"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="w-full aspect-[4/3] object-cover"
+              className={`w-full aspect-[4/3] ${project.heroImageFit === "contain" ? "object-contain bg-background" : "object-cover"}`}
             />
           </div>
         </div>

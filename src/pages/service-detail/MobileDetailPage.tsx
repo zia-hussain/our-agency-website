@@ -7,6 +7,7 @@ import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
 import SectionEyebrow from "../../components/common/SectionEyebrow";
 import FAQAccordion from "../../components/common/FAQAccordion";
+import RelatedReading from "../../components/common/RelatedReading";
 import ClosingGlow from "../../components/common/ClosingGlow";
 import { services } from "../../data/services";
 import { mobileDetailFAQs } from "../../data/faqs/service-mobile";
@@ -514,6 +515,33 @@ const MobileDetailPage: React.FC = () => {
           <AnimatedSection delay={0.06}>
             <FAQAccordion items={mobileDetailFAQs} idPrefix="mobile-detail-faq" />
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* RELATED READING                                                    */}
+      {/* ================================================================ */}
+      <section className="pb-8 bg-background">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <RelatedReading
+            links={[
+              {
+                href: "/articles/mobile-app-development-flutter-react-native",
+                label: "Flutter vs React Native: which is right for you?",
+                description: "Five real questions to decide the framework, grounded in what we've actually shipped.",
+              },
+              {
+                href: "/portfolio/tomo-voice-ai-companion",
+                label: "Tomo — voice-first AI companion app",
+                description: "Low-latency voice streaming and a premium interface, built in React Native.",
+              },
+              {
+                href: "/portfolio/pawspace-pet-services-marketplace",
+                label: "PawSpace — pet services marketplace app",
+                description: "Booking and provider-matching flows for a two-sided mobile marketplace.",
+              },
+            ]}
+          />
         </div>
       </section>
 

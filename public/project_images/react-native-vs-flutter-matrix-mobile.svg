@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 2700" width="800" height="2700">
+  <defs>
+    <radialGradient id="rmglow" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rmbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="rmgrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="2700" fill="url(#rmbg)"/>
+  <rect width="800" height="2700" fill="url(#rmglow)"/>
+  <rect width="800" height="2700" filter="url(#rmgrain)"/>
+
+  <text x="48" y="72" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="2" fill="#C48A64">FIVE QUESTIONS, NOT ONE OPINION</text>
+  <text x="48" y="122" font-family="Georgia, serif" font-weight="600" font-size="30" fill="#F3EAE1">React Native vs. Flutter,</text>
+  <text x="48" y="164" font-family="Georgia, serif" font-weight="600" font-size="30" fill="#F3EAE1">by what the app needs.</text>
+
+  <!-- 5 stacked Q&A cards -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="210" width="704" height="330" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="260" font-weight="700" font-size="24" fill="#F3EAE1">Team already knows React?</text>
+    <text x="80" y="308" font-size="18" fill="#C48A64">RN</text>
+    <text x="120" y="308" font-size="20" fill="#9FD4A8">Shared thinking with the web app</text>
+    <text x="80" y="350" font-size="18" fill="#C48A64">Flutter</text>
+    <text x="170" y="350" font-size="20" fill="#A39C8C">New language (Dart) to learn</text>
+
+    <rect x="48" y="574" width="704" height="330" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="624" font-weight="700" font-size="24" fill="#F3EAE1">Needs a web dashboard too?</text>
+    <text x="80" y="672" font-size="18" fill="#C48A64">RN</text>
+    <text x="120" y="672" font-size="20" fill="#9FD4A8">Natural fit alongside a React web app</text>
+    <text x="80" y="714" font-size="18" fill="#C48A64">Flutter</text>
+    <text x="170" y="714" font-size="20" fill="#A39C8C">Separate stack for the dashboard</text>
+
+    <rect x="48" y="938" width="704" height="330" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="988" font-weight="700" font-size="24" fill="#F3EAE1">Highly custom, brand UI?</text>
+    <text x="80" y="1036" font-size="18" fill="#C48A64">RN</text>
+    <text x="120" y="1036" font-size="20" fill="#A39C8C">Good, leans on native patterns</text>
+    <text x="80" y="1078" font-size="18" fill="#C48A64">Flutter</text>
+    <text x="170" y="1078" font-size="20" fill="#9FD4A8">Full control over every pixel</text>
+
+    <rect x="48" y="1302" width="704" height="330" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="1352" font-weight="700" font-size="24" fill="#F3EAE1">Real-time streams (voice, live data)?</text>
+    <text x="80" y="1400" font-size="18" fill="#C48A64">RN</text>
+    <text x="120" y="1400" font-size="20" fill="#9FD4A8">Mature ecosystem, fast to wire up</text>
+    <text x="80" y="1442" font-size="18" fill="#C48A64">Flutter</text>
+    <text x="170" y="1442" font-size="20" fill="#A39C8C">Capable, fewer ready-made SDKs</text>
+
+    <rect x="48" y="1666" width="704" height="330" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="1716" font-weight="700" font-size="24" fill="#F3EAE1">Who maintains it after launch?</text>
+    <text x="80" y="1764" font-size="18" fill="#C48A64">RN</text>
+    <text x="120" y="1764" font-size="20" fill="#9FD4A8">Larger hiring pool, JS-familiar</text>
+    <text x="80" y="1806" font-size="18" fill="#C48A64">Flutter</text>
+    <text x="170" y="1806" font-size="20" fill="#A39C8C">Smaller pool, strong for design-led teams</text>
+  </g>
+
+  <!-- Real evidence footer card -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="2036" width="704" height="500" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <text x="80" y="2094" font-weight="700" font-size="24" fill="#C48A64">WHAT WE'VE ACTUALLY</text>
+    <text x="80" y="2130" font-weight="700" font-size="24" fill="#C48A64">SHIPPED IN REACT NATIVE</text>
+    <text x="80" y="2192" font-size="20" fill="#BFB4A2">Tomo — voice-first AI companion,</text>
+    <text x="80" y="2224" font-size="20" fill="#BFB4A2">low-latency audio streaming</text>
+    <text x="80" y="2270" font-size="20" fill="#BFB4A2">PawSpace — pet services</text>
+    <text x="80" y="2302" font-size="20" fill="#BFB4A2">marketplace, booking flows</text>
+    <text x="80" y="2348" font-size="20" fill="#BFB4A2">Skill x Swap — credit-based</text>
+    <text x="80" y="2380" font-size="20" fill="#BFB4A2">mobile marketplace MVP</text>
+    <text x="80" y="2450" font-size="18" fill="#8A8070">No Flutter case study claimed —</text>
+    <text x="80" y="2480" font-size="18" fill="#8A8070">none has shipped yet.</text>
+  </g>
+
+  <text x="48" y="2660" font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="1" fill="#5A5044">ZUMETRIX LABS — MOBILE APP DEVELOPMENT</text>
+</svg>

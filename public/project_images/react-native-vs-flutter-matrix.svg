@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <defs>
+    <radialGradient id="glow8" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg8" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="grain8">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg8)"/>
+  <rect width="1200" height="900" fill="url(#glow8)"/>
+  <rect width="1200" height="900" filter="url(#grain8)"/>
+
+  <text x="80" y="78" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2.5" fill="#C48A64">FIVE QUESTIONS, NOT ONE OPINION</text>
+  <text x="80" y="126" font-family="Georgia, serif" font-weight="600" font-size="34" fill="#F3EAE1">React Native vs. Flutter, by what the app needs.</text>
+
+  <!-- Table header -->
+  <g font-family="Public Sans, sans-serif" font-weight="700" font-size="16">
+    <rect x="80" y="170" width="1040" height="52" rx="10" fill="#1D1A15"/>
+    <text x="104" y="203" fill="#8A8070">QUESTION</text>
+    <text x="600" y="203" fill="#C48A64">REACT NATIVE</text>
+    <text x="870" y="203" fill="#C48A64">FLUTTER</text>
+  </g>
+
+  <!-- Rows -->
+  <g font-family="Public Sans, sans-serif" font-size="14.5">
+    <!-- Row 1 -->
+    <line x1="80" y1="240" x2="1120" y2="240" stroke="#332C22" stroke-width="1"/>
+    <text x="104" y="272" font-weight="700" fill="#F3EAE1">Team already knows React?</text>
+    <text x="600" y="272" fill="#9FD4A8">Shared thinking with the web app</text>
+    <text x="870" y="272" fill="#A39C8C">New language (Dart) to learn</text>
+
+    <!-- Row 2 -->
+    <line x1="80" y1="310" x2="1120" y2="310" stroke="#332C22" stroke-width="1"/>
+    <text x="104" y="342" font-weight="700" fill="#F3EAE1">Needs a web dashboard too?</text>
+    <text x="600" y="342" fill="#9FD4A8">Natural fit alongside a React web app</text>
+    <text x="870" y="342" fill="#A39C8C">Separate stack for the dashboard</text>
+
+    <!-- Row 3 -->
+    <line x1="80" y1="380" x2="1120" y2="380" stroke="#332C22" stroke-width="1"/>
+    <text x="104" y="412" font-weight="700" fill="#F3EAE1">Highly custom, brand-specific UI?</text>
+    <text x="600" y="412" fill="#A39C8C">Good, leans on native patterns</text>
+    <text x="870" y="412" fill="#9FD4A8">Full control over every pixel</text>
+
+    <!-- Row 4 -->
+    <line x1="80" y1="450" x2="1120" y2="450" stroke="#332C22" stroke-width="1"/>
+    <text x="104" y="482" font-weight="700" fill="#F3EAE1">Real-time streams (voice, audio, live data)?</text>
+    <text x="600" y="482" fill="#9FD4A8">Mature ecosystem, fast to wire up</text>
+    <text x="870" y="482" fill="#A39C8C">Capable, fewer ready-made SDKs</text>
+
+    <!-- Row 5 -->
+    <line x1="80" y1="520" x2="1120" y2="520" stroke="#332C22" stroke-width="1"/>
+    <text x="104" y="552" font-weight="700" fill="#F3EAE1">Who maintains it after launch?</text>
+    <text x="600" y="552" fill="#9FD4A8">Larger hiring pool, JS-familiar</text>
+    <text x="870" y="552" fill="#A39C8C">Smaller pool, strong for design-led teams</text>
+    <line x1="80" y1="590" x2="1120" y2="590" stroke="#332C22" stroke-width="1"/>
+  </g>
+
+  <!-- Real evidence footer card -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="80" y="630" width="1040" height="190" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
+    <text x="108" y="670" font-weight="700" font-size="16" fill="#C48A64">WHAT WE'VE ACTUALLY SHIPPED IN REACT NATIVE</text>
+    <text x="108" y="704" font-size="14" fill="#BFB4A2">Tomo &#8212; voice-first AI companion, low-latency audio streaming</text>
+    <text x="108" y="730" font-size="14" fill="#BFB4A2">PawSpace &#8212; pet services marketplace, booking &amp; provider flows</text>
+    <text x="108" y="756" font-size="14" fill="#BFB4A2">Skill x Swap &#8212; credit-based mobile marketplace MVP</text>
+    <text x="108" y="792" font-size="13" fill="#8A8070">No Flutter case study is claimed here — none has shipped yet.</text>
+  </g>
+
+  <text x="80" y="864" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="#5A5044">ZUMETRIX LABS &#8212; MOBILE APP DEVELOPMENT</text>
+  <text x="1120" y="864" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A5044">FIT THE TOOL TO THE PRODUCT</text>
+</svg>

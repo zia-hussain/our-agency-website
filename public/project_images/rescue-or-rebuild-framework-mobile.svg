@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 2500" width="800" height="2500">
+  <defs>
+    <radialGradient id="mglow2" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#C48A64" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mbg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16140F"/>
+      <stop offset="100%" stop-color="#0A0908"/>
+    </linearGradient>
+    <filter id="mgrain2">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="2500" fill="url(#mbg2)"/>
+  <rect width="800" height="2500" fill="url(#mglow2)"/>
+  <rect width="800" height="2500" filter="url(#mgrain2)"/>
+
+  <text x="48" y="76" font-family="IBM Plex Mono, monospace" font-size="19" letter-spacing="2" fill="#C48A64">THE RESCUE-OR-REBUILD FRAMEWORK</text>
+  <text x="48" y="128" font-family="Georgia, serif" font-weight="600" font-size="36" fill="#F3EAE1">Four real questions.</text>
+  <text x="48" y="172" font-family="Georgia, serif" font-weight="600" font-size="36" fill="#F3EAE1">No fake score.</text>
+
+  <!-- 4 dimension cards, stacked full-width -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="220" width="704" height="220" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <circle cx="96" cy="270" r="26" fill="none" stroke="#C48A64" stroke-opacity="0.5" stroke-width="2.5"/>
+    <text x="96" y="279" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="22" fill="#C48A64">1</text>
+    <text x="140" y="264" font-weight="700" font-size="27" fill="#F3EAE1">Structural Integrity</text>
+    <text x="140" y="296" font-size="19" fill="#8A8070">Architecture, data trust, security</text>
+    <text x="80" y="358" font-size="21" fill="#BFB4A2">Can the foundation hold more</text>
+    <text x="80" y="390" font-size="21" fill="#BFB4A2">weight, or is it failing now?</text>
+
+    <rect x="48" y="464" width="704" height="220" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <circle cx="96" cy="514" r="26" fill="none" stroke="#C48A64" stroke-opacity="0.5" stroke-width="2.5"/>
+    <text x="96" y="523" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="22" fill="#C48A64">2</text>
+    <text x="140" y="508" font-weight="700" font-size="27" fill="#F3EAE1">Operational Control</text>
+    <text x="140" y="540" font-size="19" fill="#8A8070">Tests, docs, team continuity</text>
+    <text x="80" y="602" font-size="21" fill="#BFB4A2">Can anyone safely change this</text>
+    <text x="80" y="634" font-size="21" fill="#BFB4A2">system today?</text>
+
+    <rect x="48" y="708" width="704" height="220" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <circle cx="96" cy="758" r="26" fill="none" stroke="#C48A64" stroke-opacity="0.5" stroke-width="2.5"/>
+    <text x="96" y="767" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="22" fill="#C48A64">3</text>
+    <text x="140" y="752" font-weight="700" font-size="27" fill="#F3EAE1">Business Reversibility</text>
+    <text x="140" y="784" font-size="19" fill="#8A8070">Runway, live users, pressure</text>
+    <text x="80" y="846" font-size="21" fill="#BFB4A2">How much room is there to</text>
+    <text x="80" y="878" font-size="21" fill="#BFB4A2">get this decision wrong?</text>
+
+    <rect x="48" y="952" width="704" height="220" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
+    <circle cx="96" cy="1002" r="26" fill="none" stroke="#C48A64" stroke-opacity="0.5" stroke-width="2.5"/>
+    <text x="96" y="1011" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="22" fill="#C48A64">4</text>
+    <text x="140" y="996" font-weight="700" font-size="27" fill="#F3EAE1">Scope of the Problem</text>
+    <text x="140" y="1028" font-size="19" fill="#8A8070">One capability, or the whole system</text>
+    <text x="80" y="1090" font-size="21" fill="#BFB4A2">Does "rebuild" even have the</text>
+    <text x="80" y="1122" font-size="21" fill="#BFB4A2">right shape as an answer?</text>
+  </g>
+
+  <line x1="400" y1="1210" x2="400" y2="1270" stroke="#473D2E" stroke-width="2.5"/>
+  <path d="M 386 1258 L 400 1280 L 414 1258" fill="none" stroke="#473D2E" stroke-width="2.5"/>
+
+  <text x="400" y="1330" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="1" fill="#8A8070">COMBINE IN ORDER — FIRST MATCH WINS</text>
+  <text x="48" y="1380" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="1.5" fill="#8A8070">SIX POSSIBLE OUTCOMES</text>
+
+  <!-- 6 outcome rows, stacked, full-width, color-coded left bar -->
+  <g font-family="Public Sans, sans-serif">
+    <rect x="48" y="1412" width="704" height="118" rx="14" fill="#122417" stroke="#3D7A4A" stroke-width="2"/>
+    <rect x="48" y="1412" width="10" height="118" rx="5" fill="#3D7A4A"/>
+    <text x="88" y="1478" font-weight="700" font-size="27" fill="#6FC07D">NO REBUILD SIGNAL</text>
+
+    <rect x="48" y="1550" width="704" height="118" rx="14" fill="#211E17" stroke="#5A5044" stroke-width="2"/>
+    <rect x="48" y="1550" width="10" height="118" rx="5" fill="#5A5044"/>
+    <text x="88" y="1616" font-weight="700" font-size="27" fill="#A39C8C">AUDIT BEFORE DECIDING</text>
+
+    <rect x="48" y="1688" width="704" height="118" rx="14" fill="#312410" stroke="#B8792A" stroke-width="2"/>
+    <rect x="48" y="1688" width="10" height="118" rx="5" fill="#B8792A"/>
+    <text x="88" y="1754" font-weight="700" font-size="27" fill="#DBA455">STABILIZE FIRST</text>
+
+    <rect x="48" y="1826" width="704" height="118" rx="14" fill="#2E2118" stroke="#C48A64" stroke-width="2"/>
+    <rect x="48" y="1826" width="10" height="118" rx="5" fill="#C48A64"/>
+    <text x="88" y="1892" font-weight="700" font-size="27" fill="#E8B78C">RESCUE IS PLAUSIBLE</text>
+
+    <rect x="48" y="1964" width="704" height="118" rx="14" fill="#331B17" stroke="#B8402F" stroke-width="2" opacity="0.92"/>
+    <rect x="48" y="1964" width="10" height="118" rx="5" fill="#B8402F"/>
+    <text x="88" y="2030" font-weight="700" font-size="27" fill="#E0685A">PARTIAL REBUILD MAY BE JUSTIFIED</text>
+
+    <rect x="48" y="2102" width="704" height="118" rx="14" fill="#331B17" stroke="#B8402F" stroke-width="2.5"/>
+    <rect x="48" y="2102" width="10" height="118" rx="5" fill="#B8402F"/>
+    <text x="88" y="2168" font-weight="700" font-size="27" fill="#E0685A">FULL REBUILD REQUIRES EVIDENCE</text>
+  </g>
+
+  <text x="48" y="2260" font-family="Georgia, serif" font-style="italic" font-size="21" fill="#BFB4A2">Every outcome explains why, what signals mattered,</text>
+  <text x="48" y="2294" font-family="Georgia, serif" font-style="italic" font-size="21" fill="#BFB4A2">what to check next, and what would change the answer.</text>
+
+  <text x="48" y="2460" font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="1" fill="#5A5044">ZUMETRIX LABS — RULE-BASED · NOT A SCORE</text>
+</svg>

@@ -55,6 +55,7 @@ const STATIC_INDEX_ROUTES = [
   { loc: "/client-stories", changefreq: "monthly", priority: "0.7" },
   { loc: "/contact", changefreq: "monthly", priority: "0.8" },
   { loc: "/articles", changefreq: "weekly", priority: "0.7" },
+  { loc: "/rescue-or-rebuild", changefreq: "monthly", priority: "0.7" },
   { loc: "/privacy-policy", changefreq: "yearly", priority: "0.3" },
   { loc: "/terms-of-service", changefreq: "yearly", priority: "0.3" },
 ];

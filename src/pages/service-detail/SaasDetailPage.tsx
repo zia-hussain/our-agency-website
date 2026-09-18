@@ -10,6 +10,7 @@ import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
 import SectionEyebrow from "../../components/common/SectionEyebrow";
 import FAQAccordion from "../../components/common/FAQAccordion";
+import RelatedReading from "../../components/common/RelatedReading";
 import ClosingGlow from "../../components/common/ClosingGlow";
 import { services } from "../../data/services";
 import { saasDetailFAQs } from "../../data/faqs/service-saas";
@@ -638,6 +639,33 @@ const SaasDetailPage: React.FC = () => {
           <AnimatedSection delay={0.06}>
             <FAQAccordion items={saasDetailFAQs} idPrefix="saas-detail-faq" />
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* RELATED READING                                                    */}
+      {/* ================================================================ */}
+      <section className="pb-8 bg-background">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <RelatedReading
+            links={[
+              {
+                href: "/articles/build-saas-mvp-in-30-days",
+                label: "How to build a SaaS MVP in 30 days",
+                description: "The full framework: validation, feature prioritization, tech stack, and an honest timeline.",
+              },
+              {
+                href: "/articles/should-you-rescue-or-rebuild-your-saas",
+                label: "Already have a codebase? Start here instead",
+                description: "If there's an existing product involved, this decides whether a new build is even the right move.",
+              },
+              {
+                href: "/portfolio/knipsr-event-media-saas",
+                label: "Knipsr — from product build to launch-ready SaaS",
+                description: "A real case study of taking a product from build to a shipped, launch-ready SaaS.",
+              },
+            ]}
+          />
         </div>
       </section>
 
