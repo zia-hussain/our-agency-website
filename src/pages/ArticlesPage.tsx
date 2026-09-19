@@ -13,25 +13,29 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { articles, categories } from "../data/articles.js";
 import { articlesFAQs } from "../data/faqs/articles";
 import { getAuthorIdentity } from "../data/authors";
+import { DECISION_LABEL, FEATURED_ORDER, INDEX_ORDER, pickInOrder, sortByOrder } from "../data/articleHierarchy";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
 const ArticlesPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [visibleCount, setVisibleCount] = useState(6);
+  // Every article is linked from the hub's static HTML; the list is ordered by
+  // editorial hierarchy (see articleHierarchy.ts), not by data-file order.
+  const [visibleCount, setVisibleCount] = useState(articles.length);
 
-  const featuredArticles = articles.filter((a) => a.featured).slice(0, 3);
+  const featuredArticles = pickInOrder(articles, FEATURED_ORDER);
+  const orderedArticles = sortByOrder(articles, INDEX_ORDER);
 
   const filteredArticles =
-    activeFilter === "all" ? articles : articles.filter((a) => a.category === activeFilter);
+    activeFilter === "all" ? orderedArticles : orderedArticles.filter((a) => a.category === activeFilter);
 
   const displayedArticles = filteredArticles.slice(0, visibleCount);
   const hasMore = visibleCount < filteredArticles.length;
 
   const handleFilterChange = (categoryId: string) => {
     setActiveFilter(categoryId);
-    setVisibleCount(6);
+    setVisibleCount(articles.length);
   };
 
   const categoryCounts = categories.map((c) => ({
@@ -120,14 +124,14 @@ const ArticlesPage: React.FC = () => {
             <AnimatedSection className="text-center mb-24 sm:mb-28">
               <SectionEyebrow className="mb-6">Featured</SectionEyebrow>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
-                <span className="text-muted-foreground/50">A few we'd start with.</span>{" "}
-                <span className="text-foreground">Written the same way we build.</span>
+                <span className="text-muted-foreground/50">What to build, what to fix, what to automate.</span>{" "}
+                <span className="text-foreground">Start with the thinking.</span>
               </h2>
             </AnimatedSection>
 
             {featuredArticles.map((article, index) => (
               <React.Fragment key={article.id}>
-                <ArticleSpotlight article={article} index={index} />
+                <ArticleSpotlight article={article} index={index} decision={DECISION_LABEL[article.slug]} />
                 {index < featuredArticles.length - 1 && (
                   <div className="relative flex justify-center my-16 sm:my-20" aria-hidden="true">
                     <span className="w-px h-14 sm:h-20 bg-gradient-to-b from-border via-primary/50 to-border" />

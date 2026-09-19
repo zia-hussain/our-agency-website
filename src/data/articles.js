@@ -133,7 +133,7 @@ export const articles = [
     readTime: "12 min read",
     tags: ["Founders", "Lessons", "Agency Life", "Real Talk"],
     category: "Insights",
-    featured: true,
+    featured: false,
     seo: {
       title: "What We Learned Building 50+ Projects | Zumetrix Labs",
       description: "Honest lessons from 3 years building software for founders. What works, what doesn't, and why most projects fail before the first line of code.",
@@ -296,7 +296,7 @@ export const articles = [
     readTime: "6 min read",
     tags: ["AI", "Automation", "OpenAI", "Business Growth", "Pakistan"],
     category: "AI & Automation",
-    featured: true,
+    featured: false,
     seo: {
       title: "AI Automation: What to Automate First | Zumetrix Labs",
       description: "Learn where to start with AI automation for business workflows, including lead routing, CRM updates, reporting, document processing, and OpenAI integration.",

@@ -89,7 +89,9 @@ const ProjectDetailPage: React.FC = () => {
   }
 
   const pageUrl = `https://zumetrix.com/portfolio/${project.slug}`;
-  const shareImage = project.image.startsWith("http") ? project.image : `https://zumetrix.com${project.image}`;
+  // A dedicated 1200x630 PNG for link previews (the card/hero image can be an SVG, which X, LinkedIn and Facebook do not render).
+  const shareSource = project.ogImage ?? project.image;
+  const shareImage = shareSource.startsWith("http") ? shareSource : `https://zumetrix.com${shareSource}`;
   // heroEvidence already carries this evidence in the hero, so the KPI band is
   // skipped for those projects; `kpis` stays on the record for the portfolio
   // proof ticker and cards that read it.
@@ -156,6 +158,7 @@ const ProjectDetailPage: React.FC = () => {
         description={project.description}
         keywords={`${project.tags.join(", ")}, case study, portfolio, ${project.client.country}`}
         image={shareImage}
+        imageAlt={project.ogImageAlt}
         url={pageUrl}
         structuredData={structuredData}
         noIndex={!project.searchIndexable}

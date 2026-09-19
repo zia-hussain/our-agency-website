@@ -4,8 +4,9 @@ import { ArrowRight, ChevronDown, X } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { services, rescueService } from "../../data/services";
 import { articles } from "../../data/articles.js";
+import { NAV_FEATURED_ORDER, pickInOrder } from "../../data/articleHierarchy";
 
-const FEATURED_ARTICLES = articles.filter((a) => a.featured);
+const FEATURED_ARTICLES = pickInOrder(articles, NAV_FEATURED_ORDER);
 
 // One resolved object, not a UI panel: a solid, heavy instrument sitting
 // above the page, not a translucent bar blending into it. The glossy

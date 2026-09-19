@@ -19,13 +19,15 @@ interface ArticleSpotlightProps {
     tags: string[];
   };
   index: number;
+  /** Which decision this piece works through: Build, Fix or Automate. */
+  decision?: string;
 }
 
 // Same register as ProjectSpotlight — each featured article is its own
 // scene, not a card in a grid. ArticleVisual is already the bespoke
 // element here (its own hook-highlight algorithm), so it's shown large
 // and tilted rather than competing with more typography on top of it.
-const ArticleSpotlight: React.FC<ArticleSpotlightProps> = ({ article, index }) => {
+const ArticleSpotlight: React.FC<ArticleSpotlightProps> = ({ article, index, decision }) => {
   const reversed = index % 2 === 1;
 
   return (
@@ -56,6 +58,12 @@ const ArticleSpotlight: React.FC<ArticleSpotlightProps> = ({ article, index }) =
           transition={{ duration: 0.4, delay: 0.06 }}
         >
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/70 mb-4">
+            {decision && (
+              <>
+                <span className="text-primary">{decision}</span>
+                <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+              </>
+            )}
             <span>{article.category}</span>
             <span className="text-muted-foreground/40" aria-hidden="true">·</span>
             <span className="text-muted-foreground normal-case tracking-normal inline-flex items-center gap-1">

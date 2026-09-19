@@ -15,6 +15,9 @@ export interface Project {
   description: string;
   longDescription: string;
   image: string;
+  /** Optional crawler-safe share image (1200x630 PNG/JPEG). Falls back to `image`. */
+  ogImage?: string;
+  ogImageAlt?: string;
   // "contain" for a hand-authored diagram whose composition would be
   // damaged by the hero frame's default center-crop (see TiltImage). Leave
   // unset for ordinary photography, where cropping to fill the frame is fine.
@@ -1364,6 +1367,8 @@ export const projects: Project[] = [
   description: "A previous development team spent roughly two years without a reliable launch. Zumetrix took over an existing, in-progress app and shipped it in three weeks.",
   longDescription: "This is a recovery story, not a technical case study — we're not going to describe an architecture or a stack we can't verify. What's verified: Josh Nyce, owner and founder of Fast Track USA, says his app sat in development for about two years with a previous team without reaching a reliable launch. Zumetrix took the project over and shipped it in three weeks, which Josh has described — on video and in a separately-worded, verified Trustpilot review corroborated on Google — as launching in flawless, bug-free condition.",
   image: "/project_images/fast-track-recovery-timeline.svg",
+  ogImage: "/project_images/fast-track-og.png",
+  ogImageAlt: "Fast Track USA: about two years with a previous team trying to get the app launched, then three weeks to launch after Zumetrix took over, per the client. \"No bugs, no issues.\" — Josh Nyce, Owner & Founder.",
   heroImageFit: "contain",
   heroImageMobile: "/project_images/fast-track-recovery-timeline-mobile.svg",
   gallery: ["/project_images/fast-track-recovery-timeline.svg"],

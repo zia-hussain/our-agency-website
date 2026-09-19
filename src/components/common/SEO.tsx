@@ -6,6 +6,8 @@ interface SEOProps {
   description?: string;
   keywords?: string;
   image?: string;
+  /** Short description of the share image; defaults to the page title (or "Zumetrix Labs logo" for the logo). */
+  imageAlt?: string;
   url?: string;
   type?: string;
   googleVerification?: string;
@@ -13,16 +15,26 @@ interface SEOProps {
   noIndex?: boolean;
 }
 
+const SITE_URL = "https://zumetrix.com";
+const LOGO_URL = `${SITE_URL}/logo/Logo%20Icon.png`;
+
+// Open Graph / Twitter crawlers need absolute URLs; a relative path is unresolvable off-site.
+const absoluteUrl = (u: string) => (/^https?:\/\//i.test(u) ? u : `${SITE_URL}${u.startsWith("/") ? "" : "/"}${u}`);
+
 const SEO: React.FC<SEOProps> = ({
   title = "Zumetrix Labs | SaaS MVPs, Apps & AI Automation",
   description = "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners.",
-  image = "https://zumetrix.com/logo/Logo%20Icon.png",
+  image = LOGO_URL,
+  imageAlt,
   url = "https://zumetrix.com",
   type = "website",
   googleVerification,
   structuredData,
   noIndex = false,
 }) => {
+  const resolvedImage = absoluteUrl(image);
+  const alt =
+    imageAlt ?? (resolvedImage === LOGO_URL ? "Zumetrix Labs logo" : title.replace(/\s*\|\s*Zumetrix Labs\s*$/, ""));
   const robots = noIndex
     ? "noindex, follow"
     : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
@@ -45,24 +57,18 @@ const SEO: React.FC<SEOProps> = ({
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={resolvedImage} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="Zumetrix Labs" />
       <meta property="og:locale" content="en_US" />
-      <meta
-        property="og:image:alt"
-        content="Zumetrix Labs"
-      />
+      <meta property="og:image:alt" content={alt} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
-      <meta
-        name="twitter:image:alt"
-        content="Zumetrix Labs"
-      />
+      <meta name="twitter:image" content={resolvedImage} />
+      <meta name="twitter:image:alt" content={alt} />
 
       <meta name="theme-color" content="#C48A64" />
       <meta name="apple-mobile-web-app-title" content="Zumetrix Labs" />

@@ -113,7 +113,8 @@ const RescueOrRebuildPage: React.FC = () => {
       <SEO
         title="Rescue or Rebuild? A Straight Answer for Your SaaS | Zumetrix Labs"
         description="A short, honest tool that reads four real signals in your codebase and business — not a quiz score — and tells you whether to stabilize, rescue, rebuild, or get an audit first."
-        image="https://zumetrix.com/project_images/rescue-or-rebuild-framework.svg"
+        image="https://zumetrix.com/project_images/rescue-or-rebuild-tool-og.png"
+        imageAlt="Rescue or rebuild? Three answers (structural integrity, operational control, scope) select one of six outcomes through ordered rules, first match. Business Reversibility sets the stakes and never selects the outcome."
         url={pageUrl}
         structuredData={{
           "@context": "https://schema.org",
