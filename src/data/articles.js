@@ -763,50 +763,44 @@ export const articles = [
     id: 7,
     slug: "should-you-rescue-or-rebuild-your-saas",
     title: "Should You Rescue or Rebuild Your SaaS?",
-    excerpt: "A rule-based way to think through rescue vs. rebuild — four real dimensions, no fake scoring, and an honest willingness to say the product is probably fine.",
+    excerpt: "A rule-based framework for deciding whether to rescue or rebuild your SaaS — four inputs, six possible outcomes, checked in order, including when the honest answer is to audit first.",
+    deck: "Rescue and rebuild are both expensive, and either can be the wrong call. This is a way to test whether your evidence supports one — and to recognize when it doesn't yet.",
+    hideHeroVisual: true,
     content: `
-      <p>If you're asking this question, something about your product is making you nervous — bugs that won't stay fixed, a team that's gone quiet, a launch that keeps slipping, or a codebase you inherited and don't fully trust. Here's the direct answer before the reasoning: <strong>most of the time, the honest answer is neither "rescue" nor "rebuild" — it's "stabilize," "audit further," or, more often than agencies like admitting, "you're probably fine."</strong> The rest of this guide is how to tell which one you're actually looking at.</p>
+      <p>If you're asking this question, something about your product has stopped feeling safe — bugs that won't stay fixed, a team that's gone quiet, a launch that keeps slipping, or a codebase you inherited and don't fully trust. Both obvious answers are expensive. A rewrite can remove structural problems; it can also replace known problems with unknown ones. A rescue can fix what's there; it can also prop up something that needed replacing. The useful question is whether the evidence you have can justify either — and what to do when it can't yet.</p>
 
-      <h2>Why most guides on this get the incentives backwards</h2>
-      <p>Search for this question and you'll find a lot of confident five-step frameworks. Most of them are written by teams who get paid either to rescue your product or rebuild it — rarely to tell you that you don't need either. That's not a conspiracy, it's just an incentive problem worth naming, because it means most "frameworks" quietly funnel every answer toward a sale.</p>
-      <p>We built ours to do the opposite. If the honest read of your situation is that a targeted fix will do, we'd rather tell you that on this page for free than have you find it out after a $20,000 engagement.</p>
+      <p>This isn't a rescue pitch or a rebuild pitch. Zumetrix does stabilization and rescue work, and builds products, so we're not neutral. That's why what follows is a set of ordered rules rather than advice, why "audit before deciding" and "no rebuild signal" are outcomes it can reach, and why each outcome comes with what would change it.</p>
 
-      <h2>The four dimensions that actually matter</h2>
-      <p>Not twelve sliders averaged into a percentage — four real questions, each answered in plain terms, not a number.</p>
+      <!-- module:rescue-framework -->
 
-      <h3>1. Structural Integrity</h3>
-      <p>Can the foundation hold more weight, or is it actively failing right now? This covers whether the architecture is sound but neglected versus fundamentally mismatched to what the product needs to do today, whether the data can be trusted, and whether there are known, unpatched security problems.</p>
+      <h2>The four dimensions, in plain terms</h2>
+      <p><strong>Structural Integrity.</strong> Can the foundation hold more weight, or is it actively failing? This covers whether the architecture is sound but neglected or fundamentally mismatched to what the product needs today, whether the data can be trusted, and whether there are known, unpatched security problems.</p>
+      <p><strong>Operational Control.</strong> Can anyone safely change this system today? A codebase can be architecturally fine and still unsafe to touch — with no test coverage, no documentation, and the one person who understood the decisions gone, every change is a gamble however clean the code looks.</p>
+      <p><strong>Scope of the Problem.</strong> One broken capability, or the whole system? This decides whether "rebuild" even has the right shape as an answer: a fundamentally broken payments module doesn't necessarily mean the rest of the product goes with it.</p>
+      <p><strong>Business Reversibility.</strong> How much room is there to get this decision wrong? A pre-revenue product with six months of runway and no live users can absorb a rebuild's cost and timeline in a way that a product with paying customers depending on it today cannot. It doesn't change which outcome the rules produce — a healthy system doesn't become unhealthy because the stakes are high — but it changes how urgently to act, and whether a second opinion is worth having.</p>
 
-      <h3>2. Operational Control</h3>
-      <p>Can anyone safely change this system today? A codebase can be architecturally fine and still be unsafe to touch — if there's no test coverage, no documentation, and the one person who understood the decisions is gone, every change is a gamble regardless of how clean the code looks.</p>
+      <h2>What the table can't tell you</h2>
+      <p>The rules run in order rather than being averaged, on purpose: a blended score can let three healthy answers hide one serious problem — a genuinely broken security posture, say. Ordered rules don't average anything away. Three details the table compresses:</p>
+      <ul>
+        <li><strong>"Unknown" changes the outcome.</strong> If you can't say whether the foundation is sound or whether your team can change it safely, every other answer becomes guesswork — so the rules route to an audit, not a verdict.</li>
+        <li><strong>A healthy system is a real result.</strong> A handful of nagging bugs and a slow feature or two is a normal backlog, not a rescue candidate. The test isn't "does anything feel behind?" — it's "can we change this safely, and is the foundation sound?"</li>
+        <li><strong>Stabilize first isn't a smaller rebuild.</strong> When the foundation holds but changes aren't safe, what's missing is process — tests, documentation, continuity. A rebuild doesn't supply those on its own; it can leave a new system with the same gap.</li>
+      </ul>
+      <p>And no outcome is final. Every one depends on what you know today, and some of it moves once you know more:</p>
+      <ul>
+        <li><strong>An audit finds a solid foundation</strong> → toward "no rebuild signal" or "stabilize first."</li>
+        <li><strong>An audit finds structural problems</strong> → toward "rescue is plausible," or further, depending on scope.</li>
+        <li><strong>Stabilization uncovers hidden structural problems</strong> → "stabilize first" becomes "rescue is plausible."</li>
+        <li><strong>A "contained" problem touches shared infrastructure</strong> → a partial rebuild can widen toward a fuller one.</li>
+        <li><strong>An independent review finds the problem narrower than it looked</strong> → a full rebuild can narrow to a partial one.</li>
+      </ul>
 
-      <h3>3. Business Reversibility</h3>
-      <p>How much room is there to get this decision wrong? A pre-revenue product with six months of runway and no live users can absorb a rebuild's cost and timeline. A product with paying customers depending on it today generally can't — the same technical facts point to a different decision depending on what's actually riding on it.</p>
-
-      <h3>4. Scope of the Problem</h3>
-      <p>Is this one broken capability, or is it the whole system? This one determines whether "rebuild" even has the right shape as an answer. A payments module that's fundamentally broken doesn't necessarily mean the rest of the product needs to go with it.</p>
-
-      <blockquote>Most of the time, the honest answer is neither "rescue" nor "rebuild" — it's "stabilize," "audit further," or, more often than agencies like admitting, "you're probably fine."</blockquote>
-
-      <h2>How the four combine — the actual rule logic</h2>
-      <p>In order, first match wins. This is deliberately not a weighted average — a genuinely broken security posture shouldn't get diluted by three healthy dimensions into a falsely reassuring blended score.</p>
-      <ol>
-        <li><strong>Can't honestly answer Structural Integrity or Operational Control</strong> (you genuinely don't know if the data is trustworthy, or whether there's a real security problem) → <strong>audit before deciding.</strong> Guessing here is worse than admitting you don't know yet.</li>
-        <li><strong>Structural Integrity healthy and Operational Control healthy</strong> → <strong>no rebuild signal.</strong> This is a real, reachable outcome, not a fallback — if your foundation is sound and your team can safely ship changes, you don't need a rescue engagement. You might need a targeted fix for whatever's actually bothering you, but that's a different, smaller conversation.</li>
-        <li><strong>Structural Integrity is healthy or close to it, but Operational Control is genuinely strained</strong> (thin test coverage, no documentation, one person holds all the context) → <strong>stabilize first.</strong> The foundation is fine; what's missing is the ability to change it safely.</li>
-        <li><strong>Structural Integrity is broken, but the scope is narrow</strong> (one capability, not the whole system) → <strong>a partial rebuild may be justified</strong> for that specific piece, not the product.</li>
-        <li><strong>Structural Integrity is broken, Operational Control is broken, and the scope is the whole system</strong> → <strong>a full rebuild requires strong evidence.</strong> This is deliberately the hardest outcome to reach, because it's the highest-cost recommendation and the one every incentive in this industry pushes toward too easily.</li>
-        <li><strong>Everything else</strong> — real issues, but nothing severe, reasonable room to be wrong → <strong>rescue is plausible.</strong> This is the broad middle: fixable in place, worth doing carefully.</li>
-      </ol>
-
-      <h2>What "you're probably fine" actually looks like</h2>
-      <p>This is the outcome most guides skip, so it's worth describing concretely. A SaaS product with a handful of nagging bugs, a slow feature or two, and a team that can still ship confidently isn't a rescue candidate — it's a normal product with a normal backlog. The test isn't "does anything feel behind." It's "can we change this safely, and is the foundation actually sound." If both are true, what you need is prioritization, not an engagement.</p>
-
-      <h2>What we've actually seen this look like</h2>
-      <p>Fast Track USA is the clearest example we can point to publicly: a previous team spent roughly two years without reaching a reliable launch. That's not automatically a "rebuild" situation — sometimes what looks unshippable is actually an ownership and momentum problem more than a structural one. In this case, taking over the existing, in-progress work and shipping it in three weeks was the right call, not starting over. <a href="/portfolio/fast-track-usa-app-rescue">The full story is here</a> — we've kept it short on purpose, since we're not going to describe technical specifics we can't verify.</p>
-
-      <h2>Get a read on your own situation</h2>
-      <p>The four dimensions above are the same ones behind our <a href="/rescue-or-rebuild">Rescue or Rebuild tool</a> — a short, private assessment that walks through the same logic against your actual situation and explains its reasoning, including telling you plainly if the signals don't point toward a rescue at all. No email required to see the result.</p>
+      <aside class="not-prose my-12 rounded-2xl border border-border/50 bg-card/10 p-6 sm:p-8">
+        <p class="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Field note · Fast Track USA</p>
+        <p class="text-base leading-8 text-zinc-300 sm:text-[1.0625rem]">According to founder Josh Nyce, a previous team spent roughly two years without a reliable launch; after Zumetrix took over the in-progress app, it launched within three weeks.</p>
+        <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.0625rem]"><span class="font-semibold text-foreground">One real case isn't a rule.</span> It doesn't show that rescue beats rebuild, that a rebuild would have failed, what was technically wrong, what was kept or changed, or why it worked.</p>
+        <a href="/portfolio/fast-track-usa-app-rescue" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">Read the Fast Track case study &rarr;</a>
+      </aside>
     `,
     image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
     heroImage: "/project_images/rescue-or-rebuild-framework.svg",
@@ -814,18 +808,21 @@ export const articles = [
     heroImageAlt: "The four-dimension rescue-or-rebuild decision framework: Structural Integrity, Operational Control, Business Reversibility, and Scope of the Problem, combining into six possible outcomes.",
     heroImageWidth: 1200,
     heroImageHeight: 900,
-    ogImage: "/project_images/rescue-or-rebuild-framework.svg",
+    // Absolute PNG: Open Graph / Twitter need absolute URLs, and X/LinkedIn/Facebook do not render SVG.
+    ogImage: "https://zumetrix.com/project_images/rescue-or-rebuild-og.png",
     author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-09-16",
-    readTime: "9 min read",
+    // Set by hand like every article's readTime (nothing computes it). 927 words as a reader sees them
+    // (694 prose + 233 framework text, FAQ and CTA excluded) / 200 wpm = 4.6 -> 5.
+    readTime: "5 min read",
     tags: ["Product Rescue", "Decision Framework", "SaaS", "Technical Debt"],
     category: "Product Rescue",
     featured: true,
     seo: {
       title: "Should You Rescue or Rebuild Your SaaS? | Zumetrix Labs",
-      description: "A rule-based framework for the rescue-vs-rebuild decision — four real dimensions, no fake scoring, and an honest 'you're probably fine' outcome when that's the truth.",
+      description: "A rule-based rescue-or-rebuild framework for SaaS: four inputs, six outcomes, checked in order — including 'audit before deciding' and 'no rebuild signal'.",
       keywords: "rescue or rebuild, SaaS rescue, rebuild vs refactor, software rescue framework, technical debt decision, product rescue"
     },
     internalLinks: [
@@ -838,21 +835,35 @@ export const articles = [
         label: "Fast Track — two years stuck, three weeks to launch",
         href: "/portfolio/fast-track-usa-app-rescue",
         description: "The clearest real example we can point to publicly of what a takeover engagement looks like."
-      },
-      {
-        label: "Get a private read on your situation",
-        href: "/rescue-or-rebuild",
-        description: "The same four-dimension logic, applied to your actual answers — no email required."
       }
     ],
+    cta: {
+      position: "afterContent",
+      eyebrow: "Run your own situation",
+      heading: "You have the framework. Now run your situation through it.",
+      body: "The Rescue or Rebuild tool asks the same four questions and applies these same rules — including when the honest result is \"audit before deciding\" or \"no rebuild signal.\" It's private, and no email is required to see the result.",
+      points: [
+        "Your outcome, and why the rules landed there",
+        "The signals that mattered most",
+        "What to check next — and what would change the answer"
+      ],
+      label: "Run the Rescue or Rebuild tool",
+      href: "/rescue-or-rebuild"
+    },
+    faqHeading: "Quick answers on rescue and rebuild",
+    closing: {
+      lead: "Rather talk it through?",
+      emphasis: "Start with the founders.",
+      body: "A free 30-minute call — bring your situation, or what the tool told you."
+    },
     faqs: [
       {
         question: "How do I know if my SaaS needs a rescue or a rebuild?",
-        answer: "Check four things in order: can you honestly answer whether the architecture and data are trustworthy (if not, audit first); is the foundation sound and can your team safely ship changes (if both yes, you likely don't need either); is the foundation fine but changes feel unsafe (stabilize first); is the problem narrow or system-wide (narrow points to a partial rebuild, system-wide with a broken foundation is the only case for a full rebuild)."
+        answer: "Answer four questions honestly, then check the six outcomes in order — the first match wins. If you can't say whether the foundation is sound or whether your team can change it safely, audit first. A full rebuild needs a broken foundation, no safe way to change the system, and a problem that runs through all of it; anything that doesn't fit cleanly points to a rescue assessment first."
       },
       {
         question: "Is it possible my product doesn't need a rescue or rebuild at all?",
-        answer: "Yes, and it's more common than agency content usually admits. A product with a normal backlog, a team that can ship safely, and a sound foundation isn't a rescue candidate — it needs prioritization, not an engagement."
+        answer: "Yes. If the foundation is sound and your team can change the product safely, the framework returns \"no rebuild signal.\" A normal backlog, a few stubborn bugs, or a slow feature doesn't make a product a rescue candidate on its own — it calls for prioritization, not an engagement."
       },
       {
         question: "What's the difference between stabilizing and rescuing a SaaS product?",

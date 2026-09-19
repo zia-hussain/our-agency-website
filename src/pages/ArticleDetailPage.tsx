@@ -7,6 +7,7 @@ import ArticleVisual from "../components/common/ArticleVisual";
 import ResponsiveImage from "../components/common/ResponsiveImage";
 import TiltFrame from "../components/portfolio/TiltFrame";
 import ClosingGlow from "../components/common/ClosingGlow";
+import RescueFramework from "../components/articles/RescueFramework";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -24,6 +25,29 @@ import {
 } from "lucide-react";
 import { articles } from "../data/articles.js";
 import { getAuthorIdentity } from "../data/authors";
+
+// Articles can place a purpose-built module between runs of prose by putting
+// <!-- module:name --> in their content. An article with no marker renders as
+// one prose block, exactly as before.
+const ARTICLE_MODULES: Record<string, React.FC> = {
+  "rescue-framework": RescueFramework,
+};
+const MODULE_MARKER = /<!--\s*module:([a-z0-9-]+)\s*-->/;
+
+const PROSE_CLASSES = `article-content prose prose-lg dark:prose-invert mx-auto max-w-[820px]
+                       prose-headings:scroll-mt-28 prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
+                       prose-h2:mt-16 prose-h2:mb-6 prose-h2:border-t prose-h2:border-border/70 prose-h2:pt-10 prose-h2:text-3xl prose-h2:leading-tight md:prose-h2:text-4xl
+                       prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-2xl prose-h3:leading-snug
+                       prose-p:text-[1.0625rem] prose-p:leading-[1.95] prose-p:text-zinc-300
+                       prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium
+                       prose-strong:text-foreground prose-strong:font-semibold
+                       prose-ul:my-7 prose-ul:pl-6 prose-ul:text-zinc-300 prose-li:my-2 prose-li:leading-[1.85] marker:prose-li:text-primary/70
+                       prose-ol:my-7 prose-ol:pl-7 prose-ol:text-zinc-300
+                       prose-code:rounded-md prose-code:bg-card/70 prose-code:px-2 prose-code:py-1 prose-code:text-sm prose-code:text-primary
+                       prose-pre:rounded-2xl prose-pre:border prose-pre:border-border prose-pre:bg-card/70 prose-pre:p-6
+                       prose-blockquote:my-10 prose-blockquote:rounded-2xl prose-blockquote:border-l-0 prose-blockquote:bg-card/45 prose-blockquote:p-6 prose-blockquote:text-foreground prose-blockquote:shadow-sm prose-blockquote:ring-1 prose-blockquote:ring-border/70
+                       prose-img:my-10 prose-img:rounded-2xl prose-img:border prose-img:border-border/70 prose-img:shadow-lg`;
+const FIRST_HEADING_RESET = "[&>h2:first-of-type]:mt-0 [&>h2:first-of-type]:border-t-0 [&>h2:first-of-type]:pt-0";
 
 const ArticleDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -49,7 +73,7 @@ const ArticleDetailPage: React.FC = () => {
 
     // Reading progress
     const handleScroll = () => {
-      const articleContent = document.querySelector(".article-content");
+      const articleContent = document.querySelector("[data-article-body], .article-content");
       if (!articleContent) return;
 
       const articleTop = articleContent.getBoundingClientRect().top + window.scrollY;
@@ -141,6 +165,9 @@ const ArticleDetailPage: React.FC = () => {
     );
   }
 
+  // Even indexes are prose, odd indexes are module names (String.split keeps the capture group).
+  const contentSegments = (article.content || "").split(MODULE_MARKER);
+
   const structuredAuthors = article.author
     .split(" & ")
     .map((authorName) => {
@@ -214,6 +241,44 @@ const ArticleDetailPage: React.FC = () => {
       },
     ],
   };
+
+  // Optional per-article CTA. Without one, the generic card below renders exactly
+  // as it always has; with one, an article can point at its own next step and,
+  // via position: "afterContent", place it directly under the prose instead of
+  // after the FAQ.
+  const cta = article.cta;
+  const ctaBeforeLinks = cta?.position === "afterContent";
+  const ctaCard = (
+    <div className="mx-auto mt-16 max-w-[820px] rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/10 via-card/45 to-card/20 p-6 sm:p-8">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+        {cta?.eyebrow ?? "Apply this to your product"}
+      </p>
+      <h2 className={`mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl${cta ? " [text-wrap:balance]" : ""}`}>
+        {cta?.heading ?? "Want a clear build plan before spending months on development?"}
+      </h2>
+      <p className="mb-6 max-w-2xl text-base leading-8 text-muted-foreground">
+        {cta?.body ??
+          "Share the idea, current stage, and the result you want. We will help you shape the right first version, the technical path, and the next move with less guesswork."}
+      </p>
+      {cta?.points?.length ? (
+        <ul className="mb-8 grid gap-x-6 gap-y-3 border-t border-primary/15 pt-6 sm:grid-cols-3">
+          {cta.points.map((point: string) => (
+            <li key={point} className="flex gap-2.5 text-sm leading-relaxed text-muted-foreground">
+              <span aria-hidden="true" className="mt-[0.55rem] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary/70" />
+              {point}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      <Link
+        to={cta?.href ?? "/contact"}
+        className="btn-sheen inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform duration-150 hover:-translate-y-0.5"
+      >
+        {cta?.label ?? "Talk to Zumetrix Labs"}
+        <ArrowRight size={16} />
+      </Link>
+    </div>
+  );
 
   return (
     <PageTransition>
@@ -295,7 +360,7 @@ const ArticleDetailPage: React.FC = () => {
 
             {/* Excerpt */}
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 font-light max-w-4xl">
-              {article.excerpt}
+              {article.deck || article.excerpt}
             </p>
 
             {/* Meta & Share */}
@@ -449,6 +514,7 @@ const ArticleDetailPage: React.FC = () => {
           heroImageAlt/Width/Height) in the data and this renders it instead,
           full-width, as a real indexable asset — not a replacement for
           ArticleVisual, a per-article choice. */}
+      {!article.hideHeroVisual && (
       <section className="pb-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
@@ -474,6 +540,7 @@ const ArticleDetailPage: React.FC = () => {
           </AnimatedSection>
         </div>
       </section>
+      )}
 
       {/* Article Content */}
       <section className="pb-24 bg-background">
@@ -491,23 +558,32 @@ const ArticleDetailPage: React.FC = () => {
               </p>
             </div>
 
-            <article
-              className="article-content prose prose-lg dark:prose-invert mx-auto max-w-[820px]
-                       prose-headings:scroll-mt-28 prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
-                       prose-h2:mt-16 prose-h2:mb-6 prose-h2:border-t prose-h2:border-border/70 prose-h2:pt-10 prose-h2:text-3xl prose-h2:leading-tight md:prose-h2:text-4xl
-                       prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-2xl prose-h3:leading-snug
-                       prose-p:text-[1.0625rem] prose-p:leading-[1.95] prose-p:text-zinc-300
-                       prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium
-                       prose-strong:text-foreground prose-strong:font-semibold
-                       prose-ul:my-7 prose-ul:pl-6 prose-ul:text-zinc-300 prose-li:my-2 prose-li:leading-[1.85] marker:prose-li:text-primary/70
-                       prose-ol:my-7 prose-ol:pl-7 prose-ol:text-zinc-300
-                       prose-code:rounded-md prose-code:bg-card/70 prose-code:px-2 prose-code:py-1 prose-code:text-sm prose-code:text-primary
-                       prose-pre:rounded-2xl prose-pre:border prose-pre:border-border prose-pre:bg-card/70 prose-pre:p-6
-                       prose-blockquote:my-10 prose-blockquote:rounded-2xl prose-blockquote:border-l-0 prose-blockquote:bg-card/45 prose-blockquote:p-6 prose-blockquote:text-foreground prose-blockquote:shadow-sm prose-blockquote:ring-1 prose-blockquote:ring-border/70
-                       prose-img:my-10 prose-img:rounded-2xl prose-img:border prose-img:border-border/70 prose-img:shadow-lg
-                       [&>h2:first-of-type]:mt-0 [&>h2:first-of-type]:border-t-0 [&>h2:first-of-type]:pt-0"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+            {contentSegments.length === 1 ? (
+              <article
+                className={`${PROSE_CLASSES}
+                       ${FIRST_HEADING_RESET}`}
+                dangerouslySetInnerHTML={{ __html: article.content }}
+              />
+            ) : (
+              <div data-article-body>
+                {contentSegments.map((segment: string, i: number) => {
+                  if (i % 2 === 1) {
+                    const Module = ARTICLE_MODULES[segment];
+                    return Module ? <Module key={`module-${i}`} /> : null;
+                  }
+                  if (!segment.trim()) return null;
+                  return (
+                    <article
+                      key={`prose-${i}`}
+                      className={i === 0 ? `${PROSE_CLASSES}\n                       ${FIRST_HEADING_RESET}` : PROSE_CLASSES}
+                      dangerouslySetInnerHTML={{ __html: segment }}
+                    />
+                  );
+                })}
+              </div>
+            )}
+
+            {ctaBeforeLinks && ctaCard}
 
             {article.internalLinks?.length > 0 && (
               <div className="mx-auto mt-16 max-w-[820px] border-y border-border/70 py-8">
@@ -539,7 +615,7 @@ const ArticleDetailPage: React.FC = () => {
                   Common questions
                 </p>
                 <h2 className="mb-8 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  Quick answers before you build
+                  {article.faqHeading || "Quick answers before you build"}
                 </h2>
                 <div className="space-y-4">
                   {article.faqs.map((faq) => (
@@ -559,26 +635,7 @@ const ArticleDetailPage: React.FC = () => {
               </div>
             )}
 
-            <div className="mx-auto mt-16 max-w-[820px] rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/10 via-card/45 to-card/20 p-6 sm:p-8">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-                Apply this to your product
-              </p>
-              <h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Want a clear build plan before spending months on development?
-              </h2>
-              <p className="mb-6 max-w-2xl text-base leading-8 text-muted-foreground">
-                Share the idea, current stage, and the result you want. We will
-                help you shape the right first version, the technical path, and
-                the next move with less guesswork.
-              </p>
-              <Link
-                to="/contact"
-                className="btn-sheen inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform duration-150 hover:-translate-y-0.5"
-              >
-                Talk to Zumetrix Labs
-                <ArrowRight size={16} />
-              </Link>
-            </div>
+            {!ctaBeforeLinks && ctaCard}
           </AnimatedSection>
         </div>
       </section>
@@ -774,11 +831,11 @@ const ArticleDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
-              <span className="block text-muted-foreground/50">Want this applied</span>
-              <span className="block text-foreground mt-2">to your own product?</span>
+              <span className="block text-muted-foreground/50">{article.closing?.lead ?? "Want this applied"}</span>
+              <span className="block text-foreground mt-2">{article.closing?.emphasis ?? "to your own product?"}</span>
             </p>
             <p className="text-base text-muted-foreground max-w-md mx-auto mb-12 leading-relaxed">
-              A free 30-minute call with the founders — your project, your stage, a real next step.
+              {article.closing?.body ?? "A free 30-minute call with the founders — your project, your stage, a real next step."}
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">
