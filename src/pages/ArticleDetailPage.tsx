@@ -8,6 +8,7 @@ import ResponsiveImage from "../components/common/ResponsiveImage";
 import TiltFrame from "../components/portfolio/TiltFrame";
 import ClosingGlow from "../components/common/ClosingGlow";
 import RescueFramework from "../components/articles/RescueFramework";
+import AutomationFramework from "../components/articles/AutomationFramework";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -31,6 +32,7 @@ import { getAuthorIdentity } from "../data/authors";
 // one prose block, exactly as before.
 const ARTICLE_MODULES: Record<string, React.FC> = {
   "rescue-framework": RescueFramework,
+  "automation-framework": AutomationFramework,
 };
 const MODULE_MARKER = /<!--\s*module:([a-z0-9-]+)\s*-->/;
 

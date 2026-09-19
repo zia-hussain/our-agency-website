@@ -875,47 +875,42 @@ export const articles = [
     id: 8,
     slug: "when-is-ai-automation-the-wrong-choice",
     title: "When Is AI Automation the Wrong Choice?",
-    excerpt: "AI isn't the right layer for every workflow. A practical way to tell when a deterministic automation beats an AI one — with real examples from automations we've actually shipped.",
+    excerpt: "AI is one possible engine for a workflow, not the goal. Three questions help you reason about rules or AI, whether a person should confirm the result, and when to map the workflow first.",
+    deck: "AI is one way to automate a workflow, not the goal. Whether a workflow needs rules, a model, a person's sign-off or more mapping first depends on the work.",
+    hideHeroVisual: true,
     content: `
-      <p><strong>AI automation is usually the wrong choice when the rules are already clear, when a mistake is expensive or hard to reverse, or when nobody on the team can define what a "correct" output actually looks like well enough to check the AI's work.</strong> In each of those situations, a plain rules-based automation — a webhook, a script, a Zapier or Make.com flow with no model in the loop — is more reliable, cheaper to run, and far easier to debug than anything built on an LLM. This isn't a hedge. Several of the automation systems we've actually built and shipped use no AI at all, on purpose, because the workflow didn't call for it.</p>
+      <p>Automating a workflow isn't one decision. The same task — routing incoming support requests, say — can run on fixed rules, on a model, with a person confirming the result, or stay manual until someone can say what "right" looks like. Asking "should we use AI?" skips that choice, and skipping it can leave a workflow with an engine it doesn't need, or without a checkpoint it does.</p>
 
-      <h2>Why "just add AI" became the default advice</h2>
-      <p>A lot of automation content right now reads like AI is a feature you sprinkle on top of any workflow to make it better. Some of that is genuine enthusiasm. Some of it is that AI integrations are easier to market, easier to demo, and easier to bill for than "we connected two systems with a webhook" — even when the webhook is the better engineering decision.</p>
-      <p>The result is a lot of businesses paying for AI-in-the-loop where a deterministic flow would have been faster to build, cheaper to run every month, and far less likely to produce a confidently wrong answer nobody catches.</p>
+      <p>We build automation, including AI-assisted systems, so we have an interest in you automating something. That's a reason to be careful about how. The framework below is built so it can end at "use plain rules," "keep a person in the loop," or "not yet."</p>
 
-      <h2>Four modes, not one default</h2>
-      <p>Every automation decision we make sorts into one of four modes. None of them is the "advanced" one — they're just different fits for different kinds of work.</p>
+      <!-- module:automation-framework -->
 
-      <h3>Deterministic automation</h3>
-      <p>Fixed rules, fixed inputs, no interpretation required. A Stripe subscription event maps to an Airtable field update. A form submission maps to a CRM record. There's exactly one correct output for a given input, so there's nothing for a model to add except cost, latency, and a new way to be wrong.</p>
+      <h2>What each part is good for</h2>
+      <p><strong>Rules.</strong> A rules-based flow gives the same output for the same input, so you can test it against the rule and trace a wrong result back to it. It fits work where inputs arrive in a defined shape and the mapping is explicit — a subscription event becoming a record, an order becoming a row. Where the mapping is already exact, a model can't improve on it; it only adds something else to check.</p>
+      <p><strong>AI.</strong> A model earns its place when writing the rule is impractical — free text, scanned documents, requests that need summarizing, classifying or drafting. What it adds is the ability to handle that variety; what it costs is that its output isn't guaranteed to be the same for the same input, the way a rule's is. That's manageable when someone can tell a good result from a bad one and a miss is affordable, which is why the first question and the checkpoint question matter for AI in particular.</p>
+      <p><strong>A checkpoint.</strong> A person confirms before the action is final. It works on either engine, and it isn't automatically a stepping stone: it can stay for as long as a wrong output stays costly. It only helps if the reviewer can actually judge the output — a checkpoint nobody can evaluate is a formality.</p>
+      <p><strong>Not yet.</strong> Manual isn't a failure state. Doing a process by hand can be how you find out what it actually is, and automating one that isn't settled just makes the confusion move faster. "Not yet" means map it first, then ask the questions again.</p>
 
-      <h3>AI-assisted workflow</h3>
-      <p>The input is messy — free text, a scanned document, a support message written in someone's own words — or the task genuinely requires interpretation, like summarizing or classifying. A model earns its place here because the alternative isn't "write more rules," it's "have a person do it manually," and a wrong AI output is cheap to notice and correct.</p>
+      <h2>What our own work does and doesn't show</h2>
+      <p>Six automation projects in our portfolio, including our own operations stack, list no AI or model anywhere in their records. What they list is rules-shaped work:</p>
+      <ul>
+        <li><a href="/portfolio/stripe-to-airtable-subscription-sync">Stripe to Airtable:</a> subscription events, received by webhook, mapped into structured Airtable records.</li>
+        <li><a href="/portfolio/shopify-to-notion-pnl-automation">Shopify to Notion P&amp;L:</a> order data mapped into structured Notion databases, with formula-driven P&amp;L views.</li>
+        <li><a href="/portfolio/twilio-auto-dialer-logic">Twilio auto dialer:</a> dials through a contact list, tracks each call, and advances to the next.</li>
+        <li><a href="/portfolio/twilio-conference-call-logic">Twilio conference calls:</a> participants added and removed dynamically from a React Native app.</li>
+        <li><a href="/portfolio/floating-stone-ranch-processor-intake-engine">Floating Stone Ranch:</a> a normalized Airtable schema, with Make.com scenarios layered on top for status changes and cross-table updates.</li>
+        <li><a href="/portfolio/zumetrix-labs-internal-automation-stack">Our operations stack:</a> Airtable, Notion and Google Sheets connected through Make.com and Zapier.</li>
+      </ul>
+      <p>That shows where our own work has been rules-shaped. It doesn't show that AI wouldn't have helped in any of them, and we don't have a documented example of the AI-assisted or checkpoint shapes to show here, so we won't pretend to. Floating Stone Ranch comes closest to the "not yet" logic: its record starts from manual spreadsheets and paper, describes the schema first with the automation layered on top, and lists process mapping and data modeling among the deliverables. That illustrates the order — structure before automation — not proof that the process was unsettled when we began.</p>
 
-      <h3>Human-in-the-loop</h3>
-      <p>The rules might even be fairly clear, but the outcome matters enough — money moving, an account being closed, a message going out under the company's name — that a person should confirm before the action is final. AI or a rules engine can prepare the decision; a human still makes it.</p>
-
-      <h3>Fully manual, not yet</h3>
-      <p>The honest fourth option: some workflows aren't ready to automate at all, in any mode, because the underlying process itself isn't settled. Automating an unclear process just makes the confusion move faster. This is the mode that gets skipped in most automation pitches, because "don't automate this yet" isn't what an agency wants to open with.</p>
-
-      <blockquote>None of the four modes is the "advanced" one. They're just different fits for different kinds of work — and "not yet" is as legitimate an answer as any of them.</blockquote>
-
-      <h2>The two questions that actually decide the mode</h2>
-      <p>Underneath all four is the same pair of questions: <strong>how clear are the rules</strong>, and <strong>how expensive is a mistake</strong>. Clear rules with a cheap mistake is deterministic automation, no argument needed. Fuzzy rules with a cheap mistake is where AI genuinely helps. Either one paired with an expensive, hard-to-reverse mistake means a human checkpoint belongs in the loop — and if the rules aren't even settled yet, the honest move is to wait.</p>
-
-      <h2>What this looks like in automation we've actually built</h2>
-      <p>Worth being direct about: most of the automation systems in our own portfolio use no AI at all. The <a href="/portfolio/stripe-to-airtable-subscription-sync">Stripe-to-Airtable subscription sync</a> and the <a href="/portfolio/shopify-to-notion-pnl-automation">Shopify-to-Notion P&amp;L automation</a> are both webhook-driven, rules-based flows — the mapping from a Stripe event or a Shopify order to the destination record is exact, so a deterministic pipeline is simply the correct tool. The <a href="/portfolio/twilio-auto-dialer-logic">Twilio auto dialer</a> and <a href="/portfolio/twilio-conference-call-logic">Twilio conference call system</a> are the same story — call state and sequencing logic that has one right answer per event, not a judgment call.</p>
-      <p>Our own <a href="/portfolio/zumetrix-labs-internal-automation-stack">internal operations stack</a> is a mix: mostly deterministic syncing and reminders across Airtable, Notion, and Google Sheets, with AI reserved for the pieces that are actually language-shaped — drafting, summarizing, first-pass classification. That split isn't an accident. It's the same two questions above, applied to our own operations instead of a client's.</p>
-      <p>None of this means AI doesn't belong in automation — it means it belongs in specific places. <a href="/articles/ai-automation-business-growth">Our guide to where AI automation helps most</a> covers the workflows where it's the right call: messy inputs, support triage, drafting, and reporting that needs judgment, not just aggregation.</p>
-
-      <h2>A short check before adding AI to a workflow</h2>
-      <ol>
-        <li>Can the correct output be described as a fixed rule, not a judgment call? If yes, you probably don't need a model.</li>
-        <li>If the AI gets this wrong, how expensive and how visible is the mistake? Cheap and visible is fine. Expensive or silent needs a human checkpoint, at minimum.</li>
-        <li>Can someone on the team actually check the AI's output against a clear definition of "correct"? If nobody can articulate what correct looks like, the process isn't ready to automate in any mode yet.</li>
-        <li>Would a plain webhook, script, or no-code flow solve this without a model in the loop? If yes, that's usually the cheaper and more maintainable answer.</li>
-      </ol>
-      <p>None of this is an argument against AI automation. It's an argument against treating it as the default layer instead of one tool among four. The right question was never "should we use AI" — it's which of these four modes the workflow actually calls for.</p>
+      <h2>What would change the answer</h2>
+      <p>None of the answers is permanent. A few things should send you back to the questions:</p>
+      <ul>
+        <li><strong>A rules-based flow keeps needing new special cases.</strong> The work may be more interpretive than it looked.</li>
+        <li><strong>The inputs change shape.</strong> A flow that was exact can stop being exact when a form, a vendor or a file format changes.</li>
+        <li><strong>A wrong output starts to cost more.</strong> The flow that updated an internal sheet now sends customer emails or moves money. The engine didn't change; the checkpoint answer did.</li>
+        <li><strong>You start logging what reviewers change.</strong> That gives you evidence about whether a checkpoint is earning its place — a decision to make from the log, not from confidence.</li>
+      </ul>
     `,
     image: "https://images.pexels.com/photos/8438918/pexels-photo-8438918.jpeg?auto=compress&cs=tinysrgb&w=800",
     heroImage: "/project_images/automation-decision-matrix.svg",
@@ -923,49 +918,66 @@ export const articles = [
     heroImageAlt: "A decision matrix plotting rule clarity against cost of error, sorting automation work into four modes: deterministic automation, AI-assisted workflow, deterministic with review, and do not automate yet.",
     heroImageWidth: 1200,
     heroImageHeight: 900,
-    ogImage: "/project_images/automation-decision-matrix.svg",
+    // Absolute PNG: Open Graph / Twitter need absolute URLs, and X/LinkedIn/Facebook do not render SVG.
+    ogImage: "https://zumetrix.com/project_images/automation-workflow-og.png",
     author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2026-09-16",
-    readTime: "8 min read",
+    // Set by hand like every article's readTime (nothing computes it). 947 words as a reader sees them
+    // (714 prose + 233 framework text, FAQ and CTA excluded) / 200 wpm = 4.7 -> 5.
+    readTime: "5 min read",
     tags: ["AI", "Automation", "Decision Framework", "Make.com", "Zapier"],
     category: "AI & Automation",
     featured: true,
     seo: {
       title: "When Is AI Automation the Wrong Choice? | Zumetrix Labs",
-      description: "A practical framework for choosing between deterministic automation, AI-assisted workflows, human-in-the-loop review, and not automating yet — with real examples from shipped automations.",
+      description: "When is AI the wrong layer for workflow automation? A framework for reasoning about rules vs AI, human review as a checkpoint, and mapping the process first.",
       keywords: "AI automation wrong choice, when not to use AI, deterministic automation, AI vs rules-based automation, automation decision framework, Make.com vs AI, business process automation"
     },
     internalLinks: [
-      {
-        label: "AI automation solutions",
-        href: "/services/ai-automation-solutions",
-        description: "How we scope an automation project across deterministic flows, AI-assisted steps, and human review."
-      },
       {
         label: "AI automation for business: where to start",
         href: "/articles/ai-automation-business-growth",
         description: "The companion piece — where AI automation genuinely helps and which workflows to automate first."
       },
       {
-        label: "Stripe to Airtable — subscription sync automation",
-        href: "/portfolio/stripe-to-airtable-subscription-sync",
-        description: "A real deterministic automation: no AI in the loop, because none was needed."
+        label: "Floating Stone Ranch — Airtable and Make.com intake engine",
+        href: "/portfolio/floating-stone-ranch-processor-intake-engine",
+        description: "A schema-first automation for a beef processor: manual spreadsheets and paper replaced by structured records, with Make.com scenarios layered on top."
       }
     ],
+    cta: {
+      position: "afterContent",
+      eyebrow: "Before you automate it",
+      heading: "Map the workflow, then choose what runs it.",
+      body: "Our automation work starts by mapping the manual process, step by step, before we decide what to automate. The service page walks through how.",
+      points: [
+        "Map, connect, automate, test, observe — the five steps",
+        "Where AI fits in the workflow",
+        "How you see a workflow running and know when it needs attention"
+      ],
+      label: "See how we map a workflow first",
+      href: "/services/ai-automation-solutions"
+    },
+    faqHeading: "Quick answers on choosing how to automate",
+    closing: {
+      lead: "Got a workflow in mind?",
+      emphasis: "Talk it through with us.",
+      body: "A free 30-minute call with the founders — bring the workflow, and we'll start with what it needs."
+    },
     faqs: [
       {
         question: "When should a business avoid using AI in an automation?",
-        answer: "Avoid AI when the rules for a correct output are already clear and fixed, when a mistake would be expensive or hard to reverse, or when nobody on the team can define what a correct output looks like well enough to check it. A deterministic, rules-based automation is usually cheaper and more reliable in those cases."
+        answer: "When the right output can be written as a rule, a rules-based flow can do the job without a model — and it gives the same output for the same input, which makes it easier to test. Also when nobody can say what a correct result looks like, because no engine can be checked against a definition that doesn't exist yet. And where a wrong output would be costly or could go unnoticed, put a person in to confirm it before the action is final."
       },
       {
         question: "Is deterministic automation better than AI automation?",
-        answer: "Neither is universally better — they fit different workflows. Deterministic automation is the right choice when inputs and rules are exact, such as syncing billing events to a spreadsheet. AI automation earns its place when inputs are messy or the task requires interpretation, such as summarizing support messages."
+        answer: "Neither is better in general — they suit different work. Rules fit exact inputs and explicit logic, such as syncing billing events to a spreadsheet. AI fits unstructured input or interpretation, such as summarizing or classifying messages, provided someone can check the result."
       },
       {
         question: "What is human-in-the-loop automation?",
-        answer: "An automation where AI or rules-based logic prepares a decision or drafts an action, but a person confirms it before it becomes final. It's the right fit when the outcome matters enough — money, account access, outbound communication — that an automatic mistake would be costly."
+        answer: "An automation — rules-based or AI-based — that prepares a decision or drafts an action, with a person confirming it before it becomes final. It fits when a wrong output would be costly, hard to undo, or easy to miss: money moving, account access, messages sent in your name."
       }
     ]
   },
