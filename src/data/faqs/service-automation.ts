@@ -4,7 +4,7 @@ export const automationDetailFAQs = [
   {
     question: "What kinds of tools can actually be connected?",
     answer:
-      "CRMs, spreadsheets, Slack, Airtable, Shopify, and most tools with an API or a webhook — connected through Make.com, Zapier, n8n, or custom integration logic where a no-code platform isn't enough. Floating Stone Ranch is a real example: Airtable as the source of truth, Make.com scenarios automating status changes across carcass, box, and shipment records.",
+      "CRMs, spreadsheets, Slack, Airtable, Shopify, and other tools that expose an API or a webhook — connected through Make.com, Zapier, n8n, or custom integration logic where a no-code platform isn't enough. Floating Stone Ranch is a real example: Airtable as the source of truth, Make.com scenarios automating status changes across carcass, box, and shipment records.",
   },
   {
     question: "What happens when a step in the automation fails?",

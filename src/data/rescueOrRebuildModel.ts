@@ -156,7 +156,7 @@ const OUTCOME_COPY: Record<OutcomeKey, OutcomeCopy> = {
     yourRead:
       "You don't yet know enough about the foundation or your own ability to safely change it to make this call responsibly — and that's a completely normal place to be. Rescue and rebuild are both expensive words. Neither one should be chosen on a guess.",
     why:
-      "The two dimensions that actually determine whether a system is fixable — structural integrity and operational control — are the ones a decision can't skip past. When either is genuinely unknown, every other answer becomes noise: a \"broken\" scope reading means something different on a solid foundation than a fragile one, and there's no way to tell which you're in without looking.",
+      "Structural integrity and operational control are the two answers this tool can't reach a conclusion without. When either is genuinely unknown, every other answer becomes noise: a \"broken\" scope reading means something different on a solid foundation than a fragile one, and there's no way to tell which you're in without looking.",
     whatToCheckNext: [
       "Get a short, structured technical review — not a sales pitch, an honest read of what's actually there.",
       "Ask specifically: can this be safely changed today, and what would break if it were?",
@@ -172,9 +172,9 @@ const OUTCOME_COPY: Record<OutcomeKey, OutcomeCopy> = {
     yourRead:
       "Based on what you've described, this system doesn't show the signals that justify a rescue or rebuild engagement. That's a real answer, not a hedge — a solid foundation with the ability to safely change it is exactly what a healthy system looks like.",
     why:
-      "Structural integrity and operational control are the two questions that actually predict whether a system needs intervention. When both come back healthy, there's no honest case for a rescue engagement — recommending one anyway would be solving a problem you don't have.",
+      "Structural integrity and operational control are the two questions this tool reads first. When both come back healthy, there's no honest case for a rescue engagement — recommending one anyway would be solving a problem you don't have.",
     whatToCheckNext: [
-      "If something still feels off, name the specific symptom rather than reaching for \"rebuild\" as the answer — a narrow, well-defined problem usually has a narrow, well-defined fix.",
+      "If something still feels off, name the specific symptom rather than reaching for \"rebuild\" as the answer — a narrow, well-defined problem calls for a narrow, well-defined fix.",
       "Keep an eye on operational control specifically — teams change, documentation drifts, and \"solid\" today doesn't self-maintain.",
     ],
     whatCouldChangeThis: [
@@ -187,7 +187,7 @@ const OUTCOME_COPY: Record<OutcomeKey, OutcomeCopy> = {
     yourRead:
       "The foundation itself sounds sound — this isn't a structural problem. What's missing is the ability to work on it safely: tests, documentation, or continuity that would let changes happen with confidence instead of risk.",
     why:
-      "A solid foundation with limited or absent operational control is a process problem wearing the costume of a technical one. Rebuilding doesn't fix that — it just produces a second system with the same gap, on a longer timeline and a bigger bill.",
+      "A solid foundation with limited or absent operational control is a process problem wearing the costume of a technical one. A rebuild doesn't close that gap automatically — the new system needs tests, documentation and continuity too.",
     whatToCheckNext: [
       "Prioritize the specific operational gaps: missing tests, missing documentation, or a single point of failure on who understands the system.",
       "Stabilize before adding new scope — new features on an under-documented system widen the same gap.",
@@ -201,9 +201,9 @@ const OUTCOME_COPY: Record<OutcomeKey, OutcomeCopy> = {
   "partial-rebuild": {
     headline: "Partial rebuild may be justified",
     yourRead:
-      "The structural problems you described are real, but they're contained to one identifiable part of the system rather than running through all of it. That combination — genuine structural damage with a narrow blast radius — is usually where a targeted rebuild earns its cost, rather than a full one.",
+      "The structural problems you described are real, but they're contained to one identifiable part of the system rather than running through all of it. That combination — genuine structural damage with a narrow blast radius — is where a targeted rebuild can earn its cost, rather than a full one.",
     why:
-      "A full rebuild is justified by how far a problem spreads, not just by how serious it is. When the damage is structural but scoped to a specific capability, rebuilding that one part while keeping the rest intact is normally the more defensible use of time and budget.",
+      "A full rebuild is justified by how far a problem spreads, not just by how serious it is. When the damage is structural but scoped to a specific capability, rebuilding that one part while keeping the rest intact can be the more defensible use of time and budget.",
     whatToCheckNext: [
       "Confirm the boundary — get specific about what's inside the broken part and what depends on it from outside.",
       "Check that the rest of the system doesn't share the same root cause under a different name.",
@@ -219,10 +219,10 @@ const OUTCOME_COPY: Record<OutcomeKey, OutcomeCopy> = {
     yourRead:
       "What you've described — real structural problems, no safe way to change the system, and a problem that runs through nearly all of it — is the specific combination where a full rebuild is a defensible answer. It should still be treated as the expensive, high-conviction decision it is, not a default.",
     why:
-      "A full rebuild is rarely the right first answer, because it's rarely necessary — most systems that feel broken are actually narrower or more operationally-fixable than they look from the inside. This outcome only appears when structural damage, lost operational control, and whole-system scope are all present together.",
+      "A full rebuild is the costliest answer this tool can give, so it sets the highest bar. A problem can look wider from inside the business than it proves to be once someone else has read it. This outcome only appears when structural damage, lost operational control, and whole-system scope are all present together.",
     whatToCheckNext: [
       "Get an independent technical opinion before committing — this is the highest-cost decision in the model, and it deserves a second read.",
-      "Ask explicitly whether any part of the current system is salvageable, even under a rebuild — full rarely means from zero.",
+      "Ask explicitly whether any part of the current system is salvageable, even under a rebuild — a rebuild doesn't have to mean starting from zero.",
       "Have a clear answer for what happens to current users or data during the transition before starting.",
     ],
     whatCouldChangeThis: [

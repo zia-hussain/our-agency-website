@@ -171,8 +171,7 @@ const RescueDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-xl sm:text-2xl font-semibold text-foreground tracking-tight leading-snug">
-              We know how most of these conversations start. We don't need you to trust us yet —
-              we start by finding out what's actually true.
+              You don't need to trust us yet — we start by finding out what's actually true.
             </p>
           </AnimatedSection>
         </div>
@@ -278,11 +277,11 @@ const RescueDetailPage: React.FC = () => {
           <div className="grid sm:grid-cols-5 gap-4 sm:gap-5 items-stretch">
             <div className="sm:col-span-3 rounded-2xl border border-primary/40 bg-gradient-to-b from-primary/10 to-primary/[0.02] p-7 sm:p-9 shadow-[0_35px_80px_-30px_rgba(196,138,100,0.3)]">
               <p className="text-lg sm:text-xl font-bold text-foreground mb-2">Stabilize what deserves to stay</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">The honest default — most of what's already there survives.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">Where the foundation holds, we fix what blocks safe change and leave the rest alone.</p>
             </div>
             <div className="sm:col-span-2 rounded-2xl border border-dashed border-border/40 bg-card/5 p-6 sm:p-7 opacity-50 flex flex-col justify-center">
               <p className="text-sm font-semibold text-muted-foreground mb-2">Rebuild what can't responsibly be saved</p>
-              <p className="text-xs text-muted-foreground/60 leading-relaxed">The rare exception — and we'll tell you exactly why.</p>
+              <p className="text-xs text-muted-foreground/60 leading-relaxed">Only where the assessment shows it — and we'll show you exactly why.</p>
             </div>
           </div>
         </AnimatedSection>
@@ -344,7 +343,7 @@ const RescueDetailPage: React.FC = () => {
               </div>
               <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Stay on</p>
               <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
-                Most clients keep us on retainer after a rescue — the system stays known, not handed off into silence.
+                After handover, you can keep us on for ongoing support — so the system stays known, not handed off into silence.
               </p>
             </div>
           </div>
@@ -368,7 +367,7 @@ const RescueDetailPage: React.FC = () => {
             </AnimatedSection>
             <AnimatedSection delay={0.04}>
               <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight max-w-xl mx-auto mb-12">
-                This is the service we've done the most of.
+                One rescue, in the client's own words.
               </h2>
               <div className="flex items-center justify-center gap-6 sm:gap-10">
                 <div className="text-center">
@@ -525,10 +524,9 @@ const RescueDetailPage: React.FC = () => {
           <AnimatedSection className="flex items-start gap-4 text-left max-w-xl mx-auto">
             <X size={18} className="text-muted-foreground/40 flex-shrink-0 mt-1" />
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <span className="text-foreground font-semibold">If it's genuinely beyond repair, we'll say so —</span>{" "}
-              and tell you exactly why, before any work starts. Most of the time, more survives
-              than people expect. When it doesn't, you'll hear that from us directly, not after
-              you've paid for an assessment that just confirms what you already feared.
+              <span className="text-foreground font-semibold">If the assessment finds it's genuinely beyond repair, we'll say so —</span>{" "}
+              and show you exactly why — before any fix work is scoped or started. If it finds the
+              opposite, we'll say that just as plainly, and tell you what we'd keep.
             </p>
           </AnimatedSection>
         </div>

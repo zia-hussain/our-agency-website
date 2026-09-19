@@ -19,7 +19,7 @@
   <rect width="1200" height="675" filter="url(#grain4)"/>
 
   <text x="70" y="72" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2.5" fill="#C48A64">WHY PROJECTS ACTUALLY GET STUCK</text>
-  <text x="70" y="118" font-family="Georgia, serif" font-weight="600" font-size="30" fill="#F3EAE1">Rarely the code. Usually one of these four.</text>
+  <text x="70" y="118" font-family="Georgia, serif" font-weight="600" font-size="30" fill="#F3EAE1">Four causes a code review won't show.</text>
 
   <g font-family="Public Sans, sans-serif">
     <!-- 4 equal columns -->
@@ -57,5 +57,5 @@
   </g>
 
   <text x="70" y="655" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="#5A5044">ZUMETRIX LABS &#8212; PRODUCT RESCUE &amp; STABILIZATION</text>
-  <text x="1130" y="655" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A5044">NOT A CODE-QUALITY PROBLEM</text>
+  <text x="1130" y="655" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A5044">BEYOND CODE QUALITY</text>
 </svg>

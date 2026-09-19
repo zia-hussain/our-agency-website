@@ -382,9 +382,9 @@ export const projects: Project[] = [
       description: "All carcass, box, and shipment data stored in one base"
     },
     {
-      label: "Manual Steps Reduced",
-      value: "-60%",
-      description: "Replaced manual updates with Make.com automation"
+      label: "Automation Layer",
+      value: "Make.com",
+      description: "Key status transitions run through Make.com scenarios"
     },
     {
       label: "Scalability",
@@ -867,11 +867,6 @@ export const projects: Project[] = [
   ],
   problem: "Clients using Stripe for subscriptions often lacked a clean, non-technical view of active and canceled subscriptions inside their internal tools.",
   solution: "We set up webhook-driven automations using Make.com or Zapier that listen to Stripe events and map them into structured Airtable records, including customer, plan, and billing information.",
-  testimonial: {
-    quote: "Now our Stripe data just appears in Airtable without anyone touching it. Huge time saver.",
-    author: "Client Feedback",
-    role: "SaaS Founder"
-  },
   liveLink: "",
   stack: [
     "Stripe", "Airtable", "Make.com", "Zapier"
@@ -882,9 +877,9 @@ export const projects: Project[] = [
   ],
   kpis: [
     {
-      label: "Manual Work",
-      value: "-90%",
-      description: "Most subscription updates fully automated"
+      label: "Sync Method",
+      value: "Webhook-driven",
+      description: "Stripe subscription events update Airtable automatically"
     }
   ],
   relatedReading: [

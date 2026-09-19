@@ -49,9 +49,9 @@
     <!-- Right side note card -->
     <rect x="700" y="180" width="430" height="420" rx="16" fill="#1D1A15" stroke="#332C22" stroke-width="1.5"/>
     <text x="728" y="222" font-weight="700" font-size="17" fill="#C48A64">Why this order</text>
-    <text x="728" y="256" font-size="14" fill="#BFB4A2">Most stalled takeovers don't stall</text>
-    <text x="728" y="278" font-size="14" fill="#BFB4A2">on architecture. They stall in week</text>
-    <text x="728" y="300" font-size="14" fill="#BFB4A2">one, on access nobody confirmed.</text>
+    <text x="728" y="256" font-size="14" fill="#BFB4A2">Takeovers can stall in week one,</text>
+    <text x="728" y="278" font-size="14" fill="#BFB4A2">on access nobody confirmed —</text>
+    <text x="728" y="300" font-size="14" fill="#BFB4A2">not only on architecture.</text>
     <text x="728" y="340" font-size="14" fill="#BFB4A2">The previous team's account of</text>
     <text x="728" y="362" font-size="14" fill="#BFB4A2">"why" is one perspective — not a</text>
     <text x="728" y="384" font-size="14" fill="#BFB4A2">neutral or complete one. Verify</text>

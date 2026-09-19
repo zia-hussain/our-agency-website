@@ -331,9 +331,9 @@ const ClientStoriesPage: React.FC = () => {
                 variants={{ hidden: { opacity: 0.95 }, show: { opacity: 1 } }}
                 className="relative mx-auto mt-6 max-w-xl text-sm text-muted-foreground leading-relaxed"
               >
-                A previous development team had the app for two years without
-                getting it reliably running. Zia took it over, and it was in
-                production, working end to end, within three weeks.
+                Josh Nyce spent two years trying to get his app launched with a previous team. He
+                says that within three weeks of Zia taking over, it was launched — “no bugs, no
+                issues.”
               </motion.p>
               <motion.blockquote
                 variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }}

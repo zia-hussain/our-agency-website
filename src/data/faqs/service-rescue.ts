@@ -9,7 +9,7 @@ export const rescueDetailFAQs = [
   {
     question: "Will you tell me to rebuild everything?",
     answer:
-      "Only if that's genuinely the honest answer — and often it isn't. Our default is to stabilize what's already working and fix what's actually broken instead of starting over. On one real engagement, that meant triaging every issue into bug, unfinished feature, intentional behavior, or future scope, then stabilizing without a rewrite.",
+      "Only if that's genuinely the honest answer. Our default is to stabilize what's already working and fix what's actually broken instead of starting over. On one real engagement, that meant triaging every issue into bug, unfinished feature, intentional behavior, or future scope, then stabilizing without a rewrite.",
   },
   {
     question: "What if I don't have access to the original developer?",

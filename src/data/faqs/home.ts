@@ -43,7 +43,7 @@ export const homeFAQs = [
   {
     question: "What happens after launch? Do you offer ongoing support?",
     answer:
-      "Yes. After we launch your product, we can either hand everything over to your internal team or stay on as your technical partner. Many clients keep us for monthly retainers to handle new features, performance improvements, bug fixes, monitoring, and further automation of their operations. We prefer long-term relationships where we can keep improving the product over time instead of just doing a one-off build and disappearing."
+      "Yes. After we launch your product, we can either hand everything over to your internal team or stay on as your technical partner. Ongoing work can run as a monthly retainer covering new features, performance improvements, bug fixes, monitoring, and further automation of their operations. We prefer long-term relationships where we can keep improving the product over time instead of just doing a one-off build and disappearing."
   },
   {
     question: "Do you sign an NDA before we start?",

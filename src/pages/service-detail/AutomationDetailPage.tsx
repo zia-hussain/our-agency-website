@@ -359,7 +359,7 @@ const AutomationDetailPage: React.FC = () => {
           </div>
           <div className="rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/[0.09] to-transparent p-7 sm:p-8 shadow-[0_30px_65px_-28px_rgba(196,138,100,0.28)]">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary mb-3">After</p>
-            <p className="text-base text-foreground/85 leading-relaxed">Every box logged and traceable. Status changes handled by Make.com, not a person.</p>
+            <p className="text-base text-foreground/85 leading-relaxed">Every box logged and traceable. Key status changes run through Make.com scenarios.</p>
           </div>
         </AnimatedSection>
 
@@ -372,14 +372,14 @@ const AutomationDetailPage: React.FC = () => {
             <div className="flex items-center justify-center px-6 py-3.5 border-b border-border/50 bg-card/20">
               <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary/70">The result</span>
             </div>
-            <div className="grid grid-cols-2 divide-x divide-border/40">
+            <div className="grid grid-cols-1 divide-y divide-border/40 md:grid-cols-2 md:divide-x md:divide-y-0">
               <div className="text-center px-4 py-9 sm:py-11">
-                <p className="text-5xl sm:text-7xl font-bold text-primary tracking-tight">100%</p>
+                <p className="text-5xl md:text-6xl font-bold text-primary tracking-tight">100%</p>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-3 max-w-[10rem] mx-auto">carcass, box &amp; shipment data centralized</p>
               </div>
               <div className="text-center px-4 py-9 sm:py-11">
-                <p className="text-5xl sm:text-7xl font-bold text-primary tracking-tight">-60%</p>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-3 max-w-[10rem] mx-auto">manual steps replaced by automation</p>
+                <p className="text-5xl md:text-6xl font-bold text-primary tracking-tight">Make.com</p>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-3 max-w-[10rem] mx-auto">scenarios run the key status transitions</p>
               </div>
             </div>
           </div>
@@ -388,8 +388,8 @@ const AutomationDetailPage: React.FC = () => {
         <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection delay={0.12}>
             <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-              Bills of lading generated automatically — the full pipeline, not just the intake
-              step, running without a person in the loop.
+              Bill of Lading data is generated automatically from the same base — the pipeline runs
+              from intake through shipping, not just the intake step.
             </p>
             <blockquote className="mb-8">
               <p className="text-xl sm:text-2xl text-foreground/90 leading-snug tracking-tight mb-4">
@@ -438,10 +438,11 @@ const AutomationDetailPage: React.FC = () => {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-14">
           <AnimatedSection>
             <SectionEyebrow className="mb-6">Reliability</SectionEyebrow>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Failure doesn't disappear silently.</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Failure shouldn't disappear silently.</h2>
             <p className="text-sm text-muted-foreground mt-4 max-w-sm mx-auto leading-relaxed">
-              Automation isn't "it runs and we hope." Every workflow is watched, and every failure
-              is handled somewhere — automatically, or by a person.
+              Automation isn't "it runs and we hope." A workflow should have a defined answer for a
+              failed step — retry it, alert someone, or stop and wait for a person — settled before
+              launch, not discovered after the first failure.
             </p>
           </AnimatedSection>
         </div>
@@ -454,7 +455,7 @@ const AutomationDetailPage: React.FC = () => {
                 <span className="relative h-2 w-2 rounded-full bg-primary" />
               </span>
               <AlertCircle size={15} className="text-primary flex-shrink-0" />
-              Step failed — detected instantly
+              Step failed — flagged
             </span>
           </div>
 
@@ -469,14 +470,14 @@ const AutomationDetailPage: React.FC = () => {
                 <UserCheck size={16} className="text-muted-foreground/60" />
               </span>
               <p className="text-sm font-semibold text-muted-foreground mb-1">Escalated to a person</p>
-              <p className="text-xs text-muted-foreground/60 leading-relaxed">Rare — and you're told exactly what happened, not left guessing.</p>
+              <p className="text-xs text-muted-foreground/60 leading-relaxed">When a retry isn't safe, a person should be told exactly what happened — not left guessing.</p>
             </div>
             <div className="text-center sm:text-left order-1 sm:order-2">
               <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-primary bg-primary/10 shadow-[0_18px_38px_-16px_rgba(196,138,100,0.5)] mb-3">
                 <RefreshCw size={18} className="text-primary" />
               </span>
               <p className="text-base font-bold text-foreground mb-1">Retried automatically</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">The common case — recovery logic handles it, nobody has to notice.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">When repeating a step is safe, it can be retried before anyone is interrupted.</p>
             </div>
           </div>
 
@@ -485,7 +486,7 @@ const AutomationDetailPage: React.FC = () => {
           <div className="rounded-2xl border border-border/50 bg-card/10 overflow-hidden max-w-lg mx-auto">
             <div className="flex items-center gap-2 px-5 py-3 border-b border-border/50 bg-card/20">
               <Eye size={13} className="text-primary/70 flex-shrink-0" />
-              <span className="text-xs font-bold uppercase tracking-[0.14em] text-foreground/80">Observed the whole time</span>
+              <span className="text-xs font-bold uppercase tracking-[0.14em] text-foreground/80">What a run log looks like</span>
             </div>
             <div className="divide-y divide-border/30">
               {[
@@ -501,7 +502,7 @@ const AutomationDetailPage: React.FC = () => {
               ))}
             </div>
           </div>
-          <p className="text-center text-xs text-muted-foreground/50 italic mt-4">Illustrative — every real workflow has its own monitoring, mapped to what actually matters.</p>
+          <p className="text-center text-xs text-muted-foreground/50 italic mt-4">Illustrative — what a failed step should do, and what's worth monitoring, depends on the workflow.</p>
         </AnimatedSection>
       </section>
 

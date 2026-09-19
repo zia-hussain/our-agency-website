@@ -52,10 +52,10 @@
   <g font-family="Public Sans, sans-serif">
     <rect x="48" y="1120" width="704" height="740" rx="18" fill="#1D1A15" stroke="#332C22" stroke-width="2"/>
     <text x="80" y="1176" font-weight="700" font-size="26" fill="#C48A64">Why this order</text>
-    <text x="80" y="1230" font-size="21" fill="#BFB4A2">Most stalled takeovers don't</text>
-    <text x="80" y="1262" font-size="21" fill="#BFB4A2">stall on architecture. They</text>
-    <text x="80" y="1294" font-size="21" fill="#BFB4A2">stall in week one, on access</text>
-    <text x="80" y="1326" font-size="21" fill="#BFB4A2">nobody confirmed.</text>
+    <text x="80" y="1230" font-size="21" fill="#BFB4A2">Takeovers can stall in week</text>
+    <text x="80" y="1262" font-size="21" fill="#BFB4A2">one, on access nobody</text>
+    <text x="80" y="1294" font-size="21" fill="#BFB4A2">confirmed — not only on</text>
+    <text x="80" y="1326" font-size="21" fill="#BFB4A2">architecture.</text>
     <text x="80" y="1394" font-size="21" fill="#BFB4A2">The previous team's account</text>
     <text x="80" y="1426" font-size="21" fill="#BFB4A2">of "why" is one perspective —</text>
     <text x="80" y="1458" font-size="21" fill="#BFB4A2">not a neutral or complete one.</text>

@@ -73,8 +73,8 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     corroboratedOn: ["Google"],
     featured: true,
     evidence: {
-      before: { who: "Previous Dev Team", stat: "2 YEARS", label: "the app never worked reliably" },
-      after: { who: "Zumetrix", stat: "3 WEEKS", label: "shipped, flawless condition" },
+      before: { who: "Previous Dev Team", stat: "2 YEARS", label: "trying to get the app launched" },
+      after: { who: "Zumetrix", stat: "3 WEEKS", label: "up and running — “flawless condition,” per Josh" },
     },
   },
   {
