@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import { getProjectBySlug } from "../data/projects";
 import TiltImage from "../components/portfolio/TiltImage";
+import HeroEvidence from "../components/portfolio/HeroEvidence";
+import ClientExperience from "../components/portfolio/ClientExperience";
 import ReadingProgress from "../components/portfolio/ReadingProgress";
 import KpiCard from "../components/portfolio/KpiCard";
 import TestimonialFilm from "../components/common/TestimonialFilm";
@@ -26,7 +28,7 @@ import { buildVideoObjectSchema } from "../utils/videoSchema";
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
-const getServiceUrl = (serviceName: string) => {
+const getServiceUrl = (serviceName: string, fallback = "/services/web-application-development") => {
   const normalized = serviceName.toLowerCase();
 
   if (normalized.includes("mobile")) {
@@ -60,7 +62,7 @@ const getServiceUrl = (serviceName: string) => {
     return "/services/saas-mvp-development";
   }
 
-  return "/services/web-application-development";
+  return fallback;
 };
 
 const ProjectDetailPage: React.FC = () => {
@@ -88,7 +90,10 @@ const ProjectDetailPage: React.FC = () => {
 
   const pageUrl = `https://zumetrix.com/portfolio/${project.slug}`;
   const shareImage = project.image.startsWith("http") ? project.image : `https://zumetrix.com${project.image}`;
-  const kpis = project.kpis ?? [];
+  // heroEvidence already carries this evidence in the hero, so the KPI band is
+  // skipped for those projects; `kpis` stays on the record for the portfolio
+  // proof ticker and cards that read it.
+  const kpis = project.heroEvidence ? [] : project.kpis ?? [];
   const testimonialFilm = project.testimonialFilmKey ? TESTIMONIAL_FILMS[project.testimonialFilmKey] : undefined;
   const metaFields = [
     project.client.name && { label: project.clientLabel || "Client", value: project.client.name },
@@ -96,6 +101,8 @@ const ProjectDetailPage: React.FC = () => {
     project.duration && { label: "Duration", value: project.duration },
     project.team && { label: "Team", value: project.team },
   ].filter((f): f is { label: string; value: string } => Boolean(f));
+
+  const serviceFallback = project.linkServicesToPrimary ? `/services/${project.primaryService}` : undefined;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -113,7 +120,7 @@ const ProjectDetailPage: React.FC = () => {
         about: project.services.map((serviceName) => ({
           "@type": "Service",
           name: serviceName,
-          url: `https://zumetrix.com${getServiceUrl(serviceName)}`,
+          url: `https://zumetrix.com${getServiceUrl(serviceName, serviceFallback)}`,
         })),
         // Points at the exact Service entity already declared on that
         // service's own detail page (same @id convention: {pageUrl}#service)
@@ -246,13 +253,17 @@ const ProjectDetailPage: React.FC = () => {
             </AnimatedSection>
 
             <AnimatedSection mode="hero" delay={0.1}>
-              <TiltImage
-                src={project.image}
-                alt={project.title}
-                className={project.heroImageMobile ? "aspect-auto sm:aspect-[4/3]" : "aspect-[4/3]"}
-                fit={project.heroImageFit}
-                mobileSrc={project.heroImageMobile}
-              />
+              {project.heroEvidence ? (
+                <HeroEvidence {...project.heroEvidence} />
+              ) : (
+                <TiltImage
+                  src={project.image}
+                  alt={project.title}
+                  className={project.heroImageMobile ? "aspect-auto sm:aspect-[4/3]" : "aspect-[4/3]"}
+                  fit={project.heroImageFit}
+                  mobileSrc={project.heroImageMobile}
+                />
+              )}
             </AnimatedSection>
           </div>
         </div>
@@ -277,7 +288,9 @@ const ProjectDetailPage: React.FC = () => {
               <p className="text-base text-muted-foreground leading-relaxed">{project.problem}</p>
             </AnimatedSection>
             <AnimatedSection delay={0.08} className="sm:border-l sm:border-primary/20 sm:pl-14">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/70 mb-3">What We Built</p>
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/70 mb-3">
+                {project.situationAfterLabel || "What We Built"}
+              </p>
               <p className="text-lg text-foreground/90 leading-relaxed">{project.solution}</p>
             </AnimatedSection>
           </div>
@@ -355,7 +368,8 @@ const ProjectDetailPage: React.FC = () => {
       {/* ================================================================ */}
       <section className="bg-background py-20 sm:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 gap-12">
+          {project.clientExperience && <ClientExperience {...project.clientExperience} />}
+          <div className={project.stack.length > 0 ? "grid sm:grid-cols-2 gap-12" : "max-w-3xl mx-auto text-center"}>
             {project.stack.length > 0 && (
               <AnimatedSection>
                 <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/70 mb-5">Built With</p>
@@ -374,11 +388,11 @@ const ProjectDetailPage: React.FC = () => {
             )}
             <AnimatedSection delay={0.06}>
               <p className="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground mb-5">What We Delivered</p>
-              <div className="flex flex-wrap gap-2">
+              <div className={project.stack.length > 0 ? "flex flex-wrap gap-2" : "flex flex-wrap gap-2 justify-center"}>
                 {project.services.map((service) => (
                   <Link
                     key={service}
-                    to={getServiceUrl(service)}
+                    to={getServiceUrl(service, serviceFallback)}
                     className="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors duration-150"
                   >
                     {service}
@@ -398,6 +412,11 @@ const ProjectDetailPage: React.FC = () => {
         <section className="relative overflow-hidden bg-card/10 border-y border-border/40 py-24 sm:py-28">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_18%,rgba(196,138,100,0.06),transparent_70%)]" />
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            {project.testimonialLeadIn && (
+              <AnimatedSection>
+                <p className="text-lg text-muted-foreground mb-10">{project.testimonialLeadIn}</p>
+              </AnimatedSection>
+            )}
             <AnimatedSection>
               <blockquote>
                 <p className="text-2xl sm:text-3xl text-foreground/90 leading-snug tracking-tight mb-6">
@@ -411,7 +430,7 @@ const ProjectDetailPage: React.FC = () => {
           </div>
 
           {testimonialFilm && (
-            <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
+            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
               <AnimatedSection delay={0.06}>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-6 text-center">
                   {testimonialFilm.name}, in their own words
@@ -461,7 +480,7 @@ const ProjectDetailPage: React.FC = () => {
       {project.relatedReading && project.relatedReading.length > 0 && (
         <section className="pb-8 bg-background">
           <div className="px-4 sm:px-6 lg:px-8">
-            <RelatedReading links={project.relatedReading} />
+            <RelatedReading links={project.relatedReading} eyebrow={project.relatedReadingEyebrow} />
           </div>
         </section>
       )}
@@ -475,8 +494,12 @@ const ProjectDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">You've seen what we built.</span>
-              <span className="block text-foreground mt-2">Let's talk about what you need.</span>
+              <span className="block text-muted-foreground/50">
+                {project.closeHeadline?.muted || "You've seen what we built."}
+              </span>
+              <span className="block text-foreground mt-2">
+                {project.closeHeadline?.foreground || "Let's talk about what you need."}
+              </span>
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">

@@ -129,8 +129,53 @@ export interface Project {
   // case study never has to re-describe video metadata that's already
   // canonical elsewhere.
   testimonialFilmKey?: string;
+  // Optional — only for case studies whose real story is a verified
+  // before/pivot/after contrast (a stalled effort, a takeover, a fast
+  // resolution). Replaces the generic hero image with a native evidence
+  // card built from the same frame/border/divider language every other
+  // case study's hero visual already uses. Not populated by default; a
+  // project with no heroEvidence renders exactly as it did before.
+  heroEvidence?: {
+    beforeLabel: string;
+    beforeValue: string;
+    beforeCaption: string;
+    pivotLabel: string;
+    afterLabel: string;
+    afterValue: string;
+    afterCaption: string;
+  };
+  // Overrides "The Situation" section's default "What We Built" label —
+  // only for case studies where that phrase would overclaim. A takeover
+  // didn't "build" anything from zero; it's honest to say so.
+  situationAfterLabel?: string;
+  // A one-line bridge rendered above the testimonial quote — connects the
+  // "What Changed" list to the video that follows, so the video reads as
+  // the story's payoff rather than an unannounced widget.
+  testimonialLeadIn?: string;
+  // Overrides RelatedReading's default "Continue with Zumetrix" eyebrow —
+  // already a supported prop on the shared component, just not previously
+  // passed from project data.
+  relatedReadingEyebrow?: string;
+  // Overrides the shared closing section's default "You've seen what we
+  // built" line — imprecise for a takeover story for the same reason
+  // situationAfterLabel exists.
+  closeHeadline?: { muted: string; foreground: string };
+  // Verified, attributed client testimony about the working relationship —
+  // for case studies where the technical detail is unknown or not public
+  // but the client's own recorded words are real. Every `quote` must appear
+  // verbatim in the source (video transcript / written review); nothing here
+  // may be paraphrased or upgraded into a Zumetrix claim.
+  clientExperience?: {
+    eyebrow: string;
+    heading: string;
+    items: { icon: "response" | "communication"; value: string; quote: string }[];
+    advice?: { label: string; quote: string; attribution: string };
+  };
   stack: string[];
   services: string[];
+  // When true, service tags that match no keyword link to this project's own
+  // primaryService page instead of the generic web-application page.
+  linkServicesToPrimary?: boolean;
   kpis?: {
     label: string;
     value: string;
@@ -1339,10 +1384,14 @@ export const projects: Project[] = [
   year: "",
   featured: true,
   results: [
-    "Took over an in-progress app after roughly two years without a reliable launch",
+    "Took over an existing, in-progress app — per Josh, after roughly two years without a reliable launch",
     "Shipped within three weeks of taking over",
     "Client-reported launch condition: no bugs, no issues",
     "Independently corroborated: 5-star Trustpilot review, corroborated on Google"
+  ],
+  kpis: [
+    { label: "Time stuck with previous team", value: "~2 years", description: "Per Josh Nyce's testimonial — before Zumetrix took over" },
+    { label: "Time to launch after takeover", value: "3 weeks", description: "Client-reported, corroborated across two independent review sources" }
   ],
   problem: "Fast Track USA's app had been in development for around two years with a previous team, without reaching a working, reliable launch. The specific technical causes aren't part of the public record — Josh's account describes the outcome (no launch after two years), not the underlying implementation.",
   solution: "Zumetrix took over the existing, in-progress project and carried it to launch in three weeks. We're not claiming a specific technical method here because none is verified beyond the client's own account — this case exists to document the outcome truthfully, not to reverse-engineer a technical narrative we don't have evidence for.",
@@ -1352,12 +1401,53 @@ export const projects: Project[] = [
     role: "Owner & Founder, Fast Track USA"
   },
   testimonialFilmKey: "josh",
+  // The hero's evidence card replaces the KPI grid this data used to feed —
+  // showing the same ~2 years / 3 weeks contrast twice in one scroll (once
+  // as the hero's actual argument, once again as a KPI card two sections
+  // later) was repetition, not reinforcement.
+  heroEvidence: {
+    beforeLabel: "Previous development team",
+    beforeValue: "~2 years",
+    beforeCaption: "no reliable launch",
+    pivotLabel: "Zumetrix takes over",
+    afterLabel: "Post-takeover",
+    afterValue: "3 weeks",
+    afterCaption: "shipped — \"no bugs, no issues\"",
+  },
+  // "What We Built" is the template's default label, correct when a case
+  // study is a from-zero build. This one is a takeover — Zumetrix didn't
+  // build the app, they took over an existing one, so the section says
+  // exactly that instead.
+  situationAfterLabel: "The Takeover",
+  testimonialLeadIn: "That's the record. Here's how Josh describes it.",
+  relatedReadingEyebrow: "If this sounds like your situation",
+  closeHeadline: { muted: "You've seen the record.", foreground: "Let's talk about what you need." },
+  // Source: public/captions/josh-nyce-testimonial.vtt (Josh's own video).
+  // Quotes checked verbatim against the transcript.
+  clientExperience: {
+    eyebrow: "Working Together",
+    heading: "How Josh describes working with us.",
+    items: [
+      { icon: "response", value: "Within minutes", quote: "They respond quickly, any issues I have, they respond within minutes." },
+      { icon: "communication", value: "Excellent", quote: "Communication is excellent." },
+    ],
+    advice: {
+      label: "His advice to founders in the same spot",
+      quote: "Even if you're like me already in the project and not getting anywhere, they'll take over and they'll get you there to the finish line.",
+      attribution: "Josh Nyce, Owner & Founder, Fast Track USA — from his video",
+    },
+  },
   stack: [],
-  services: ["Product Takeover", "Rescue & Stabilization"],
-  kpis: [
-    { label: "Time stuck with previous team", value: "~2 years", description: "Per Josh Nyce's testimonial — before Zumetrix took over" },
-    { label: "Time to launch after takeover", value: "3 weeks", description: "Client-reported, corroborated across two independent review sources" }
+  services: [
+    "Product Takeover",
+    "Rescue & Stabilization",
+    "App Development",
+    "App Launch",
+    "3-Week Delivery",
+    "Clear Communication",
+    "Rapid Issue Response",
   ],
+  linkServicesToPrimary: true,
   relatedReading: [
     {
       href: "/articles/should-you-rescue-or-rebuild-your-saas",

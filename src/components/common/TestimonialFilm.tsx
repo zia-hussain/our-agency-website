@@ -296,10 +296,14 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               onClick={unmute}
-              className="btn-sheen absolute top-4 right-4 sm:top-5 sm:right-5 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-sm border border-white/15 pl-3 pr-3.5 py-2 text-xs font-semibold text-white"
+              aria-label="Tap for sound"
+              className="btn-sheen absolute top-3 right-3 sm:top-5 sm:right-5 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-sm border border-white/15 p-2 sm:pl-3 sm:pr-3.5 sm:py-2 text-xs font-semibold text-white"
             >
               <VolumeX size={13} />
-              Tap for sound
+              {/* Full pill only from sm: up — below that, the vertically  */}
+              {/* centered play button and a text pill in the same corner  */}
+              {/* have too little room and visually crowd each other. */}
+              <span className="hidden sm:inline">Tap for sound</span>
             </motion.button>
           )}
         </AnimatePresence>
