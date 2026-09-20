@@ -33,9 +33,6 @@ const fastTrackTestimonial = TESTIMONIALS.find((t) => t.id === "josh-fast-track"
 // Same fractal-noise grain already used on the Homepage testimonial cards —
 // reused verbatim so the seal cluster's surface matches the site's existing
 // premium-texture language instead of inventing a new one.
-const RECORD_GRAIN =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
-
 // The Record — the one number kept is computed live from the real proof
 // library so it can never drift from what's verifiable.
 const recordRatedTestimonials = TESTIMONIALS.filter((t) => typeof t.rating === "number");
@@ -1580,11 +1577,6 @@ const ServicesPage: React.FC = () => {
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_45%_55%_at_50%_45%,rgba(196,138,100,0.18),transparent_65%)]"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-overlay"
-            style={{ backgroundImage: RECORD_GRAIN }}
           />
           <div className="relative flex items-center justify-center -space-x-4 sm:-space-x-6">
             <SealBadge sizeClass="w-16 h-16 sm:w-20 sm:h-20" rotate="-rotate-6" z={1}>
