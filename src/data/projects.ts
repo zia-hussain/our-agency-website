@@ -234,7 +234,7 @@ export const projects: Project[] = [
       author: "Kelly Andrews",
       role: "Founder, Best Business Services"
     },
-    liveLink: "https://www.ifyify.art",
+    liveLink: "",
     stack: ["React", "TypeScript", "TailwindCSS", "Supabase", "OpenAI API", "Vercel"],
     services: ["SaaS Development", "AI Integration", "UI/UX Design", "Database Design", "Authentication"],
     kpis: [
@@ -629,7 +629,7 @@ export const projects: Project[] = [
     "Outlined user flows, data models, and future mobile app integration.",
     "Prepared a clear technical roadmap for MVP and later scaling."
   ],
-  problem: "Users often overpay for utilities without understanding their real usage patterns or market options. The client needed a system to make sense of uploaded bills and surface better deals automatically.",
+  problem: "Users can overpay for utilities without understanding their real usage patterns or market options. The client needed a system to make sense of uploaded bills and surface better deals automatically.",
   solution: "We drafted a robust system combining OCR pipelines, AI-driven comparison logic, and a clean dashboard for insights, giving the client a realistic blueprint to move from idea to working MVP.",
   testimonial: {
     quote: "The system design covered everything I needed and more. It gave me clarity on the technical path ahead.",
@@ -869,11 +869,11 @@ export const projects: Project[] = [
   year: "2024",
   featured: false,
   results: [
-    "Reduced manual data entry and errors in subscription tracking.",
+    "Stripe subscription events (created, updated, canceled) update Airtable records automatically.",
     "Gave ops teams a real-time subscription overview in Airtable.",
     "Standardized subscription fields for easier reporting."
   ],
-  problem: "Clients using Stripe for subscriptions often lacked a clean, non-technical view of active and canceled subscriptions inside their internal tools.",
+  problem: "Clients using Stripe for subscriptions can lack a clean, non-technical view of active and canceled subscriptions inside their internal tools.",
   solution: "We set up webhook-driven automations using Make.com or Zapier that listen to Stripe events and map them into structured Airtable records, including customer, plan, and billing information.",
   liveLink: "",
   stack: [
@@ -929,15 +929,10 @@ export const projects: Project[] = [
   results: [
     "Turned static CSV exports into a live Notion-based P&L.",
     "Enabled founders to monitor sales trends with minimal maintenance.",
-    "Reduced time spent on manual financial reporting."
+    "Replaced manual CSV exports with an automatic sync of new orders."
   ],
   problem: "Founders wanted a simple way to see P&L-like views in Notion instead of running complex exports from Shopify every week.",
   solution: "We connected Shopify to Notion via Make.com/Zapier, mapping relevant order data into carefully structured Notion databases that support formula-driven P&L views.",
-  testimonial: {
-    quote: "Now our Notion workspace doubles as a financial cockpit. It just updates itself.",
-    author: "Brand Owner",
-    role: "Founder, DTC Brand"
-  },
   liveLink: "",
   stack: [
     "Shopify", "Notion", "Make.com", "Zapier"
@@ -991,16 +986,11 @@ export const projects: Project[] = [
   featured: false,
   results: [
     "Automated sequential dialing from structured contact lists.",
-    "Reduced manual effort for outreach teams.",
+    "Tracks completion and advances through the contact list automatically.",
     "Prepared for deeper CRM integration in future versions."
   ],
   problem: "Teams needed a way to move through outbound call lists without manually dialing each number and tracking completion.",
   solution: "We built Twilio-backed logic that dials, tracks, and advances through a contact list, with hooks ready for CRM logging and reporting.",
-  testimonial: {
-    quote: "The auto dialer saves time and keeps our team focused on talking, not dialing.",
-    author: "Client Feedback",
-    role: "Operations Lead"
-  },
   liveLink: "",
   stack: [
     "Node.js", "Twilio", "Express"
@@ -1052,11 +1042,6 @@ export const projects: Project[] = [
   ],
   problem: "The client needed to handle multi-party calls in their Twilio-backed app, with the ability to add or remove participants without call resets.",
   solution: "We implemented Twilio conference rooms and backend endpoints to manage participants, and hooked them into React Native UI flows for a smooth experience.",
-  testimonial: {
-    quote: "The conference calling experience feels smooth and reliable, exactly what we needed for our team.",
-    author: "Client Feedback",
-    role: "Product Owner"
-  },
   liveLink: "",
   stack: [
     "Twilio Voice", "Node.js", "React Native"
@@ -1134,7 +1119,7 @@ export const projects: Project[] = [
     {
       href: "/articles/when-is-ai-automation-the-wrong-choice",
       label: "When is AI automation the wrong choice?",
-      description: "Why most of this stack is deterministic syncing and reminders, with AI reserved for language-shaped work.",
+      description: "Why this stack is rules rather than AI: syncing and reminders, with no AI in its project record.",
     },
   ]
 },
@@ -1246,7 +1231,7 @@ export const projects: Project[] = [
     "Kept the broader marketplace vision intact while sequencing what had to ship first"
   ],
   problem: "The founder's real vision was a broader logistics marketplace with sophisticated, variable pricing. Building that pricing complexity first would have delayed launching a platform that first needed to prove the basic operational loop: can a customer book a job, can the business see and manage it, can payment happen reliably.",
-  solution: "We separated the vision from the first release. V1 shipped the operational foundation — booking, pickup/dropoff, serviceability and distance eligibility, job and customer details, deposit and payment, and admin controls — as a complete, usable system on its own. The Pricing Engine V2 (service minimums, distance bands, labor and movers, stairs, urgency, specialty and heavy items, junk-removal load estimation, disposal estimates, admin overrides, customer approval flows, and margin protection) was designed and documented for a later phase, once the operational core was proven. Pricing Engine V2 was planned and designed, not built — it has not shipped.",
+  solution: "We separated the vision from the first release. V1 shipped the operational foundation — booking, pickup/dropoff, serviceability and distance eligibility, job and customer details, deposit and payment, and admin controls — as a complete, usable system on its own. The Pricing Engine V2 (service minimums, distance bands, labor and movers, stairs, urgency, specialty and heavy items, junk-removal load estimation, disposal estimates, admin overrides, customer approval flows, and margin protection) was designed and documented for a later phase, to follow the operational core. Pricing Engine V2 was planned and designed, not built — it has not shipped.",
   stack: [],
   services: ["Startup MVP Development", "Product Sequencing & Scope Strategy", "Operational Systems Architecture"],
   caseStudy: {

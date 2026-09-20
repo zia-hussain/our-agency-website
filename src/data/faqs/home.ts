@@ -3,17 +3,17 @@ export const homeFAQs = [
   {
     question: "What is Zumetrix Labs and what do you specialize in?",
     answer:
-      "Zumetrix Labs is a founder-led software studio that builds SaaS MVPs, web applications, mobile apps, and AI-assisted automation systems. We work with React, Next.js, Node.js, React Native, OpenAI, Zapier, Make.com, and n8n. Most engagements are for international founders and operating teams that want direct access to the people shaping and building the product."
+      "Zumetrix Labs is a founder-led software studio that builds SaaS MVPs, web applications, mobile apps, and AI-assisted automation systems. We work with React, Next.js, Node.js, React Native, OpenAI, Zapier, Make.com, and n8n. We work with international founders and operating teams that want direct access to the people shaping and building the product."
   },
   {
     question: "How fast can Zumetrix Labs build a production-ready SaaS MVP?",
     answer:
-      "A tightly scoped SaaS MVP can sometimes launch in about 30 days, while most focused engagements take 4-8 weeks. The real timeline depends on user roles, integrations, payments, data migration, and how clearly the first release is defined. We confirm the scope and delivery plan before development begins."
+      "A tightly scoped SaaS MVP can sometimes launch in about 30 days; we scope a focused first release at 4-8 weeks. The real timeline depends on user roles, integrations, payments, data migration, and how clearly the first release is defined. We confirm the scope and delivery plan before development begins."
   },
   {
     question: "What AI automation services does Zumetrix Labs provide?",
     answer:
-      "We help companies turn manual, repetitive work into automated, AI-assisted workflows. This includes OpenAI and ChatGPT integrations, custom AI endpoints, document and email processing automation, customer support assistants, internal tools powered by AI, and no-code/low-code automation using Zapier, Make.com, and n8n. We often connect AI flows to CRMs, marketing tools, databases, or internal systems so your team saves hours every week while keeping full control over the business logic."
+      "We help companies turn manual, repetitive work into automated, AI-assisted workflows. This includes OpenAI and ChatGPT integrations, custom AI endpoints, document and email processing automation, customer support assistants, internal tools powered by AI, and no-code/low-code automation using Zapier, Make.com, and n8n. We connect AI flows to CRMs, marketing tools, databases, or internal systems so repeated manual work can be automated while your team keeps full control over the business logic."
   },
   {
     question: "What types of projects are the best fit for Zumetrix Labs?",
@@ -33,7 +33,7 @@ export const homeFAQs = [
   {
     question: "How do you communicate and manage projects across time zones?",
     answer:
-      "Most of our clients are in US, UK, Europe, and the Middle East, so we are used to working across time zones. We typically use Slack, email, or WhatsApp for day-to-day updates, and schedule weekly or bi-weekly Zoom/Google Meet calls. You’ll get Loom video walkthroughs for key milestones, and we keep everything organized in shared documents or project boards so you can see progress without chasing us."
+      "We work with clients across the US, UK, and Europe, so we are used to working across time zones. We typically use Slack, email, or WhatsApp for day-to-day updates, and schedule weekly or bi-weekly Zoom/Google Meet calls. You’ll get Loom video walkthroughs for key milestones, and we keep everything organized in shared documents or project boards so you can see progress without chasing us."
   },
   {
     question: "Can you work with my existing team or codebase?",
@@ -48,12 +48,12 @@ export const homeFAQs = [
   {
     question: "Do you sign an NDA before we start?",
     answer:
-      "Yes. We're comfortable signing your NDA before any detailed scoping call, or we can send ours. Most founders share real product details before a contract exists, so this is a normal first step, not a special request."
+      "Yes. We're comfortable signing your NDA before any detailed scoping call, or we can send ours. Sharing real product details before a contract exists is a normal first step, not a special request."
   },
   {
     question: "What if I only have a rough idea, not a full spec yet?",
     answer:
-      "That's the normal starting point, not a blocker. Most engagements begin with a scoping conversation where we press on the vague parts of the idea, figure out what the first release actually needs to prove, and turn that into a scoped plan before any code gets written."
+      "That's the normal starting point, not a blocker. Our engagements begin with a scoping conversation where we press on the vague parts of the idea, figure out what the first release actually needs to prove, and turn that into a scoped plan before any code gets written."
   },
   {
     question: "Do you build with no-code tools, or only custom code?",

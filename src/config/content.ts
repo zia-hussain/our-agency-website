@@ -32,7 +32,7 @@ export const BRAND_CONTENT = {
 
     shortDescription: "Forge Clear Ideas Into Shipped Software. Founded by Zia Hussain and Omer Gillani, Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners.",
 
-    longDescription: "80+ projects built. Some raised funding. Some didn't. The difference was usually how clear the problem was before we started building. We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also why our projects actually launch.",
+    longDescription: "80+ projects built. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also how we try to keep our projects on track to launch.",
   },
 
   /**
@@ -77,12 +77,12 @@ export const BRAND_CONTENT = {
     sections: [
       {
         icon: "problem",
-        title: "The Problem With Most Agencies",
+        title: "The Problem With Saying Yes to Everything",
         description: [
-          { text: "Most agencies say yes to everything. Vague ideas become vague products. Six months later, nothing works. We ask uncomfortable questions early because ", type: "normal" },
+          { text: "An agency that says yes to everything turns vague ideas into vague products. Six months later, nothing works. We ask uncomfortable questions early because ", type: "normal" },
           { text: "we'd rather lose a deal than build something that fails.", type: "emphasis" }
         ] as ContentSegment[],
-        stat: "Most projects fail from unclear thinking"
+        stat: "Clear thinking comes before code"
       },
       {
         icon: "approach",

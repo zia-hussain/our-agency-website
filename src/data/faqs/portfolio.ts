@@ -17,6 +17,6 @@ export const portfolioFAQs = [
   {
     question: "How do you ensure the success of each project in your portfolio?",
     answer:
-      "Every project is led directly by the founders, which means architecture, core features, and technical decisions are handled by senior engineers. We focus on clear scoping, weekly communication, fast iteration cycles, realistic timelines, and shipping only what matters. Most clients stay with us beyond the initial build because our approach reduces friction, avoids overbuilding, and ensures the final product is stable, maintainable, and aligned with the client’s goals. Our priority is not just delivering software—it’s making sure the product actually works in the real world."
+      "Every project is led directly by the founders, which means architecture, core features, and technical decisions are handled by senior engineers. We focus on clear scoping, weekly communication, fast iteration cycles, realistic timelines, and shipping only what matters. Our priority is not just delivering software—it’s making sure the product actually works in the real world."
   }
 ];

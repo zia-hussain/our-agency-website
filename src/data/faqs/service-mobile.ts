@@ -4,7 +4,7 @@ export const mobileDetailFAQs = [
   {
     question: "Do you build for iOS and Android separately?",
     answer:
-      "Usually from one React Native codebase, which is faster and easier to maintain than two separate native apps. When a feature genuinely needs platform-specific code, we build it natively rather than forcing a workaround.",
+      "Often from one React Native codebase, which can be easier to maintain than two separate native apps. When a feature genuinely needs platform-specific code, we build it natively rather than forcing a workaround.",
   },
   {
     question: "What does app store submission actually involve?",

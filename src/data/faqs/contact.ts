@@ -2,7 +2,7 @@ export const contactFAQs = [
   {
     question: "How soon can we start working together?",
     answer:
-      "Most projects begin within 7–10 days after the initial call and proposal approval. If your timeline is tight or you have a launch deadline, we’ll do our best to accommodate earlier starts. The goal is to give you a clear plan, not rush you into unclear work."
+      "We aim to begin within 7–10 days after the initial call and proposal approval. If your timeline is tight or you have a launch deadline, we’ll do our best to accommodate earlier starts. The goal is to give you a clear plan, not rush you into unclear work."
   },
   {
     question: "What do you need from me before sending a quote?",
@@ -12,7 +12,7 @@ export const contactFAQs = [
   {
     question: "Do you work with clients in different countries and time zones?",
     answer:
-      "Yes. Most of our clients are in the US, UK, Europe, Australia, and the Middle East. We structure communication around your time zone, keep updates predictable, and use tools like Slack, email, WhatsApp, and Loom for smooth async collaboration. Working globally is a normal part of our process."
+      "Yes. We work with clients across the US, UK, and Europe. We structure communication around your time zone, keep updates predictable, and use tools like Slack, email, WhatsApp, and Loom for smooth async collaboration. Working globally is a normal part of our process."
   },
   {
     question: "How do payment and project milestones work?",

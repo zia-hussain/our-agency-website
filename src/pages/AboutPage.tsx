@@ -222,7 +222,7 @@ const AboutPage: React.FC = () => {
                 </p>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-[1.2]">
                   Most software work starts with a request. We've found the
-                  request is rarely the real situation.
+                  request can differ from the real situation.
                 </h2>
               </div>
               <div className="lg:col-span-7 lg:pt-2 space-y-7 text-xl text-muted-foreground leading-[1.7]">
@@ -283,7 +283,7 @@ const AboutPage: React.FC = () => {
             <ProcessStage
               n="01"
               title="Understand"
-              body="We start with what's actually happening, not the request as written. A missing product, a broken one, or work that shouldn't be manual anymore — the real problem is often different from what's being asked for, and building the requested thing instead of the real one is the most expensive mistake to make this early."
+              body="We start with what's actually happening, not the request as written. A missing product, a broken one, or work that shouldn't be manual anymore — the real problem can be different from what's being asked for, and building the requested thing instead of the real one is the most expensive mistake to make this early."
               evidence={{
                 quote:
                   "The team understood the complexity of my industry and of the project quickly and were flexible with the scope as we all learned to deal with new solutions on the fly.",
@@ -571,7 +571,7 @@ const AboutPage: React.FC = () => {
               engagement needs. What doesn't change is who's accountable:
               architecture, technical decisions, and client communication
               stay with the founders, from the first call through the part
-              after launch when most agencies have already moved on.
+              after launch.
             </p>
           </AnimatedSection>
         </div>
@@ -807,7 +807,7 @@ const AboutPage: React.FC = () => {
                 "Every project we take starts the same way — we get skeptical
                 before we get excited. If the idea doesn't hold up to real
                 questions, we say so. The ones that survive that get our full
-                attention, every time."
+                attention."
               </p>
               <div className="relative mt-8 text-base font-medium text-primary">
                 — Zia Hussain & Omer Gillani, Co-Founders

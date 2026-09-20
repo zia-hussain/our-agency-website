@@ -202,7 +202,7 @@ const LeadMagnet: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle size={16} className="text-primary" />
-                    <span>Proven frameworks</span>
+                    <span>Practical frameworks</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle size={16} className="text-primary" />

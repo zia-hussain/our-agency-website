@@ -355,7 +355,7 @@ export const articles = [
 
       <h2>When custom software becomes better than no-code</h2>
       <p>No-code tools are great for proving the workflow. Custom software becomes better when the workflow is central to revenue, needs strong permissions, handles private data, requires advanced logic, or must feel like part of the company's own product.</p>
-      <p>The smartest path is often phased: prove the workflow with a lean automation, then rebuild the important parts as a controlled internal system once the business knows exactly what it needs.</p>
+      <p>One practical path is phased: prove the workflow with a lean automation, then rebuild the important parts as a controlled internal system once the business knows exactly what it needs.</p>
     `,
     image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
     ogImage: "https://zumetrix.com/og/articles-ai-automation-business-growth.png",
@@ -522,7 +522,7 @@ export const articles = [
     excerpt: "A founder-friendly guide to choosing Flutter, React Native, or native development based on the app, backend, launch plan, and long-term maintenance.",
     content: `
       <h2>The real question is not Flutter or React Native</h2>
-      <p>Founders often start with the framework question. Flutter or React Native? Cross-platform or native? Which one is faster?</p>
+      <p>It's tempting to start with the framework question. Flutter or React Native? Cross-platform or native? Which one is faster?</p>
       <p>Those questions matter, but they are not first. The first question is: what must the app make easier for the user?</p>
       <p>The right mobile framework depends on the product, not on popularity. A founder should choose the path that gets the app launched, keeps the experience reliable, and does not create expensive maintenance later.</p>
       <p>At Zumetrix Labs, we compare React Native and Flutter through five questions: does the team already know React, does the product also need a web dashboard, how custom does the interface need to be, does the app depend on real-time streams such as voice or live data, and who will maintain it after launch.</p>
@@ -552,7 +552,7 @@ export const articles = [
       <h2>Do not ignore the backend</h2>
       <p>Many mobile app problems are not really mobile problems. They are backend, data, or product-flow problems. Before development starts, define authentication, user roles, offline behavior, push notifications, subscriptions, analytics, admin tools, and support workflows.</p>
       <p>A beautiful app with a weak backend becomes painful quickly. A simple app with a reliable backend can grow with the business.</p>
-      <p>This is especially important for founders. The app users see may be mobile, but the business usually needs an admin panel, reporting, content controls, and support tools behind it.</p>
+      <p>This is especially important for founders. The app users see may be mobile, but the business also needs an admin panel, reporting, content controls, and support tools behind it.</p>
 
       <blockquote>The right mobile framework depends on the product, not on popularity.</blockquote>
 
@@ -577,7 +577,7 @@ export const articles = [
 
       <h2>What clients should ask an app development team</h2>
       <p>Ask how the team will handle updates, store approval, crash reporting, push notification permissions, app performance, and backend changes. These details matter because mobile products are not one-time builds. They need careful releases and ongoing improvement.</p>
-      <p>A good mobile team should talk about the app after launch, not only the app before launch. On <a href="/portfolio/bondfire-event-booking-app">Bondfire</a>, that meant stepping into an existing React Native app mid-flight to resolve merge conflicts and build instability — the unglamorous, ongoing part of mobile development that a launch-only pitch never mentions.</p>
+      <p>A good mobile team should talk about the app after launch, not only the app before launch. On <a href="/portfolio/bondfire-event-booking-app">Bondfire</a>, that meant stepping into an existing React Native app mid-flight to resolve merge conflicts and build instability — the unglamorous, ongoing part of mobile development that a launch-only pitch can leave out.</p>
     `,
     image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
     heroImage: "/project_images/react-native-vs-flutter-matrix.svg",
@@ -633,7 +633,7 @@ export const articles = [
       },
       {
         question: "Do mobile apps need an admin dashboard?",
-        answer: "Most business mobile apps benefit from an admin dashboard because the company needs to manage users, content, bookings, payments, reports, or support issues after launch."
+        answer: "A business mobile app benefits from an admin dashboard because the company needs to manage users, content, bookings, payments, reports, or support issues after launch."
       }
     ]
   },
@@ -681,13 +681,13 @@ export const articles = [
         <li>Firestore rules protect private data and match the product roles.</li>
         <li>Indexes are created for important filtered and sorted queries.</li>
         <li>Cloud Functions handle secure work that should not happen in the browser.</li>
-        <li>Environment variables and service keys are never exposed publicly.</li>
+        <li>Service account keys and other secrets are kept out of client code.</li>
         <li>Monitoring, backups, and error reporting are active before users arrive.</li>
       </ol>
 
       <h2>Common Firebase mistakes</h2>
-      <p>The biggest Firebase mistake is relying on frontend logic for security. If the browser can access something, security rules must still decide whether it is allowed. Another common mistake is building the database around the first screen instead of the full workflow.</p>
-      <p>Firebase is fast, but it rewards planning. A few strong architecture decisions early can save weeks of cleanup later.</p>
+      <p>One Firebase mistake to avoid is relying on frontend logic for security. If the browser can access something, security rules must still decide whether it is allowed. Another common mistake is building the database around the first screen instead of the full workflow.</p>
+      <p>Firebase is fast, but it rewards planning. A few strong architecture decisions early can reduce cleanup later.</p>
 
       <h2>What founders should expect</h2>
       <p>A Firebase MVP can move quickly, but it should still feel professional: clear login, stable data, predictable loading states, protected routes, clean admin controls, and a deployment process that does not depend on luck.</p>
@@ -726,8 +726,8 @@ export const articles = [
         answer: "Firebase can be excellent for SaaS MVPs when the product needs authentication, real-time data, hosting, and fast development. It still needs careful database structure and security rules."
       },
       {
-        question: "What is the biggest Firebase mistake?",
-        answer: "The biggest Firebase mistake is relying on frontend logic for security. Firestore security rules must protect private data even if the UI hides it."
+        question: "What Firebase mistake should you avoid?",
+        answer: "Relying on frontend logic for security. Firestore security rules must protect private data even if the UI hides it."
       },
       {
         question: "When should a product use Supabase instead of Firebase?",
@@ -742,7 +742,7 @@ export const articles = [
     excerpt: "A clear comparison of Zapier, Make.com, and n8n for business workflows, plus how to know when no-code should become custom software.",
     content: `
       <h2>No-code automation is serious when the workflow is serious</h2>
-      <p>No-code is not "less professional" by default. A clean Zapier, Make.com, or n8n workflow can save a team hours every week. A messy automation can quietly create duplicates, missed leads, wrong reports, and confused operators.</p>
+      <p>No-code is not "less professional" by default. A clean Zapier, Make.com, or n8n workflow can take repeated manual work off a team. A messy automation can quietly create duplicates, missed leads, wrong reports, and confused operators.</p>
       <p>The difference is not the tool. The difference is how clearly the workflow is designed.</p>
       <p>No-code automation helps businesses connect tools, remove repeated manual steps, and move information without waiting for a full custom software build. Zapier, Make.com, and n8n can all be excellent. They are not interchangeable, though. Each one fits a different level of complexity, control, and maintenance.</p>
 
@@ -876,11 +876,6 @@ export const articles = [
       </aside>
     `,
     image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
-    heroImage: "/project_images/rescue-or-rebuild-framework.svg",
-    heroImageMobile: "/project_images/rescue-or-rebuild-framework-mobile.svg",
-    heroImageAlt: "The four-dimension rescue-or-rebuild decision framework: Structural Integrity, Operational Control, Business Reversibility, and Scope of the Problem, combining into six possible outcomes.",
-    heroImageWidth: 1200,
-    heroImageHeight: 900,
     // Absolute PNG: Open Graph / Twitter need absolute URLs, and X/LinkedIn/Facebook do not render SVG.
     ogImage: "https://zumetrix.com/project_images/rescue-or-rebuild-og.png",
     ogImageAlt: "Should you rescue or rebuild your SaaS? Four questions and ordered rules lead to one of six outcomes, including auditing first.",
@@ -987,11 +982,6 @@ export const articles = [
       </ul>
     `,
     image: "https://images.pexels.com/photos/8438918/pexels-photo-8438918.jpeg?auto=compress&cs=tinysrgb&w=800",
-    heroImage: "/project_images/automation-decision-matrix.svg",
-    heroImageMobile: "/project_images/automation-decision-matrix-mobile.svg",
-    heroImageAlt: "A decision matrix plotting rule clarity against cost of error, sorting automation work into four modes: deterministic automation, AI-assisted workflow, deterministic with review, and do not automate yet.",
-    heroImageWidth: 1200,
-    heroImageHeight: 900,
     // Absolute PNG: Open Graph / Twitter need absolute URLs, and X/LinkedIn/Facebook do not render SVG.
     ogImage: "https://zumetrix.com/project_images/automation-workflow-og.png",
     ogImageAlt: "When is AI automation the wrong choice? A workflow's readiness, then rules or AI, then an optional human check, then the action.",
@@ -1124,7 +1114,7 @@ export const articles = [
       {
         label: "Fast Track — two years stuck, three weeks to launch",
         href: "/portfolio/fast-track-usa-app-rescue",
-        description: "A real example of a long stall resolving quickly once ownership changed."
+        description: "A long stall followed by a launch after a takeover: the client's account, with the cause left unclaimed."
       },
       {
         label: "Get a private read on your situation",
@@ -1135,7 +1125,7 @@ export const articles = [
     faqs: [
       {
         question: "Why do software projects stall even when the code isn't that bad?",
-        answer: "Most stalls come from an ownership gap (nobody empowered to make the final call), scope that grew without being re-planned, unresolved technical debt nobody decided on, or team turnover that took context with it — not from the code itself being unworkable."
+        answer: "A stall can come from an ownership gap (nobody empowered to make the final call), scope that grew without being re-planned, unresolved technical debt nobody decided on, or team turnover that took context with it — not from the code itself being unworkable."
       },
       {
         question: "How do I tell if my project is stuck for technical or non-technical reasons?",
@@ -1313,7 +1303,7 @@ export const articles = [
       {
         label: "Bondfire — stabilized, not rebuilt",
         href: "/portfolio/bondfire-event-booking-app",
-        description: "A real example of a 'messy' codebase that needed stabilization, not a rewrite."
+        description: "A stabilization that resolved merge conflicts and build issues without a rewrite, per the project record."
       }
     ],
     faqs: [

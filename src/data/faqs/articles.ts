@@ -17,6 +17,6 @@ export const articlesFAQs = [
   {
     question: "Can I request topics for future articles?",
     answer:
-      "Yes. If you’re a founder, operator, or developer facing a challenge—SaaS architecture, automation strategy, technical decisions, UI/UX questions, or MVP planning—you can request a topic and we may cover it. Many of our most valuable articles come from questions clients or founders asked us during real projects."
+      "Yes. If you’re a founder, operator, or developer facing a challenge—SaaS architecture, automation strategy, technical decisions, UI/UX questions, or MVP planning—you can request a topic and we may cover it. Some of our articles come from questions clients or founders asked us during real projects."
   }
 ];

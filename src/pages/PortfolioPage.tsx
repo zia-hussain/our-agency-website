@@ -48,7 +48,7 @@ const PortfolioPage: React.FC = () => {
             position: index + 1,
             name: project.title,
             description: project.description,
-            image: project.image,
+            image: project.image.startsWith("http") ? project.image : `https://zumetrix.com${project.image}`,
             url: `https://zumetrix.com/portfolio/${project.slug}`,
             creator: { "@id": "https://zumetrix.com/#organization" },
           })),

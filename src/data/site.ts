@@ -154,10 +154,10 @@ export const SITE_DATA = {
     sections: [
       {
         icon: "problem",
-        title: "The Problem With Most Agencies",
+        title: "The Problem With Saying Yes to Everything",
         description:
-          "Most agencies say yes to everything. Vague ideas become vague products. Six months later, nothing works. We ask uncomfortable questions early because we'd rather lose a deal than build something that fails.",
-        stats: "Most projects fail from unclear thinking",
+          "An agency that says yes to everything turns vague ideas into vague products. Six months later, nothing works. We ask uncomfortable questions early because we'd rather lose a deal than build something that fails.",
+        stats: "Clear thinking comes before code",
       },
       {
         icon: "approach",
@@ -170,7 +170,7 @@ export const SITE_DATA = {
         icon: "results",
         title: "What Actually Happens",
         description:
-          "80+ projects delivered by the team. Some raised funding. Some didn't. The difference? How clear the problem was before we started building. We help with that clarity.",
+          "80+ projects delivered by the team. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We help with that clarity.",
         stats: "4-6 week average delivery",
       },
     ],
@@ -227,7 +227,7 @@ export const SITE_DATA = {
         achievements: "Turns product decisions into maintainable software",
         image: "/profile_images/syed-omer-shah-founder-thumb.webp",
         linkedin: "https://www.linkedin.com/in/omer-gillani/",
-        calendly: "https://calendly.com/omer_shah/consultation",
+        calendly: "https://calendly.com/zumetrix-labs/consultation",
       },
     ],
   },
@@ -285,7 +285,7 @@ export const SITE_DATA = {
     ],
     bottomFeatures: [
       'PDF planning guide',
-      'Proven frameworks',
+      'Practical frameworks',
       'Built from 80+ project lessons'
     ],
     formSubject: 'New Lead Magnet Download: MVP Blueprint',

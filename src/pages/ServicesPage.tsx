@@ -696,8 +696,7 @@ const ServicesPage: React.FC = () => {
             <AnimatedSection delay={0.05} className="mb-14">
               <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
                 Before we recommend anything, we find out what's actually wrong —
-                and what's already working. Most of the time, more survives than
-                people expect.
+                and what's already working.
               </p>
             </AnimatedSection>
 

@@ -9,7 +9,7 @@ export const servicesFAQs = [
   {
     question: "How long does a typical project take?",
     answer:
-      "It depends on the project, not just which service it falls under. A tightly scoped MVP can launch in about 30 days; most focused builds take 4-8 weeks. A rescue starts with an assessment before we commit to a timeline — promising a date before we've seen the code would be a guess. Whatever the project, you get a real timeline before work starts, not after."
+      "It depends on the project, not just which service it falls under. A tightly scoped MVP can launch in about 30 days; we scope a focused first release at 4-8 weeks. A rescue starts with an assessment before we commit to a timeline — promising a date before we've seen the code would be a guess. Whatever the project, you get a real timeline before work starts, not after."
   },
   {
     question: "How does pricing work?",
@@ -19,7 +19,7 @@ export const servicesFAQs = [
   {
     question: "What technologies do you actually build with?",
     answer:
-      "React, Next.js, TypeScript, Node.js, React Native, and Expo for the product itself; Firebase, Supabase, PostgreSQL, or MongoDB depending on the data; Stripe for payments. For automation work, usually Make.com, n8n, Airtable, or Notion, tied together with OpenAI where AI actually helps. We pick the stack for the problem, not for what's trendy, and build it so it can be handed over or grown without a rewrite."
+      "React, Next.js, TypeScript, Node.js, React Native, and Expo for the product itself; Firebase, Supabase, PostgreSQL, or MongoDB depending on the data; Stripe for payments. For automation work, Make.com, n8n, Airtable, or Notion, with OpenAI added where AI actually helps. We pick the stack for the problem, not for what's trendy, and build it so it can be handed over or grown without a rewrite."
   },
   {
     question: "Can you join an existing codebase or team?",
@@ -34,7 +34,7 @@ export const servicesFAQs = [
   {
     question: "I'm not technical. Can you still help?",
     answer:
-      "Yes. Most of our clients aren't developers — they're operators and domain experts. Our job is turning your business logic into product decisions, in plain language, so you always know what's being built and why. You bring the idea; we handle the engineering."
+      "Yes. You don't need to be technical. Our job is turning your business logic into product decisions, in plain language, so you always know what's being built and why. You bring the idea; we handle the engineering."
   },
   {
     question: "What happens after I reach out?",
