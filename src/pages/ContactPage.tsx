@@ -216,6 +216,7 @@ const ContactPage: React.FC = () => {
         description="Forge Clear Ideas Into Shipped Software. Contact Zumetrix Labs to discuss your SaaS MVP, React/Node.js app, AI automation, or mobile app project."
         keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Syed Zia Hussain Shah contact, Syed Omer Shah Gillani contact"
         url="https://zumetrix.com/contact"
+        image="https://zumetrix.com/og/page-contact.png"
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [

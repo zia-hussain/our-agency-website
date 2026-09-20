@@ -18,7 +18,7 @@
   <rect width="800" height="2050" fill="url(#smglow)"/>
   <rect width="800" height="2050" filter="url(#smgrain)"/>
 
-  <text x="48" y="72" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="2" fill="#C48A64">STABILIZATION VS. REBUILD SIGNALS</text>
+  <text x="48" y="72" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="2" fill="#C48A64">STABILIZATION SIGNALS</text>
   <text x="48" y="122" font-family="Georgia, serif" font-weight="600" font-size="32" fill="#F3EAE1">Same symptom outside.</text>
   <text x="48" y="164" font-family="Georgia, serif" font-weight="600" font-size="32" fill="#F3EAE1">Different cause.</text>
 
@@ -41,12 +41,12 @@
     <text x="104" y="740" font-size="18" fill="#8A8070">THE FIX</text>
     <text x="104" y="778" font-size="22" fill="#E8EBE6">Tests, documentation, and</text>
     <text x="104" y="810" font-size="22" fill="#E8EBE6">process — not new architecture.</text>
-    <text x="104" y="842" font-size="22" fill="#E8EBE6">Usually weeks, not months.</text>
+    <text x="104" y="842" font-size="22" fill="#E8EBE6">The aim: safe change.</text>
   </g>
 
   <g font-family="Public Sans, sans-serif">
     <rect x="48" y="1040" width="704" height="870" rx="18" fill="#211815" stroke="#5A4038" stroke-width="2.5"/>
-    <text x="80" y="1094" font-weight="700" font-size="27" fill="#E0685A">REBUILD</text>
+    <text x="80" y="1094" font-weight="700" font-size="27" fill="#C48A64">A DIFFERENT QUESTION</text>
     <text x="80" y="1128" font-size="19" fill="#8A8070">foundation itself is the problem</text>
 
     <text x="80" y="1182" font-size="21" fill="#BFB4A2">• Architecture can't support</text>
@@ -61,10 +61,10 @@
 
     <rect x="80" y="1530" width="640" height="330" rx="14" fill="#0A0908" opacity="0.5"/>
     <text x="104" y="1570" font-size="18" fill="#8A8070">THE FIX</text>
-    <text x="104" y="1608" font-size="22" fill="#E8EBE6">Scoped rebuild of the affected</text>
-    <text x="104" y="1640" font-size="22" fill="#E8EBE6">part — or the whole system,</text>
-    <text x="104" y="1672" font-size="22" fill="#E8EBE6">only with strong, independently</text>
-    <text x="104" y="1704" font-size="22" fill="#E8EBE6">verified evidence.</text>
+    <text x="104" y="1608" font-size="22" fill="#E8EBE6">Not a stabilization call. See</text>
+    <text x="104" y="1640" font-size="22" fill="#E8EBE6">the rescue-or-rebuild framework,</text>
+    <text x="104" y="1672" font-size="22" fill="#E8EBE6">which includes auditing before</text>
+    <text x="104" y="1704" font-size="22" fill="#E8EBE6">deciding.</text>
   </g>
 
   <text x="48" y="2000" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="#5A5044">ZUMETRIX LABS — DIAGNOSE BEFORE YOU SPEND</text>

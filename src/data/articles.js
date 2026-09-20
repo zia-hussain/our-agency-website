@@ -1,6 +1,7 @@
 import founderLessonsArticle from "../../BLOG_ARTICLES/what-we-learned-building-50-projects.md?raw";
-import saasMvpThirtyDaysArticle from "../../BLOG_ARTICLES/how-to-build-saas-mvp-30-days.md?raw";
 
+// readTime is set by hand (nothing computes it). Convention for every article: words a reader sees in the article
+// body (prose plus any framework module; FAQ, CTA, navigation and metadata excluded) / 200 wpm, rounded to the nearest minute.
 const escapeHtml = (value) =>
   value
     .replace(/&/g, "&amp;")
@@ -126,35 +127,36 @@ export const articles = [
     content: markdownToHtml(founderLessonsArticle),
     contentFile: "/BLOG_ARTICLES/what-we-learned-building-50-projects.md",
     image: "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800",
+    ogImage: "https://zumetrix.com/og/articles-what-we-learned-building-50-projects.png",
     author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2024-12-25",
-    readTime: "12 min read",
+    readTime: "7 min read",
     tags: ["Founders", "Lessons", "Agency Life", "Real Talk"],
     category: "Insights",
     featured: false,
     seo: {
       title: "What We Learned Building 50+ Projects | Zumetrix Labs",
-      description: "Honest lessons from 3 years building software for founders. What works, what doesn't, and why most projects fail before the first line of code.",
+      description: "Honest lessons from 3 years building software for founders. What works, what doesn't, and where projects go wrong before the first line of code.",
       keywords: "software development lessons, founder advice, MVP development, agency insights, project management"
     },
     internalLinks: [
       {
-        label: "See our software development services",
-        href: "/services",
-        description: "How we turn unclear product ideas into focused SaaS, web, mobile, and automation builds."
+        label: "Can you build a SaaS MVP in 30 days?",
+        href: "/articles/build-saas-mvp-in-30-days",
+        description: "On deciding what a first version has to prove before deciding how fast to build it."
       },
       {
-        label: "Review selected client work",
-        href: "/portfolio",
-        description: "Examples of projects delivered across MVPs, platforms, automation, and business workflows."
+        label: "SaaS product development service",
+        href: "/services/saas-mvp-development",
+        description: "How we turn unclear product ideas into a focused first release."
       }
     ],
     faqs: [
       {
         question: "What is the biggest lesson from building 50+ founder projects?",
-        answer: "The biggest lesson is that software projects usually fail from unclear thinking before they fail from code. Clear users, clear problem, clear first release, and active founder involvement matter more than adding more features."
+        answer: "In our experience, unclear thinking causes more trouble than the code does. A clear user, a clear problem, a clear first release and an involved founder matter more than adding features."
       },
       {
         question: "When should a founder hire Zumetrix Labs?",
@@ -169,64 +171,129 @@ export const articles = [
   {
     id: 1,
     slug: "build-saas-mvp-in-30-days",
-    title: "How to Build a SaaS MVP in 30 Days: Complete Guide",
-    excerpt: "The complete Zumetrix framework for scoping, validating, building, and launching a focused SaaS MVP — validation signals, feature prioritization, tech stack, timeline reality, cost drivers, and common mistakes in one guide.",
-    content: markdownToHtml(saasMvpThirtyDaysArticle),
-    contentFile: "/BLOG_ARTICLES/how-to-build-saas-mvp-30-days.md",
+    title: "Can You Build a SaaS MVP in 30 Days? Speed Follows the Decisions",
+    excerpt: "How fast a first version can ship depends on decisions made around the build: what it has to prove, what is built, what is only designed, and what evidence earns the next layer. With three real Zumetrix projects, and the limits of what their records show.",
+    deck: "A fast first version is mostly a decision problem: what it has to prove, what belongs in it, and what evidence earns the next layer.",
+    hideHeroVisual: true,
+    content: `
+      <p><strong>"Can it be built in 30 days?" is a question about the calendar. The better question is what the calendar has to hold.</strong> The number of days is what's left after other decisions have been made: what problem the first version has to prove, what it needs to contain to prove it, and what it deliberately leaves out. Speed comes downstream of those decisions, not instead of them.</p>
+      <p>So, can you? Sometimes. But 30 days is a ceiling to aim at once those decisions are made. We wouldn't promise it, and we have no evidence that every MVP can or should ship in 30 days. What our own project records show is narrower: <a href="/portfolio/ifyify-ai-personal-branding">Ifyify</a>'s first phase took two weeks, and <a href="/portfolio/skill-x-swap-mvp">Skill x Swap</a>'s MVP phase took six. Those are different products, so the numbers can't be compared &mdash; which is the point. A duration means little without the scope it was attached to.</p>
+
+      <h2>Speed only helps once the problem is evidenced</h2>
+      <p>A fast build points in one direction, so it makes the direction matter more, not less. If the problem behind the product is still a hypothesis, the quick version is a finished answer to a question nobody has confirmed.</p>
+      <p>Evidence here doesn't have to be a survey. It's a person who has the problem, and something they already do about it: a workaround, a spreadsheet, money already spent. Without that, the first version's job is to find the evidence, and that changes what belongs in it.</p>
+
+      <h2>Decide the first version by the loop, not the feature list</h2>
+      <p>A feature list grows because every item is individually reasonable. A loop is harder to argue with: the smallest complete path in which a user gets the outcome the product promises, and you can watch it happen. Everything in the first version should be on that path, or be needed to learn something the path can't show you.</p>
+      <p>The test is blunt: <strong>if this item disappeared, would the loop stop working, or would we stop being able to learn from it?</strong> If neither, it isn't part of the first version. It may still be a good idea. That's what the next section is for.</p>
+      <p>Liftly's founder had a sophisticated pricing engine at the centre of the vision. The first release was the operational loop around it: booking, serviceability, payment and the admin controls to run bookings. Ifyify's first phase was a guided flow, with style selection, that generates bios, taglines and brand personas, plus onboarding, authentication and a backend structured for expansion. In both, the first release was a working loop, with more expected later.</p>
+
+      <!-- module:mvp-framework -->
+
+      <p>Scope arguments get simpler once an idea has to be in one of these states, out loud.</p>
+      <ul>
+        <li><strong>Built.</strong> In this release. It costs build time, so it has to belong to the loop. Liftly's booking, serviceability, payment and admin controls are built. So is Ifyify's guided generation flow.</li>
+        <li><strong>Designed, not built.</strong> Thought through and written down, with no code shipped. It costs thinking, not build time, and it's worth doing where being wrong would be expensive to fix later. Liftly's Pricing Engine V2 is exactly this: service minimums, distance bands, labor, stairs, urgency and margin protection, scoped during V1 and <em>not built, not shipped</em>. Skill x Swap's record is a smaller case: its architecture was prepared for Stripe subscriptions and an enterprise edition in later phases.</li>
+        <li><strong>Later, not yet justified.</strong> Named so it isn't lost, with no design and no build. We can't point to an item in our records and say what became of it, so we won't pretend to.</li>
+      </ul>
+
+      <h2>What earns the next layer</h2>
+      <p>Two different questions move an idea between states, and they're easy to blur.</p>
+      <p><strong>Later to designed:</strong> would being wrong about this be expensive to fix afterwards? If so, think it through now, while thinking is cheap. That's judgment, and it's the reasoning behind scoping Liftly's pricing engine during V1 rather than treating it as something to figure out eventually.</p>
+      <p><strong>Designed to built:</strong> did something you observed after shipping make this the next thing to build? This one needs evidence, not enthusiasm: what real users did, where the loop needed rescuing by hand, what they asked for that was already on your list.</p>
+      <p>We don't have that evidence for Liftly. The record shows V1 built and Pricing Engine V2 designed, and it contains no post-launch usage data. So V2 stays where it is: designed, not built. What would justify building it is the observation above: real use showing that the missing pricing capability is what now limits the product. <a href="/articles/decision-room-001-liftly-sequencing">Decision Room #001</a> works through that decision in full.</p>
+
+      <h2>When speed gets dangerous</h2>
+      <p>These are judgment calls from our work, not measured rates.</p>
+      <ul>
+        <li><strong>The problem is still a guess.</strong> Speed delivers the wrong answer sooner.</li>
+        <li><strong>The deadline came before the scope.</strong> The calendar is fixed first, so the scope is squeezed to fit, and nobody decided which parts to cut.</li>
+        <li><strong>Later ideas leak into the first version.</strong> Anything never named as later gets added as "just one more screen."</li>
+        <li><strong>Nothing is watched after launch.</strong> If you can't see what people do, shipping fast only means deploying fast, and nothing can earn the next layer.</li>
+      </ul>
+
+      <h2>What the records show, and what they don't</h2>
+      <p>Three first versions, described only as far as their project records go:</p>
+      <ul>
+        <li><a href="/portfolio/ifyify-ai-personal-branding">Ifyify</a>, an AI personal branding tool. The record lists the first phase as delivered in two weeks. The client, Kelly Andrews of Best Business Services, wrote: &ldquo;Looking forward to Phase 2 expansion!&rdquo;</li>
+        <li><a href="/portfolio/skill-x-swap-mvp">Skill x Swap</a>, a credit-based skill-trading mobile app. The MVP phase took six weeks, with the architecture prepared for later phases.</li>
+        <li>Liftly, in <a href="/articles/decision-room-001-liftly-sequencing">Decision Room #001</a>: the operational core was built; the pricing engine was designed and is not built.</li>
+      </ul>
+      <p>What the records don't tell us is what each first version left out, or what happened after launch. So we're not claiming these were fast in any comparative sense, or that the sequencing paid off. They show first versions scoped as phases, with later phases named. Judge the reasoning on its own merits.</p>
+    `,
     image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
-    heroImage: "/project_images/saas-mvp-30-day-framework.svg",
-    heroImageMobile: "/project_images/saas-mvp-30-day-framework-mobile.svg",
-    heroImageAlt: "The Zumetrix 30-day MVP framework across four weeks — Discovery, Core Development, Polish, and Launch Preparation — alongside the honest 4-8 week range most real first releases actually take.",
-    heroImageWidth: 1200,
-    heroImageHeight: 630,
-    ogImage: "/project_images/saas-mvp-30-day-framework.svg",
+    ogImage: "https://zumetrix.com/project_images/build-saas-mvp-og.png",
+    ogImageAlt: "Can you build a SaaS MVP in 30 days? Ideas sort into three states, later, designed and built, and evidence moves them from one to the next.",
     author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2024-12-18",
-    readTime: "12 min read",
-    tags: ["SaaS", "MVP", "React", "Firebase", "Startup"],
+    updatedAt: "2026-09-20",
+    readTime: "6 min read",
+    tags: ["SaaS", "MVP", "Scope", "Decision Framework", "Product Sequencing"],
     category: "SaaS",
     featured: true,
     seo: {
-      title: "How to Build a SaaS MVP in 30 Days | Zumetrix Labs",
-      description: "Learn how to build and launch a SaaS MVP in 30 days with validation, feature prioritization, tech stack choices, cost breakdowns, and launch steps.",
-      keywords: "build SaaS MVP, SaaS MVP in 30 days, MVP development guide, rapid MVP development, startup MVP, SaaS development agency, React SaaS development"
+      title: "SaaS MVP in 30 Days? Decide What V1 Must Prove First | Zumetrix Labs",
+      description: "Whether a SaaS MVP can ship in 30 days depends on decisions made first: what V1 must prove, what is built, what is only designed, and what evidence earns V2.",
+      keywords: "build SaaS MVP, SaaS MVP in 30 days, what to build first in an MVP, MVP scope, V1 vs V2, SaaS MVP development, MVP decision framework"
     },
     internalLinks: [
       {
-        label: "SaaS MVP development service",
+        label: "SaaS product development service",
         href: "/services/saas-mvp-development",
-        description: "Our founder-led process for launching focused SaaS products without unnecessary scope."
+        description: "Our founder-led approach to a focused first release, and how we scope it."
       },
       {
-        label: "Knipsr — from product build to launch-ready SaaS",
-        href: "/portfolio/knipsr-event-media-saas",
-        description: "A real case study of taking a product from build to a shipped, launch-ready SaaS."
+        label: "Ifyify — an AI personal branding tool",
+        href: "/portfolio/ifyify-ai-personal-branding",
+        description: "The first phase of an AI product, with the client's own words about what came after."
       },
       {
-        label: "Not sure it's a new build? Should you rescue or rebuild instead",
+        label: "Decision Room #001 — sequencing Liftly's V1",
+        href: "/articles/decision-room-001-liftly-sequencing",
+        description: "What was built, what was designed but not built, and the reasoning between them."
+      },
+      {
+        label: "Already have a codebase? Should you rescue or rebuild it",
         href: "/articles/should-you-rescue-or-rebuild-your-saas",
-        description: "If there's already a codebase involved — even a stalled one — start here before scoping a fresh MVP."
-      },
-      {
-        label: "Start a project conversation",
-        href: "/contact",
-        description: "Share your SaaS idea and get clarity on scope, timeline, and the right first version."
+        description: "If a product already exists, even a stalled one, start here before scoping a new build."
       }
     ],
+    cta: {
+      position: "afterContent",
+      eyebrow: "Before you scope it",
+      heading: "Decide what the first version has to prove.",
+      body: "Our SaaS product development service is built around a focused first release. The service page walks through how we approach scoping it.",
+      label: "See how we approach a first version",
+      href: "/services/saas-mvp-development"
+    },
+    faqHeading: "Quick answers on building a first version",
+    closing: {
+      lead: "Got a SaaS idea?",
+      emphasis: "Talk through the first version with us.",
+      body: "A free 30-minute call with the founders: the idea, the evidence you have so far, and what the first version needs to prove."
+    },
     faqs: [
       {
         question: "Can every SaaS MVP be built in 30 days?",
-        answer: "No. 30 days is the aggressive end for a tightly scoped, already-validated MVP. Most focused first releases land closer to 4-8 weeks once a second user role, real integrations, or payments are involved."
+        answer: "No. Whether 30 days is realistic depends on what the first version has to prove and how much of that is already decided. Our own records show first phases of two weeks (Ifyify) and six weeks (Skill x Swap) on different products; a duration only means something next to the scope it was attached to."
       },
       {
-        question: "What should a SaaS MVP include first?",
-        answer: "A SaaS MVP should include the core user workflow, authentication, the minimum data model, essential admin controls, basic analytics, and a launch path for real users."
+        question: "What should the first version of a SaaS product include?",
+        answer: "The smallest complete loop: the path in which a user gets the outcome the product promises and you can watch it happen. Everything else is designed, or named for later, until evidence earns it a place."
+      },
+      {
+        question: "How do you decide what waits for V2?",
+        answer: "Sort each idea into built, designed but not built, or later. An idea moves up when being wrong would be expensive to fix afterwards (design it now), or when something observed after launch makes it the next thing to build (build it)."
       },
       {
         question: "What tech stack is best for a SaaS MVP?",
-        answer: "React, TypeScript, Node.js, Firebase, and Supabase are strong options depending on the product. The best stack is the one that supports the first release quickly while staying maintainable."
+        answer: "React, TypeScript, Node.js, Firebase and Supabase are all reasonable options, depending on the product. Pick the one that supports the first release quickly while staying maintainable. It matters less than what the first release has to prove."
+      },
+      {
+        question: "What drives the cost of an MVP?",
+        answer: "Scope: how many user roles, integrations and payment flows the first loop needs. That is why we scope the loop before we quote."
       }
     ]
   },
@@ -258,29 +325,31 @@ export const articles = [
       </ul>
 
       <h2>What not to automate too early</h2>
-      <p>Do not automate a broken process before you understand why it is broken. If the rules are unclear, if every case needs a human decision, or if the source data is messy, automation can create faster confusion.</p>
-      <p>The best first version should still keep humans in control at important points. AI can draft, classify, summarize, and recommend. Where a wrong output would be costly, hard to undo, or easy to miss, a person should confirm it before anything acts on it.</p>
+      <p>Do not automate a process until someone can say what a correct result looks like. If nobody can, the workflow isn't ready: map it first. If the rules are unclear, if every single case needs a person's judgment, or if the source data is messy, automation can create faster confusion.</p>
+      <p>The best first version should still keep humans in control at important points. AI can draft, classify, summarize, and recommend. Where a wrong output would be costly, hard to undo, or easy to miss, a person should confirm it before anything acts on it. That confirmation is a checkpoint, and whether a workflow needs one depends on what a wrong output would cost, not on how new the system is.</p>
       <p>A good rule: automate the repetitive work, not the responsibility. Keep a person's judgment in the workflow wherever the stakes are high.</p>
 
       <h2>How Zumetrix Labs approaches automation</h2>
-      <p>We start by mapping the workflow, then choose the tools that fit it and connect the systems. Some automations are best built with Make.com, Zapier, or n8n. Others need custom software with OpenAI, a database, queues, dashboards, and role-based access.</p>
+      <p>We start by mapping the workflow, then choose the tools that fit it and connect the systems. Every workflow has an input, an engine that does the work, an optional checkpoint where a person confirms the result, and an action. The engine can be plain rules, which Make.com, Zapier or n8n handle well, or AI, where the input is unstructured and someone can tell a good output from a bad one. Some workflows need custom software around either: a database, queues, dashboards, role-based access, or a model API such as OpenAI's.</p>
+      <p>The rules-or-AI question has its own article: <a href="/articles/when-is-ai-automation-the-wrong-choice">When is AI automation the wrong choice?</a></p>
       <p>The right choice depends on volume, privacy, complexity, and how much control the business needs. A small internal workflow can start no-code. A core business operation may deserve a more controlled custom build.</p>
 
       <h2>The outcome to aim for</h2>
       <p>A successful AI automation should make the business feel calmer. Fewer missed follow-ups, cleaner data, faster replies, better visibility, and less repetitive work. That is where AI becomes valuable: not as a demo, but as operational leverage.</p>
       <p>The simple test is this: if the automation disappeared tomorrow, would the team feel the pain immediately? If yes, it is probably solving real work.</p>
 
-      <h2>What a strong first AI automation includes</h2>
+      <h2>What a strong first automation includes</h2>
       <p>A serious first version has a clear trigger, clean input data, a defined job for each step, alerts for failures, and a simple log or dashboard so the team can see what happened. Where a step needs interpretation, that step can be AI; where a wrong output would be costly, a person confirms it. Without visibility, automation becomes hard to trust.</p>
       <p>For example, a lead automation should not only send a message. It should record the lead source, summarize the request, detect budget or urgency, create a CRM record, assign the owner, and show whether the follow-up happened.</p>
 
       <h2>Questions to answer before building</h2>
       <ol>
+        <li>Can anyone say what a correct result looks like?</li>
         <li>Which repeated workflow costs the team the most time every week?</li>
         <li>What data does the automation need to make a useful decision?</li>
         <li>Which action can be automated safely, and which action still needs human approval?</li>
         <li>Where should the result be stored so the team can review it later?</li>
-        <li>What should happen when the AI is unsure?</li>
+        <li>What should happen when the engine is unsure, or a step fails?</li>
       </ol>
       <p>If these answers are not clear, the project should start with process design before implementation. AI cannot rescue a workflow nobody understands.</p>
 
@@ -289,11 +358,12 @@ export const articles = [
       <p>The smartest path is often phased: prove the workflow with a lean automation, then rebuild the important parts as a controlled internal system once the business knows exactly what it needs.</p>
     `,
     image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
+    ogImage: "https://zumetrix.com/og/articles-ai-automation-business-growth.png",
     author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2024-12-10",
-    readTime: "6 min read",
+    readTime: "5 min read",
     tags: ["AI", "Automation", "OpenAI", "Business Growth", "Pakistan"],
     category: "AI & Automation",
     featured: false,
@@ -404,11 +474,12 @@ export const articles = [
       <p>That is the quiet value of a clean React and Node.js build: it lets the founder keep improving the product instead of paying to untangle it.</p>
     `,
     image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
+    ogImage: "https://zumetrix.com/og/articles-react-nodejs-best-practices-2024.png",
     author: "Zia Hussain",
     authorRole: "Co-Founder & CEO",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2024-12-05",
-    readTime: "10 min read",
+    readTime: "4 min read",
     tags: ["React", "Node.js", "TypeScript", "Best Practices", "Development"],
     category: "Development",
     featured: false,
@@ -454,7 +525,7 @@ export const articles = [
       <p>Founders often start with the framework question. Flutter or React Native? Cross-platform or native? Which one is faster?</p>
       <p>Those questions matter, but they are not first. The first question is: what must the app make easier for the user?</p>
       <p>The right mobile framework depends on the product, not on popularity. A founder should choose the path that gets the app launched, keeps the experience reliable, and does not create expensive maintenance later.</p>
-      <p>At Zumetrix Labs, we compare React Native, Flutter, and native development through five questions: how custom the interface needs to be, how complex the app logic is, what backend it needs, how fast the first release must launch, and who will maintain it after launch.</p>
+      <p>At Zumetrix Labs, we compare React Native and Flutter through five questions: does the team already know React, does the product also need a web dashboard, how custom does the interface need to be, does the app depend on real-time streams such as voice or live data, and who will maintain it after launch.</p>
 
       <h2>When React Native is the stronger choice</h2>
       <p>React Native is often a strong fit for startups, SaaS companions, marketplace apps, internal tools, dashboards, booking apps, and business workflows. It works especially well when the company already uses React on the web because the team can share thinking, patterns, and sometimes logic.</p>
@@ -514,13 +585,13 @@ export const articles = [
     heroImageAlt: "A five-question comparison matrix between React Native and Flutter, covering team background, web dashboard needs, UI customization, real-time streaming, and long-term maintenance.",
     heroImageWidth: 1200,
     heroImageHeight: 900,
-    ogImage: "/project_images/react-native-vs-flutter-matrix.svg",
+    ogImage: "https://zumetrix.com/og/articles-mobile-app-development-flutter-react-native.png",
     author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2024-11-28",
     updatedAt: "2026-09-16",
-    readTime: "9 min read",
+    readTime: "4 min read",
     tags: ["Mobile Development", "Flutter", "React Native", "Startups", "Pakistan"],
     category: "Mobile Development",
     featured: false,
@@ -623,11 +694,12 @@ export const articles = [
       <p>Used well, Firebase gives a founder speed without chaos. Used casually, it creates a product that launches fast and becomes hard to trust later.</p>
     `,
     image: "https://images.pexels.com/photos/7688880/pexels-photo-7688880.jpeg?auto=compress&cs=tinysrgb&w=800",
+    ogImage: "https://zumetrix.com/og/articles-firebase-complete-guide-pakistani-developers.png",
     author: "Zia Hussain",
     authorRole: "Co-Founder & CEO",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2024-11-20",
-    readTime: "12 min read",
+    readTime: "3 min read",
     tags: ["Firebase", "Authentication", "Firestore", "Cloud Functions", "Development"],
     category: "Development",
     featured: false,
@@ -719,11 +791,12 @@ export const articles = [
       <p>The best first automation is usually boring. That is why it works. It removes a repeated problem the team already feels every week.</p>
     `,
     image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=800",
+    ogImage: "https://zumetrix.com/og/articles-no-code-automation-zapier-make-n8n.png",
     author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2024-11-15",
-    readTime: "9 min read",
+    readTime: "3 min read",
     tags: ["No-Code", "Automation", "Zapier", "Make.com", "n8n"],
     category: "Automation",
     featured: false,
@@ -810,6 +883,7 @@ export const articles = [
     heroImageHeight: 900,
     // Absolute PNG: Open Graph / Twitter need absolute URLs, and X/LinkedIn/Facebook do not render SVG.
     ogImage: "https://zumetrix.com/project_images/rescue-or-rebuild-og.png",
+    ogImageAlt: "Should you rescue or rebuild your SaaS? Four questions and ordered rules lead to one of six outcomes, including auditing first.",
     author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
@@ -920,6 +994,7 @@ export const articles = [
     heroImageHeight: 900,
     // Absolute PNG: Open Graph / Twitter need absolute URLs, and X/LinkedIn/Facebook do not render SVG.
     ogImage: "https://zumetrix.com/project_images/automation-workflow-og.png",
+    ogImageAlt: "When is AI automation the wrong choice? A workflow's readiness, then rules or AI, then an optional human check, then the action.",
     author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
@@ -1026,12 +1101,12 @@ export const articles = [
     heroImageAlt: "Four non-technical reasons software projects stall: ownership gaps, scope drift, decision paralysis around technical debt, and team turnover that takes context with it.",
     heroImageWidth: 1200,
     heroImageHeight: 675,
-    ogImage: "/project_images/why-projects-get-stuck.svg",
+    ogImage: "https://zumetrix.com/og/articles-why-software-projects-get-stuck.png",
     author: "Zia Hussain",
     authorRole: "Co-Founder & CEO",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-09-16",
-    readTime: "6 min read",
+    readTime: "4 min read",
     tags: ["Product Rescue", "Project Management", "SaaS", "Technical Debt"],
     category: "Product Rescue",
     featured: false,
@@ -1102,7 +1177,8 @@ export const articles = [
       <blockquote>Verifying independently isn't distrust — it's how you actually know what you've inherited.</blockquote>
 
       <h2>What this looked like in practice</h2>
-      <p>On <a href="/portfolio/bondfire-event-booking-app">Bondfire</a>, an event booking app, we stepped into an existing React Native codebase mid-flight — merge conflicts, an unstable build pipeline, and collaboration with another developer already in progress. The fix wasn't a rewrite; it was resolving the actual blockers (branch conflicts, broken builds) and stabilizing what was there. <a href="/portfolio/bondfire-event-booking-app">Bharat, a developer on the Bondfire team</a>, put it plainly: "You jumped into a messy situation and got us back to shipping." One engagement isn't a rule, but it shows a shape this work can take — less dramatic than a full rebuild, more about untangling what's actually blocking progress.</p>
+      <p><a href="/portfolio/fast-track-usa-app-rescue">Fast Track USA</a> is our clearest example of taking over from a previous team. The owner, Josh Nyce, says he spent about two years trying to get the app launched with a previous team, and that within three weeks of Zia taking over it was up and running. That is the client's account of the outcome. We're not claiming to know why the earlier work stalled or what was technically wrong, and the case study is explicit about what is and isn't verified.</p>
+      <p><a href="/portfolio/bondfire-event-booking-app">Bondfire</a>, an event booking app, is a different shape. We worked inside an existing React Native codebase, alongside another developer, to resolve merge conflicts and build instability. That was a stabilization and collaboration, not a takeover from a previous team. <a href="/portfolio/bondfire-event-booking-app">Bharat, a developer on the Bondfire team</a>, put it plainly: "You jumped into a messy situation and got us back to shipping." One engagement isn't a rule, but it shows a shape this work can take — less dramatic than a full rebuild, more about untangling what's actually blocking progress.</p>
 
       <h2>A working checklist for the first week</h2>
       <ol>
@@ -1119,12 +1195,12 @@ export const articles = [
     heroImageAlt: "A first-week checklist for taking over a SaaS codebase from another development team, in order: access and ownership, data trust, then a structural read.",
     heroImageWidth: 1200,
     heroImageHeight: 675,
-    ogImage: "/project_images/taking-over-a-saas-checklist.svg",
+    ogImage: "https://zumetrix.com/og/articles-taking-over-a-saas-from-another-dev-team.png",
     author: "Omer Gillani",
     authorRole: "Co-Founder & CTO",
     authorImage: "/profile_images/syed-omer-shah-founder-optimized.jpg",
     publishedAt: "2026-09-16",
-    readTime: "7 min read",
+    readTime: "3 min read",
     tags: ["Product Rescue", "SaaS", "Codebase Takeover", "Technical Due Diligence"],
     category: "Product Rescue",
     featured: false,
@@ -1135,6 +1211,11 @@ export const articles = [
     },
     internalLinks: [
       {
+        label: "Fast Track USA — a takeover, in the client's words",
+        href: "/portfolio/fast-track-usa-app-rescue",
+        description: "Two years with a previous team, then three weeks to launch, as the owner tells it."
+      },
+      {
         label: "Product Rescue & Stabilization service",
         href: "/services/product-rescue-stabilization",
         description: "What a structural audit and stabilization engagement actually involves."
@@ -1142,7 +1223,7 @@ export const articles = [
       {
         label: "Bondfire — stepping into an existing codebase mid-flight",
         href: "/portfolio/bondfire-event-booking-app",
-        description: "A real takeover: merge conflicts, unstable builds, and getting back to shipping."
+        description: "A stabilization alongside another developer: merge conflicts, unstable builds, and getting back to shipping."
       },
       {
         label: "Rescue or Rebuild tool",
@@ -1153,15 +1234,15 @@ export const articles = [
     faqs: [
       {
         question: "What's the first thing to check when taking over a SaaS codebase?",
-        answer: "Access — repository, hosting, domain and DNS, and third-party service credentials — confirmed as actually working, not just documented. This is the most commonly overlooked step because it's less interesting than reviewing the code."
+        answer: "Access — repository, hosting, domain and DNS, and third-party service credentials — confirmed as actually working, not just documented. It's easy to skip because it's less interesting than reviewing the code."
       },
       {
         question: "Should I trust the previous team's explanation of the codebase?",
-        answer: "Treat it as one useful perspective, not the full picture. It's rarely a complete account, not because anyone is being dishonest, but because context is naturally lost in a handoff. Verify independently rather than building your plan entirely on someone else's account."
+        answer: "Treat it as one useful perspective, not the full picture. It isn't a complete account on its own, not because anyone is being dishonest, but because context is naturally lost in a handoff. Verify independently rather than building your plan entirely on someone else's account."
       },
       {
         question: "How long should a SaaS takeover assessment take?",
-        answer: "A focused access-and-access-trust check can happen in days. A full structural read depends on the size of the codebase, but should still be scoped as a defined assessment with a clear finding — not an open-ended engagement."
+        answer: "It depends on the codebase. Checking access and whether the data can be trusted is a bounded task; a full structural read depends on the size and state of the system. Either way, scope it as a defined assessment with a clear finding rather than an open-ended engagement."
       }
     ]
   },
@@ -1171,58 +1252,51 @@ export const articles = [
     title: "Signs Your SaaS Codebase Needs Stabilization (Not a Rebuild)",
     excerpt: "A sound foundation that nobody can safely touch looks a lot like a broken one from the outside. Here's how to tell the difference before committing to a rebuild you don't need.",
     content: `
-      <p><strong>If your codebase's architecture is fundamentally sound but the team is afraid to deploy, that's a stabilization problem — tests, documentation, and process — not a rebuild problem.</strong> The two get confused constantly because they produce the same symptom from the outside: a team that's stopped shipping confidently. The fix is completely different depending on which one you actually have.</p>
+      <p><strong>If your codebase's architecture is fundamentally sound but the team is afraid to deploy, that's a stabilization problem — tests, documentation, and process — not a rebuild problem.</strong> The two get confused because they produce the same symptom from the outside: a team that's stopped shipping confidently. The work is different depending on which one you have.</p>
 
-      <h2>Signs that point to stabilization, not a rebuild</h2>
+      <h2>Signs that point to stabilization</h2>
       <ul>
         <li><strong>The architecture itself isn't the complaint.</strong> When people describe the problem, they talk about fear of deploying, not fundamental design flaws — "we don't know what will break" rather than "this was built wrong."</li>
         <li><strong>No meaningful test coverage.</strong> Changes go out on faith, not verification, which makes every deploy feel riskier than it structurally needs to be.</li>
         <li><strong>Tribal knowledge instead of documentation.</strong> One or two people hold the context for why key decisions were made, and everyone else works around that gap instead of through it.</li>
         <li><strong>A single point of failure on who understands the system.</strong> If that person is unavailable, meaningful work stalls — not because the code is bad, but because nobody else can safely navigate it.</li>
-        <li><strong>Bugs cluster around process, not architecture.</strong> Most issues trace back to a missed edge case or an untested path, not a design that can't support the product's actual requirements.</li>
+        <li><strong>Bugs cluster around process, not architecture.</strong> When issues trace back to a missed edge case or an untested path, rather than a design that can't support the product's actual requirements, that points to process.</li>
       </ul>
 
-      <h2>Signs that actually point toward a rebuild instead</h2>
-      <ul>
-        <li><strong>The architecture can't support what the product now needs to do</strong> — not "it's inconvenient," but a real structural mismatch between what was built and what the business now requires.</li>
-        <li><strong>Data integrity itself is in question</strong> — inconsistent records, unclear ownership of source-of-truth data, or migrations that quietly failed in the past.</li>
-        <li><strong>Known, unpatched security problems</strong> that are structural rather than a single fixable vulnerability.</li>
-        <li><strong>The problem runs through the whole system</strong>, not one identifiable capability — see our <a href="/articles/should-you-rescue-or-rebuild-your-saas">full rescue-or-rebuild framework</a> for how scope factors into that decision.</li>
-      </ul>
-
-      <h2>Why the confusion is expensive</h2>
-      <p>Treating a stabilization problem as a rebuild problem means paying for months of new development to recreate a system that was already structurally fine — with the same operational gap waiting on the other side, because a rebuild doesn't automatically produce tests and documentation either. Treating a genuine structural problem as a stabilization problem means investing in process improvements on a foundation that can't actually support them. Getting the diagnosis right matters more than moving fast on the wrong one.</p>
+      <h2>Where these signs stop</h2>
+      <p>These signs describe a foundation that holds but can't be changed safely. If the architecture can't support what the product now needs, if data integrity is in doubt, or if known security problems are structural, you're asking a different question — one with more than two answers, including auditing before deciding. That decision has its own framework: <a href="/articles/should-you-rescue-or-rebuild-your-saas">Should you rescue or rebuild your SaaS?</a> takes it in order and treats "I don't know yet" as a valid answer.</p>
+      <p>The confusion has a cost either way. Treating a stabilization problem as a rebuild problem means paying for new development to recreate a system that was already structurally fine, with the same operational gap waiting on the other side, because a rebuild doesn't automatically produce tests and documentation either.</p>
 
       <h2>What this looks like in practice</h2>
-      <p>On <a href="/portfolio/bondfire-event-booking-app">Bondfire</a>, the presenting symptom was a team that had stopped shipping — merge conflicts piling up, builds failing intermittently, releases stuck. None of that required a rewrite. It required resolving the actual blockers and getting the pipeline back to a state the team could trust, which is a stabilization problem wearing a "this is a mess" costume. Nathan, describing a similarly tangled backend handoff, put it this way: <em>"I gave him a backend mess, some vague Twilio goals, and he returned with a fully functional, beautifully structured API."</em> Messy doesn't automatically mean broken beyond repair — it often means under-documented and under-tested, which is fixable without starting over.</p>
+      <p>On <a href="/portfolio/bondfire-event-booking-app">Bondfire</a>, the project record describes an event booking app with an unstable codebase, build issues and merge conflicts that were slowing progress. The work was stabilization: resolving merge conflicts, cleaning up branches, fixing navigation bugs and getting builds through to TestFlight. It was not a rewrite. <a href="/portfolio/bondfire-event-booking-app">Bharat, a developer on the Bondfire team</a>, put it this way: "You jumped into a messy situation and got us back to shipping." Messy doesn't automatically mean broken beyond repair; under-documented and under-tested is a different problem from structurally unsound, and it can be fixed without starting over.</p>
 
       <h2>A quick self-check</h2>
       <ol>
         <li>When people describe the problem, do they talk about fear of change, or about the design itself being wrong? Fear of change points to stabilization.</li>
         <li>Is there a single person who's the only one who understands a critical part of the system? That's an operational gap, not necessarily a structural one.</li>
         <li>Do bugs cluster around missed edge cases, or around the system fundamentally not supporting what's being asked of it? The former is process; the latter is structural.</li>
-        <li>Is production data itself trustworthy? If not, that's a stronger signal toward deeper problems than a coverage gap explains.</li>
+        <li>Is production data itself trustworthy? If not, this may be more than a stabilization problem, and the rescue-or-rebuild framework treats it as a question of structural integrity.</li>
       </ol>
-      <p>If your answers land on stabilization, that's a shorter, cheaper, and more honest engagement than a rebuild — and it's worth saying so plainly rather than upselling a bigger one. <a href="/rescue-or-rebuild">Run the four-question tool</a> for a fuller read, or see <a href="/services/product-rescue-stabilization">how a stabilization engagement is actually scoped</a>.</p>
+      <p>If your answers land on stabilization, that's a narrower piece of work than a rebuild, and we'd rather say so plainly than scope a bigger one. <a href="/rescue-or-rebuild">Run the four-question tool</a> for a fuller read, or see <a href="/services/product-rescue-stabilization">how a stabilization engagement is actually scoped</a>.</p>
     `,
     image: "https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&w=800",
     heroImage: "/project_images/stabilization-vs-rebuild-signals.svg",
     heroImageMobile: "/project_images/stabilization-vs-rebuild-signals-mobile.svg",
-    heroImageAlt: "A side-by-side comparison of signs that point to stabilization versus signs that point to a genuine rebuild.",
+    heroImageAlt: "The signs of a stabilization problem, alongside the different question that arises when the foundation itself is in doubt.",
     heroImageWidth: 1200,
     heroImageHeight: 675,
-    ogImage: "/project_images/stabilization-vs-rebuild-signals.svg",
+    ogImage: "https://zumetrix.com/og/articles-signs-your-saas-needs-stabilization-not-rebuild.png",
     author: "Zia Hussain & Omer Gillani",
     authorRole: "Co-Founders",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-09-16",
-    readTime: "6 min read",
+    readTime: "3 min read",
     tags: ["Product Rescue", "Codebase Stabilization", "SaaS", "Technical Debt"],
     category: "Product Rescue",
     featured: false,
     seo: {
       title: "Signs Your SaaS Needs Stabilization, Not a Rebuild | Zumetrix Labs",
-      description: "A sound foundation nobody can safely touch looks like a broken one from the outside. How to tell stabilization signals apart from genuine rebuild signals.",
+      description: "A sound foundation nobody can safely touch looks like a broken one from the outside. The signs of a stabilization problem, and where they stop.",
       keywords: "codebase stabilization signs, does my SaaS need a rebuild, technical debt signs, software stabilization vs rebuild, SaaS maintenance signs"
     },
     internalLinks: [
@@ -1248,12 +1322,12 @@ export const articles = [
         answer: "A sound architecture the team is afraid to change, little or no test coverage, tribal knowledge instead of documentation, a single point of failure on who understands the system, and bugs that cluster around missed edge cases rather than fundamental design flaws."
       },
       {
-        question: "What are the signs a codebase actually needs a rebuild?",
-        answer: "The architecture can't support what the product now needs to do, data integrity itself is in question, there are structural unpatched security problems, or the problem runs through the entire system rather than one identifiable part."
+        question: "How is this different from deciding between rescue and rebuild?",
+        answer: "This article covers the symptoms of a foundation that holds but can't be changed safely. The decision itself, including auditing first when structure or control is unknown, is worked through in our rescue-or-rebuild framework."
       },
       {
         question: "Why does it matter if I misdiagnose stabilization as a rebuild?",
-        answer: "A rebuild costs significantly more time and money, and it doesn't automatically fix the operational gaps — tests, documentation — that caused the original fear of change. You can end up with a new codebase carrying the same underlying problem."
+        answer: "A rebuild is a bigger piece of work, and it doesn't automatically fix the operational gaps — tests, documentation — that caused the original fear of change. You can end up with a new codebase carrying the same underlying problem."
       }
     ]
   },
@@ -1263,14 +1337,14 @@ export const articles = [
     title: "Decision Room #001: Why We Shipped Liftly's Booking Core Before Its Pricing Engine",
     excerpt: "The founder's real vision was a sophisticated pricing engine. We built the operational core first and designed the pricing engine for later. Here's the actual reasoning, with what was built kept visibly separate from what was only planned.",
     content: `
-      <p>This is the first in an occasional series we're calling Decision Room — real sequencing and scope decisions from projects we've built, with enough detail to be useful and enough restraint to respect the privacy we agreed to. <strong>Client and founder identity are withheld by request. The product name, Liftly, and the shape of the V1/V2 decision are shared with permission.</strong></p>
+      <p>This is the first in an occasional series we're calling Decision Room — real sequencing and scope decisions from projects we've built, with enough detail to be useful and enough restraint to protect the client's identity. <strong>Client and founder identity are withheld.</strong> Every fact below comes from the project record, and where the record is silent, this piece says so.</p>
 
       <h2>The situation</h2>
       <p>Liftly's founder had a genuine, well-thought-out vision: a logistics and service booking marketplace with a sophisticated, variable pricing engine at its core — service minimums, distance bands, labor and movers, stairs, urgency, specialty and heavy items, margin protection. That pricing engine was meant to be the product's real differentiator.</p>
-      <p>The problem wasn't the vision. It was the order. Building the full pricing complexity first would have delayed launching the thing the business actually needed to prove before anything else: can a customer book a job, can the business see and manage it, and can payment happen reliably. A sophisticated pricing engine has nothing real to price until that loop works.</p>
+      <p>Here is the fork, before we say what we chose. Build the pricing engine first, so the differentiator exists from day one? Or build the operational loop around it first, and design the engine for later? Either can be defended. What would you want to know before choosing?</p>
 
       <h2>What we built — V1</h2>
-      <p>We separated the vision from the first release. V1 shipped as a complete, usable operational foundation on its own:</p>
+      <p>We chose the loop. We separated the vision from the first release, and V1 shipped as a complete, usable operational foundation on its own:</p>
       <ul>
         <li>Customer booking, pickup/dropoff, and job/item detail capture</li>
         <li>Serviceability and distance-based eligibility logic</li>
@@ -1284,15 +1358,24 @@ export const articles = [
       <p>Designing V2 during V1 — instead of leaving it as a vague future idea — means the next phase starts from a real foundation instead of a blank page. But it's still a plan, not a product, and we're not going to describe it as anything more than that.</p>
 
       <h2>The actual reasoning</h2>
+      <p>The problem wasn't the vision. It was the order. Building the full pricing complexity first would have delayed launching the thing the business needed to prove before anything else: can a customer book a job, can the business see and manage it, and can payment happen reliably. A sophisticated pricing engine has nothing real to price until that loop works.</p>
       <p>Two decisions did the real work here, and neither was about the code:</p>
       <p><strong>Ship the operational loop before the pricing sophistication.</strong> The business needed proof that bookings, serviceability, and payment worked end to end before a variable pricing engine had anything real to price against. Building pricing complexity against an unproven booking flow risks building the wrong thing well.</p>
       <p><strong>Design V2 deliberately instead of bolting it on later.</strong> Rather than treating the pricing engine as "whatever we figure out eventually," the concepts were scoped and documented alongside V1, so the sequencing decision doesn't cost the vision — it just orders it.</p>
 
+      <h2>What would justify building V2</h2>
+      <p>We can't tell you whether the pricing engine has been justified. The record shows V1 built and V2 designed. It contains no post-launch usage data, and we're not going to invent any. What would justify building it is evidence from real use of the operational loop: bookings completing end to end, and a specific place where the missing pricing capability is what's limiting the business. Until then, Pricing Engine V2 stays where the record puts it.</p>
+
       <h2>Why this is worth reading if you're not building a booking platform</h2>
-      <p>The specifics are Liftly's. The pattern isn't. Founders with a genuinely bigger vision than their first release can carry face this exact fork constantly: build the sophisticated version of the idea first, or prove the operational core and sequence the sophistication deliberately. The second path is usually less exciting to describe in a pitch and more likely to produce something real. It's the same instinct behind <a href="/articles/build-saas-mvp-in-30-days">proving the problem before the clock starts</a> on any new build.</p>
+      <p>The specifics are Liftly's. The pattern isn't. Founders with a genuinely bigger vision than their first release can carry face this fork: build the sophisticated version of the idea first, or prove the operational core and sequence the sophistication deliberately. In our view the second path is less exciting to describe in a pitch and more likely to produce something real. It's the same instinct behind <a href="/articles/build-saas-mvp-in-30-days">deciding what a first version has to prove</a> before the clock starts, which that article works through.</p>
 
       <h2>Where this stands today</h2>
-      <p>V1 is built and operational. Pricing Engine V2 remains designed, not built — that's a factual status, not a hedge. <a href="/portfolio/liftly-operational-mvp-v1">The full case study</a> has more detail on the engagement, kept within the same privacy boundaries as this piece.</p>
+      <ul>
+        <li><strong>Built:</strong> the V1 operational core.</li>
+        <li><strong>Designed, not built:</strong> Pricing Engine V2. That is a factual status, not a hedge.</li>
+        <li><strong>Not yet justified:</strong> building V2. The evidence above isn't in the record.</li>
+      </ul>
+      <p><a href="/portfolio/liftly-operational-mvp-v1">The full case study</a> has more detail on the engagement, within the same boundaries as this piece.</p>
     `,
     image: "https://images.pexels.com/photos/7947541/pexels-photo-7947541.jpeg?auto=compress&cs=tinysrgb&w=800",
     heroImage: "/project_images/decision-room-001-liftly-sequencing.svg",
@@ -1300,12 +1383,13 @@ export const articles = [
     heroImageAlt: "A side-by-side comparison showing Liftly's V1 operational core as built and shipped, against the V2 pricing engine as designed and scoped but not built.",
     heroImageWidth: 1200,
     heroImageHeight: 675,
-    ogImage: "/project_images/decision-room-001-liftly-sequencing.svg",
+    ogImage: "https://zumetrix.com/project_images/decision-room-001-og.png",
+    ogImageAlt: "Decision Room #001: Liftly's V1 operational core was built; its Pricing Engine V2 was designed but not built.",
     author: "Zia Hussain",
     authorRole: "Co-Founder & CEO",
     authorImage: "/profile_images/zia-hussain-founder-optimized.jpg",
     publishedAt: "2026-09-16",
-    readTime: "6 min read",
+    readTime: "4 min read",
     tags: ["Decision Room", "Product Sequencing", "SaaS", "Scope Strategy", "MVP"],
     category: "Decision Room",
     featured: true,
@@ -1316,19 +1400,19 @@ export const articles = [
     },
     internalLinks: [
       {
-        label: "Liftly — full case study",
-        href: "/portfolio/liftly-operational-mvp-v1",
-        description: "The complete, privacy-respecting account of the engagement this decision came from."
-      },
-      {
-        label: "How to build a SaaS MVP in 30 days",
+        label: "Can you build a SaaS MVP in 30 days?",
         href: "/articles/build-saas-mvp-in-30-days",
-        description: "The broader framework for proving the problem and scoping a first release deliberately."
+        description: "The wider reasoning: what a first version has to prove, and what evidence earns the next layer."
       },
       {
-        label: "SaaS MVP development service",
+        label: "SaaS product development service",
         href: "/services/saas-mvp-development",
         description: "How we approach scoping a first release when the long-term vision is bigger than V1."
+      },
+      {
+        label: "Liftly — full case study",
+        href: "/portfolio/liftly-operational-mvp-v1",
+        description: "The project record behind this decision, with the same limits on what it shows."
       }
     ],
     faqs: [
@@ -1339,6 +1423,10 @@ export const articles = [
       {
         question: "Why build the operational core before the pricing engine?",
         answer: "A variable pricing engine needs a working booking, serviceability, and payment loop to price against. Proving that operational core first reduces the risk of building pricing sophistication on top of an unproven foundation."
+      },
+      {
+        question: "What would justify building Pricing Engine V2?",
+        answer: "Evidence from real use of the operational loop: bookings completing end to end, and a specific place where the missing pricing capability is what limits the business. The project record contains no post-launch usage data, so that evidence is not something we can point to."
       },
       {
         question: "Is it better to design a future feature in detail or leave it vague until later?",

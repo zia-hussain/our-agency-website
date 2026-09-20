@@ -66,7 +66,7 @@ const WebDetailPage: React.FC = () => {
         title={service.seo.title}
         description={service.seo.description}
         keywords={service.seo.keywords}
-        image={`https://zumetrix.com${service.image}`}
+        image={`https://zumetrix.com/og/services-${service.slug}.png`}
         url={pageUrl}
         structuredData={structuredData}
       />

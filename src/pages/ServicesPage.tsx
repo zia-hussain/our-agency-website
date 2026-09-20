@@ -460,6 +460,7 @@ const ServicesPage: React.FC = () => {
         description="Explore founder-led SaaS MVP, web application, mobile app, AI automation, and technical strategy services from Zumetrix Labs."
         keywords="software development services, SaaS MVP development, React development, mobile app development, AI automation, custom software"
         url="https://zumetrix.com/services"
+        image="https://zumetrix.com/og/page-services.png"
         structuredData={structuredData}
       />
 

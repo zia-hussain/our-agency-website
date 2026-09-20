@@ -18,7 +18,7 @@
   <rect width="1200" height="675" fill="url(#glow6)"/>
   <rect width="1200" height="675" filter="url(#grain6)"/>
 
-  <text x="70" y="66" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2.5" fill="#C48A64">STABILIZATION SIGNALS VS. REBUILD SIGNALS</text>
+  <text x="70" y="66" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2.5" fill="#C48A64">STABILIZATION SIGNALS — AND WHERE THEY STOP</text>
   <text x="70" y="108" font-family="Georgia, serif" font-weight="600" font-size="28" fill="#F3EAE1">Same symptom on the outside. Different cause.</text>
 
   <!-- Split panel -->
@@ -38,12 +38,12 @@
     <rect x="100" y="410" width="440" height="150" rx="12" fill="#0A0908" opacity="0.5"/>
     <text x="122" y="440" font-size="13" fill="#8A8070">THE FIX</text>
     <text x="122" y="468" font-size="14.5" fill="#E8EBE6">Tests, documentation, and process —</text>
-    <text x="122" y="490" font-size="14.5" fill="#E8EBE6">not new architecture. Usually weeks,</text>
-    <text x="122" y="512" font-size="14.5" fill="#E8EBE6">not months.</text>
+    <text x="122" y="490" font-size="14.5" fill="#E8EBE6">not new architecture. The aim: a team</text>
+    <text x="122" y="512" font-size="14.5" fill="#E8EBE6">that can change it safely.</text>
 
     <!-- Right: rebuild -->
     <rect x="630" y="150" width="500" height="450" rx="16" fill="#211815" stroke="#5A4038" stroke-width="1.5"/>
-    <text x="660" y="196" font-weight="700" font-size="19" fill="#E0685A">REBUILD — foundation itself is the problem</text>
+    <text x="660" y="196" font-weight="700" font-size="19" fill="#C48A64">A DIFFERENT QUESTION — the foundation itself</text>
 
     <text x="660" y="238" font-size="14" fill="#BFB4A2">&#8226; Architecture can't support current needs</text>
     <text x="660" y="270" font-size="14" fill="#BFB4A2">&#8226; Data integrity itself is in question</text>
@@ -52,10 +52,10 @@
     <text x="660" y="366" font-size="14" fill="#BFB4A2">&#8226; Past migrations failed quietly</text>
 
     <rect x="660" y="410" width="440" height="150" rx="12" fill="#0A0908" opacity="0.5"/>
-    <text x="682" y="440" font-size="13" fill="#8A8070">THE FIX</text>
-    <text x="682" y="468" font-size="14.5" fill="#E8EBE6">Scoped rebuild of the affected part —</text>
-    <text x="682" y="490" font-size="14.5" fill="#E8EBE6">or the whole system, only with strong,</text>
-    <text x="682" y="512" font-size="14.5" fill="#E8EBE6">independently verified evidence.</text>
+    <text x="682" y="440" font-size="13" fill="#8A8070">THE DECISION</text>
+    <text x="682" y="468" font-size="14.5" fill="#E8EBE6">Not a stabilization call. See the</text>
+    <text x="682" y="490" font-size="14.5" fill="#E8EBE6">rescue-or-rebuild framework, which</text>
+    <text x="682" y="512" font-size="14.5" fill="#E8EBE6">includes auditing before deciding.</text>
   </g>
 
   <text x="70" y="640" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="#5A5044">ZUMETRIX LABS &#8212; PRODUCT RESCUE &amp; STABILIZATION</text>

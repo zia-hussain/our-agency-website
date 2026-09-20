@@ -105,6 +105,7 @@ const HomePage: React.FC = () => {
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
         title="Zumetrix Labs | SaaS MVPs, Apps & AI Automation"
         description="Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, mobile apps, and AI automation for founders who need thinking partners, not order-takers."
+        image="https://zumetrix.com/og/page-home.png"
         structuredData={structuredData}
       />
       <Hero />

@@ -238,10 +238,15 @@ export const projects: Project[] = [
     stack: ["React", "TypeScript", "TailwindCSS", "Supabase", "OpenAI API", "Vercel"],
     services: ["SaaS Development", "AI Integration", "UI/UX Design", "Database Design", "Authentication"],
     kpis: [
-      { label: "Development Time", value: "2 weeks", description: "From concept to live MVP" },
-      { label: "AI Response Time", value: "<2s", description: "Average generation speed" },
-      { label: "Client Approval", value: "Strong", description: "Positive delivery feedback" },
-      { label: "Code Quality", value: "Clean", description: "Maintainable architecture" }
+      { label: "Phase 1 Duration", value: "2 weeks", description: "From concept to live MVP, per the project record" },
+      { label: "Client Feedback", value: "Positive", description: "Client-reported: \"delivered exactly what we envisioned and more\"" }
+    ],
+    relatedReading: [
+      {
+        href: "/articles/build-saas-mvp-in-30-days",
+        label: "Can you build a SaaS MVP in 30 days?",
+        description: "How to decide what a first version has to prove, and what evidence earns the next phase.",
+      },
     ]
   },
   // 7. Forlag – Publishing Sales & Inventory Dashboard
@@ -1190,7 +1195,7 @@ export const projects: Project[] = [
       { title: "Production-grade reliability for real events", description: "Background jobs, retries, and recovery built to hold up under real event-day conditions, not only a demo.", confidence: "delivered" },
       { title: "Performance tuned for growing archives", description: "Gallery loading and caching addressed as event media archives grow, not only at small scale.", confidence: "delivered" }
     ],
-    proofNotes: ["Client and founder identity withheld by request. Product name and technical scope are shared with permission. Screenshots are pending privacy review — none are published yet."],
+    proofNotes: ["Client and founder identity are withheld. Screenshots are pending privacy review — none are published yet."],
     ctaAngle: "Talk to us when the engineering problem is the hard part, not the interface."
   },
   testimonial: {
@@ -1262,7 +1267,7 @@ export const projects: Project[] = [
       { title: "Ship the operational loop before the pricing sophistication", description: "The business needed proof that bookings, serviceability, and payment worked end to end before a variable pricing engine had anything real to price." },
       { title: "Design V2 deliberately instead of bolting it on later", description: "Pricing Engine V2 concepts were scoped and documented during V1, so the next phase has a clear foundation instead of starting from a blank page." }
     ],
-    proofNotes: ["Client and founder identity withheld by request. Product name and V1/V2 scope are shared with permission. Pricing Engine V2 was designed and planned only — it is described here as planned work, not as shipped functionality. Screenshots are pending privacy review — none are published yet."],
+    proofNotes: ["Client and founder identity are withheld. Pricing Engine V2 was designed and planned only — it is described here as planned work, not as shipped functionality. Screenshots are pending privacy review — none are published yet."],
     ctaAngle: "If you have a bigger vision than your first release can carry, this is the kind of sequencing conversation worth having before you build."
   },
   relatedReading: [
@@ -1330,7 +1335,7 @@ export const projects: Project[] = [
       { title: "Triage before touching code", description: "Before fixing anything, we categorized what was in front of us — bug, unfinished feature, intentional behavior, or future scope — so the founder could make informed calls instead of guessing." },
       { title: "Scope Stripe subscriptions as future work, not this engagement", description: "Subscription billing was discussed and scoped for a later phase. It was not implemented here, and this case study does not claim otherwise." }
     ],
-    proofNotes: ["Client, product, and founder identity are withheld by request — this case study is deliberately anonymized. No product screenshots are used or will be used for this project. Not every issue in the product was fixed during this engagement; scope here reflects only the work described above."],
+    proofNotes: ["Client, product, and founder identity are withheld — this case study is deliberately anonymized. No product screenshots are used or will be used for this project. Not every issue in the product was fixed during this engagement; scope here reflects only the work described above."],
     ctaAngle: "If your product needs someone to tell you honestly what's actually wrong with it before touching a line of code, this is that kind of engagement."
   },
   relatedReading: [

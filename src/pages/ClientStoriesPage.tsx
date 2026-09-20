@@ -256,6 +256,7 @@ const ClientStoriesPage: React.FC = () => {
         title="Client Stories | Zumetrix Labs"
         description="What it's actually like to hand Zumetrix Labs something difficult — real evidence from the founders and teams who trusted us with it."
         url="https://zumetrix.com/client-stories"
+        image="https://zumetrix.com/og/page-client-stories.png"
         structuredData={structuredData}
       />
 
@@ -333,7 +334,10 @@ const ClientStoriesPage: React.FC = () => {
               >
                 Josh Nyce spent two years trying to get his app launched with a previous team. He
                 says that within three weeks of Zia taking over, it was launched — “no bugs, no
-                issues.”
+                issues.”{" "}
+                <Link to="/portfolio/fast-track-usa-app-rescue" className="text-primary hover:underline">
+                  Read the case study
+                </Link>
               </motion.p>
               <motion.blockquote
                 variants={{ hidden: { opacity: 0.95, y: 8 }, show: { opacity: 1, y: 0 } }}

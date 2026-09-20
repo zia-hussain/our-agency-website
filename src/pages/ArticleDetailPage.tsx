@@ -9,6 +9,7 @@ import TiltFrame from "../components/portfolio/TiltFrame";
 import ClosingGlow from "../components/common/ClosingGlow";
 import RescueFramework from "../components/articles/RescueFramework";
 import AutomationFramework from "../components/articles/AutomationFramework";
+import MvpFramework from "../components/articles/MvpFramework";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -33,6 +34,7 @@ import { getAuthorIdentity } from "../data/authors";
 const ARTICLE_MODULES: Record<string, React.FC> = {
   "rescue-framework": RescueFramework,
   "automation-framework": AutomationFramework,
+  "mvp-framework": MvpFramework,
 };
 const MODULE_MARKER = /<!--\s*module:([a-z0-9-]+)\s*-->/;
 
@@ -208,7 +210,7 @@ const ArticleDetailPage: React.FC = () => {
     },
     keywords: article.tags.join(", "),
     articleSection: article.category,
-    wordCount: (article.content || "").split(" ").length,
+    wordCount: (article.content || "").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length,
   };
 
   // No FAQPage entity here, deliberately: Google deprecated FAQ rich results
@@ -289,6 +291,7 @@ const ArticleDetailPage: React.FC = () => {
         description={article.seo.description}
         keywords={article.seo.keywords}
         image={article.ogImage || article.image}
+        imageAlt={article.ogImageAlt}
         url={`https://zumetrix.com/articles/${article.slug}`}
         type="article"
         structuredData={structuredData}

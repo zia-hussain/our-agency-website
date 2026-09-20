@@ -129,7 +129,7 @@ const SaasDetailPage: React.FC = () => {
         title={service.seo.title}
         description={service.seo.description}
         keywords={service.seo.keywords}
-        image={`https://zumetrix.com${service.image}`}
+        image={`https://zumetrix.com/og/services-${service.slug}.png`}
         url={pageUrl}
         structuredData={structuredData}
       />
@@ -651,18 +651,23 @@ const SaasDetailPage: React.FC = () => {
             links={[
               {
                 href: "/articles/build-saas-mvp-in-30-days",
-                label: "How to build a SaaS MVP in 30 days",
-                description: "The full framework: validation, feature prioritization, tech stack, and an honest timeline.",
+                label: "Can you build a SaaS MVP in 30 days?",
+                description: "How to decide what a first version has to prove, what is built, what is only designed, and what earns the next layer.",
+              },
+              {
+                href: "/portfolio/ifyify-ai-personal-branding",
+                label: "Ifyify — the first phase of an AI product",
+                description: "A first phase delivered in two weeks, and the client's own words about what comes next.",
+              },
+              {
+                href: "/articles/decision-room-001-liftly-sequencing",
+                label: "Decision Room #001 — sequencing Liftly's V1",
+                description: "What was built, what was designed but not built, and the reasoning between them.",
               },
               {
                 href: "/articles/should-you-rescue-or-rebuild-your-saas",
                 label: "Already have a codebase? Start here instead",
                 description: "If there's an existing product involved, this decides whether a new build is even the right move.",
-              },
-              {
-                href: "/portfolio/knipsr-event-media-saas",
-                label: "Knipsr — from product build to launch-ready SaaS",
-                description: "A real case study of taking a product from build to a shipped, launch-ready SaaS.",
               },
             ]}
           />

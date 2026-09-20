@@ -79,6 +79,7 @@ const ArticlesPage: React.FC = () => {
         description="Practical articles from Zumetrix Labs on SaaS MVPs, AI automation, React and Node.js, mobile apps, product strategy, and software delivery."
         keywords="software development blog, SaaS MVP guide, AI automation insights, React Node.js tutorials, mobile app development, Firebase guides, Zia Hussain articles, Omer Gillani blog, Pakistan software development, startup development guides, tech insights Pakistan"
         url="https://zumetrix.com/articles"
+        image="https://zumetrix.com/og/page-articles.png"
         structuredData={structuredData}
       />
 

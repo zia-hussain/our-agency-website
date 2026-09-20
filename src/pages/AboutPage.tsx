@@ -172,6 +172,7 @@ const AboutPage: React.FC = () => {
         description="Zia Hussain and Omer Gillani founded Zumetrix Labs — a founder-led studio building SaaS MVPs, stabilizing stalled products, and automating operations worldwide."
         keywords="Zia Hussain, Omer Gillani, founder-led software company, SaaS MVP development, product rescue, application stabilization, AI automation, no-code development, mobile app development, web application development"
         url="https://zumetrix.com/about"
+        image="https://zumetrix.com/og/page-about.png"
         structuredData={structuredData}
       />
 

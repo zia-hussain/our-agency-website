@@ -73,6 +73,7 @@ const PortfolioPage: React.FC = () => {
         description="Explore Zumetrix Labs case studies across SaaS MVPs, business dashboards, mobile apps, workflow automation, and custom software."
         keywords="software development portfolio, SaaS MVP projects, React development projects, mobile app portfolio, enterprise software solutions, startup MVP case studies, international software projects, web application portfolio, Zia Hussain projects, Omer Gillani portfolio"
         url="https://zumetrix.com/portfolio"
+        image="https://zumetrix.com/og/page-portfolio.png"
         structuredData={structuredData}
       />
 
