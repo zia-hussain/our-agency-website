@@ -27,3 +27,14 @@ supabase/.temp/
 
 # Private source material (client usernames, unpublished attribution notes) — never commit
 internal/
+
+# Build caches
+*.tsbuildinfo
+
+# Local-only material that must never be committed: raw/large media, review drafts, working notes.
+# (GitHub rejects files over 100 MB, and public/ is served to the world.)
+/review/
+/scratchpad/
+/*.zip
+/.videopackage.mjs
+/public/videos/featured_film/
