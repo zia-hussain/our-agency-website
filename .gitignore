@@ -42,3 +42,5 @@ supabase/.temp/
 /*.zip
 /.videopackage.mjs
 /public/videos/featured_film/
+.vercel
+.env*

@@ -52,13 +52,18 @@ const ACCESS_OPTIONS = [
   { value: "no", label: "Not right now" },
 ];
 
+// 7 steps (reduced from 9 — production-readiness conversion pass,
+// 2026-09-29): Decision and Problem merged onto one screen (two related
+// questions, not two separate re-explanations of the same situation), and
+// the standalone Evidence step removed — evidence links are genuinely a
+// post-acceptance/Day-0 concern, not a pre-qualification one, so they now
+// belong to the existing intake step on /product-rescue/confirmed instead
+// of costing a screen before anyone knows if this is even a fit.
 const STEPS = [
   { id: "situation", title: "What best describes where you're stuck?", sub: "Pick the closest one — there's room to explain later." },
   { id: "product", title: "What did you build?", sub: "Name, a one-line description, and the URL if it's live." },
-  { id: "decision", title: "What decision do you actually need help making?", sub: "\"Should we rebuild this\" is fine — so is anything more specific." },
-  { id: "problem", title: "What's happening right now?", sub: "The messier and more specific, the more useful this is." },
+  { id: "decision", title: "What's happening — and what are you actually trying to decide?", sub: "Be as specific as you can on both — that's what makes this useful." },
   { id: "duration", title: "How long has this been going on — and what have you tried?", sub: "Prior attempts included, if any." },
-  { id: "evidence", title: "Anything that would help us understand faster?", sub: "Screenshots, a Loom, docs, a repo link — all optional." },
   { id: "access", title: "Could you provide access or evidence later, if accepted?", sub: "We never ask for credentials here — just whether it's realistic." },
   { id: "contact", title: "Last thing — who are we talking to?", sub: "So we can send the review and next steps." },
   { id: "review", title: "Take a look before you send it.", sub: "Everything below is what we'll review." },
@@ -147,7 +152,6 @@ function ReviewSummary({ data }: { data: FormState }) {
     { label: "Happening now", value: data.problemDescription },
     { label: "Duration", value: data.duration },
     { label: "Already tried", value: data.priorAttempts },
-    { label: "Evidence", value: data.evidenceLinks },
     { label: "Access later", value: ACCESS_OPTIONS.find((a) => a.value === data.accessAvailability)?.label },
     { label: "Name", value: data.name },
     { label: "Email", value: data.email },
@@ -339,9 +343,9 @@ const ProductRescueApplyPage: React.FC = () => {
         }
         return "";
       case "decision":
-        return data.decisionNeeded.trim() ? "" : "Tell us what you're actually trying to decide.";
-      case "problem":
-        return data.problemDescription.trim().length >= 10 ? "" : "A bit more detail helps us review this properly.";
+        if (data.problemDescription.trim().length < 10) return "A bit more detail on what's happening helps us review this properly.";
+        if (!data.decisionNeeded.trim()) return "Tell us what you're actually trying to decide.";
+        return "";
       case "duration":
         return data.duration.trim() ? "" : "Even a rough sense of how long is useful.";
       case "access":
@@ -503,11 +507,10 @@ const ProductRescueApplyPage: React.FC = () => {
                   )}
 
                   {current.id === "decision" && (
-                    <AutoTextarea autoFocus value={data.decisionNeeded} onChange={(v) => update("decisionNeeded", v)} placeholder="Should we rebuild the backend, or is this fixable? Can we trust this codebase with new features?" rows={3} />
-                  )}
-
-                  {current.id === "problem" && (
-                    <AutoTextarea autoFocus value={data.problemDescription} onChange={(v) => update("problemDescription", v)} placeholder="What's breaking, stalling, or making you not trust the current direction — as specific as you can be." rows={5} />
+                    <div className="space-y-8">
+                      <AutoTextarea autoFocus value={data.problemDescription} onChange={(v) => update("problemDescription", v)} placeholder="What's breaking, stalling, or making you not trust the current direction." rows={4} />
+                      <AutoTextarea value={data.decisionNeeded} onChange={(v) => update("decisionNeeded", v)} placeholder={'What are you actually trying to decide? "Should we rebuild this" is fine.'} rows={3} />
+                    </div>
                   )}
 
                   {current.id === "duration" && (
@@ -515,10 +518,6 @@ const ProductRescueApplyPage: React.FC = () => {
                       <input autoFocus className={inputBase} placeholder="e.g. 6 months, since we inherited it, since launch" value={data.duration} onChange={(e) => update("duration", e.target.value)} />
                       <AutoTextarea value={data.priorAttempts} onChange={(v) => update("priorAttempts", v)} placeholder="What have you already tried? (optional)" rows={3} />
                     </div>
-                  )}
-
-                  {current.id === "evidence" && (
-                    <AutoTextarea autoFocus value={data.evidenceLinks} onChange={(v) => update("evidenceLinks", v)} placeholder="One link per line — Loom, screenshots, docs, repo (optional)" rows={4} />
                   )}
 
                   {current.id === "access" && <ChoiceButtons options={ACCESS_OPTIONS} value={data.accessAvailability} onSelect={(v) => { update("accessAvailability", v); setError(""); }} />}

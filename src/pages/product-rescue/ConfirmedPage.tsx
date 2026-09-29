@@ -135,7 +135,7 @@ const ProductRescueConfirmedPage: React.FC = () => {
                     <textarea
                       value={accessNote}
                       onChange={(e) => setAccessNote(e.target.value)}
-                      placeholder="Anything we should know before we reach out about access? (optional)"
+                      placeholder="Evidence links (Loom, screenshots, docs, repo), or anything else we should know before we reach out about access. (optional)"
                       rows={3}
                       className="w-full rounded-xl border border-border/50 bg-background/40 p-4 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary/50 focus:outline-none"
                     />
