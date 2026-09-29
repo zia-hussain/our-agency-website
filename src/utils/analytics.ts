@@ -60,3 +60,22 @@ export const trackRescueToolCompleted = () => trackEvent('rescue_tool_completed'
 export const trackRescueToolCaseClicked = () => trackEvent('rescue_tool_case_clicked');
 export const trackRescueToolServiceClicked = () => trackEvent('rescue_tool_service_clicked');
 export const trackRescueToolContactStarted = () => trackEvent('rescue_tool_contact_started');
+
+// Product Rescue offer-system events (audit Section 23 / brief Section 23).
+// Same no-payload convention as the rescue-tool events above: these log that
+// a stage happened, never the problem description, evidence links, or any
+// other free-text answer. `route` is the one safe categorical value ever
+// attached — "standard" | "custom" | "decline" — and only fires from the
+// one place that value is decided by a human action, never inferred from
+// form answers client-side.
+export const trackRescueOfferViewed = () => trackEvent('rescue_offer_viewed');
+export const trackRescueApplicationStarted = () => trackEvent('rescue_application_started');
+export const trackRescueApplicationSubmitted = () => trackEvent('rescue_application_submitted');
+export const trackRescueApplicationQualified = (route: 'standard' | 'custom' | 'decline') =>
+  trackEvent('rescue_application_qualified', { route });
+export const trackRescueAccepted = () => trackEvent('rescue_accepted');
+export const trackRescuePaymentStarted = () => trackEvent('rescue_payment_started');
+export const trackRescuePaymentCompleted = () => trackEvent('rescue_payment_completed');
+export const trackRescueDay0Confirmed = () => trackEvent('rescue_day0_confirmed');
+export const trackRescueAssessmentDelivered = () => trackEvent('rescue_assessment_delivered');
+export const trackRescueImplementationRequested = () => trackEvent('rescue_implementation_requested');

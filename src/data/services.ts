@@ -290,7 +290,11 @@ export const rescueService: Service = {
     "Ongoing Support Option After Stabilization"
   ],
   technologies: ["React", "Next.js", "Node.js", "TypeScript", "Firebase", "Supabase", "PostgreSQL", "MongoDB", "REST APIs", "Code Audits"],
-  price: "Scoped after assessment",
+  // A Product Rescue Assessment (the bounded, $750 decision product at
+  // /product-rescue) is the entry point now — what happens after it, if
+  // anything, is what stays "scoped after." See the surgical-fix note in
+  // RescueDetailPage.tsx for why this field changed.
+  price: "Assessment from $750 — implementation scoped after that",
   popular: false,
   image: "/services_images/SaaS.webp",
   methodology: [

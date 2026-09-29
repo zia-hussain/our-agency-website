@@ -4,7 +4,7 @@ export const rescueDetailFAQs = [
   {
     question: "How does the assessment actually work?",
     answer:
-      "We review your codebase, architecture, security, and dependencies before recommending anything. Pricing a rescue before we've looked at the code would be a guess, not a plan — so the assessment comes first, and you get a clear findings report on what's broken, what's fragile, and what's actually fine before any fix is scoped.",
+      "It starts with the Product Rescue Assessment — a bounded, $750 engagement with a stated price and a 5-business-day delivery once access is ready. We review your codebase, architecture, security, and dependencies, and you get a clear findings report on what's broken, what's fragile, and what's actually fine. If implementation makes sense after that, it's scoped and priced separately, based on what the assessment actually found — pricing a fix before we've looked at the code would still be a guess, not a plan.",
   },
   {
     question: "Will you tell me to rebuild everything?",

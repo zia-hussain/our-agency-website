@@ -896,6 +896,11 @@ export const articles = [
     },
     internalLinks: [
       {
+        label: "The Product Rescue Assessment",
+        href: "/product-rescue",
+        description: "The evidence-based version of this decision — a bounded, $750 assessment of the actual product, not just directional answers."
+      },
+      {
         label: "Product Rescue & Stabilization service",
         href: "/services/product-rescue-stabilization",
         description: "What a rescue or stabilization engagement actually involves once the signals point that way."

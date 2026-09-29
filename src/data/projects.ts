@@ -1440,6 +1440,11 @@ export const projects: Project[] = [
   linkServicesToPrimary: true,
   relatedReading: [
     {
+      href: "/product-rescue",
+      label: "Start your own Product Rescue Assessment",
+      description: "If this sounds like your situation: a bounded, $750 evidence-based assessment of your product.",
+    },
+    {
       href: "/articles/should-you-rescue-or-rebuild-your-saas",
       label: "Should you rescue or rebuild your SaaS?",
       description: "The decision framework behind engagements like this one.",

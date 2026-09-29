@@ -116,8 +116,8 @@ const RescueDetailPage: React.FC = () => {
               <span className="text-foreground">We start by understanding what's actually wrong.</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-              <Link to={`/contact?service=${service.slug}`} className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200 btn-sheen">
-                Get a Free Assessment
+              <Link to="/product-rescue" className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200 btn-sheen">
+                See the Product Rescue Assessment
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
                   <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
@@ -558,6 +558,11 @@ const RescueDetailPage: React.FC = () => {
           <RelatedReading
             links={[
               {
+                href: "/product-rescue",
+                label: "The Product Rescue Assessment",
+                description: "A bounded, $750 evidence-based assessment — the entry point this page's assessment step now is.",
+              },
+              {
                 href: "/articles/should-you-rescue-or-rebuild-your-saas",
                 label: "Should you rescue or rebuild your SaaS?",
                 description: "The four-dimension framework this service is built around, including the honest \"you're probably fine\" outcome.",
@@ -596,7 +601,7 @@ const RescueDetailPage: React.FC = () => {
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">
             <ClosingGlow />
-            <Link to={`/contact?service=${service.slug}`}>
+            <Link to="/product-rescue">
               <motion.button
                 whileHover={{ scale: 1.02, y: -3 }}
                 whileTap={{ scale: 0.98 }}
@@ -607,7 +612,7 @@ const RescueDetailPage: React.FC = () => {
                          flex items-center gap-3 sm:gap-4 overflow-hidden transition-shadow duration-300 btn-sheen"
               >
                 <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.14] via-white/0 to-black/[0.06]" />
-                <span className="relative">Get a Free Assessment</span>
+                <span className="relative">See the Product Rescue Assessment</span>
                 <span className="relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/10 group-hover:bg-black/[0.14] transition-colors duration-300">
                   <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>

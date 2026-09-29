@@ -333,6 +333,22 @@ const RescueOrRebuildPage: React.FC = () => {
                       {result.professionalReview.explanation}
                     </p>
                   </div>
+
+                  {/* Only shown where the tool's own logic already says review
+                      is warranted — not on every outcome. Bridges to the paid
+                      assessment without touching this tool's six-outcome
+                      vocabulary (see audit Section 19: keep it, don't merge it). */}
+                  {result.professionalReview.warranted && (
+                    <div className="rounded-2xl border border-primary/25 bg-primary/[0.05] p-5">
+                      <p className="text-[15px] text-foreground/90 leading-relaxed">
+                        Want more than a directional read? The{" "}
+                        <Link to="/product-rescue" className="font-semibold text-primary hover:underline underline-offset-2">
+                          Product Rescue Assessment
+                        </Link>{" "}
+                        goes further — real evidence from the actual product, not just these answers.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-10 flex flex-col items-center gap-6">

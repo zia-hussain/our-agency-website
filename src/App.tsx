@@ -19,6 +19,9 @@ const ArticlesPage = lazy(() => import("./pages/ArticlesPage"));
 const ArticleDetailPage = lazy(() => import("./pages/ArticleDetailPage"));
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
 const RescueOrRebuildPage = lazy(() => import("./pages/RescueOrRebuildPage"));
+const ProductRescueLandingPage = lazy(() => import("./pages/product-rescue/LandingPage"));
+const ProductRescueApplyPage = lazy(() => import("./pages/product-rescue/ApplyPage"));
+const ProductRescueConfirmedPage = lazy(() => import("./pages/product-rescue/ConfirmedPage"));
 const SaasDetailPage = lazy(() => import("./pages/service-detail/SaasDetailPage"));
 const RescueDetailPage = lazy(() => import("./pages/service-detail/RescueDetailPage"));
 const WebDetailPage = lazy(() => import("./pages/service-detail/WebDetailPage"));
@@ -57,14 +60,23 @@ function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isReviewRoute = location.pathname === '/review';
-  const isUtilityRoute = ['/contact', '/privacy-policy', '/terms-of-service', '/unsubscribe'].includes(location.pathname);
+  // /product-rescue/apply and /confirmed get the same treatment as /contact —
+  // a self-contained flow of their own, not competing with a generic sticky
+  // CTA bar. /product-rescue (the landing page) is included too: its whole
+  // job is one CTA (Apply), and a second, different CTA (the generic
+  // Schedule-a-call bar) floating on top of that would work against the
+  // single-CTA discipline the rest of the page is built around.
+  const isUtilityRoute = [
+    '/contact', '/privacy-policy', '/terms-of-service', '/unsubscribe',
+    '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
+  ].includes(location.pathname);
   const isProposalCaseStudy =
     location.pathname.startsWith('/portfolio/') &&
     new URLSearchParams(location.search).get('view') === 'proposal';
   const isNotFoundRoute = !([
     '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
     '/articles', '/privacy-policy', '/terms-of-service', '/review', '/client-stories',
-    '/rescue-or-rebuild',
+    '/rescue-or-rebuild', '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
   ].includes(location.pathname) ||
     location.pathname.startsWith('/services/') ||
     location.pathname.startsWith('/portfolio/') ||
@@ -134,6 +146,9 @@ function App() {
           <Route path="/articles" element={<ArticlesPage />} />
           <Route path="/articles/:slug" element={<ArticleDetailPage />} />
           <Route path="/rescue-or-rebuild" element={<RescueOrRebuildPage />} />
+          <Route path="/product-rescue" element={<ProductRescueLandingPage />} />
+          <Route path="/product-rescue/apply" element={<ProductRescueApplyPage />} />
+          <Route path="/product-rescue/confirmed" element={<ProductRescueConfirmedPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="/review" element={<ReviewPage />} />
