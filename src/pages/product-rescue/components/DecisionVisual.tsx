@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
-import { Check, Wrench, RefreshCcw, ShieldCheck } from "lucide-react";
+import { LayoutGroup, motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Check, Wrench, RefreshCcw, ShieldCheck, MousePointerClick } from "lucide-react";
 import AnimatedSection from "../../../components/common/AnimatedSection";
 
 // The centerpiece: not four cards, one instrument. Five realistic signals
@@ -12,6 +12,14 @@ import AnimatedSection from "../../../components/common/AnimatedSection";
 // observed are different things, and evidence is what moves something
 // from one to the other. REPLACE's lane stays visibly the narrowest and
 // requires two signals — the minority outcome, by construction.
+//
+// A quiet pulsing "Tap" hint on each zone until someone actually taps one
+// (2026-10-01 affordance pass, requested after the same fix shipped on
+// Idea-to-Build/Manual-to-System's equivalents) — gone for good the
+// instant a real tap happens. Deliberately no auto-playing demo: a
+// layoutId animation fired automatically on scroll-into-view measures
+// positions that may still be shifting mid-scroll and looks like a glitch,
+// not a smooth reveal. Nothing here moves on its own.
 type CategoryKey = "keep" | "fix" | "replace";
 
 interface Signal {
@@ -66,9 +74,15 @@ const SignalChip: React.FC<{ signal: Signal; state: "reported" | "matched" }> = 
 
 const DecisionVisual: React.FC = () => {
   const [active, setActive] = useState<CategoryKey | null>(null);
+  const [userTouched, setUserTouched] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
-  const handleSelect = (key: CategoryKey) => setActive((prev) => (prev === key ? null : key));
+  const handleSelect = (key: CategoryKey) => {
+    setUserTouched(true);
+    setActive((prev) => (prev === key ? null : key));
+  };
   const reportedSignals = SIGNALS.filter((s) => s.category !== active);
+  const showHint = !userTouched;
 
   const counts = {
     keep: SIGNALS.filter((s) => s.category === "keep").length,
@@ -109,19 +123,33 @@ const DecisionVisual: React.FC = () => {
               const isReplace = zone.key === "replace";
               const matched = SIGNALS.filter((s) => s.category === zone.key && active === zone.key);
               return (
-                <button
+                <motion.button
                   key={zone.key}
                   type="button"
                   onClick={() => handleSelect(zone.key)}
                   aria-pressed={isActive}
-                  className={`flex flex-col rounded-2xl p-3.5 sm:p-5 text-left transition-all duration-250 min-h-[104px] sm:min-h-[120px] ${
+                  animate={
                     isActive
-                      ? "border border-primary bg-gradient-to-b from-primary/[0.14] to-transparent shadow-[0_0_0_1px_rgba(196,138,100,0.3)]"
+                      ? { boxShadow: "0 0 0 1px rgba(196,138,100,0.3)" }
+                      : showHint && !shouldReduceMotion
+                        ? { boxShadow: ["0 0 0 0 rgba(196,138,100,0)", "0 0 0 6px rgba(196,138,100,0.10)", "0 0 0 0 rgba(196,138,100,0)"] }
+                        : { boxShadow: "0 0 0 0 rgba(196,138,100,0)" }
+                  }
+                  transition={!isActive && showHint ? { duration: 2.1, repeat: Infinity, ease: "easeInOut", delay: zone.key === "keep" ? 0 : zone.key === "fix" ? 0.7 : 1.4 } : { duration: 0.3 }}
+                  className={`relative flex flex-col rounded-2xl p-3.5 sm:p-5 text-left transition-colors duration-250 min-h-[104px] sm:min-h-[120px] ${
+                    isActive
+                      ? "border border-primary bg-gradient-to-b from-primary/[0.14] to-transparent"
                       : zone.weight === "solid"
                         ? "border border-primary/30 bg-gradient-to-b from-primary/[0.06] to-transparent hover:border-primary/50"
                         : "border border-dashed border-border/50 bg-card/5 opacity-80 hover:opacity-100"
                   }`}
                 >
+                  {showHint && (
+                    <span className="absolute right-2 top-2 sm:right-3 sm:top-3 flex items-center gap-1 rounded-full border border-primary/25 bg-background/70 px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold uppercase tracking-wide text-primary/80">
+                      <MousePointerClick size={9} />
+                      <span className="hidden sm:inline">Tap</span>
+                    </span>
+                  )}
                   <span className="mb-2 flex items-center gap-2">
                     <span className={`flex h-6 w-6 sm:h-7 sm:w-7 flex-shrink-0 items-center justify-center rounded-full border ${isActive || zone.weight === "solid" ? "border-primary/40 text-primary" : "border-border/60 text-muted-foreground"}`}>
                       <zone.icon size={12} />
@@ -142,7 +170,7 @@ const DecisionVisual: React.FC = () => {
                     </AnimatePresence>
                     {isActive && matched.length === 0 && <span className="text-xs text-muted-foreground/40">—</span>}
                   </div>
-                </button>
+                </motion.button>
               );
             })}
           </div>
@@ -174,7 +202,7 @@ const DecisionVisual: React.FC = () => {
       </LayoutGroup>
 
       <p className="mt-4 text-center text-xs text-muted-foreground/60">
-        Click Keep, Fix, or Replace — watch reported become observed.
+        Tap Keep, Fix, or Replace — watch reported become observed.
       </p>
     </AnimatedSection>
   );

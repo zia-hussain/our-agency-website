@@ -583,6 +583,11 @@ const AutomationDetailPage: React.FC = () => {
               </motion.button>
             </Link>
           </AnimatedSection>
+          <AnimatedSection delay={0.1} className="mt-8">
+            <Link to="/manual-to-system" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+              Not sure what's worth automating yet? Try the Manual-to-System Sprint →
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </PageTransition>

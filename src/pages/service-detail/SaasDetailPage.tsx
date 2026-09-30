@@ -706,6 +706,11 @@ const SaasDetailPage: React.FC = () => {
               </motion.button>
             </Link>
           </AnimatedSection>
+          <AnimatedSection delay={0.1} className="mt-8">
+            <Link to="/idea-to-build" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+              Not sure what your first version should include? Try the Idea-to-Build Sprint →
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </PageTransition>

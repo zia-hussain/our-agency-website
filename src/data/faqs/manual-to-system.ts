@@ -1,23 +1,9 @@
-// /manual-to-system FAQ — questions specific to the paid sprint (price,
-// boundary, what happens if it's not a fit). Mirrors the structure of
-// src/data/faqs/product-rescue.ts but answers a different buyer's actual
-// questions, not a reskinned copy of the same six.
+// /manual-to-system FAQ — secondary questions only. The primary objections
+// (Zapier/n8n/ChatGPT comparisons, automating everything, what you
+// receive) are answered directly on the page in AnsweredDirectly.tsx, not
+// buried here — this list is what's left over (2026-10-01 commercial
+// experience pass).
 export const manualToSystemFAQs = [
-  {
-    question: "Are you just going to tell me to buy Zapier?",
-    answer:
-      "No. Tools are the last decision, not the first. We start with what should be removed or simplified — sometimes that alone fixes more than automation would, and we'll say so even if it means a smaller sprint.",
-  },
-  {
-    question: "Do you build the automation?",
-    answer:
-      "No — implementation is separate, on purpose. The sprint is the decision: what to remove, simplify, connect, automate, or keep human, and in what order. Once that's clear, you can build it with your own team, another team, or us.",
-  },
-  {
-    question: "Will you tell me to add AI everywhere?",
-    answer:
-      "No. We don't recommend AI because the offer sits under \"automation\" — most workflow problems are solved by removing steps, simplifying a process, or connecting two tools with deterministic rules. AI only shows up in the plan if the workflow genuinely needs it.",
-  },
   {
     question: "What counts as \"one bounded workflow\"?",
     answer:

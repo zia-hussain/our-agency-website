@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
-import { Zap, UserCheck } from "lucide-react";
+import { LayoutGroup, motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Zap, UserCheck, MousePointerClick } from "lucide-react";
 import AnimatedSection from "../../../components/common/AnimatedSection";
 
 // The centerpiece: a real workflow's tasks, unsorted, resolving into two
@@ -10,6 +10,17 @@ import AnimatedSection from "../../../components/common/AnimatedSection";
 // automate, and which ones are judgment a person should keep doing. The
 // workflow below (a new-client inquiry) is generic and illustrative, not
 // any real client's actual process (2026-09-30 BUILD/AUTOMATE expansion).
+//
+// A static interactive component teaches nothing if nobody knows it's
+// interactive — a caption below the block isn't enough (2026-10-01
+// affordance pass). Fix is a quiet pulsing ring + "Tap" hint on the zones
+// while nothing is selected yet, gone for good the moment a real tap
+// happens. Deliberately NOT an auto-playing demo: a layoutId animation
+// triggered on scroll-into-view fires while the viewport may still be
+// mid-scroll, and framer-motion measuring positions that are still
+// shifting produces exactly the kind of glitchy, "did that just click
+// itself" jump a real tap never has. Nothing moves until the visitor
+// actually taps something.
 type LaneKey = "automate" | "human";
 
 interface Task {
@@ -57,9 +68,16 @@ const TaskChip: React.FC<{ task: Task; state: "pool" | "sorted" }> = ({ task, st
 
 const WorkflowVisual: React.FC = () => {
   const [active, setActive] = useState<LaneKey | null>(null);
+  const [userTouched, setUserTouched] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
-  const handleSelect = (key: LaneKey) => setActive((prev) => (prev === key ? null : key));
+  const handleSelect = (key: LaneKey) => {
+    setUserTouched(true);
+    setActive((prev) => (prev === key ? null : key));
+  };
+
   const poolTasks = TASKS.filter((t) => t.lane !== active);
+  const showHint = !userTouched;
 
   const counts = {
     automate: TASKS.filter((t) => t.lane === "automate").length,
@@ -95,19 +113,33 @@ const WorkflowVisual: React.FC = () => {
               const isActive = active === lane.key;
               const sorted = TASKS.filter((t) => t.lane === lane.key && active === lane.key);
               return (
-                <button
+                <motion.button
                   key={lane.key}
                   type="button"
                   onClick={() => handleSelect(lane.key)}
                   aria-pressed={isActive}
-                  className={`flex flex-col rounded-2xl p-4 sm:p-5 text-left transition-all duration-250 min-h-[128px] sm:min-h-[140px] ${
+                  animate={
                     isActive
-                      ? "border border-primary bg-gradient-to-b from-primary/[0.14] to-transparent shadow-[0_0_0_1px_rgba(196,138,100,0.3)]"
+                      ? { boxShadow: "0 0 0 1px rgba(196,138,100,0.3)" }
+                      : showHint && !shouldReduceMotion
+                        ? { boxShadow: ["0 0 0 0 rgba(196,138,100,0)", "0 0 0 7px rgba(196,138,100,0.10)", "0 0 0 0 rgba(196,138,100,0)"] }
+                        : { boxShadow: "0 0 0 0 rgba(196,138,100,0)" }
+                  }
+                  transition={!isActive && showHint ? { duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: lane.key === "human" ? 1.1 : 0 } : { duration: 0.3 }}
+                  className={`relative flex flex-col rounded-2xl p-4 sm:p-5 text-left transition-colors duration-250 min-h-[128px] sm:min-h-[140px] ${
+                    isActive
+                      ? "border border-primary bg-gradient-to-b from-primary/[0.14] to-transparent"
                       : lane.weight === "solid"
                         ? "border border-primary/30 bg-gradient-to-b from-primary/[0.06] to-transparent hover:border-primary/50"
                         : "border border-dashed border-border/50 bg-card/5 opacity-80 hover:opacity-100"
                   }`}
                 >
+                  {showHint && (
+                    <span className="absolute right-3 top-3 flex items-center gap-1 rounded-full border border-primary/25 bg-background/70 px-2 py-1 text-[9px] font-semibold uppercase tracking-wide text-primary/80">
+                      <MousePointerClick size={10} />
+                      Tap
+                    </span>
+                  )}
                   <span className="mb-2.5 flex items-center gap-2">
                     <span className={`flex h-6 w-6 sm:h-7 sm:w-7 flex-shrink-0 items-center justify-center rounded-full border ${isActive || lane.weight === "solid" ? "border-primary/40 text-primary" : "border-border/60 text-muted-foreground"}`}>
                       <lane.icon size={12} />
@@ -122,7 +154,7 @@ const WorkflowVisual: React.FC = () => {
                     </AnimatePresence>
                     {isActive && sorted.length === 0 && <span className="text-xs text-muted-foreground/40">—</span>}
                   </div>
-                </button>
+                </motion.button>
               );
             })}
           </div>
@@ -152,7 +184,7 @@ const WorkflowVisual: React.FC = () => {
       </LayoutGroup>
 
       <p className="mt-4 text-center text-xs text-muted-foreground/60">
-        Click Automate or Keep human — watch a workflow become a system.
+        Tap Automate or Keep human — watch a workflow become a system.
       </p>
     </AnimatedSection>
   );

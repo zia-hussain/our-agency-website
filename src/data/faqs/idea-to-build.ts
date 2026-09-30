@@ -1,18 +1,8 @@
-// /idea-to-build FAQ — questions specific to the paid sprint (price,
-// boundary, what happens if it's not a fit). Mirrors the structure of
-// src/data/faqs/product-rescue.ts but answers a different buyer's actual
-// questions, not a reskinned copy of the same six.
+// /idea-to-build FAQ — secondary questions only. The primary objections
+// (PRD comparison, who writes the code, what you receive) are answered
+// directly on the page in AnsweredDirectly.tsx, not buried here — this
+// list is what's left over (2026-10-01 commercial experience pass).
 export const ideaToBuildFAQs = [
-  {
-    question: "Isn't this just a PRD?",
-    answer:
-      "No. A PRD documents everything a product could have. This sprint decides what your first version actually needs to prove, and cuts the rest deliberately — the Brief is short because most of what's excluded doesn't belong yet, not because we ran out of time.",
-  },
-  {
-    question: "Do you write the code?",
-    answer:
-      "No — implementation is separate, on purpose. The sprint is the decision: what V1 needs to prove, who it's for, what belongs, what waits. Once that's clear, you can build it with your own team, another team, or us.",
-  },
   {
     question: "What if my idea is too early — I don't even have a name yet?",
     answer:

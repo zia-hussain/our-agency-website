@@ -11,6 +11,9 @@ import ClosingGlow from "../../components/common/ClosingGlow";
 import WorkflowVisual from "./components/WorkflowVisual";
 import MethodSequence from "./components/MethodSequence";
 import BodyOfWork from "./components/BodyOfWork";
+import WorkflowToday from "./components/WorkflowToday";
+import ConsequenceStakes from "./components/ConsequenceStakes";
+import AnsweredDirectly from "./components/AnsweredDirectly";
 import RecognitionSelector, { type RecognitionOption } from "../offers/RecognitionSelector";
 import { manualToSystemFAQs } from "../../data/faqs/manual-to-system";
 import { getOffer } from "../../config/offers";
@@ -20,18 +23,21 @@ const pageUrl = "https://zumetrix.com/manual-to-system";
 const offer = getOffer("manual-to-system")!;
 
 const HERO_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const heroContainer = { hidden: {}, show: { transition: { staggerChildren: 0.07 } } };
+const heroContainer = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
 const heroItem = {
   hidden: { opacity: 0.96, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.48, ease: HERO_EASE } },
 };
 
+// Denser than FIX's 5 — the hero itself should feel a notch busier, since
+// the whole page's arc is chaos settling into control (brief Section 10).
 const OPINION_FRAGMENTS = [
-  { text: "\"just buy more Zapier zaps\"", top: "4%", left: "6%", rotate: "-5deg" },
-  { text: "\"we need an AI agent for this\"", top: "40%", left: "24%", rotate: "3deg" },
-  { text: "\"just hire someone else to do it\"", top: "10%", left: "48%", rotate: "-3deg" },
-  { text: "\"it's fine, we'll push through\"", top: "42%", left: "66%", rotate: "4deg" },
-  { text: "\"automate everything, worry later\"", top: "2%", left: "84%", rotate: "-6deg" },
+  { text: "\"just buy more Zapier zaps\"", top: "2%", left: "4%", rotate: "-5deg" },
+  { text: "\"we need an AI agent for this\"", top: "40%", left: "18%", rotate: "3deg" },
+  { text: "\"just hire someone else to do it\"", top: "8%", left: "38%", rotate: "-3deg" },
+  { text: "\"it's fine, we'll push through\"", top: "42%", left: "54%", rotate: "4deg" },
+  { text: "\"automate everything, worry later\"", top: "4%", left: "70%", rotate: "-6deg" },
+  { text: "\"someone's tracking it, probably\"", top: "38%", left: "84%", rotate: "3deg" },
 ];
 
 const RECOGNITION_OPTIONS: RecognitionOption[] = [
@@ -148,7 +154,7 @@ const ManualToSystemLandingPage: React.FC = () => {
       {/* ================================================================ */}
       {/* HERO                                                               */}
       {/* ================================================================ */}
-      <section className="relative overflow-hidden bg-background pt-28 sm:pt-36 pb-20 sm:pb-28">
+      <section className="relative overflow-hidden bg-background pt-28 sm:pt-36 pb-16 sm:pb-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_42%_at_50%_36%,rgba(196,138,100,0.11),transparent_68%)]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_80%_at_50%_28%,transparent_50%,rgba(0,0,0,0.4)_100%)]" />
         <div
@@ -159,13 +165,13 @@ const ManualToSystemLandingPage: React.FC = () => {
           }}
         />
 
-        <div aria-hidden="true" className="hidden sm:block relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-20 mb-2">
+        <div aria-hidden="true" className="hidden sm:block relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 mb-2">
           {OPINION_FRAGMENTS.map((frag) => (
             <motion.span
               key={frag.text}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
+              transition={{ duration: 0.6, delay: 0.12 }}
               className="absolute whitespace-nowrap text-sm text-muted-foreground/35 italic"
               style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}
             >
@@ -229,31 +235,19 @@ const ManualToSystemLandingPage: React.FC = () => {
               Not ready for the paid sprint? Read when automation is the wrong call →
             </Link>
           </motion.div>
-
-          <motion.div variants={heroItem} className="mt-16 sm:mt-20">
-            <div className="relative max-w-lg mx-auto rounded-2xl border border-border/50 bg-card/10 overflow-hidden text-left">
-              <div className="px-6 py-4 border-b border-border/50 bg-card/20">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60">System Plan — preview</p>
-              </div>
-              <div className="divide-y divide-border/40">
-                <div className="flex items-center justify-between px-6 py-4">
-                  <span className="text-sm text-foreground/80">Lead intake form</span>
-                  <span className="text-xs font-semibold text-primary">Automate — no judgment needed</span>
-                </div>
-                <div className="flex items-center justify-between px-6 py-4">
-                  <span className="text-sm text-foreground/80">CRM data entry</span>
-                  <span className="text-xs font-semibold text-muted-foreground/60">Connect — sync automatically</span>
-                </div>
-                <div className="flex items-center justify-between px-6 py-4">
-                  <span className="text-sm text-foreground/80">Client fit questions</span>
-                  <span className="text-xs font-semibold text-muted-foreground/60">Keep human — relationship moment</span>
-                </div>
-              </div>
-            </div>
-            <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — your Plan is built from your own workflow.</p>
-          </motion.div>
         </motion.div>
       </section>
+
+      {/* ================================================================ */}
+      {/* WHAT'S ACTUALLY HAPPENING — deliberately dense, before anything    */}
+      {/* resolves it                                                        */}
+      {/* ================================================================ */}
+      <WorkflowToday />
+
+      {/* ================================================================ */}
+      {/* WHY NOW                                                            */}
+      {/* ================================================================ */}
+      <ConsequenceStakes />
 
       {/* ================================================================ */}
       {/* RECOGNITION                                                        */}
@@ -273,9 +267,9 @@ const ManualToSystemLandingPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* THE SIGNATURE DEVICE                                               */}
+      {/* THE SIGNATURE DEVICE — where the page starts to calm down          */}
       {/* ================================================================ */}
-      <section className="bg-card/10 border-y border-border/40 py-24 sm:py-28">
+      <section className="py-24 sm:py-28">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-10">
             <MethodSequence />
@@ -283,7 +277,7 @@ const ManualToSystemLandingPage: React.FC = () => {
           <AnimatedSection delay={0.06} className="text-center mb-4">
             <SectionEyebrow className="mb-6">How We Decide</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight max-w-xl mx-auto">
-              Stop automating before you know what should disappear first.
+              Those eight handoffs from before? Here's what should survive.
             </h2>
           </AnimatedSection>
           <WorkflowVisual />
@@ -291,15 +285,19 @@ const ManualToSystemLandingPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* THE OFFER                                                          */}
+      {/* THE TRADE                                                          */}
       {/* ================================================================ */}
-      <section className="py-24 sm:py-28">
+      <section className="py-24 sm:py-28 bg-card/10 border-y border-border/40">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-14">
-            <SectionEyebrow className="mb-6">The Sprint</SectionEyebrow>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight max-w-xl mx-auto leading-tight">
-              Five business days later, you should know what deserves to change.
+            <SectionEyebrow className="mb-6">The Trade</SectionEyebrow>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight max-w-2xl mx-auto leading-tight">
+              $750 to decide what deserves to change — before another tool assumes the answer.
             </h2>
+            <p className="mt-4 text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Not a guess about hours saved. A bounded price for the one decision that determines
+              what gets removed, connected, or automated — and what stays human.
+            </p>
           </AnimatedSection>
 
           <div className="grid gap-8 lg:grid-cols-2">
@@ -342,7 +340,7 @@ const ManualToSystemLandingPage: React.FC = () => {
                   <p className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed">
                     <X size={11} className="mt-0.5 text-muted-foreground/40 flex-shrink-0" />
                     Implementation, a specific automation build, and an invented hours-saved
-                    figure — the Plan is a decision, not those things.
+                    figure.
                   </p>
                 </div>
               </div>
@@ -352,6 +350,11 @@ const ManualToSystemLandingPage: React.FC = () => {
       </section>
 
       <BodyOfWork />
+
+      {/* ================================================================ */}
+      {/* ANSWERED DIRECTLY                                                  */}
+      {/* ================================================================ */}
+      <AnsweredDirectly />
 
       {/* ================================================================ */}
       {/* TRUST REVERSAL                                                     */}
@@ -365,8 +368,8 @@ const ManualToSystemLandingPage: React.FC = () => {
                 "If an automation agency plans my workflow, won't they just recommend automating everything?"
               </p>
               <p className="text-base text-muted-foreground leading-relaxed mb-4">
-                We don't need to win the implementation for this sprint to succeed — the Plan costs
-                $750 whether it recommends automating most of the workflow or almost none of it.
+                There's no incentive to play that game: the Plan costs $750 whether it recommends
+                automating most of the workflow or almost none of it.
               </p>
               <p className="text-base font-semibold text-foreground leading-relaxed">
                 Our job isn't to sell you more automation. It's to tell you what actually deserves it.
@@ -413,7 +416,7 @@ const ManualToSystemLandingPage: React.FC = () => {
           <AnimatedSection className="text-center mb-16">
             <SectionEyebrow className="mb-6">How It Starts</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
-              This should feel easy.
+              This should feel like control returning, not more process.
             </h2>
           </AnimatedSection>
           <div className="relative pl-9 sm:pl-11">
@@ -432,12 +435,12 @@ const ManualToSystemLandingPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* FAQ                                                                */}
+      {/* FAQ — secondary questions only                                     */}
       {/* ================================================================ */}
       <section className="py-24 sm:py-28 bg-background">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
+            <SectionEyebrow className="mb-6">A Few More Things</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Before you apply.</h2>
           </AnimatedSection>
           <div className="flex justify-center my-10 sm:my-12" aria-hidden="true">
@@ -465,8 +468,8 @@ const ManualToSystemLandingPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
-              <span className="block text-muted-foreground/50">No more guessing what to automate.</span>
-              <span className="block text-foreground mt-2">Just a system worth running.</span>
+              <span className="block text-muted-foreground/50">Stop being the integration.</span>
+              <span className="block text-foreground mt-2">Let the system carry it.</span>
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">

@@ -11,6 +11,8 @@ import ClosingGlow from "../../components/common/ClosingGlow";
 import V1BoundaryVisual from "./components/V1BoundaryVisual";
 import MethodSequence from "./components/MethodSequence";
 import BodyOfWork from "./components/BodyOfWork";
+import ConsequenceStakes from "./components/ConsequenceStakes";
+import AnsweredDirectly from "./components/AnsweredDirectly";
 import RecognitionSelector, { type RecognitionOption } from "../offers/RecognitionSelector";
 import { ideaToBuildFAQs } from "../../data/faqs/idea-to-build";
 import { getOffer } from "../../config/offers";
@@ -20,18 +22,28 @@ const pageUrl = "https://zumetrix.com/idea-to-build";
 const offer = getOffer("idea-to-build")!;
 
 const HERO_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const heroContainer = { hidden: {}, show: { transition: { staggerChildren: 0.07 } } };
+const heroContainer = { hidden: {}, show: { transition: { staggerChildren: 0.05 } } };
 const heroItem = {
   hidden: { opacity: 0.96, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.48, ease: HERO_EASE } },
 };
 
-const OPINION_FRAGMENTS = [
-  { text: "\"just build the whole thing\"", top: "4%", left: "6%", rotate: "-5deg" },
-  { text: "\"an MVP means cutting corners\"", top: "40%", left: "22%", rotate: "3deg" },
-  { text: "\"it needs to do everything on day one\"", top: "10%", left: "46%", rotate: "-3deg" },
-  { text: "\"nobody will use it without that feature\"", top: "42%", left: "64%", rotate: "4deg" },
-  { text: "\"just start coding, figure it out\"", top: "2%", left: "84%", rotate: "-6deg" },
+// Possibility overload, deliberately denser than Product Rescue's 5
+// scattered opinions (brief Section 6: AMBITION -> POSSIBILITY OVERLOAD) —
+// this is the actual wishlist a founder is carrying, not a quote from
+// someone else. It reappears, sorted, in the signature device below —
+// the same list, compressed (2026-10-01 commercial experience pass).
+const POSSIBILITY_FIELD = [
+  { text: "AI chat", top: "2%", left: "4%", rotate: "-6deg" },
+  { text: "marketplace", top: "38%", left: "10%", rotate: "4deg" },
+  { text: "mobile app", top: "8%", left: "22%", rotate: "-3deg" },
+  { text: "loyalty program", top: "44%", left: "30%", rotate: "5deg" },
+  { text: "multi-currency", top: "4%", left: "42%", rotate: "-4deg" },
+  { text: "admin analytics", top: "40%", left: "50%", rotate: "3deg" },
+  { text: "social features", top: "10%", left: "62%", rotate: "-5deg" },
+  { text: "white-label", top: "42%", left: "70%", rotate: "4deg" },
+  { text: "public API", top: "6%", left: "80%", rotate: "-3deg" },
+  { text: "integrations", top: "38%", left: "88%", rotate: "5deg" },
 ];
 
 const RECOGNITION_OPTIONS: RecognitionOption[] = [
@@ -146,7 +158,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
       />
 
       {/* ================================================================ */}
-      {/* HERO                                                               */}
+      {/* HERO — possibility overload, denser than FIX's scattered opinions  */}
       {/* ================================================================ */}
       <section className="relative overflow-hidden bg-background pt-28 sm:pt-36 pb-20 sm:pb-28">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_42%_at_50%_36%,rgba(196,138,100,0.11),transparent_68%)]" />
@@ -159,14 +171,14 @@ const IdeaToBuildLandingPage: React.FC = () => {
           }}
         />
 
-        <div aria-hidden="true" className="hidden sm:block relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-20 mb-2">
-          {OPINION_FRAGMENTS.map((frag) => (
+        <div aria-hidden="true" className="hidden sm:block relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 mb-2">
+          {POSSIBILITY_FIELD.map((frag, i) => (
             <motion.span
               key={frag.text}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="absolute whitespace-nowrap text-sm text-muted-foreground/35 italic"
+              transition={{ duration: 0.5, delay: 0.08 + i * 0.025 }}
+              className="absolute whitespace-nowrap text-xs text-muted-foreground/30 italic"
               style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}
             >
               {frag.text}
@@ -186,10 +198,10 @@ const IdeaToBuildLandingPage: React.FC = () => {
 
           <h1 className="font-bold tracking-[-0.02em] mb-7">
             <motion.span variants={heroItem} className="block text-foreground text-4xl sm:text-6xl lg:text-7xl leading-[1.05]">
-              You know what you want to build.
+              You have ten ideas.
             </motion.span>
             <motion.span variants={heroItem} className="block bg-gradient-to-r from-primary via-primary/95 to-primary/80 bg-clip-text text-transparent text-4xl sm:text-6xl lg:text-7xl leading-[1.05] pb-1 mt-1">
-              You don't know what V1 needs.
+              V1 needs one decision.
             </motion.span>
             <motion.span variants={heroItem} className="block text-[#F3EAE1] text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] mt-6">
               Proof &middot; Journey &middot; Build &middot; Not Yet &middot; Learn
@@ -197,8 +209,8 @@ const IdeaToBuildLandingPage: React.FC = () => {
           </h1>
 
           <motion.p variants={heroItem} className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-4 max-w-xl mx-auto mt-2">
-            Before you spend months and real money on development — find out what the first
-            version actually needs to prove, who it's really for, and what can legitimately wait.
+            Before you spend months and real money on development, find out what the first
+            version actually needs to prove — and which of those ten ideas can legitimately wait.
           </motion.p>
           <motion.p variants={heroItem} className="text-sm text-muted-foreground/70 mb-10">
             $950 · one product concept · 5 business days once context is ready
@@ -256,9 +268,14 @@ const IdeaToBuildLandingPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
+      {/* WHY NOW — truth-based consequence, not manufactured scarcity       */}
+      {/* ================================================================ */}
+      <ConsequenceStakes />
+
+      {/* ================================================================ */}
       {/* RECOGNITION                                                        */}
       {/* ================================================================ */}
-      <section className="bg-card/10 border-y border-border/40 py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-8">
             <SectionEyebrow className="mb-5">Which conversation are you having</SectionEyebrow>
@@ -273,7 +290,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* THE SIGNATURE DEVICE                                               */}
+      {/* THE SIGNATURE DEVICE — the same wishlist from the hero, compressed */}
       {/* ================================================================ */}
       <section className="bg-card/10 border-y border-border/40 py-24 sm:py-28">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -283,7 +300,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
           <AnimatedSection delay={0.06} className="text-center mb-4">
             <SectionEyebrow className="mb-6">How We Decide</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight max-w-xl mx-auto">
-              Stop building before you know what the first version needs to prove.
+              That scattered wishlist from the top of the page? Here's what happens to it.
             </h2>
           </AnimatedSection>
           <V1BoundaryVisual />
@@ -291,15 +308,19 @@ const IdeaToBuildLandingPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* THE OFFER                                                          */}
+      {/* THE TRADE — what $950 buys, framed as a decision, not a price tag  */}
       {/* ================================================================ */}
       <section className="py-24 sm:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-14">
-            <SectionEyebrow className="mb-6">The Sprint</SectionEyebrow>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight max-w-xl mx-auto leading-tight">
-              Five business days later, you should know what to actually build first.
+            <SectionEyebrow className="mb-6">The Trade</SectionEyebrow>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight max-w-2xl mx-auto leading-tight">
+              $950 to decide what belongs in V1 — before a larger commitment assumes the answer.
             </h2>
+            <p className="mt-4 text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Not a guess about what development will cost. A bounded price for the one decision
+              that determines what that development actually builds.
+            </p>
           </AnimatedSection>
 
           <div className="grid gap-8 lg:grid-cols-2">
@@ -342,7 +363,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
                   <p className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed">
                     <X size={11} className="mt-0.5 text-muted-foreground/40 flex-shrink-0" />
                     Implementation, a clickable prototype, UI design, and invented market
-                    validation — the Brief is a decision, not those things.
+                    validation.
                   </p>
                 </div>
               </div>
@@ -354,9 +375,14 @@ const IdeaToBuildLandingPage: React.FC = () => {
       <BodyOfWork />
 
       {/* ================================================================ */}
+      {/* ANSWERED DIRECTLY                                                  */}
+      {/* ================================================================ */}
+      <AnsweredDirectly />
+
+      {/* ================================================================ */}
       {/* TRUST REVERSAL                                                     */}
       {/* ================================================================ */}
-      <section className="py-24 sm:py-28">
+      <section className="py-24 sm:py-28 bg-card/10 border-y border-border/40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-5 lg:gap-16 items-start">
             <AnimatedSection className="lg:col-span-3">
@@ -365,8 +391,8 @@ const IdeaToBuildLandingPage: React.FC = () => {
                 "If an agency scopes my V1, won't they just shrink it enough to sell me V2?"
               </p>
               <p className="text-base text-muted-foreground leading-relaxed mb-4">
-                We don't need to win the implementation for this sprint to succeed — the Brief costs
-                $950 whether V1 turns out small or larger than you expected.
+                There's no incentive to play that game: the Brief costs $950 whether V1 turns out
+                small or larger than you expected.
               </p>
               <p className="text-base font-semibold text-foreground leading-relaxed">
                 Our job isn't to make your V1 smaller than it should be. It's to make it exactly as
@@ -414,7 +440,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
           <AnimatedSection className="text-center mb-16">
             <SectionEyebrow className="mb-6">How It Starts</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
-              This should feel easy.
+              This should feel like momentum, not homework.
             </h2>
           </AnimatedSection>
           <div className="relative pl-9 sm:pl-11">
@@ -433,12 +459,12 @@ const IdeaToBuildLandingPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* FAQ                                                                */}
+      {/* FAQ — secondary questions only; the primary ones ran earlier       */}
       {/* ================================================================ */}
       <section className="py-24 sm:py-28 bg-background">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
-            <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
+            <SectionEyebrow className="mb-6">A Few More Things</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Before you apply.</h2>
           </AnimatedSection>
           <div className="flex justify-center my-10 sm:my-12" aria-hidden="true">
@@ -466,8 +492,8 @@ const IdeaToBuildLandingPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
-              <span className="block text-muted-foreground/50">No more guessing at scope.</span>
-              <span className="block text-foreground mt-2">Just a version worth building.</span>
+              <span className="block text-muted-foreground/50">The idea can wait.</span>
+              <span className="block text-foreground mt-2">The decision shouldn't.</span>
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">

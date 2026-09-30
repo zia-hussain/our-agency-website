@@ -12,6 +12,7 @@ import DecisionVisual from "./components/DecisionVisual";
 import RecognitionSelector from "./components/RecognitionSelector";
 import CycleBreaker from "./components/CycleBreaker";
 import BodyOfWork from "./components/BodyOfWork";
+import ConsequenceStakes from "./components/ConsequenceStakes";
 import { productRescueFAQs } from "../../data/faqs/product-rescue";
 import { getOffer } from "../../config/offers";
 import { trackRescueOfferViewed } from "../../utils/analytics";
@@ -228,6 +229,12 @@ const ProductRescueLandingPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
+      {/* WHY NOW — truth-based consequence, added in the 2026-10-01         */}
+      {/* commercial pass (the page had no explicit urgency moment before)   */}
+      {/* ================================================================ */}
+      <ConsequenceStakes />
+
+      {/* ================================================================ */}
       {/* RECOGNITION — an interactive moment, not a pain-point grid         */}
       {/* ================================================================ */}
       <section className="bg-card/10 border-y border-border/40 py-16 sm:py-20">
@@ -273,6 +280,10 @@ const ProductRescueLandingPage: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight max-w-xl mx-auto leading-tight">
               Five business days later, you should know what deserves another dollar.
             </h2>
+            <p className="mt-4 text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Not a guess about what the fix or rebuild will cost. A bounded price for the one
+              decision that determines what that spend actually goes toward.
+            </p>
           </AnimatedSection>
 
           <div className="grid gap-8 lg:grid-cols-2">
