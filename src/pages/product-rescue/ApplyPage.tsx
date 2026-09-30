@@ -19,8 +19,6 @@ interface FormState {
   productUrl: string;
   decisionNeeded: string;
   problemDescription: string;
-  duration: string;
-  priorAttempts: string;
   evidenceLinks: string;
   accessAvailability: string;
   name: string;
@@ -36,8 +34,6 @@ const EMPTY: FormState = {
   productUrl: "",
   decisionNeeded: "",
   problemDescription: "",
-  duration: "",
-  priorAttempts: "",
   evidenceLinks: "",
   accessAvailability: "",
   name: "",
@@ -52,18 +48,22 @@ const ACCESS_OPTIONS = [
   { value: "no", label: "Not right now" },
 ];
 
-// 7 steps (reduced from 9 — production-readiness conversion pass,
-// 2026-09-29): Decision and Problem merged onto one screen (two related
-// questions, not two separate re-explanations of the same situation), and
-// the standalone Evidence step removed — evidence links are genuinely a
-// post-acceptance/Day-0 concern, not a pre-qualification one, so they now
-// belong to the existing intake step on /product-rescue/confirmed instead
-// of costing a screen before anyone knows if this is even a fit.
+// 6 steps (reduced from 7 — commercial experience pass, 2026-10-01):
+// Duration + Prior Attempts removed entirely. Neither genuinely gates
+// Accept/Custom/Decline the way Access does (if evidence can never be
+// provided, the assessment literally can't happen — that's a real
+// pre-payment signal; how long a symptom has persisted isn't). It was
+// useful delivery context, not a qualification signal, so it's no longer
+// asked anywhere — the existing Day-0 intake note already gives an open
+// channel if an applicant wants to volunteer it. Decision stays as real
+// prose (not converted to constrained choices like BUILD/AUTOMATE's
+// equivalent step) because this offer diagnoses a product that already
+// exists — describing concrete, specific symptoms is inherently a
+// free-text task, unlike inventing a not-yet-built product's strategy.
 const STEPS = [
   { id: "situation", title: "What best describes where you're stuck?", sub: "Pick the closest one — there's room to explain later." },
   { id: "product", title: "What did you build?", sub: "Name, a one-line description, and the URL if it's live." },
   { id: "decision", title: "What's happening — and what are you actually trying to decide?", sub: "Be as specific as you can on both — that's what makes this useful." },
-  { id: "duration", title: "How long has this been going on — and what have you tried?", sub: "Prior attempts included, if any." },
   { id: "access", title: "Could you provide access or evidence later, if accepted?", sub: "We never ask for credentials here — just whether it's realistic." },
   { id: "contact", title: "Last thing — who are we talking to?", sub: "So we can send the review and next steps." },
   { id: "review", title: "Take a look before you send it.", sub: "Everything below is what we'll review." },
@@ -150,8 +150,6 @@ function ReviewSummary({ data }: { data: FormState }) {
     { label: "URL", value: data.productUrl },
     { label: "Decision", value: data.decisionNeeded },
     { label: "Happening now", value: data.problemDescription },
-    { label: "Duration", value: data.duration },
-    { label: "Already tried", value: data.priorAttempts },
     { label: "Access later", value: ACCESS_OPTIONS.find((a) => a.value === data.accessAvailability)?.label },
     { label: "Name", value: data.name },
     { label: "Email", value: data.email },
@@ -346,8 +344,6 @@ const ProductRescueApplyPage: React.FC = () => {
         if (data.problemDescription.trim().length < 10) return "A bit more detail on what's happening helps us review this properly.";
         if (!data.decisionNeeded.trim()) return "Tell us what you're actually trying to decide.";
         return "";
-      case "duration":
-        return data.duration.trim() ? "" : "Even a rough sense of how long is useful.";
       case "access":
         return data.accessAvailability ? "" : "Pick the closest answer.";
       case "contact":
@@ -395,8 +391,6 @@ const ProductRescueApplyPage: React.FC = () => {
       productUrl: data.productUrl || undefined,
       problemDescription: data.problemDescription,
       decisionNeeded: data.decisionNeeded,
-      duration: data.duration,
-      priorAttempts: data.priorAttempts || undefined,
       evidenceLinks: data.evidenceLinks || undefined,
       accessAvailability: ACCESS_OPTIONS.find((a) => a.value === data.accessAvailability)?.label,
       marketingConsent: data.marketingConsent,
@@ -510,13 +504,6 @@ const ProductRescueApplyPage: React.FC = () => {
                     <div className="space-y-8">
                       <AutoTextarea autoFocus value={data.problemDescription} onChange={(v) => update("problemDescription", v)} placeholder="What's breaking, stalling, or making you not trust the current direction." rows={4} />
                       <AutoTextarea value={data.decisionNeeded} onChange={(v) => update("decisionNeeded", v)} placeholder={'What are you actually trying to decide? "Should we rebuild this" is fine.'} rows={3} />
-                    </div>
-                  )}
-
-                  {current.id === "duration" && (
-                    <div className="space-y-8">
-                      <input autoFocus className={inputBase} placeholder="e.g. 6 months, since we inherited it, since launch" value={data.duration} onChange={(e) => update("duration", e.target.value)} />
-                      <AutoTextarea value={data.priorAttempts} onChange={(v) => update("priorAttempts", v)} placeholder="What have you already tried? (optional)" rows={3} />
                     </div>
                   )}
 

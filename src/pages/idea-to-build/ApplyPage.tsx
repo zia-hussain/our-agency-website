@@ -14,15 +14,25 @@ const offer = getOffer("idea-to-build")!;
 const DRAFT_KEY = "zumetrix:idea-to-build:draft";
 const PREFILL_KEY = prefillKey("idea-to-build");
 
+// Commercial experience pass (2026-10-01): the previous version of this
+// application asked two open essay questions — "what does V1 need to
+// prove" and "who is it for and what's their critical journey" — which is
+// literally the strategic work this $950 sprint exists to do. A founder
+// who could already answer those well wouldn't need the sprint. Rebuilt
+// around recognition: pick what's true about where the idea stands and
+// how complex it looks, write almost nothing. decisionNeeded and
+// problemDescription (the two fields the shared backend already expects
+// and validates — see api/offer-application.js) are now COMPOSED from
+// those choices rather than typed directly, so the backend contract is
+// completely unchanged; only how the frontend fills it is different.
 interface FormState {
   situationType: string;
   productName: string;
   productDescription: string;
   productUrl: string;
-  decisionNeeded: string; // "what needs to be proven"
-  problemDescription: string; // "who it's for / critical journey"
-  duration: string;
-  priorAttempts: string;
+  stage: string;
+  fitBoundary: string;
+  extraContext: string;
   name: string;
   email: string;
   company: string;
@@ -34,22 +44,15 @@ const EMPTY: FormState = {
   productName: "",
   productDescription: "",
   productUrl: "",
-  decisionNeeded: "",
-  problemDescription: "",
-  duration: "",
-  priorAttempts: "",
+  stage: "",
+  fitBoundary: "",
+  extraContext: "",
   name: "",
   email: "",
   company: "",
   marketingConsent: false,
 };
 
-// Minimum responsible application (Section 3 of the BUILD/AUTOMATE brief):
-// every question here materially helps decide Standard Fit / Custom Scope /
-// Decline. Evidence, research, and mockups are genuinely a Day-0 concern —
-// the sprint needs the founder's answers, not artifacts, to be scoped
-// responsibly — so there is no pre-payment "share materials" step here
-// (2026-09-30 BUILD/AUTOMATE expansion).
 const SITUATION_TYPES = [
   { value: "no-v1-clarity", label: "I have an idea but don't know what V1 should include" },
   { value: "conflicting-opinions", label: "I'm getting conflicting opinions on scope" },
@@ -59,14 +62,48 @@ const SITUATION_TYPES = [
   { value: "something-else", label: "Something else" },
 ];
 
+// Current product stage — a recognition question, not a strategy question.
+const STAGE_OPTIONS = [
+  { value: "idea-only", label: "Just an idea — nothing built yet" },
+  { value: "research-only", label: "Early research, notes, or a waitlist" },
+  { value: "mockups", label: "Mockups, wireframes, or a prototype" },
+  { value: "in-progress-code", label: "Already writing code" },
+];
+
+// The one genuine Custom-Scope signal this offer needs pre-payment — does
+// the founder already know if this is one clear V1 decision or something
+// structurally bigger? Matches the Custom Scope triggers already agreed
+// with the client (multiple business models, original research, full
+// UX/UI, regulated/hardware complexity).
+const FIT_BOUNDARY_OPTIONS = [
+  { value: "single-user-clear", label: "One clear primary user and one core use case" },
+  { value: "few-user-types", label: "A couple of user types, but one core idea" },
+  { value: "multiple-models", label: "Multiple business models or user types, still untangled" },
+  { value: "needs-research", label: "Needs real customer research before V1 can be defined" },
+  { value: "regulated-hardware", label: "Involves regulated, hardware, or scientific complexity" },
+  { value: "not-sure", label: "Not sure — that's part of what I need help with" },
+];
+
 const STEPS = [
   { id: "situation", title: "What best describes where you're stuck?", sub: "Pick the closest one — there's room to explain later." },
-  { id: "idea", title: "What are you building?", sub: "Name, a one-line description, and a link if there's anything live (optional)." },
-  { id: "proof", title: "What does V1 need to prove — and who is it for?", sub: "Be as specific as you can on both — that's what makes this useful." },
-  { id: "timeline", title: "How far along is this — and what have you tried?", sub: "Sketches, no-code attempts, a previous freelancer — whatever's real." },
+  { id: "idea", title: "What are you building, and how far along is it?", sub: "A name, a one-line description, and where things stand today." },
+  { id: "boundary", title: "Does this sound like one clear V1, or something bigger?", sub: "Pick what's true — this helps us scope the sprint correctly before you pay." },
   { id: "contact", title: "Last thing — who are we talking to?", sub: "So we can send the review and next steps." },
   { id: "review", title: "Take a look before you send it.", sub: "Everything below is what we'll review." },
 ];
+
+// The only place these two composed values are built — reused for the
+// live "here's what we're hearing" echo, the review screen, and the
+// actual submit payload, so all three can never drift out of sync.
+function composeDecisionNeeded(data: FormState): string {
+  return FIT_BOUNDARY_OPTIONS.find((o) => o.value === data.fitBoundary)?.label || "";
+}
+function composeProblemDescription(data: FormState): string {
+  const stageLabel = STAGE_OPTIONS.find((o) => o.value === data.stage)?.label;
+  if (!stageLabel) return data.extraContext.trim();
+  const extra = data.extraContext.trim();
+  return `Stage: ${stageLabel}.${extra ? ` ${extra}` : ""}`;
+}
 
 function ReviewSummary({ data }: { data: FormState }) {
   const items = [
@@ -74,10 +111,9 @@ function ReviewSummary({ data }: { data: FormState }) {
     { label: "Building", value: data.productName },
     { label: "Description", value: data.productDescription },
     { label: "Link", value: data.productUrl },
-    { label: "Needs to prove", value: data.decisionNeeded },
-    { label: "Who it's for", value: data.problemDescription },
-    { label: "How far along", value: data.duration },
-    { label: "Already tried", value: data.priorAttempts },
+    { label: "Stage", value: STAGE_OPTIONS.find((s) => s.value === data.stage)?.label },
+    { label: "Scope", value: FIT_BOUNDARY_OPTIONS.find((s) => s.value === data.fitBoundary)?.label },
+    { label: "More context", value: data.extraContext },
     { label: "Name", value: data.name },
     { label: "Email", value: data.email },
     { label: "Company", value: data.company },
@@ -101,8 +137,14 @@ function SituationSummary({ data }: { data: FormState }) {
     const label = SITUATION_TYPES.find((s) => s.value === data.situationType)?.label;
     if (label) rows.push({ label: "Situation", value: label });
   }
-  if (data.decisionNeeded.trim()) rows.push({ label: "Needs to prove", value: data.decisionNeeded });
-  if (data.problemDescription.trim()) rows.push({ label: "Who it's for", value: data.problemDescription });
+  if (data.stage) {
+    const label = STAGE_OPTIONS.find((s) => s.value === data.stage)?.label;
+    if (label) rows.push({ label: "Stage", value: label });
+  }
+  if (data.fitBoundary) {
+    const label = FIT_BOUNDARY_OPTIONS.find((s) => s.value === data.fitBoundary)?.label;
+    if (label) rows.push({ label: "Scope", value: label });
+  }
 
   if (rows.length === 0) return null;
 
@@ -247,13 +289,10 @@ const IdeaToBuildApplyPage: React.FC = () => {
         if (data.productUrl.trim() && !/^https?:\/\/.+\..+/i.test(data.productUrl.trim())) {
           return "That doesn't look like a URL — include https:// or leave it blank.";
         }
+        if (!data.stage) return "Pick the option closest to where things stand.";
         return "";
-      case "proof":
-        if (!data.decisionNeeded.trim()) return "Tell us what the first version needs to prove.";
-        if (data.problemDescription.trim().length < 10) return "A bit more on who it's for helps us review this properly.";
-        return "";
-      case "timeline":
-        return data.duration.trim() ? "" : "Even a rough sense of how far along this is helps.";
+      case "boundary":
+        return data.fitBoundary ? "" : "Pick the option closest to your situation.";
       case "contact":
         if (!data.name.trim()) return "Your name is required.";
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return "A valid email is required.";
@@ -293,10 +332,8 @@ const IdeaToBuildApplyPage: React.FC = () => {
       productName: data.productName,
       productDescription: data.productDescription,
       productUrl: data.productUrl || undefined,
-      problemDescription: data.problemDescription,
-      decisionNeeded: data.decisionNeeded,
-      duration: data.duration,
-      priorAttempts: data.priorAttempts || undefined,
+      problemDescription: composeProblemDescription(data),
+      decisionNeeded: composeDecisionNeeded(data),
       marketingConsent: data.marketingConsent,
       hpToken: hpToken || undefined,
     });
@@ -339,7 +376,7 @@ const IdeaToBuildApplyPage: React.FC = () => {
                 Let's start with what you're building.
               </h1>
               <p className="mx-auto mb-3 max-w-md text-lg leading-relaxed text-muted-foreground">
-                One question at a time. No pitch deck, no prototype required. About three minutes.
+                Mostly picking, barely any typing. No pitch deck, no prototype required. About two minutes.
               </p>
               <p className="mx-auto mb-10 max-w-md text-sm text-muted-foreground/70">
                 We review every application by hand — you won't be charged anything from here.
@@ -399,20 +436,17 @@ const IdeaToBuildApplyPage: React.FC = () => {
                       <input autoFocus className={inputBase} placeholder="Product or working title" value={data.productName} onChange={(e) => update("productName", e.target.value)} />
                       <AutoTextarea value={data.productDescription} onChange={(v) => update("productDescription", v)} placeholder="One line: what does it do, and for whom?" rows={2} />
                       <input className={`${inputBase} text-base sm:text-lg`} placeholder="Link, if there's anything live — a waitlist, a deck (optional)" value={data.productUrl} onChange={(e) => update("productUrl", e.target.value)} />
+                      <div>
+                        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/50">Where things stand today</p>
+                        <ChoiceButtons options={STAGE_OPTIONS} value={data.stage} onSelect={(v) => { update("stage", v); setError(""); }} />
+                      </div>
                     </div>
                   )}
 
-                  {current.id === "proof" && (
+                  {current.id === "boundary" && (
                     <div className="space-y-8">
-                      <AutoTextarea autoFocus value={data.decisionNeeded} onChange={(v) => update("decisionNeeded", v)} placeholder="What does the first version need to prove?" rows={3} />
-                      <AutoTextarea value={data.problemDescription} onChange={(v) => update("problemDescription", v)} placeholder="Who is it for, and what's the one thing they need to be able to do?" rows={4} />
-                    </div>
-                  )}
-
-                  {current.id === "timeline" && (
-                    <div className="space-y-8">
-                      <input autoFocus className={inputBase} placeholder="e.g. a few weeks of notes, since we started sketching it" value={data.duration} onChange={(e) => update("duration", e.target.value)} />
-                      <AutoTextarea value={data.priorAttempts} onChange={(v) => update("priorAttempts", v)} placeholder="What have you already tried? (optional)" rows={3} />
+                      <ChoiceButtons options={FIT_BOUNDARY_OPTIONS} value={data.fitBoundary} onSelect={(v) => { update("fitBoundary", v); setError(""); }} />
+                      <AutoTextarea value={data.extraContext} onChange={(v) => update("extraContext", v)} placeholder="Anything else worth knowing, in a sentence or two? (optional)" rows={2} />
                     </div>
                   )}
 

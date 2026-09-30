@@ -14,14 +14,23 @@ const offer = getOffer("manual-to-system")!;
 const DRAFT_KEY = "zumetrix:manual-to-system:draft";
 const PREFILL_KEY = prefillKey("manual-to-system");
 
+// Commercial experience pass (2026-10-01): the previous version asked two
+// open essay questions — "what's actually happening" and "what are you
+// trying to decide" — which amounts to asking the operator to perform the
+// REMOVE/SIMPLIFY/CONNECT/AUTOMATE/KEEP-HUMAN analysis themselves before
+// paying for exactly that analysis. Rebuilt around recognition: pick the
+// friction type and the scope signal, write almost nothing. decisionNeeded
+// and problemDescription (the two fields the shared backend already
+// expects and validates — see api/offer-application.js) are now COMPOSED
+// from those choices, so the backend contract is unchanged; only how the
+// frontend fills it is different.
 interface FormState {
   situationType: string;
-  productName: string; // workflow name / area of the business
-  productDescription: string; // one-line description + tools involved
-  decisionNeeded: string; // what are you actually trying to decide
-  problemDescription: string; // what's happening / breaking down
-  duration: string;
-  priorAttempts: string;
+  productName: string;
+  productDescription: string;
+  frictionType: string;
+  scopeBoundary: string;
+  extraContext: string;
   name: string;
   email: string;
   company: string;
@@ -32,22 +41,15 @@ const EMPTY: FormState = {
   situationType: "",
   productName: "",
   productDescription: "",
-  decisionNeeded: "",
-  problemDescription: "",
-  duration: "",
-  priorAttempts: "",
+  frictionType: "",
+  scopeBoundary: "",
+  extraContext: "",
   name: "",
   email: "",
   company: "",
   marketingConsent: false,
 };
 
-// Minimum responsible application (Section 3 of the BUILD/AUTOMATE brief):
-// every question here materially helps decide Standard Fit / Custom Scope /
-// Decline. A walkthrough of the actual tools/workflow is genuinely a Day-0
-// concern — the fit decision needs the operator's own account of what's
-// happening, not a screen recording — so there is no pre-payment "share
-// access" step here (2026-09-30 BUILD/AUTOMATE expansion).
 const SITUATION_TYPES = [
   { value: "team-is-bottleneck", label: "Our team keeps doing the same manual work" },
   { value: "copying-data", label: "We're copying data between tools by hand" },
@@ -57,24 +59,54 @@ const SITUATION_TYPES = [
   { value: "something-else", label: "Something else" },
 ];
 
+// The specific mechanical nature of the friction within this workflow —
+// distinct from the macro "why are you here" of Situation above.
+const FRICTION_TYPE_OPTIONS = [
+  { value: "manual-data-entry", label: "Copying data between tools by hand" },
+  { value: "waiting-handoffs", label: "Waiting on handoffs between people" },
+  { value: "manual-checking", label: "Manually checking or approving things" },
+  { value: "chasing-followups", label: "Chasing follow-ups that fall through" },
+  { value: "something-else-friction", label: "Something else" },
+];
+
+// The one genuine Custom-Scope signal this offer needs pre-payment —
+// matches the Custom Scope triggers already agreed with the client
+// (several departments, legacy systems, original data analysis).
+const SCOPE_BOUNDARY_OPTIONS = [
+  { value: "one-workflow-one-team", label: "One clear workflow, one team" },
+  { value: "few-tools-one-team", label: "One team, but touches several tools" },
+  { value: "multiple-departments", label: "Spans multiple departments or teams" },
+  { value: "legacy-systems", label: "Involves legacy systems or complex permissions" },
+  { value: "needs-data-analysis", label: "Needs original data analysis first" },
+  { value: "not-sure", label: "Not sure — that's part of what I need help with" },
+];
+
 const STEPS = [
   { id: "situation", title: "What best describes where you're stuck?", sub: "Pick the closest one — there's room to explain later." },
-  { id: "workflow", title: "What's the workflow?", sub: "A name or area of the business, and the tools currently involved." },
-  { id: "decision", title: "What's actually happening — and what are you trying to decide?", sub: "Be as specific as you can on both — that's what makes this useful." },
-  { id: "duration", title: "How long has this been going on — and what have you tried?", sub: "Prior attempts included, if any." },
+  { id: "workflow", title: "What's the workflow, and where's the friction?", sub: "A name or area of the business, and what actually slows it down." },
+  { id: "boundary", title: "Is this one clear workflow, or something bigger?", sub: "Pick what's true — this helps us scope the sprint correctly before you pay." },
   { id: "contact", title: "Last thing — who are we talking to?", sub: "So we can send the review and next steps." },
   { id: "review", title: "Take a look before you send it.", sub: "Everything below is what we'll review." },
 ];
+
+function composeDecisionNeeded(data: FormState): string {
+  return SCOPE_BOUNDARY_OPTIONS.find((o) => o.value === data.scopeBoundary)?.label || "";
+}
+function composeProblemDescription(data: FormState): string {
+  const frictionLabel = FRICTION_TYPE_OPTIONS.find((o) => o.value === data.frictionType)?.label;
+  if (!frictionLabel) return data.extraContext.trim();
+  const extra = data.extraContext.trim();
+  return `Friction: ${frictionLabel}.${extra ? ` ${extra}` : ""}`;
+}
 
 function ReviewSummary({ data }: { data: FormState }) {
   const items = [
     { label: "Situation", value: SITUATION_TYPES.find((s) => s.value === data.situationType)?.label },
     { label: "Workflow", value: data.productName },
     { label: "Tools involved", value: data.productDescription },
-    { label: "Decision", value: data.decisionNeeded },
-    { label: "What's happening", value: data.problemDescription },
-    { label: "Duration", value: data.duration },
-    { label: "Already tried", value: data.priorAttempts },
+    { label: "Friction", value: FRICTION_TYPE_OPTIONS.find((s) => s.value === data.frictionType)?.label },
+    { label: "Scope", value: SCOPE_BOUNDARY_OPTIONS.find((s) => s.value === data.scopeBoundary)?.label },
+    { label: "More context", value: data.extraContext },
     { label: "Name", value: data.name },
     { label: "Email", value: data.email },
     { label: "Company", value: data.company },
@@ -98,8 +130,14 @@ function SituationSummary({ data }: { data: FormState }) {
     const label = SITUATION_TYPES.find((s) => s.value === data.situationType)?.label;
     if (label) rows.push({ label: "Situation", value: label });
   }
-  if (data.decisionNeeded.trim()) rows.push({ label: "The decision", value: data.decisionNeeded });
-  if (data.problemDescription.trim()) rows.push({ label: "What's happening", value: data.problemDescription });
+  if (data.frictionType) {
+    const label = FRICTION_TYPE_OPTIONS.find((s) => s.value === data.frictionType)?.label;
+    if (label) rows.push({ label: "Friction", value: label });
+  }
+  if (data.scopeBoundary) {
+    const label = SCOPE_BOUNDARY_OPTIONS.find((s) => s.value === data.scopeBoundary)?.label;
+    if (label) rows.push({ label: "Scope", value: label });
+  }
 
   if (rows.length === 0) return null;
 
@@ -241,13 +279,10 @@ const ManualToSystemApplyPage: React.FC = () => {
       case "workflow":
         if (!data.productName.trim()) return "Give the workflow a name, even a rough one.";
         if (!data.productDescription.trim()) return "Tell us which tools are currently involved.";
+        if (!data.frictionType) return "Pick the option closest to what's actually slowing things down.";
         return "";
-      case "decision":
-        if (data.problemDescription.trim().length < 10) return "A bit more detail on what's happening helps us review this properly.";
-        if (!data.decisionNeeded.trim()) return "Tell us what you're actually trying to decide.";
-        return "";
-      case "duration":
-        return data.duration.trim() ? "" : "Even a rough sense of how long is useful.";
+      case "boundary":
+        return data.scopeBoundary ? "" : "Pick the option closest to your situation.";
       case "contact":
         if (!data.name.trim()) return "Your name is required.";
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return "A valid email is required.";
@@ -286,10 +321,8 @@ const ManualToSystemApplyPage: React.FC = () => {
       situationType: data.situationType,
       productName: data.productName,
       productDescription: data.productDescription,
-      problemDescription: data.problemDescription,
-      decisionNeeded: data.decisionNeeded,
-      duration: data.duration,
-      priorAttempts: data.priorAttempts || undefined,
+      problemDescription: composeProblemDescription(data),
+      decisionNeeded: composeDecisionNeeded(data),
       marketingConsent: data.marketingConsent,
       hpToken: hpToken || undefined,
     });
@@ -332,7 +365,7 @@ const ManualToSystemApplyPage: React.FC = () => {
                 Let's start with the workflow.
               </h1>
               <p className="mx-auto mb-3 max-w-md text-lg leading-relaxed text-muted-foreground">
-                One question at a time. No process documentation required. About three minutes.
+                Mostly picking, barely any typing. No process documentation required. About two minutes.
               </p>
               <p className="mx-auto mb-10 max-w-md text-sm text-muted-foreground/70">
                 We review every application by hand — you won't be charged anything from here.
@@ -390,21 +423,18 @@ const ManualToSystemApplyPage: React.FC = () => {
                   {current.id === "workflow" && (
                     <div className="space-y-8">
                       <input autoFocus className={inputBase} placeholder="e.g. Lead intake, client onboarding, order fulfillment" value={data.productName} onChange={(e) => update("productName", e.target.value)} />
-                      <AutoTextarea value={data.productDescription} onChange={(v) => update("productDescription", v)} placeholder="Which tools, spreadsheets, or people are currently involved?" rows={3} />
+                      <AutoTextarea value={data.productDescription} onChange={(v) => update("productDescription", v)} placeholder="Which tools, spreadsheets, or people are currently involved?" rows={2} />
+                      <div>
+                        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/50">What's actually slowing it down</p>
+                        <ChoiceButtons options={FRICTION_TYPE_OPTIONS} value={data.frictionType} onSelect={(v) => { update("frictionType", v); setError(""); }} />
+                      </div>
                     </div>
                   )}
 
-                  {current.id === "decision" && (
+                  {current.id === "boundary" && (
                     <div className="space-y-8">
-                      <AutoTextarea autoFocus value={data.problemDescription} onChange={(v) => update("problemDescription", v)} placeholder="What's actually happening — where does it break down, repeat, or lose information?" rows={4} />
-                      <AutoTextarea value={data.decisionNeeded} onChange={(v) => update("decisionNeeded", v)} placeholder={'What are you actually trying to decide? "What should we automate here" is fine.'} rows={3} />
-                    </div>
-                  )}
-
-                  {current.id === "duration" && (
-                    <div className="space-y-8">
-                      <input autoFocus className={inputBase} placeholder="e.g. 6 months, since we grew past 2 people, since launch" value={data.duration} onChange={(e) => update("duration", e.target.value)} />
-                      <AutoTextarea value={data.priorAttempts} onChange={(v) => update("priorAttempts", v)} placeholder="What have you already tried? (optional)" rows={3} />
+                      <ChoiceButtons options={SCOPE_BOUNDARY_OPTIONS} value={data.scopeBoundary} onSelect={(v) => { update("scopeBoundary", v); setError(""); }} />
+                      <AutoTextarea value={data.extraContext} onChange={(v) => update("extraContext", v)} placeholder="Anything else worth knowing, in a sentence or two? (optional)" rows={2} />
                     </div>
                   )}
 
