@@ -140,6 +140,7 @@ export default async function handler(req, res) {
       offerSlug: offer.slug,
       offerName: offer.name,
       value: offer.price,
+      notionOfferPageId: offer.notionOfferPageId(),
       referenceToken,
       name: clampText(body.name, 120),
       email,

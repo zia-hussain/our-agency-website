@@ -22,6 +22,12 @@ const RescueOrRebuildPage = lazy(() => import("./pages/RescueOrRebuildPage"));
 const ProductRescueLandingPage = lazy(() => import("./pages/product-rescue/LandingPage"));
 const ProductRescueApplyPage = lazy(() => import("./pages/product-rescue/ApplyPage"));
 const ProductRescueConfirmedPage = lazy(() => import("./pages/product-rescue/ConfirmedPage"));
+const IdeaToBuildLandingPage = lazy(() => import("./pages/idea-to-build/LandingPage"));
+const IdeaToBuildApplyPage = lazy(() => import("./pages/idea-to-build/ApplyPage"));
+const IdeaToBuildConfirmedPage = lazy(() => import("./pages/idea-to-build/ConfirmedPage"));
+const ManualToSystemLandingPage = lazy(() => import("./pages/manual-to-system/LandingPage"));
+const ManualToSystemApplyPage = lazy(() => import("./pages/manual-to-system/ApplyPage"));
+const ManualToSystemConfirmedPage = lazy(() => import("./pages/manual-to-system/ConfirmedPage"));
 const SaasDetailPage = lazy(() => import("./pages/service-detail/SaasDetailPage"));
 const RescueDetailPage = lazy(() => import("./pages/service-detail/RescueDetailPage"));
 const WebDetailPage = lazy(() => import("./pages/service-detail/WebDetailPage"));
@@ -65,10 +71,15 @@ function App() {
   // CTA bar. /product-rescue (the landing page) is included too: its whole
   // job is one CTA (Apply), and a second, different CTA (the generic
   // Schedule-a-call bar) floating on top of that would work against the
-  // single-CTA discipline the rest of the page is built around.
+  // single-CTA discipline the rest of the page is built around. The same
+  // reasoning applies to /idea-to-build and /manual-to-system — the two
+  // other offers built on the same engine (2026-09-30 BUILD/AUTOMATE
+  // expansion).
   const isUtilityRoute = [
     '/contact', '/privacy-policy', '/terms-of-service', '/unsubscribe',
     '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
+    '/idea-to-build', '/idea-to-build/apply', '/idea-to-build/confirmed',
+    '/manual-to-system', '/manual-to-system/apply', '/manual-to-system/confirmed',
   ].includes(location.pathname);
   const isProposalCaseStudy =
     location.pathname.startsWith('/portfolio/') &&
@@ -77,6 +88,8 @@ function App() {
     '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
     '/articles', '/privacy-policy', '/terms-of-service', '/review', '/client-stories',
     '/rescue-or-rebuild', '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
+    '/idea-to-build', '/idea-to-build/apply', '/idea-to-build/confirmed',
+    '/manual-to-system', '/manual-to-system/apply', '/manual-to-system/confirmed',
   ].includes(location.pathname) ||
     location.pathname.startsWith('/services/') ||
     location.pathname.startsWith('/portfolio/') ||
@@ -149,6 +162,12 @@ function App() {
           <Route path="/product-rescue" element={<ProductRescueLandingPage />} />
           <Route path="/product-rescue/apply" element={<ProductRescueApplyPage />} />
           <Route path="/product-rescue/confirmed" element={<ProductRescueConfirmedPage />} />
+          <Route path="/idea-to-build" element={<IdeaToBuildLandingPage />} />
+          <Route path="/idea-to-build/apply" element={<IdeaToBuildApplyPage />} />
+          <Route path="/idea-to-build/confirmed" element={<IdeaToBuildConfirmedPage />} />
+          <Route path="/manual-to-system" element={<ManualToSystemLandingPage />} />
+          <Route path="/manual-to-system/apply" element={<ManualToSystemApplyPage />} />
+          <Route path="/manual-to-system/confirmed" element={<ManualToSystemConfirmedPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="/review" element={<ReviewPage />} />

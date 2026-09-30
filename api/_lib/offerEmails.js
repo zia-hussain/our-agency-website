@@ -9,6 +9,7 @@
 import { BRAND, bodyText, calloutBlock, detailRows, emailShell, metricRow, numberedSteps, sectionLabel, signOff } from "./offerEmailShell.js";
 import { escapeHtml, humanize, money } from "./text.js";
 import { getPaymentLink } from "./payment.js";
+import { getOfferCopy } from "./offerCopy.js";
 import * as internalShell from "./email.js";
 
 const SITE = "https://zumetrix.com";
@@ -16,141 +17,150 @@ const SITE = "https://zumetrix.com";
 // ---------------------------------------------------------------------------
 // 1. APPLICATION RECEIVED — applicant-facing
 // ---------------------------------------------------------------------------
-export const applicationReceivedHtml = (application) => emailShell({
-  preheader: "We have what we need to review whether Product Rescue is the right next step.",
-  eyebrow: "Application received",
-  title: "We have what we need to start.",
-  intro: `Hey ${escapeHtml(application.name || "there")}, thank you for the context on ${escapeHtml(application.productName || "your product")}. We review every application by hand before asking anyone to spend anything — here's exactly what happens next.`,
-  content: `
-    ${metricRow([
-      { label: "Offer", value: application.offerName, emphasis: true },
-      { label: "Standard price", value: money(application.value) },
-      { label: "Review window", value: "Within 1 business day" },
-    ])}
-    <div style="margin-top:32px;">
-      ${sectionLabel("What happens next")}
-      ${numberedSteps([
-        ["01", "We read the application and decide whether this is a standard fit, needs a custom scope, or isn't the right tool for the situation."],
-        ["02", "If it's a fit, we confirm the exact boundary and send a secure way to pay — the $750 assessment stays $750 unless the product genuinely needs a custom scope, and we'll say so plainly if it does."],
-        ["03", "The 5-business-day clock starts once payment, a short intake, and access/evidence are all ready — not the moment you pay."],
+export const applicationReceivedHtml = (application) => {
+  const offerCopy = getOfferCopy(application.offerSlug);
+  const copy = offerCopy.applicationReceived;
+  return emailShell({
+    preheader: offerCopy.applicationReceivedPreheader,
+    eyebrow: "Application received",
+    title: "We have what we need to start.",
+    intro: `Hey ${escapeHtml(application.name || "there")}, thank you for the context on ${escapeHtml(application.productName || "your product")}. We review every application by hand before asking anyone to spend anything — here's exactly what happens next.`,
+    content: `
+      ${metricRow([
+        { label: "Offer", value: application.offerName, emphasis: true },
+        { label: "Standard price", value: money(application.value) },
+        { label: "Review window", value: "Within 1 business day" },
       ])}
-    </div>
-    <p style="margin:26px 0 0;color:${BRAND.muted};font-size:14px;line-height:1.75;">If Product Rescue turns out not to be the right fit for your situation, we'll say so directly and point you at whatever actually helps — including our free <a href="${SITE}/rescue-or-rebuild" style="color:${BRAND.accent};">rescue-or-rebuild diagnostic</a>, which needs no application at all.</p>
-    ${signOff()}
-  `,
-});
+      <div style="margin-top:32px;">
+        ${sectionLabel("What happens next")}
+        ${numberedSteps([
+          ["01", "We read the application and decide whether this is a standard fit, needs a custom scope, or isn't the right tool for the situation."],
+          ["02", copy.step2],
+          ["03", copy.step3],
+        ])}
+      </div>
+      <p style="margin:26px 0 0;color:${BRAND.muted};font-size:14px;line-height:1.75;">${copy.closingLine}</p>
+      ${signOff()}
+    `,
+  });
+};
 
 // ---------------------------------------------------------------------------
 // 2. ACCEPTED — STANDARD FIT — applicant-facing
 // ---------------------------------------------------------------------------
 export const acceptedStandardFitHtml = (application) => {
   const paymentLink = getPaymentLink(application.offerSlug, application.referenceToken);
+  const offerCopy = getOfferCopy(application.offerSlug);
+  const copy = offerCopy.accepted;
 
   return emailShell({
     preheader: "You're a fit. Here's the exact scope and price.",
     eyebrow: "Application reviewed",
-    title: "You're a fit for the Product Rescue Assessment.",
-    intro: `Hey ${escapeHtml(application.name || "there")}, we reviewed what you sent. ${escapeHtml(application.productName || "Your product")} is exactly the kind of situation this assessment is built for.`,
+    title: copy.title,
+    intro: `Hey ${escapeHtml(application.name || "there")}, we reviewed what you sent. ${escapeHtml(application.productName || "Your product")} ${copy.introSuffix}`,
     content: `
-      ${metricRow([
-        { label: "Price", value: "$750", emphasis: true },
-        { label: "Boundary", value: "One bounded product" },
-        { label: "Delivery", value: "5 business days after access is ready" },
-      ])}
+      ${metricRow(copy.metrics.map((m, i) => ({ ...m, emphasis: i === 0 })))}
       <div style="margin-top:32px;">
         ${sectionLabel("What's included")}
         ${detailRows([
           { label: "Decision being assessed", value: application.decisionNeeded },
-          { label: "You receive", value: "A Rescue Brief: what to keep, what to fix, where replacement is actually justified, and what should happen next — plus a short walkthrough call." },
-          { label: "Not included", value: "Implementation, exhaustive QA, a line-by-line code audit, penetration testing, or a guaranteed rebuild recommendation." },
-          { label: "Required before the clock starts", value: "A short intake form and read access to the product (or the evidence needed to assess it)." },
+          { label: "You receive", value: copy.whatYouReceive },
+          { label: "Not included", value: copy.notIncluded },
+          { label: "Required before the clock starts", value: copy.requiredBeforeClock },
         ])}
       </div>
-      ${calloutBlock(`The Brief is yours either way. Use your own team, another team, or ask us to implement it — the assessment doesn't assume the answer.`)}
+      ${calloutBlock(copy.ownershipCallout)}
       ${paymentLink
         ? bodyText("Ready when you are — the button below is a secure payment link.")
         : bodyText("We'll follow up personally within one business day with a secure way to pay — no need to do anything else right now.")}
       ${signOff()}
     `,
-    cta: paymentLink ? { href: paymentLink, label: "Start My Assessment" } : undefined,
+    cta: paymentLink ? { href: paymentLink, label: offerCopy.ctaLabelAccepted } : undefined,
   });
 };
 
 // ---------------------------------------------------------------------------
 // 3. CUSTOM SCOPE — applicant-facing (deliberately not a generated proposal)
 // ---------------------------------------------------------------------------
-export const customScopeHtml = (application) => emailShell({
-  preheader: "Your situation is real — the standard boundary wouldn't be honest about it.",
-  eyebrow: "Application reviewed",
-  title: "This needs a scoped conversation, not a standard assessment.",
-  intro: `Hey ${escapeHtml(application.name || "there")}, we reviewed what you sent on ${escapeHtml(application.productName || "your product")}. It's a genuine rescue situation — but fitting it inside the standard $750 / one-product / 5-day boundary would mean promising more than a bounded assessment can responsibly cover.`,
-  content: `
-    ${calloutBlock(`Zia will follow up personally within one business day with a scope and price that actually fits what you described — not a generic quote.`)}
-    ${bodyText("If you'd rather talk it through first, reply to this email directly and we'll set up a short call.")}
-    ${signOff()}
-  `,
-});
+export const customScopeHtml = (application) => {
+  const copy = getOfferCopy(application.offerSlug).customScope;
+  return emailShell({
+    preheader: "Your situation is real — the standard boundary wouldn't be honest about it.",
+    eyebrow: "Application reviewed",
+    title: copy.title,
+    intro: `Hey ${escapeHtml(application.name || "there")}, we reviewed what you sent on ${escapeHtml(application.productName || "your product")}. ${copy.introSuffix}`,
+    content: `
+      ${calloutBlock(`Zia will follow up personally within one business day with a scope and price that actually fits what you described — not a generic quote.`)}
+      ${bodyText("If you'd rather talk it through first, reply to this email directly and we'll set up a short call.")}
+      ${signOff()}
+    `,
+  });
+};
 
 // ---------------------------------------------------------------------------
 // 4. DECLINE / REDIRECT — applicant-facing
 // ---------------------------------------------------------------------------
-export const declineRedirectHtml = (application) => emailShell({
-  preheader: "Here's the more useful next step for your situation.",
-  eyebrow: "Application reviewed",
-  title: "This probably isn't the right fit — here's what is.",
-  intro: `Hey ${escapeHtml(application.name || "there")}, thank you for the context. Based on what you described, a bounded product assessment isn't the most useful next step for this situation.`,
-  content: `
-    <div style="margin-top:6px;">
-      ${sectionLabel("A better place to start")}
-      ${numberedSteps([
-        ["01", `Run the free <a href="${SITE}/rescue-or-rebuild" style="color:${BRAND.accent};">rescue-or-rebuild diagnostic</a> — four questions, an honest directional read, no application needed.`],
-        ["02", `Read <a href="${SITE}/articles/should-you-rescue-or-rebuild-your-saas" style="color:${BRAND.accent};">the decision framework</a> the diagnostic is built on.`],
-        ["03", `If none of that fits either, just reply to this email and tell us what's actually going on — we'll point you somewhere useful.`],
-      ])}
-    </div>
-    ${signOff()}
-  `,
-  cta: { href: `${SITE}/rescue-or-rebuild`, label: "Run the free diagnostic" },
-});
+export const declineRedirectHtml = (application) => {
+  const copy = getOfferCopy(application.offerSlug).decline;
+  return emailShell({
+    preheader: "Here's the more useful next step for your situation.",
+    eyebrow: "Application reviewed",
+    title: copy.title,
+    intro: `Hey ${escapeHtml(application.name || "there")}, thank you for the context. Based on what you described, a bounded ${copy.declineIntroNoun} isn't the most useful next step for this situation.`,
+    content: `
+      <div style="margin-top:6px;">
+        ${sectionLabel("A better place to start")}
+        ${numberedSteps(copy.steps.map((text, i) => [String(i + 1).padStart(2, "0"), text]))}
+      </div>
+      ${signOff()}
+    `,
+    cta: copy.cta,
+  });
+};
 
 // ---------------------------------------------------------------------------
 // 5. PAYMENT RECEIVED / DAY-0 ONBOARDING — applicant-facing
 // ---------------------------------------------------------------------------
 export const paymentReceivedHtml = (application) => {
-  const statusUrl = `${SITE}/product-rescue/confirmed?ref=${encodeURIComponent(application.referenceToken)}`;
+  const copy = getOfferCopy(application.offerSlug).paymentReceived;
+  const statusUrl = `${SITE}/${application.offerSlug}/confirmed?ref=${encodeURIComponent(application.referenceToken)}`;
   return emailShell({
     preheader: "Payment received. Here's exactly what starts the 5-day clock.",
     eyebrow: "Payment received",
     title: "You're in. Here's what starts the clock.",
-    intro: `Hey ${escapeHtml(application.name || "there")}, payment for ${escapeHtml(application.offerName)} is confirmed. One thing worth being precise about: the 5-business-day clock starts once intake and access/evidence are both ready — not today, automatically.`,
+    intro: `Hey ${escapeHtml(application.name || "there")}, payment for ${escapeHtml(application.offerName)} is confirmed. One thing worth being precise about: the 5-business-day clock starts once ${copy.clockSuffix} — not today, automatically.`,
     content: `
       ${metricRow([
         { label: "Payment", value: "Confirmed", emphasis: true },
         { label: "Intake", value: application.intakeComplete ? "Complete" : "Needed" },
-        { label: "Access & evidence", value: application.accessReady ? "Ready" : "Needed" },
+        { label: copy.accessLabel, value: application.accessReady ? "Ready" : "Needed" },
       ])}
       ${bodyText("The status page below stays accurate as those two items are completed, and shows your delivery date once the clock starts.", { marginTop: 28 })}
       ${signOff()}
     `,
-    cta: { href: statusUrl, label: "View your assessment status" },
+    cta: { href: statusUrl, label: copy.statusCtaLabel },
   });
 };
 
 // ---------------------------------------------------------------------------
-// 6. ASSESSMENT DELIVERED — applicant-facing
+// 6. ASSESSMENT / SPRINT DELIVERED — applicant-facing
 // ---------------------------------------------------------------------------
-export const assessmentDeliveredHtml = (application) => emailShell({
-  preheader: "Your Rescue Brief is ready.",
-  eyebrow: "Assessment delivered",
-  title: "Your Rescue Brief is ready.",
-  intro: `Hey ${escapeHtml(application.name || "there")}, the assessment for ${escapeHtml(application.productName || "your product")} is done. You now own this decision.`,
-  content: `
-    ${calloutBlock(`From here, three paths are equally valid: use your own team, bring in another company, or ask us to execute it. The Brief works regardless of which one you pick.`)}
-    ${bodyText("If you'd like to talk through the findings before deciding, reply to this email and we'll set up the walkthrough.")}
-    ${signOff()}
-  `,
-  cta: application.briefUrl ? { href: application.briefUrl, label: "Open your Rescue Brief" } : undefined,
-});
+export const assessmentDeliveredHtml = (application) => {
+  const offerCopy = getOfferCopy(application.offerSlug);
+  const copy = offerCopy.delivered;
+  return emailShell({
+    preheader: copy.title,
+    eyebrow: copy.eyebrow,
+    title: copy.title,
+    intro: `Hey ${escapeHtml(application.name || "there")}, the ${copy.introNoun} for ${escapeHtml(application.productName || "your product")} is done. You now own this decision.`,
+    content: `
+      ${calloutBlock(copy.callout)}
+      ${bodyText("If you'd like to talk through the findings before deciding, reply to this email and we'll set up the walkthrough.")}
+      ${signOff()}
+    `,
+    cta: application.briefUrl ? { href: application.briefUrl, label: offerCopy.ctaLabelDelivered } : undefined,
+  });
+};
 
 // ---------------------------------------------------------------------------
 // 7. INTERNAL NOTIFICATION — new application (ops-facing)
@@ -176,9 +186,9 @@ export const internalApplicationNotificationHtml = (application, { notionSynced 
   // is utilitarian and doesn't need the same visual treatment.
   const iBrand = internalShell.BRAND;
   return internalShell.emailShell({
-    preheader: `New Product Rescue application from ${application.email}`,
+    preheader: `New ${application.offerName} application from ${application.email}`,
     eyebrow: "New offer application",
-    title: `Product Rescue application from ${escapeHtml(application.name || application.email)}.`,
+    title: `${escapeHtml(application.offerName)} application from ${escapeHtml(application.name || application.email)}.`,
     intro: "Review and set Fit in Airtable/Notion — nothing here has been auto-classified.",
     content: `
       ${internalShell.statLine([

@@ -57,6 +57,8 @@ const STATIC_INDEX_ROUTES = [
   { loc: "/articles", changefreq: "weekly", priority: "0.7" },
   { loc: "/rescue-or-rebuild", changefreq: "monthly", priority: "0.7" },
   { loc: "/product-rescue", changefreq: "weekly", priority: "0.9" },
+  { loc: "/idea-to-build", changefreq: "weekly", priority: "0.9" },
+  { loc: "/manual-to-system", changefreq: "weekly", priority: "0.9" },
   { loc: "/privacy-policy", changefreq: "yearly", priority: "0.3" },
   { loc: "/terms-of-service", changefreq: "yearly", priority: "0.3" },
 ];
@@ -66,10 +68,12 @@ const STATIC_INDEX_ROUTES = [
 //                       archive but intentionally not a canonical destination
 //   /unsubscribe     — X-Robots-Tag: noindex via vercel.json
 //   /review          — X-Robots-Tag: noindex via vercel.json
-//   /product-rescue/apply     — noIndex via the page's own <SEO> call; a
+//   /product-rescue/apply, /idea-to-build/apply,
+//   /manual-to-system/apply — noIndex via each page's own <SEO> call; a
 //                       progressive application form has no independent
 //                       search intent worth ranking on its own.
-//   /product-rescue/confirmed — noIndex via the page's own <SEO> call;
+//   /product-rescue/confirmed, /idea-to-build/confirmed,
+//   /manual-to-system/confirmed — noIndex via each page's own <SEO> call;
 //                       reached only through an opaque per-applicant token
 //                       in an email, never a public link — must never appear
 //                       in search results (see audit Section 28).

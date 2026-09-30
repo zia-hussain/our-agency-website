@@ -15,7 +15,7 @@
 //   fit is one of: "standard" | "custom" | "decline"
 import { airtableFindByField, airtableUpdate } from "../_lib/airtable.js";
 import { isValidReferenceToken } from "../_lib/token.js";
-import { getOffer } from "../_lib/offers.js";
+import { getOffer, getApplicationsTableName } from "../_lib/offers.js";
 import { updateOpportunityStage } from "../_lib/notion.js";
 import { sendResendEmail } from "../_lib/email.js";
 import { acceptedStandardFitHtml, customScopeHtml, declineRedirectHtml } from "../_lib/offerEmails.js";
@@ -75,8 +75,7 @@ export default async function handler(req, res) {
     return json(res, 400, { success: false, error: 'fit must be "standard", "custom", or "decline".' });
   }
 
-  const offer = getOffer("product-rescue");
-  const table = offer.airtableTable();
+  const table = getApplicationsTableName();
 
   const lookup = await airtableFindByField(table, "Reference Token", body.ref, { limit: 1 }).catch(() => ({ found: false, records: [] }));
   if (!lookup.found) {
@@ -85,6 +84,14 @@ export default async function handler(req, res) {
 
   const record = lookup.records[0];
   const fields = record.fields || {};
+  // Every offer's applications share one table (Section 7 of the
+  // BUILD/AUTOMATE expansion) — the record's own Offer Slug decides which
+  // offer's name/price/templates this application actually gets, not an
+  // assumption baked into this endpoint. Falls back to product-rescue only
+  // for pre-expansion records that predate the Offer Slug field being read
+  // here (all real rows have always written it — offer-application.js has
+  // set it since the very first version of this table).
+  const offer = getOffer(fields["Offer Slug"]) || getOffer("product-rescue");
 
   const updated = await airtableUpdate(table, record.id, { Fit: route.fitLabel, Status: route.status });
   if (!updated.updated) {

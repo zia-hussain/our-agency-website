@@ -8,7 +8,7 @@
 // application.
 import { airtableFindByField, airtableUpdate } from "./_lib/airtable.js";
 import { isValidReferenceToken } from "./_lib/token.js";
-import { getOffer } from "./_lib/offers.js";
+import { getApplicationsTableName } from "./_lib/offers.js";
 import { isClockEligible, computeDeliveryDueDate } from "./_lib/lifecycle.js";
 
 const json = (res, status, body) => {
@@ -42,7 +42,7 @@ const publicStatus = (fields) => ({
 });
 
 export default async function handler(req, res) {
-  const table = getOffer("product-rescue").airtableTable();
+  const table = getApplicationsTableName();
   const ref = req.method === "GET" ? req.query?.ref : (await readRequestBody(req)).ref;
 
   if (!isValidReferenceToken(ref)) {

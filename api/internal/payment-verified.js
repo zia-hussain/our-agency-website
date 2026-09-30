@@ -21,7 +21,7 @@
 // Airtable/Notion/email side effects a second time in the webhook itself.
 import { airtableFindByField, airtableUpdate } from "../_lib/airtable.js";
 import { isValidReferenceToken } from "../_lib/token.js";
-import { getOffer } from "../_lib/offers.js";
+import { getOffer, getApplicationsTableName } from "../_lib/offers.js";
 import { updateOpportunityStage } from "../_lib/notion.js";
 import { sendResendEmail, getOpsRecipients } from "../_lib/email.js";
 import { paymentReceivedHtml } from "../_lib/offerEmails.js";
@@ -67,8 +67,7 @@ export default async function handler(req, res) {
     return json(res, 400, { success: false, error: "Missing or malformed reference." });
   }
 
-  const offer = getOffer("product-rescue");
-  const table = offer.airtableTable();
+  const table = getApplicationsTableName();
 
   const lookup = await airtableFindByField(table, "Reference Token", body.ref, { limit: 1 }).catch(() => ({ found: false, records: [] }));
   if (!lookup.found) {
@@ -77,6 +76,9 @@ export default async function handler(req, res) {
 
   const record = lookup.records[0];
   const fields = record.fields || {};
+  // Same shared-table, record-decides-the-offer resolution as set-fit.js —
+  // see that file's comment (2026-09-30 BUILD/AUTOMATE expansion).
+  const offer = getOffer(fields["Offer Slug"]) || getOffer("product-rescue");
 
   if (fields["Payment Status"] === "Verified") {
     return json(res, 200, { success: true, alreadyVerified: true });
@@ -120,6 +122,7 @@ export default async function handler(req, res) {
     html: paymentReceivedHtml({
       name: fields.Name,
       offerName: offer.name,
+      offerSlug: offer.slug,
       referenceToken: body.ref,
       intakeComplete: fields["Intake Status"] === "Complete",
       accessReady: Boolean(fields["Access Ready"]),

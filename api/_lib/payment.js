@@ -25,17 +25,33 @@
 
 export const getPaymentProviderName = () => process.env.PAYMENT_PROVIDER || null;
 
-export const isPaymentConfigured = () => Boolean(process.env.PAYMENT_LINK_STANDARD);
+// Offer slug -> its own payment-link env var. product-rescue keeps the
+// original, un-prefixed PAYMENT_LINK_STANDARD (zero behavior change for the
+// live/frozen offer); idea-to-build and manual-to-system get their own
+// vars because they're priced differently ($950 and $750, not $750) — one
+// shared var would have silently sent every offer to the same link/price
+// the moment any provider was ever configured (2026-09-30 BUILD/AUTOMATE
+// expansion).
+const PAYMENT_LINK_ENV_VAR = {
+  "product-rescue": "PAYMENT_LINK_STANDARD",
+  "idea-to-build": "PAYMENT_LINK_IDEA_TO_BUILD",
+  "manual-to-system": "PAYMENT_LINK_MANUAL_TO_SYSTEM",
+};
+
+export const isPaymentConfigured = (offerSlug = "product-rescue") =>
+  Boolean(process.env[PAYMENT_LINK_ENV_VAR[offerSlug] || "PAYMENT_LINK_STANDARD"]);
 
 /**
  * Returns the URL an applicant should be sent to pay, or null if no
- * provider is configured yet. `referenceToken` is accepted now so a future
- * provider that supports per-session URLs (e.g. Stripe's client_reference_id
- * query param) can be wired in without changing this function's signature —
- * it is unused while only a static link exists.
+ * provider is configured yet for that specific offer. `referenceToken` is
+ * accepted now so a future provider that supports per-session URLs (e.g.
+ * Stripe's client_reference_id query param) can be wired in without
+ * changing this function's signature — it is unused while only a static
+ * link exists.
  */
 export const getPaymentLink = (offerSlug, referenceToken) => {
-  const base = process.env.PAYMENT_LINK_STANDARD;
+  const envVar = PAYMENT_LINK_ENV_VAR[offerSlug] || "PAYMENT_LINK_STANDARD";
+  const base = process.env[envVar];
   if (!base) return null;
   try {
     const url = new URL(base);

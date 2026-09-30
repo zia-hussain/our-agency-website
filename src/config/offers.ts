@@ -29,6 +29,24 @@ export const OFFERS: Record<string, OfferDefinition> = {
     deliveryRule: "5 business days after required access/evidence is ready",
     corePromise: "Before you rebuild your product, find out what actually needs rebuilding.",
   },
+  "idea-to-build": {
+    slug: "idea-to-build",
+    category: "BUILD",
+    name: "Idea-to-Build Sprint",
+    price: 950,
+    boundary: "One product concept, one primary V1 decision",
+    deliveryRule: "5 business days after required context is ready",
+    corePromise: "Version 1 does not need to contain the future. It needs to earn the future.",
+  },
+  "manual-to-system": {
+    slug: "manual-to-system",
+    category: "AUTOMATE",
+    name: "Manual-to-System Sprint",
+    price: 750,
+    boundary: "One bounded workflow",
+    deliveryRule: "5 business days after required input is ready",
+    corePromise: "Your team should not be the integration. Automation has to earn its place.",
+  },
 };
 
 export const getOffer = (slug: string): OfferDefinition | undefined => OFFERS[slug];

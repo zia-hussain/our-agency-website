@@ -101,13 +101,16 @@ export const createOfferOpportunity = async (application) => {
     },
   };
 
-  // Optional relation to the Offer Library's "Product Rescue Assessment"
-  // row — only attempted if both the relation property name and the target
-  // page id are configured. Omitted (not failed) otherwise, since a missing
+  // Relation to the applicant's own offer in the Offer Library — each
+  // offer resolves its own page id (application.notionOfferPageId, set by
+  // the caller from api/_lib/offers.js's per-offer notionOfferPageId()), so
+  // a Manual-to-System opportunity links to Manual-to-System's row, never
+  // Product Rescue's by default (2026-09-30 BUILD/AUTOMATE expansion).
+  // Only attempted if both the relation property name and the target page
+  // id are configured; omitted (not failed) otherwise, since a missing
   // relation is a cosmetic gap, not a broken sync.
-  const offerPageId = process.env.NOTION_PRODUCT_RESCUE_OFFER_PAGE_ID;
-  if (offerPageId) {
-    properties[PROPS.offerRelation()] = { relation: [{ id: offerPageId }] };
+  if (application.notionOfferPageId) {
+    properties[PROPS.offerRelation()] = { relation: [{ id: application.notionOfferPageId }] };
   }
 
   try {
