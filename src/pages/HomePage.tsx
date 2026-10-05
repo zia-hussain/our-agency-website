@@ -96,6 +96,22 @@ const HomePage: React.FC = () => {
         ],
       },
       ...Object.values(TESTIMONIAL_FILMS).map(buildVideoObjectSchema),
+      // The combined-client brand film — same four people already listed
+      // individually above, cut together with a Zumetrix intro card.
+      // uploadDate is the real date this file was added to the repo;
+      // duration is measured via ffprobe against the delivered file, not
+      // estimated (same discipline as every entry in testimonialFilms.ts).
+      buildVideoObjectSchema({
+        id: "brand-film",
+        name: "Josh, Reema, Sarah & Krystof",
+        role: "",
+        context: "Four Zumetrix clients — Josh Nyce, Reema Rafay, Sarah, and Krystof Kapka — in their own words.",
+        src: "/videos/zumetrix-brand-film.mp4",
+        poster: "/images/video-posters/zumetrix-brand-film-poster.jpg",
+        captionsSrc: "",
+        uploadDate: "2026-10-05",
+        duration: "PT1M11S",
+      }),
     ],
   };
 

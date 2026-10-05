@@ -14,6 +14,14 @@ interface TestimonialFilmProps {
    *  one-off classes at the call site. */
   variant?: "brand" | "featured" | "proof";
   className?: string;
+  /** false = never auto-play muted on scroll-into-view; the poster stays
+   *  until a real click, and that click starts playback WITH sound
+   *  already on. Reserved for films whose audio carries the content (the
+   *  homepage brand film) — every other instance keeps the default
+   *  muted-autoplay-then-hint behavior unchanged. */
+  autoPlay?: boolean;
+  onPlayStart?: () => void;
+  onComplete?: () => void;
 }
 
 // The canonical Zumetrix testimonial film — one design system for every
@@ -41,6 +49,9 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   captionsSrc,
   variant = "proof",
   className = "",
+  autoPlay = true,
+  onPlayStart,
+  onComplete,
 }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -49,7 +60,11 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   const rafRef = useRef<number | null>(null);
   const isDraggingRef = useRef(false);
 
-  const [isMuted, setIsMuted] = useState(true);
+  // Films that auto-play start muted (the only autoplay every browser
+  // allows). Films that wait for a deliberate click start unmuted, so that
+  // first click plays with sound already on — one obvious action, not a
+  // play-then-find-the-unmute-button dance.
+  const [isMuted, setIsMuted] = useState(autoPlay);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [ariaProgress, setAriaProgress] = useState(0);
@@ -67,7 +82,7 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   useEffect(() => {
     setIsPlaying(false);
     setHasStarted(false);
-    setIsMuted(true);
+    setIsMuted(autoPlay);
     setAriaProgress(0);
     setActiveCue(null);
     setShowSoundHint(false);
@@ -77,7 +92,7 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
       video.pause();
       video.currentTime = 0;
     }
-  }, [src]);
+  }, [src, autoPlay]);
 
   // Captions are fetched lazily and only parsed once — burned-in captions
   // already cover most of these films, so this track stays off by default
@@ -106,6 +121,7 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   // failing on some of them. Sound always requires one real tap; nothing
   // running in a browser can promise otherwise.
   useEffect(() => {
+    if (!autoPlay) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -124,7 +140,7 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
     } else if (video.paused) {
       video.play().catch(() => {});
     }
-  }, [inView]);
+  }, [inView, autoPlay]);
 
   // The sound hint fades on its own after a few seconds, or immediately
   // once the visitor actually unmutes — whichever comes first.
@@ -169,6 +185,7 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
     if (!video) return;
     if (!hasStarted) {
       setHasStarted(true);
+      onPlayStart?.();
       video.play().catch(() => {});
       return;
     }
@@ -237,11 +254,12 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           src={src}
           poster={poster}
           muted={isMuted}
-          loop
+          loop={autoPlay}
           playsInline
           preload="none"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
+          onEnded={() => onComplete?.()}
           onTimeUpdate={() => {
             const video = videoRef.current;
             if (video?.duration) setAriaProgress((video.currentTime / video.duration) * 100);

@@ -1,20 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Clapperboard } from "lucide-react";
+import TestimonialFilm from "../common/TestimonialFilm";
+import { trackHeroVideoPlay, trackHeroVideoComplete } from "../../utils/analytics";
 
-// The early trust moment near the Hero — architecturally ready for a real
-// combined-client brand film (variant="brand" on TestimonialFilm) the
-// moment that asset exists. Until then this renders an honest "in
-// production" placeholder at the exact same stage proportions the real
-// film will use, so nothing about the layout needs to change later —
-// only BRAND_FILM_SRC needs a real path. It deliberately has no play
-// button or fake controls: an interactive element that does nothing on
-// click would be worse than admitting the film isn't ready yet.
-const BRAND_FILM_SRC: string | null = null;
+// The early trust moment near the Hero. Real asset shipped 2026-10-05: a
+// combined-client brand film (Josh, Reema, Sarah, Krystof — the same four
+// people already in testimonialFilms.ts, cut together with a Zumetrix
+// intro card). autoPlay={false} because this film carries real narration
+// — it waits for a deliberate click and plays with sound on immediately,
+// instead of the muted-background-autoplay behavior every other
+// TestimonialFilm instance uses (see TestimonialFilm's autoPlay prop).
+const BRAND_FILM_SRC = "/videos/zumetrix-brand-film.mp4";
+const BRAND_FILM_POSTER = "/images/video-posters/zumetrix-brand-film-poster.jpg";
 
 const BrandFilmMoment: React.FC = () => {
-  if (BRAND_FILM_SRC) return null; // real <TestimonialFilm variant="brand" /> takes over once an asset exists
-
   return (
     <section className="relative overflow-hidden bg-background py-20 sm:py-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_0%,rgba(196,138,100,0.05),transparent_65%)]" />
@@ -33,24 +32,15 @@ const BrandFilmMoment: React.FC = () => {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0.95, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.28, delay: 0.05 }}
-          className="relative aspect-video max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-border/50 bg-card/10 shadow-[0_50px_120px_-40px_rgba(0,0,0,0.6)] flex items-center justify-center"
-        >
-          <div className="pointer-events-none absolute -inset-px rounded-[2rem] bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.08),transparent_60%)]" />
-          <div className="relative text-center px-6">
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-border/60 bg-background/60 mb-5">
-              <Clapperboard size={22} className="text-muted-foreground/50" />
-            </span>
-            <p className="text-sm font-semibold text-muted-foreground/70 mb-1.5">In production</p>
-            <p className="text-xs text-muted-foreground/45 max-w-xs mx-auto leading-relaxed">
-              A short film built from real Zumetrix client stories.
-            </p>
-          </div>
-        </motion.div>
+        <TestimonialFilm
+          src={BRAND_FILM_SRC}
+          poster={BRAND_FILM_POSTER}
+          variant="brand"
+          autoPlay={false}
+          onPlayStart={trackHeroVideoPlay}
+          onComplete={trackHeroVideoComplete}
+          className="max-w-4xl mx-auto"
+        />
       </div>
     </section>
   );
