@@ -340,21 +340,6 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           )}
         </AnimatePresence>
 
-        {/* Custom caption overlay — sits just above the controls while they're */}
-        {/* visible, and drops down to use the freed space the instant they    */}
-        {/* hide, instead of floating in place over empty air.                 */}
-        {ccOn && activeCue && (
-          <div
-            className={`absolute inset-x-0 flex justify-center px-4 sm:px-8 pointer-events-none transition-[bottom] duration-500 ease-out ${
-              isAutoHideVariant && !controlsVisible ? "bottom-4 sm:bottom-6" : "bottom-[3.25rem] sm:bottom-14"
-            }`}
-          >
-            <p className="max-w-[85%] text-center text-sm sm:text-base font-medium text-white leading-snug px-4 py-2 rounded-lg bg-black/70 backdrop-blur-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.8)]">
-              {activeCue.text}
-            </p>
-          </div>
-        )}
-
         {/* Playing muted, silently, is invisible — this is the one prompt   */}
         {/* that tells a visitor sound exists and is one tap away.           */}
         <AnimatePresence>
@@ -429,6 +414,20 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Captions live in their own reserved strip below the frame, not */}
+      {/* layered over it — this footage already carries its own burned-in */}
+      {/* captions and graphics at positions that move throughout, so no   */}
+      {/* overlay position could promise to never sit near one. A fixed    */}
+      {/* height (not sized to each cue) keeps the stage from jumping      */}
+      {/* between lines as the film plays.                                 */}
+      {ccOn && cues.length > 0 && (
+        <div className="relative flex min-h-[3.25rem] items-center justify-center border-t border-white/[0.06] bg-background px-5 py-2.5 sm:min-h-[3.75rem] sm:px-8">
+          <p className="max-w-[90%] text-center text-sm font-medium leading-snug text-foreground/90 sm:text-base">
+            {activeCue?.text ?? ""}
+          </p>
+        </div>
+      )}
     </motion.div>
   );
 };
