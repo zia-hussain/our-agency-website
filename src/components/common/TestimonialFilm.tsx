@@ -170,28 +170,47 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
     };
   }, [isPlaying, ccOn, cues]);
 
-  // Controls fade 1.5s after the pointer last moved, only while actually
-  // playing (paused/poster state always shows them — nothing to hide
-  // behind). Any movement over the stage resets the clock.
-  const resetHideTimer = () => {
-    if (!isAutoHideVariant) return;
-    setControlsVisible(true);
+  // Controls show on hover and hide the instant the pointer actually
+  // leaves the stage — not a guessed timeout, a real signal. Touch has no
+  // "leave" to listen for, so touch alone keeps a short idle fallback.
+  // Either way, nothing hides while paused/poster state — only while
+  // actually playing.
+  const clearHideTimer = () => {
     if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-    hideTimerRef.current = setTimeout(() => setControlsVisible(false), 1500);
+  };
+
+  const showControls = () => {
+    if (!isAutoHideVariant) return;
+    clearHideTimer();
+    setControlsVisible(true);
+  };
+
+  const handleStagePointerMove = (e: React.PointerEvent) => {
+    if (!isAutoHideVariant) return;
+    showControls();
+    if (e.pointerType === "touch") {
+      hideTimerRef.current = setTimeout(() => setControlsVisible(false), 2000);
+    }
+  };
+
+  const handleStagePointerLeave = (e: React.PointerEvent) => {
+    if (!isAutoHideVariant || e.pointerType === "touch") return;
+    clearHideTimer();
+    if (isPlaying) setControlsVisible(false);
   };
 
   useEffect(() => {
     if (!isAutoHideVariant) return;
     if (!isPlaying) {
+      clearHideTimer();
       setControlsVisible(true);
-      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
       return;
     }
-    resetHideTimer();
-    return () => {
-      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Starts visible the moment playback begins, then fades on its own a
+    // couple of seconds later if nothing ever interacts with the stage at
+    // all (the one case pointer events alone can't cover).
+    hideTimerRef.current = setTimeout(() => setControlsVisible(false), 2500);
+    return clearHideTimer;
   }, [isPlaying, isAutoHideVariant]);
 
   const unmute = () => {
@@ -273,8 +292,9 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
       <div className="pointer-events-none absolute -inset-px rounded-[inherit] bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.10),transparent_60%)] z-10" />
       <div
         className="relative aspect-video bg-background"
-        onPointerMove={isAutoHideVariant ? resetHideTimer : undefined}
-        onPointerDown={isAutoHideVariant ? resetHideTimer : undefined}
+        onPointerMove={isAutoHideVariant ? handleStagePointerMove : undefined}
+        onPointerDown={isAutoHideVariant ? showControls : undefined}
+        onPointerLeave={isAutoHideVariant ? handleStagePointerLeave : undefined}
       >
         <video
           ref={videoRef}
@@ -320,11 +340,16 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           )}
         </AnimatePresence>
 
-        {/* Custom caption overlay — a designed safe area above the controls, */}
-        {/* not a native <track> cue fighting the film's own burned-in text.  */}
+        {/* Custom caption overlay — sits just above the controls while they're */}
+        {/* visible, and drops down to use the freed space the instant they    */}
+        {/* hide, instead of floating in place over empty air.                 */}
         {ccOn && activeCue && (
-          <div className="absolute inset-x-0 bottom-[3.25rem] sm:bottom-14 flex justify-center px-4 sm:px-8 pointer-events-none">
-            <p className="max-w-[85%] text-center text-sm sm:text-base font-medium text-white leading-snug px-4 py-2 rounded-lg bg-black/55 backdrop-blur-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.8)]">
+          <div
+            className={`absolute inset-x-0 flex justify-center px-4 sm:px-8 pointer-events-none transition-[bottom] duration-500 ease-out ${
+              isAutoHideVariant && !controlsVisible ? "bottom-4 sm:bottom-6" : "bottom-[3.25rem] sm:bottom-14"
+            }`}
+          >
+            <p className="max-w-[85%] text-center text-sm sm:text-base font-medium text-white leading-snug px-4 py-2 rounded-lg bg-black/70 backdrop-blur-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.8)]">
               {activeCue.text}
             </p>
           </div>
