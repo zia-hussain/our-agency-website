@@ -64,6 +64,15 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   const [showSoundHint, setShowSoundHint] = useState(false);
   const hasAutoplayedRef = useRef(false);
 
+  // Auto-hiding controls — brand variant only (the homepage hero moment).
+  // Every other instance keeps its controls permanently visible; this one
+  // fades them out after a couple of idle seconds while playing, the same
+  // way any premium video player behaves, and brings them straight back on
+  // the first sign of a cursor or touch.
+  const isAutoHideVariant = variant === "brand";
+  const [controlsVisible, setControlsVisible] = useState(true);
+  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const inView = useInView(sectionRef, { amount: 0.35 });
 
   // Reset to a clean, unplayed state whenever the source changes — this is
@@ -161,6 +170,30 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
     };
   }, [isPlaying, ccOn, cues]);
 
+  // Controls fade 1.5s after the pointer last moved, only while actually
+  // playing (paused/poster state always shows them — nothing to hide
+  // behind). Any movement over the stage resets the clock.
+  const resetHideTimer = () => {
+    if (!isAutoHideVariant) return;
+    setControlsVisible(true);
+    if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+    hideTimerRef.current = setTimeout(() => setControlsVisible(false), 1500);
+  };
+
+  useEffect(() => {
+    if (!isAutoHideVariant) return;
+    if (!isPlaying) {
+      setControlsVisible(true);
+      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+      return;
+    }
+    resetHideTimer();
+    return () => {
+      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying, isAutoHideVariant]);
+
   const unmute = () => {
     const video = videoRef.current;
     if (!video) return;
@@ -238,7 +271,11 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
       className={`relative overflow-hidden border border-primary/15 ring-1 ring-inset ring-white/[0.03] ${STAGE_SIZE[variant]} ${className}`}
     >
       <div className="pointer-events-none absolute -inset-px rounded-[inherit] bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.10),transparent_60%)] z-10" />
-      <div className="relative aspect-video bg-background">
+      <div
+        className="relative aspect-video bg-background"
+        onPointerMove={isAutoHideVariant ? resetHideTimer : undefined}
+        onPointerDown={isAutoHideVariant ? resetHideTimer : undefined}
+      >
         <video
           ref={videoRef}
           src={src}
@@ -315,7 +352,11 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           )}
         </AnimatePresence>
 
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent pt-10 pb-3 px-4 sm:px-5">
+        <div
+          className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent pt-10 pb-3 px-4 sm:px-5 transition-opacity duration-500 ease-out ${
+            isAutoHideVariant && !controlsVisible ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
           <div
             ref={progressBarRef}
             onPointerDown={handlePointerDown}

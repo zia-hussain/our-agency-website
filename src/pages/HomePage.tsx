@@ -108,7 +108,7 @@ const HomePage: React.FC = () => {
         context: "Four Zumetrix clients — Josh Nyce, Reema Rafay, Sarah, and Krystof Kapka — in their own words.",
         src: "/videos/zumetrix-brand-film.mp4",
         poster: "/images/video-posters/zumetrix-brand-film-poster.jpg",
-        captionsSrc: "",
+        captionsSrc: "/captions/zumetrix-brand-film.vtt",
         uploadDate: "2026-10-05",
         duration: "PT1M11S",
       }),

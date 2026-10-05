@@ -8,9 +8,12 @@ import { trackHeroVideoPlay } from "../../utils/analytics";
 // people already in testimonialFilms.ts, cut together with a Zumetrix
 // intro card). Same TestimonialFilm behavior as every other instance on
 // the site — muted autoplay on scroll-into-view, captions visible by
-// default, one-tap sound — no special-casing.
+// default, one-tap sound. captionsSrc transcribed directly from this
+// file's own audio track (not estimated) — see public/captions/
+// zumetrix-brand-film.vtt.
 const BRAND_FILM_SRC = "/videos/zumetrix-brand-film.mp4";
 const BRAND_FILM_POSTER = "/images/video-posters/zumetrix-brand-film-poster.jpg";
+const BRAND_FILM_CAPTIONS = "/captions/zumetrix-brand-film.vtt";
 
 const BrandFilmMoment: React.FC = () => {
   return (
@@ -34,6 +37,7 @@ const BrandFilmMoment: React.FC = () => {
         <TestimonialFilm
           src={BRAND_FILM_SRC}
           poster={BRAND_FILM_POSTER}
+          captionsSrc={BRAND_FILM_CAPTIONS}
           variant="brand"
           onPlayStart={trackHeroVideoPlay}
           className="max-w-4xl mx-auto"
