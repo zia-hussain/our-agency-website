@@ -1,15 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import TestimonialFilm from "../common/TestimonialFilm";
-import { trackHeroVideoPlay, trackHeroVideoComplete } from "../../utils/analytics";
+import { trackHeroVideoPlay } from "../../utils/analytics";
 
 // The early trust moment near the Hero. Real asset shipped 2026-10-05: a
 // combined-client brand film (Josh, Reema, Sarah, Krystof — the same four
 // people already in testimonialFilms.ts, cut together with a Zumetrix
-// intro card). autoPlay={false} because this film carries real narration
-// — it waits for a deliberate click and plays with sound on immediately,
-// instead of the muted-background-autoplay behavior every other
-// TestimonialFilm instance uses (see TestimonialFilm's autoPlay prop).
+// intro card). Same TestimonialFilm behavior as every other instance on
+// the site — muted autoplay on scroll-into-view, captions visible by
+// default, one-tap sound — no special-casing.
 const BRAND_FILM_SRC = "/videos/zumetrix-brand-film.mp4";
 const BRAND_FILM_POSTER = "/images/video-posters/zumetrix-brand-film-poster.jpg";
 
@@ -36,9 +35,7 @@ const BrandFilmMoment: React.FC = () => {
           src={BRAND_FILM_SRC}
           poster={BRAND_FILM_POSTER}
           variant="brand"
-          autoPlay={false}
           onPlayStart={trackHeroVideoPlay}
-          onComplete={trackHeroVideoComplete}
           className="max-w-4xl mx-auto"
         />
       </div>

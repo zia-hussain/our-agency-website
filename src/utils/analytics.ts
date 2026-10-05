@@ -80,9 +80,7 @@ export const trackRescueDay0Confirmed = () => trackEvent('rescue_day0_confirmed'
 export const trackRescueAssessmentDelivered = () => trackEvent('rescue_assessment_delivered');
 export const trackRescueImplementationRequested = () => trackEvent('rescue_implementation_requested');
 
-// Homepage brand-film events. No free-text, no identifying payload — just
-// that playback happened. `play` fires once per deliberate user-initiated
-// start (never on muted background autoplay, since this film never does
-// that); `complete` fires once when the film plays through to its end.
+// Homepage brand-film event. No free-text, no identifying payload — just
+// that playback started (same autoplay-on-scroll trigger as every other
+// TestimonialFilm instance).
 export const trackHeroVideoPlay = () => trackEvent('hero_video_play');
-export const trackHeroVideoComplete = () => trackEvent('hero_video_complete');
