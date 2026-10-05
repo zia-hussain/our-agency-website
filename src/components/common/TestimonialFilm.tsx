@@ -141,14 +141,6 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
     }
   }, [inView, onPlayStart]);
 
-  // The sound hint fades on its own after a few seconds, or immediately
-  // once the visitor actually unmutes — whichever comes first.
-  useEffect(() => {
-    if (!showSoundHint) return;
-    const t = setTimeout(() => setShowSoundHint(false), 4500);
-    return () => clearTimeout(t);
-  }, [showSoundHint]);
-
   useEffect(() => {
     const video = videoRef.current;
     const fill = progressFillRef.current;
