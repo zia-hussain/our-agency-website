@@ -84,3 +84,26 @@ export const trackRescueImplementationRequested = () => trackEvent('rescue_imple
 // that playback started (same autoplay-on-scroll trigger as every other
 // TestimonialFilm instance).
 export const trackHeroVideoPlay = () => trackEvent('hero_video_play');
+
+// Offers commercial-routing events (2026-10-11 pass). One parameterized
+// function per journey step, not three copy-pasted functions per offer —
+// `offer` is always the slug ("idea-to-build" | "product-rescue" |
+// "manual-to-system"), never free text, so this stays as PII-free as the
+// rescue_* events above. `source` is a short, developer-chosen string
+// identifying WHERE the click happened (e.g. "nav", "homepage-router",
+// "article:build-saas-mvp-in-30-days", "offers-hub-proof") — never user
+// input — which is what lets source page -> selected offer -> application
+// be reconstructed later without storing anything PII.
+export const trackOffersNavClick = () => trackEvent('offers_nav_click');
+export const trackOffersHubView = () => trackEvent('offers_hub_view');
+export const trackOfferSelect = (offer: string) => trackEvent('offer_select', { offer });
+export const trackOfferDetailView = (offer: string, source?: string) =>
+  trackEvent('offer_detail_view', { offer, source });
+export const trackOfferApplyClick = (offer: string, source?: string) =>
+  trackEvent('offer_apply_click', { offer, source });
+export const trackOfferApplicationStart = (offer: string, source?: string) =>
+  trackEvent('offer_application_start', { offer, source });
+export const trackOfferApplicationComplete = (offer: string, source?: string) =>
+  trackEvent('offer_application_complete', { offer, source });
+export const trackContextualOfferCtaClick = (offer: string, source: string) =>
+  trackEvent('contextual_offer_cta_click', { offer, source });

@@ -27,6 +27,22 @@ import {
 } from "lucide-react";
 import { articles } from "../data/articles.js";
 import { getAuthorIdentity } from "../data/authors";
+import { OFFERS } from "../config/offers";
+import { trackContextualOfferCtaClick } from "../utils/analytics";
+
+// Contextual offer bridge (2026-10-11 commercial routing pass) — reuses the
+// existing article `category` taxonomy rather than inventing a new tagging
+// system. Only genuinely relevant categories map to an offer; "Insights",
+// "Development", and "Mobile Development" are intentionally left unmapped
+// so the bridge never shows up where it isn't earned (brief Phase 10: "Do
+// not place all offers on every article").
+const CATEGORY_TO_OFFER: Record<string, { offer: keyof typeof OFFERS; line: string }> = {
+  "SaaS": { offer: "idea-to-build", line: "Still deciding what V1 should actually include?" },
+  "Decision Room": { offer: "idea-to-build", line: "Facing a similar sequencing decision on your own product?" },
+  "Product Rescue": { offer: "product-rescue", line: "Living this right now, on your own product?" },
+  "AI & Automation": { offer: "manual-to-system", line: "Not sure what in your own workflow is actually worth automating?" },
+  "Automation": { offer: "manual-to-system", line: "Not sure what in your own workflow is actually worth automating?" },
+};
 
 // Articles can place a purpose-built module between runs of prose by putting
 // <!-- module:name --> in their content. An article with no marker renders as
@@ -876,6 +892,21 @@ const ArticleDetailPage: React.FC = () => {
               Or schedule a call directly →
             </button>
           </AnimatedSection>
+
+          {CATEGORY_TO_OFFER[article.category] && (
+            <AnimatedSection delay={0.14} className="mt-4">
+              <Link
+                to={`/${CATEGORY_TO_OFFER[article.category].offer}`}
+                onClick={() => trackContextualOfferCtaClick(CATEGORY_TO_OFFER[article.category].offer, `article:${article.slug}`)}
+                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
+              >
+                {CATEGORY_TO_OFFER[article.category].line}{" "}
+                <span className="font-medium text-primary/90">
+                  Try the {OFFERS[CATEGORY_TO_OFFER[article.category].offer].name} →
+                </span>
+              </Link>
+            </AnimatedSection>
+          )}
         </div>
       </section>
     </PageTransition>

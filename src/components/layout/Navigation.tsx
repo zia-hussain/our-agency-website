@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { services, rescueService } from "../../data/services";
 import { articles } from "../../data/articles.js";
 import { NAV_FEATURED_ORDER, pickInOrder } from "../../data/articleHierarchy";
+import { trackOffersNavClick } from "../../utils/analytics";
 
 const FEATURED_ARTICLES = pickInOrder(articles, NAV_FEATURED_ORDER);
 
@@ -15,6 +16,7 @@ const FEATURED_ARTICLES = pickInOrder(articles, NAV_FEATURED_ORDER);
 const NAV_ITEMS = [
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
+  { name: "Offers", path: "/offers" },
   { name: "Portfolio", path: "/portfolio" },
   { name: "Articles", path: "/articles" },
 ];
@@ -153,6 +155,7 @@ const Navigation: React.FC = () => {
                 key={item.name}
                 to={item.path}
                 className="relative"
+                onClick={item.path === "/offers" ? trackOffersNavClick : undefined}
                 onMouseEnter={dropdownKey ? () => openDropdown(dropdownKey) : undefined}
                 onMouseLeave={dropdownKey ? closeDropdownSoon : undefined}
                 onFocus={dropdownKey ? () => openDropdown(dropdownKey) : undefined}
@@ -453,6 +456,7 @@ const Navigation: React.FC = () => {
                       >
                         <Link
                           to={item.path}
+                          onClick={item.path === "/offers" ? trackOffersNavClick : undefined}
                           className={`block py-2.5 font-bold tracking-[-0.02em] leading-none text-[13vw] sm:text-5xl transition-colors duration-200 ${
                             active ? "text-foreground" : "text-muted-foreground/50 hover:text-foreground/80"
                           }`}

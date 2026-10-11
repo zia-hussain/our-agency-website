@@ -1,8 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Rocket, Brain, Monitor } from "lucide-react";
+import { ArrowRight, Check, Rocket, Brain, Monitor, Compass, LifeBuoy, Workflow } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
+import { OFFERS } from "../../config/offers";
+import { trackOfferSelect } from "../../utils/analytics";
+
+// The three bounded offers, routed from the same section as the services
+// grid rather than a new homepage block of their own (2026-10-11 commercial
+// routing pass) — recomposing existing commercial real estate instead of
+// lengthening the page. Full detail lives on /offers; this is recognition
+// only, three lines and a price each.
+const OFFER_ROUTER = [
+  { offer: "idea-to-build", icon: Compass, label: "Define V1" },
+  { offer: "product-rescue", icon: LifeBuoy, label: "Know what deserves fixing" },
+  { offer: "manual-to-system", icon: Workflow, label: "Know what deserves automating" },
+] as const;
 
 const ServicesPreview: React.FC = () => {
   const { servicesPreview } = getSiteData();
@@ -206,6 +219,62 @@ const ServicesPreview: React.FC = () => {
               />
             </motion.button>
           </Link>
+        </motion.div>
+
+        {/* Not ready for full implementation? — the offers router, folded
+            into this same section rather than given a new one. */}
+        <motion.div
+          initial={{ opacity: 0.95, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.28, delay: 0.36 }}
+          className="mt-16 lg:mt-20 pt-14 lg:pt-16 border-t border-border/40"
+        >
+          <div className="text-center mb-10">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-2.5">
+              Not ready to commit to implementation?
+            </h3>
+            <p className="text-muted-foreground max-w-lg mx-auto">
+              Start with the decision — a bounded, paid assessment before any
+              larger project.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto mb-8">
+            {OFFER_ROUTER.map((item) => {
+              const offer = OFFERS[item.offer];
+              return (
+                <Link
+                  key={item.offer}
+                  to={`/${item.offer}`}
+                  onClick={() => trackOfferSelect(item.offer)}
+                  className="group flex items-center gap-3.5 rounded-2xl border border-border/60 bg-card/20 p-4 hover:border-primary/30 hover:bg-card/35 transition-colors duration-200"
+                >
+                  <span className="flex items-center justify-center w-9 h-9 rounded-full border-2 border-primary/20 bg-background flex-shrink-0 group-hover:border-primary/40 transition-colors duration-200">
+                    <item.icon size={15} className="text-primary" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-primary/70">
+                      {offer.category} · ${offer.price}
+                    </span>
+                    <span className="block text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">
+                      {item.label}
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="text-center">
+            <Link
+              to="/offers"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/80 hover:text-primary transition-colors duration-200"
+            >
+              See all ways to start
+              <ArrowRight size={13} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

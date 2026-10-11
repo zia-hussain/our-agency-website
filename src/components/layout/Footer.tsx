@@ -22,6 +22,15 @@ const LINK_GROUPS = [
     ],
   },
   {
+    label: "Offers",
+    links: [
+      { name: "All Offers", path: "/offers" },
+      { name: "Idea-to-Build Sprint", path: "/idea-to-build" },
+      { name: "Product Rescue Assessment", path: "/product-rescue" },
+      { name: "Manual-to-System Sprint", path: "/manual-to-system" },
+    ],
+  },
+  {
     label: "Company",
     links: [
       { name: "About", path: "/about" },
@@ -118,7 +127,7 @@ const Footer: React.FC = () => {
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6">
                 {LINK_GROUPS.map((group) => (
-                  <div key={group.label} className={group.label === "Services" ? "col-span-2 sm:col-span-2" : ""}>
+                  <div key={group.label} className={group.label === "Services" || group.label === "Offers" ? "col-span-2 sm:col-span-2" : ""}>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/45 mb-3">
                       {group.label}
                     </p>

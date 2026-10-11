@@ -13,6 +13,7 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const FounderProfilePage = lazy(() => import("./pages/FounderProfilePage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const OffersPage = lazy(() => import("./pages/OffersPage"));
 const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ArticlesPage = lazy(() => import("./pages/ArticlesPage"));
@@ -85,7 +86,7 @@ function App() {
     location.pathname.startsWith('/portfolio/') &&
     new URLSearchParams(location.search).get('view') === 'proposal';
   const isNotFoundRoute = !([
-    '/', '/about', '/services', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
+    '/', '/about', '/services', '/offers', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
     '/articles', '/privacy-policy', '/terms-of-service', '/review', '/client-stories',
     '/rescue-or-rebuild', '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
     '/idea-to-build', '/idea-to-build/apply', '/idea-to-build/confirmed',
@@ -151,6 +152,7 @@ function App() {
           <Route path="/services/web-application-development" element={<WebDetailPage />} />
           <Route path="/services/mobile-app-development" element={<MobileDetailPage />} />
           <Route path="/services/ai-automation-solutions" element={<AutomationDetailPage />} />
+          <Route path="/offers" element={<OffersPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/all" element={<AllProjectsPage />} />
           <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />

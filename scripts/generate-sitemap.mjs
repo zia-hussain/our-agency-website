@@ -56,6 +56,7 @@ const STATIC_INDEX_ROUTES = [
   { loc: "/contact", changefreq: "monthly", priority: "0.8" },
   { loc: "/articles", changefreq: "weekly", priority: "0.7" },
   { loc: "/rescue-or-rebuild", changefreq: "monthly", priority: "0.7" },
+  { loc: "/offers", changefreq: "weekly", priority: "0.9" },
   { loc: "/product-rescue", changefreq: "weekly", priority: "0.9" },
   { loc: "/idea-to-build", changefreq: "weekly", priority: "0.9" },
   { loc: "/manual-to-system", changefreq: "weekly", priority: "0.9" },

@@ -24,6 +24,17 @@ import KpiCard from "../components/portfolio/KpiCard";
 import TestimonialFilm from "../components/common/TestimonialFilm";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { buildVideoObjectSchema } from "../utils/videoSchema";
+import { OFFERS } from "../config/offers";
+import { trackContextualOfferCtaClick } from "../utils/analytics";
+
+// Offer bridge, by exact slug, not mechanically on every case study (brief
+// Phase 3/7, 2026-10-11 pass) — only the three case studies the offer
+// landing pages themselves already use as flagship proof.
+const PROJECT_TO_OFFER: Record<string, { offer: keyof typeof OFFERS; line: string }> = {
+  "liftly-operational-mvp-v1": { offer: "idea-to-build", line: "Sequencing a similar decision on your own first version?" },
+  "fast-track-usa-app-rescue": { offer: "product-rescue", line: "Living a similar situation with your own product?" },
+  "zumetrix-labs-internal-automation-stack": { offer: "manual-to-system", line: "Carrying a similar workflow by hand right now?" },
+};
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -530,6 +541,21 @@ const ProjectDetailPage: React.FC = () => {
               View more projects
             </Link>
           </AnimatedSection>
+
+          {PROJECT_TO_OFFER[project.slug] && (
+            <AnimatedSection delay={0.14} className="mt-4">
+              <Link
+                to={`/${PROJECT_TO_OFFER[project.slug].offer}`}
+                onClick={() => trackContextualOfferCtaClick(PROJECT_TO_OFFER[project.slug].offer, `case-study:${project.slug}`)}
+                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
+              >
+                {PROJECT_TO_OFFER[project.slug].line}{" "}
+                <span className="font-medium text-primary/90">
+                  Try the {OFFERS[PROJECT_TO_OFFER[project.slug].offer].name} →
+                </span>
+              </Link>
+            </AnimatedSection>
+          )}
         </div>
       </section>
     </PageTransition>

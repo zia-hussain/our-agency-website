@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
@@ -17,7 +17,7 @@ import {
   Phone,
   Calendar,
   MessageCircle,
-  Clock,
+  FileText,
   CheckCircle,
 } from "lucide-react";
 import { trackCTAClick, trackFormSubmit } from "../utils/analytics";
@@ -150,13 +150,19 @@ const ContactPage: React.FC = () => {
     window.open(SITE_CONFIG.contact.calendlyUrl, "_blank");
   };
 
-  const handleQuickEstimate = () => {
-    trackCTAClick("Quick Estimate", "/contact");
-    window.open(
-      SITE_CONFIG.contact.calendlyUrl ||
-        "https://calendly.com/zumetrix-labs/project-estimate",
-      "_blank",
-    );
+  // Was "Get a project timeline estimate" opening the exact same Calendly
+  // link as "Schedule a call" above it — two different promises, one
+  // destination. Fixed to be a genuinely different action: jump straight to
+  // the project-brief form already on this page, instead of another way to
+  // book the same call (2026-10-11 commercial routing pass).
+  const handleSendProjectDetails = () => {
+    trackCTAClick("Send Project Details", "/contact");
+    const form = document.getElementById("project-brief-form");
+    if (!form) return;
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => {
+      document.getElementById("name")?.focus();
+    }, 400);
   };
 
   const contactInfo = [
@@ -312,7 +318,7 @@ const ContactPage: React.FC = () => {
                     </p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form id="project-brief-form" onSubmit={handleSubmit} className="space-y-6">
                     {/* Honeypot: hidden from real visitors, only a bot's form-filler completes this */}
                     <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden">
                       <label htmlFor="company_confirm">Leave this field empty</label>
@@ -619,20 +625,26 @@ const ContactPage: React.FC = () => {
                       </div>
                     </motion.button>
                     <motion.button
-                      onClick={handleQuickEstimate}
+                      onClick={handleSendProjectDetails}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.15 }}
                       className="btn-sheen w-full text-left px-5 py-3 bg-background/40 rounded-full border border-border/60 hover:border-primary/30 transition-colors duration-150 group"
                     >
                       <div className="flex items-center gap-3">
-                        <Clock size={16} className="text-primary" />
+                        <FileText size={16} className="text-primary" />
                         <span className="text-foreground group-hover:text-primary transition-colors duration-150">
-                          Get a project timeline estimate
+                          Send your project details instead
                         </span>
                       </div>
                     </motion.button>
                   </div>
+                  <p className="mt-4 text-center text-xs text-muted-foreground/70">
+                    Already know it's a BUILD, FIX, or AUTOMATE situation?{" "}
+                    <Link to="/offers" className="text-primary/90 hover:text-primary font-medium hover:underline underline-offset-2">
+                      See the three ways to start
+                    </Link>
+                  </p>
                 </div>
               </div>
             </AnimatedSection>
