@@ -4,10 +4,26 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle2, Circle, AlertCircle, X } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
-import { SITUATION_TYPES, getOffer } from "../../config/offers";
+import { SITUATION_TYPES, getOffer, offerSourceKey } from "../../config/offers";
 import { PREFILL_KEY } from "./components/RecognitionSelector";
 import { submitOfferApplication } from "../../services/offerApplication";
-import { trackRescueApplicationStarted, trackRescueApplicationSubmitted } from "../../utils/analytics";
+import {
+  trackRescueApplicationStarted,
+  trackRescueApplicationSubmitted,
+  trackOfferApplicationStart,
+  trackOfferApplicationComplete,
+} from "../../utils/analytics";
+
+// Read once, outside React state — the landing page already wrote this
+// (or left it unset, meaning a direct/bookmarked visit) before this page
+// ever mounted, and it never changes during the application itself.
+const readSource = (): string => {
+  try {
+    return window.sessionStorage.getItem(offerSourceKey("product-rescue")) || "direct";
+  } catch {
+    return "direct";
+  }
+};
 
 const offer = getOffer("product-rescue")!;
 const DRAFT_KEY = "zumetrix:product-rescue:draft";
@@ -325,6 +341,7 @@ const ProductRescueApplyPage: React.FC = () => {
     if (!hasStartedRef.current) {
       hasStartedRef.current = true;
       trackRescueApplicationStarted();
+      trackOfferApplicationStart("product-rescue", readSource());
     }
     setPhase("form");
   };
@@ -405,6 +422,7 @@ const ProductRescueApplyPage: React.FC = () => {
     }
 
     trackRescueApplicationSubmitted();
+    trackOfferApplicationComplete("product-rescue", readSource());
     try {
       window.localStorage.removeItem(DRAFT_KEY);
     } catch {

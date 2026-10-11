@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { offerHref } from "../config/offers";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, RotateCcw, CheckCircle2, Circle } from "lucide-react";
 import SEO from "../components/common/SEO";
@@ -342,7 +343,7 @@ const RescueOrRebuildPage: React.FC = () => {
                     <div className="rounded-2xl border border-primary/25 bg-primary/[0.05] p-5">
                       <p className="text-[15px] text-foreground/90 leading-relaxed">
                         Want more than a directional read? The{" "}
-                        <Link to="/product-rescue" className="font-semibold text-primary hover:underline underline-offset-2">
+                        <Link to={offerHref("product-rescue", "rescue-or-rebuild-tool")} className="font-semibold text-primary hover:underline underline-offset-2">
                           Product Rescue Assessment
                         </Link>{" "}
                         goes further — real evidence from the actual product, not just these answers.

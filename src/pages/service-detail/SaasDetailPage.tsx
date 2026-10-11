@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { offerHref } from "../../config/offers";
 import { motion } from "framer-motion";
 import {
   ArrowLeft, ArrowRight, Check, X, Lightbulb, Rocket, Users, MapPin, Hammer,
@@ -707,7 +708,7 @@ const SaasDetailPage: React.FC = () => {
             </Link>
           </AnimatedSection>
           <AnimatedSection delay={0.1} className="mt-8">
-            <Link to="/idea-to-build" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+            <Link to={offerHref("idea-to-build", "service:saas-mvp-development")} className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
               Not sure what your first version should include? Try the Idea-to-Build Sprint →
             </Link>
           </AnimatedSection>

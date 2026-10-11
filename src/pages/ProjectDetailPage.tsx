@@ -24,16 +24,21 @@ import KpiCard from "../components/portfolio/KpiCard";
 import TestimonialFilm from "../components/common/TestimonialFilm";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { buildVideoObjectSchema } from "../utils/videoSchema";
-import { OFFERS } from "../config/offers";
+import { OFFERS, offerHref } from "../config/offers";
 import { trackContextualOfferCtaClick } from "../utils/analytics";
 
 // Offer bridge, by exact slug, not mechanically on every case study (brief
 // Phase 3/7, 2026-10-11 pass) — only the three case studies the offer
 // landing pages themselves already use as flagship proof.
+// Floating Stone Ranch, not Zumetrix's own internal stack, for the
+// AUTOMATE bridge (2026-10-18 re-art-direction pass) — a verified external
+// client result is commercially stronger proof than internal dogfooding,
+// and this is the exact automation case study the homepage already leads
+// with for that same reason.
 const PROJECT_TO_OFFER: Record<string, { offer: keyof typeof OFFERS; line: string }> = {
   "liftly-operational-mvp-v1": { offer: "idea-to-build", line: "Sequencing a similar decision on your own first version?" },
   "fast-track-usa-app-rescue": { offer: "product-rescue", line: "Living a similar situation with your own product?" },
-  "zumetrix-labs-internal-automation-stack": { offer: "manual-to-system", line: "Carrying a similar workflow by hand right now?" },
+  "floating-stone-ranch-processor-intake-engine": { offer: "manual-to-system", line: "Carrying a similar workflow by hand right now?" },
 };
 
 const GRAIN =
@@ -545,7 +550,7 @@ const ProjectDetailPage: React.FC = () => {
           {PROJECT_TO_OFFER[project.slug] && (
             <AnimatedSection delay={0.14} className="mt-4">
               <Link
-                to={`/${PROJECT_TO_OFFER[project.slug].offer}`}
+                to={offerHref(PROJECT_TO_OFFER[project.slug].offer, `case-study:${project.slug}`)}
                 onClick={() => trackContextualOfferCtaClick(PROJECT_TO_OFFER[project.slug].offer, `case-study:${project.slug}`)}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
               >

@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 import { articles } from "../data/articles.js";
 import { getAuthorIdentity } from "../data/authors";
-import { OFFERS } from "../config/offers";
+import { OFFERS, offerHref } from "../config/offers";
 import { trackContextualOfferCtaClick } from "../utils/analytics";
 
 // Contextual offer bridge (2026-10-11 commercial routing pass) — reuses the
@@ -896,7 +896,7 @@ const ArticleDetailPage: React.FC = () => {
           {CATEGORY_TO_OFFER[article.category] && (
             <AnimatedSection delay={0.14} className="mt-4">
               <Link
-                to={`/${CATEGORY_TO_OFFER[article.category].offer}`}
+                to={offerHref(CATEGORY_TO_OFFER[article.category].offer, `article:${article.slug}`)}
                 onClick={() => trackContextualOfferCtaClick(CATEGORY_TO_OFFER[article.category].offer, `article:${article.slug}`)}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
               >

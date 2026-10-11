@@ -1,20 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Rocket, Brain, Monitor, Compass, LifeBuoy, Workflow } from "lucide-react";
+import { ArrowRight, Check, Rocket, Brain, Monitor } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
-import { OFFERS } from "../../config/offers";
+import { OFFERS, offerHref } from "../../config/offers";
 import { trackOfferSelect } from "../../utils/analytics";
 
 // The three bounded offers, routed from the same section as the services
 // grid rather than a new homepage block of their own (2026-10-11 commercial
 // routing pass) — recomposing existing commercial real estate instead of
 // lengthening the page. Full detail lives on /offers; this is recognition
-// only, three lines and a price each.
+// only. Typographic, not a row of icon-badge pills (2026-10-18 re-art-
+// direction) — three labeled lines separated by rules, the same device the
+// comparison facts and footer use elsewhere, not a third visual pattern.
 const OFFER_ROUTER = [
-  { offer: "idea-to-build", icon: Compass, label: "Define V1" },
-  { offer: "product-rescue", icon: LifeBuoy, label: "Know what deserves fixing" },
-  { offer: "manual-to-system", icon: Workflow, label: "Know what deserves automating" },
+  { offer: "idea-to-build", label: "Define V1" },
+  { offer: "product-rescue", label: "Know what deserves fixing" },
+  { offer: "manual-to-system", label: "Know what deserves automating" },
 ] as const;
 
 const ServicesPreview: React.FC = () => {
@@ -222,51 +224,54 @@ const ServicesPreview: React.FC = () => {
         </motion.div>
 
         {/* Not ready for full implementation? — the offers router, folded
-            into this same section rather than given a new one. */}
+            into this same section rather than given a new one. Typographic
+            rows with rules, not cards — the same restraint the rest of the
+            site spends on dividers rather than UI chrome. */}
         <motion.div
           initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.28, delay: 0.36 }}
-          className="mt-16 lg:mt-20 pt-14 lg:pt-16 border-t border-border/40"
+          className="mt-16 lg:mt-20 pt-14 lg:pt-16 border-t border-border/40 max-w-3xl mx-auto"
         >
-          <div className="text-center mb-10">
+          <div className="mb-10">
             <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-2.5">
               Not ready to commit to implementation?
             </h3>
-            <p className="text-muted-foreground max-w-lg mx-auto">
+            <p className="text-muted-foreground max-w-lg">
               Start with the decision — a bounded, paid assessment before any
               larger project.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto mb-8">
+          <div className="border-t border-border/40">
             {OFFER_ROUTER.map((item) => {
               const offer = OFFERS[item.offer];
               return (
                 <Link
                   key={item.offer}
-                  to={`/${item.offer}`}
+                  to={offerHref(item.offer, "homepage-router")}
                   onClick={() => trackOfferSelect(item.offer)}
-                  className="group flex items-center gap-3.5 rounded-2xl border border-border/60 bg-card/20 p-4 hover:border-primary/30 hover:bg-card/35 transition-colors duration-200"
+                  className="group flex items-center justify-between gap-4 py-5 border-b border-border/40 hover:border-primary/25 transition-colors duration-200"
                 >
-                  <span className="flex items-center justify-center w-9 h-9 rounded-full border-2 border-primary/20 bg-background flex-shrink-0 group-hover:border-primary/40 transition-colors duration-200">
-                    <item.icon size={15} className="text-primary" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-primary/70">
-                      {offer.category} · ${offer.price}
+                  <span className="min-w-0">
+                    <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-1">
+                      {offer.category}
                     </span>
-                    <span className="block text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">
+                    <span className="block text-base sm:text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">
                       {item.label}
                     </span>
+                  </span>
+                  <span className="flex items-center gap-3 flex-shrink-0">
+                    <span className="text-sm text-muted-foreground/70">${offer.price}</span>
+                    <ArrowRight size={16} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
                   </span>
                 </Link>
               );
             })}
           </div>
 
-          <div className="text-center">
+          <div className="mt-8">
             <Link
               to="/offers"
               className="group inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/80 hover:text-primary transition-colors duration-200"

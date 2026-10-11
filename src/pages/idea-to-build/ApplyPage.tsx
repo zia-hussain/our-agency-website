@@ -4,11 +4,19 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle2, AlertCircle, X } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
-import { getOffer } from "../../config/offers";
+import { getOffer, offerSourceKey } from "../../config/offers";
 import { AutoTextarea, ChoiceButtons, inputBase } from "../offers/formPrimitives";
 import { prefillKey } from "../offers/RecognitionSelector";
 import { submitOfferApplication } from "../../services/offerApplication";
-import { trackEvent } from "../../utils/analytics";
+import { trackOfferApplicationStart, trackOfferApplicationComplete } from "../../utils/analytics";
+
+const readSource = (): string => {
+  try {
+    return window.sessionStorage.getItem(offerSourceKey("idea-to-build")) || "direct";
+  } catch {
+    return "direct";
+  }
+};
 
 const offer = getOffer("idea-to-build")!;
 const DRAFT_KEY = "zumetrix:idea-to-build:draft";
@@ -274,7 +282,7 @@ const IdeaToBuildApplyPage: React.FC = () => {
   const startForm = () => {
     if (!hasStartedRef.current) {
       hasStartedRef.current = true;
-      trackEvent("offer_application_started", { offer: offer.slug });
+      trackOfferApplicationStart(offer.slug, readSource());
     }
     setPhase("form");
   };
@@ -345,7 +353,7 @@ const IdeaToBuildApplyPage: React.FC = () => {
       return;
     }
 
-    trackEvent("offer_application_submitted", { offer: offer.slug });
+    trackOfferApplicationComplete(offer.slug, readSource());
     try {
       window.localStorage.removeItem(DRAFT_KEY);
     } catch {

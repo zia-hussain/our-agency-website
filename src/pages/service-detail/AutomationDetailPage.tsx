@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { offerHref } from "../../config/offers";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Map, Cog, Send, ShieldCheck, Search, RefreshCw, Eye, AlertCircle, UserCheck } from "lucide-react";
 import SEO from "../../components/common/SEO";
@@ -584,7 +585,7 @@ const AutomationDetailPage: React.FC = () => {
             </Link>
           </AnimatedSection>
           <AnimatedSection delay={0.1} className="mt-8">
-            <Link to="/manual-to-system" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+            <Link to={offerHref("manual-to-system", "service:ai-automation-solutions")} className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
               Not sure what's worth automating yet? Try the Manual-to-System Sprint →
             </Link>
           </AnimatedSection>

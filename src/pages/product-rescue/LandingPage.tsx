@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, X, FileCheck, Search, ClipboardCheck } from "lucide-react";
 import SEO from "../../components/common/SEO";
@@ -14,8 +14,8 @@ import CycleBreaker from "./components/CycleBreaker";
 import BodyOfWork from "./components/BodyOfWork";
 import ConsequenceStakes from "./components/ConsequenceStakes";
 import { productRescueFAQs } from "../../data/faqs/product-rescue";
-import { getOffer } from "../../config/offers";
-import { trackRescueOfferViewed } from "../../utils/analytics";
+import { getOffer, offerSourceKey } from "../../config/offers";
+import { trackRescueOfferViewed, trackOfferDetailView } from "../../utils/analytics";
 
 const pageUrl = "https://zumetrix.com/product-rescue";
 const offer = getOffer("product-rescue")!;
@@ -66,8 +66,24 @@ const PROCESS = [
 ];
 
 const ProductRescueLandingPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+
+  // Carries whichever surface sent this visitor here (nav, footer,
+  // homepage router, an article bridge, a case-study bridge...) into
+  // sessionStorage so the Apply page — reached via this page's own
+  // internal links, which never need to repeat the query param — can
+  // still attribute the application without the URL needing to carry it
+  // across that hop (2026-10-18 re-art-direction pass).
   useEffect(() => {
     trackRescueOfferViewed();
+    const source = searchParams.get("from") || "direct";
+    trackOfferDetailView("product-rescue", source);
+    try {
+      window.sessionStorage.setItem(offerSourceKey("product-rescue"), source);
+    } catch {
+      // Private browsing / storage disabled — page still works, just without attribution.
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const structuredData = {

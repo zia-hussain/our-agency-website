@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { offerHref } from "../../config/offers";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Search, FileSearch, GitFork, Wrench, ShieldCheck, Send, X } from "lucide-react";
 import SEO from "../../components/common/SEO";
@@ -116,7 +117,7 @@ const RescueDetailPage: React.FC = () => {
               <span className="text-foreground">We start by understanding what's actually wrong.</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-              <Link to="/product-rescue" className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200 btn-sheen">
+              <Link to={offerHref("product-rescue", "service:product-rescue-stabilization")} className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200 btn-sheen">
                 See the Product Rescue Assessment
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
                   <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
@@ -601,7 +602,7 @@ const RescueDetailPage: React.FC = () => {
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">
             <ClosingGlow />
-            <Link to="/product-rescue">
+            <Link to={offerHref("product-rescue", "service:product-rescue-stabilization")}>
               <motion.button
                 whileHover={{ scale: 1.02, y: -3 }}
                 whileTap={{ scale: 0.98 }}

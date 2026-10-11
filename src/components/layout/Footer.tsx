@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../../config/site";
 import { BRAND_CONTENT } from "../../config/content";
 import { COMPANY, SOCIAL_LINKS } from "../../config/constants.js";
+import { offerHref } from "../../config/offers";
 
 // One object, not two: the closing statement and the credits share a
 // single card, separated only by hairlines — the same discipline as the
@@ -25,9 +26,9 @@ const LINK_GROUPS = [
     label: "Offers",
     links: [
       { name: "All Offers", path: "/offers" },
-      { name: "Idea-to-Build Sprint", path: "/idea-to-build" },
-      { name: "Product Rescue Assessment", path: "/product-rescue" },
-      { name: "Manual-to-System Sprint", path: "/manual-to-system" },
+      { name: "Idea-to-Build Sprint", path: offerHref("idea-to-build", "footer") },
+      { name: "Product Rescue Assessment", path: offerHref("product-rescue", "footer") },
+      { name: "Manual-to-System Sprint", path: offerHref("manual-to-system", "footer") },
     ],
   },
   {

@@ -51,6 +51,19 @@ export const OFFERS: Record<string, OfferDefinition> = {
 
 export const getOffer = (slug: string): OfferDefinition | undefined => OFFERS[slug];
 
+// Commercial-attribution plumbing (2026-10-18 re-art-direction pass). Every
+// link that sends a visitor to an offer landing page carries a short,
+// developer-chosen `source` string (never user input, never PII) as a
+// `?from=` query param. The landing page reads it once on arrival and
+// carries it forward via sessionStorage — the exact mechanism
+// RecognitionSelector.tsx already uses for situationType — so the Apply
+// page can still see it without the URL needing to carry it across the
+// landing->apply hop. This is what lets "homepage router -> FIX -> Apply"
+// or "article:should-you-rescue-or-rebuild-your-saas -> FIX -> Apply" stay
+// reconstructable in analytics without a new attribution system.
+export const offerSourceKey = (slug: string) => `zumetrix:${slug}:source`;
+export const offerHref = (slug: string, source: string) => `/${slug}?from=${encodeURIComponent(source)}`;
+
 // What best describes where you're stuck? — the application's first,
 // branching question (brief Section 5). The value is what's sent to the
 // server and stored in Airtable; the label is what the button shows.

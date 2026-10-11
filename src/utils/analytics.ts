@@ -97,13 +97,24 @@ export const trackHeroVideoPlay = () => trackEvent('hero_video_play');
 export const trackOffersNavClick = () => trackEvent('offers_nav_click');
 export const trackOffersHubView = () => trackEvent('offers_hub_view');
 export const trackOfferSelect = (offer: string) => trackEvent('offer_select', { offer });
+// 'offer_viewed' already existed (fired inline from idea-to-build's and
+// manual-to-system's own LandingPage.tsx, offer param only, no source) —
+// consolidated here rather than introducing a second, competing "page
+// view" event name. product-rescue keeps its separate rescue_offer_viewed
+// too (unchanged, an established funnel of its own); this is additive.
 export const trackOfferDetailView = (offer: string, source?: string) =>
-  trackEvent('offer_detail_view', { offer, source });
+  trackEvent('offer_viewed', { offer, source });
 export const trackOfferApplyClick = (offer: string, source?: string) =>
   trackEvent('offer_apply_click', { offer, source });
+// 'offer_application_started'/'_submitted' already existed too (fired
+// inline from idea-to-build's and manual-to-system's own ApplyPage.tsx,
+// offer param only) — same consolidation as trackOfferDetailView above,
+// now also carrying source. product-rescue's separate rescue_application_
+// started/submitted pair is unchanged and fires alongside this, not
+// replaced by it.
 export const trackOfferApplicationStart = (offer: string, source?: string) =>
-  trackEvent('offer_application_start', { offer, source });
+  trackEvent('offer_application_started', { offer, source });
 export const trackOfferApplicationComplete = (offer: string, source?: string) =>
-  trackEvent('offer_application_complete', { offer, source });
+  trackEvent('offer_application_submitted', { offer, source });
 export const trackContextualOfferCtaClick = (offer: string, source: string) =>
   trackEvent('contextual_offer_cta_click', { offer, source });

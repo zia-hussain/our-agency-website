@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, X, FileCheck, Search, ClipboardCheck } from "lucide-react";
 import SEO from "../../components/common/SEO";
@@ -16,8 +16,8 @@ import ConsequenceStakes from "./components/ConsequenceStakes";
 import AnsweredDirectly from "./components/AnsweredDirectly";
 import RecognitionSelector, { type RecognitionOption } from "../offers/RecognitionSelector";
 import { manualToSystemFAQs } from "../../data/faqs/manual-to-system";
-import { getOffer } from "../../config/offers";
-import { trackEvent } from "../../utils/analytics";
+import { getOffer, offerSourceKey } from "../../config/offers";
+import { trackOfferDetailView } from "../../utils/analytics";
 
 const pageUrl = "https://zumetrix.com/manual-to-system";
 const offer = getOffer("manual-to-system")!;
@@ -107,8 +107,17 @@ const PROCESS = [
 ];
 
 const ManualToSystemLandingPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+
   useEffect(() => {
-    trackEvent("offer_viewed", { offer: offer.slug });
+    const source = searchParams.get("from") || "direct";
+    trackOfferDetailView(offer.slug, source);
+    try {
+      window.sessionStorage.setItem(offerSourceKey(offer.slug), source);
+    } catch {
+      // Private browsing / storage disabled — page still works, just without attribution.
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const structuredData = {
