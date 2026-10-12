@@ -8,23 +8,18 @@ import AnimatedSection from "../components/common/AnimatedSection";
 import SectionEyebrow from "../components/common/SectionEyebrow";
 import ClosingGlow from "../components/common/ClosingGlow";
 import TestimonialFilm from "../components/common/TestimonialFilm";
-import DecisionVisual from "./product-rescue/components/DecisionVisual";
-import V1BoundaryVisual from "./idea-to-build/components/V1BoundaryVisual";
-import WorkflowVisual from "./manual-to-system/components/WorkflowVisual";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { OFFERS, offerHref } from "../config/offers";
 import { trackOfferSelect, trackOffersHubView, trackContextualOfferCtaClick } from "../utils/analytics";
 
-// Second re-art-direction pass (2026-10-18, same day): the first rewrite
-// fixed the SaaS-pricing-card problem but over-corrected into something too
-// thin to do real selling work — three short chapters next to landing pages
-// that each carry a full qualification journey, an interactive sort, real
-// proof, and objection-handling. This pass gives each chapter that same
-// depth: the exact interactive visual its own landing page uses (imported
-// directly, not rebuilt), the real escalation stakes already approved for
-// each offer's own ConsequenceStakes component, and an honest "is/isn't for
-// you" split. Still not a fourth landing page — no application flow lives
-// here, every chapter still exists to route to one.
+// Third pass (2026-10-18, same day): the interactive sort tool
+// (DecisionVisual/V1BoundaryVisual/WorkflowVisual) belongs on the offer's
+// own landing page, where a visitor has already committed to that one
+// offer and has time to explore it — not here, where the job is still
+// recognition across three offers and an exploratory toy just adds noise.
+// Pulled it back out; this page keeps the stakes escalation, the honest
+// qualification split, and real proof (including FIX's actual video), all
+// of which stayed — those were never the complaint.
 const josh = TESTIMONIAL_FILMS.josh;
 
 const CHAPTERS = [
@@ -39,7 +34,6 @@ const CHAPTERS = [
       { label: "Mid-build", state: "A wrong guess costs sprints.", detail: "Code exists for the wrong version. Undoing it means rewriting, not reprioritizing." },
       { label: "After launch", state: "A wrong guess costs trust.", detail: "Early users formed an opinion of the wrong product. That's harder to walk back than code." },
     ],
-    visual: <V1BoundaryVisual />,
     forYou: ["An idea exists, but V1's boundary doesn't yet", "You want the decision made before development spend, not during it", "You're fine building the result with us or another team"],
     notForYou: ["Something's already built and the problem is what's wrong with it — that's Product Rescue", "You already have a validated, specific V1 scope — you need a build, not a decision"],
     deliverable: "Build-Ready V1 Brief",
@@ -59,7 +53,6 @@ const CHAPTERS = [
       { label: "Next fix", state: "A wrong diagnosis costs a sprint.", detail: "Work goes into patching a symptom. If it was the wrong one, that work doesn't transfer." },
       { label: "Next rebuild", state: "A wrong diagnosis costs a rebuild.", detail: "The biggest bet, made on the same unverified read of what's actually wrong." },
     ],
-    visual: <DecisionVisual />,
     forYou: ["A real product already exists — stalled, breaking, inherited, or just not trusted anymore", "You can share access or evidence if accepted (we never ask for credentials up front)", "You want an outside, evidence-based read before spending on another attempt"],
     notForYou: ["Nothing's been built yet — that's a V1 decision, not a rescue. Try Idea-to-Build instead", "You already know exactly what's wrong and just need it fixed — that's implementation, a service, not this assessment"],
     deliverable: "Rescue Brief",
@@ -80,7 +73,6 @@ const CHAPTERS = [
       { label: "This quarter", state: "It becomes \"how we do things.\"", detail: "New hires learn the workaround as normal, not as a problem worth fixing." },
       { label: "Next hire", state: "You hire to cover the workflow.", detail: "Not because the business grew — because a person is now load-bearing infrastructure." },
     ],
-    visual: <WorkflowVisual />,
     forYou: ["A real, recurring workflow already runs today — carried by people, not a system", "You want to know what's actually worth automating before buying another tool", "You're open to some of it staying human — that's a legitimate outcome, not a failure"],
     notForYou: ["Nothing's running manually yet to analyze — there's no workflow to automate", "You already know exactly what to automate and just need it built — that's implementation, a service, not this sprint"],
     deliverable: "Workflow System Plan",
@@ -168,7 +160,7 @@ const OffersPage: React.FC = () => {
               className={`relative border-t border-border/40 ${chapter.emphasis ? "py-24 sm:py-32 bg-card/10" : "py-20 sm:py-28"}`}
             >
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                <div className="grid lg:grid-cols-[1fr_20rem] gap-12 lg:gap-16 items-start">
                   {/* Left: statement, stakes, qualification, CTA */}
                   <div>
                     <AnimatedSection className="flex items-baseline gap-4 mb-5">
@@ -271,12 +263,12 @@ const OffersPage: React.FC = () => {
                     </AnimatedSection>
                   </div>
 
-                  {/* Right: the real interactive visual + integrated proof */}
+                  {/* Right: integrated proof only — asymmetric, not a card,
+                      not a second visual pattern competing with the left
+                      column. */}
                   <div>
-                    {chapter.visual}
-
                     {chapter.offer === "product-rescue" ? (
-                      <AnimatedSection delay={0.1} className="mt-8">
+                      <AnimatedSection delay={0.1} className="lg:border-l lg:border-primary/20 lg:pl-8">
                         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-3">
                           {chapter.proofLabel}
                         </p>
@@ -297,7 +289,7 @@ const OffersPage: React.FC = () => {
                         </Link>
                       </AnimatedSection>
                     ) : (
-                      <AnimatedSection delay={0.1} className="mt-8 border-l border-primary/20 pl-6">
+                      <AnimatedSection delay={0.1} className="lg:border-l lg:border-primary/20 lg:pl-8">
                         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">
                           {chapter.proofLabel}
                         </p>
