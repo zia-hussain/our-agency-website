@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, X } from "lucide-react";
+import { ArrowRight, Check, X, Rocket, Wrench, Workflow } from "lucide-react";
 import { motion } from "framer-motion";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
@@ -12,20 +12,29 @@ import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { OFFERS, offerHref } from "../config/offers";
 import { trackOfferSelect, trackOffersHubView, trackContextualOfferCtaClick } from "../utils/analytics";
 
-// Third pass (2026-10-18, same day): the interactive sort tool
-// (DecisionVisual/V1BoundaryVisual/WorkflowVisual) belongs on the offer's
-// own landing page, where a visitor has already committed to that one
-// offer and has time to explore it — not here, where the job is still
-// recognition across three offers and an exploratory toy just adds noise.
-// Pulled it back out; this page keeps the stakes escalation, the honest
-// qualification split, and real proof (including FIX's actual video), all
-// of which stayed — those were never the complaint.
+// Fourth pass (2026-10-18, same day): the prior pass removed the
+// interactive sort tool but left every chapter as one identical bare-text
+// split block repeated three times — no card surfaces, no imagery, no
+// per-chapter visual distinction. That repetition is exactly what reads
+// as generic/templated. This pass borrows the site's own proven visual
+// language instead of inventing a new one: the bento proof-card treatment
+// from ServicesPreview (icon badge, bordered card, gradient top-line
+// reveal on hover), and the gradient-emphasis stakes cards from each
+// offer's own ConsequenceStakes component — both already "the good UI"
+// the detail pages use. FIX's video stays a standalone object (it already
+// has its own frame/shadow from TestimonialFilm's "proof" variant —
+// boxing it again would double the border). BUILD and AUTOMATE get real
+// case-study imagery in a proof card instead of a thin text sidebar. The
+// third chapter's columns reverse (image left, text right) so the page
+// isn't the same block three times in a row. Copy is untouched — none of
+// it was the complaint.
 const josh = TESTIMONIAL_FILMS.josh;
 
 const CHAPTERS = [
   {
     n: "01",
     offer: "idea-to-build" as const,
+    icon: Rocket,
     label: "Nothing Has Been Built Yet",
     statement: ["You have the idea.", "V1 is still a decision."],
     body: "Before turning assumptions into development cost, decide what the first version actually needs to prove. Not the whole product — the one thing it has to get right to earn the rest.",
@@ -41,10 +50,12 @@ const CHAPTERS = [
     proofLabel: "Liftly",
     proof: "The founder's broader marketplace vision already existed — a logistics platform with a sophisticated variable-pricing engine as the real differentiator. We separated the vision from the first release: V1 shipped the operational core — booking, serviceability, payment, admin — as a complete system on its own. The pricing engine was scoped and documented for a defined V2, not built prematurely into a release that didn't need it yet.",
     proofHref: "/portfolio/liftly-operational-mvp-v1",
+    proofImage: "/project_images/liftly-cover.svg",
   },
   {
     n: "02",
     offer: "product-rescue" as const,
+    icon: Wrench,
     label: "The Product Already Exists",
     statement: ["The code exists.", "Certainty doesn't."],
     body: "Before another sprint or rebuild, find out — from evidence, not a guess — what deserves keeping, fixing, replacing, or leaving alone. Most fixes fail because the diagnosis was wrong, not because the fix was.",
@@ -65,6 +76,7 @@ const CHAPTERS = [
   {
     n: "03",
     offer: "manual-to-system" as const,
+    icon: Workflow,
     label: "The Workflow Already Exists",
     statement: ["The workflow works.", "Your team shouldn't be the integration."],
     body: "Before adding another tool, decide what should disappear, simplify, connect, automate, and remain human. Not everything manual is worth automating — some of it is, and the sprint exists to tell the difference honestly.",
@@ -80,6 +92,7 @@ const CHAPTERS = [
     proofLabel: "Floating Stone Ranch",
     proof: "A beef processor's carcass intake, boxing, and shipping ran on spreadsheets and paper — no single source of truth, no reliable manifest. We centralized it into one Airtable-backed system and automated the status transitions that used to be tracked by hand, with a structure built to support the reporting that comes next.",
     proofHref: "/portfolio/floating-stone-ranch-processor-intake-engine",
+    proofImage: "/project_images/floating-stone.jpg",
   },
 ];
 
@@ -152,21 +165,29 @@ const OffersPage: React.FC = () => {
 
       {/* Three editorial chapters, full depth */}
       <div className="relative bg-background">
-        {CHAPTERS.map((chapter) => {
+        {CHAPTERS.map((chapter, idx) => {
           const offer = OFFERS[chapter.offer];
+          const reversed = idx === 2;
           return (
             <section
               key={chapter.offer}
               className={`relative border-t border-border/40 ${chapter.emphasis ? "py-24 sm:py-32 bg-card/10" : "py-20 sm:py-28"}`}
             >
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid lg:grid-cols-[1fr_20rem] gap-12 lg:gap-16 items-start">
-                  {/* Left: statement, stakes, qualification, CTA */}
-                  <div>
-                    <AnimatedSection className="flex items-baseline gap-4 mb-5">
-                      <span className="text-sm font-mono text-primary/50 tracking-wider">{chapter.n}</span>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/70">
-                        {chapter.label}
+                {/* Header row: statement + proof, asymmetric and alternating
+                    sides per chapter so the page isn't the same block three
+                    times in a row. */}
+                <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start mb-16 lg:mb-20">
+                  <div className={reversed ? "lg:order-2" : ""}>
+                    <AnimatedSection className="flex items-center gap-3.5 mb-6">
+                      <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
+                        <chapter.icon size={18} />
+                      </span>
+                      <span className="flex items-baseline gap-3">
+                        <span className="text-sm font-mono text-primary/50 tracking-wider">{chapter.n}</span>
+                        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/70">
+                          {chapter.label}
+                        </span>
                       </span>
                     </AnimatedSection>
 
@@ -190,55 +211,8 @@ const OffersPage: React.FC = () => {
                       </p>
                     </AnimatedSection>
 
-                    {/* Stakes — the cost of waiting, truth-based, no invented numbers */}
-                    <AnimatedSection delay={0.1} className="mb-9">
-                      <div className="flex gap-4 sm:gap-6">
-                        {chapter.stakes.map((stage) => (
-                          <div key={stage.label} className="flex-1 min-w-0">
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/50 mb-1.5">
-                              {stage.label}
-                            </p>
-                            <p className="text-sm font-semibold text-foreground/90 leading-snug mb-1">{stage.state}</p>
-                            <p className="text-xs text-muted-foreground leading-relaxed hidden sm:block">{stage.detail}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </AnimatedSection>
-
-                    {/* Honest qualification — who this is and isn't for */}
-                    <AnimatedSection delay={0.14} className="mb-8">
-                      <div className="grid sm:grid-cols-2 gap-6">
-                        <div>
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-3">
-                            This is for you if
-                          </p>
-                          <ul className="space-y-2.5">
-                            {chapter.forYou.map((line) => (
-                              <li key={line} className="flex items-start gap-2 text-sm text-foreground/80 leading-snug">
-                                <Check size={14} className="text-primary/70 mt-0.5 flex-shrink-0" />
-                                <span>{line}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60 mb-3">
-                            Not for you if
-                          </p>
-                          <ul className="space-y-2.5">
-                            {chapter.notForYou.map((line) => (
-                              <li key={line} className="flex items-start gap-2 text-sm text-muted-foreground leading-snug">
-                                <X size={14} className="text-muted-foreground/50 mt-0.5 flex-shrink-0" />
-                                <span>{line}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </AnimatedSection>
-
-                    <AnimatedSection delay={0.18}>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-foreground/80 mb-8 pb-8 border-b border-border/40">
+                    <AnimatedSection delay={0.12}>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-foreground/80 mb-8">
                         <span className="font-semibold">{offer.name}</span>
                         <span className="text-muted-foreground/40" aria-hidden="true">·</span>
                         <span className="font-semibold text-foreground">${offer.price}</span>
@@ -249,7 +223,7 @@ const OffersPage: React.FC = () => {
                       </div>
                     </AnimatedSection>
 
-                    <AnimatedSection delay={0.2}>
+                    <AnimatedSection delay={0.16}>
                       <Link
                         to={offerHref(chapter.offer, "offers-hub")}
                         onClick={() => trackOfferSelect(chapter.offer)}
@@ -263,33 +237,19 @@ const OffersPage: React.FC = () => {
                     </AnimatedSection>
                   </div>
 
-                  {/* Right: integrated proof only — asymmetric, not a card,
-                      not a second visual pattern competing with the left
-                      column. */}
-                  <div>
-                    {chapter.offer === "product-rescue" ? (
-                      <AnimatedSection delay={0.1} className="lg:border-l lg:border-primary/20 lg:pl-8">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-3">
-                          {chapter.proofLabel}
-                        </p>
-                        <TestimonialFilm
-                          src={josh.src}
-                          poster={josh.poster}
-                          captionsSrc={josh.captionsSrc}
-                          variant="proof"
-                        />
-                        <p className="text-sm text-muted-foreground leading-relaxed mt-4">{chapter.proof}</p>
-                        <Link
-                          to={chapter.proofHref}
-                          onClick={() => trackContextualOfferCtaClick(chapter.offer, "offers-hub-proof")}
-                          className="group mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200"
-                        >
-                          See the full case study
-                          <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-                        </Link>
-                      </AnimatedSection>
-                    ) : (
-                      <AnimatedSection delay={0.1} className="lg:border-l lg:border-primary/20 lg:pl-8">
+                  {/* Proof — FIX's real video stands alone (it already has
+                      its own frame/shadow); BUILD/AUTOMATE get the bento
+                      proof-card treatment from ServicesPreview, with the
+                      real case-study image, not a thin text sidebar. */}
+                  {chapter.offer === "product-rescue" ? (
+                    <AnimatedSection delay={0.1} className={reversed ? "lg:order-1" : ""}>
+                      <TestimonialFilm
+                        src={josh.src}
+                        poster={josh.poster}
+                        captionsSrc={josh.captionsSrc}
+                        variant="proof"
+                      />
+                      <div className="mt-5">
                         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">
                           {chapter.proofLabel}
                         </p>
@@ -297,15 +257,105 @@ const OffersPage: React.FC = () => {
                         <Link
                           to={chapter.proofHref}
                           onClick={() => trackContextualOfferCtaClick(chapter.offer, "offers-hub-proof")}
-                          className="group inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200"
+                          className="group/link inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200"
                         >
-                          See the case study
-                          <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+                          See the full case study
+                          <ArrowRight size={11} className="group-hover/link:translate-x-0.5 transition-transform duration-200" />
                         </Link>
-                      </AnimatedSection>
-                    )}
-                  </div>
+                      </div>
+                    </AnimatedSection>
+                  ) : (
+                    <AnimatedSection delay={0.1} className={reversed ? "lg:order-1" : ""}>
+                      <div className="group relative rounded-2xl border border-border/70 bg-card/25 backdrop-blur-xl overflow-hidden ring-1 ring-inset ring-white/[0.02] transition-all duration-300 hover:border-primary/30 hover:bg-card/40 hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.5)]">
+                        <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                        <div className="relative w-full overflow-hidden border-b border-border/50">
+                          <img
+                            src={chapter.proofImage}
+                            alt=""
+                            width="1000"
+                            height="625"
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-auto object-contain bg-background"
+                          />
+                        </div>
+                        <div className="p-6 sm:p-7">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">
+                            {chapter.proofLabel}
+                          </p>
+                          <p className="text-sm text-muted-foreground leading-relaxed mb-3">{chapter.proof}</p>
+                          <Link
+                            to={chapter.proofHref}
+                            onClick={() => trackContextualOfferCtaClick(chapter.offer, "offers-hub-proof")}
+                            className="group/link inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200"
+                          >
+                            See the case study
+                            <ArrowRight size={11} className="group-hover/link:translate-x-0.5 transition-transform duration-200" />
+                          </Link>
+                        </div>
+                      </div>
+                    </AnimatedSection>
+                  )}
                 </div>
+
+                {/* Stakes — real cards (the same gradient-emphasis
+                    treatment each offer's own ConsequenceStakes uses),
+                    not a bare text row. */}
+                <AnimatedSection delay={0.1} className="mb-14 lg:mb-16">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-5">
+                    Why Now
+                  </p>
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    {chapter.stakes.map((stage, i) => (
+                      <div
+                        key={stage.label}
+                        className={`h-full rounded-2xl border p-6 ${
+                          i === 2 ? "border-primary/40 bg-gradient-to-b from-primary/[0.08] to-transparent" : "border-border/50 bg-background/40"
+                        }`}
+                      >
+                        <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/50">
+                          {stage.label}
+                        </p>
+                        <p className={`mb-3 text-base sm:text-lg font-bold leading-snug ${i === 2 ? "text-primary" : "text-foreground"}`}>
+                          {stage.state}
+                        </p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{stage.detail}</p>
+                      </div>
+                    ))}
+                  </div>
+                </AnimatedSection>
+
+                {/* Honest qualification — card surfaces, not bare text columns */}
+                <AnimatedSection delay={0.14}>
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div className="rounded-2xl border border-primary/20 bg-primary/[0.04] p-6">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-4">
+                        This is for you if
+                      </p>
+                      <ul className="space-y-3">
+                        {chapter.forYou.map((line) => (
+                          <li key={line} className="flex items-start gap-2.5 text-sm text-foreground/80 leading-snug">
+                            <Check size={14} className="text-primary/70 mt-0.5 flex-shrink-0" />
+                            <span>{line}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="rounded-2xl border border-border/50 bg-background/30 p-6">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60 mb-4">
+                        Not for you if
+                      </p>
+                      <ul className="space-y-3">
+                        {chapter.notForYou.map((line) => (
+                          <li key={line} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-snug">
+                            <X size={14} className="text-muted-foreground/50 mt-0.5 flex-shrink-0" />
+                            <span>{line}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </AnimatedSection>
               </div>
             </section>
           );
@@ -322,20 +372,30 @@ const OffersPage: React.FC = () => {
             </h2>
           </AnimatedSection>
 
-          <div className="space-y-8">
+          <div className="space-y-5">
             {DIFFERENCE.map((row, i) => (
               <AnimatedSection key={i} delay={i * 0.06}>
-                <div className="grid sm:grid-cols-2 gap-5 sm:gap-10 items-start pb-8 border-b border-border/30 last:border-0 last:pb-0">
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/50 mb-2">
-                      The Usual Way
-                    </p>
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="h-full rounded-2xl border border-border/50 bg-background/40 p-6">
+                    <div className="flex items-center gap-2.5 mb-3">
+                      <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-border/60 text-muted-foreground/60">
+                        <X size={12} />
+                      </span>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/50">
+                        The Usual Way
+                      </p>
+                    </div>
                     <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{row.typical}</p>
                   </div>
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-2">
-                      Zumetrix
-                    </p>
+                  <div className="h-full rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/[0.06] to-transparent p-6">
+                    <div className="flex items-center gap-2.5 mb-3">
+                      <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-primary/40 text-primary">
+                        <Check size={12} />
+                      </span>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70">
+                        Zumetrix
+                      </p>
+                    </div>
                     <p className="text-sm sm:text-base text-foreground/90 leading-relaxed font-medium">{row.zumetrix}</p>
                   </div>
                 </div>
