@@ -148,7 +148,7 @@ const CHAPTERS = [
     icon: Rocket,
     label: "Nothing Has Been Built Yet",
     statement: ["You have the idea.", "You don't know what V1 needs yet."],
-    body: "Before turning assumptions into development cost, decide what the first version actually needs to prove. Not the whole product — the one thing it has to get right to earn the rest.",
+    body: "Before turning assumptions into development cost, this decides exactly what your first version needs to prove — not the whole product, the one thing.",
     resultDescription: "A documented decision — what belongs in V1, what doesn't, and why — yours to build with us or hand to any other team.",
     stakes: [
       { label: "Right now", state: "A wrong guess costs a conversation.", detail: "The V1 boundary is still just a decision — changing your mind here costs nothing but time." },
@@ -170,7 +170,7 @@ const CHAPTERS = [
     icon: Wrench,
     label: "The Product Already Exists",
     statement: ["The code exists.", "You don't know what's wrong."],
-    body: "Before another sprint or rebuild, find out — from evidence, not a guess — what deserves keeping, fixing, replacing, or leaving alone. Most fixes fail because the diagnosis was wrong, not because the fix was.",
+    body: "Before another sprint or rebuild, this finds out — from evidence, not a guess — what actually deserves fixing, replacing, or keeping.",
     resultDescription: "An evidence-based read on what to keep, what to fix, and where a rebuild is actually justified — not a guess.",
     stakes: [
       { label: "Right now", state: "A wrong diagnosis costs a conversation.", detail: "Nothing has been built on the guess yet — changing course here costs nothing but time." },
@@ -192,7 +192,7 @@ const CHAPTERS = [
     icon: Workflow,
     label: "The Workflow Already Exists",
     statement: ["The workflow works.", "You don't know what's worth automating."],
-    body: "Before adding another tool, decide what should disappear, simplify, connect, automate, and remain human. Not everything manual is worth automating — some of it is, and the sprint exists to tell the difference honestly.",
+    body: "Before adding another tool, this decides what should actually be automated, simplified, connected, or left for a person to keep doing.",
     resultDescription: "A clear plan for what to remove, simplify, connect, automate, or keep human — a decision, not a tool recommendation.",
     stakes: [
       { label: "This week", state: "One person quietly absorbs it.", detail: "It feels manageable — a few extra minutes per handoff, easy to not notice." },
@@ -294,9 +294,9 @@ const OffersPage: React.FC = () => {
                 {/* Header row: statement + proof, asymmetric and alternating
                     sides per chapter so the page isn't the same block three
                     times in a row. */}
-                <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start mb-16 lg:mb-20">
+                <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start mb-20 lg:mb-28">
                   <div className={reversed ? "lg:order-2" : ""}>
-                    <AnimatedSection className="flex items-center gap-3.5 mb-6">
+                    <AnimatedSection className="flex items-center gap-3.5 mb-8">
                       <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
                         <chapter.icon size={18} />
                       </span>
@@ -310,7 +310,7 @@ const OffersPage: React.FC = () => {
 
                     <AnimatedSection delay={0.04}>
                       <h2
-                        className={`font-bold tracking-tight leading-[1.06] text-foreground mb-6 ${
+                        className={`font-bold tracking-tight leading-[1.06] text-foreground mb-9 ${
                           chapter.emphasis ? "text-4xl sm:text-6xl lg:text-7xl" : "text-4xl sm:text-5xl lg:text-6xl"
                         }`}
                       >
@@ -323,26 +323,27 @@ const OffersPage: React.FC = () => {
                     </AnimatedSection>
 
                     <AnimatedSection delay={0.08}>
-                      <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
+                      <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-10 max-w-lg">
                         {chapter.body}
                       </p>
                     </AnimatedSection>
 
                     {/* What You Get — the result, stated plainly and given
                         real weight, not buried in a metadata chip. This is
-                        the part a cold reader needs to find instantly. */}
-                    <AnimatedSection delay={0.1} className="mb-8">
-                      <div className="rounded-xl border border-primary/25 bg-primary/[0.05] px-5 py-4 max-w-lg">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-1.5">
+                        the part a cold reader needs to find instantly, so
+                        it gets its own clear space, not a tight stack. */}
+                    <AnimatedSection delay={0.1} className="mb-10">
+                      <div className="rounded-xl border border-primary/25 bg-primary/[0.05] px-6 py-5 max-w-lg">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2">
                           What You Get
                         </p>
-                        <p className="text-base font-bold text-foreground mb-1.5">{chapter.deliverable}</p>
+                        <p className="text-lg font-bold text-foreground mb-2">{chapter.deliverable}</p>
                         <p className="text-sm text-muted-foreground leading-relaxed">{chapter.resultDescription}</p>
                       </div>
                     </AnimatedSection>
 
                     <AnimatedSection delay={0.12}>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-foreground/80 mb-8">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-foreground/80 mb-10">
                         <span className="font-semibold">{offer.name}</span>
                         <span className="text-muted-foreground/40" aria-hidden="true">·</span>
                         <span className="font-semibold text-foreground">${offer.price}</span>
@@ -427,22 +428,22 @@ const OffersPage: React.FC = () => {
                 {/* Stakes — real cards (the same gradient-emphasis
                     treatment each offer's own ConsequenceStakes uses),
                     not a bare text row. */}
-                <AnimatedSection delay={0.1} className="mb-14 lg:mb-16">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-5">
+                <AnimatedSection delay={0.1} className="mb-16 lg:mb-20">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-6">
                     Why Now
                   </p>
                   <div className="grid gap-4 sm:grid-cols-3">
                     {chapter.stakes.map((stage, i) => (
                       <div
                         key={stage.label}
-                        className={`h-full rounded-2xl border p-6 ${
+                        className={`h-full rounded-2xl border p-7 ${
                           i === 2 ? "border-primary/40 bg-gradient-to-b from-primary/[0.08] to-transparent" : "border-border/50 bg-background/40"
                         }`}
                       >
-                        <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/50">
+                        <p className="mb-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/50">
                           {stage.label}
                         </p>
-                        <p className={`mb-3 text-base sm:text-lg font-bold leading-snug ${i === 2 ? "text-primary" : "text-foreground"}`}>
+                        <p className={`mb-3.5 text-base sm:text-lg font-bold leading-snug ${i === 2 ? "text-primary" : "text-foreground"}`}>
                           {stage.state}
                         </p>
                         <p className="text-sm text-muted-foreground leading-relaxed">{stage.detail}</p>
@@ -454,11 +455,11 @@ const OffersPage: React.FC = () => {
                 {/* Honest qualification — card surfaces, not bare text columns */}
                 <AnimatedSection delay={0.14}>
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <div className="rounded-2xl border border-primary/20 bg-primary/[0.04] p-6">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-4">
+                    <div className="rounded-2xl border border-primary/20 bg-primary/[0.04] p-7">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-5">
                         This is for you if
                       </p>
-                      <ul className="space-y-3">
+                      <ul className="space-y-3.5">
                         {chapter.forYou.map((line) => (
                           <li key={line} className="flex items-start gap-2.5 text-sm text-foreground/80 leading-snug">
                             <Check size={14} className="text-primary/70 mt-0.5 flex-shrink-0" />
@@ -467,11 +468,11 @@ const OffersPage: React.FC = () => {
                         ))}
                       </ul>
                     </div>
-                    <div className="rounded-2xl border border-border/50 bg-background/30 p-6">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60 mb-4">
+                    <div className="rounded-2xl border border-border/50 bg-background/30 p-7">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60 mb-5">
                         Not for you if
                       </p>
-                      <ul className="space-y-3">
+                      <ul className="space-y-3.5">
                         {chapter.notForYou.map((line) => (
                           <li key={line} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-snug">
                             <X size={14} className="text-muted-foreground/50 mt-0.5 flex-shrink-0" />
