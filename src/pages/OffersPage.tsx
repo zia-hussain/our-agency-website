@@ -1,34 +1,145 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, X, Rocket, Wrench, Workflow } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import SectionEyebrow from "../components/common/SectionEyebrow";
 import ClosingGlow from "../components/common/ClosingGlow";
 import TestimonialFilm from "../components/common/TestimonialFilm";
+import TiltFrame from "../components/portfolio/TiltFrame";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { OFFERS, offerHref } from "../config/offers";
 import { trackOfferSelect, trackOffersHubView, trackContextualOfferCtaClick } from "../utils/analytics";
 
-// Fourth pass (2026-10-18, same day): the prior pass removed the
-// interactive sort tool but left every chapter as one identical bare-text
-// split block repeated three times — no card surfaces, no imagery, no
-// per-chapter visual distinction. That repetition is exactly what reads
-// as generic/templated. This pass borrows the site's own proven visual
-// language instead of inventing a new one: the bento proof-card treatment
-// from ServicesPreview (icon badge, bordered card, gradient top-line
-// reveal on hover), and the gradient-emphasis stakes cards from each
-// offer's own ConsequenceStakes component — both already "the good UI"
-// the detail pages use. FIX's video stays a standalone object (it already
-// has its own frame/shadow from TestimonialFilm's "proof" variant —
-// boxing it again would double the border). BUILD and AUTOMATE get real
-// case-study imagery in a proof card instead of a thin text sidebar. The
-// third chapter's columns reverse (image left, text right) so the page
-// isn't the same block three times in a row. Copy is untouched — none of
-// it was the complaint.
+// Fifth pass (2026-10-18, same day): the prior pass fixed the repetition
+// (cards, imagery, alternating sides) but still read as safe/borrowed —
+// every device was recomposed from elsewhere on the site. This pass adds
+// three things unique to this page: a scroll-synced wayfinder rail (fixed
+// left edge, desktop only — nothing like it exists on any other page),
+// giant parallax-drifting chapter numerals behind each headline for real
+// scale, and a cinematic scroll-linked reveal (scale+opacity tied to
+// scroll position, not a generic viewport fade) on each chapter's proof
+// visual. The static proof images (Liftly, Floating Stone Ranch) now sit
+// in TiltFrame — the site's own cursor-tilt-plus-glare signature
+// component, already used on every case-study hero image, just never
+// brought over here. FIX's video stays bare (TiltFrame's own border would
+// double up against the video frame's existing one). Copy is untouched.
 const josh = TESTIMONIAL_FILMS.josh;
+
+// Fixed left-edge rail, desktop only — IntersectionObserver marks which
+// chapter is centered in the viewport and fills the connecting line up to
+// it. Doubles as in-page navigation (click a number, jump to that chapter).
+const ChapterRail: React.FC<{ chapters: { n: string; offer: string }[] }> = ({ chapters }) => {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const sections = chapters
+      .map((c) => document.getElementById(`chapter-${c.offer}`))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = sections.indexOf(entry.target as HTMLElement);
+            if (idx !== -1) setActive(idx);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [chapters]);
+
+  return (
+    <div
+      aria-hidden="true"
+      className="hidden xl:flex fixed left-8 top-1/2 -translate-y-1/2 z-30 flex-col items-start"
+    >
+      {chapters.map((c, i) => {
+        const offer = OFFERS[c.offer];
+        return (
+          <React.Fragment key={c.offer}>
+            {i > 0 && (
+              <span className="relative h-10 w-px ml-[13px] overflow-hidden bg-border/30">
+                <span
+                  className="absolute inset-x-0 top-0 bg-primary transition-[height] duration-500 ease-out"
+                  style={{ height: active >= i ? "100%" : "0%" }}
+                />
+              </span>
+            )}
+            <button
+              type="button"
+              tabIndex={-1}
+              onClick={() =>
+                document.getElementById(`chapter-${c.offer}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+              className="group flex items-center gap-3 py-1.5"
+            >
+              <span
+                className={`flex h-[27px] w-[27px] flex-shrink-0 items-center justify-center rounded-full border font-mono text-[10px] transition-colors duration-300 ${
+                  active === i
+                    ? "border-primary text-primary bg-primary/10"
+                    : "border-border/50 text-muted-foreground/50 group-hover:border-primary/40 group-hover:text-muted-foreground/80"
+                }`}
+              >
+                {c.n}
+              </span>
+              <span
+                className={`text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ${
+                  active === i ? "text-foreground/90" : "text-muted-foreground/40 group-hover:text-muted-foreground/70"
+                }`}
+              >
+                {offer.category}
+              </span>
+            </button>
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+};
+
+// A huge, low-opacity numeral behind each chapter's headline, drifting
+// slightly as the section scrolls past — scale and real motion, not a
+// decoration pasted on top.
+const GhostNumeral: React.FC<{ n: string }> = ({ n }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [-50, 50]);
+
+  return (
+    <div ref={ref} aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden z-0">
+      <motion.span
+        style={{ y }}
+        className="absolute -right-2 sm:right-2 lg:right-6 top-4 sm:top-8 text-[8rem] sm:text-[13rem] lg:text-[17rem] font-black leading-none tracking-tighter text-primary/[0.05] select-none"
+      >
+        {n}
+      </motion.span>
+    </div>
+  );
+};
+
+// Cinematic reveal for the proof visual — scale and opacity tied to actual
+// scroll position as the chapter comes into view, not a generic fade.
+const ScrollRevealVisual: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.92", "start 0.4"] });
+  const scale = useTransform(scrollYProgress, [0, 1], reduceMotion ? [1, 1] : [0.94, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  return (
+    <motion.div ref={ref} style={{ scale, opacity }} className={className}>
+      {children}
+    </motion.div>
+  );
+};
 
 const CHAPTERS = [
   {
@@ -164,6 +275,7 @@ const OffersPage: React.FC = () => {
       </section>
 
       {/* Three editorial chapters, full depth */}
+      <ChapterRail chapters={CHAPTERS} />
       <div className="relative bg-background">
         {CHAPTERS.map((chapter, idx) => {
           const offer = OFFERS[chapter.offer];
@@ -171,9 +283,11 @@ const OffersPage: React.FC = () => {
           return (
             <section
               key={chapter.offer}
+              id={`chapter-${chapter.offer}`}
               className={`relative border-t border-border/40 ${chapter.emphasis ? "py-24 sm:py-32 bg-card/10" : "py-20 sm:py-28"}`}
             >
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <GhostNumeral n={chapter.n} />
+              <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header row: statement + proof, asymmetric and alternating
                     sides per chapter so the page isn't the same block three
                     times in a row. */}
@@ -193,8 +307,8 @@ const OffersPage: React.FC = () => {
 
                     <AnimatedSection delay={0.04}>
                       <h2
-                        className={`font-bold tracking-tight leading-[1.08] text-foreground mb-6 ${
-                          chapter.emphasis ? "text-3xl sm:text-5xl lg:text-6xl" : "text-3xl sm:text-4xl lg:text-5xl"
+                        className={`font-bold tracking-tight leading-[1.06] text-foreground mb-6 ${
+                          chapter.emphasis ? "text-4xl sm:text-6xl lg:text-7xl" : "text-4xl sm:text-5xl lg:text-6xl"
                         }`}
                       >
                         {chapter.statement.map((line, i) => (
@@ -237,12 +351,13 @@ const OffersPage: React.FC = () => {
                     </AnimatedSection>
                   </div>
 
-                  {/* Proof — FIX's real video stands alone (it already has
-                      its own frame/shadow); BUILD/AUTOMATE get the bento
-                      proof-card treatment from ServicesPreview, with the
-                      real case-study image, not a thin text sidebar. */}
+                  {/* Proof — both branches get the cinematic scroll
+                      reveal. FIX's video stands alone (its own frame
+                      already exists); BUILD/AUTOMATE wrap the real
+                      case-study image in TiltFrame, the site's own
+                      cursor-tilt signature from the case-study pages. */}
                   {chapter.offer === "product-rescue" ? (
-                    <AnimatedSection delay={0.1} className={reversed ? "lg:order-1" : ""}>
+                    <ScrollRevealVisual className={reversed ? "lg:order-1" : ""}>
                       <TestimonialFilm
                         src={josh.src}
                         poster={josh.poster}
@@ -263,38 +378,35 @@ const OffersPage: React.FC = () => {
                           <ArrowRight size={11} className="group-hover/link:translate-x-0.5 transition-transform duration-200" />
                         </Link>
                       </div>
-                    </AnimatedSection>
+                    </ScrollRevealVisual>
                   ) : (
-                    <AnimatedSection delay={0.1} className={reversed ? "lg:order-1" : ""}>
-                      <div className="group relative rounded-2xl border border-border/70 bg-card/25 backdrop-blur-xl overflow-hidden ring-1 ring-inset ring-white/[0.02] transition-all duration-300 hover:border-primary/30 hover:bg-card/40 hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.5)]">
-                        <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                        <div className="relative w-full overflow-hidden border-b border-border/50">
-                          <img
-                            src={chapter.proofImage}
-                            alt=""
-                            width="1000"
-                            height="625"
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-auto object-contain bg-background"
-                          />
-                        </div>
-                        <div className="p-6 sm:p-7">
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">
-                            {chapter.proofLabel}
-                          </p>
-                          <p className="text-sm text-muted-foreground leading-relaxed mb-3">{chapter.proof}</p>
-                          <Link
-                            to={chapter.proofHref}
-                            onClick={() => trackContextualOfferCtaClick(chapter.offer, "offers-hub-proof")}
-                            className="group/link inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200"
-                          >
-                            See the case study
-                            <ArrowRight size={11} className="group-hover/link:translate-x-0.5 transition-transform duration-200" />
-                          </Link>
-                        </div>
+                    <ScrollRevealVisual className={reversed ? "lg:order-1" : ""}>
+                      <TiltFrame>
+                        <img
+                          src={chapter.proofImage}
+                          alt=""
+                          width="1000"
+                          height="625"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-auto object-contain bg-background"
+                        />
+                      </TiltFrame>
+                      <div className="mt-5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">
+                          {chapter.proofLabel}
+                        </p>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-3">{chapter.proof}</p>
+                        <Link
+                          to={chapter.proofHref}
+                          onClick={() => trackContextualOfferCtaClick(chapter.offer, "offers-hub-proof")}
+                          className="group/link inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200"
+                        >
+                          See the case study
+                          <ArrowRight size={11} className="group-hover/link:translate-x-0.5 transition-transform duration-200" />
+                        </Link>
                       </div>
-                    </AnimatedSection>
+                    </ScrollRevealVisual>
                   )}
                 </div>
 
