@@ -147,8 +147,9 @@ const CHAPTERS = [
     offer: "idea-to-build" as const,
     icon: Rocket,
     label: "Nothing Has Been Built Yet",
-    statement: ["You have the idea.", "V1 is still a decision."],
+    statement: ["You have the idea.", "You don't know what V1 needs yet."],
     body: "Before turning assumptions into development cost, decide what the first version actually needs to prove. Not the whole product — the one thing it has to get right to earn the rest.",
+    resultDescription: "A documented decision — what belongs in V1, what doesn't, and why — yours to build with us or hand to any other team.",
     stakes: [
       { label: "Right now", state: "A wrong guess costs a conversation.", detail: "The V1 boundary is still just a decision — changing your mind here costs nothing but time." },
       { label: "Mid-build", state: "A wrong guess costs sprints.", detail: "Code exists for the wrong version. Undoing it means rewriting, not reprioritizing." },
@@ -168,8 +169,9 @@ const CHAPTERS = [
     offer: "product-rescue" as const,
     icon: Wrench,
     label: "The Product Already Exists",
-    statement: ["The code exists.", "Certainty doesn't."],
+    statement: ["The code exists.", "You don't know what's wrong."],
     body: "Before another sprint or rebuild, find out — from evidence, not a guess — what deserves keeping, fixing, replacing, or leaving alone. Most fixes fail because the diagnosis was wrong, not because the fix was.",
+    resultDescription: "An evidence-based read on what to keep, what to fix, and where a rebuild is actually justified — not a guess.",
     stakes: [
       { label: "Right now", state: "A wrong diagnosis costs a conversation.", detail: "Nothing has been built on the guess yet — changing course here costs nothing but time." },
       { label: "Next fix", state: "A wrong diagnosis costs a sprint.", detail: "Work goes into patching a symptom. If it was the wrong one, that work doesn't transfer." },
@@ -189,8 +191,9 @@ const CHAPTERS = [
     offer: "manual-to-system" as const,
     icon: Workflow,
     label: "The Workflow Already Exists",
-    statement: ["The workflow works.", "Your team shouldn't be the integration."],
+    statement: ["The workflow works.", "You don't know what's worth automating."],
     body: "Before adding another tool, decide what should disappear, simplify, connect, automate, and remain human. Not everything manual is worth automating — some of it is, and the sprint exists to tell the difference honestly.",
+    resultDescription: "A clear plan for what to remove, simplify, connect, automate, or keep human — a decision, not a tool recommendation.",
     stakes: [
       { label: "This week", state: "One person quietly absorbs it.", detail: "It feels manageable — a few extra minutes per handoff, easy to not notice." },
       { label: "This quarter", state: "It becomes \"how we do things.\"", detail: "New hires learn the workaround as normal, not as a problem worth fixing." },
@@ -325,6 +328,19 @@ const OffersPage: React.FC = () => {
                       </p>
                     </AnimatedSection>
 
+                    {/* What You Get — the result, stated plainly and given
+                        real weight, not buried in a metadata chip. This is
+                        the part a cold reader needs to find instantly. */}
+                    <AnimatedSection delay={0.1} className="mb-8">
+                      <div className="rounded-xl border border-primary/25 bg-primary/[0.05] px-5 py-4 max-w-lg">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-1.5">
+                          What You Get
+                        </p>
+                        <p className="text-base font-bold text-foreground mb-1.5">{chapter.deliverable}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{chapter.resultDescription}</p>
+                      </div>
+                    </AnimatedSection>
+
                     <AnimatedSection delay={0.12}>
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-foreground/80 mb-8">
                         <span className="font-semibold">{offer.name}</span>
@@ -332,8 +348,6 @@ const OffersPage: React.FC = () => {
                         <span className="font-semibold text-foreground">${offer.price}</span>
                         <span className="text-muted-foreground/40" aria-hidden="true">·</span>
                         <span className="text-muted-foreground">5 business days</span>
-                        <span className="text-muted-foreground/40" aria-hidden="true">·</span>
-                        <span className="text-muted-foreground">{chapter.deliverable}</span>
                       </div>
                     </AnimatedSection>
 
