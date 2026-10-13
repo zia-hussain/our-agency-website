@@ -15,15 +15,17 @@ import { trackOfferSelect, trackOffersHubView, trackContextualOfferCtaClick } fr
 
 // Editorial "final editing" pass (2026-10-19): the architecture, visual
 // language and chapter structure below are approved and deliberately
-// undisturbed. Two judgment calls applied here: (1) chapter headlines'
-// second line reframed from "You don't know X" to "X isn't clear yet" —
-// same clarity, the uncertainty now sits in the decision, not read as a
-// jab at the buyer's competence; (2) the standalone "Different decision.
+// undisturbed. Changes applied: (1) chapter headlines' second line
+// reframed from "You don't know X" to "X isn't clear yet" — same
+// clarity, the uncertainty now sits in the decision, not read as a jab
+// at the buyer's competence; (2) the standalone "Different decision.
 // Same engagement model." facts strip was removed — every fact in it
-// (5 business days, concrete deliverable, implementation separate, usable
-// elsewhere) was already stated either in the "How This Is Different"
-// comparison cards directly above it or in each chapter's own metadata
-// row, so it was pure repetition, not new information.
+// was already stated in the "How This Is Different" comparison cards or
+// each chapter's own metadata row; (3) the GhostNumeral component (a
+// giant low-opacity parallax numeral behind each headline) was removed —
+// the chapter number, label, and ChapterRail already communicate
+// sequence and orientation, so a third simultaneous wayfinding/
+// decorative device didn't earn its place under the restraint test.
 const josh = TESTIMONIAL_FILMS.josh;
 
 // Fixed left-edge rail, desktop only — IntersectionObserver marks which
@@ -98,27 +100,6 @@ const ChapterRail: React.FC<{ chapters: { n: string; offer: string }[] }> = ({ c
           </React.Fragment>
         );
       })}
-    </div>
-  );
-};
-
-// A huge, low-opacity numeral behind each chapter's headline, drifting
-// slightly as the section scrolls past — scale and real motion, not a
-// decoration pasted on top.
-const GhostNumeral: React.FC<{ n: string }> = ({ n }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [-50, 50]);
-
-  return (
-    <div ref={ref} aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-      <motion.span
-        style={{ y }}
-        className="absolute -right-2 sm:right-2 lg:right-6 top-4 sm:top-8 text-[8rem] sm:text-[13rem] lg:text-[17rem] font-black leading-none tracking-tighter text-primary/[0.05] select-none"
-      >
-        {n}
-      </motion.span>
     </div>
   );
 };
@@ -280,8 +261,7 @@ const OffersPage: React.FC = () => {
               id={`chapter-${chapter.offer}`}
               className={`relative border-t border-border/40 ${chapter.emphasis ? "py-24 sm:py-32 bg-card/10" : "py-20 sm:py-28"}`}
             >
-              <GhostNumeral n={chapter.n} />
-              <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header row: statement + proof, asymmetric and alternating
                     sides per chapter so the page isn't the same block three
                     times in a row. */}
