@@ -13,19 +13,17 @@ import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { OFFERS, offerHref } from "../config/offers";
 import { trackOfferSelect, trackOffersHubView, trackContextualOfferCtaClick } from "../utils/analytics";
 
-// Fifth pass (2026-10-18, same day): the prior pass fixed the repetition
-// (cards, imagery, alternating sides) but still read as safe/borrowed —
-// every device was recomposed from elsewhere on the site. This pass adds
-// three things unique to this page: a scroll-synced wayfinder rail (fixed
-// left edge, desktop only — nothing like it exists on any other page),
-// giant parallax-drifting chapter numerals behind each headline for real
-// scale, and a cinematic scroll-linked reveal (scale+opacity tied to
-// scroll position, not a generic viewport fade) on each chapter's proof
-// visual. The static proof images (Liftly, Floating Stone Ranch) now sit
-// in TiltFrame — the site's own cursor-tilt-plus-glare signature
-// component, already used on every case-study hero image, just never
-// brought over here. FIX's video stays bare (TiltFrame's own border would
-// double up against the video frame's existing one). Copy is untouched.
+// Editorial "final editing" pass (2026-10-19): the architecture, visual
+// language and chapter structure below are approved and deliberately
+// undisturbed. Two judgment calls applied here: (1) chapter headlines'
+// second line reframed from "You don't know X" to "X isn't clear yet" —
+// same clarity, the uncertainty now sits in the decision, not read as a
+// jab at the buyer's competence; (2) the standalone "Different decision.
+// Same engagement model." facts strip was removed — every fact in it
+// (5 business days, concrete deliverable, implementation separate, usable
+// elsewhere) was already stated either in the "How This Is Different"
+// comparison cards directly above it or in each chapter's own metadata
+// row, so it was pure repetition, not new information.
 const josh = TESTIMONIAL_FILMS.josh;
 
 // Fixed left-edge rail, desktop only — IntersectionObserver marks which
@@ -147,7 +145,7 @@ const CHAPTERS = [
     offer: "idea-to-build" as const,
     icon: Rocket,
     label: "Nothing Has Been Built Yet",
-    statement: ["You have the idea.", "You don't know what V1 needs yet."],
+    statement: ["You have the idea.", "V1 isn't clear yet."],
     body: "Before turning assumptions into development cost, this decides exactly what your first version needs to prove — not the whole product, the one thing.",
     resultDescription: "A documented decision — what belongs in V1, what doesn't, and why — yours to build with us or hand to any other team.",
     stakes: [
@@ -169,7 +167,7 @@ const CHAPTERS = [
     offer: "product-rescue" as const,
     icon: Wrench,
     label: "The Product Already Exists",
-    statement: ["The code exists.", "You don't know what's wrong."],
+    statement: ["The code exists.", "The next move isn't clear."],
     body: "Before another sprint or rebuild, this finds out — from evidence, not a guess — what actually deserves fixing, replacing, or keeping.",
     resultDescription: "An evidence-based read on what to keep, what to fix, and where a rebuild is actually justified — not a guess.",
     stakes: [
@@ -191,7 +189,7 @@ const CHAPTERS = [
     offer: "manual-to-system" as const,
     icon: Workflow,
     label: "The Workflow Already Exists",
-    statement: ["The workflow works.", "You don't know what's worth automating."],
+    statement: ["The workflow works.", "What deserves automation isn't clear."],
     body: "Before adding another tool, this decides what should actually be automated, simplified, connected, or left for a person to keep doing.",
     resultDescription: "A clear plan for what to remove, simplify, connect, automate, or keep human — a decision, not a tool recommendation.",
     stakes: [
@@ -223,13 +221,6 @@ const DIFFERENCE = [
     typical: "If it doesn't work out, you've paid for partial work and still don't have clarity.",
     zumetrix: "You keep the Brief either way — usable with us or with anyone else. Nothing about it depends on hiring us next.",
   },
-];
-
-const FACTS = [
-  "5 business days",
-  "A concrete decision artifact",
-  "Implementation is separate",
-  "Use the output with us or another team",
 ];
 
 const OffersPage: React.FC = () => {
@@ -532,29 +523,8 @@ const OffersPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Engagement model — four facts, not a comparison table */}
-      <section className="relative bg-background py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <AnimatedSection>
-            <p className="text-lg sm:text-xl font-bold text-foreground tracking-tight mb-8">
-              Different decision. Same engagement model.
-            </p>
-          </AnimatedSection>
-          <AnimatedSection delay={0.05}>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
-              {FACTS.map((fact, i) => (
-                <React.Fragment key={fact}>
-                  {i > 0 && <span className="hidden sm:inline text-muted-foreground/30" aria-hidden="true">·</span>}
-                  <span>{fact}</span>
-                </React.Fragment>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* Close — thinking-partner positioning, not a generic sales CTA */}
-      <section className="relative bg-background pb-24 sm:pb-32">
+      <section className="relative bg-background pt-16 sm:pt-20 pb-24 sm:pb-32">
         <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-5">
