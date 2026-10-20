@@ -20,8 +20,9 @@ import {
   FileText,
   CheckCircle,
 } from "lucide-react";
-import { trackCTAClick, trackFormSubmit } from "../utils/analytics";
+import { trackCTAClick, trackFormSubmit, trackCalendlyClick } from "../utils/analytics";
 import { routeLead } from "../services/leadRouter";
+import { buildCalendlyUrl } from "../utils/attribution";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -45,6 +46,7 @@ const ContactPage: React.FC = () => {
     email: "",
     company: "",
     projectType: "",
+    situation: "",
     budget: "",
     timeline: "",
     message: "",
@@ -111,6 +113,7 @@ const ContactPage: React.FC = () => {
         hpToken: hpToken || undefined,
         metadata: {
           projectType: formData.projectType,
+          situation: formData.situation || undefined,
           budget: formData.budget,
           timeline: formData.timeline,
           marketingConsent: formData.marketingConsent,
@@ -130,6 +133,7 @@ const ContactPage: React.FC = () => {
         email: "",
         company: "",
         projectType: "",
+        situation: "",
         budget: "",
         timeline: "",
         message: "",
@@ -146,8 +150,8 @@ const ContactPage: React.FC = () => {
   };
 
   const handleScheduleCall = () => {
-    trackCTAClick("Schedule Consultation", "/contact");
-    window.open(SITE_CONFIG.contact.calendlyUrl, "_blank");
+    trackCalendlyClick("contact-quick-actions");
+    window.open(buildCalendlyUrl("contact-quick-actions"), "_blank", "noopener");
   };
 
   // Was "Get a project timeline estimate" opening the exact same Calendly
@@ -196,6 +200,17 @@ const ContactPage: React.FC = () => {
     "Mobile App Development",
     "AI Automation & Workflows",
     "Product Rescue & Stabilization",
+  ];
+
+  // Phase 1 (Truth & Measurement): one additive, optional question so every
+  // lead carries situation context (what exists today) alongside the service
+  // it was filed under. Nothing else about this form's structure changes
+  // here — budget bands and the service list are Phase 5 decisions.
+  const situations = [
+    "Nothing is built yet",
+    "A product exists (live, stuck, or inherited)",
+    "A workflow runs on people and spreadsheets",
+    "Not sure",
   ];
 
   const budgetRanges = [
@@ -428,6 +443,29 @@ const ContactPage: React.FC = () => {
                         {services.map((service) => (
                           <option key={service} value={service}>
                             {service}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="situation"
+                        className="block text-[13px] font-medium text-muted-foreground mb-1.5"
+                      >
+                        What exists today?
+                      </label>
+                      <select
+                        id="situation"
+                        name="situation"
+                        value={formData.situation}
+                        onChange={handleInputChange}
+                        className="input-premium w-full h-12 px-4 rounded-xl text-foreground"
+                      >
+                        <option value="">Optional — pick the closest</option>
+                        {situations.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
                           </option>
                         ))}
                       </select>

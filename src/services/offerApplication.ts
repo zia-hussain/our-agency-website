@@ -2,6 +2,9 @@
 // leadRouter.ts's shape exactly (same attribution capture, same error
 // contract) so the two systems stay recognizable as one pattern rather than
 // two unrelated ones.
+import { getFirstTouch } from "../utils/attribution";
+import { offerSourceKey } from "../config/offers";
+
 export interface OfferApplicationData {
   offerSlug: string;
   name: string;
@@ -29,20 +32,32 @@ export interface OfferApplicationResponse {
   warnings?: string[];
 }
 
-const getAttribution = () => {
+const getAttribution = (offerSlug: string) => {
   if (typeof window === "undefined") return {};
   const params = new URLSearchParams(window.location.search);
+  const first = getFirstTouch();
+  // The offer landing page stores its `?from=` value under offerSourceKey
+  // (already used for GA4 events); Airtable never received it until now.
+  let offerSource: string | null = null;
+  try {
+    offerSource = window.sessionStorage.getItem(offerSourceKey(offerSlug));
+  } catch {
+    offerSource = null;
+  }
   return {
-    utmSource: params.get("utm_source") || undefined,
-    utmMedium: params.get("utm_medium") || undefined,
-    utmCampaign: params.get("utm_campaign") || undefined,
+    utmSource: params.get("utm_source") || first.utmSource || undefined,
+    utmMedium: params.get("utm_medium") || first.utmMedium || undefined,
+    utmCampaign: params.get("utm_campaign") || first.utmCampaign || undefined,
+    entrySource: (offerSource && offerSource !== "direct" ? offerSource : undefined) || first.entrySource || undefined,
+    entryPage: first.entryPage || undefined,
+    referrerHost: first.referrerHost || undefined,
   };
 };
 
 export async function submitOfferApplication(data: OfferApplicationData): Promise<OfferApplicationResponse> {
   const enriched = {
     ...data,
-    ...getAttribution(),
+    ...getAttribution(data.offerSlug),
     source: "Website",
     pageUrl: typeof window !== "undefined" ? window.location.href : "",
     referrer: typeof document !== "undefined" ? document.referrer || "direct" : "direct",

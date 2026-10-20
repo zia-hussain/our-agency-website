@@ -161,6 +161,9 @@ export default async function handler(req, res) {
       utmSource: clampText(body.utmSource, 80),
       utmMedium: clampText(body.utmMedium, 80),
       utmCampaign: clampText(body.utmCampaign, 120),
+      entrySource: clampText(body.entrySource, 80),
+      entryPage: clampText(body.entryPage, 200),
+      referrerHost: clampText(body.referrerHost, 120),
       marketingConsent: Boolean(body.marketingConsent),
     };
 
@@ -196,6 +199,9 @@ export default async function handler(req, res) {
       "UTM Source": application.utmSource,
       "UTM Medium": application.utmMedium,
       "UTM Campaign": application.utmCampaign,
+      "Entry Source": application.entrySource,
+      "Entry Page": application.entryPage,
+      "Referrer Host": application.referrerHost,
       "Marketing Consent": application.marketingConsent,
       "Notion Sync Status": "Not Attempted",
     });

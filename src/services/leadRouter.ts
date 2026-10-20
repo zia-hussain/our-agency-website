@@ -1,4 +1,5 @@
 import { trackFormSubmit } from '../utils/analytics';
+import { getFirstTouch } from '../utils/attribution';
 
 export interface LeadData {
   name?: string;
@@ -30,13 +31,19 @@ export interface LeadResponse {
 const getAttribution = () => {
   if (typeof window === 'undefined') return {};
 
+  // Current-page UTMs win; first-touch (captured on the session's landing
+  // page) fills whatever the current URL no longer carries.
   const params = new URLSearchParams(window.location.search);
+  const first = getFirstTouch();
   return {
-    utmSource: params.get('utm_source') || undefined,
-    utmMedium: params.get('utm_medium') || undefined,
-    utmCampaign: params.get('utm_campaign') || undefined,
-    utmContent: params.get('utm_content') || undefined,
-    utmTerm: params.get('utm_term') || undefined,
+    utmSource: params.get('utm_source') || first.utmSource || undefined,
+    utmMedium: params.get('utm_medium') || first.utmMedium || undefined,
+    utmCampaign: params.get('utm_campaign') || first.utmCampaign || undefined,
+    utmContent: params.get('utm_content') || first.utmContent || undefined,
+    utmTerm: params.get('utm_term') || first.utmTerm || undefined,
+    entrySource: params.get('from') || first.entrySource || undefined,
+    entryPage: first.entryPage || undefined,
+    referrerHost: first.referrerHost || undefined,
   };
 };
 

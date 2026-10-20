@@ -19,6 +19,11 @@ export const trackFormSubmit = (formType: string) => {
   });
 };
 
+// Phase 1 (2026-10-20): one event for every website Calendly click, with the
+// same `source` value that buildCalendlyUrl() puts in utm_content, so a GA4
+// click and a Calendly booking can be matched by page/section.
+export const trackCalendlyClick = (source: string) => trackEvent('calendly_click', { source });
+
 export const trackCalendlyBooking = () => {
   trackEvent('schedule_consultation', {
     method: 'calendly'
@@ -114,6 +119,11 @@ export const trackOfferApplyClick = (offer: string, source?: string) =>
 // replaced by it.
 export const trackOfferApplicationStart = (offer: string, source?: string) =>
   trackEvent('offer_application_started', { offer, source });
+// Phase 1: which step an applicant reached (1-based index of the step they
+// just ADVANCED TO). Lets step-4 abandonment be measured without storing
+// any answer. Fires once per forward move; never on back.
+export const trackOfferApplicationStep = (offer: string, step: number) =>
+  trackEvent('offer_application_step', { offer, step });
 export const trackOfferApplicationComplete = (offer: string, source?: string) =>
   trackEvent('offer_application_submitted', { offer, source });
 export const trackContextualOfferCtaClick = (offer: string, source: string) =>

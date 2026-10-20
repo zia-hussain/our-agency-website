@@ -5,6 +5,7 @@ const GA_TAG_ID = "G-PRSP59FL20";
 declare global {
   interface Window {
     __zumetrixAnalyticsScheduled?: boolean;
+    __zumetrixGaConfigured?: boolean;
   }
 }
 
@@ -28,6 +29,23 @@ const Analytics = () => {
         window.dataLayer.push(args);
       };
 
+    // Phase 1 measurement fix: queue `js` + `config` NOW, before any event.
+    // gtag.js replays dataLayer in order and silently drops events that
+    // precede the first `config` for their measurement ID. App.tsx fires the
+    // landing page_view on mount — which ran BEFORE the config call below
+    // used to be issued (it was inside loadAnalytics, after the deferred
+    // script load) — so the first page_view of every session, plus any
+    // early offer/hub view, was never sent. Verified on production
+    // 2026-10-20: dataLayer order was [page_view, offers_hub_view, js,
+    // config]. Loading the script itself stays deferred for performance.
+    if (!window.__zumetrixGaConfigured) {
+      window.__zumetrixGaConfigured = true;
+      window.gtag("js", new Date());
+      // send_page_view: false — App.tsx's router-aware effect fires the
+      // manual page_view for every route (initial load included).
+      window.gtag("config", GA_TAG_ID, { send_page_view: false });
+    }
+
     const triggerEvents: (keyof WindowEventMap)[] = ["pointerdown", "keydown", "touchstart", "scroll"];
 
     const cleanupTriggers = () => {
@@ -42,15 +60,12 @@ const Analytics = () => {
       script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TAG_ID}`;
       script.dataset.zumetrixGa = "true";
       document.head.appendChild(script);
-      window.gtag("js", new Date());
-      // send_page_view: false — App.tsx's router-aware effect fires the
-      // manual page_view for every route (initial load included) with the
-      // exact pathname/location we want; letting GA4's own config call also
-      // auto-fire one would double-count the first pageview of every visit.
-      window.gtag("config", GA_TAG_ID, { send_page_view: false });
     }
 
-    const timeoutId = window.setTimeout(loadAnalytics, 8000);
+    // Was an 8s timer: a visitor who read the hero and left at 7s was never
+    // measured at all (bounces are data). Still deferred behind first
+    // interaction / idle so it never competes with the initial paint.
+    const timeoutId = window.setTimeout(loadAnalytics, 3000);
     triggerEvents.forEach((eventName) =>
       window.addEventListener(eventName, loadAnalytics, { once: true, passive: true }),
     );

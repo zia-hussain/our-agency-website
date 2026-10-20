@@ -1466,6 +1466,9 @@ export const projectCategories = [
   { id: "mobile", label: "Mobile Apps", count: projects.filter(p => p.type === "mobile").length },
   { id: "enterprise", label: "Enterprise Solutions", count: projects.filter(p => p.type === "enterprise").length },
   { id: "mvp", label: "MVP Development", count: projects.filter(p => p.type === "mvp").length },
+  // Four automation projects had no filter of their own, so the filter
+  // counts summed to fewer than the archive (Phase 1 fact-consistency fix).
+  { id: "automation", label: "Automation Systems", count: projects.filter(p => p.type === "automation").length },
   { id: "rescue", label: "Product Rescue", count: projects.filter(p => p.type === "rescue").length }
 ];
 

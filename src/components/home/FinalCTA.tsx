@@ -4,6 +4,8 @@ import { Calendar, Mail, ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";
+import { buildCalendlyUrl } from "../../utils/attribution";
+import { trackCalendlyClick } from "../../utils/analytics";
 
 const FinalCTA: React.FC = () => {
   const finalCTA = BRAND_CONTENT.finalCTA;
@@ -55,7 +57,8 @@ const FinalCTA: React.FC = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center items-center mb-8 sm:mb-12 lg:mb-16 px-4">
             <motion.a
-              href={finalCTA.primaryCTA.link}
+              href={buildCalendlyUrl("home-final-cta")}
+              onClick={() => trackCalendlyClick("home-final-cta")}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02, y: -3 }}

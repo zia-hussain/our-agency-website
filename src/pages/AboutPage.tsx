@@ -3,6 +3,7 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
+import { FACTS } from "../config/facts";
 import { BookOpen, Calendar, Mail, ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -28,7 +29,6 @@ const founders = [
       "Product Rescue & Stabilization",
       "Client Acquisition & Sales",
     ],
-    badge: "100% Job Success — Zia's Upwork",
     evidence: {
       quote: "He treats the project as his own and is responsive to anything you need.",
       author: "Alan Ayoubi",
@@ -51,7 +51,6 @@ const founders = [
       "Integration & Platform Engineering",
       "Code Quality, Reviews & Standards",
     ],
-    badge: null as string | null,
     evidence: {
       quote:
         "He quickly understood the vision for my project and translated it into a clean, scalable system that integrates Twilio, Make, Airtable, and Softr seamlessly.",
@@ -201,7 +200,7 @@ const AboutPage: React.FC = () => {
             </p>
 
             <p className="text-sm text-muted-foreground/70">
-              Founded June 2025 · 80+ projects shipped · 50+ clients worldwide
+              {`Founded ${FACTS.company.founded} · ${FACTS.counts.projectsShipped} projects shipped · ${FACTS.counts.clients} clients worldwide`}
             </p>
           </AnimatedSection>
         </div>
@@ -527,11 +526,6 @@ const AboutPage: React.FC = () => {
                     </h3>
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-8">
                       <p className="text-base text-primary font-medium">{founder.role}</p>
-                      {founder.badge && (
-                        <span className="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                          {founder.badge}
-                        </span>
-                      )}
                     </div>
 
                     <p className="text-xl text-foreground/90 leading-relaxed mb-8 pl-5 border-l-2 border-primary/40">

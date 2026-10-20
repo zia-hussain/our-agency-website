@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { escapeHtml, humanize, isEmail, money } from "./_lib/text.js";
 import { BRAND, detailRows, emailShell, sendResendEmail, statLine } from "./_lib/email.js";
+import { airtableCreate } from "./_lib/airtable.js";
 
 const json = (res, status, body) => {
   res.statusCode = status;
@@ -116,6 +117,13 @@ const syncLeadToAirtable = async (lead, supabaseLeadId) => {
     "UTM Source": metadata.utmSource || "",
     "UTM Medium": metadata.utmMedium || "",
     "UTM Campaign": metadata.utmCampaign || "",
+    // Phase 1 attribution + situation context. These columns may not exist
+    // in Airtable yet; airtableCreate drops unknown fields and retries, and
+    // the full metadata JSON below keeps every value regardless.
+    "Entry Source": metadata.entrySource || "",
+    "Entry Page": metadata.entryPage || "",
+    "Referrer Host": metadata.referrerHost || "",
+    Situation: metadata.situation || "",
     "Marketing Consent": Boolean(metadata.marketingConsent),
     "Supabase Lead ID": supabaseLeadId || "",
     "Created At": now,
@@ -123,25 +131,11 @@ const syncLeadToAirtable = async (lead, supabaseLeadId) => {
     Metadata: JSON.stringify(metadata, null, 2),
   };
 
-  const response = await fetch(
-    `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fields, typecast: true }),
-    },
-  );
-
-  if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(`Airtable sync failed: ${response.status} ${detail}`);
-  }
-
-  const record = await response.json();
-  return { synced: true, id: record.id };
+  // Same create path as offer applications (api/_lib/airtable.js): one
+  // helper, one retry rule for not-yet-created fields.
+  const result = await airtableCreate(tableName, fields);
+  if (!result.created) return { synced: false, reason: result.reason };
+  return { synced: true, id: result.id };
 };
 
 const syncMarketingSubscription = async (lead) => {
@@ -351,7 +345,7 @@ const contactEmailHtml = (lead) => {
       <p style="margin:28px 0 0;color:${BRAND.muted};font-size:14px;line-height:1.75;">Need to add context, a document, or a reference link? Reply directly to this email and it will stay connected to your inquiry.</p>
       <p style="margin:25px 0 0;color:${BRAND.text};font-size:14px;line-height:1.6;font-weight:650;">Zia &amp; Omer<br><span style="color:${BRAND.subtle};font-weight:400;">Zumetrix Labs</span></p>
     `,
-    cta: { href: "https://calendly.com/zumetrix-labs/consultation", label: "Schedule a conversation" },
+    cta: { href: "https://calendly.com/zumetrix-labs/consultation?utm_source=site&utm_medium=email&utm_content=contact-confirmation", label: "Schedule a conversation" },
   });
 };
 

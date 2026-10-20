@@ -14,12 +14,17 @@ const parseValue = (value: string) => {
 
 export const useCountUp = (value: string, isInView: boolean, delay = 0) => {
   const parsed = useMemo(() => parseValue(value), [value]);
-  const [display, setDisplay] = useState(parsed ? 0 : null);
+  // Initial state is the REAL value, not 0: the prerendered HTML (what
+  // crawlers, share previews and no-JS readers see) used to say "0+ projects"
+  // and "0% job success" because the count-up started from zero. The
+  // animation still runs from 0 once the tile scrolls into view.
+  const [display, setDisplay] = useState<number | null>(parsed ? parsed.target : null);
   const started = useRef(false);
 
   useEffect(() => {
     if (!isInView || !parsed || started.current) return;
     started.current = true;
+    setDisplay(0);
     const duration = 1100;
     let raf: number;
     const timeout = setTimeout(() => {

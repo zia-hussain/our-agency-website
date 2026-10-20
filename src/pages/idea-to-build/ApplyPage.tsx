@@ -8,7 +8,7 @@ import { getOffer, offerSourceKey } from "../../config/offers";
 import { AutoTextarea, ChoiceButtons, inputBase } from "../offers/formPrimitives";
 import { prefillKey } from "../offers/RecognitionSelector";
 import { submitOfferApplication } from "../../services/offerApplication";
-import { trackOfferApplicationStart, trackOfferApplicationComplete } from "../../utils/analytics";
+import { trackOfferApplicationStart, trackOfferApplicationComplete, trackOfferApplicationStep } from "../../utils/analytics";
 
 const readSource = (): string => {
   try {
@@ -318,7 +318,11 @@ const IdeaToBuildApplyPage: React.FC = () => {
     }
     setError("");
     setDir(1);
-    setStep((s) => Math.min(s + 1, STEPS.length - 1));
+    setStep((s) => {
+      const nextStep = Math.min(s + 1, STEPS.length - 1);
+      if (nextStep !== s) trackOfferApplicationStep(offer.slug, nextStep + 1);
+      return nextStep;
+    });
   };
   const prev = () => {
     setError("");

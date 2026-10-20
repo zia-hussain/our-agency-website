@@ -206,7 +206,10 @@ export const SITE_DATA = {
         achievements: "Turns business problems into focused product decisions",
         image: "/profile_images/zia-hussain-founder-thumb.webp",
         linkedin: "https://www.linkedin.com/in/zia-hussain-404-/",
-        calendly: "https://calendly.com/zia-hussain/consultation",
+        // Website CTAs book through the one company destination (Phase 1,
+        // one attributable booking funnel). Zia's personal Calendly remains
+        // in use off-site; it is deliberately not linked from the website.
+        calendly: "https://calendly.com/zumetrix-labs/consultation",
       },
       {
         name: "Omer Gillani",

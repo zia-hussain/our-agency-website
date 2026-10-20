@@ -8,6 +8,7 @@ import BackToTop from "./components/common/BackToTop";
 import StickyCTABar from "./components/common/StickyCTABar";
 import Analytics from "./components/common/Analytics";
 import { trackEvent } from "./utils/analytics";
+import { captureFirstTouch } from "./utils/attribution";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -119,6 +120,10 @@ function App() {
   // GA4 parses from there automatically.
   useEffect(() => {
     if (isAdminRoute || isReviewRoute) return;
+    // First-touch attribution (utm_*, ?from=, entry path, referrer host) —
+    // written once per session, read back by every form submit and website
+    // Calendly link. See src/utils/attribution.ts.
+    captureFirstTouch();
     trackEvent('page_view', {
       page_path: location.pathname,
       page_location: window.location.href,

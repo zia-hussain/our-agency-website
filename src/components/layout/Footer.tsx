@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter, Instagram, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../../config/site";
+import { buildCalendlyUrl } from "../../utils/attribution";
+import { trackCalendlyClick } from "../../utils/analytics";
 import { BRAND_CONTENT } from "../../config/content";
 import { COMPANY, SOCIAL_LINKS } from "../../config/constants.js";
 import { offerHref } from "../../config/offers";
@@ -78,7 +80,8 @@ const Footer: React.FC = () => {
               {SITE_CONFIG.company.tagline}
             </h2>
             <a
-              href={SITE_CONFIG.contact.calendlyUrl}
+              href={buildCalendlyUrl("footer")}
+              onClick={() => trackCalendlyClick("footer")}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-sheen group inline-flex items-center gap-2.5 mt-7 rounded-full bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-6 pr-5 py-3.5 font-semibold text-sm"

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, MessageCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { trackCTAClick } from '../../utils/analytics';
-import { SITE_CONFIG } from '../../config/site';
+import { trackCTAClick, trackCalendlyClick } from '../../utils/analytics';
+import { buildCalendlyUrl } from '../../utils/attribution';
 
 const StickyCTABar: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -55,11 +55,8 @@ const StickyCTABar: React.FC = () => {
   };
 
   const handleScheduleCall = () => {
-    trackCTAClick('Sticky CTA - Schedule Call', window.location.pathname);
-    window.open(
-      SITE_CONFIG.contact.calendlyUrl || 'https://calendly.com/zumetrix-labs/consultation',
-      '_blank'
-    );
+    trackCalendlyClick('sticky-bar');
+    window.open(buildCalendlyUrl('sticky-bar'), '_blank', 'noopener');
   };
 
   return (

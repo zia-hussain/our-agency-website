@@ -1,6 +1,8 @@
 import React from "react";
 import { Calendar, Linkedin, Users } from "lucide-react";
 import { motion } from "framer-motion";
+import { buildCalendlyUrl } from "../../utils/attribution";
+import { trackCalendlyClick } from "../../utils/analytics";
 import { getSiteData } from "../../data/site";
 
 const FoundersStrip: React.FC = () => {
@@ -116,7 +118,8 @@ const FoundersStrip: React.FC = () => {
                     <span className="sm:hidden">Profile</span>
                   </motion.a>
                   <motion.a
-                    href={founder.calendly}
+                    href={buildCalendlyUrl(`home-founder-${founder.name.split(" ")[0].toLowerCase()}`)}
+                    onClick={() => trackCalendlyClick(`home-founder-${founder.name.split(" ")[0].toLowerCase()}`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.01 }}

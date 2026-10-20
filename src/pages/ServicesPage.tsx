@@ -762,10 +762,10 @@ const ServicesPage: React.FC = () => {
             <AnimatedSection delay={0.1} className="mb-20">
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 <Link
-                  to={`/contact?service=${rescueService.slug}`}
+                  to="/product-rescue?from=services-hub"
                   className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
                 >
-                  Get a Free Assessment
+                  See the Product Rescue Assessment
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
                     <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                   </span>

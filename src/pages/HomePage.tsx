@@ -12,10 +12,8 @@ import FoundersStrip from "../components/home/FoundersStrip";
 import TechStack from "../components/home/TechStack";
 import TestimonialsCarousel from "../components/home/TestimonialsCarousel";
 import ClientProofFilm from "../components/home/ClientProofFilm";
-import LeadMagnet from "../components/home/LeadMagnet";
 import FAQ from "../components/home/FAQ";
 import FinalCTA from "../components/home/FinalCTA";
-import AIROICalculator from "../components/home/AIROICalculator";
 import SectionDivider from "../components/common/SectionDivider";
 import { BRAND_CONTENT } from "../config/content";
 import { SITE_CONFIG } from "../config/site";
@@ -144,10 +142,15 @@ const HomePage: React.FC = () => {
       <SectionDivider />
       <div className="performance-defer"><TestimonialsCarousel /></div>
       <SectionDivider />
-      <div className="performance-defer"><AIROICalculator /></div>
-      <SectionDivider />
-      <div className="performance-defer"><LeadMagnet /></div>
-      <SectionDivider />
+      {/* Phase 1 (2026-10-20): the AI ROI calculator and the 30-Day MVP
+          Blueprint download were unfeatured from the homepage. The
+          calculator's default output ("1820% ROI") contradicted the site's
+          own "no invented hours-saved figure" promise and its Calculate
+          button fired GA4 `generate_lead`, polluting the lead metric; no
+          accessible evidence showed either surface producing qualified
+          conversations. Components are kept (not deleted) so either can be
+          restored by a one-line revert if Airtable/GA4 history says
+          otherwise. /downloads/30-day-saas-mvp-blueprint.pdf still resolves. */}
       <div className="performance-defer"><FAQ /></div>
       <SectionDivider />
       <div className="performance-defer"><FinalCTA /></div>

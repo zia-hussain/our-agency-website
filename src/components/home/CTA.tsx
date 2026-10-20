@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { buildCalendlyUrl } from "../../utils/attribution";
+import { trackCalendlyClick } from "../../utils/analytics";
 import {
   ArrowRight,
   Mail,
@@ -102,10 +104,7 @@ const CTA: React.FC = () => {
 
             <motion.button
               onClick={() =>
-                window.open(
-                  import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/zumetrix-labs/consultation",
-                  "_blank"
-                )
+                { trackCalendlyClick("home-cta"); window.open(buildCalendlyUrl("home-cta"), "_blank", "noopener"); }
               }
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}

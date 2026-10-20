@@ -8,23 +8,26 @@ import SectionEyebrow from "../components/common/SectionEyebrow";
 import ClosingGlow from "../components/common/ClosingGlow";
 import ProjectSpotlight from "../components/portfolio/ProjectSpotlight";
 import AnimatedStat from "../components/portfolio/AnimatedStat";
-import ProofMarquee from "../components/portfolio/ProofMarquee";
 import ClientProofFilm from "../components/home/ClientProofFilm";
 import { motion } from "framer-motion";
 import { projects } from "../data/projects";
+import { FACTS } from "../config/facts";
 import { portfolioFAQs } from "../data/faqs/portfolio";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { buildVideoObjectSchema } from "../utils/videoSchema";
-import { ArrowRight, Eye, Code, Users, Award, Sparkles } from "lucide-react";
+import { ArrowRight, Eye, Code, Users, Sparkles } from "lucide-react";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
+// Counts come from the canonical fact sheet (docs/CANONICAL_FACTS.md).
+// "100% Upwork job success" was removed from this company surface: it is
+// Zia's individual marketplace credential, not a Zumetrix-wide one, and it
+// belongs on his own profiles.
 const stats = [
-  { icon: Code, number: "80+", label: "Projects completed" },
-  { icon: Users, number: "50+", label: "Happy clients" },
+  { icon: Code, number: FACTS.counts.projectsShipped, label: "Projects completed" },
+  { icon: Users, number: FACTS.counts.clients, label: "Happy clients" },
   { icon: Sparkles, number: "Founder-led", label: "Every single project" },
-  { icon: Award, number: "100%", label: "Upwork job success" },
 ];
 
 const PortfolioPage: React.FC = () => {
@@ -116,7 +119,7 @@ const PortfolioPage: React.FC = () => {
       <section className="py-16 bg-card/10 border-y border-border/40 relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgba(196,138,100,0.05),transparent_70%)]" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {stats.map((stat, index) => (
               <AnimatedStat
                 key={stat.label}
@@ -135,7 +138,6 @@ const PortfolioPage: React.FC = () => {
       {/* archive, scrolling continuously. Not decorative: it's the         */}
       {/* answer to "this is only three" before anyone has to ask it.       */}
       {/* ================================================================ */}
-      <ProofMarquee />
 
       {/* ================================================================ */}
       {/* FEATURED PROJECTS — three signature scenes, not a card grid.      */}
@@ -166,7 +168,7 @@ const PortfolioPage: React.FC = () => {
 
           <AnimatedSection className="text-center mt-28 sm:mt-32">
             <p className="text-sm text-muted-foreground mb-6">
-              Twenty builds in the full archive — different industries, same standard.
+              {`${projects.length} builds in the full archive — different industries, same standard.`}
             </p>
             <Link to="/portfolio/all" className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200 btn-sheen">
               See All Projects

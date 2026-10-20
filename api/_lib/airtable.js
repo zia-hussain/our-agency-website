@@ -26,14 +26,36 @@ export const airtableCreate = async (tableName, fields) => {
     Object.entries(fields).filter(([, value]) => value !== undefined && value !== null && value !== ""),
   );
 
-  const response = await fetch(`${BASE_URL}/${creds.baseId}/${encodeURIComponent(tableName)}`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${creds.apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ fields: clean, typecast: true }),
-  });
+  const post = (fields) =>
+    fetch(`${BASE_URL}/${creds.baseId}/${encodeURIComponent(tableName)}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${creds.apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fields, typecast: true }),
+    });
+
+  let response = await post(clean);
+
+  // `typecast` creates select OPTIONS but never FIELDS. Phase 1 adds a few
+  // attribution fields (Entry Source, Entry Page, Referrer Host, Situation)
+  // that the founders create in the Airtable UI; until they exist, Airtable
+  // answers 422 UNKNOWN_FIELD_NAME and — because this write is the durable
+  // step for offer applications — would reject the applicant. So: drop the
+  // unknown field(s) it names and retry once. Nothing already captured is
+  // lost; the new columns simply stay empty until the field exists.
+  if (response.status === 422) {
+    const detail = await response.text();
+    const unknown = [...detail.matchAll(/Unknown field name: "([^"]+)"/g)].map((m) => m[1]);
+    if (unknown.length > 0) {
+      console.warn(`Airtable create: unknown field(s) ${unknown.join(", ")} on ${tableName}; retrying without them`);
+      const reduced = Object.fromEntries(Object.entries(clean).filter(([key]) => !unknown.includes(key)));
+      response = await post(reduced);
+    } else {
+      throw new Error(`Airtable create failed: 422 ${detail}`);
+    }
+  }
 
   if (!response.ok) {
     const detail = await response.text();

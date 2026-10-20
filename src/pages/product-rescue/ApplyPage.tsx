@@ -12,6 +12,7 @@ import {
   trackRescueApplicationSubmitted,
   trackOfferApplicationStart,
   trackOfferApplicationComplete,
+  trackOfferApplicationStep,
 } from "../../utils/analytics";
 
 // Read once, outside React state — the landing page already wrote this
@@ -380,7 +381,11 @@ const ProductRescueApplyPage: React.FC = () => {
     }
     setError("");
     setDir(1);
-    setStep((s) => Math.min(s + 1, STEPS.length - 1));
+    setStep((s) => {
+      const nextStep = Math.min(s + 1, STEPS.length - 1);
+      if (nextStep !== s) trackOfferApplicationStep(offer.slug, nextStep + 1);
+      return nextStep;
+    });
   };
   const prev = () => {
     setError("");

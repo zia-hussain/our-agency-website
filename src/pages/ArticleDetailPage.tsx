@@ -28,7 +28,8 @@ import {
 import { articles } from "../data/articles.js";
 import { getAuthorIdentity } from "../data/authors";
 import { OFFERS, offerHref } from "../config/offers";
-import { trackContextualOfferCtaClick } from "../utils/analytics";
+import { trackContextualOfferCtaClick, trackCalendlyClick } from "../utils/analytics";
+import { buildCalendlyUrl } from "../utils/attribution";
 
 // Contextual offer bridge (2026-10-11 commercial routing pass) — reuses the
 // existing article `category` taxonomy rather than inventing a new tagging
@@ -882,10 +883,7 @@ const ArticleDetailPage: React.FC = () => {
           <AnimatedSection delay={0.1} className="mt-8">
             <button
               onClick={() =>
-                window.open(
-                  import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/zumetrix-labs/consultation",
-                  "_blank"
-                )
+                { trackCalendlyClick("article-footer"); window.open(buildCalendlyUrl("article-footer"), "_blank", "noopener"); }
               }
               className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
             >
