@@ -58,7 +58,10 @@ const FinalCTA: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center items-center mb-8 sm:mb-12 lg:mb-16 px-4">
             <motion.a
               href={buildCalendlyUrl("home-final-cta")}
-              onClick={() => trackCalendlyClick("home-final-cta")}
+              onClick={(event) => {
+                event.currentTarget.href = buildCalendlyUrl("home-final-cta"); // re-resolve with first-touch
+                trackCalendlyClick("home-final-cta");
+              }}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02, y: -3 }}

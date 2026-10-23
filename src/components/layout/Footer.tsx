@@ -81,7 +81,13 @@ const Footer: React.FC = () => {
             </h2>
             <a
               href={buildCalendlyUrl("footer")}
-              onClick={() => trackCalendlyClick("footer")}
+              onClick={(event) => {
+                // Re-resolve at click time: the render-time href is built
+                // before first-touch attribution has been captured on a
+                // fresh landing, so utm_campaign/utm_term were missing.
+                event.currentTarget.href = buildCalendlyUrl("footer");
+                trackCalendlyClick("footer");
+              }}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-sheen group inline-flex items-center gap-2.5 mt-7 rounded-full bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-6 pr-5 py-3.5 font-semibold text-sm"

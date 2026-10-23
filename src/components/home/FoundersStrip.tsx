@@ -119,7 +119,11 @@ const FoundersStrip: React.FC = () => {
                   </motion.a>
                   <motion.a
                     href={buildCalendlyUrl(`home-founder-${founder.name.split(" ")[0].toLowerCase()}`)}
-                    onClick={() => trackCalendlyClick(`home-founder-${founder.name.split(" ")[0].toLowerCase()}`)}
+                    onClick={(event) => {
+                      const source = `home-founder-${founder.name.split(" ")[0].toLowerCase()}`;
+                      event.currentTarget.href = buildCalendlyUrl(source); // re-resolve with first-touch
+                      trackCalendlyClick(source);
+                    }}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.01 }}
