@@ -25,8 +25,19 @@ export const FACTS = {
   // Counts the site is allowed to state. Defensibility is documented in
   // docs/CANONICAL_FACTS.md; the founders own any change.
   counts: {
-    projectsShipped: "80+", // marketplace engagements + direct projects, founders' combined record
-    clients: "50+",         // unique client groups across all sources (duplicates across platforms counted once)
+    // PROJECT = one distinct substantive delivered product/system/body of
+    // work. Platform order records, milestones and revisions are NOT
+    // separate projects. Verified floor on 2026-10-23: 51 distinct
+    // client+project pairs in the written-proof library + 12 direct
+    // projects without written reviews = 63; upper bound ~75. "80+" was
+    // only true when every marketplace order counted as a project.
+    projectsShipped: "60+",
+    // CLIENT = one distinct person/organisation for whom paid work was
+    // delivered; the same buyer across orders/platforms counts once.
+    // Verified 2026-10-23: 49 client keys in the proof library (a few
+    // unnamed Upwork entries may collapse further) + 11 direct clients
+    // without written reviews = 56-60.
+    clients: "50+",
     writtenReviews: "80+",  // written review records across Fiverr, Upwork, Trustpilot, Google, Clutch
     caseStudiesPublished: 19,
   },

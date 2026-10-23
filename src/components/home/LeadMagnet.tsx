@@ -1,3 +1,4 @@
+import { FACTS } from '../../config/facts';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, CheckCircle, FileText, ListChecks, Layers3, Rocket } from 'lucide-react';
@@ -206,7 +207,7 @@ const LeadMagnet: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle size={16} className="text-primary" />
-                    <span>Built from 80+ project lessons</span>
+                    <span>Built from {FACTS.counts.projectsShipped} project lessons</span>
                   </div>
                 </div>
               </>

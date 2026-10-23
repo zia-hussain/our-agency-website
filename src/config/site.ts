@@ -1,3 +1,4 @@
+import { FACTS } from "./facts";
 // Zumetrix Labs - Centralized Site Configuration
 // All site data driven from environment variables
 
@@ -45,14 +46,14 @@ export const SITE_CONFIG = {
 
   // Business Metrics
   metrics: {
-    projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "80+",
-    happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "50+",
+    projectsCompleted: FACTS.counts.projectsShipped,
+    happyClients: FACTS.counts.clients,
     successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
   },
 
   // SEO Configuration
   seo: {
-    gaTagId: import.meta.env.VITE_GA_TAG_ID || "G-PRSP59FL20",
+    gaTagId: import.meta.env.VITE_GA_TAG_ID || "G-PR5PS9FL20",
     googleVerification: import.meta.env.VITE_GOOGLE_VERIFICATION || "XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs",
   }
 };

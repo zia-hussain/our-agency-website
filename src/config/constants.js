@@ -49,7 +49,7 @@ export const SEO_CONFIG = {
   title: import.meta.env.VITE_META_TITLE || "Zumetrix Labs | Forge Clear Ideas Into Shipped Software",
   description: import.meta.env.VITE_META_DESCRIPTION || "Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders. Founded by Zia Hussain and Omer Gillani.",
   keywords: import.meta.env.VITE_META_KEYWORDS || "Zumetrix Labs, Zia Hussain, Omer Gillani, software development agency Pakistan",
-  gaTagId: import.meta.env.VITE_GA_TAG_ID || "G-PRSP59FL20",
+  gaTagId: import.meta.env.VITE_GA_TAG_ID || "G-PR5PS9FL20",
   googleVerification: import.meta.env.VITE_GOOGLE_VERIFICATION || "XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs",
 };
 

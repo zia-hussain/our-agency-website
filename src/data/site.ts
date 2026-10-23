@@ -1,3 +1,4 @@
+import { FACTS } from "../config/facts";
 // Zumetrix Labs - Complete Site Data
 import { BRAND_CONTENT } from "../config/content";
 
@@ -57,7 +58,7 @@ export const SITE_DATA = {
   trustBand: {
     globalStats: [
       { icon: "globe", value: "Global", label: "Market Reach" },
-      { icon: "projects", value: "80+", label: "Projects Delivered" },
+      { icon: "projects", value: FACTS.counts.projectsShipped, label: "Projects Delivered" },
       { icon: "success", value: "Founder-led", label: "Every Engagement" },
       { icon: "response", value: "<24 hrs", label: "Typical Response Time" },
     ],
@@ -170,7 +171,7 @@ export const SITE_DATA = {
         icon: "results",
         title: "What Actually Happens",
         description:
-          "80+ projects delivered by the team. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We help with that clarity.",
+          FACTS.counts.projectsShipped + " projects delivered by the team. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We help with that clarity.",
         stats: "4-6 week average delivery",
       },
     ],
@@ -265,8 +266,8 @@ export const SITE_DATA = {
 
   // Business Metrics - CREDIBILITY NUMBERS
   metrics: {
-    projectsCompleted: import.meta.env.VITE_PROJECTS_COMPLETED || "80+",
-    happyClients: import.meta.env.VITE_HAPPY_CLIENTS || "50+",
+    projectsCompleted: FACTS.counts.projectsShipped,
+    happyClients: FACTS.counts.clients,
     successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
     avgMVPTime: "Scope dependent",
     fundingSuccess: "Not claimed",
@@ -289,7 +290,7 @@ export const SITE_DATA = {
     bottomFeatures: [
       'PDF planning guide',
       'Practical frameworks',
-      'Built from 80+ project lessons'
+      `Built from ${FACTS.counts.projectsShipped} project lessons`
     ],
     formSubject: 'New Lead Magnet Download: MVP Blueprint',
     privacy: 'No spam. Unsubscribe anytime. We respect your privacy.',

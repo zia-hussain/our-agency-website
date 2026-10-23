@@ -1,3 +1,4 @@
+import { FACTS } from "./facts";
 /**
  * ZUMETRIX LABS - CENTRALIZED BRAND CONTENT
  *
@@ -32,7 +33,7 @@ export const BRAND_CONTENT = {
 
     shortDescription: "Forge Clear Ideas Into Shipped Software. Founded by Zia Hussain and Omer Gillani, Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners.",
 
-    longDescription: "80+ projects built. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also how we try to keep our projects on track to launch.",
+    longDescription: FACTS.counts.projectsShipped + " projects built. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also how we try to keep our projects on track to launch.",
   },
 
   /**
@@ -53,7 +54,7 @@ export const BRAND_CONTENT = {
       { text: " — we'll figure out what needs to happen next.", type: "emphasis" }
     ] as ContentSegment[],
 
-    proofLine: "80+ projects shipped",
+    proofLine: `${FACTS.counts.projectsShipped} projects shipped`,
 
     primaryCTA: {
       text: "Start Your Project",
@@ -162,7 +163,7 @@ export const BRAND_CONTENT = {
     },
 
     metrics: {
-      projects: "80+",
+      projects: FACTS.counts.projectsShipped,
       projectsDescription: "Projects Delivered",
       timeline: "4-6 weeks",
       timelineDescription: "Average MVP delivery",
@@ -183,7 +184,7 @@ export const BRAND_CONTENT = {
 
     about: {
       title: "About Zumetrix Labs | Meet Zia Hussain & Omer Gillani | Technical Founders",
-      description: "Meet Zia Hussain (CEO) and Omer Gillani (CTO), technical founders of Zumetrix Labs. 80+ projects delivered across US, UK, Canada, Australia, UAE, and Singapore. Zia is Top Rated on Upwork. Specializing in SaaS MVP development, React/Node.js applications, and AI automation."
+      description: "Meet Zia Hussain (CEO) and Omer Gillani (CTO), technical founders of Zumetrix Labs. Projects delivered across US, UK, Canada, Australia, UAE, and Singapore. Specializing in SaaS MVP development, React/Node.js applications, and AI automation."
     },
 
     services: {

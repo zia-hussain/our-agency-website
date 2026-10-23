@@ -410,7 +410,7 @@ Test on at least Chrome, Safari, and Mobile Chrome
 
 ### **Google Analytics**
 
-- [ ] GA tag ID configured (`G-PRSP59FL20`)
+- [ ] GA tag ID configured (`G-PR5PS9FL20`)
 - [ ] Tracking code present on all pages
 - [ ] Events tracking (optional but recommended)
 

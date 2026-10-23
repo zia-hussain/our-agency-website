@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 
-const GA_TAG_ID = "G-PRSP59FL20";
+// Phase 1 closure (2026-10-23): the real GA4 web stream for
+// https://www.zumetrix.com (property "calculator-48d9d", stream 11382475834)
+// is G-PR5PS9FL20. The code shipped G-PRSP59FL20 (two characters
+// transposed) since the tag was added, so the property had received NO
+// data ever ("No data received from your website yet" in the GA4 admin).
+// Hard-coded on purpose: a stale VITE_GA_TAG_ID in a hosting env would
+// silently reintroduce the wrong stream.
+const GA_TAG_ID = "G-PR5PS9FL20";
 
 declare global {
   interface Window {

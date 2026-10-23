@@ -304,7 +304,7 @@ Before going live, verify:
 - [ ] Verify lead arrives in destination system
 
 ### SEO & Analytics
-- [ ] Google Analytics configured (G-PRSP59FL20)
+- [ ] Google Analytics configured (G-PR5PS9FL20)
 - [ ] Google Search Console verified
 - [ ] Sitemap submitted
 - [ ] Robots.txt correct
