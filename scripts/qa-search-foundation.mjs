@@ -33,8 +33,8 @@ const draftProjectRoutes = new Set(projects.filter((p) => !p.searchIndexable).ma
 // Explicit classification — every route this build serves has to land in
 // exactly one bucket, so nothing is silently skipped. Mirrors
 // generate-sitemap.mjs's own exclusion list.
-const NOINDEX_ROUTES = new Set(["/portfolio/all", "/unsubscribe", "/review", ...draftProjectRoutes]);
-const shouldBeInSitemap = (route) => !NOINDEX_ROUTES.has(route) && !route.startsWith("/admin");
+const NOINDEX_ROUTES = new Set(["/portfolio/all", "/review", ...draftProjectRoutes]);
+const shouldBeInSitemap = (route) => !NOINDEX_ROUTES.has(route);
 
 const results = [];
 

@@ -1,4 +1,7 @@
 # 💰 LEAD CONVERSION PLAYBOOK
+
+> **ARCHITECTURE NOTE (2026-10-25):** any mention of Supabase below is historical. Supabase was removed from this codebase; **Airtable is the only durable commercial datastore** for website leads and offer applications. See `docs/PHASE1_MEASUREMENT.md` §7 for the current architecture.
+
 ## How Zumetrix Labs Website Makes Money
 
 **Version:** 1.0

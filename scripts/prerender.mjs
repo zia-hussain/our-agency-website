@@ -81,7 +81,6 @@ const routes = [
   "/articles/decision-room-001-liftly-sequencing",
   "/privacy-policy",
   "/terms-of-service",
-  "/unsubscribe",
 ];
 
 for (const route of routes) {

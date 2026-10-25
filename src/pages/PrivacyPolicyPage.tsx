@@ -176,16 +176,16 @@ const PrivacyPolicyPage: React.FC = () => {
                 may trigger transactional emails needed to fulfill your
                 request. Marketing emails are separate and are sent only when
                 you actively opt in. Every marketing email includes an
-                unsubscribe link, and an unsubscribe request is recorded in our
-                suppression system so future campaigns do not contact that
+                unsubscribe link, and an unsubscribe request is recorded against
+                your lead record so future campaigns do not contact that
                 address.
               </p>
 
               <h2 id="service-providers">8. Service Providers</h2>
               <p>
                 We use carefully selected providers to operate the website and
-                respond to requests, including Supabase for secure data storage,
-                Airtable for internal lead operations, Resend for email
+                respond to requests, including Airtable for secure lead and
+                application records, Resend for email
                 delivery, Vercel for website hosting, and Google Analytics for
                 aggregated website measurement.
               </p>

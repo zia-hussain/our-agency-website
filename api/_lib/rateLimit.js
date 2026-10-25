@@ -1,31 +1,47 @@
-// Durable, serverless-safe rate limit for the offer-application endpoint —
-// same shape as api/leads.js's Supabase-backed checkRateLimit, but reading
-// from Airtable instead, because the offer system is deliberately kept off
-// Supabase (see audit Section 3). Airtable is already the durable record for
-// this flow, so it's also the natural place to ask "has this email already
-// applied recently."
+// Durable, serverless-safe per-email throttle for the public POST endpoints
+// (/api/leads and /api/offer-application). In-memory counters would reset on
+// every cold start and are not shared across concurrent function instances,
+// so the check reads recent rows from the table that already durably holds
+// the submission: Airtable. Airtable is the single commercial datastore for
+// this site (see docs/PHASE1_MEASUREMENT.md §7), so no second database is
+// needed just to answer "has this email submitted recently?".
 import { airtableFindByField } from "./airtable.js";
 
-const WINDOW_MINUTES = 30;
-const MAX_SUBMISSIONS = 3;
+// Airtable formula strings use backslash escapes; the email has already
+// passed isEmail() but that regex still admits quotes, so escape rather than
+// trust it.
+const escapeFormulaValue = (value) => String(value).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 
-export const checkOfferRateLimit = async (tableName, email) => {
-  // Airtable's filterByFormula can't do "created in the last N minutes"
-  // without a formula field keyed to NOW(), which this table doesn't define.
-  // A same-email lookup capped at a handful of recent records is enough to
-  // stop the realistic case (double-click, retry-happy bot) without adding
-  // Airtable schema the base doesn't already need. Fails open, same as the
-  // existing leads.js rate limiter: a broken check never blocks a real
-  // applicant.
+/**
+ * Returns { limited, count } — `limited` when `email` already has
+ * `maxSubmissions` rows created in the last `windowMinutes` on `tableName`.
+ * Fails OPEN: a broken Airtable read never blocks a real submission. This
+ * stops double-clicks and retry-happy bots, not a determined attacker
+ * rotating addresses; that is deliberate for a low-volume agency site.
+ */
+export const checkAirtableRateLimit = async (
+  tableName,
+  email,
+  { windowMinutes = 30, maxSubmissions = 3, createdField = "Created At" } = {},
+) => {
   try {
-    const { records } = await airtableFindByField(tableName, "Email", email.toLowerCase(), { limit: MAX_SUBMISSIONS + 2 });
-    const cutoff = Date.now() - WINDOW_MINUTES * 60 * 1000;
+    // Airtable's filterByFormula can't express "created in the last N
+    // minutes" without a NOW()-keyed formula field the tables don't define,
+    // so fetch a handful of same-email rows and filter by timestamp here.
+    const { records } = await airtableFindByField(tableName, "Email", escapeFormulaValue(email.toLowerCase()), {
+      limit: maxSubmissions + 2,
+    });
+    const cutoff = Date.now() - windowMinutes * 60 * 1000;
     const recent = records.filter((r) => {
-      const createdAt = r.fields?.["Created At"];
+      const createdAt = r.fields?.[createdField];
       return createdAt && new Date(createdAt).getTime() > cutoff;
     });
-    return { limited: recent.length >= MAX_SUBMISSIONS, count: recent.length };
+    return { limited: recent.length >= maxSubmissions, count: recent.length };
   } catch (error) {
     return { limited: false, reason: error.message };
   }
 };
+
+// Offer applications: 3 per email per 30 minutes (unchanged behaviour).
+export const checkOfferRateLimit = (tableName, email) =>
+  checkAirtableRateLimit(tableName, email, { windowMinutes: 30, maxSubmissions: 3 });

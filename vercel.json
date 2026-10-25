@@ -1,25 +1,7 @@
 {
   "headers": [
     {
-      "source": "/admin/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
       "source": "/review",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
-      "source": "/unsubscribe",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -196,24 +178,12 @@
       "destination": "/terms-of-service/index.html"
     },
     {
-      "source": "/unsubscribe",
-      "destination": "/unsubscribe/index.html"
-    },
-    {
       "source": "/articles/:slug",
       "destination": "/articles/:slug/index.html"
     },
     {
       "source": "/services/:slug",
       "destination": "/services/:slug/index.html"
-    },
-    {
-      "source": "/admin",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/admin/(.*)",
-      "destination": "/index.html"
     },
     {
       "source": "/review",

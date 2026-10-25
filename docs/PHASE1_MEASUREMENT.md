@@ -66,4 +66,41 @@ MANUAL: export GA4 (last 28 days) for sessions by source, landing pages, and the
 - Live bundle `assets/index-CwPUL9dU.js` contains only `G-PR5PS9FL20`; the old transposed ID is gone.
 - GA4 data filter "Internal Traffic" exists in state **Testing** (does not exclude data). No internal-traffic rules defined.
 - Owner's own browser visits did not register — browser-side blocking (ad blocker / privacy browser / extension) on that device, not a site defect. Verify with a clean profile or mobile data if a personal baseline is wanted.
-- Supabase `leads` table (project `tpupdjyiyvmavokjfxef`): 4 rows, newest 2026-06-19. The 2026-10-23 controlled contact test ("PHASE1 TEST — delete me") reached Airtable + email but **never reached Supabase**; Supabase API logs show zero `/rest/v1/leads` requests. `api/leads.js` skips Supabase when `SUPABASE_URL` / service key are not set, so the production (Vercel) env is almost certainly missing them. Consequences: no durable DB copy of leads and the Supabase-backed spam throttle is inactive. **Owner action: set `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` in Vercel production env and redeploy.** Nothing to clean up in Supabase.
+- Supabase `leads` table (project `tpupdjyiyvmavokjfxef`): 4 rows, newest 2026-06-19. The 2026-10-23 controlled contact test ("PHASE1 TEST — delete me") reached Airtable + email but **never reached Supabase**; Supabase API logs show zero `/rest/v1/leads` requests. `api/leads.js` skips Supabase when `SUPABASE_URL` / service key are not set, so the production (Vercel) env is almost certainly missing them. Consequences: no durable DB copy of leads and the Supabase-backed spam throttle is inactive. Superseded by §7: the owner confirmed the Supabase project is intentionally paused, and the audit found the env vars *were* set in Vercel — every call simply failed against the paused project. Supabase has been removed rather than restored.
+
+## 7. Commercial data architecture (final, 2026-10-25)
+
+**SOURCE OF TRUTH = Airtable.** One durable store, no duplicate database.
+
+```
+Website / Offer forms
+  → Vercel serverless API   (api/leads.js, api/offer-application.js)
+    → Airtable              (Website Leads / Offer Applications — durable record, attribution, status, Next Action, Outcome)
+    → Email via Resend      (owner notification + visitor confirmation)
+GA4            = behavioral analytics (G-PR5PS9FL20)
+Search Console = search visibility
+Calendly       = booking (one destination, utm-tagged per surface)
+```
+
+### Supabase decision: REMOVED
+Audit (code + Vercel + Supabase dashboard):
+- `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` were set in Vercel production, but the Supabase project `our-agency-website` is paused (owner decision: free-tier slots needed elsewhere). Every call failed silently; the 2026-10-23 controlled test reached Airtable + email only.
+- Responsibilities Supabase had, and what replaced them:
+  | Was | Now |
+  |---|---|
+  | Duplicate copy of each lead in `leads` | Removed — Airtable row is the record |
+  | Per-email throttle on `/api/leads` (read `leads`) | Same throttle, reading Airtable `Website Leads` (`api/_lib/rateLimit.js`, shared with offers) |
+  | `marketing_subscribers` upsert | Removed — consent lives on the Airtable row (`Marketing Consent`) |
+  | `/api/unsubscribe` token endpoint + `/unsubscribe` page | Removed — no email ever issued a token; nothing linked to it |
+  | `/admin` CMS (Supabase Auth + articles/portfolio/testimonials editors) | Removed — public pages were already served from static `src/data/*`; CMS was unreachable with Supabase paused |
+  | `ChatWidget` → `chat_leads` | Removed — component was never rendered |
+  | `@supabase/supabase-js` client bundle | Removed from `package.json` |
+- `/api/leads` success contract: `success:true` only when the Airtable row was created **or** the founders were notified by email; a visitor confirmation alone is not success. `stored` mirrors `airtableSynced`. A failed Airtable write is logged server-side.
+- Vercel env: `SUPABASE_*` and `VITE_SUPABASE_*` are now unused — safe to delete from the project settings (owner).
+
+### Abuse protection (what protects the public POST endpoints)
+1. Server-side validation (`isEmail`, required fields, offer slug allow-list, URL safety).
+2. Honeypot field (`hpToken`) on both endpoints — bots filling every field get a fake 200.
+3. Per-email throttle, durable across serverless instances because it reads Airtable: leads 5 / 10 min, offers 3 / 30 min. Fails open on Airtable read errors (never blocks a real lead).
+4. Vercel Firewall (verified 2026-10-25 on project `our-agency-website-da1f`, Hobby plan): system DDoS mitigation active (27 denied / 24h), 0 custom rules, managed **Bot Protection ruleset inactive** — the owner can switch it on from Firewall → Bot Protection at no cost if form spam appears.
+Limitations (accepted for current volume — single-digit leads/month): the throttle is per-email, so an attacker rotating addresses is not stopped; Vercel Firewall custom rules with a rate-limit action are a Pro-plan feature; the project is on Hobby, so none were added (no paid upgrade without owner approval). If spam volume ever becomes material, the next step is a Vercel Firewall rule or Turnstile on the forms — not a database.

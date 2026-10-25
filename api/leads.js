@@ -3,6 +3,14 @@ import path from "node:path";
 import { escapeHtml, humanize, isEmail, money } from "./_lib/text.js";
 import { BRAND, detailRows, emailShell, sendResendEmail, statLine } from "./_lib/email.js";
 import { airtableCreate } from "./_lib/airtable.js";
+import { checkAirtableRateLimit } from "./_lib/rateLimit.js";
+
+// Single commercial datastore: Airtable (see docs/PHASE1_MEASUREMENT.md §7).
+const leadsTable = () => process.env.AIRTABLE_LEADS_TABLE || "Website Leads";
+
+// Per-email throttle for the public contact/lead endpoint.
+const RATE_LIMIT_WINDOW_MINUTES = 10;
+const RATE_LIMIT_MAX_SUBMISSIONS = 5;
 
 const json = (res, status, body) => {
   res.statusCode = status;
@@ -10,88 +18,10 @@ const json = (res, status, body) => {
   res.end(JSON.stringify(body));
 };
 
-const storeLead = async (lead) => {
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey || supabaseUrl.includes("your_supabase")) {
-    return { stored: false, reason: "Supabase env not configured" };
-  }
-
-  const response = await fetch(`${supabaseUrl.replace(/\/$/, "")}/rest/v1/leads`, {
-    method: "POST",
-    headers: {
-      apikey: supabaseKey,
-      Authorization: `Bearer ${supabaseKey}`,
-      "Content-Type": "application/json",
-      Prefer: "return=representation",
-    },
-    body: JSON.stringify({
-      email: lead.email,
-      name: lead.name || null,
-      company: lead.company || null,
-      phone: lead.phone || null,
-      source: lead.source || "website",
-      lead_type: lead.leadType || "general",
-      magnet_name: lead.magnetName || null,
-      message: lead.message || null,
-      page_url: lead.pageUrl || null,
-      referrer: lead.referrer || null,
-      user_agent: lead.userAgent || null,
-      metadata: lead.metadata || {},
-      status: "new",
-    }),
-  });
-
-  if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(`Lead storage failed: ${response.status} ${detail}`);
-  }
-
-  const records = await response.json();
-  return { stored: true, id: records?.[0]?.id };
-};
-
-// Durable, serverless-safe throttle: reads recent rows straight from Supabase
-// instead of in-memory state, which would reset on every cold start and
-// wouldn't be shared across concurrent function instances anyway.
-const RATE_LIMIT_WINDOW_MINUTES = 10;
-const RATE_LIMIT_MAX_SUBMISSIONS = 5;
-
-const checkRateLimit = async (email) => {
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey || supabaseUrl.includes("your_supabase")) {
-    return { limited: false, reason: "Supabase env not configured" };
-  }
-
-  const since = new Date(Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000).toISOString();
-  const response = await fetch(
-    `${supabaseUrl.replace(/\/$/, "")}/rest/v1/leads?email=eq.${encodeURIComponent(email)}&created_at=gte.${encodeURIComponent(since)}&select=id`,
-    {
-      headers: {
-        apikey: supabaseKey,
-        Authorization: `Bearer ${supabaseKey}`,
-      },
-    },
-  );
-
-  if (!response.ok) {
-    // Fail open: a broken rate-limit check should never block a real lead.
-    return { limited: false, reason: `Rate limit check failed: ${response.status}` };
-  }
-
-  const rows = await response.json();
-  return { limited: rows.length >= RATE_LIMIT_MAX_SUBMISSIONS, count: rows.length };
-};
-
-const syncLeadToAirtable = async (lead, supabaseLeadId) => {
+const syncLeadToAirtable = async (lead) => {
   const apiKey = process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_LEADS_TABLE || "Website Leads";
+  const tableName = leadsTable();
 
   if (!apiKey || !baseId) {
     return { synced: false, reason: "Airtable env not configured" };
@@ -125,7 +55,6 @@ const syncLeadToAirtable = async (lead, supabaseLeadId) => {
     "Referrer Host": metadata.referrerHost || "",
     Situation: metadata.situation || "",
     "Marketing Consent": Boolean(metadata.marketingConsent),
-    "Supabase Lead ID": supabaseLeadId || "",
     "Created At": now,
     "Last Activity": now,
     Metadata: JSON.stringify(metadata, null, 2),
@@ -136,56 +65,6 @@ const syncLeadToAirtable = async (lead, supabaseLeadId) => {
   const result = await airtableCreate(tableName, fields);
   if (!result.created) return { synced: false, reason: result.reason };
   return { synced: true, id: result.id };
-};
-
-const syncMarketingSubscription = async (lead) => {
-  const hasConsent =
-    lead.leadType === "newsletter" || Boolean(lead.metadata?.marketingConsent);
-  if (!hasConsent) return { subscribed: false, reason: "Marketing consent not provided" };
-
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_ANON_KEY ||
-    process.env.VITE_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey) {
-    return { subscribed: false, reason: "Supabase env not configured" };
-  }
-
-  const now = new Date().toISOString();
-  const response = await fetch(
-    `${supabaseUrl.replace(/\/$/, "")}/rest/v1/marketing_subscribers?on_conflict=email`,
-    {
-      method: "POST",
-      headers: {
-        apikey: supabaseKey,
-        Authorization: `Bearer ${supabaseKey}`,
-        "Content-Type": "application/json",
-        Prefer: "resolution=merge-duplicates,return=representation",
-      },
-      body: JSON.stringify({
-        email: lead.email.toLowerCase(),
-        name: lead.name || null,
-        company: lead.company || null,
-        status: "subscribed",
-        consent_source: lead.source || lead.leadType || "website",
-        consent_page_url: lead.pageUrl || null,
-        consent_at: now,
-        unsubscribed_at: null,
-        metadata: lead.metadata || {},
-        updated_at: now,
-      }),
-    },
-  );
-
-  if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(`Marketing subscription failed: ${response.status} ${detail}`);
-  }
-
-  const records = await response.json();
-  return { subscribed: true, id: records?.[0]?.id };
 };
 
 const getBlueprintAttachment = async () => {
@@ -411,7 +290,10 @@ export default async function handler(req, res) {
       metadata: lead.metadata || {},
     };
 
-    const rateLimit = await checkRateLimit(normalizedLead.email).catch(() => ({ limited: false }));
+    const rateLimit = await checkAirtableRateLimit(leadsTable(), normalizedLead.email, {
+      windowMinutes: RATE_LIMIT_WINDOW_MINUTES,
+      maxSubmissions: RATE_LIMIT_MAX_SUBMISSIONS,
+    }).catch(() => ({ limited: false }));
     if (rateLimit.limited) {
       return json(res, 429, {
         success: false,
@@ -419,16 +301,10 @@ export default async function handler(req, res) {
       });
     }
 
-    const storage = await storeLead(normalizedLead).catch((error) => ({
-      stored: false,
-      reason: error.message,
-    }));
-    const airtable = await syncLeadToAirtable(normalizedLead, storage.id).catch((error) => ({
+    // Durable record first. Airtable is the only store; marketing consent is
+    // recorded on the same row ("Marketing Consent"), not in a second table.
+    const airtable = await syncLeadToAirtable(normalizedLead).catch((error) => ({
       synced: false,
-      reason: error.message,
-    }));
-    const marketing = await syncMarketingSubscription(normalizedLead).catch((error) => ({
-      subscribed: false,
       reason: error.message,
     }));
 
@@ -474,22 +350,22 @@ export default async function handler(req, res) {
       replyTo: normalizedLead.email,
     }).catch((error) => ({ sent: false, reason: error.message }));
 
-    const handled = Boolean(storage.stored || airtable.synced || ownerCopy.sent || userCopy.sent);
+    // The lead counts as delivered only if the business can act on it: the
+    // Airtable row exists or the founders were notified. A confirmation email
+    // to the visitor alone is not delivery and must not read as success.
+    const handled = Boolean(airtable.synced || ownerCopy.sent);
+    if (!airtable.synced) {
+      console.error("Lead not persisted to Airtable:", airtable.reason, { email: normalizedLead.email, leadType: normalizedLead.leadType });
+    }
 
     return json(res, handled ? 200 : 503, {
       success: handled,
-      stored: storage.stored,
+      stored: airtable.synced,
       airtableSynced: airtable.synced,
-      marketingSubscribed: marketing.subscribed,
+      marketingConsent: Boolean(normalizedLead.metadata?.marketingConsent) || normalizedLead.leadType === "newsletter",
       notificationSent: ownerCopy.sent,
       userEmailSent: userCopy.sent,
-      warnings: [
-        storage.reason,
-        airtable.reason,
-        marketing.reason === "Marketing consent not provided" ? null : marketing.reason,
-        ownerCopy.reason,
-        userCopy.reason,
-      ].filter(Boolean),
+      warnings: [airtable.reason, ownerCopy.reason, userCopy.reason].filter(Boolean),
       error: handled ? undefined : "Lead delivery is not configured yet.",
     });
   } catch (error) {

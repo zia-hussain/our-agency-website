@@ -40,19 +40,6 @@ const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const AllProjectsPage = lazy(() => import("./pages/AllProjectsPage"));
 const ClientStoriesPage = lazy(() => import("./pages/ClientStoriesPage"));
 const ReviewPage = lazy(() => import("./pages/ReviewPage"));
-const UnsubscribePage = lazy(() => import("./pages/UnsubscribePage"));
-const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
-const ProtectedRoute = lazy(() => import("./components/admin/ProtectedRoute"));
-const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
-const ArticlesManagement = lazy(() => import("./pages/admin/ArticlesManagement"));
-const PortfolioManagement = lazy(() => import("./pages/admin/PortfolioManagement"));
-const TestimonialsManagement = lazy(() => import("./pages/admin/TestimonialsManagement"));
-const ArticleForm = lazy(() => import("./pages/admin/articles/ArticleForm"));
-const ProjectForm = lazy(() => import("./pages/admin/portfolio/ProjectForm"));
-const TestimonialForm = lazy(() => import("./pages/admin/testimonials/TestimonialForm"));
-const SiteSettings = lazy(() => import("./pages/admin/SiteSettings"));
-const AuthForm = lazy(() => import("./components/admin/AuthForm"));
-const HomePageContent = lazy(() => import("./pages/admin/HomePageContent"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const LoadingFallback = () => (
@@ -66,7 +53,6 @@ const LoadingFallback = () => (
 
 function App() {
   const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith('/admin');
   const isReviewRoute = location.pathname === '/review';
   // /product-rescue/apply and /confirmed get the same treatment as /contact —
   // a self-contained flow of their own, not competing with a generic sticky
@@ -78,7 +64,7 @@ function App() {
   // other offers built on the same engine (2026-09-30 BUILD/AUTOMATE
   // expansion).
   const isUtilityRoute = [
-    '/contact', '/privacy-policy', '/terms-of-service', '/unsubscribe',
+    '/contact', '/privacy-policy', '/terms-of-service',
     '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
     '/idea-to-build', '/idea-to-build/apply', '/idea-to-build/confirmed',
     '/manual-to-system', '/manual-to-system/apply', '/manual-to-system/confirmed',
@@ -87,7 +73,7 @@ function App() {
     location.pathname.startsWith('/portfolio/') &&
     new URLSearchParams(location.search).get('view') === 'proposal';
   const isNotFoundRoute = !([
-    '/', '/about', '/services', '/offers', '/portfolio', '/portfolio/all', '/contact', '/unsubscribe',
+    '/', '/about', '/services', '/offers', '/portfolio', '/portfolio/all', '/contact',
     '/articles', '/privacy-policy', '/terms-of-service', '/review', '/client-stories',
     '/rescue-or-rebuild', '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
     '/idea-to-build', '/idea-to-build/apply', '/idea-to-build/confirmed',
@@ -96,8 +82,7 @@ function App() {
     location.pathname.startsWith('/services/') ||
     location.pathname.startsWith('/portfolio/') ||
     location.pathname.startsWith('/articles/') ||
-    location.pathname.startsWith('/founders/') ||
-    location.pathname.startsWith('/admin'));
+    location.pathname.startsWith('/founders/'));
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -111,15 +96,14 @@ function App() {
   // React Router changes don't trigger a native page load, so GA4 never sees
   // a page_view beyond the first one unless we fire it explicitly here (and
   // Analytics.tsx sets send_page_view:false specifically so GA4's own
-  // automatic pageview on config doesn't double-count this one). Admin is
-  // internal tooling, not organic-discoverable content, and /review is a
-  // private per-proposal link — neither belongs in "where did a qualified
+  // automatic pageview on config doesn't double-count this one). /review is a
+  // private per-proposal link and doesn't belong in "where did a qualified
   // lead come from" reporting. page_path is pathname-only so campaign query
   // strings don't fragment one page into dozens of distinct rows in
   // reporting; page_location keeps the full URL for UTM attribution, which
   // GA4 parses from there automatically.
   useEffect(() => {
-    if (isAdminRoute || isReviewRoute) return;
+    if (isReviewRoute) return;
     // First-touch attribution (utm_*, ?from=, entry path, referrer host) —
     // written once per session, read back by every form submit and website
     // Calendly link. See src/utils/attribution.ts.
@@ -129,7 +113,7 @@ function App() {
       page_location: window.location.href,
       page_title: document.title,
     });
-  }, [location.pathname, location.search, isAdminRoute, isReviewRoute]);
+  }, [location.pathname, location.search, isReviewRoute]);
 
   return (
     <MotionConfig reducedMotion="user">
@@ -139,7 +123,7 @@ function App() {
     >
       <Analytics />
       <ScrollToTop />
-      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Navigation />}
+      {!isReviewRoute && !isNotFoundRoute && <Navigation />}
       <Suspense fallback={<LoadingFallback />}>
         <AnimatePresence mode="wait">
           <Routes>
@@ -178,46 +162,15 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="/review" element={<ReviewPage />} />
-          <Route path="/unsubscribe" element={<UnsubscribePage />} />
           
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<AuthForm />} />
-          <Route path="/admin" element={
-            <ProtectedRoute>
-              <AdminLayout />
-            </ProtectedRoute>
-          }>
-            <Route index element={<AdminDashboard />} />
-            <Route path="home-content" element={<HomePageContent />} />
-            <Route path="about-content" element={<div className="p-8 text-center text-muted-foreground">About Content Management - Coming Soon</div>} />
-            <Route path="contact-content" element={<div className="p-8 text-center text-muted-foreground">Contact Content Management - Coming Soon</div>} />
-            <Route path="navigation" element={<div className="p-8 text-center text-muted-foreground">Navigation Management - Coming Soon</div>} />
-            <Route path="faqs" element={<div className="p-8 text-center text-muted-foreground">FAQ Management - Coming Soon</div>} />
-            <Route path="seo" element={<div className="p-8 text-center text-muted-foreground">SEO Management - Coming Soon</div>} />
-            <Route path="analytics" element={<div className="p-8 text-center text-muted-foreground">Analytics Dashboard - Coming Soon</div>} />
-            <Route path="services" element={<div className="p-8 text-center text-muted-foreground">Services Management - Static Content (No CMS)</div>} />
-            <Route path="projects" element={<div className="p-8 text-center text-muted-foreground">Projects Management - Static Content (No CMS)</div>} />
-            <Route path="articles" element={<ArticlesManagement />} />
-            <Route path="articles/new" element={<ArticleForm />} />
-            <Route path="articles/edit/:id" element={<ArticleForm />} />
-            <Route path="portfolio" element={<PortfolioManagement />} />
-            <Route path="portfolio/new" element={<ProjectForm />} />
-            <Route path="portfolio/edit/:id" element={<ProjectForm />} />
-            <Route path="testimonials" element={<TestimonialsManagement />} />
-            <Route path="testimonials/new" element={<TestimonialForm />} />
-            <Route path="testimonials/edit/:id" element={<TestimonialForm />} />
-            <Route path="founders" element={<div className="p-8 text-center text-muted-foreground">Founder Management - Coming Soon</div>} />
-            <Route path="settings" element={<SiteSettings />} />
-          </Route>
-
           {/* 404 catch-all */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AnimatePresence>
       </Suspense>
-      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <Footer />}
-      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && <BackToTop />}
-      {!isAdminRoute && !isReviewRoute && !isNotFoundRoute && !isUtilityRoute && !isProposalCaseStudy && <StickyCTABar />}
+      {!isReviewRoute && !isNotFoundRoute && <Footer />}
+      {!isReviewRoute && !isNotFoundRoute && <BackToTop />}
+      {!isReviewRoute && !isNotFoundRoute && !isUtilityRoute && !isProposalCaseStudy && <StickyCTABar />}
     </div>
     </MotionConfig>
   );

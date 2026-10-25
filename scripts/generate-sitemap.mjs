@@ -67,7 +67,6 @@ const STATIC_INDEX_ROUTES = [
 // Explicitly excluded, and why — kept here as documentation, not dead code:
 //   /portfolio/all   — noIndex is set on AllProjectsPage.tsx; a crawlable
 //                       archive but intentionally not a canonical destination
-//   /unsubscribe     — X-Robots-Tag: noindex via vercel.json
 //   /review          — X-Robots-Tag: noindex via vercel.json
 //   /product-rescue/apply, /idea-to-build/apply,
 //   /manual-to-system/apply — noIndex via each page's own <SEO> call; a
@@ -78,7 +77,6 @@ const STATIC_INDEX_ROUTES = [
 //                       reached only through an opaque per-applicant token
 //                       in an email, never a public link — must never appear
 //                       in search results (see audit Section 28).
-//   /admin/*         — Disallow'd in robots.txt, ProtectedRoute-gated
 //   old service/founder slugs — 308 redirects at the edge (vercel.json),
 //                       never resolve to real content of their own
 
