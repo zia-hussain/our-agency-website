@@ -51,6 +51,8 @@ const getAttribution = (offerSlug: string) => {
     entrySource: (offerSource && offerSource !== "direct" ? offerSource : undefined) || first.entrySource || undefined,
     entryPage: first.entryPage || undefined,
     referrerHost: first.referrerHost || undefined,
+    clickId: first.clickId || undefined,
+    clickIdType: first.clickIdType || undefined,
   };
 };
 

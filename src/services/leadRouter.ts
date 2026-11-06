@@ -44,6 +44,8 @@ const getAttribution = () => {
     entrySource: params.get('from') || first.entrySource || undefined,
     entryPage: first.entryPage || undefined,
     referrerHost: first.referrerHost || undefined,
+    clickId: first.clickId || undefined,
+    clickIdType: first.clickIdType || undefined,
   };
 };
 
@@ -76,7 +78,9 @@ export async function routeLead(leadData: LeadData): Promise<LeadResponse> {
       };
     }
 
-    trackFormSubmit(`lead_${enrichedData.source}`);
+    // The API answers `honeypot: true` (and `success: true`, so a bot gets no
+    // signal) when the hidden field was filled. That is not a lead.
+    if (!payload.honeypot) trackFormSubmit(`lead_${enrichedData.source}`);
     return {
       success: true,
       destination: 'server',

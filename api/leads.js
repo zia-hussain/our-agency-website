@@ -53,6 +53,8 @@ const syncLeadToAirtable = async (lead) => {
     "Entry Source": metadata.entrySource || "",
     "Entry Page": metadata.entryPage || "",
     "Referrer Host": metadata.referrerHost || "",
+    "Click ID": metadata.clickId || "",
+    "Click ID Type": metadata.clickIdType || "",
     Situation: metadata.situation || "",
     "Marketing Consent": Boolean(metadata.marketingConsent),
     "Created At": now,

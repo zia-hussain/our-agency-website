@@ -11,12 +11,13 @@ export const trackEvent = (eventName: string, params?: Record<string, unknown>) 
   }
 };
 
+// One `generate_lead` per successful lead, fired from the single place that
+// knows the server accepted it (services/leadRouter.ts). No `value`: the old
+// fixed 12000 was a placeholder, not a measurement, and would have poisoned
+// any value-based bidding later. A real value arrives with the Airtable
+// `Stage` field and an offline import, never as a client-side constant.
 export const trackFormSubmit = (formType: string) => {
-  trackEvent('generate_lead', {
-    method: formType,
-    value: 12000,
-    currency: 'USD'
-  });
+  trackEvent('generate_lead', { method: formType });
 };
 
 // Phase 1 (2026-10-20): one event for every website Calendly click, with the

@@ -20,7 +20,7 @@ import {
   FileText,
   CheckCircle,
 } from "lucide-react";
-import { trackCTAClick, trackFormSubmit, trackCalendlyClick } from "../utils/analytics";
+import { trackCTAClick, trackCalendlyClick } from "../utils/analytics";
 import { routeLead } from "../services/leadRouter";
 import { buildCalendlyUrl } from "../utils/attribution";
 
@@ -126,7 +126,7 @@ const ContactPage: React.FC = () => {
         throw new Error(leadResult.error || "We could not deliver your project brief.");
       }
 
-      trackFormSubmit("contact_form");
+      // generate_lead is fired once by routeLead() on server acceptance.
       setIsSubmitted(true);
       setFormData({
         name: "",

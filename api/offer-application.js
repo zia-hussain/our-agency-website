@@ -155,6 +155,8 @@ export default async function handler(req, res) {
       entrySource: clampText(body.entrySource, 80),
       entryPage: clampText(body.entryPage, 200),
       referrerHost: clampText(body.referrerHost, 120),
+      clickId: clampText(body.clickId, 200),
+      clickIdType: clampText(body.clickIdType, 40),
       marketingConsent: Boolean(body.marketingConsent),
     };
 
@@ -193,6 +195,8 @@ export default async function handler(req, res) {
       "Entry Source": application.entrySource,
       "Entry Page": application.entryPage,
       "Referrer Host": application.referrerHost,
+      "Click ID": application.clickId,
+      "Click ID Type": application.clickIdType,
       "Marketing Consent": application.marketingConsent,
       "Notion Sync Status": "Not Attempted",
     });

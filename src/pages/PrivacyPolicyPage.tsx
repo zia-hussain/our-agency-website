@@ -57,7 +57,7 @@ const PrivacyPolicyPage: React.FC = () => {
             </h1>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Last updated: June 19, 2026
+              Last updated: November 6, 2026
             </p>
           </AnimatedSection>
         </div>
@@ -168,6 +168,17 @@ const PrivacyPolicyPage: React.FC = () => {
                 browsing experience, analyze website traffic, and understand
                 user preferences. You can control cookie settings through your
                 browser preferences.
+              </p>
+              <p>
+                When you arrive from a link that carries campaign parameters
+                (for example utm_source or an advertising click identifier such
+                as gclid), we keep those parameters, the first page you opened
+                and the referring site in your browser's local storage for up
+                to 30 days, so that an inquiry or booking you make later can be
+                attributed to its original source. This record contains no
+                name, email address or form content, and is sent to us only
+                together with a form you choose to submit or a call you choose
+                to book.
               </p>
 
               <h2 id="email-preferences-and-consent">7. Email Preferences and Consent</h2>

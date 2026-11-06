@@ -97,7 +97,7 @@ const articleUrls = articles.map((article) => ({
   loc: `/articles/${article.slug}`,
   changefreq: "monthly",
   priority: "0.7",
-  lastmod: article.publishedAt || undefined,
+  lastmod: article.updatedAt || article.publishedAt || undefined,
 }));
 
 const allUrls = [...STATIC_INDEX_ROUTES, ...projectUrls, ...articleUrls];

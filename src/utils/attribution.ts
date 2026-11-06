@@ -8,12 +8,27 @@
 // clean URL, so Airtable recorded nothing. Same for the `?from=` entry
 // parameter on offer pages, which reached GA4 but never reached Airtable.
 //
-// Privacy: only campaign parameters, the entry path and the referrer host are
-// stored — never names, emails, phone numbers or free-text answers. Values
-// are length-capped and limited to a safe character set.
+// Privacy: only campaign parameters, the ad click identifier, the entry path
+// and the referrer host are stored — never names, emails, phone numbers or
+// free-text answers. Values are length-capped and limited to a safe
+// character set. The record is kept in sessionStorage (the key every
+// existing reader uses) and mirrored to localStorage for 30 days so a
+// visitor who comes back from a bookmark a week after clicking an ad is
+// still attributed to the ad. This is disclosed in the privacy policy.
 
 const KEY = "zumetrix:attribution:v1";
+const PERSIST_KEY = "zumetrix:attribution:first-touch:v1";
+const PERSIST_DAYS = 30;
 const SAFE = /[^A-Za-z0-9_\-.:/ ]/g;
+const CLICK_ID_PARAMS: Array<[string, string]> = [
+  ["gclid", "google"],
+  ["gbraid", "google"],
+  ["wbraid", "google"],
+  ["fbclid", "meta"],
+  ["msclkid", "microsoft"],
+  ["ttclid", "tiktok"],
+  ["li_fat_id", "linkedin"],
+];
 
 export interface FirstTouch {
   utmSource?: string;
@@ -27,6 +42,10 @@ export interface FirstTouch {
   entryPage?: string;
   /** Referrer host of the first page of the session (no path, no query). */
   referrerHost?: string;
+  /** Ad platform click identifier (gclid, fbclid, …) from the first tagged page. */
+  clickId?: string;
+  /** Which platform the click identifier belongs to ("google" | "meta" | …). */
+  clickIdType?: string;
   capturedAt?: string;
 }
 
@@ -36,13 +55,61 @@ const clean = (value: string | null | undefined, max = 120): string | undefined 
   return v || undefined;
 };
 
-const read = (): FirstTouch | null => {
+const readPersisted = (): FirstTouch | null => {
   try {
-    const raw = window.sessionStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as FirstTouch) : null;
+    const raw = window.localStorage.getItem(PERSIST_KEY);
+    if (!raw) return null;
+    const record = JSON.parse(raw) as FirstTouch;
+    const age = Date.now() - Date.parse(record.capturedAt || "");
+    if (!Number.isFinite(age) || age > PERSIST_DAYS * 86400000) {
+      window.localStorage.removeItem(PERSIST_KEY);
+      return null;
+    }
+    return record;
   } catch {
     return null;
   }
+};
+
+const write = (record: FirstTouch) => {
+  try {
+    window.sessionStorage.setItem(KEY, JSON.stringify(record));
+  } catch {
+    /* storage unavailable */
+  }
+  try {
+    window.localStorage.setItem(PERSIST_KEY, JSON.stringify(record));
+  } catch {
+    /* storage unavailable */
+  }
+};
+
+const read = (): FirstTouch | null => {
+  try {
+    const raw = window.sessionStorage.getItem(KEY);
+    if (raw) return JSON.parse(raw) as FirstTouch;
+  } catch {
+    /* fall through to the persisted copy */
+  }
+  // New tab or new session: re-seat the persisted first touch (if any and
+  // not expired) so every reader of the session key keeps working unchanged.
+  const persisted = readPersisted();
+  if (persisted) {
+    try {
+      window.sessionStorage.setItem(KEY, JSON.stringify(persisted));
+    } catch {
+      /* ignore */
+    }
+  }
+  return persisted;
+};
+
+const readClickId = (params: URLSearchParams): Pick<FirstTouch, "clickId" | "clickIdType"> => {
+  for (const [param, type] of CLICK_ID_PARAMS) {
+    const value = clean(params.get(param), 200);
+    if (value) return { clickId: value, clickIdType: type };
+  }
+  return {};
 };
 
 /** Capture first touch. Safe to call on every route change; only the first
@@ -60,6 +127,7 @@ export const captureFirstTouch = (): FirstTouch | null => {
       utmContent: clean(params.get("utm_content")),
       utmTerm: clean(params.get("utm_term")),
       entrySource: clean(params.get("from"), 80),
+      ...readClickId(params),
     };
     const existing = read();
     if (!existing) {
@@ -75,7 +143,7 @@ export const captureFirstTouch = (): FirstTouch | null => {
         referrerHost,
         capturedAt: new Date().toISOString(),
       };
-      window.sessionStorage.setItem(KEY, JSON.stringify(record));
+      write(record);
       return record;
     }
     const merged: FirstTouch = { ...existing };
@@ -86,7 +154,7 @@ export const captureFirstTouch = (): FirstTouch | null => {
         changed = true;
       }
     });
-    if (changed) window.sessionStorage.setItem(KEY, JSON.stringify(merged));
+    if (changed) write(merged);
     return merged;
   } catch {
     return null;
@@ -107,10 +175,15 @@ export const WEBSITE_CALENDLY_URL =
 
 export const buildCalendlyUrl = (content: string): string => {
   const url = new URL(WEBSITE_CALENDLY_URL);
-  url.searchParams.set("utm_source", "site");
-  url.searchParams.set("utm_medium", "website");
-  url.searchParams.set("utm_content", clean(content, 60) || "website");
   const ft = typeof window !== "undefined" ? getFirstTouch() : {};
+  // The visitor's real acquisition source travels with the booking. Before
+  // 2026-11-06 these were hard-coded to "site"/"website", so a booking from a
+  // paid click reported in Calendly as if it were organic. "site"/"website"
+  // remain the fallback for untagged visits, so existing Calendly reports
+  // keep their meaning.
+  url.searchParams.set("utm_source", ft.utmSource || "site");
+  url.searchParams.set("utm_medium", ft.utmMedium || "website");
+  url.searchParams.set("utm_content", clean(content, 60) || "website");
   if (ft.utmCampaign) url.searchParams.set("utm_campaign", ft.utmCampaign);
   if (ft.entrySource) url.searchParams.set("utm_term", ft.entrySource);
   return url.toString();
