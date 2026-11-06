@@ -3,7 +3,8 @@ import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import Hero from "../components/home/Hero";
 import BrandFilmMoment from "../components/home/BrandFilmMoment";
-import TrustTicker from "../components/home/TrustTicker";
+import InfiniteLogoCarousel from "../components/home/InfiniteLogoCarousel";
+import TrustBand from "../components/home/TrustBand";
 import ServicesPreview from "../components/home/ServicesPreview";
 import FeaturedCaseStudies from "../components/home/FeaturedCaseStudies";
 import FoundersStrip from "../components/home/FoundersStrip";
@@ -52,6 +53,7 @@ const HomePage: React.FC = () => {
           "https://www.linkedin.com/company/zumetrix-labs",
           "https://github.com/zumetrix-labs",
           "https://www.instagram.com/zumetrixlabs",
+          "https://x.com/zumetrix83892",
         ],
       },
       {
@@ -99,7 +101,7 @@ const HomePage: React.FC = () => {
         id: "brand-film",
         name: "Josh, Reema, Sarah & Krystof",
         role: "",
-        context: "Four Zumetrix clients — Josh Nyce, Reema, Sarah, and Krystof — in their own words.",
+        context: "Four Zumetrix clients — Josh Nyce, Reema Rafay, Sarah, and Krystof Kapka — in their own words.",
         src: "/videos/zumetrix-brand-film.mp4",
         poster: "/images/video-posters/zumetrix-brand-film-poster.jpg",
         captionsSrc: "/captions/zumetrix-brand-film.vtt",
@@ -113,24 +115,26 @@ const HomePage: React.FC = () => {
     <PageTransition>
       <SEO
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title={BRAND_CONTENT.meta.home.title}
-        description={BRAND_CONTENT.meta.home.description}
+        title="Zumetrix Labs | SaaS MVPs, Apps & AI Automation"
+        description="Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, mobile apps, and AI automation for founders who need thinking partners, not order-takers."
         image="https://zumetrix.com/og/page-home.png"
         structuredData={structuredData}
       />
       <Hero />
       <div className="performance-defer"><BrandFilmMoment /></div>
-      <div className="performance-defer"><TrustTicker /></div>
+      <div className="performance-defer"><InfiniteLogoCarousel /></div>
+      <SectionDivider />
+      <div className="performance-defer"><TrustBand /></div>
       <SectionDivider />
       <div className="performance-defer"><ServicesPreview /></div>
       <SectionDivider />
       <div className="performance-defer"><FeaturedCaseStudies /></div>
       <SectionDivider />
+      <div className="performance-defer"><TechStack /></div>
+      <SectionDivider />
       <div className="performance-defer"><FoundersStrip /></div>
       <SectionDivider />
       <div className="performance-defer"><ClientProofFilm /></div>
-      <SectionDivider />
-      <div className="performance-defer"><TechStack /></div>
       <SectionDivider />
       {/* Phase 1 (2026-10-20): the AI ROI calculator and the 30-Day MVP
           Blueprint download were unfeatured from the homepage. The

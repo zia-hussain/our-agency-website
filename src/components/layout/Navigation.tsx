@@ -18,6 +18,7 @@ const NAV_ITEMS = [
   { name: "Services", path: "/services" },
   { name: "Portfolio", path: "/portfolio" },
   { name: "Articles", path: "/articles" },
+  { name: "Start here", path: "/start" },
 ];
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -102,7 +103,7 @@ const Navigation: React.FC = () => {
         animate={{
           y: 0,
           opacity: 1,
-          maxWidth: isDocked ? 460 : 1180,
+          maxWidth: isDocked ? 560 : 1180,
           borderRadius: 999,
           paddingLeft: isDocked ? 8 : 30,
           paddingRight: isDocked ? 8 : 30,
@@ -142,7 +143,7 @@ const Navigation: React.FC = () => {
 
         <div
           className={`flex items-center transition-[gap] duration-500 ease-out ${
-            isDocked ? "gap-1" : "flex-1 justify-center gap-14"
+            isDocked ? "gap-0.5" : "flex-1 justify-center gap-10 xl:gap-14"
           }`}
         >
           {NAV_ITEMS.map((item) => {
@@ -164,11 +165,13 @@ const Navigation: React.FC = () => {
               >
                 <span
                   className={`relative flex items-center gap-1 whitespace-nowrap rounded-full transition-all duration-500 ${
-                    isDocked ? "px-4 py-2.5 text-[14px]" : "px-0 py-1 text-[15px]"
+                    isDocked ? "px-3.5 py-2.5 text-[14px]" : "px-0 py-1 text-[15px]"
                   } font-medium tracking-[-0.01em] ${
                     active
                       ? `text-foreground ${isDocked ? "bg-white/[0.055]" : ""}`
-                      : "text-muted-foreground/70 hover:text-foreground/90"
+                      : item.path === "/start"
+                        ? "text-primary/85 hover:text-primary"
+                        : "text-muted-foreground/70 hover:text-foreground/90"
                   }`}
                 >
                   {item.name}
@@ -466,7 +469,7 @@ const Navigation: React.FC = () => {
 
             <div className="flex-1 overflow-y-auto px-6 pt-8 pb-6 sm:px-8">
               <div className="flex flex-col gap-1">
-                {[{ name: "Home", path: "/" }, { name: "Where to start", path: "/start" }, ...NAV_ITEMS].map(
+                {[{ name: "Home", path: "/" }, ...NAV_ITEMS, { name: "Contact", path: "/contact" }].map(
                   (item, index) => {
                     const active = item.path === "/" ? location.pathname === "/" : isActiveRoute(item.path);
                     // Service pages and the three doors are one tap away on

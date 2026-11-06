@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Github, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../../config/site";
@@ -59,6 +59,8 @@ const SOCIAL = [
 ];
 
 const Footer: React.FC = () => {
+  const { pathname } = useLocation();
+  const showClose = pathname !== "/";
   const currentYear = new Date().getFullYear();
 
   return (
@@ -73,7 +75,9 @@ const Footer: React.FC = () => {
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(196,138,100,0.07),transparent_60%)]" />
 
-          {/* Closing statement */}
+          {/* Closing statement — not on the homepage, which has its own
+              final CTA directly above the footer. */}
+          {showClose && (<>
           <div className="relative px-6 pt-12 pb-10 sm:px-12 sm:pt-16 sm:pb-12 text-center">
             <h2 className="max-w-xl mx-auto font-bold tracking-[-0.02em] leading-[1.15] text-foreground text-2xl sm:text-4xl lg:text-[2.75rem]">
               Ready when you are.
@@ -102,6 +106,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="relative h-px bg-white/[0.06]" />
+          </>)}
 
           {/* Credits */}
           <div className="relative px-6 py-10 sm:px-12 sm:py-12">

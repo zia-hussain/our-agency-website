@@ -42,15 +42,12 @@ const Avatar: React.FC<{ name: string; size?: "sm" | "md" }> = ({ name, size = "
   </div>
 );
 
-const PlatformMark: React.FC<{ t: TestimonialEntry }> = ({ t }) =>
-  t.platform ? (
-    <span className="flex items-center gap-1.5 text-muted-foreground/60">
-      <PlatformIcon platform={t.platform} size={14} />
-      <span className="text-xs">{t.platform}</span>
-    </span>
-  ) : (
-    <span className="text-xs text-muted-foreground/60">Shared with us directly</span>
-  );
+const PlatformMark: React.FC<{ t: TestimonialEntry }> = ({ t }) => (
+  <span className="flex items-center gap-1.5 text-muted-foreground/60">
+    <PlatformIcon platform={t.platform} size={14} />
+    <span className="text-xs">{t.platform}</span>
+  </span>
+);
 
 const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({ t, compact }) => {
   const { before, after } = t.evidence ?? {};

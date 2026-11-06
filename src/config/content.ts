@@ -29,9 +29,9 @@ export const BRAND_CONTENT = {
   brand: {
     name: "Zumetrix Labs",
     tagline: "Forge Clear Ideas Into Shipped Software.",
-    positioningStatement: "We build the software your business actually needs — and tell you when it doesn't.",
+    positioningStatement: "We build software for founders who need thinking partners, not order-takers",
 
-    shortDescription: "Zumetrix Labs is a founder-led software studio. Zia Hussain and Omer Gillani, with a small specialist team, work out what should happen to a product before anyone writes code — then build it: SaaS, web and mobile products, product rescue, and operational automation.",
+    shortDescription: "Forge Clear Ideas Into Shipped Software. Founded by Zia Hussain and Omer Gillani, Zumetrix Labs builds SaaS MVPs, AI automation, and mobile apps for founders who need thinking partners.",
 
     longDescription: FACTS.counts.projectsShipped + " projects built. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. That's uncomfortable. It's also how we try to keep our projects on track to launch.",
   },
@@ -41,12 +41,12 @@ export const BRAND_CONTENT = {
    * Primary landing content that sets expectations
    */
   hero: {
-    badge: "Founder-led software studio",
+    badge: "Where stalled projects get shipped",
 
     headline: {
-      line1: "We take the whole problem,",
-      line2: "not just the spec.",
-      line3: ""
+      line1: "We build software for founders",
+      line2: "who need thinking partners,",
+      line3: "not order-takers"
     },
 
     subheadline: [
@@ -54,15 +54,15 @@ export const BRAND_CONTENT = {
       { text: " — we'll figure out what needs to happen next.", type: "emphasis" }
     ] as ContentSegment[],
 
-    proofLine: `${FACTS.counts.projectsShipped} projects shipped · ${FACTS.counts.writtenReviews} written client reviews`,
+    proofLine: `${FACTS.counts.projectsShipped} projects shipped`,
 
     primaryCTA: {
-      text: "Tell us where you are",
+      text: "Start Your Project",
       link: "/contact"
     },
 
     secondaryCTA: {
-      text: "See the work",
+      text: "See Real Work",
       link: "#portfolio"
     }
   },
@@ -72,36 +72,37 @@ export const BRAND_CONTENT = {
    * The PAS framework section explaining differentiation
    */
   signatureMethod: {
-    title: "Why founders choose us (and why some don't)",
-    subtitle: "Three things we do that cost us some deals and keep the rest.",
+    title: "Why Founders Choose Us (And Why Some Don't)",
+    subtitle: "We're technical. We're direct. We've done this before.",
 
     sections: [
       {
         icon: "problem",
-        title: "We'll tell you not to build it.",
+        title: "The Problem With Saying Yes to Everything",
         description: [
-          { text: "Every rescue assessment can end with \"keep what you have\" — it costs the same either way. Every new build starts by writing down what the first version won't include. ", type: "normal" },
-          { text: "Founders who want a yes to everything leave; the ones who stay get software that was decided, not accumulated.", type: "emphasis" }
+          { text: "An agency that says yes to everything turns vague ideas into vague products. Six months later, nothing works. We ask uncomfortable questions early because ", type: "normal" },
+          { text: "we'd rather lose a deal than build something that fails.", type: "emphasis" }
         ] as ContentSegment[],
-        stat: "Decided before it's built"
+        stat: "Clear thinking comes before code"
       },
       {
         icon: "approach",
-        title: "The people who scoped it build it.",
+        title: "How We Work Different",
         description: [
-          { text: "Zia and Omer are on the first call, write the scope, and are still answering the thread after launch — with a small specialist team across design, development, QA and automation working beside them. ", type: "normal" },
-          { text: "No handoff to a team you've never met.", type: "accent" }
+          { text: "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Our founders personally architect every solution. ", type: "normal" },
+          { text: "Not order-takers—thinking partners.", type: "accent" }
         ] as ContentSegment[],
-        stat: "Founders close, delivery deep"
+        stat: ""
       },
       {
         icon: "results",
-        title: "We'd rather be checkable than impressive.",
+        title: "What Actually Happens",
         description: [
-          { text: FACTS.counts.writtenReviews + " written reviews sit on Fiverr, Upwork, Trustpilot, Clutch and Google — platforms we can't edit. ", type: "normal" },
-          { text: "Every number on this site traces to a record, every case study separates what the client reported from what we measured, and every price is published before the call.", type: "emphasis" }
+          { text: "Some clients raise funding on what we build. Others don't. ", type: "normal" },
+          { text: "That was never about execution — it was about how clear the problem was on day one.", type: "emphasis" },
+          { text: " We build that clarity in before we touch a keyboard.", type: "normal" }
         ] as ContentSegment[],
-        stat: "Prices before the call"
+        stat: "Focused 4-8 week delivery"
       }
     ]
   },
@@ -111,32 +112,32 @@ export const BRAND_CONTENT = {
    * Bottom of page conversion content
    */
   finalCTA: {
-    badge: "What happens next",
+    badge: "Ready to Start?",
 
     headline: {
-      line1: "Tell us where you are.",
-      line2: "We'll tell you what fits."
+      line1: "Have a project?",
+      line2: "Let's talk."
     },
 
     subtitle: [
-      { text: "A 30-minute call with Zia or Omer. If one of our services fits, we'll say which and what it would cost to start. ", type: "normal" },
-      { text: "If none does, we'll say that too.", type: "emphasis" }
+      { text: "Book a 30-minute call. No pitch, no pressure. We'll ask questions, challenge assumptions, and ", type: "normal" },
+      { text: "tell you honestly if we're the right fit.", type: "emphasis" }
     ] as ContentSegment[],
 
     primaryCTA: {
-      text: "Book a call",
+      text: "Book Free Strategy Call",
       link: "https://calendly.com/zumetrix-labs/consultation"
     },
 
     secondaryCTA: {
-      text: "Write to us instead",
+      text: "Send Project Brief",
       link: "/contact"
     },
 
     trustSignals: [
-      "A reply within two business days",
-      "Prices stated before the call",
-      "No obligation"
+      "Usually replies within 24 hours",
+      "Expert insights & strategy",
+      "No obligation consultation"
     ]
   },
 
@@ -145,7 +146,7 @@ export const BRAND_CONTENT = {
    * Brand description for footer section
    */
   footer: {
-    description: "Founded by Zia Hussain and Omer Gillani. The software studio that decides before it builds — SaaS, web and mobile products, product rescue and operational automation.",
+    description: "Founded by Zia Hussain and Omer Gillani. We build software for founders who need thinking partners, not order-takers.",
 
     copyright: "Crafted by Zia Hussain and Omer Gillani"
   },
@@ -164,8 +165,8 @@ export const BRAND_CONTENT = {
     metrics: {
       projects: FACTS.counts.projectsShipped,
       projectsDescription: "Projects Delivered",
-      timeline: FACTS.counts.writtenReviews,
-      timelineDescription: "Written client reviews",
+      timeline: "4-6 weeks",
+      timelineDescription: "Average MVP delivery",
       experience: "Founder-led",
       experienceDescription: "Every engagement"
     }
@@ -177,13 +178,13 @@ export const BRAND_CONTENT = {
    */
   meta: {
     home: {
-      title: "Zumetrix Labs — SaaS products, product rescue and automation, founder-led",
-      description: "Founder-led software studio for founders and operating companies: SaaS, web and mobile products, product rescue and stabilization, and workflow automation. Prices stated on every service page."
+      title: "Zumetrix Labs | SaaS MVPs, Apps & AI Automation",
+      description: "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners."
     },
 
     about: {
-      title: "About Zumetrix Labs | Zia Hussain & Omer Gillani, Founders",
-      description: "Zia Hussain (CEO) and Omer Gillani (CTO) founded Zumetrix Labs in June 2025 after years of shipping software for other people's businesses. How the studio decides, builds and stays accountable — with a small specialist team behind the founders."
+      title: "About Zumetrix Labs | Meet Zia Hussain & Omer Gillani | Technical Founders",
+      description: "Meet Zia Hussain (CEO) and Omer Gillani (CTO), technical founders of Zumetrix Labs. Projects delivered across US, UK, Canada, Australia, UAE, and Singapore. Specializing in SaaS MVP development, React/Node.js applications, and AI automation."
     },
 
     services: {

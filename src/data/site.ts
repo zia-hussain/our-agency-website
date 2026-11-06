@@ -184,7 +184,7 @@ export const SITE_DATA = {
     title: "Founder-led from",
     themedTitle: "strategy through delivery",
     subtitle:
-      "Zia owns what gets built and why; Omer owns how it gets built and that it holds. Both stay on every engagement from first call to after launch, with a small specialist team across design, development, QA and automation behind them.",
+      "Zia owns what gets built and why; Omer owns how it gets built and that it holds. Both stay on every engagement from the first call to long after launch, with a small specialist team across design, development, QA and automation behind them — and a standing habit of saying no to work that shouldn't be built.",
     founders: [
       {
         name: "Zia Hussain",
@@ -201,7 +201,7 @@ export const SITE_DATA = {
           "Client Success",
           "SaaS Architecture",
         ],
-        achievements: "Turns business problems into focused product decisions",
+        achievements: "Runs the first call, writes the scope, and is still on the thread after launch.",
         image: "/profile_images/zia-hussain-portrait-thumb.webp",
         linkedin: "https://www.linkedin.com/in/zia-hussain-404-/",
         // Website CTAs book through the one company destination (Phase 1,
@@ -225,7 +225,7 @@ export const SITE_DATA = {
           "Cloud Infrastructure",
           "Performance Optimization",
         ],
-        achievements: "Turns product decisions into maintainable software",
+        achievements: "Architecture, integrations and automation — built to still hold up a year from now.",
         image: "/profile_images/omer-gillani-portrait-thumb.webp",
         linkedin: "https://www.linkedin.com/in/omer-gillani/",
         calendly: "https://calendly.com/zumetrix-labs/consultation",

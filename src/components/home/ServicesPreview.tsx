@@ -1,125 +1,285 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check, Rocket, Brain, Monitor } from "lucide-react";
 import { motion } from "framer-motion";
+import { getSiteData } from "../../data/site";
 import { OFFERS, offerHref } from "../../config/offers";
-import { trackOfferSelect, trackCTAClick } from "../../utils/analytics";
+import { trackOfferSelect } from "../../utils/analytics";
 
-/**
- * Three situations, three rows. No tabs, no cards, no selected state.
- *
- * A visitor reads the left column, recognises themselves, and the rest of
- * the row tells them what we do about it and what the first step costs.
- * Everything else — proof, alternatives, the five disciplines — lives one
- * click deeper, where it is read by someone who has already self-selected.
- */
-type Row = {
-  key: "fix" | "build" | "automate";
-  statement: string;
-  body: string;
-  step: string;
-  price: string;
-  href: string;
-  offer?: "product-rescue";
-};
-
-const ROWS: Row[] = [
-  {
-    key: "fix",
-    statement: "My product is stuck.",
-    body:
-      "Three developers have looked at it and you've had three answers. We read the code and the business before we promise anything — and if the right answer is to keep what you have, that is the answer you'll get.",
-    step: "Rescue assessment, five business days",
-    price: `$${OFFERS["product-rescue"].price}`,
-    href: offerHref("product-rescue", "homepage-door"),
-    offer: "product-rescue",
-  },
-  {
-    key: "build",
-    statement: "I have an idea. Nothing is built.",
-    body:
-      "We write down what the first version has to prove, then build exactly that: accounts, payments, the core flow and the admin behind it. The rest waits until the product has earned it.",
-    step: "SaaS and product build",
-    price: "from $4,800",
-    href: "/services/saas-mvp-development",
-  },
-  {
-    key: "automate",
-    statement: "The work is still done by hand.",
-    body:
-      "Paper, spreadsheets, people remembering what to do. We build the one workflow that costs you most and leave it running with failures flagged to a person. Then we decide together whether there's a second.",
-    step: "One workflow, built and live",
-    price: "from $2,500",
-    href: "/services/ai-automation-solutions#start-small",
-  },
-];
+// The three bounded offers, routed from the same section as the services
+// grid rather than a new homepage block of their own (2026-10-11 commercial
+// routing pass) — recomposing existing commercial real estate instead of
+// lengthening the page. Full detail lives on /offers; this is recognition
+// only. Typographic, not a row of icon-badge pills (2026-10-18 re-art-
+// direction) — three labeled lines separated by rules, the same device the
+// comparison facts and footer use elsewhere, not a third visual pattern.
+const OFFER_ROUTER = [
+  { offer: "idea-to-build", situation: "I have an idea and nothing built yet", label: "Define V1 before anyone writes code" },
+  { offer: "product-rescue", situation: "I have a product and it's stuck", label: "Find out what actually deserves fixing" },
+  { offer: "manual-to-system", situation: "My team still does this by hand", label: "Find out what deserves automating first" },
+] as const;
 
 const ServicesPreview: React.FC = () => {
+  const { servicesPreview } = getSiteData();
+
+  const iconMap = {
+    rocket: Rocket,
+    brain: Brain,
+    devices: Monitor,
+  };
+
   return (
-    <section id="situations" className="py-24 sm:py-28 bg-background scroll-mt-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-28 bg-background relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.28 }}
-          className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 sm:mb-12"
+          className="text-center mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.05]">
-            Which one is you?
+          <motion.div
+            initial={{ opacity: 0.95, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.28 }}
+            className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
+          >
+            <Monitor size={14} className="mr-2" />
+            What We Actually Build
+          </motion.div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5 tracking-tight leading-[1.12]">
+            Three services.
+            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mt-1">
+              Real starting prices.
+            </span>
           </h2>
-          <p className="text-sm sm:text-base text-muted-foreground lg:max-w-xs lg:text-right leading-relaxed">
-            Three ways an engagement starts. Each has a price before the call.
+
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
+            No "contact us for a quote" games. Here's what we build and what
+            it costs to start.
           </p>
         </motion.div>
 
-        <ul className="border-t border-border/60">
-          {ROWS.map((r, i) => (
-            <motion.li
-              key={r.key}
-              initial={{ opacity: 0.95, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.28, delay: 0.05 * i }}
-              className="border-b border-border/60"
-            >
-              <Link
-                to={r.href}
-                onClick={() => {
-                  if (r.offer) trackOfferSelect(r.offer);
-                  else trackCTAClick(`homepage-door-${r.key}`, "situations");
-                }}
-                className="group relative grid gap-4 py-8 sm:py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.4fr)_auto] lg:gap-10 lg:items-start"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-0 bottom-0 w-px bg-primary scale-y-0 origin-top transition-transform duration-300 group-hover:scale-y-100 motion-reduce:transition-none"
-                />
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground leading-[1.15] lg:pl-6 group-hover:text-primary transition-colors duration-200">
-                  {r.statement}
-                </h3>
-                <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed max-w-xl">{r.body}</p>
-                <span className="flex items-center justify-between gap-6 lg:block lg:text-right lg:min-w-[13rem]">
-                  <span className="block">
-                    <span className="block text-sm font-semibold text-foreground">{r.step}</span>
-                    <span className="block text-sm text-primary mt-0.5 tabular-nums">{r.price}</span>
-                  </span>
-                  <span className="mt-0 lg:mt-3 inline-flex items-center justify-center w-9 h-9 rounded-full border border-border/70 text-muted-foreground group-hover:border-primary/50 group-hover:text-primary transition-colors duration-200">
-                    <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-                  </span>
-                </span>
-              </Link>
-            </motion.li>
-          ))}
-        </ul>
+        {/* Bento Grid Layout */}
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+          {servicesPreview.services.map((service, index) => {
+            const IconComponent = iconMap[service.icon as keyof typeof iconMap];
+            const isFeatured = index === 0;
 
-        <p className="mt-8 text-sm text-muted-foreground">
-          None of these quite fits?{" "}
-          <Link to="/contact" className="text-foreground underline decoration-border/70 underline-offset-4 hover:decoration-primary hover:text-primary transition-colors">
-            Tell us where you are
-          </Link>{" "}
-          and we'll say which, if any, applies.
-        </p>
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0.95, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ duration: 0.15, delay: index * 0.1 }}
+                className={`group ${
+                  isFeatured ? "lg:col-span-2 lg:row-span-2" : ""
+                }`}
+              >
+                <div
+                  className={`relative bg-card/25 backdrop-blur-xl p-8 rounded-2xl border border-border/70 h-full flex flex-col overflow-hidden transition-all duration-300 hover:border-primary/30 hover:bg-card/40 hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.02] ${
+                    isFeatured ? "lg:p-12" : ""
+                  }`}
+                >
+                  <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Icon */}
+                  <motion.div
+                    whileHover={{ scale: 1.08, rotate: 4 }}
+                    transition={{ duration: 0.2 }}
+                    className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-6 bg-primary/[0.08] border border-primary/10 group-hover:bg-primary/15 transition-colors duration-300"
+                  >
+                    <IconComponent size={21} className="text-primary" />
+                  </motion.div>
+
+                  {/* Content */}
+                  <h3
+                    className={`${
+                      isFeatured
+                        ? "text-3xl lg:text-4xl"
+                        : "text-2xl lg:text-3xl"
+                    } font-bold text-foreground mb-2.5 tracking-tight group-hover:text-primary transition-colors duration-300`}
+                  >
+                    {service.title}
+                  </h3>
+
+                  <p className="text-primary/90 font-medium mb-6">
+                    {service.oneLiner}
+                  </p>
+
+                  {isFeatured && (
+                    <p className="text-muted-foreground leading-relaxed mb-6 max-w-lg">
+                      {service.description}
+                    </p>
+                  )}
+
+                  {isFeatured && (
+                    <div className="relative w-full mb-10 rounded-2xl overflow-hidden border border-border/70 ring-1 ring-inset ring-white/[0.04] shadow-[0_16px_40px_-20px_rgba(0,0,0,0.5)]">
+                      <img
+                        src="/services_images/mvp.webp"
+                        alt=""
+                        width="1000"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                        fetchpriority="low"
+                        className="w-full h-auto object-contain bg-background"
+                      />
+                    </div>
+                  )}
+
+                  {/* Everything below this line is one decision: the offer.
+                      Bookended once, at the top — not fragmented by a second
+                      rule above the price. Whatever air the grid leaves above
+                      this point reads as a considered pause, not a leftover. */}
+                  <div className="mt-auto pt-7 border-t border-border/50">
+                    {isFeatured ? (
+                      <div className="mb-7">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60 mb-4">
+                          What's included
+                        </p>
+                        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
+                          {service.bullets.map((bullet) => (
+                            <li key={bullet} className="flex items-start gap-2.5 text-sm text-foreground/80 leading-snug">
+                              <Check size={14} className="text-primary/70 mt-0.5 flex-shrink-0" />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <div className="mb-6">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60 mb-3">
+                          What's included
+                        </p>
+                        <ul className="space-y-3">
+                          {service.bullets.slice(0, 3).map((bullet) => (
+                            <li key={bullet} className="flex items-start gap-2.5 text-sm text-muted-foreground/90 leading-snug">
+                              <Check size={14} className="text-primary/70 mt-0.5 flex-shrink-0" />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div className="flex items-end justify-between gap-4">
+                      <div>
+                        <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/70">Starting at</span>
+                        <p className={`${isFeatured ? "text-4xl" : "text-2xl"} font-bold text-foreground leading-none tracking-tight mt-1.5`}>
+                          {service.pricing.replace(/^Starting at\s*/i, "")}
+                        </p>
+                      </div>
+
+                      <Link to={service.link} className="flex-shrink-0 mb-0.5" aria-label={`Explore ${service.title}`}>
+                        <motion.div
+                          whileHover={{ x: 2 }}
+                          transition={{ duration: 0.15 }}
+                          className="group/link flex items-center gap-2 text-sm font-semibold text-primary"
+                          aria-hidden="true"
+                        >
+                          <span>Explore</span>
+                          <span className="relative flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 group-hover/link:bg-primary/20 transition-colors duration-300">
+                            <ArrowRight size={14} className="group-hover/link:translate-x-[1.5px] transition-transform duration-200" />
+                          </span>
+                        </motion.div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* View All Services CTA */}
+        <motion.div
+          initial={{ opacity: 0.95, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.28, delay: 0.3 }}
+          className="text-center mt-16"
+        >
+          <Link to="/services">
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.15 }}
+              className="btn-sheen group text-foreground hover:text-primary font-medium px-8 py-4
+                       transition-colors duration-150 text-lg flex items-center gap-3 mx-auto
+                       bg-card/30 backdrop-blur-xl border border-border rounded-full hover:border-primary/30 hover:bg-card/50"
+            >
+              Explore All Services
+              <ArrowRight
+                size={18}
+                className="group-hover:translate-x-1 transition-transform duration-150"
+              />
+            </motion.button>
+          </Link>
+        </motion.div>
+
+        {/* Not ready for full implementation? — the offers router, folded
+            into this same section rather than given a new one. Typographic
+            rows with rules, not cards — the same restraint the rest of the
+            site spends on dividers rather than UI chrome. */}
+        <motion.div
+          initial={{ opacity: 0.95, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.28, delay: 0.36 }}
+          className="mt-16 lg:mt-20 pt-14 lg:pt-16 border-t border-border/40 max-w-3xl mx-auto"
+        >
+          <div className="mb-10">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-2.5">
+              Not sure which of these you need?
+            </h3>
+            <p className="text-muted-foreground max-w-lg">
+              Start with the decision. Each of these is a bounded, paid assessment with a written answer — and the answer can be “don't”.
+            </p>
+          </div>
+
+          <div className="border-t border-border/40">
+            {OFFER_ROUTER.map((item) => {
+              const offer = OFFERS[item.offer];
+              return (
+                <Link
+                  key={item.offer}
+                  to={offerHref(item.offer, "homepage-router")}
+                  onClick={() => trackOfferSelect(item.offer)}
+                  className="group flex items-center justify-between gap-4 py-5 border-b border-border/40 hover:border-primary/25 transition-colors duration-200"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-base sm:text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">
+                      {item.situation}
+                    </span>
+                    <span className="block text-sm text-muted-foreground mt-1">
+                      {item.label}
+                    </span>
+                  </span>
+                  <span className="flex items-center gap-3 flex-shrink-0">
+                    <span className="text-sm text-muted-foreground/70">${offer.price}</span>
+                    <ArrowRight size={16} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="mt-8">
+            <Link
+              to="/start"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/80 hover:text-primary transition-colors duration-200"
+            >
+              See all ways to start
+              <ArrowRight size={13} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

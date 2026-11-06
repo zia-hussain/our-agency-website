@@ -33,6 +33,7 @@ const item = {
 
 const Hero: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -41,7 +42,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="hero" className="bg-background relative overflow-hidden pt-24 sm:pt-36 pb-20 sm:pb-28">
+    <section className="bg-background relative overflow-hidden pt-24 sm:pt-36 pb-20 sm:pb-28">
       {/* The light is motivated — it gathers around the one line that
           matters most, not the block as a whole */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_40%,rgba(196,138,100,0.10),transparent_68%)]" />
@@ -122,28 +123,31 @@ const Hero: React.FC = () => {
           <h1 className="font-bold mb-9 sm:mb-10 tracking-[-0.02em]">
             <motion.span
               variants={item}
-              className="block [text-wrap:balance] text-foreground text-4xl sm:text-5xl md:text-[2.75rem] lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] mb-1 sm:mb-1.5"
+              className="block text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] mb-1 sm:mb-1.5"
             >
-              {BRAND_CONTENT.hero.headline.line1}
+              We build software
+              <br className="sm:hidden" />
+              <span className="hidden sm:inline"> </span>
+              for founders
             </motion.span>
             <motion.span
               variants={item}
-              className="block [text-wrap:balance] bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-[2.75rem] lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] pb-1 sm:pb-1.5"
+              className="block bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] pb-1 sm:pb-1.5"
             >
               {BRAND_CONTENT.hero.headline.line2}
             </motion.span>
-            {BRAND_CONTENT.hero.headline.line3 && <motion.span
+            <motion.span
               variants={item}
-              className="block text-[#F3EAE1] text-3xl sm:text-4xl md:text-[2.35rem] lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.05] tracking-[0.01em] mt-4 sm:mt-5"
+              className="block text-[#F3EAE1] text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.05] tracking-[0.01em] mt-4 sm:mt-5"
             >
               {BRAND_CONTENT.hero.headline.line3}
-            </motion.span>}
+            </motion.span>
           </h1>
 
           {/* One sharp supporting thought — tells them when to come to us */}
           <motion.p
             variants={item}
-            className="mb-9 sm:mb-10 max-w-2xl text-base sm:text-lg font-light leading-[1.6] text-muted-foreground"
+            className="mb-9 sm:mb-10 max-w-xl text-base sm:text-lg font-light leading-[1.6] text-muted-foreground"
           >
             {renderContentSegments(BRAND_CONTENT.hero.subheadline)}
           </motion.p>
@@ -175,7 +179,7 @@ const Hero: React.FC = () => {
             </Link>
 
             {/* Secondary path and quiet proof, read as one authored line */}
-            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-2.5 text-sm">
+            <div className="flex items-center gap-2.5 text-sm">
               <button
                 onClick={() => scrollToSection("portfolio")}
                 className="group text-foreground/65 hover:text-primary font-medium flex items-center gap-1.5 transition-colors duration-200 py-1"
@@ -185,8 +189,8 @@ const Hero: React.FC = () => {
                 </span>
                 <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform duration-200" />
               </button>
-              <span className="hidden sm:inline text-muted-foreground/30">·</span>
-              <span className="text-muted-foreground/45 text-center">{BRAND_CONTENT.hero.proofLine}</span>
+              <span className="text-muted-foreground/30">·</span>
+              <span className="text-muted-foreground/45">{BRAND_CONTENT.hero.proofLine}</span>
             </div>
           </motion.div>
         </div>
