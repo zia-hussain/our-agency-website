@@ -441,7 +441,7 @@ const MobileDetailPage: React.FC = () => {
           <AnimatedSection className="text-center mb-14">
             <SectionEyebrow className="mb-6">The Proof</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight max-w-xl mx-auto">
-              A founder needed a real product on real phones — in six weeks.
+              A founder needed a real product on real phones — and got one.
             </h2>
           </AnimatedSection>
 
@@ -462,8 +462,8 @@ const MobileDetailPage: React.FC = () => {
                 Skill x Swap — credit-based skill trading marketplace
               </p>
               <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-4xl sm:text-5xl font-bold text-primary tracking-tight">6 weeks</span>
-                <span className="text-sm text-muted-foreground">requirements → testable build</span>
+                <span className="text-4xl sm:text-5xl font-bold text-primary tracking-tight">Two phases</span>
+                <span className="text-sm text-muted-foreground">requirements → testable build → "ready for launching", per the client</span>
               </div>
               <p className="text-sm text-muted-foreground mb-6">This became a real product people could carry — on React Native + Firebase.</p>
               <ul className="space-y-2.5">

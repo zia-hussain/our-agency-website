@@ -17,7 +17,7 @@ const ITEMS = [
   },
   {
     q: "Why not automate everything while you're at it?",
-    a: "Because some of it shouldn't exist, and some of it genuinely needs a person. Automating a step that should've been removed just makes the mess run faster.",
+    a: "Because some of it shouldn't exist, and some of it needs a person. Automating a step that should've been removed just makes the mess run faster.",
   },
   {
     q: "Why pay $750 for a plan before any implementation?",

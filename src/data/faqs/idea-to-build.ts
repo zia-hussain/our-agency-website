@@ -11,7 +11,7 @@ export const ideaToBuildFAQs = [
   {
     question: "What counts as \"one product concept\"?",
     answer:
-      "One core idea with one primary V1 decision behind it — even if it touches multiple user types or a few integrations. If it genuinely needs multiple business models, original customer research, or full UX/UI design before V1 can be scoped, we'll say so before you pay, not after.",
+      "One core idea with one primary V1 decision behind it — even if it touches multiple user types or a few integrations. If it needs multiple business models, original customer research, or full UX/UI design before V1 can be scoped, we'll say so before you pay, not after.",
   },
   {
     question: "What if you tell me my whole idea should wait?",

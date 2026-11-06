@@ -42,9 +42,9 @@ export const services: Service[] = [
     slug: "web-application-development",
     icon: Monitor,
     title: "Web Application Development",
-    subtitle: "Scalable, high-performance digital solutions for global markets",
-    description: "Transform your ambitious business vision into powerful, enterprise-grade web applications built for scale, clarity, and long-term maintainability. We build custom platforms using React, Next.js, and TypeScript with cloud-ready architecture designed for serious business workflows.",
-    longDescription: "Our web application development services combine technical excellence with strategic business insight to create digital solutions that transform how your organization operates and serves customers globally. We specialize in building scalable, high-performance web applications using modern React.js, Next.js, TypeScript, and Node.js technologies designed for demanding user loads, speed, and reliability. Our applications are designed with international markets in mind, featuring multi-language support, global CDN optimization, advanced security protocols, and enterprise-grade infrastructure that scales as your business grows across different regions and time zones.",
+    subtitle: "The software your business runs on — dashboards, internal tools, integrations",
+    description: "Custom web applications for operations that have outgrown spreadsheets — dashboards, internal tools and integrations built in React, Next.js and TypeScript, with users, roles, live data and the business rules your team actually works by.",
+    longDescription: "Web application development at Zumetrix Labs is for businesses whose operation has outgrown spreadsheets and disconnected tools: order and inventory systems, client portals, internal dashboards, and the integrations between them. We model the operation before we write code, then build it in React, Next.js, TypeScript and Node.js with users and roles, live data, access control and the reporting the business needs — software people log in to do work, not a marketing site.",
     features: [
       "React & TypeScript Development with Modern Architecture",
       "Progressive Web App (PWA) Support for Mobile-First Experience",
@@ -97,8 +97,8 @@ export const services: Service[] = [
     slug: "saas-mvp-development",
     icon: Database,
     title: "SaaS Product Development",
-    subtitle: "Launch your SaaS product in weeks, not months",
-    description: "Accelerate your startup journey with a focused SaaS product development process built around validation, launch speed, and long-term product clarity. We transform ambitious business ideas into market-ready products using React, Node.js, and modern cloud technologies.",
+    subtitle: "A first version scoped to prove the second deserves to exist",
+    description: "SaaS product development for founders with an idea and nothing shipped yet. We decide in writing what the first version has to prove, then build it — accounts, payments, the core flow and the admin it needs — in React, Node.js and modern cloud infrastructure.",
     longDescription: "Our SaaS product development service is built for ambitious founders who need to validate a real business idea without creating a bloated first release. We shape the first version around the core user journey, then build production-ready SaaS foundations in 4-8 weeks with authentication, payments, dashboards, real-time features, and cloud infrastructure where they are actually needed. The goal is not to build everything at once. The goal is to launch a focused, working product — not a disposable MVP — that can earn feedback, support early users, and grow without forcing a painful rebuild after the first serious traction.",
     features: [
       "Rapid Product Development (4-8 weeks from concept to launch)",
@@ -133,7 +133,7 @@ export const services: Service[] = [
       "Lack of proper analytics and business insights"
     ],
     results: [
-      "Average 6-week timeline from concept to live product",
+      "A first release scoped around the one thing it has to prove",
       "Focused launch scope designed for fast validation",
       "Cleaner onboarding flows for early user learning",
       "Founder-led product thinking throughout delivery",
@@ -152,9 +152,9 @@ export const services: Service[] = [
     slug: "mobile-app-development",
     icon: Smartphone,
     title: "Mobile App Development",
-    subtitle: "Cross-platform apps that feel native and perform flawlessly",
-    description: "Create focused, cross-platform mobile applications that feel polished across iOS and Android. Using React Native, Expo, and native tooling where needed, we build apps with clear flows, reliable performance, and a foundation that can grow as real users start depending on the product.",
-    longDescription: "Our mobile app development expertise spans the complete mobile ecosystem, from initial concept and user experience design to App Store deployment and ongoing maintenance. We specialize in React Native and Flutter development for cross-platform efficiency, but also provide native iOS and Android development when platform-specific features are required. Our mobile applications are built with performance, security, and scalability in mind, incorporating offline functionality, push notifications, real-time synchronization, and seamless integration with backend services and third-party APIs.",
+    subtitle: "iOS and Android from one codebase, through store submission",
+    description: "Mobile app development for products that have to live in someone's hand. One React Native codebase for iOS and Android, native tooling where a feature needs it, and the release work through App Store and Play Store submission.",
+    longDescription: "Mobile app development at Zumetrix Labs covers the product from first flow to store listing: React Native for one codebase across iOS and Android, Flutter or native work where a platform feature demands it, push notifications, offline behaviour and the backend integration behind them. The product moves through real environments — simulator, device, TestFlight and internal testing, store review, production — and we stay on after launch.",
     features: [
       "React Native & Expo Development for Cross-platform Efficiency",
       "Native iOS (Swift) & Android (Kotlin) Development When Needed",
@@ -207,9 +207,9 @@ export const services: Service[] = [
     slug: "ai-automation-solutions",
     icon: Cog,
     title: "AI Automation & Workflows",
-    subtitle: "Automate workflows and scale your business intelligently",
-    description: "Improve your business operations with intelligent AI automation solutions that reduce manual work, clean up handoffs, and make repeated processes easier to manage. We design and implement custom automation workflows using OpenAI, no-code platforms, and custom development.",
-    longDescription: "Our AI automation services transform how businesses operate by implementing intelligent workflows that handle repetitive tasks, process data automatically, and make smart decisions without human intervention. We specialize in creating custom automation solutions using cutting-edge AI technologies like OpenAI's GPT models, combined with powerful no-code platforms like Make.com, Zapier, and n8n. Our automation solutions integrate seamlessly with your existing business tools and processes, creating efficient workflows that save time, reduce costs, and eliminate human errors while providing valuable insights for business optimization.",
+    subtitle: "The manual work between your tools, replaced by a system that runs it",
+    description: "Workflow automation for operations still held together by people copying data between tools. We map the manual steps, build the workflow that costs the team most — in Make, n8n, Zapier or code, with an AI model only where the record shows it helps — and leave it running with failures flagged to a person.",
+    longDescription: "Automation at Zumetrix Labs starts with the manual process, not the tool. We map how work actually moves between people and systems, decide what should be removed, simplified, connected, automated or deliberately kept human, and then build it — Make.com, n8n, Zapier, Airtable, APIs or custom code, with OpenAI models only where a step needs judgement over text. Every workflow ships with monitoring, a failure path that reaches a person, and a handoff the team can maintain.",
     features: [
       "No-Code & Low-Code Automation (Zapier, Make.com, n8n)",
       "Custom AI Bots with Python & OpenAI Integration",

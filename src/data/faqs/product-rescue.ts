@@ -23,7 +23,7 @@ export const productRescueFAQs = [
   {
     question: "What counts as \"one bounded product\"?",
     answer:
-      "One software product with one primary decision behind it — even if it has a frontend, a backend, and a few integrations. If your situation genuinely spans multiple independent products or a much larger surface than that, we'll tell you it needs a custom scope before you pay anything, not after.",
+      "One software product with one primary decision behind it — even if it has a frontend, a backend, and a few integrations. If your situation spans multiple independent products or a much larger surface than that, we'll tell you it needs a custom scope before you pay anything, not after.",
   },
   {
     question: "Do I have to hire Zumetrix to implement the findings?",
@@ -33,7 +33,7 @@ export const productRescueFAQs = [
   {
     question: "What if I'm not accepted as a standard fit?",
     answer:
-      "We'll say so before asking you to pay anything, and tell you why — either a custom scope that fits your actual situation, or a more useful next step if a bounded assessment genuinely isn't the right tool yet.",
+      "We'll say so before asking you to pay anything, and tell you why — either a custom scope that fits your actual situation, or a more useful next step if a bounded assessment isn't the right tool yet.",
   },
   {
     question: "When does the 5-business-day clock actually start?",
@@ -43,6 +43,6 @@ export const productRescueFAQs = [
   {
     question: "What if I can't provide direct access to the product?",
     answer:
-      "Tell us what's available before you pay. Read-only access is ideal, but a serious assessment can sometimes work from documentation, recordings, and direct answers to specific questions — we'll tell you honestly if what's available isn't enough to responsibly assess the decision.",
+      "Tell us what's available before you pay. Read-only access is ideal, but a serious assessment can sometimes work from documentation, recordings, and direct answers to specific questions — we'll tell you if what's available isn't enough to responsibly assess the decision.",
   },
 ];

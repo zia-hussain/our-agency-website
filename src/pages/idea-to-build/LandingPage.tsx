@@ -49,7 +49,7 @@ const POSSIBILITY_FIELD = [
 const RECOGNITION_OPTIONS: RecognitionOption[] = [
   {
     value: "no-v1-clarity",
-    quote: "I have a clear idea, but I genuinely don't know what the first version should include.",
+    quote: "I have a clear idea, but I don't know what the first version should include.",
     response:
       "That's the actual job of this sprint — not validating the idea, deciding what V1 needs to prove and what can legitimately wait.",
   },

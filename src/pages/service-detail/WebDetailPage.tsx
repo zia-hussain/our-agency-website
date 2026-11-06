@@ -391,8 +391,8 @@ const WebDetailPage: React.FC = () => {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-border/40">
               {[
-                { value: "30,000+", label: "order rows, no backend database" },
-                { value: "-80%", label: "manual reporting time" },
+                { value: "30,000+", label: "order rows, previously in spreadsheets" },
+                { value: "Automated", label: "report ingestion, no manual Excel pass" },
                 { value: "7", label: "KPI inventory view" },
                 { value: "MTD/YTD", label: "same-period comparisons" },
               ].map((stat) => (
@@ -477,7 +477,7 @@ const WebDetailPage: React.FC = () => {
                 the coding, the programming at the back and the look and feel at the front end for a
                 seamless client experience is second to none."
               </p>
-              <footer className="text-sm text-muted-foreground">Reema Rafay, National Vice President, Arbonne</footer>
+              <footer className="text-sm text-muted-foreground">Reema — repeat client, funnel and quiz system (on film)</footer>
             </blockquote>
           </AnimatedSection>
         </div>

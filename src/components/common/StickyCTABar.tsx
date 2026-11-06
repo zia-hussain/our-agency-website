@@ -1,11 +1,68 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, MessageCircle, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { trackCTAClick, trackCalendlyClick } from '../../utils/analytics';
 import { buildCalendlyUrl } from '../../utils/attribution';
 
+// The bar says something different depending on where the reader is, so it
+// offers the proportionate next step instead of the same generic ask on every
+// page: the free diagnostic on rescue pages, the build conversation on build
+// pages, the workflow on automation pages, a call everywhere else.
+type BarFamily = 'rescue' | 'build' | 'automate' | 'general';
+
+const familyFor = (pathname: string): BarFamily => {
+  if (
+    pathname === '/services/product-rescue-stabilization' ||
+    pathname === '/rescue-or-rebuild' ||
+    pathname.includes('rescue') ||
+    pathname.includes('stuck') ||
+    pathname.includes('stabilization') ||
+    pathname.includes('taking-over')
+  )
+    return 'rescue';
+  if (
+    pathname === '/services/saas-mvp-development' ||
+    pathname === '/services/web-application-development' ||
+    pathname === '/services/mobile-app-development' ||
+    pathname.includes('mvp') ||
+    pathname.includes('decision-room')
+  )
+    return 'build';
+  if (pathname === '/services/ai-automation-solutions' || pathname.includes('automation')) return 'automate';
+  return 'general';
+};
+
+const BAR_COPY: Record<BarFamily, { title: string; sub: string; subMobile: string; secondary: { label: string; href: string } }> = {
+  rescue: {
+    title: 'Not sure if it’s a rescue or a rebuild?',
+    sub: 'Four questions, no email, an honest read — then decide.',
+    subMobile: 'Four free questions.',
+    secondary: { label: 'Four free questions', href: '/rescue-or-rebuild' },
+  },
+  build: {
+    title: 'Want the V1 decision first?',
+    sub: 'Tell us what you’re building; the scope is decided in writing before any code.',
+    subMobile: 'Tell us what you’re building.',
+    secondary: { label: 'Tell us what you’re building', href: '/contact?service=saas-mvp-development&situation=nothing-built' },
+  },
+  automate: {
+    title: 'Start with one workflow.',
+    sub: 'The one that hurts most — built, live, watched. Then decide if there’s a second.',
+    subMobile: 'The one that hurts most.',
+    secondary: { label: 'Show us the workflow', href: '/contact?service=ai-automation-solutions&situation=manual-workflow' },
+  },
+  general: {
+    title: 'Tell us where you are.',
+    sub: 'A 30-minute call with Zia or Omer. If something fits, we’ll say which; if not, we’ll say that.',
+    subMobile: 'We’ll tell you what fits.',
+    secondary: { label: 'Write to us', href: '/contact' },
+  },
+};
+
 const StickyCTABar: React.FC = () => {
+  const { pathname } = useLocation();
+  const copy = BAR_COPY[familyFor(pathname)];
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
@@ -79,13 +136,13 @@ const StickyCTABar: React.FC = () => {
                   </div>
                   <div className="min-w-0">
                     <h3 className="truncate text-sm font-semibold text-foreground sm:text-base">
-                      Ready to start your project?
+                      {copy.title}
                     </h3>
                     <p className="mt-0.5 text-xs text-muted-foreground sm:hidden">
-                      Tell us what you want to build.
+                      {copy.subMobile}
                     </p>
                     <p className="hidden text-sm text-muted-foreground md:block">
-                      Get a free consultation and project estimate
+                      {copy.sub}
                     </p>
                   </div>
                 </div>
@@ -109,18 +166,18 @@ const StickyCTABar: React.FC = () => {
                   className="btn-sheen flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:px-6"
                 >
                   <Calendar size={16} />
-                  <span className="hidden sm:inline">Schedule Call</span>
-                  <span className="sm:hidden">Book a Call</span>
+                  <span className="hidden sm:inline">Book a call</span>
+                  <span className="sm:hidden">Book a call</span>
                 </motion.button>
 
-                <Link to="/contact" className="block">
+                <Link to={copy.secondary.href} className="block">
                   <motion.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    onClick={() => trackCTAClick('Sticky CTA - Contact', window.location.pathname)}
+                    onClick={() => trackCTAClick('Sticky CTA - Secondary', window.location.pathname)}
                     className="btn-sheen flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/30 hover:bg-card/50 sm:w-auto sm:px-6"
                   >
-                    <span>Contact</span>
+                    <span>{copy.secondary.label}</span>
                     <ArrowRight size={16} />
                   </motion.button>
                 </Link>

@@ -105,7 +105,7 @@ const RescueFramework: React.FC = () => (
           Four questions. Six possible outcomes.
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          Answer honestly — <span className="text-foreground">Unknown</span> means &ldquo;I don&rsquo;t know,&rdquo; and it&rsquo;s a valid answer.
+          Answer as things are — <span className="text-foreground">Unknown</span> means &ldquo;I don&rsquo;t know,&rdquo; and it&rsquo;s a valid answer.
         </p>
       </div>
 

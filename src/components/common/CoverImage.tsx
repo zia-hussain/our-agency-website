@@ -27,7 +27,8 @@ const CoverImage: React.FC<CoverImageProps> = ({ cover, className = "", priority
     loading={priority ? "eager" : "lazy"}
     decoding="async"
     {...(priority ? ({ fetchpriority: "high" } as Record<string, string>) : {})}
-    className={`block w-full h-auto ${cover.flip ? "-scale-x-100" : ""} ${className}`}
+    style={cover.shift ? { objectPosition: cover.shift === 1 ? "40% 45%" : "60% 55%" } : undefined}
+    className={`block w-full h-auto ${cover.flip ? "-scale-x-100" : ""} ${cover.shift ? "object-cover scale-[1.06]" : ""} ${className}`}
   />
 );
 

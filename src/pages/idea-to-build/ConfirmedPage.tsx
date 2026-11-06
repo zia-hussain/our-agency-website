@@ -128,7 +128,7 @@ const IdeaToBuildConfirmedPage: React.FC = () => {
                   <h2 className="mb-1.5 text-lg font-bold text-foreground">Finish your intake</h2>
                   <p className="mb-6 text-sm text-muted-foreground leading-relaxed">
                     One question — no credentials, ever needed for this sprint. We'll follow up
-                    separately for anything else the sprint genuinely needs.
+                    separately for anything else the sprint needs.
                   </p>
                   <div className="space-y-4">
                     <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border/50 bg-background/40 p-4">

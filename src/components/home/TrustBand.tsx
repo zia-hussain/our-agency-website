@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Globe, Users, Award, Clock, TrendingUp, Building2 } from "lucide-react";
+import { Globe, Users, Award, MessageSquareQuote, TrendingUp, Building2, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { getSiteData } from "../../data/site";
 
 const TrustBand: React.FC = () => {
@@ -10,7 +11,7 @@ const TrustBand: React.FC = () => {
     globe: Globe,
     projects: Users,
     success: Award,
-    response: Clock,
+    reviews: MessageSquareQuote,
   };
 
   return (
@@ -32,7 +33,7 @@ const TrustBand: React.FC = () => {
             className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
           >
             <TrendingUp className="w-3.5 h-3.5 mr-2" />
-            Global Impact
+            Who we've built for
           </motion.div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5 tracking-tight leading-[1.12]">
             From Beef Plants
@@ -95,9 +96,13 @@ const TrustBand: React.FC = () => {
               </div>
               <span className="text-muted-foreground sm:w-44 flex-shrink-0">{client.industry}</span>
               <span className="text-muted-foreground/70 sm:w-28 flex-shrink-0">{client.country}</span>
-              <span className="text-primary font-medium sm:ml-auto sm:w-60 sm:flex-shrink-0 sm:text-right">
+              <Link
+                to={`/portfolio/${client.slug}`}
+                className="text-primary font-medium sm:ml-auto sm:w-64 sm:flex-shrink-0 sm:text-right inline-flex sm:justify-end items-center gap-1.5 hover:underline underline-offset-4"
+              >
                 {client.project}
-              </span>
+                <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+              </Link>
             </motion.div>
           ))}
         </div>

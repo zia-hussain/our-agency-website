@@ -11,7 +11,7 @@ interface TiltImageProps {
   // whose edge-to-edge text a cover-crop would cut off (e.g. the Fast Track
   // recovery-timeline SVG, authored at a wider aspect than the 4:3 frame).
   fit?: "cover" | "contain";
-  // A genuinely different composition for narrow viewports (not a resized
+  // A different composition for narrow viewports (not a resized
   // copy) — see ResponsiveImage's identical mobileSrc for the rationale.
   // Swaps via a <picture> media-query source, so it's a real image change,
   // not a CSS scale-down of the desktop diagram's already-small text.

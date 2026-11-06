@@ -48,7 +48,6 @@ export const SITE_CONFIG = {
   metrics: {
     projectsCompleted: FACTS.counts.projectsShipped,
     happyClients: FACTS.counts.clients,
-    successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
   },
 
   // SEO Configuration

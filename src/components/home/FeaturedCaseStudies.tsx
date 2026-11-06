@@ -1,304 +1,183 @@
-import CoverImage from "../common/CoverImage";
-import { listingImageForProject } from "../../data/covers";
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, Minus, MapPin, Target } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Target } from "lucide-react";
 import { motion } from "framer-motion";
 import { getProjectBySlug } from "../../data/projects";
+import { TESTIMONIAL_FILMS } from "../../data/testimonialFilms";
+import HeroEvidence from "../portfolio/HeroEvidence";
+import TestimonialFilm from "../common/TestimonialFilm";
+import PlatformIcon from "../common/PlatformIcon";
+import CoverImage from "../common/CoverImage";
+import { listingImageForProject } from "../../data/covers";
 
+/**
+ * One case per door. The flagship is the best-evidenced story the company
+ * has (Fast Track: the founder on film, a Trustpilot review corroborated on
+ * Google, written permission) and it is told as Josh's experience, not as a
+ * promise. The two supporting cases keep the page from reading as a
+ * rescue-only studio: one built from zero, one automated.
+ *
+ * Everything shown here is read from the case record — nothing is restated
+ * by hand, so a correction in data/projects.ts reaches the homepage.
+ */
 const FeaturedCaseStudies: React.FC = () => {
-  const flagship = getProjectBySlug("liftly-operational-mvp-v1");
-  const fixCase = getProjectBySlug("learning-platform-saas-stabilization");
-  const automateCase = getProjectBySlug(
-    "floating-stone-ranch-processor-intake-engine"
-  );
+  const flagship = getProjectBySlug("fast-track-usa-app-rescue");
+  const buildCase = getProjectBySlug("knipsr-event-media-saas");
+  const automateCase = getProjectBySlug("floating-stone-ranch-processor-intake-engine");
+  const film = TESTIMONIAL_FILMS.josh;
 
   if (!flagship) return null;
 
-  const situation =
-    flagship.caseStudy?.situation ??
-    "A founder came to Zumetrix with a broader product vision than the first release could carry.";
-  const problem = flagship.caseStudy?.problem ?? flagship.problem;
-  const built = flagship.caseStudy?.built ?? [];
-  const decision = flagship.caseStudy?.decisions?.[0];
-  const ctaAngle = flagship.caseStudy?.ctaAngle;
-  const proofNote = flagship.caseStudy?.proofNotes?.[0];
-
-  const deferred = [
-    "Service minimums & distance bands",
-    "Labor, urgency & specialty-item pricing",
-    "Margin protection & admin overrides",
-  ];
-
-  const supportingCases = [
-    fixCase && {
-      project: fixCase,
-      heading: "Learning Platform SaaS",
-      eyebrow: "Existing Product, Stabilized",
-      purpose:
-        "Proof we can walk into someone else's half-finished product and tell them, honestly, what's actually wrong with it.",
+  const supporting = [
+    buildCase && {
+      project: buildCase,
+      door: "BUILD",
+      eyebrow: "Built from the ground up",
+      line: "A product taken from first build to launch-ready SaaS — background processing, retries, media streaming, and a stress test against real event-day failure modes before launch.",
     },
     automateCase && {
       project: automateCase,
-      heading: "Floating Stone Ranch",
-      eyebrow: "Manual Operations, Automated",
-      purpose:
-        "Proof we can replace real, error-prone manual workflows with a system the team actually trusts.",
+      door: "AUTOMATE",
+      eyebrow: "Manual operation, now a system",
+      line: "Carcass intake, boxing and shipping moved from paper and spreadsheets into one traceable system with automated status transitions. Eight months on, still a client.",
     },
-  ].filter(Boolean) as {
-    project: NonNullable<typeof fixCase>;
-    heading: string;
-    eyebrow: string;
-    purpose: string;
-  }[];
+  ].filter(Boolean) as { project: NonNullable<typeof buildCase>; door: string; eyebrow: string; line: string }[];
 
   return (
-    <section id="portfolio" className="py-28 bg-background relative overflow-hidden">
+    <section id="portfolio" className="py-24 sm:py-28 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0.95, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.28 }}
-          className="text-center mb-16 lg:mb-20"
+          className="max-w-3xl mb-14 lg:mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0.95, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.28 }}
-            className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-7"
-          >
-            <Target size={14} className="mr-2" />
-            Real Work
-          </motion.div>
-
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-5 tracking-tight leading-[1.1]">
-            When the vision was
-            <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              bigger than the first release
+          <div className="mb-7">
+            <span className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90">
+              <Target size={14} className="mr-2" />
+              The work
             </span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.08]">
+            Two years with another team.
+            <span className="block text-muted-foreground/50">Live three weeks after the handover.</span>
           </h2>
-
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
-            Here's exactly what we did about it.
+          <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-[1.6] font-light">
+            The story we lead with is the one we can show in full — the founder on camera, his review where we can't edit it. One case for each of the three situations follows.
           </p>
         </motion.div>
 
-        {/* FLAGSHIP — an editorial story, not a card. No box: it gets its own register. */}
-        <motion.div
-          initial={{ opacity: 0.95, y: 8 }}
+        {/* Flagship — Fast Track */}
+        <motion.article
+          initial={{ opacity: 0.95, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.28 }}
-          id="liftly-flagship"
-          className="mb-20 lg:mb-24"
+          transition={{ duration: 0.3 }}
+          className="relative rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/[0.07] via-card/20 to-transparent p-6 sm:p-10 lg:p-12 ring-1 ring-inset ring-white/[0.02] shadow-[0_40px_100px_-50px_rgba(0,0,0,0.7)] mb-6"
         >
-          <div className="flex items-center gap-4 mb-10">
-            <span className="h-px w-10 bg-primary/50 flex-shrink-0" />
-            <span className="text-xs font-semibold text-primary bg-primary/[0.08] border border-primary/20 px-3 py-1 rounded-full tracking-wide">
-              {flagship.category}
-            </span>
-            <span className="text-xs font-medium text-muted-foreground/80">
-              {flagship.clientLabel ?? "Product"}: {flagship.client.name}
-            </span>
-          </div>
-
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-            {/* Narrative column */}
-            <div className="lg:col-span-3">
-              <h3 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-foreground mb-10 leading-[1.15] tracking-tight max-w-xl">
-                {flagship.client.name} had a bigger vision than its first
-                release could carry.
-              </h3>
-
-              <div className="space-y-8 max-w-xl">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-2">
-                    Where it started
-                  </p>
-                  <p className="text-muted-foreground leading-[1.75]">
-                    {situation}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-2">
-                    The trap
-                  </p>
-                  <p className="text-muted-foreground leading-[1.75]">
-                    {problem}
-                  </p>
-                </div>
-
-                {decision && (
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-2">
-                      {decision.title}
-                    </p>
-                    <p className="text-muted-foreground leading-[1.75]">
-                      {decision.description}
-                    </p>
-                  </div>
-                )}
+          <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-start">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="font-mono text-[11px] font-semibold tracking-[0.18em] text-primary/80">FIX</span>
+                <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">{flagship.category}</span>
               </div>
+              <h3 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-bold tracking-tight text-foreground leading-[1.15] mb-5">
+                {flagship.title}
+              </h3>
+              <p className="text-base text-muted-foreground leading-relaxed mb-7 max-w-xl">{flagship.problem}</p>
 
-              {ctaAngle && (
-                <blockquote className="mt-10 border-l-2 border-primary/40 pl-6 text-xl sm:text-2xl text-foreground/90 font-medium leading-[1.5] max-w-xl">
-                  "{ctaAngle}"
-                </blockquote>
+              {flagship.heroEvidence && (
+                <HeroEvidence {...flagship.heroEvidence} className="mb-7" />
               )}
+
+              {flagship.testimonial && (
+                <figure className="border-l border-primary/40 pl-5 mb-7 max-w-xl">
+                  <blockquote className="text-[17px] leading-snug text-foreground/90 italic">“{flagship.testimonial.quote}”</blockquote>
+                  <figcaption className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+                    <span className="font-medium text-foreground/80">{flagship.testimonial.author}</span>
+                    {flagship.testimonial.role && <span>· {flagship.testimonial.role}</span>}
+                    <span className="inline-flex items-center gap-1.5 ml-1">
+                      <PlatformIcon platform="Trustpilot" size={11} /> Trustpilot · corroborated on Google
+                    </span>
+                  </figcaption>
+                </figure>
+              )}
+
+              <p className="text-xs text-muted-foreground/70 leading-relaxed max-w-xl mb-8">
+                Timeline is Josh's account, corroborated by his written reviews. We weren't there for the first two years, so we don't diagnose them — and one client's three weeks is not a promise about yours.
+              </p>
 
               <Link
                 to={`/portfolio/${flagship.slug}`}
-                className="inline-flex items-center gap-2 text-primary font-medium mt-10 hover:gap-3 transition-all duration-150"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
               >
-                Read the full {flagship.client.name} case study
-                <ArrowUpRight size={18} />
+                Read the full Fast Track case study
+                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform duration-200" />
               </Link>
             </div>
 
-            {/* Built vs. deferred column — a structured spec sheet, contrasting the free-flowing story */}
-            <div className="lg:col-span-2">
-              <div className="relative rounded-2xl overflow-hidden border border-primary/15 bg-background mb-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]">
-                <CoverImage cover={listingImageForProject(flagship)} className="object-contain" />
-              </div>
-
-              <div className="rounded-2xl border border-border/70 overflow-hidden">
-                <div className="bg-card/40 p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4">
-                    Shipped in V1
-                  </p>
-                  <ul className="space-y-2.5">
-                    {built.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/85">
-                        <Check size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="bg-background/60 p-6 border-t border-border/50">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/50 mb-4">
-                    Deliberately deferred to V2
-                  </p>
-                  <ul className="space-y-2.5">
-                    {deferred.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground/60">
-                        <Minus size={16} className="text-muted-foreground/40 mt-0.5 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="text-xs text-muted-foreground/50 mt-4 italic">
-                    Planned and designed. Not built. Not shipped.
-                  </p>
-                </div>
-              </div>
-
-              {proofNote && (
-                <p className="text-xs text-muted-foreground/70 mt-4 leading-relaxed">
-                  {proofNote}
-                </p>
-              )}
+            <div className="lg:sticky lg:top-28">
+              <TestimonialFilm src={film.src} poster={film.poster} captionsSrc={film.captionsSrc} variant="proof" />
+              <p className="mt-3 text-xs text-muted-foreground/70">
+                {film.name}, {film.role} — filmed by the client.
+              </p>
             </div>
           </div>
-        </motion.div>
+        </motion.article>
 
-        {/* SUPPORTING PROOF — deliberately lighter, buyer-state matched */}
-        {supportingCases.length > 0 && (
-          <div id="supporting-proof" className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {supportingCases.map(({ project, heading, eyebrow, purpose }, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0.95, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.15, delay: index * 0.08 }}
-                className="group"
-              >
-                <Link to={`/portfolio/${project.slug}`}>
-                  <div className="bg-card/15 border border-border/60 rounded-2xl p-6 lg:p-7 h-full flex flex-col transition-all duration-300 hover:border-primary/25 hover:bg-card/30">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/85">
-                        {eyebrow}
-                      </span>
-                      {project.client.country && (
-                        <span className="flex items-center gap-1 text-xs text-muted-foreground ml-auto">
-                          <MapPin size={10} />
-                          {project.client.country}
-                        </span>
-                      )}
-                    </div>
-
-                    <h4 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-150">
-                      {heading}
-                    </h4>
-
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                      {purpose}
-                    </p>
-
-                    <div className="bg-background/40 border border-border/60 rounded-xl p-4 mb-5">
-                      {project.kpis && project.kpis.length > 0 ? (
-                        <div className="flex divide-x divide-border/60">
-                          {project.kpis.slice(0, 2).map((kpi) => (
-                            <div key={kpi.label} className="flex-1 first:pl-0 px-4 first:pr-4">
-                              <div className="text-2xl font-bold text-primary leading-none">
-                                {kpi.value}
-                              </div>
-                              <div className="text-[11px] text-muted-foreground mt-1.5">
-                                {kpi.label}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <ul className="space-y-2">
-                          {project.results.slice(0, 2).map((r) => (
-                            <li key={r} className="text-xs text-muted-foreground/90 flex items-start gap-2">
-                              <Check size={13} className="text-primary/70 mt-0.5 flex-shrink-0" />
-                              <span className="line-clamp-2">{r}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-
-                    <div className="flex items-center gap-2 text-sm text-primary font-medium mt-auto group-hover:gap-3 transition-all duration-150">
-                      View this case study
-                      <ArrowRight size={16} />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        )}
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0.95, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.28, delay: 0.3 }}
-          className="text-center mt-16"
-        >
-          <Link to="/portfolio">
-            <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.15 }}
-              className="btn-sheen group text-foreground hover:text-primary font-medium px-8 py-4
-                       transition-colors duration-150 text-lg flex items-center gap-3 mx-auto
-                       bg-card/30 backdrop-blur-xl border border-border rounded-full hover:border-primary/30 hover:bg-card/50"
+        {/* Supporting — one BUILD, one AUTOMATE */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {supporting.map(({ project, door, eyebrow, line }, i) => (
+            <motion.article
+              key={project.slug}
+              initial={{ opacity: 0.95, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.06 * (i + 1) }}
+              className="group rounded-2xl border border-border/60 bg-card/20 hover:border-primary/30 hover:bg-card/35 transition-all duration-300 p-7 sm:p-8 flex flex-col ring-1 ring-inset ring-white/[0.02]"
             >
-              View All Projects
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-150" />
-            </motion.button>
+              <div className="rounded-xl overflow-hidden border border-border/40 mb-6 -mx-1">
+                <CoverImage cover={listingImageForProject(project)} sizes="(min-width: 768px) 40vw, 90vw" className="aspect-[16/9] object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+              </div>
+              <div className="flex items-center gap-3 mb-5">
+                <span className="font-mono text-[11px] font-semibold tracking-[0.18em] text-primary/80">{door}</span>
+                <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">{eyebrow}</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground leading-[1.2] mb-3 group-hover:text-primary transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">{line}</p>
+              {project.testimonial && (
+                <p className="text-sm italic text-foreground/80 leading-snug border-l border-primary/30 pl-4 mb-6">
+                  “{project.testimonial.quote.length > 170 ? project.testimonial.quote.slice(0, 167).replace(/\s+\S*$/, "") + "…" : project.testimonial.quote}”
+                  <span className="not-italic block mt-2 text-xs text-muted-foreground">— {project.testimonial.author}{project.testimonial.role ? `, ${project.testimonial.role}` : ""}</span>
+                </p>
+              )}
+              <Link to={`/portfolio/${project.slug}`} className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                View this case study
+                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0.95 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <Link
+            to="/portfolio"
+            className="group inline-flex items-center gap-3 rounded-full border border-border/70 bg-card/25 pl-6 pr-2 py-2.5 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors duration-200 btn-sheen"
+          >
+            All case studies
+            <span className="flex items-center justify-center w-7 h-7 rounded-full bg-background/80 group-hover:bg-primary/10 transition-colors duration-200">
+              <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+            </span>
           </Link>
         </motion.div>
       </div>

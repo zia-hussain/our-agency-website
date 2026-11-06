@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { BRAND_CONTENT } from "../config/content";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
@@ -112,6 +113,12 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // A typo'd address used to pass straight through to Resend and bounce —
+    // a lost lead with no error shown. Catch it here, before the request.
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(formData.email.trim())) {
+      setSubmitError("That email address doesn't look complete — please check it and try again.");
+      return;
+    }
     setIsSubmitting(true);
     setSubmitError("");
 
@@ -169,7 +176,7 @@ const ContactPage: React.FC = () => {
 
   // Was "Get a project timeline estimate" opening the exact same Calendly
   // link as "Schedule a call" above it — two different promises, one
-  // destination. Fixed to be a genuinely different action: jump straight to
+  // destination. Fixed to be a different action: jump straight to
   // the project-brief form already on this page, instead of another way to
   // book the same call (2026-10-11 commercial routing pass).
   const handleSendProjectDetails = () => {
@@ -187,7 +194,7 @@ const ContactPage: React.FC = () => {
       icon: Mail,
       title: "Email Us",
       details: SITE_CONFIG.company.email,
-      description: "Send us an email and we'll respond within 24 hours",
+      description: "Send us an email — a founder replies within two business days",
       action: `mailto:${SITE_CONFIG.company.email}`,
     },
     {
@@ -201,7 +208,7 @@ const ContactPage: React.FC = () => {
       icon: MapPin,
       title: "Location",
       details: SITE_CONFIG.company.address,
-      description: "We work with clients globally from our base in Pakistan",
+      description: "Karachi, Pakistan — working hours overlap US East mornings, UK and European afternoons; async by default, calls scheduled in your timezone",
       action: "https://www.google.com/maps/search/?api=1&query=Pakistan",
     },
   ];
@@ -264,7 +271,7 @@ const ContactPage: React.FC = () => {
                 "@id": "https://zumetrix.com/#organization",
                 name: "Zumetrix Labs",
                 description:
-                  "Zumetrix Labs builds software for founders who need thinking partners, not order-takers. Services include SaaS MVPs, React/Node.js applications, AI automation, and mobile apps for international clients.",
+                  BRAND_CONTENT.brand.shortDescription,
                 contactPoint: {
                   "@type": "ContactPoint",
                   contactType: "sales",
@@ -305,8 +312,8 @@ const ContactPage: React.FC = () => {
             </h1>
 
             <p className="text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Tell us what's blocked and what a successful first release has to
-              prove. We reply with real questions, not a form email.
+              Tell us what exists today and what's blocked. Zia or Omer reads
+              it and replies within two business days with questions, not a quote.
             </p>
           </AnimatedSection>
         </div>
@@ -342,7 +349,7 @@ const ContactPage: React.FC = () => {
                     </h3>
                     <p className="text-muted-foreground">
                       A confirmation is on its way to your inbox. We will review
-                      the full context and reply within 24 hours.
+                      the full context and reply within two business days — and if what you described matches one of our services or the Rescue Assessment, the reply will say which.
                     </p>
                   </motion.div>
                 ) : (
@@ -410,6 +417,9 @@ const ContactPage: React.FC = () => {
                           type="email"
                           required
                           autoComplete="email"
+                          inputMode="email"
+                          pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+                          title="Please enter a complete email address, e.g. name@company.com"
                           value={formData.email}
                           onChange={handleInputChange}
                           className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/60"

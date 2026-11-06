@@ -24,6 +24,6 @@ export const saasDetailFAQs = [
   {
     question: "What happens after launch?",
     answer:
-      "Either we hand everything over to your team, or we stay on as a monthly retainer for new features, fixes, and iteration — whichever fits how fast you expect to move. We'll tell you honestly which one makes sense before you have to guess.",
+      "Either we hand everything over to your team, or we stay on as a monthly retainer for new features, fixes, and iteration — whichever fits how fast you expect to move. We'll tell you which one makes sense before you have to guess.",
   },
 ];

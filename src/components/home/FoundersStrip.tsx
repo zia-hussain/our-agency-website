@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import { Calendar, Linkedin, Users } from "lucide-react";
 import { motion } from "framer-motion";
@@ -65,7 +66,9 @@ const FoundersStrip: React.FC = () => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-1 leading-tight tracking-tight">
-                      {founder.name}
+                      <Link to={`/founders/${founder.name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:underline underline-offset-4 decoration-primary/40">
+                        {founder.name}
+                      </Link>
                     </h3>
                     <p className="text-sm sm:text-base text-primary font-semibold mb-2">
                       {founder.role}
@@ -115,8 +118,14 @@ const FoundersStrip: React.FC = () => {
                   >
                     <Linkedin size={14} />
                     <span className="hidden sm:inline">LinkedIn</span>
-                    <span className="sm:hidden">Profile</span>
+                    <span className="sm:hidden">LinkedIn</span>
                   </motion.a>
+                  <Link
+                    to={`/founders/${founder.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="flex-1 border border-border/70 text-foreground/85 hover:text-primary px-4 py-2.5 rounded-full font-medium hover:border-primary/25 transition-all duration-200 flex items-center justify-center gap-2 text-sm"
+                  >
+                    Full profile
+                  </Link>
                   <motion.a
                     href={buildCalendlyUrl(`home-founder-${founder.name.split(" ")[0].toLowerCase()}`)}
                     onClick={(event) => {

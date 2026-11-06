@@ -9,12 +9,12 @@ export const rescueDetailFAQs = [
   {
     question: "Will you tell me to rebuild everything?",
     answer:
-      "Only if that's genuinely the honest answer. Our default is to stabilize what's already working and fix what's actually broken instead of starting over. On one real engagement, that meant triaging every issue into bug, unfinished feature, intentional behavior, or future scope, then stabilizing without a rewrite.",
+      "Only if that's the honest answer. Our default is to stabilize what's already working and fix what's actually broken instead of starting over. On one real engagement, that meant triaging every issue into bug, unfinished feature, intentional behavior, or future scope, then stabilizing without a rewrite.",
   },
   {
     question: "What if I don't have access to the original developer?",
     answer:
-      "That's a normal starting point for this kind of engagement, not a blocker. We work from the codebase and whatever documentation exists, and we're upfront early if something is genuinely unclear enough to need your input.",
+      "That's a normal starting point for this kind of engagement, not a blocker. We work from the codebase and whatever documentation exists, and we're upfront early if something is unclear enough to need your input.",
   },
   {
     question: "How long does a rescue take?",

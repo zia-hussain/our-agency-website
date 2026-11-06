@@ -9,7 +9,7 @@ export const servicesFAQs = [
   {
     question: "How long does a typical project take?",
     answer:
-      "It depends on the project, not just which service it falls under. A tightly scoped MVP can launch in about 30 days; we scope a focused first release at 4-8 weeks. A rescue starts with an assessment before we commit to a timeline — promising a date before we've seen the code would be a guess. Whatever the project, you get a real timeline before work starts, not after."
+      "It depends on the project, not just which service it falls under. A tightly scoped first version has shipped in a few weeks; one with several user roles, payments and integrations takes longer, and we say so before work starts. A rescue starts with an assessment before we commit to a timeline — promising a date before we've seen the code would be a guess. Whatever the project, you get a real timeline before work starts, not after."
   },
   {
     question: "How does pricing work?",
@@ -39,6 +39,6 @@ export const servicesFAQs = [
   {
     question: "What happens after I reach out?",
     answer:
-      "We reply within 24 hours — with real questions about your situation, and the clearest next step, not a canned response."
+      "One of the founders replies within two business days — with real questions about your situation and the clearest next step, not a canned response. Often it's faster; two business days is the promise we can keep."
   }
 ];

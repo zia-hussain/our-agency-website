@@ -7,7 +7,7 @@ export const manualToSystemFAQs = [
   {
     question: "What counts as \"one bounded workflow\"?",
     answer:
-      "One recurring chain of work with a clear trigger and outcome — lead to booking, inquiry to onboarding, order to fulfillment, that kind of thing — even if it touches a few tools or people. If it genuinely spans several departments or workflows that need to be redesigned together, we'll say so before you pay, not after.",
+      "One recurring chain of work with a clear trigger and outcome — lead to booking, inquiry to onboarding, order to fulfillment, that kind of thing — even if it touches a few tools or people. If it spans several departments or workflows that need to be redesigned together, we'll say so before you pay, not after.",
   },
   {
     question: "What if the answer is mostly \"keep doing this manually\"?",

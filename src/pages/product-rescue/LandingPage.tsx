@@ -309,7 +309,7 @@ const ProductRescueLandingPage: React.FC = () => {
                 <ul className="space-y-4">
                   {[
                     "What's already doing its job — confirmed, not just assumed",
-                    "What's genuinely fixable without starting over",
+                    "What's fixable without starting over",
                     "What actually deserves replacement, and why",
                     "What to fund first, once the rest is sorted",
                   ].map((line) => (

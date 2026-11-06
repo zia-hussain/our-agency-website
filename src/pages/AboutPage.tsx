@@ -1,10 +1,14 @@
 import React from "react";
+import { buildCalendlyUrl } from "../utils/attribution";
+import { trackCalendlyClick } from "../utils/analytics";
 import SEO from "../components/common/SEO";
+import FAQAccordion from "../components/common/FAQAccordion";
+import { aboutFAQs } from "../data/faqs/about";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import { motion } from "framer-motion";
 import { FACTS } from "../config/facts";
-import { BookOpen, Calendar, Mail, ArrowRight, ArrowDown } from "lucide-react";
+import { BookOpen, Calendar, Mail, ArrowRight, ArrowDown, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const GRAIN =
@@ -17,6 +21,10 @@ const founders = [
   {
     name: "Zia Hussain",
     slug: "zia-hussain",
+    credentials: [
+      { label: `Upwork · ${FACTS.platforms.upworkZia.badge} · ${FACTS.platforms.upworkZia.jss} Job Success`, href: "https://www.upwork.com/freelancers/ziahussain1" },
+      { label: `Fiverr · ${FACTS.platforms.fiverrZia.rating} · ${FACTS.platforms.fiverrZia.reviews} reviews`, href: "https://www.fiverr.com/syedziashahgill" },
+    ],
     role: "Co-Founder · CEO · Product & Growth",
     domain: ["Product", "SaaS Strategy", "Decisions", "Execution"],
     statement: "A useful first release does one important job exceptionally clearly.",
@@ -39,6 +47,10 @@ const founders = [
   {
     name: "Omer Gillani",
     slug: "omer-gillani",
+    credentials: [
+      { label: `Fiverr · ${FACTS.platforms.fiverrOmer.level} · ${FACTS.platforms.fiverrOmer.rating} · ${FACTS.platforms.fiverrOmer.reviews} reviews`, href: "https://www.fiverr.com/omershahgillani" },
+      { label: "Upwork profile", href: "https://www.upwork.com/freelancers/~019551f0a911e24660" },
+    ],
     role: "Co-Founder · CTO · Engineering & Automation",
     domain: ["Engineering", "Automation", "Systems", "Infrastructure"],
     statement: "Reliable systems begin with a clear understanding of the work they must support.",
@@ -254,7 +266,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* How we build — WIDE, structural: one philosophy, fork, three realities, rejoin */}
-      <section className="pt-28 lg:pt-40 pb-24 lg:pb-32 bg-background relative overflow-hidden">
+      <section id="how-we-build" className="pt-28 lg:pt-40 pb-24 lg:pb-32 bg-background relative overflow-hidden scroll-mt-24">
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-[1400px] opacity-[0.5]"
           style={{ backgroundImage: GRID, backgroundSize: "56px 56px", maskImage: "linear-gradient(to bottom, black, transparent)" }}
@@ -536,9 +548,28 @@ const AboutPage: React.FC = () => {
                       {founder.bio}
                     </p>
 
-                    <p className="text-xs text-muted-foreground/60 mb-8">
+                    <p className="text-xs text-muted-foreground/60 mb-5">
                       {founder.skills.join(" · ")}
                     </p>
+
+                    {/* Verified platform standing — each founder's own profile,
+                        as the platform displays it (config/facts.ts), never a
+                        company-wide rating. */}
+                    <ul className="flex flex-wrap gap-2 mb-8">
+                      {founder.credentials.map((c) => (
+                        <li key={c.label}>
+                          <a
+                            href={c.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card/20 px-3 py-1 text-[11px] font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors"
+                          >
+                            {c.label}
+                            <ArrowUpRight size={10} />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
 
                     <div className="mb-8">
                       <EvidenceNote evidence={founder.evidence} />
@@ -725,12 +756,31 @@ const AboutPage: React.FC = () => {
           <p className="text-base font-medium text-primary mb-2">
             Josh Nyce, Fast Track · Trustpilot
           </p>
+          <p className="text-xs text-muted-foreground/60 max-w-md mx-auto mb-2">
+            One client's account, corroborated by his Trustpilot and Google reviews — not a typical timeline.
+          </p>
           <Link
-            to="/client-stories"
+            to="/portfolio/fast-track-usa-app-rescue"
             className="inline-block mt-4 text-sm text-muted-foreground hover:text-primary underline underline-offset-2"
           >
-            Read the full story
+            Read the Fast Track case study
           </Link>
+        </div>
+      </section>
+
+      {/* Questions people ask about the founders — content that existed in
+          data/faqs/about.ts and was never mounted. */}
+      <section className="py-24 lg:py-32 bg-background relative">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-10 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
+              <span className="text-muted-foreground/50">About the people,</span>{" "}
+              <span className="text-foreground">what founders usually ask.</span>
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection delay={0.06}>
+            <FAQAccordion items={aboutFAQs} idPrefix="about-faq" />
+          </AnimatedSection>
         </div>
       </section>
 
@@ -884,7 +934,15 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center items-center px-4">
-              <Link to="/contact">
+              <a
+                href={buildCalendlyUrl("about-final-cta")}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(event) => {
+                  event.currentTarget.href = buildCalendlyUrl("about-final-cta");
+                  trackCalendlyClick("about-final-cta");
+                }}
+              >
                 <motion.button
                   whileHover={{ scale: 1.02, y: -3 }}
                   whileTap={{ scale: 0.98 }}
@@ -894,10 +952,10 @@ const AboutPage: React.FC = () => {
                            flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg shadow-lg w-full sm:w-auto justify-center"
                 >
                   <Calendar size={20} />
-                  Book a Strategy Call
+                  Book a call
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-150" />
                 </motion.button>
-              </Link>
+              </a>
 
               <Link to="/contact">
                 <motion.button
@@ -909,7 +967,7 @@ const AboutPage: React.FC = () => {
                            flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg border border-border hover:border-primary/30 w-full sm:w-auto justify-center"
                 >
                   <Mail size={20} />
-                  Send Project Brief
+                  Write to us instead
                 </motion.button>
               </Link>
             </div>

@@ -31,7 +31,7 @@ const PIPELINE = [
 const PROCESS_LOG = [
   { icon: Search, title: "Map", description: "The actual manual process, step by step, before we decide what to automate." },
   { icon: Send, title: "Connect", description: "Your existing tools wired together properly, not duct-taped." },
-  { icon: Cog, title: "Automate", description: "Triggers, actions, and AI where it genuinely helps." },
+  { icon: Cog, title: "Automate", description: "Triggers, actions, and AI where it helps." },
   { icon: RefreshCw, title: "Test", description: "Run against real conditions, not a clean demo scenario." },
   { icon: Eye, title: "Observe", description: "You can see the workflow running and know when something needs attention." },
 ];
@@ -552,7 +552,7 @@ const AutomationDetailPage: React.FC = () => {
               {
                 href: "/articles/ai-automation-business-growth",
                 label: "AI automation for business: where to start",
-                description: "Where AI automation genuinely helps, and which workflows to automate first.",
+                description: "Where AI automation helps, and which workflows to automate first.",
               },
               {
                 href: "/portfolio/stripe-to-airtable-subscription-sync",

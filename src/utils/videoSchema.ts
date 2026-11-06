@@ -4,7 +4,7 @@ const SITE = "https://zumetrix.com";
 
 // Google's 3 required VideoObject properties (name, thumbnailUrl,
 // uploadDate — per developers.google.com/search/docs/appearance/
-// structured-data/video, checked 2026-09) are all genuinely satisfied here:
+// structured-data/video, checked 2026-09) are all satisfied here:
 // uploadDate and duration are sourced from real evidence (git history and
 // ffprobe, respectively — see testimonialFilms.ts's own comments for
 // exactly what each represents and where it came from), not invented.

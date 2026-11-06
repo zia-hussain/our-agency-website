@@ -12,7 +12,7 @@ export const articlesFAQs = [
   {
     question: "How often do you publish new insights?",
     answer:
-      "We publish new content as we learn, build, and solve problems—sometimes weekly, sometimes in deep batches. Our priority is to share ideas that are genuinely useful: how to scope an MVP, how to design a dashboard, how to build an automation workflow, how to avoid common startup mistakes, and how to think clearly about technology choices. When we write, it’s because we have something real to say."
+      "We publish new content as we learn, build, and solve problems—sometimes weekly, sometimes in deep batches. Our priority is to share ideas that are useful: how to scope an MVP, how to design a dashboard, how to build an automation workflow, how to avoid common startup mistakes, and how to think clearly about technology choices. When we write, it’s because we have something real to say."
   },
   {
     question: "Can I request topics for future articles?",

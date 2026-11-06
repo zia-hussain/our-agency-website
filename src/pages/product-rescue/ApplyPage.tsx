@@ -66,7 +66,7 @@ const ACCESS_OPTIONS = [
 ];
 
 // 6 steps (reduced from 7 — commercial experience pass, 2026-10-01):
-// Duration + Prior Attempts removed entirely. Neither genuinely gates
+// Duration + Prior Attempts removed entirely. Neither gates
 // Accept/Custom/Decline the way Access does (if evidence can never be
 // provided, the assessment literally can't happen — that's a real
 // pre-payment signal; how long a symptom has persisted isn't). It was

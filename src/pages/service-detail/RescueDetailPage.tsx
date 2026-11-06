@@ -21,7 +21,10 @@ const service = rescueService;
 const pageUrl = `https://zumetrix.com/services/${service.slug}`;
 const fastTrackTestimonial = TESTIMONIALS.find((t) => t.id === "josh-fast-track");
 const nathanTestimonial = TESTIMONIALS.find((t) => t.id === "nathan-api-rescue");
-const bharatTestimonial = TESTIMONIALS.find((t) => t.id === "bharat-bondfire");
+// Alan's second engagement and Dinah's repeat work: rescue proof from
+// clients who came back, both verified on their platforms.
+const alanSecondTestimonial = TESTIMONIALS.find((t) => t.id === "alan-learning-platform-second");
+const dinahTestimonial = TESTIMONIALS.find((t) => t.id === "dinah-honest-quick") || TESTIMONIALS.find((t) => t.id === "dinah-mobile");
 
 const SKEPTIC_FRAGMENTS = [
   { text: "\"promised, then ghosted\"", top: "2%", left: "4%", rotate: "-5deg" },
@@ -498,20 +501,16 @@ const RescueDetailPage: React.FC = () => {
           {/* Folded in as a quiet, clearly-secondary coda rather than a     */}
           {/* third equal-weight card pair — these corroborate, they don't   */}
           {/* introduce a new doubt the way STABILIZE/UNTANGLE just did.     */}
-          {(nathanTestimonial || bharatTestimonial) && (
-            <AnimatedSection delay={0.1} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-border/30 grid sm:grid-cols-2 gap-5 text-left">
-              {nathanTestimonial && (
-                <div>
-                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{nathanTestimonial.quote}"</p>
-                  <p className="text-[11px] text-muted-foreground/60">{nathanTestimonial.author}, {nathanTestimonial.role}</p>
+          {(nathanTestimonial || alanSecondTestimonial || dinahTestimonial) && (
+            <AnimatedSection delay={0.1} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-border/30 grid sm:grid-cols-3 gap-5 text-left">
+              {[nathanTestimonial, alanSecondTestimonial, dinahTestimonial].filter(Boolean).map((t) => t && (
+                <div key={t.id}>
+                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{t.quote}"</p>
+                  <p className="text-[11px] text-muted-foreground/60">
+                    {t.author}{t.role ? `, ${t.role}` : ""}{t.platform ? ` · ${t.platform}` : ""}{t.repeatClient ? " · repeat client" : ""}
+                  </p>
                 </div>
-              )}
-              {bharatTestimonial && (
-                <div>
-                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{bharatTestimonial.quote}"</p>
-                  <p className="text-[11px] text-muted-foreground/60">{bharatTestimonial.author}, {bharatTestimonial.role}</p>
-                </div>
-              )}
+              ))}
             </AnimatedSection>
           )}
         </div>
@@ -525,7 +524,7 @@ const RescueDetailPage: React.FC = () => {
           <AnimatedSection className="flex items-start gap-4 text-left max-w-xl mx-auto">
             <X size={18} className="text-muted-foreground/40 flex-shrink-0 mt-1" />
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <span className="text-foreground font-semibold">If the assessment finds it's genuinely beyond repair, we'll say so —</span>{" "}
+              <span className="text-foreground font-semibold">If the assessment finds it's beyond repair, we'll say so —</span>{" "}
               and show you exactly why — before any fix work is scoped or started. If it finds the
               opposite, we'll say that just as plainly, and tell you what we'd keep.
             </p>
@@ -597,7 +596,7 @@ const RescueDetailPage: React.FC = () => {
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
               <span className="block text-muted-foreground/50">Something's not working.</span>
-              <span className="block text-foreground mt-2">Tell us what — we'll tell you honestly what it takes.</span>
+              <span className="block text-foreground mt-2">Tell us what — we'll tell you what it takes.</span>
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">

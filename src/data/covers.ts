@@ -32,6 +32,8 @@ export type ArticleCoverKey =
   | "development-guides";
 
 export interface Cover {
+  /** 0 = centred, 1 = object sits slightly left/up, 2 = slightly right/down (listing variety). */
+  shift?: 0 | 1 | 2;
   /** Vector master — use as <img src> (crisp, ~5–10 KB). */
   src: string;
   /** Raster siblings for srcSet (1x/2x WebP). */
@@ -238,7 +240,20 @@ export const coverKeyForProject = (p: ProjectLike): CoverKey => {
 const hasAuthoredVisual = (p: ProjectLike) =>
   Boolean(p.heroImageFit === "contain" || (p.image && /fast-track/.test(p.image)));
 
-export const coverForProject = (p: ProjectLike): Cover => PROJECT_COVERS[coverKeyForProject(p)];
+// Neighbouring cases in one category would otherwise show the identical
+// frame. A stable per-slug variant (mirror, and a slight shift of the object
+// in its frame) keeps the family recognisable without reading as copies.
+const variantFor = (slug: string): { flip: boolean; shift: 0 | 1 | 2 } => {
+  let h = 0;
+  for (const ch of slug) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return { flip: h % 2 === 1, shift: (h % 3) as 0 | 1 | 2 };
+};
+
+export const coverForProject = (p: ProjectLike): Cover => {
+  const base = PROJECT_COVERS[coverKeyForProject(p)];
+  const v = variantFor(p.slug);
+  return { ...base, flip: v.flip ? !base.flip : base.flip, shift: v.shift };
+};
 
 /** The image a card/listing should show: the authored evidence diagram where
  *  one exists, otherwise the category cover. */

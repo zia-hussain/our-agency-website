@@ -34,7 +34,7 @@ import { buildCalendlyUrl } from "../utils/attribution";
 
 // Contextual offer bridge (2026-10-11 commercial routing pass) — reuses the
 // existing article `category` taxonomy rather than inventing a new tagging
-// system. Only genuinely relevant categories map to an offer; "Insights",
+// system. Only relevant categories map to an offer; "Insights",
 // "Development", and "Mobile Development" are intentionally left unmapped
 // so the bridge never shows up where it isn't earned (brief Phase 10: "Do
 // not place all offers on every article").

@@ -3,7 +3,7 @@ export const aboutFAQs = [
   {
     question: "Who are Zia Hussain and Omer Gillani?",
     answer:
-      "Zia Hussain and Omer Gillani are the co-founders of Zumetrix Labs, a founder-led software studio based in Pakistan and working with clients worldwide. Zia (Co-Founder & CEO) focuses on product strategy and full-stack development using React, Next.js, TypeScript, Node.js, and Firebase. Omer (Co-Founder & CTO) focuses on backend systems, AI automation, scalable architecture, and cloud infrastructure. Together, they personally lead architecture, critical development decisions, and client communication on every project instead of hiding behind a sales team."
+      "Zia Hussain and Omer Gillani are the co-founders of Zumetrix Labs, a founder-led software studio based in Karachi, Pakistan, founded in June 2025 and working with clients worldwide. Zia (Co-Founder & CEO) focuses on product strategy and full-stack development using React, Next.js, TypeScript, Node.js, and Firebase. Omer (Co-Founder & CTO) focuses on backend systems, AI automation, scalable architecture, and cloud infrastructure. Together they lead architecture, the decisions that matter, and client communication on every project, with a small specialist team behind them."
   },
   {
     question: "What makes Zia and Omer different from other software developers and agencies?",
@@ -13,7 +13,7 @@ export const aboutFAQs = [
   {
     question: "Can I work directly with Zia and Omer on my project?",
     answer:
-      "Yes. When you work with Zumetrix Labs, you work directly with the founders. Zia and Omer are involved from the first strategy call through architecture, implementation, and launch. They typically handle core architecture, complex features, integrations, and code reviews themselves, and only delegate well-defined tasks when it makes sense. This setup gives you direct access to senior engineers and clear answers instead of being passed around between account managers."
+      "Yes. Zia and Omer are on every project from the first call through architecture, implementation and launch, and they remain the people accountable for it. They are not the only people who touch it: a small specialist group works alongside them on design, development, QA and automation, so the company has delivery depth without you being passed between account managers. You get direct access to the founders and clear answers — and a team behind them."
   },
   {
     question: "What kind of international clients do they usually work with?",

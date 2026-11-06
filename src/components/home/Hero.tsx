@@ -4,7 +4,7 @@ import {
   ArrowRight,
   ChevronDown,
 } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";
 
@@ -32,8 +32,6 @@ const item = {
 };
 
 const Hero: React.FC = () => {
-  const shouldReduceMotion = useReducedMotion();
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -66,57 +64,24 @@ const Hero: React.FC = () => {
         className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full"
       >
         <div className="flex flex-col items-center text-center">
-          {/* Eyebrow */}
+          {/* Eyebrow — states what kind of company this is, in six words */}
           <motion.div variants={item} className="flex justify-center">
-            <Link
-              to="/contact"
+            <span
               className="
-      btn-sheen group relative inline-flex items-center gap-3
+      inline-flex items-center gap-3
       rounded-full pl-5 pr-5 py-2.5
       text-xs font-semibold uppercase tracking-[0.14em]
       text-primary/90
-      border border-white/[0.06]
-      transition-colors duration-300
-      hover:text-primary hover:border-white/[0.1]
-      focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 mb-10 sm:mb-12
+      border border-white/[0.06] mb-10 sm:mb-12
     "
               style={{ background: "linear-gradient(180deg, #18150F 0%, #0B0A08 100%)" }}
             >
-              {/* The badge performs its own claim instead of just stating   */}
-              {/* it: "stalled" gets struck through, "shipped" lights up —   */}
-              {/* a single beat, once, timed just after the badge settles.   */}
-              <span className="inline-flex items-baseline gap-x-1.5">
-                <span>Where</span>
-                <span className="relative inline-block">
-                  <motion.span
-                    className="text-muted-foreground/60"
-                    animate={shouldReduceMotion ? undefined : { opacity: 0.5 }}
-                    transition={{ duration: 0.3, delay: 1.05 }}
-                  >
-                    stalled
-                  </motion.span>
-                  <motion.span
-                    aria-hidden="true"
-                    className="absolute left-0 right-0 top-1/2 h-px bg-muted-foreground/70 origin-left"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4, delay: 1.05, ease: [0.65, 0, 0.35, 1] }}
-                  />
-                </span>
-                <span>projects get</span>
-                <motion.span
-                  className="inline-block"
-                  animate={shouldReduceMotion ? undefined : { scale: [1, 1.1, 1] }}
-                  transition={{ duration: 0.5, delay: 1.45, times: [0, 0.45, 1], ease: "easeOut" }}
-                >
-                  shipped
-                </motion.span>
-              </span>
+              <span>{BRAND_CONTENT.hero.badge}</span>
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
                 <span className="relative h-1.5 w-1.5 rounded-full bg-primary" />
               </span>
-            </Link>
+            </span>
           </motion.div>
 
           {/* Headline — one silhouette, three registers, no register an afterthought */}
@@ -125,10 +90,7 @@ const Hero: React.FC = () => {
               variants={item}
               className="block text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] mb-1 sm:mb-1.5"
             >
-              We build software
-              <br className="sm:hidden" />
-              <span className="hidden sm:inline"> </span>
-              for founders
+              {BRAND_CONTENT.hero.headline.line1}
             </motion.span>
             <motion.span
               variants={item}
@@ -147,7 +109,7 @@ const Hero: React.FC = () => {
           {/* One sharp supporting thought — tells them when to come to us */}
           <motion.p
             variants={item}
-            className="mb-9 sm:mb-10 max-w-xl text-base sm:text-lg font-light leading-[1.6] text-muted-foreground"
+            className="mb-9 sm:mb-10 max-w-2xl text-base sm:text-lg font-light leading-[1.6] text-muted-foreground"
           >
             {renderContentSegments(BRAND_CONTENT.hero.subheadline)}
           </motion.p>
@@ -179,7 +141,7 @@ const Hero: React.FC = () => {
             </Link>
 
             {/* Secondary path and quiet proof, read as one authored line */}
-            <div className="flex items-center gap-2.5 text-sm">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-2.5 text-sm">
               <button
                 onClick={() => scrollToSection("portfolio")}
                 className="group text-foreground/65 hover:text-primary font-medium flex items-center gap-1.5 transition-colors duration-200 py-1"
@@ -189,8 +151,8 @@ const Hero: React.FC = () => {
                 </span>
                 <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform duration-200" />
               </button>
-              <span className="text-muted-foreground/30">·</span>
-              <span className="text-muted-foreground/45">{BRAND_CONTENT.hero.proofLine}</span>
+              <span className="hidden sm:inline text-muted-foreground/30">·</span>
+              <span className="text-muted-foreground/45 text-center">{BRAND_CONTENT.hero.proofLine}</span>
             </div>
           </motion.div>
         </div>

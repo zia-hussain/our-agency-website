@@ -18,11 +18,15 @@ import ClosingGlow from "../../components/common/ClosingGlow";
 import { services } from "../../data/services";
 import { saasDetailFAQs } from "../../data/faqs/service-saas";
 import { TESTIMONIALS } from "../../data/testimonials";
+import PlatformIcon from "../../components/common/PlatformIcon";
 
 const service = services.find((s) => s.slug === "saas-mvp-development")!;
 const pageUrl = `https://zumetrix.com/services/${service.slug}`;
-const kellyTestimonial = TESTIMONIALS.find((t) => t.id === "kelly-andrews-ifyify");
-const jennyTestimonial = TESTIMONIALS.find((t) => t.id === "jenny-hjelpna");
+// Shipped-and-launched proof beside the Liftly scoping story: Knipsr (built
+// from zero to launch-ready, Trustpilot) and Sarah (client portal with
+// billing, Fiverr + on film). Both verified; both about building, not fixing.
+const knipsrTestimonial = TESTIMONIALS.find((t) => t.id === "founder-knipsr");
+const sarahTestimonial = TESTIMONIALS.find((t) => t.id === "sarah-saas");
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -34,7 +38,7 @@ const CORE_LAYER = ["User accounts, roles & multi-tenant access", "Stripe paymen
 const FOUNDATION_LAYER = ["Admin panel for day-to-day management", "REST APIs built for what's next", "Cloud deployment, production from day one", "Automated reporting & exports"];
 
 const ENGAGEMENT = [
-  { icon: Users, title: "Decide", description: "What your first version needs to prove, and what can genuinely wait." },
+  { icon: Users, title: "Decide", description: "What your first version needs to prove, and what can wait." },
   { icon: MapPin, title: "Scope", description: "The decisions become a focused build plan — priorities, order, milestones." },
   { icon: Hammer, title: "Build", description: "Short sprints. Working software to review at every step." },
   { icon: FlaskConical, title: "Validate", description: "Real user feedback, folded back into the product before launch." },
@@ -521,28 +525,31 @@ const SaasDetailPage: React.FC = () => {
               </p>
               <footer className="text-sm text-muted-foreground">Founder, Liftly</footer>
             </blockquote>
-            <p className="text-xs text-muted-foreground/50 italic mt-4">
-              Client identity withheld by request — product name and scope shared with permission.
+            <p className="text-xs text-muted-foreground/50 italic mt-4 max-w-md mx-auto">
+              Client identity withheld by request. The public review refers to the landing page; documentation of the operational V1 is pending and this page claims no more than that.
             </p>
           </AnimatedSection>
 
-          {/* Folded into this scene as a quiet aside rather than a second   */}
-          {/* standalone section — these don't answer a different doubt      */}
-          {/* than Liftly already did, so they don't earn their own weight.  */}
-          {(kellyTestimonial || jennyTestimonial) && (
-            <AnimatedSection delay={0.16} className="max-w-2xl mx-auto mt-10 pt-8 border-t border-border/30 grid sm:grid-cols-2 gap-5 text-left">
-              {kellyTestimonial && (
-                <div>
-                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{kellyTestimonial.quote}"</p>
-                  <p className="text-[11px] text-muted-foreground/60">{kellyTestimonial.author}, {kellyTestimonial.role}</p>
-                </div>
-              )}
-              {jennyTestimonial && (
-                <div>
-                  <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{jennyTestimonial.quote}"</p>
-                  <p className="text-[11px] text-muted-foreground/60">{jennyTestimonial.author}, {jennyTestimonial.role}</p>
-                </div>
-              )}
+          {/* Launched products, in the clients' own words — the doubt Liftly's
+              scoping story can't answer on its own is "did it ship?"       */}
+          {(knipsrTestimonial || sarahTestimonial) && (
+            <AnimatedSection delay={0.16} className="max-w-3xl mx-auto mt-12 pt-10 border-t border-border/30">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-6 text-center">Built here, launched, still supported</p>
+              <div className="grid sm:grid-cols-2 gap-6 text-left">
+                {[knipsrTestimonial, sarahTestimonial].filter(Boolean).map((t) => t && (
+                  <figure key={t.id} className="rounded-2xl border border-border/50 bg-card/15 p-6">
+                    <blockquote className="text-sm text-foreground/85 leading-relaxed mb-4">"{t.quote}"</blockquote>
+                    <figcaption className="flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
+                      <span className="font-medium text-foreground/80">{t.author}</span>
+                      {t.role && <span>· {t.role}</span>}
+                      {t.platform && <span className="inline-flex items-center gap-1"><PlatformIcon platform={t.platform} size={11} /> {t.platform}</span>}
+                      {t.projectSlug && (
+                        <Link to={`/portfolio/${t.projectSlug}`} className="text-primary/80 hover:text-primary">Case study →</Link>
+                      )}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
             </AnimatedSection>
           )}
         </div>
@@ -669,9 +676,9 @@ const SaasDetailPage: React.FC = () => {
                 description: "How to decide what a first version has to prove, what is built, what is only designed, and what earns the next layer.",
               },
               {
-                href: "/portfolio/ifyify-ai-personal-branding",
-                label: "Ifyify — the first phase of an AI product",
-                description: "A first phase delivered in two weeks, and the client's own words about what comes next.",
+                href: "/portfolio/knipsr-event-media-saas",
+                label: "Knipsr — from first build to launch-ready SaaS",
+                description: "Background processing, retries, media streaming, and a stress test against real event-day failure modes before launch.",
               },
               {
                 href: "/articles/decision-room-001-liftly-sequencing",

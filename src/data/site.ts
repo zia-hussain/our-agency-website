@@ -36,47 +36,44 @@ export const SITE_DATA = {
   },
 
   // Company Logos Carousel - INFINITE SMOOTH SLIDER
+  // Client logos. `permitted` is written-permission status: only permitted
+  // logos render anywhere on the site (TrustTicker). Set it to true the day a
+  // client confirms in writing; nothing else needs to change.
   companyLogosCarousel: {
     logos: [
-      // { name: "Google", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg" },
-      // { name: "Microsoft", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoft.svg" },
-      // { name: "Apple", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg" },
-      { name: "Tech Skills", imageUrl: "/companies_logos/techskills.webp" },
-      { name: "Floating Stone Ranch", imageUrl: "/companies_logos/fsr.webp" },
-      { name: "Safco", imageUrl: "/companies_logos/safco.webp" },
-      { name: "Skills X Swap", imageUrl: "/companies_logos/skillsxswap.webp" },
-      { name: "Bio Tech Energy (BTE)", imageUrl: "/companies_logos/bte.webp" },
-      // { name: "Amazon", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/amazon.svg" },
-      // { name: "Meta", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/meta.svg" },
-      // { name: "Netflix", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/netflix.svg" },
-      // { name: "Spotify", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" },
-      // { name: "Tesla", imageUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tesla.svg" },
-    ]
+      { name: "Tech Skills", imageUrl: "/companies_logos/techskills.webp", permitted: false },
+      { name: "Floating Stone Ranch", imageUrl: "/companies_logos/fsr.webp", permitted: false },
+      { name: "Safco", imageUrl: "/companies_logos/safco.webp", permitted: false },
+      { name: "Skills X Swap", imageUrl: "/companies_logos/skillsxswap.webp", permitted: false },
+      { name: "Bio Tech Energy (BTE)", imageUrl: "/companies_logos/bte.webp", permitted: false },
+    ],
   },
 
-  // Trust Band - GLOBAL CLIENT SHOWCASE
   trustBand: {
     globalStats: [
-      { icon: "globe", value: "Global", label: "Market Reach" },
-      { icon: "projects", value: FACTS.counts.projectsShipped, label: "Projects Delivered" },
-      { icon: "success", value: "Founder-led", label: "Every Engagement" },
-      { icon: "response", value: "<24 hrs", label: "Typical Response Time" },
+      { icon: "projects", value: FACTS.counts.projectsShipped, label: "Projects delivered" },
+      { icon: "globe", value: FACTS.counts.clients, label: "Clients on four continents" },
+      { icon: "reviews", value: FACTS.counts.writtenReviews, label: "Written reviews, five platforms" },
+      { icon: "success", value: "Founder-led", label: "Zia and Omer on every project" },
     ],
     clients: [
       {
         name: "Forlag",
+        slug: "forlag-publishing-sales-inventory-dashboard",
         country: "Norway",
         industry: "Publishing & Book Sales",
         project: "Sales & Inventory Dashboard",
       },
       {
         name: "Floating Stone Ranch",
+        slug: "floating-stone-ranch-processor-intake-engine",
         country: "Canada",
         industry: "Beef Processing & Logistics",
         project: "Processor Intake & Logistics Automation",
       },
       {
         name: "Skill x Swap",
+        slug: "skill-x-swap-mvp",
         country: "United Kingdom",
         industry: "EdTech & Skill Sharing",
         project: "Credit-Based Marketplace MVP",
@@ -164,20 +161,20 @@ export const SITE_DATA = {
         icon: "approach",
         title: "How We Work Different",
         description:
-          "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Our founders personally architect every solution. Not order-takers—thinking partners.",
-        stats: "",
+          "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Zia and Omer shape every solution and stay on it, with a small specialist team across design, development, QA and automation.",
+        stats: "Founders close, delivery deep",
       },
       {
         icon: "results",
         title: "What Actually Happens",
         description:
           FACTS.counts.projectsShipped + " projects delivered by the team. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We help with that clarity.",
-        stats: "4-6 week average delivery",
+        stats: "Scope decided before code",
       },
     ],
     cta: {
-      text: "See Our Process",
-      link: "/about#process",
+      text: "See how we work",
+      link: "/about#how-we-build",
     },
   },
 
@@ -246,7 +243,7 @@ export const SITE_DATA = {
   finalCTA: {
     headline: `${BRAND_CONTENT.finalCTA.headline.line1} ${BRAND_CONTENT.finalCTA.headline.line2}`,
     subtitle:
-      "Book a 30-minute call. No pitch, no pressure. We'll ask questions, challenge assumptions, and tell you honestly if we're the right fit.",
+      "Book a 30-minute call. No pitch, no pressure. We'll ask questions, challenge assumptions, and tell you if we're the right fit.",
     primaryCTA: {
       text: BRAND_CONTENT.finalCTA.primaryCTA.text,
       link: BRAND_CONTENT.finalCTA.primaryCTA.link,
@@ -268,79 +265,13 @@ export const SITE_DATA = {
   metrics: {
     projectsCompleted: FACTS.counts.projectsShipped,
     happyClients: FACTS.counts.clients,
-    successRate: import.meta.env.VITE_SUCCESS_RATE || "100%",
     avgMVPTime: "Scope dependent",
     fundingSuccess: "Not claimed",
     clientSatisfaction: "Project references available",
     countriesServed: "Global",
-    responseTime: "24 hours",
+    responseTime: "2 business days",
   },
 
-  // Lead Magnet - MVP Blueprint
-  leadMagnet: {
-    badge: 'Free Download',
-    title: 'Get Your Free',
-    highlight: '30-Day SaaS MVP Blueprint',
-    description: 'A practical planning guide for moving from an idea to a focused first release, with a 30-day framework, stack guidance, feature prioritization, and a launch checklist.',
-    features: [
-      { title: 'Step-by-Step Process', desc: 'From idea to launch' },
-      { title: 'Tech Stack Guide', desc: 'What to use & why' },
-      { title: 'Launch Checklist', desc: 'Ready-to-use template' }
-    ],
-    bottomFeatures: [
-      'PDF planning guide',
-      'Practical frameworks',
-      `Built from ${FACTS.counts.projectsShipped} project lessons`
-    ],
-    formSubject: 'New Lead Magnet Download: MVP Blueprint',
-    privacy: 'No spam. Unsubscribe anytime. We respect your privacy.',
-    successMessage: {
-      title: 'Success! Your request is saved',
-      description: 'We\'ve sent the MVP Blueprint to',
-      cta: 'While you\'re here, want to discuss your project?',
-      ctaLink: '/contact',
-      ctaText: 'Book a free consultation'
-    }
-  },
-
-  // AI ROI Calculator Configuration
-  aiROICalculator: {
-    badge: 'Interactive ROI Calculator',
-    title: 'See Your',
-    highlight: 'Automation Savings',
-    description: 'Calculate exactly how much time and money AI automation could save your team',
-    defaults: {
-      employees: 5,
-      avgHourlyRate: 50,
-      hoursPerWeek: 5,
-      processType: 'data_entry'
-    },
-    limits: {
-      employees: { min: 1, max: 500 },
-      avgHourlyRate: { min: 15, max: 300 },
-      hoursPerWeek: { min: 1, max: 40 }
-    },
-    processTypes: [
-      { id: 'data_entry', name: 'Data Entry & Processing', reduction: 80, icon: '📊' },
-      { id: 'customer_support', name: 'Customer Support', reduction: 60, icon: '💬' },
-      { id: 'reporting', name: 'Reports & Analytics', reduction: 70, icon: '📈' },
-      { id: 'scheduling', name: 'Scheduling & Coordination', reduction: 75, icon: '📅' },
-      { id: 'email_mgmt', name: 'Email Management', reduction: 65, icon: '📧' }
-    ],
-    automationCost: 5000,
-    reportIncludes: [
-      'Automation strategy tailored to your process',
-      'Phase-by-phase implementation roadmap',
-      'Technology stack recommendations',
-      'Detailed cost & timeline breakdown'
-    ],
-    formSubject: 'AI ROI Calculator - Custom Report Request',
-    successMessage: {
-      title: 'Estimate request saved',
-      ctaText: 'Book Free Consultation',
-      ctaLink: '/contact'
-    }
-  },
 };
 
 // API-ready data access functions
@@ -349,5 +280,3 @@ export const getHeroData = () => SITE_DATA.hero;
 export const getServicesPreview = () => SITE_DATA.servicesPreview;
 export const getFounders = () => SITE_DATA.foundersStrip.founders;
 export const getMetrics = () => SITE_DATA.metrics;
-export const getLeadMagnetData = () => SITE_DATA.leadMagnet;
-export const getAIROICalculatorData = () => SITE_DATA.aiROICalculator;

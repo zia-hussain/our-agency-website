@@ -318,7 +318,7 @@ const ManualToSystemLandingPage: React.FC = () => {
                     "What should be removed from the workflow entirely",
                     "What's worth simplifying before anything gets automated",
                     "What tools should actually connect to each other",
-                    "What genuinely deserves automation — and what should stay human",
+                    "What deserves automation — and what should stay human",
                   ].map((line) => (
                     <li key={line} className="flex items-start gap-3 text-sm text-foreground/90 leading-relaxed">
                       <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />

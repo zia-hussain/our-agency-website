@@ -57,7 +57,7 @@ const TermsOfServicePage: React.FC = () => {
             </h1>
 
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Last updated: December 2024
+              Last updated: November 6, 2026
             </p>
           </AnimatedSection>
         </div>

@@ -8,7 +8,7 @@ export const homeFAQs = [
   {
     question: "How fast can Zumetrix Labs build a production-ready SaaS MVP?",
     answer:
-      "A tightly scoped SaaS MVP can sometimes launch in about 30 days; we scope a focused first release at 4-8 weeks. The real timeline depends on user roles, integrations, payments, data migration, and how clearly the first release is defined. We confirm the scope and delivery plan before development begins."
+      "It depends on what the first release has to prove. A tightly scoped first version has shipped in a few weeks; one with several user roles, payments and integrations takes longer. We don't publish an average because the records don't support one — what we do is decide the scope in writing in week one and give you a dated plan before development begins."
   },
   {
     question: "What AI automation services does Zumetrix Labs provide?",
@@ -23,7 +23,7 @@ export const homeFAQs = [
   {
     question: "How much does it cost to work with Zumetrix Labs?",
     answer:
-      "Budgets depend on scope, complexity, and timeline. Current starting points are about $4,800 for a focused SaaS MVP, $2,500 for AI automation, $3,500 for a custom web application, and $5,500 for a cross-platform mobile app. After an initial call, we send a clear proposal covering scope, timeline, price, assumptions, and responsibilities."
+      "Starting prices are on every service page: from $4,800 for a focused SaaS product, from $3,500 for a custom web application, from $5,500 for a cross-platform mobile app, and from $2,500 for one automated workflow. A stuck product starts with the Product Rescue Assessment at a fixed $750, because quoting rescue work before looking at the code would be a guess. After a first conversation you get a written proposal covering scope, timeline, price, assumptions and responsibilities — the decision about what to build comes before the build."
   },
   {
     question: "Do I own the code and intellectual property (IP)?",
@@ -58,6 +58,6 @@ export const homeFAQs = [
   {
     question: "Do you build with no-code tools, or only custom code?",
     answer:
-      "Both, depending on what the problem actually needs. We build custom React/Node products when the product is the business, and we use no-code platforms like Bubble, Webflow, or FlutterFlow when they genuinely ship faster and hold up fine at the scale involved. We'll tell you honestly which one fits before we start."
+      "Both, depending on what the problem actually needs. We build custom React/Node products when the product is the business, and we use no-code platforms like Bubble, Webflow, or FlutterFlow when they ship faster and hold up fine at the scale involved. We'll tell you which one fits before we start."
   }
 ];

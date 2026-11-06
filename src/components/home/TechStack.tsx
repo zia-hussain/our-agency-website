@@ -137,9 +137,11 @@ const TechStack: React.FC = () => {
           transition={{ duration: 0.28, delay: 0.15 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold text-muted-foreground/60 mb-6 uppercase tracking-[0.14em]">
-            Full Technology Stack
-          </p>
+          <details className="group/stack max-w-3xl mx-auto">
+            <summary className="cursor-pointer list-none inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground/60 hover:text-primary uppercase tracking-[0.14em] mb-6 select-none">
+              Full technology stack
+              <span className="text-muted-foreground/40 group-open/stack:rotate-180 transition-transform duration-200" aria-hidden="true">▾</span>
+            </summary>
           <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto">
             {allTechPills.map((tech, index) => (
               <motion.span
@@ -155,6 +157,7 @@ const TechStack: React.FC = () => {
               </motion.span>
             ))}
           </div>
+          </details>
         </motion.div>
       </div>
     </section>

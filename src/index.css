@@ -315,6 +315,9 @@ img {
   }
 }
 
+.animate-marquee-slow {
+  animation: marquee-scroll 90s linear infinite;
+}
 .animate-marquee {
   animation: marquee-scroll 46s linear infinite;
 }

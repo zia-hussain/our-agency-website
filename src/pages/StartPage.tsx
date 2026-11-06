@@ -11,6 +11,9 @@ import TestimonialFilm from "../components/common/TestimonialFilm";
 import TiltFrame from "../components/portfolio/TiltFrame";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { offerHref } from "../config/offers";
+import { getProjectBySlug } from "../data/projects";
+import { listingImageForProject } from "../data/covers";
+import CoverImage from "../components/common/CoverImage";
 import { trackOfferSelect, trackOffersHubView, trackContextualOfferCtaClick } from "../utils/analytics";
 
 // Editorial "final editing" pass (2026-10-19): the architecture, visual
@@ -431,15 +434,14 @@ const StartPage: React.FC = () => {
                   ) : (
                     <ScrollRevealVisual className={reversed ? "lg:order-1" : ""}>
                       <TiltFrame>
-                        <img
-                          src={chapter.proofImage}
-                          alt=""
-                          width="1000"
-                          height="625"
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-auto object-contain bg-background"
-                        />
+                        {(() => {
+                          const proofProject = getProjectBySlug(chapter.proofHref.replace("/portfolio/", ""));
+                          return proofProject ? (
+                            <CoverImage cover={listingImageForProject(proofProject)} sizes="(min-width: 1024px) 45vw, 92vw" className="bg-background" />
+                          ) : (
+                            <img src={chapter.proofImage} alt="" width="1000" height="625" loading="lazy" decoding="async" className="w-full h-auto object-contain bg-background" />
+                          );
+                        })()}
                       </TiltFrame>
                       <div className="mt-5">
                         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">

@@ -46,7 +46,7 @@ const LANES: { key: LaneKey; icon: typeof Check; label: string; weight: "solid" 
 
 const CAPTIONS: Record<LaneKey, string> = {
   v1: "Three things prove the loop works: a client can book, get reminded, and pay. That's the whole first version.",
-  later: "Real ideas, genuinely later. None of them help prove whether the core loop works — they make sense once it does.",
+  later: "Real ideas, later. None of them help prove whether the core loop works — they make sense once it does.",
 };
 
 const IdeaChip: React.FC<{ idea: Idea; state: "pool" | "sorted" }> = ({ idea, state }) => (

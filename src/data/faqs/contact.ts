@@ -22,6 +22,6 @@ export const contactFAQs = [
   {
     question: "What happens after I submit the contact form?",
     answer:
-      "You’ll get a reply within 24 hours with next steps. Usually this includes a short message from one of the founders, a link to book a call, and a request for any details you’d like to share. The goal is simple: understand your idea, confirm fit, and outline a clear path forward."
+      "You’ll get a reply within two business days with next steps. Usually this includes a short message from one of the founders, a link to book a call, and a request for any details you’d like to share. The goal is simple: understand your idea, confirm fit, and outline a clear path forward."
   }
 ];

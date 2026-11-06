@@ -1,4 +1,5 @@
 import React from "react";
+import { BRAND_CONTENT } from "../config/content";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
@@ -12,6 +13,7 @@ import { Link } from "react-router-dom";
 import { services, rescueService } from "../data/services.ts";
 import { servicesFAQs } from "../data/faqs/services";
 import { getProjectBySlug } from "../data/projects";
+import { FACTS } from "../config/facts";
 import { TESTIMONIALS } from "../data/testimonials";
 import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
@@ -33,12 +35,11 @@ const fastTrackTestimonial = TESTIMONIALS.find((t) => t.id === "josh-fast-track"
 // Same fractal-noise grain already used on the Homepage testimonial cards —
 // reused verbatim so the seal cluster's surface matches the site's existing
 // premium-texture language instead of inventing a new one.
-// The Record — the one number kept is computed live from the real proof
-// library so it can never drift from what's verifiable.
-const recordRatedTestimonials = TESTIMONIALS.filter((t) => typeof t.rating === "number");
-const recordAverageRating = (
-  recordRatedTestimonials.reduce((sum, t) => sum + (t.rating || 0), 0) / recordRatedTestimonials.length
-).toFixed(1);
+// The Record — the number in the seal is the size of the written record
+// (config/facts.ts), not an average computed from the curated excerpts on
+// this page. The real library holds 80+ reviews with one 4.3 among the
+// fives; saying "5.0, not a curated subset" here was false on both counts.
+const recordReviewCount = FACTS.counts.writtenReviews;
 
 type RecordVoice = {
   id: string;
@@ -51,13 +52,13 @@ const recordVoices: RecordVoice[] = [
   { id: "founder-knipsr", excerpt: "We could not be happier about working with Zumetrix Labs!", attribution: "Founder, Knipsr", platform: "Trustpilot" },
   { id: "andi-first-north", excerpt: "Their combination of web development, AI integration, design, UX, and SEO into one solution was impressive.", attribution: "Andi, First North Peptides", platform: "Clutch" },
   { id: "reema", excerpt: "The best team I have worked with in over a decade.", attribution: "Reema", platform: "Fiverr" },
-  { id: "kelly-andrews-ifyify", excerpt: "Zumetrix Labs delivered exactly what we envisioned and more.", attribution: "Kelly Andrews", platform: "Fiverr" },
-  { id: "bharat-bondfire", excerpt: "You jumped into a messy situation and got us back to shipping.", attribution: "Bharat, Bondfire", platform: "Fiverr" },
   { id: "nathan-api-rescue", excerpt: "Zia is the kind of dev who makes you double-check the delivery time because surely no one builds something that good, that fast.", attribution: "Nathan", platform: "Fiverr" },
   { id: "alan-learning-platform", excerpt: "You can trust him with any task.", attribution: "Alan Ayoubi", platform: "Upwork" },
   { id: "kelly-longterm", excerpt: "One of THE BEST Freelancers I have worked with in the over 10 years I have been using Upwork.", attribution: "Kelly", platform: "Upwork" },
-  { id: "jenny-hjelpna", excerpt: "Your Bubble knowledge and system thinking saved me from so many future problems.", attribution: "Jenny, HjelpNå", platform: "Fiverr" },
   { id: "jay-lancaster", excerpt: "Excellent. I may steal him from the platform altogether.", attribution: "Jay Lancaster", platform: "Fiverr" },
+  { id: "dinah-honest-quick", excerpt: "He is honest, quick and actually gets the job done.", attribution: "Dinah", platform: "Fiverr" },
+  { id: "sam-skill-x-swap-launch", excerpt: "My app is now ready for launching thanks to his expertise.", attribution: "Sam, Skill x Swap", platform: "Fiverr" },
+  { id: "james-floating-stone-ranch", excerpt: "The team understood the complexity of my industry and of the project quickly. I will continue to use this team.", attribution: "James, Floating Stone Ranch", platform: "Fiverr" },
 ];
 const recordVoicesRowA = recordVoices.filter((_, i) => i % 2 === 0);
 const recordVoicesRowB = recordVoices.filter((_, i) => i % 2 === 1);
@@ -358,8 +359,7 @@ const ServicesPage: React.FC = () => {
         "@id": "https://zumetrix.com/#organization",
         name: "Zumetrix Labs",
         url: "https://zumetrix.com",
-        description:
-          "Zumetrix Labs provides software development services specializing in SaaS MVP development, React/Node.js applications, AI automation, mobile app development, and custom software.",
+        description: BRAND_CONTENT.brand.shortDescription,
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Software Development Services",
@@ -579,6 +579,7 @@ const ServicesPage: React.FC = () => {
                   <ArrowRight size={11} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
               </Link>
+              <p className="mt-4 text-sm text-muted-foreground"><span className="font-semibold text-foreground/85">{saas.price}</span></p>
             </AnimatedSection>
 
             {/* The transforming panel — idea resolving into product. The ghost "?"    */}
@@ -688,6 +689,7 @@ const ServicesPage: React.FC = () => {
                   <ArrowRight size={11} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
               </Link>
+              <p className="mt-4 text-sm text-muted-foreground"><span className="font-semibold text-foreground/85">{rescueService.price}</span></p>
             </AnimatedSection>
 
             <AnimatedSection delay={0.05} className="mb-14">
@@ -879,6 +881,7 @@ const ServicesPage: React.FC = () => {
                   <ArrowRight size={11} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
               </Link>
+              <p className="mt-4 text-sm text-muted-foreground"><span className="font-semibold text-foreground/85">{webApp.price}</span></p>
             </AnimatedSection>
           </div>
 
@@ -1044,6 +1047,7 @@ const ServicesPage: React.FC = () => {
                   <ArrowRight size={11} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
               </Link>
+              <p className="mt-4 text-sm text-muted-foreground"><span className="font-semibold text-foreground/85">{mobile.price}</span></p>
             </AnimatedSection>
 
             {/* The device — large, tactile, the chapter's dominant visual */}
@@ -1153,6 +1157,7 @@ const ServicesPage: React.FC = () => {
                   <ArrowRight size={11} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
               </Link>
+              <p className="mt-4 text-sm text-muted-foreground"><span className="font-semibold text-foreground/85">{automation.price}</span></p>
             </AnimatedSection>
 
             {/* Fragmentation → coordination, given real scale */}
@@ -1586,9 +1591,9 @@ const ServicesPage: React.FC = () => {
               <PlatformIcon platform="Upwork" size={26} className="text-foreground/60" />
             </SealBadge>
             <SealBadge sizeClass="w-28 h-28 sm:w-44 sm:h-44" rotate="rotate-0" z={3} primary>
-              <span className="text-3xl sm:text-6xl font-bold text-primary leading-none">{recordAverageRating}</span>
+              <span className="text-3xl sm:text-6xl font-bold text-primary leading-none">{recordReviewCount}</span>
               <span className="text-[8px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mt-1.5 sm:mt-2">
-                Avg. Rating
+                Written reviews
               </span>
             </SealBadge>
             <SealBadge sizeClass="w-20 h-20 sm:w-28 sm:h-28" rotate="rotate-3" z={2}>
@@ -1609,7 +1614,7 @@ const ServicesPage: React.FC = () => {
             <ShieldCheck size={16} className="text-primary/60" />
           </div>
           <p className="text-sm text-muted-foreground max-w-xs mx-auto">
-            Every rated review on Fiverr, Upwork, Trustpilot, and Clutch — not a curated subset.
+            {FACTS.counts.writtenReviews} written reviews across Fiverr, Upwork, Trustpilot, Clutch and Google, posted where we can't edit them. All but one are five stars; the exception is a 4.3. Read them at the source from the founders' profiles.
           </p>
         </AnimatedSection>
 

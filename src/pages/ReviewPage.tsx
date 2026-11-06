@@ -232,7 +232,7 @@ function SuccessScreen() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
         <h1 className="text-4xl sm:text-5xl font-bold text-[#EDEDED] mb-4 leading-tight">You're a legend.</h1>
         <p className="text-[#EDEDED]/40 text-lg max-w-sm mx-auto leading-relaxed">
-          Your story is now with us. We'll review it and publish it soon — and we genuinely mean thank you.
+          Your story is now with us. We'll review it and publish it soon — and we mean thank you.
         </p>
       </motion.div>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
