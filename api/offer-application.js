@@ -21,7 +21,7 @@ import { createOfferOpportunity } from "./_lib/notion.js";
 import { sendResendEmail, getOpsRecipients } from "./_lib/email.js";
 import { applicationReceivedHtml, internalApplicationNotificationHtml } from "./_lib/offerEmails.js";
 import { generateReferenceToken } from "./_lib/token.js";
-import { getOffer } from "./_lib/offers.js";
+import { getOffer, isValidSituation } from "./_lib/offers.js";
 import { STATUS } from "./_lib/lifecycle.js";
 
 const json = (res, status, body) => {
@@ -74,15 +74,6 @@ const cleanEvidenceLinks = (raw) => {
   return valid.join("\n");
 };
 
-const SITUATION_TYPES = new Set([
-  "product-breaking",
-  "development-stalled",
-  "considering-rebuild",
-  "inherited-product",
-  "distrust-direction",
-  "something-else",
-]);
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -114,7 +105,7 @@ export default async function handler(req, res) {
   if (!body.name || !String(body.name).trim()) {
     return json(res, 400, { success: false, error: "Your name is required." });
   }
-  if (!SITUATION_TYPES.has(body.situationType)) {
+  if (!isValidSituation(offer.slug, body.situationType)) {
     return json(res, 400, { success: false, error: "Please choose what best describes your situation." });
   }
   if (!body.problemDescription || String(body.problemDescription).trim().length < 10) {

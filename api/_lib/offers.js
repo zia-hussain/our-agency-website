@@ -42,6 +42,42 @@ export const OFFERS = {
 
 export const getOffer = (slug) => OFFERS[slug] || null;
 
+// Per-offer situation vocabularies. Each must match the `value`s in that
+// offer's ApplyPage SITUATION_TYPES (src/pages/<offer>/ApplyPage.tsx —
+// product-rescue reads src/config/offers.ts). Before 2026-11-06 the API
+// validated every offer against the Product Rescue list only, so
+// Idea-to-Build and Manual-to-System applications were rejected with a 400
+// unless the applicant chose "something-else".
+export const SITUATION_TYPES = {
+  "product-rescue": [
+    "product-breaking",
+    "development-stalled",
+    "considering-rebuild",
+    "inherited-product",
+    "distrust-direction",
+    "something-else",
+  ],
+  "idea-to-build": [
+    "no-v1-clarity",
+    "conflicting-opinions",
+    "fear-of-wasting-months",
+    "scope-creep",
+    "have-validation-no-plan",
+    "something-else",
+  ],
+  "manual-to-system": [
+    "team-is-bottleneck",
+    "copying-data",
+    "hiring-for-repetition",
+    "tool-suggestions-dont-stick",
+    "automation-made-it-worse",
+    "something-else",
+  ],
+};
+
+export const isValidSituation = (slug, value) =>
+  Array.isArray(SITUATION_TYPES[slug]) && SITUATION_TYPES[slug].includes(value);
+
 // The one Airtable table every offer's applications live in — a plain
 // constant, not per-offer, so callers that only need the table name (the
 // qualification/payment/status endpoints, which look a record up by its
