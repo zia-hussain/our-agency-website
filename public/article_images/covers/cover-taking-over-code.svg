@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+
+  <defs>
+    <radialGradient id="kn-key" cx="55%" cy="20%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="kn-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="kn-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="kn-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="kn-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="kn-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="kn-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="kn-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="kn-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="kn-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="kn-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="kn-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="kn-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="kn-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="kn-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="kn-clip"><rect width="1600" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#kn-clip)">
+    <rect width="1600" height="900" fill="url(#kn-key)"/>
+    <rect width="1600" height="900" fill="url(#kn-warm)"/>
+
+    <ellipse cx="820" cy="640" rx="640" ry="40" fill="#000" opacity="0.5" filter="url(#kn-blur24)"/>
+    <!-- copper glow, under everything so it reads as light the exit strand gives off -->
+    <path d="M840 520 C 900 520, 960 480, 1040 470 C 1200 450, 1380 470, 1560 440" stroke="#C48A64" stroke-width="128" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.22" filter="url(#kn-blur24)"/>
+    <!-- UNDER layer: loopB passes beneath the lead -->
+    <g filter="url(#kn-softshadow)"><path d="M790 405 C 740 440, 760 520, 840 520" stroke="#1F1A17" stroke-width="58" fill="none" stroke-linecap="round" stroke-linejoin="round" /></g>
+    <path d="M790 405 C 740 440, 760 520, 840 520" stroke="#F3EDE4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.06" transform="translate(-6,-14)"/>
+    <!-- lead strand -->
+    <path d="M60 470 C 280 464, 470 440, 620 470 C 690 485, 740 520, 780 540" stroke="#0B0A09" stroke-width="72" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <g filter="url(#kn-shadow)"><path d="M60 470 C 280 464, 470 440, 620 470 C 690 485, 740 520, 780 540" stroke="#2A241F" stroke-width="58" fill="none" stroke-linecap="round" stroke-linejoin="round" /></g>
+    <path d="M60 470 C 280 464, 470 440, 620 470 C 690 485, 740 520, 780 540" stroke="#F3EDE4" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.13" transform="translate(0,-17)"/>
+    <!-- OVER layer: loopA crosses over the lead -->
+    <path d="M780 540 C 850 580, 930 540, 920 460 C 912 395, 840 370, 790 405" stroke="#0B0A09" stroke-width="72" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <g filter="url(#kn-shadow)"><path d="M780 540 C 850 580, 930 540, 920 460 C 912 395, 840 370, 790 405" stroke="#2E2823" stroke-width="58" fill="none" stroke-linecap="round" stroke-linejoin="round" /></g>
+    <path d="M780 540 C 850 580, 930 540, 920 460 C 912 395, 840 370, 790 405" stroke="#F3EDE4" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.15" transform="translate(-8,-15)"/>
+    <!-- exit strand in copper, on top where it leaves the eye -->
+    <path d="M840 520 C 900 520, 960 480, 1040 470 C 1200 450, 1380 470, 1560 440" stroke="#0B0A09" stroke-width="72" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <g filter="url(#kn-shadow)"><path d="M840 520 C 900 520, 960 480, 1040 470 C 1200 450, 1380 470, 1560 440" stroke="url(#kn-copperV)" stroke-width="58" fill="none" stroke-linecap="round" stroke-linejoin="round" /></g>
+    <path d="M840 520 C 900 520, 960 480, 1040 470 C 1200 450, 1380 470, 1560 440" stroke="#F6DDBE" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.7" transform="translate(0,-17)"/>
+    <rect width="1600" height="900" filter="url(#kn-grain)" opacity="0.9"/>
+  </g>
+</svg>

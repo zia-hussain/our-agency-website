@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+
+  <defs>
+    <radialGradient id="pb-key" cx="40%" cy="15%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="pb-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pb-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="pb-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="pb-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="pb-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="pb-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="pb-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="pb-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="pb-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="pb-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="pb-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="pb-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="pb-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="pb-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="pb-clip"><rect width="1600" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#pb-clip)">
+    <rect width="1600" height="900" fill="url(#pb-key)"/>
+    <rect width="1600" height="900" fill="url(#pb-warm)"/>
+
+    <line x1="800" y1="0" x2="800" y2="330" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="2"/>
+    <ellipse cx="800" cy="760" rx="150" ry="20" fill="#000" opacity="0.6" filter="url(#pb-blur24)"/>
+    <circle cx="800" cy="480" r="200" fill="url(#pb-glow)" opacity="0.7"/>
+    <g filter="url(#pb-shadow)">
+      <path d="M800 330 L 760 390 L 760 470 C 760 560, 800 650, 800 690 C 800 650, 840 560, 840 470 L 840 390 Z" fill="url(#pb-copperV)"/>
+      <circle cx="800" cy="360" r="20" fill="url(#pb-sphere)"/>
+    </g>
+    <path d="M778 400 L 778 470 C 778 540, 796 620, 800 660" stroke="#F6DDBE" stroke-opacity="0.55" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- the floor line it points to -->
+    <line x1="520" y1="740" x2="1080" y2="740" stroke="#F3EDE4" stroke-opacity="0.14" stroke-width="2"/>
+    <circle cx="800" cy="740" r="6" fill="#E8C49B" opacity="0.9"/>
+    <circle cx="800" cy="740" r="22" fill="#E8C49B" opacity="0.2" filter="url(#pb-blur8)"/>
+    <rect width="1600" height="900" filter="url(#pb-grain)" opacity="0.9"/>
+  </g>
+</svg>

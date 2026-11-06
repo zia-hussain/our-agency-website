@@ -21,7 +21,7 @@ const founders = [
     domain: ["Product", "SaaS Strategy", "Decisions", "Execution"],
     statement: "A useful first release does one important job exceptionally clearly.",
     bio: "Zia leads product and growth at Zumetrix Labs. He lives in the space between founders, users, and engineering—turning messy ideas into clear roadmaps, offers, and shipped products. He cares about clean execution, simple user flows, and making sure what gets built is actually useful to the business, not just another feature.",
-    image: "/profile_images/zia-hussain-founder-optimized.jpg",
+    image: "/profile_images/zia-hussain-portrait-4x5.webp",
     skills: [
       "SaaS Product Strategy",
       "MVP Scoping & Roadmapping",
@@ -43,7 +43,7 @@ const founders = [
     domain: ["Engineering", "Automation", "Systems", "Infrastructure"],
     statement: "Reliable systems begin with a clear understanding of the work they must support.",
     bio: "Omer leads engineering and automation at Zumetrix Labs. He takes complex requirements, constraints, and integrations—and turns them into systems that are fast, reliable, and easy to grow. He thinks in terms of architecture, data flows, and long-term maintainability, making sure what we ship today doesn't become tomorrow's technical debt.",
-    image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
+    image: "/profile_images/omer-gillani-portrait-4x5.webp",
     skills: [
       "Technical Architecture & System Design",
       "AI & No-Code Automation Workflows",

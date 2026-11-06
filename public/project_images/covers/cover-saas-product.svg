@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="s-key" cx="50%" cy="10%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="s-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="s-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="s-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="s-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="s-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="s-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="s-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="s-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="s-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="s-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="s-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="s-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="s-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="s-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="s-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#s-clip)">
+    <rect width="1200" height="900" fill="url(#s-key)"/>
+    <rect width="1200" height="900" fill="url(#s-warm)"/>
+
+    <ellipse cx="600" cy="790" rx="420" ry="36" fill="#000" opacity="0.5" filter="url(#s-blur24)"/>
+    <!-- piers -->
+    <g filter="url(#s-softshadow)">
+      <rect x="250" y="540" width="120" height="250" fill="url(#s-stone2)"/>
+      <rect x="830" y="540" width="120" height="250" fill="url(#s-stone2)"/>
+    </g>
+    <rect x="250" y="540" width="120" height="2" fill="#F3EDE4" opacity="0.08"/>
+    <rect x="830" y="540" width="120" height="2" fill="#F3EDE4" opacity="0.08"/>
+    <!-- glow behind keystone -->
+    <circle cx="600" cy="240" r="150" fill="url(#s-glow)"/>
+    <g filter="url(#s-softshadow)">
+      <path d="M 370.0 542.8 A 230 230 0 0 0 384.8 458.7 L 272.6 416.4 A 350 350 0 0 1 250.0 544.2 Z" fill="url(#s-stone)"/>
+      <path d="M 382.9 463.9 A 230 230 0 0 0 425.6 390.1 L 334.6 311.8 A 350 350 0 0 1 269.7 424.2 Z" fill="url(#s-stone)"/>
+      <path d="M 422.0 394.3 A 230 230 0 0 0 487.4 339.4 L 428.6 234.8 A 350 350 0 0 1 329.2 318.3 Z" fill="url(#s-stone)"/>
+      <path d="M 482.6 342.2 A 230 230 0 0 0 562.8 313.0 L 543.4 194.6 A 350 350 0 0 1 421.4 239.0 Z" fill="url(#s-stone)"/>
+      <path d="M 637.2 313.0 A 230 230 0 0 0 717.4 342.2 L 778.6 239.0 A 350 350 0 0 1 656.6 194.6 Z" fill="url(#s-stone)"/>
+      <path d="M 712.6 339.4 A 230 230 0 0 0 778.0 394.3 L 870.8 318.3 A 350 350 0 0 1 771.4 234.8 Z" fill="url(#s-stone)"/>
+      <path d="M 774.4 390.1 A 230 230 0 0 0 817.1 463.9 L 930.3 424.2 A 350 350 0 0 1 865.4 311.8 Z" fill="url(#s-stone)"/>
+      <path d="M 815.2 458.7 A 230 230 0 0 0 830.0 542.8 L 950.0 544.2 A 350 350 0 0 1 927.4 416.4 Z" fill="url(#s-stone)"/>
+    </g>
+    <path d="M 370.0 542.8 A 230 230 0 0 0 384.8 458.7 L 272.6 416.4 A 350 350 0 0 1 250.0 544.2 Z" fill="none" stroke="url(#s-edge)" stroke-width="1.5"/>
+    <path d="M 382.9 463.9 A 230 230 0 0 0 425.6 390.1 L 334.6 311.8 A 350 350 0 0 1 269.7 424.2 Z" fill="none" stroke="url(#s-edge)" stroke-width="1.5"/>
+    <path d="M 422.0 394.3 A 230 230 0 0 0 487.4 339.4 L 428.6 234.8 A 350 350 0 0 1 329.2 318.3 Z" fill="none" stroke="url(#s-edge)" stroke-width="1.5"/>
+    <path d="M 482.6 342.2 A 230 230 0 0 0 562.8 313.0 L 543.4 194.6 A 350 350 0 0 1 421.4 239.0 Z" fill="none" stroke="url(#s-edge)" stroke-width="1.5"/>
+    <path d="M 637.2 313.0 A 230 230 0 0 0 717.4 342.2 L 778.6 239.0 A 350 350 0 0 1 656.6 194.6 Z" fill="none" stroke="url(#s-edge)" stroke-width="1.5"/>
+    <path d="M 712.6 339.4 A 230 230 0 0 0 778.0 394.3 L 870.8 318.3 A 350 350 0 0 1 771.4 234.8 Z" fill="none" stroke="url(#s-edge)" stroke-width="1.5"/>
+    <path d="M 774.4 390.1 A 230 230 0 0 0 817.1 463.9 L 930.3 424.2 A 350 350 0 0 1 865.4 311.8 Z" fill="none" stroke="url(#s-edge)" stroke-width="1.5"/>
+    <path d="M 815.2 458.7 A 230 230 0 0 0 830.0 542.8 L 950.0 544.2 A 350 350 0 0 1 927.4 416.4 Z" fill="none" stroke="url(#s-edge)" stroke-width="1.5"/>
+    <!-- keystone, slightly proud of the arch -->
+    <g transform="translate(0,-10)" filter="url(#s-shadow)">
+      <path d="M 557.3 314.0 A 230 230 0 0 0 642.7 314.0 L 664.9 196.1 A 350 350 0 0 1 535.1 196.1 Z" fill="url(#s-copper)"/>
+    </g>
+    <path d="M 557.3 314.0 A 230 230 0 0 0 642.7 314.0 L 664.9 196.1 A 350 350 0 0 1 535.1 196.1 Z" transform="translate(0,-10)" fill="none" stroke="#F6DDBE" stroke-opacity="0.7" stroke-width="2"/>
+    <!-- light spill on the stones beside the keystone -->
+    <circle cx="600" cy="270" r="90" fill="#E8C49B" opacity="0.10" filter="url(#s-blur24)"/>
+    <rect width="1200" height="900" filter="url(#s-grain)" opacity="0.9"/>
+  </g>
+</svg>

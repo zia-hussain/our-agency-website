@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type { Project } from "../../data/projects";
+import { listingImageForProject } from "../../data/covers";
 
 interface ProjectCardProps {
   project: Project;
@@ -10,9 +11,9 @@ interface ProjectCardProps {
   index?: number;
 }
 
-// The project images are the designer's own title/problem-solution slides —
-// already dense with type — so this card never stacks more badges or text
-// on top of the image. Everything the card needs to say lives underneath it
+// The cover is a category-led authored visual (see data/covers.ts) — or the
+// project's own evidence diagram where one exists — so this card never
+// stacks badges or text on top of the image. Everything the card needs to say lives underneath it
 // in plain typography, reusing the same leading-quote-with-rule language the
 // service detail pages already established for testimonials, so a card here
 // and a quote there read as the same voice, not two different systems.
@@ -23,6 +24,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = "archive" }) 
     : null;
 
   const isFeatured = size === "featured";
+  const cover = listingImageForProject(project);
 
   return (
     <Link to={`/portfolio/${project.slug}`} className="group block h-full">
@@ -34,9 +36,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = "archive" }) 
         <div className="rounded-xl border border-border/60 bg-gradient-to-b from-primary/[0.05] to-transparent p-1.5 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)] group-hover:shadow-[0_30px_60px_-24px_rgba(196,138,100,0.25)] group-hover:border-primary/30 transition-shadow duration-300">
           <div className="overflow-hidden rounded-lg">
             <motion.img
-              src={project.image}
-              alt={project.title}
+              src={cover.src}
+              srcSet={cover.srcSet || undefined}
+              sizes={cover.srcSet ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : undefined}
+              width={cover.width}
+              height={cover.height}
+              alt={cover.alt}
               loading="lazy"
+              decoding="async"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
               className={`w-full aspect-[4/3] ${project.heroImageFit === "contain" ? "object-contain bg-background" : "object-cover"}`}

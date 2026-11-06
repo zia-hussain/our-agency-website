@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+
+  <defs>
+    <radialGradient id="dg-key" cx="35%" cy="18%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="dg-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dg-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="dg-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="dg-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="dg-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="dg-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="dg-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="dg-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="dg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="dg-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="dg-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="dg-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="dg-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="dg-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="dg-clip"><rect width="1600" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#dg-clip)">
+    <rect width="1600" height="900" fill="url(#dg-key)"/>
+    <rect width="1600" height="900" fill="url(#dg-warm)"/>
+
+    <!-- bench -->
+    <ellipse cx="800" cy="800" rx="520" ry="40" fill="#000" opacity="0.55" filter="url(#dg-blur24)"/>
+    <g filter="url(#dg-shadow)">
+      <path d="M300 470 L1300 470 L1250 760 L350 760 Z" fill="url(#dg-stone)"/>
+    </g>
+    <path d="M300 470 L1300 470" stroke="url(#dg-edge)" stroke-width="3"/>
+    <!-- soft shadow the square throws on the bench -->
+    <path d="M520 300 L 520 470 L 1330 470 L 1330 500 L 490 500 Z" fill="#000" opacity="0.5" filter="url(#dg-blur24)" transform="translate(26,34)"/>
+    <!-- copper glow -->
+    <path d="M560 250 L 560 460 L 1320 460" stroke="#C48A64" stroke-width="70" fill="none" opacity="0.22" filter="url(#dg-blur24)"/>
+    <!-- dark steel stock (the thick handle) -->
+    <g filter="url(#dg-shadow)">
+      <rect x="482" y="200" width="82" height="300" rx="8" fill="url(#dg-darkSphere)"/>
+    </g>
+    <rect x="482" y="200" width="82" height="300" rx="8" fill="none" stroke="url(#dg-edge)" stroke-width="2"/>
+    <rect x="496" y="214" width="6" height="272" rx="3" fill="#F3EDE4" opacity="0.10"/>
+    <circle cx="523" cy="246" r="9" fill="#0A0908"/><circle cx="523" cy="246" r="4" fill="url(#dg-copper)"/>
+    <circle cx="523" cy="454" r="9" fill="#0A0908"/><circle cx="523" cy="454" r="4" fill="url(#dg-copper)"/>
+    <!-- copper blade -->
+    <g filter="url(#dg-shadow)">
+      <rect x="560" y="428" width="760" height="44" rx="4" fill="url(#dg-copper)"/>
+    </g>
+    <rect x="560" y="428" width="760" height="4" rx="2" fill="#F6DDBE" opacity="0.85"/>
+    <rect x="560" y="468" width="760" height="3" fill="#5A3A26" opacity="0.7"/>
+    <rect x="600" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="638" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="676" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="714" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="752" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="790" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="828" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="866" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="904" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="942" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="980" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="1018" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="1056" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="1094" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="1132" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="1170" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="1208" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/><rect x="1246" y="432" width="2.5" height="10" fill="#3A2416" opacity="0.8"/><rect x="1284" y="432" width="2.5" height="18" fill="#3A2416" opacity="0.8"/>
+    <!-- the blade's reflection on the bench edge -->
+    <rect x="560" y="474" width="760" height="10" fill="#C48A64" opacity="0.12" filter="url(#dg-blur8)"/>
+    <rect width="1600" height="900" filter="url(#dg-grain)" opacity="0.9"/>
+  </g>
+</svg>

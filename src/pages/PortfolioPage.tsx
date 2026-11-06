@@ -1,3 +1,4 @@
+import { listingImageForProject } from "../data/covers";
 import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/common/SEO";
@@ -51,7 +52,7 @@ const PortfolioPage: React.FC = () => {
             position: index + 1,
             name: project.title,
             description: project.description,
-            image: project.image.startsWith("http") ? project.image : `https://zumetrix.com${project.image}`,
+            image: `https://zumetrix.com${listingImageForProject(project).og}`,
             url: `https://zumetrix.com/portfolio/${project.slug}`,
             creator: { "@id": "https://zumetrix.com/#organization" },
           })),

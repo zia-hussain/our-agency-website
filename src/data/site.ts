@@ -205,7 +205,7 @@ export const SITE_DATA = {
           "SaaS Architecture",
         ],
         achievements: "Turns business problems into focused product decisions",
-        image: "/profile_images/zia-hussain-founder-thumb.webp",
+        image: "/profile_images/zia-hussain-portrait-thumb.webp",
         linkedin: "https://www.linkedin.com/in/zia-hussain-404-/",
         // Website CTAs book through the one company destination (Phase 1,
         // one attributable booking funnel). Zia's personal Calendly remains
@@ -229,7 +229,7 @@ export const SITE_DATA = {
           "Performance Optimization",
         ],
         achievements: "Turns product decisions into maintainable software",
-        image: "/profile_images/syed-omer-shah-founder-thumb.webp",
+        image: "/profile_images/omer-gillani-portrait-thumb.webp",
         linkedin: "https://www.linkedin.com/in/omer-gillani/",
         calendly: "https://calendly.com/zumetrix-labs/consultation",
       },

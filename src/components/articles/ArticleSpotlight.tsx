@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
-import ArticleVisual from "../common/ArticleVisual";
+import CoverImage from "../common/CoverImage";
+import { coverForArticle } from "../../data/covers";
 import TiltFrame from "../portfolio/TiltFrame";
 
 interface ArticleSpotlightProps {
@@ -24,8 +25,7 @@ interface ArticleSpotlightProps {
 }
 
 // Same register as ProjectSpotlight — each featured article is its own
-// scene, not a card in a grid. ArticleVisual is already the bespoke
-// element here (its own hook-highlight algorithm), so it's shown large
+// scene, not a card in a grid. The authored cluster cover is shown large
 // and tilted rather than competing with more typography on top of it.
 const ArticleSpotlight: React.FC<ArticleSpotlightProps> = ({ article, index, decision }) => {
   const reversed = index % 2 === 1;
@@ -47,7 +47,7 @@ const ArticleSpotlight: React.FC<ArticleSpotlightProps> = ({ article, index, dec
           transition={{ duration: 0.4 }}
         >
           <TiltFrame>
-            <ArticleVisual title={article.title} category={article.category} variant="hero" />
+            <CoverImage cover={coverForArticle(article)} className="aspect-video object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
           </TiltFrame>
         </motion.div>
 

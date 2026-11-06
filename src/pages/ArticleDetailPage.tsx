@@ -3,7 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
-import ArticleVisual from "../components/common/ArticleVisual";
+import CoverImage from "../components/common/CoverImage";
+import { articleShareImage, coverForArticle } from "../data/covers";
 import ResponsiveImage from "../components/common/ResponsiveImage";
 import TiltFrame from "../components/portfolio/TiltFrame";
 import ClosingGlow from "../components/common/ClosingGlow";
@@ -209,7 +210,12 @@ const ArticleDetailPage: React.FC = () => {
     "@id": `https://zumetrix.com/articles/${article.slug}#article`,
     headline: article.title,
     description: article.excerpt,
-    image: article.ogImage || article.image,
+    image: {
+      "@type": "ImageObject",
+      url: articleShareImage(article),
+      width: 1200,
+      height: 630,
+    },
     author: structuredAuthors,
     publisher: {
       "@type": "Organization",
@@ -307,8 +313,8 @@ const ArticleDetailPage: React.FC = () => {
         title={article.seo.title}
         description={article.seo.description}
         keywords={article.seo.keywords}
-        image={article.ogImage || article.image}
-        imageAlt={article.ogImageAlt}
+        image={articleShareImage(article)}
+        imageAlt={article.ogImageAlt || coverForArticle(article).ogAlt}
         url={`https://zumetrix.com/articles/${article.slug}`}
         type="article"
         structuredData={structuredData}
@@ -529,13 +535,10 @@ const ArticleDetailPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Article Hero Visual — the generated ArticleVisual stays the default
-          for every article (it's genuinely good UX and has no per-article
-          production cost). An article only switches to a real image here
-          once it has one worth showing: set article.heroImage (plus
-          heroImageAlt/Width/Height) in the data and this renders it instead,
-          full-width, as a real indexable asset — not a replacement for
-          ArticleVisual, a per-article choice. */}
+      {/* Article hero — the authored cluster cover by default (data/covers.ts).
+          An article switches to a real editorial image here once it has one
+          worth showing: set article.heroImage (plus heroImageAlt/Width/Height)
+          and this renders it instead. */}
       {!article.hideHeroVisual && (
       <section className="pb-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -556,7 +559,7 @@ const ArticleDetailPage: React.FC = () => {
               />
             ) : (
               <TiltFrame>
-                <ArticleVisual title={article.title} category={article.category} variant="hero" />
+                <CoverImage cover={coverForArticle(article)} className="aspect-video object-cover" priority sizes="(min-width: 1024px) 896px, 100vw" />
               </TiltFrame>
             )}
           </AnimatedSection>

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+
+  <defs>
+    <radialGradient id="rr-key" cx="62%" cy="18%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="rr-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rr-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="rr-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="rr-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rr-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="rr-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="rr-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="rr-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="rr-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="rr-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="rr-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="rr-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="rr-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="rr-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="rr-clip"><rect width="1600" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#rr-clip)">
+    <rect width="1600" height="900" fill="url(#rr-key)"/>
+    <rect width="1600" height="900" fill="url(#rr-warm)"/>
+
+    <ellipse cx="800" cy="790" rx="430" ry="42" fill="#000" opacity="0.6" filter="url(#rr-blur24)"/>
+    <ellipse cx="820" cy="520" rx="420" ry="360" fill="url(#rr-glow)" opacity="0.55"/>
+    <g filter="url(#rr-shadow)">
+      <path d="M370 250 C 380 560, 560 760, 800 760 C 1040 760, 1220 560, 1230 250 Z" fill="url(#rr-stone)"/>
+      <ellipse cx="800" cy="250" rx="430" ry="72" fill="#221D19"/>
+    </g>
+    <!-- rim: lit on the key side -->
+    <ellipse cx="800" cy="250" rx="430" ry="72" fill="none" stroke="#F3EDE4" stroke-opacity="0.34" stroke-width="4"/>
+    <path d="M372 250 C 420 190, 620 178, 800 178" stroke="#F3EDE4" stroke-opacity="0.45" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="800" cy="250" rx="392" ry="54" fill="#090807"/>
+    <path d="M800 304 C 1000 304, 1160 280, 1190 250" stroke="#F3EDE4" stroke-opacity="0.08" stroke-width="3" fill="none"/>
+    <!-- open fractures on the shadow side -->
+    <path d="M590 316 C 616 430, 560 530, 606 720" stroke="#050403" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M672 322 C 650 420, 714 520, 690 738" stroke="#050403" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M606 720 C 640 700, 660 712, 690 738" stroke="#050403" stroke-width="4" fill="none"/>
+    <!-- mended fractures on the lit side: the brightest thing in the frame -->
+    <path d="M980 318 C 950 430, 1030 520, 990 730" stroke="#C48A64" stroke-width="34" fill="none" stroke-linecap="round" opacity="0.5" filter="url(#rr-blur24)"/>
+    <path d="M980 318 C 950 430, 1030 520, 990 730" stroke="url(#rr-copperV)" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <path d="M1070 306 C 1100 400, 1040 480, 1090 600" stroke="url(#rr-copperV)" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M1030 470 C 1050 476, 1066 468, 1076 450" stroke="url(#rr-copperV)" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M980 318 C 950 430, 1030 520, 990 730" stroke="#FFF1DF" stroke-opacity="0.9" stroke-width="3" fill="none" stroke-linecap="round" transform="translate(-3,-2)"/>
+    <path d="M1070 306 C 1100 400, 1040 480, 1090 600" stroke="#FFF1DF" stroke-opacity="0.7" stroke-width="2" fill="none" transform="translate(-2,-2)"/>
+    <circle cx="1032" cy="472" r="7" fill="url(#rr-sphere)"/>
+    <rect width="1600" height="900" filter="url(#rr-grain)" opacity="0.9"/>
+  </g>
+</svg>

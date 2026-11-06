@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="n-key" cx="70%" cy="25%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="n-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="n-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="n-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="n-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="n-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="n-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="n-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="n-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="n-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="n-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="n-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="n-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="n-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="n-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="n-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#n-clip)">
+    <rect width="1200" height="900" fill="url(#n-key)"/>
+    <rect width="1200" height="900" fill="url(#n-warm)"/>
+
+    <!-- bar -->
+    <g filter="url(#n-softshadow)">
+      <rect x="300" y="128" width="640" height="22" rx="11" fill="url(#n-stone2)"/>
+    </g>
+    <rect x="300" y="128" width="640" height="2" rx="1" fill="#F3EDE4" opacity="0.14"/>
+    <!-- resting spheres -->
+    <line x1="428" y1="150" x2="430" y2="506" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="1.6"/><line x1="432" y1="150" x2="430" y2="506" stroke="#F3EDE4" stroke-opacity="0.12" stroke-width="1.2"/><line x1="544" y1="150" x2="546" y2="506" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="1.6"/><line x1="548" y1="150" x2="546" y2="506" stroke="#F3EDE4" stroke-opacity="0.12" stroke-width="1.2"/><line x1="660" y1="150" x2="662" y2="506" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="1.6"/><line x1="664" y1="150" x2="662" y2="506" stroke="#F3EDE4" stroke-opacity="0.12" stroke-width="1.2"/><line x1="776" y1="150" x2="778" y2="506" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="1.6"/><line x1="780" y1="150" x2="778" y2="506" stroke="#F3EDE4" stroke-opacity="0.12" stroke-width="1.2"/>
+    <line x1="892" y1="150" x2="1146.4" y2="420.9" stroke="#F3EDE4" stroke-opacity="0.26" stroke-width="1.6"/>
+    <ellipse cx="600" cy="708" rx="300" ry="26" fill="#000" opacity="0.5" filter="url(#n-blur24)"/>
+    <g filter="url(#n-shadow)">
+      <circle cx="430" cy="560" r="58" fill="url(#n-darkSphere)"/><circle cx="546" cy="560" r="58" fill="url(#n-darkSphere)"/><circle cx="662" cy="560" r="58" fill="url(#n-darkSphere)"/><circle cx="778" cy="560" r="58" fill="url(#n-darkSphere)"/>
+    </g>
+    <ellipse cx="412" cy="536" rx="14" ry="9" fill="#F3EDE4" opacity="0.10" filter="url(#n-blur8)"/><ellipse cx="528" cy="536" rx="14" ry="9" fill="#F3EDE4" opacity="0.10" filter="url(#n-blur8)"/><ellipse cx="644" cy="536" rx="14" ry="9" fill="#F3EDE4" opacity="0.10" filter="url(#n-blur8)"/><ellipse cx="760" cy="536" rx="14" ry="9" fill="#F3EDE4" opacity="0.10" filter="url(#n-blur8)"/>
+    <!-- copper reflection on the nearest dark sphere -->
+    <ellipse cx="808" cy="566" rx="16" ry="30" fill="#C48A64" opacity="0.28" filter="url(#n-blur8)"/>
+    <!-- the live sphere -->
+    <circle cx="1146.4" cy="473.1" r="110" fill="url(#n-glow)"/>
+    <g filter="url(#n-shadow)">
+      <circle cx="1146.4" cy="473.1" r="58" fill="url(#n-sphere)"/>
+    </g>
+    <ellipse cx="1126.4" cy="447.1" rx="16" ry="10" fill="#FFF4E6" opacity="0.7" filter="url(#n-blur8)"/>
+    <!-- motion: faint ghost of where it was -->
+    <circle cx="1040.3" cy="533.0" r="58" fill="#C48A64" opacity="0.08"/>
+    <rect width="1200" height="900" filter="url(#n-grain)" opacity="0.9"/>
+  </g>
+</svg>

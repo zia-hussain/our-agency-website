@@ -1,3 +1,5 @@
+import CoverImage from "../common/CoverImage";
+import { listingImageForProject } from "../../data/covers";
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, Minus, MapPin, Target } from "lucide-react";
@@ -160,15 +162,7 @@ const FeaturedCaseStudies: React.FC = () => {
             {/* Built vs. deferred column — a structured spec sheet, contrasting the free-flowing story */}
             <div className="lg:col-span-2">
               <div className="relative rounded-2xl overflow-hidden border border-primary/15 bg-background mb-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]">
-                <img
-                  src={flagship.image}
-                  alt={`${flagship.client.name} system overview`}
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-auto object-contain"
-                />
+                <CoverImage cover={listingImageForProject(flagship)} className="object-contain" />
               </div>
 
               <div className="rounded-2xl border border-border/70 overflow-hidden">

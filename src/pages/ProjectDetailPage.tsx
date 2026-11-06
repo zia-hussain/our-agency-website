@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { getProjectBySlug } from "../data/projects";
 import TiltImage from "../components/portfolio/TiltImage";
+import { listingImageForProject } from "../data/covers";
 import HeroEvidence from "../components/portfolio/HeroEvidence";
 import ClientExperience from "../components/portfolio/ClientExperience";
 import ReadingProgress from "../components/portfolio/ReadingProgress";
@@ -126,7 +127,8 @@ const ProjectDetailPage: React.FC = () => {
 
   const pageUrl = `https://zumetrix.com/portfolio/${project.slug}`;
   // A dedicated 1200x630 PNG for link previews (the card/hero image can be an SVG, which X, LinkedIn and Facebook do not render).
-  const shareSource = project.ogImage ?? project.image;
+  const cover = listingImageForProject(project);
+  const shareSource = project.ogImage ?? `/og/portfolio-${project.slug}.png`;
   const shareImage = shareSource.startsWith("http") ? shareSource : `https://zumetrix.com${shareSource}`;
   // heroEvidence already carries this evidence in the hero, so the KPI band is
   // skipped for those projects; `kpis` stays on the record for the portfolio
@@ -296,11 +298,16 @@ const ProjectDetailPage: React.FC = () => {
                 <HeroEvidence {...project.heroEvidence} />
               ) : (
                 <TiltImage
-                  src={project.image}
-                  alt={project.title}
+                  src={cover.src}
+                  srcSet={cover.srcSet}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  width={cover.width}
+                  height={cover.height}
+                  alt={cover.alt}
                   className={project.heroImageMobile ? "aspect-auto sm:aspect-[4/3]" : "aspect-[4/3]"}
                   fit={project.heroImageFit}
                   mobileSrc={project.heroImageMobile}
+                  priority
                 />
               )}
             </AnimatedSection>

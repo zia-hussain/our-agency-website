@@ -16,16 +16,28 @@ interface TiltImageProps {
   // Swaps via a <picture> media-query source, so it's a real image change,
   // not a CSS scale-down of the desktop diagram's already-small text.
   mobileSrc?: string;
+  srcSet?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
+  /** Above-the-fold hero: eager + high fetch priority instead of lazy. */
+  priority?: boolean;
 }
 
-const TiltImage: React.FC<TiltImageProps> = ({ src, alt, className = "", frameClassName = "", fit = "cover", mobileSrc }) => (
+const TiltImage: React.FC<TiltImageProps> = ({ src, alt, className = "", frameClassName = "", fit = "cover", mobileSrc, srcSet, sizes, width, height, priority = false }) => (
   <TiltFrame frameClassName={frameClassName}>
     <picture>
       {mobileSrc && <source srcSet={mobileSrc} media="(max-width: 640px)" />}
       <img
         src={src}
+        srcSet={srcSet || undefined}
+        sizes={srcSet ? sizes : undefined}
+        width={width}
+        height={height}
         alt={alt}
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        {...(priority ? ({ fetchpriority: "high" } as Record<string, string>) : {})}
         className={`w-full ${fit === "contain" ? "object-contain bg-background" : "object-cover"} ${className}`}
       />
     </picture>

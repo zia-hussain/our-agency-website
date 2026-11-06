@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import type { Project } from "../../data/projects";
 import TiltImage from "./TiltImage";
+import { listingImageForProject } from "../../data/covers";
 
 interface ProjectSpotlightProps {
   project: Project;
@@ -18,6 +19,7 @@ interface ProjectSpotlightProps {
 const ProjectSpotlight: React.FC<ProjectSpotlightProps> = ({ project, index }) => {
   const reversed = index % 2 === 1;
   const kpis = (project.kpis ?? []).slice(0, 4);
+  const cover = listingImageForProject(project);
 
   return (
     <div className="relative">
@@ -36,7 +38,7 @@ const ProjectSpotlight: React.FC<ProjectSpotlightProps> = ({ project, index }) =
           transition={{ duration: 0.4 }}
           className="relative"
         >
-          <TiltImage src={project.image} alt={project.title} className="aspect-[4/3]" fit={project.heroImageFit} />
+          <TiltImage src={cover.src} srcSet={cover.srcSet} sizes="(min-width: 1024px) 50vw, 100vw" width={cover.width} height={cover.height} alt={cover.alt} className="aspect-[4/3]" fit={project.heroImageFit} />
         </motion.div>
 
         <motion.div

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+
+  <defs>
+    <radialGradient id="v1-key" cx="30%" cy="22%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="v1-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="v1-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="v1-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="v1-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="v1-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="v1-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="v1-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="v1-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="v1-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="v1-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="v1-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="v1-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="v1-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="v1-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="v1-clip"><rect width="1600" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#v1-clip)">
+    <rect width="1600" height="900" fill="url(#v1-key)"/>
+    <rect width="1600" height="900" fill="url(#v1-warm)"/>
+
+    <ellipse cx="800" cy="770" rx="440" ry="36" fill="#000" opacity="0.5" filter="url(#v1-blur24)"/>
+    <g filter="url(#v1-shadow)">
+      <rect x="380" y="200" width="840" height="540" rx="10" fill="url(#v1-stone)"/>
+    </g>
+    <rect x="380" y="200" width="840" height="540" rx="10" fill="none" stroke="url(#v1-edge)" stroke-width="2"/>
+    <!-- the carved field: a large shallow recess with tool texture -->
+    <rect x="430" y="250" width="740" height="440" rx="8" fill="#000" opacity="0.28"/>
+    <rect x="450" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.035"/><rect x="516" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.018"/><rect x="582" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.035"/><rect x="648" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.018"/><rect x="714" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.035"/><rect x="780" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.018"/><rect x="846" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.035"/><rect x="912" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.018"/><rect x="978" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.035"/><rect x="1044" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.018"/><rect x="1110" y="262" width="34" height="416" rx="4" fill="#F3EDE4" opacity="0.035"/>
+    <!-- the cavity around the kept form -->
+    <rect x="660" y="360" width="280" height="220" rx="10" fill="#060504"/>
+    <rect x="660" y="578" width="280" height="2" fill="#F3EDE4" opacity="0.08"/>
+    <!-- the one shape that remains -->
+    <rect x="696" y="396" width="208" height="150" rx="8" fill="#C48A64" opacity="0.4" filter="url(#v1-blur24)"/>
+    <g filter="url(#v1-shadow)"><rect x="700" y="400" width="200" height="142" rx="8" fill="url(#v1-copper)"/></g>
+    <rect x="700" y="400" width="200" height="3" rx="1" fill="#F6DDBE" opacity="0.85"/>
+    <rect x="700" y="400" width="3" height="142" rx="1" fill="#F6DDBE" opacity="0.4"/>
+    <rect width="1600" height="900" filter="url(#v1-grain)" opacity="0.9"/>
+  </g>
+</svg>

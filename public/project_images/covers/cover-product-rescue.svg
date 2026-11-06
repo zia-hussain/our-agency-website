@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="k-key" cx="35%" cy="18%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="k-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="k-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="k-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="k-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="k-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="k-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="k-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="k-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="k-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="k-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="k-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="k-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="k-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="k-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="k-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#k-clip)">
+    <rect width="1200" height="900" fill="url(#k-key)"/>
+    <rect width="1200" height="900" fill="url(#k-warm)"/>
+
+    <ellipse cx="640" cy="820" rx="360" ry="34" fill="#000" opacity="0.6" filter="url(#k-blur24)"/>
+    <g filter="url(#k-shadow)">
+      <path d="M320 110 L900 90 L960 790 L380 810 Z" fill="url(#k-stone)"/>
+    </g>
+    <!-- the two pieces read slightly differently in tone -->
+    <path d="M320 110 L560 130 C 600 230, 520 310, 580 400 S 700 540, 650 640 C 630 690, 690 740, 760 790 L 380 810 Z" fill="#000" opacity="0.16"/>
+    <path d="M580 400 C 640 410, 700 360, 790 340 C 850 326, 880 290, 940 270 L 960 790 L 760 790 C 690 740, 630 690, 650 640 S 520 460, 580 400 Z" fill="#F3EDE4" opacity="0.025"/>
+    <path d="M320 110 L900 90" stroke="url(#k-edge)" stroke-width="3" fill="none"/>
+    <path d="M320 110 L380 810" stroke="#F3EDE4" stroke-opacity="0.08" stroke-width="2" fill="none"/>
+    <!-- glow behind the seams -->
+    <path d="M560 130 C 600 230, 520 310, 580 400 S 700 540, 650 640 C 630 690, 690 740, 760 790" stroke="#C48A64" stroke-opacity="0.5" stroke-width="30" fill="none" stroke-linecap="round" filter="url(#k-blur24)"/><path d="M580 400 C 640 410, 700 360, 790 340 C 850 326, 880 290, 940 270" stroke="#C48A64" stroke-opacity="0.5" stroke-width="30" fill="none" stroke-linecap="round" filter="url(#k-blur24)"/><path d="M650 640 C 600 660, 520 650, 440 700" stroke="#C48A64" stroke-opacity="0.5" stroke-width="30" fill="none" stroke-linecap="round" filter="url(#k-blur24)"/>
+    <!-- metal -->
+    <path d="M560 130 C 600 230, 520 310, 580 400 S 700 540, 650 640 C 630 690, 690 740, 760 790" stroke="url(#k-copperV)" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M580 400 C 640 410, 700 360, 790 340 C 850 326, 880 290, 940 270" stroke="url(#k-copperV)" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M650 640 C 600 660, 520 650, 440 700" stroke="url(#k-copperV)" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M560 130 C 600 230, 520 310, 580 400 S 700 540, 650 640 C 630 690, 690 740, 760 790" stroke="#F6DDBE" stroke-opacity="0.8" stroke-width="2.5" fill="none" stroke-linecap="round" transform="translate(-3,-3)"/>
+    <path d="M580 400 C 640 410, 700 360, 790 340 C 850 326, 880 290, 940 270" stroke="#F6DDBE" stroke-opacity="0.65" stroke-width="1.8" fill="none" stroke-linecap="round" transform="translate(-2,-3)"/>
+    <path d="M650 640 C 600 660, 520 650, 440 700" stroke="#F6DDBE" stroke-opacity="0.55" stroke-width="1.5" fill="none" stroke-linecap="round" transform="translate(-2,-2)"/>
+    <circle cx="582" cy="402" r="9" fill="url(#k-sphere)"/>
+    <circle cx="651" cy="641" r="7" fill="url(#k-sphere)"/>
+    <circle cx="536" cy="262" r="4" fill="#E8C49B" opacity="0.9"/>
+    <rect width="1200" height="900" filter="url(#k-grain)" opacity="0.9"/>
+  </g>
+</svg>

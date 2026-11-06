@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="i-key" cx="30%" cy="22%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="i-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="i-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="i-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="i-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="i-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="i-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="i-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="i-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="i-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="i-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="i-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="i-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="i-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="i-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="i-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#i-clip)">
+    <rect width="1200" height="900" fill="url(#i-key)"/>
+    <rect width="1200" height="900" fill="url(#i-warm)"/>
+
+    <ellipse cx="600" cy="800" rx="380" ry="34" fill="#000" opacity="0.5" filter="url(#i-blur24)"/>
+    <g filter="url(#i-shadow)"><path d="M260 260 L820 260 L890 218 L330 218 Z" fill="#F3EDE4" opacity="0.06"/>
+     <path d="M820 260 L890 218 L890 678 L820 720 Z" fill="#000" opacity="0.35"/>
+     <rect x="260" y="260" width="560" height="460" fill="url(#i-stone)"/></g>
+    <rect x="260" y="260" width="560" height="460" fill="none" stroke="url(#i-edge)" stroke-width="2"/>
+    <!-- opening -->
+    <rect x="330" y="330" width="420" height="320" fill="#070605"/>
+    <g filter="url(#i-softshadow)"><path d="M360 380 L700 380 L740 356 L400 356 Z" fill="#F3EDE4" opacity="0.06"/>
+     <path d="M700 380 L740 356 L740 596 L700 620 Z" fill="#000" opacity="0.35"/>
+     <rect x="360" y="380" width="340" height="240" fill="url(#i-stone)"/></g>
+    <rect x="410" y="430" width="240" height="140" fill="#070605"/>
+    <!-- the copper inner edge: the one record that matters -->
+    <rect x="410" y="430" width="240" height="140" fill="none" stroke="url(#i-copper)" stroke-width="6"/>
+    <rect x="410" y="430" width="240" height="140" fill="#C48A64" opacity="0.18"/>
+    <rect x="400" y="420" width="260" height="160" fill="none" stroke="#C48A64" stroke-opacity="0.5" stroke-width="20" filter="url(#i-blur24)"/>
+    <rect x="410" y="430" width="240" height="2" fill="#F6DDBE" opacity="0.7"/>
+    <rect width="1200" height="900" filter="url(#i-grain)" opacity="0.9"/>
+  </g>
+</svg>

@@ -19,14 +19,14 @@ export const SITE_CONFIG = {
       name: import.meta.env.VITE_FOUNDER_1_NAME || "Zia Hussain",
       fullName: import.meta.env.VITE_FOUNDER_1_FULL_NAME || "Syed Zia Hussain Shah",
       role: import.meta.env.VITE_FOUNDER_1_ROLE || "Co-Founder & CEO",
-      image: "/profile_images/zia-hussain-founder-optimized.jpg",
+      image: "/profile_images/zia-hussain-portrait-square.webp",
       bio: import.meta.env.VITE_FOUNDER_1_BIO || "Zia leads product, growth, and client strategy at Zumetrix Labs.",
     },
     {
       name: import.meta.env.VITE_FOUNDER_2_NAME || "Omer Gillani",
       fullName: import.meta.env.VITE_FOUNDER_2_FULL_NAME || "Syed Omer Shah Gillani",
       role: import.meta.env.VITE_FOUNDER_2_ROLE || "Co-Founder & CTO",
-      image: "/profile_images/syed-omer-shah-founder-optimized.jpg",
+      image: "/profile_images/omer-gillani-portrait-square.webp",
       bio: import.meta.env.VITE_FOUNDER_2_BIO || "Omer leads architecture, automation, and engineering at Zumetrix Labs.",
     }
   ],
