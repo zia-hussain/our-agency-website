@@ -148,28 +148,28 @@ export const SITE_DATA = {
   signatureMethod: {
     title: "Why Founders Choose Us (And Why Some Don't)",
     subtitle:
-      "We're technical. We're direct. We've done this before.",
+      "Three things we do that cost us some deals and keep the rest.",
     sections: [
       {
         icon: "problem",
-        title: "The Problem With Saying Yes to Everything",
+        title: "We'll tell you not to build it.",
         description:
-          "An agency that says yes to everything turns vague ideas into vague products. Six months later, nothing works. We ask uncomfortable questions early because we'd rather lose a deal than build something that fails.",
-        stats: "Clear thinking comes before code",
+          "Every rescue assessment we sell can end with \"keep what you have\" — it costs the same either way. Every build starts by writing down what the first version won't include. Founders who want a yes to everything leave; the ones who stay get software that was decided, not accumulated.",
+        stats: "Decided before it's built",
       },
       {
         icon: "approach",
-        title: "How We Work Different",
+        title: "The people who scoped it build it.",
         description:
-          "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Zia and Omer shape every solution and stay on it, with a small specialist team across design, development, QA and automation.",
+          "Zia and Omer are on the first call, write the scope, and are still answering the thread after launch — with a small specialist team across design, development, QA and automation doing the work beside them. No handoff to a team you've never met.",
         stats: "Founders close, delivery deep",
       },
       {
         icon: "results",
-        title: "What Actually Happens",
+        title: "We'd rather be checkable than impressive.",
         description:
-          FACTS.counts.projectsShipped + " projects delivered by the team. Some raised funding. Some didn't. In our experience the difference was how clear the problem was before we started building. We help with that clarity.",
-        stats: "Scope decided before code",
+          FACTS.counts.writtenReviews + " written reviews sit on Fiverr, Upwork, Trustpilot, Clutch and Google — platforms we can't edit, including the one 4.3. Every number on this site traces to a record, every case study says what the client reported versus what we measured, and every price is published before the call.",
+        stats: "Prices before the call",
       },
     ],
     cta: {
@@ -184,7 +184,7 @@ export const SITE_DATA = {
     title: "Founder-led from",
     themedTitle: "strategy through delivery",
     subtitle:
-      "Zia leads product direction and client strategy. Omer leads architecture and engineering delivery. Every engagement is founder-led, backed by the specialists each project actually needs.",
+      "Zia owns what gets built and why; Omer owns how it gets built and that it holds. Both stay on every engagement from first call to after launch, with a small specialist team across design, development, QA and automation behind them.",
     founders: [
       {
         name: "Zia Hussain",

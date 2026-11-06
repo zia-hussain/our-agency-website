@@ -29,7 +29,7 @@ export const BRAND_CONTENT = {
   brand: {
     name: "Zumetrix Labs",
     tagline: "Forge Clear Ideas Into Shipped Software.",
-    positioningStatement: "The software studio that decides before it builds.",
+    positioningStatement: "We build the software your business actually needs — and tell you when it doesn't.",
 
     shortDescription: "Zumetrix Labs is a founder-led software studio. Zia Hussain and Omer Gillani, with a small specialist team, work out what should happen to a product before anyone writes code — then build it: SaaS, web and mobile products, product rescue, and operational automation.",
 
@@ -44,16 +44,15 @@ export const BRAND_CONTENT = {
     badge: "Founder-led software studio",
 
     headline: {
-      line1: "The software studio",
-      line2: "that decides",
-      line3: "before it builds."
+      line1: "We build the software",
+      line2: "your business actually needs —",
+      line3: "and tell you when it doesn't."
     },
 
     subheadline: [
-      { text: "Starting a product, stuck with one, or still running it by hand — ", type: "normal" },
-      { text: "we work out what should actually happen next, then build it.", type: "emphasis" },
-      { type: "break" },
-      { text: "SaaS, web and mobile products, product rescue, operational automation. Zia and Omer stay close to every project, with a specialist team behind them.", type: "normal" }
+      { text: "A new SaaS product, a product that's stuck, or an operation still run by hand: ", type: "normal" },
+      { text: "we work out what should happen next, then build it.", type: "emphasis" },
+      { text: " Founder-led, with the record to show for it.", type: "normal" }
     ] as ContentSegment[],
 
     proofLine: `${FACTS.counts.projectsShipped} projects shipped · ${FACTS.counts.writtenReviews} written client reviews`,
@@ -74,37 +73,36 @@ export const BRAND_CONTENT = {
    * The PAS framework section explaining differentiation
    */
   signatureMethod: {
-    title: "Why Founders Choose Us (And Why Some Don't)",
-    subtitle: "We're technical. We're direct. We've done this before.",
+    title: "Why founders choose us (and why some don't)",
+    subtitle: "Three things we do that cost us some deals and keep the rest.",
 
     sections: [
       {
         icon: "problem",
-        title: "The Problem With Saying Yes to Everything",
+        title: "We'll tell you not to build it.",
         description: [
-          { text: "An agency that says yes to everything turns vague ideas into vague products. Six months later, nothing works. We ask uncomfortable questions early because ", type: "normal" },
-          { text: "we'd rather lose a deal than build something that fails.", type: "emphasis" }
+          { text: "Every rescue assessment can end with \"keep what you have\" — it costs the same either way. Every new build starts by writing down what the first version won't include. ", type: "normal" },
+          { text: "Founders who want a yes to everything leave; the ones who stay get software that was decided, not accumulated.", type: "emphasis" }
         ] as ContentSegment[],
-        stat: "Clear thinking comes before code"
+        stat: "Decided before it's built"
       },
       {
         icon: "approach",
-        title: "How We Work Different",
+        title: "The people who scoped it build it.",
         description: [
-          { text: "We push back on unclear ideas. We challenge assumptions. We say no when it makes sense. Zia and Omer shape every solution and stay on it, with a small specialist team across design, development, QA and automation. ", type: "normal" },
-          { text: "Founders close, delivery deep.", type: "accent" }
+          { text: "Zia and Omer are on the first call, write the scope, and are still answering the thread after launch — with a small specialist team across design, development, QA and automation working beside them. ", type: "normal" },
+          { text: "No handoff to a team you've never met.", type: "accent" }
         ] as ContentSegment[],
-        stat: ""
+        stat: "Founders close, delivery deep"
       },
       {
         icon: "results",
-        title: "What Actually Happens",
+        title: "We'd rather be checkable than impressive.",
         description: [
-          { text: "Some clients raise funding on what we build. Others don't. ", type: "normal" },
-          { text: "That was never about execution — it was about how clear the problem was on day one.", type: "emphasis" },
-          { text: " We build that clarity in before we touch a keyboard.", type: "normal" }
+          { text: FACTS.counts.writtenReviews + " written reviews sit on Fiverr, Upwork, Trustpilot, Clutch and Google — platforms we can't edit. ", type: "normal" },
+          { text: "Every number on this site traces to a record, every case study separates what the client reported from what we measured, and every price is published before the call.", type: "emphasis" }
         ] as ContentSegment[],
-        stat: "Scope decided before code"
+        stat: "Prices before the call"
       }
     ]
   },
@@ -180,7 +178,7 @@ export const BRAND_CONTENT = {
    */
   meta: {
     home: {
-      title: "Zumetrix Labs — The software studio that decides before it builds",
+      title: "Zumetrix Labs — SaaS products, product rescue and automation, founder-led",
       description: "Founder-led software studio for founders and operating companies: SaaS, web and mobile products, product rescue and stabilization, and workflow automation. Prices stated on every service page."
     },
 

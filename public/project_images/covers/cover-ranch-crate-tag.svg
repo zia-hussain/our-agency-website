@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="cr-key" cx="24%" cy="20%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="cr-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cr-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="cr-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="cr-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="cr-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="cr-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="cr-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="cr-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="cr-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cr-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cr-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cr-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="cr-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="cr-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="cr-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#cr-clip)">
+    <rect width="1200" height="900" fill="url(#cr-key)"/>
+    <rect width="1200" height="900" fill="url(#cr-warm)"/>
+
+    <ellipse cx="640" cy="790" rx="420" ry="40" fill="#000" opacity="0.55" filter="url(#cr-blur24)"/>
+    <!-- cold air pooling at the base -->
+    <ellipse cx="620" cy="720" rx="520" ry="70" fill="#DCE6EA" opacity="0.045" filter="url(#cr-blur24)"/>
+    <g filter="url(#cr-shadow)">
+      <path d="M300 300 L860 300 L970 239.5 L410 239.5 Z" fill="#3A332D"/>
+      <path d="M860 300 L970 239.5 L970 639.5 L860 700 Z" fill="#15120F"/>
+      <rect x="300" y="300" width="560" height="400" fill="url(#cr-stone)"/>
+    </g>
+    <!-- plank seams -->
+    <rect x="300" y="400" width="560" height="2" fill="#000" opacity="0.5"/><rect x="300" y="402" width="560" height="1.5" fill="#F3EDE4" opacity="0.05"/><rect x="300" y="500" width="560" height="2" fill="#000" opacity="0.5"/><rect x="300" y="502" width="560" height="1.5" fill="#F3EDE4" opacity="0.05"/><rect x="300" y="600" width="560" height="2" fill="#000" opacity="0.5"/><rect x="300" y="602" width="560" height="1.5" fill="#F3EDE4" opacity="0.05"/>
+    <path d="M860 400 L970 339.5" stroke="#000" stroke-opacity="0.45" stroke-width="2"/><path d="M860 500 L970 439.5" stroke="#000" stroke-opacity="0.45" stroke-width="2"/><path d="M860 600 L970 539.5" stroke="#000" stroke-opacity="0.45" stroke-width="2"/>
+    <rect x="300" y="300" width="560" height="400" fill="none" stroke="url(#cr-edge)" stroke-width="2"/>
+    <path d="M300 300 L410 239.5 L970 239.5" stroke="#F3EDE4" stroke-opacity="0.3" stroke-width="3" fill="none"/>
+    <!-- frost on the lid -->
+    <path d="M340 292 L430 249.5 L910 249.5 L780 292 Z" fill="#DCE6EA" opacity="0.06" filter="url(#cr-blur8)"/>
+    <!-- hook -->
+    <path d="M410 366 q 0 -22 18 -22 q 18 0 18 22 v 30" stroke="#0B0A09" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M410 366 q 0 -22 18 -22 q 18 0 18 22 v 30" stroke="#F3EDE4" stroke-opacity="0.18" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- the tag: one copper tag, hanging from the hook, lit -->
+    <ellipse cx="450" cy="490" rx="60" ry="80" fill="#C48A64" opacity="0.28" filter="url(#cr-blur24)"/>
+    <g filter="url(#cr-shadow)" transform="rotate(-5 446 396)">
+      <path d="M446 396 v 28" stroke="#C48A64" stroke-width="4"/>
+      <path d="M406 440 h 80 a 10 10 0 0 1 10 10 v 110 a 10 10 0 0 1 -10 10 h -80 a 10 10 0 0 1 -10 -10 v -110 a 10 10 0 0 1 10 -10 Z" fill="url(#cr-copper)"/>
+      <circle cx="446" cy="460" r="7" fill="#1A120C"/>
+      <rect x="410" y="490" width="60" height="6" rx="3" fill="#2A1A10" opacity="0.5"/>
+      <rect x="410" y="508" width="40" height="6" rx="3" fill="#2A1A10" opacity="0.4"/>
+      <rect x="410" y="526" width="52" height="6" rx="3" fill="#2A1A10" opacity="0.4"/>
+      <path d="M400 446 v 100" stroke="#F6DDBE" stroke-opacity="0.8" stroke-width="2"/>
+    </g>
+    <rect width="1200" height="900" filter="url(#cr-grain)" opacity="0.9"/>
+  </g>
+</svg>

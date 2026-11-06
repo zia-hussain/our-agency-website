@@ -34,7 +34,20 @@ const articleOverrides = {
   "mobile-app-development-flutter-react-native": "field-notes", "react-nodejs-best-practices-2024": "development-guides",
   "firebase-complete-guide-pakistani-developers": "development-guides",
 };
-const projectKey = (p) => projectOverrides[p.slug] || (p.type === "rescue" ? "product-rescue" : p.type === "automation" ? "automation" : p.type === "mobile" ? "mobile-application" : p.type === "enterprise" ? "internal-system" : "saas-product");
+const caseCovers = {
+  "knipsr-event-media-saas": "knipsr-aperture",
+  "floating-stone-ranch-processor-intake-engine": "ranch-crate-tag",
+  "forlag-publishing-sales-inventory-dashboard": "forlag-spines",
+  "skill-x-swap-mvp": "swap-rings",
+  "first-north-peptides-website-ai-concierge": "peptides-vial",
+  "learning-platform-saas-stabilization": "platform-stair",
+  "liftly-operational-mvp-v1": "liftly-stack-band",
+  "tomo-voice-ai-companion": "tomo-speaker",
+  "hjelpna-handyman-marketplace": "hjelpna-hex-nut",
+  "pawspace-pet-services-marketplace": "pawspace-tag",
+  "bondfire-event-booking-app": "bondfire-ember",
+};
+const projectKey = (p) => caseCovers[p.slug] || projectOverrides[p.slug] || (p.type === "rescue" ? "product-rescue" : p.type === "automation" ? "automation" : p.type === "mobile" ? "mobile-application" : p.type === "enterprise" ? "internal-system" : "saas-product");
 
 // --- read titles from the data files without importing TS
 const projectsSrc = read(join(ROOT, "src/data/projects.ts"));
@@ -104,7 +117,7 @@ async function og(outPath, opts) {
 
 mkdirSync(join(PUB, "og"), { recursive: true });
 const families = [
-  { dir: join(PUB, "project_images/covers"), eyebrowFor: (k) => ({ "product-rescue": "Product rescue", "saas-product": "SaaS product", automation: "Automation", "web-application": "Web application", "mobile-application": "Mobile application", "internal-system": "Internal system" }[k]) },
+  { dir: join(PUB, "project_images/covers"), eyebrowFor: (k) => ({ "product-rescue": "Product rescue", "saas-product": "SaaS product", automation: "Automation", "web-application": "Web application", "mobile-application": "Mobile application", "internal-system": "Internal system" }[k] || "Case study") },
   { dir: join(PUB, "article_images/covers"), eyebrowFor: () => "Field notes" },
 ];
 const coverArt = {};

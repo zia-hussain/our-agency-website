@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FACTS } from "../../config/facts";
 import { AnimatePresence, motion } from "framer-motion";
 import TestimonialFilm from "../common/TestimonialFilm";
 
@@ -78,13 +80,13 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
   eyebrow = "Clients, Unscripted",
   headingLead = "Different projects.",
   headingMain = "Different reasons they trusted the same team.",
-  exitLine = "A few of the voices. The fuller record is below.",
+  exitLine,
 }) => {
   const [activeId, setActiveId] = useState(STORIES[0].id);
   const active = STORIES.find((s) => s.id === activeId)!;
 
   return (
-    <section className="relative overflow-hidden bg-background py-24 sm:py-32">
+    <section id="client-films" className="relative overflow-hidden bg-background py-24 sm:py-32 scroll-mt-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_0%,rgba(196,138,100,0.06),transparent_65%)]" />
 
       {/* Entry — the same thread device the rest of the site uses to mark  */}
@@ -118,7 +120,7 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
 
         <div className="grid lg:grid-cols-[1.7fr_1fr] gap-10 lg:gap-16 items-start">
           {/* The featured film — dominant, changes meaningfully with selection */}
-          <div>
+          <div className="min-w-0">
             {/* The dimension is restated here, at real scale, so the selected */}
             {/* state is legible from the film itself, not just a rail marker. */}
             <AnimatePresence mode="wait" initial={false}>
@@ -175,7 +177,7 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
           {/* The selector rail — a typographic index, not a thumbnail grid.  */}
           {/* A plain map over STORIES: a fifth or sixth entry just adds a    */}
           {/* row here, nothing about the layout has to change.               */}
-          <div className="lg:pt-14">
+          <div className="min-w-0 lg:pt-14">
             <div className="hidden lg:flex flex-col">
               {STORIES.map((story) => {
                 const isActive = story.id === active.id;
@@ -237,7 +239,15 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
           transition={{ duration: 0.28, delay: 0.1 }}
           className="text-center text-sm text-muted-foreground/50 italic mt-16 sm:mt-20"
         >
-          {exitLine}
+          {exitLine ?? (
+            <>
+              Four of the voices. The written record sits where we can't edit it —{" "}
+              <Link to="/client-stories" className="not-italic text-primary/80 hover:text-primary transition-colors">
+                {FACTS.counts.writtenReviews} reviews across five platforms
+              </Link>
+              .
+            </>
+          )}
         </motion.p>
       </div>
     </section>

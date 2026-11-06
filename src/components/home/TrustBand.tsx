@@ -15,7 +15,7 @@ const TrustBand: React.FC = () => {
   };
 
   return (
-    <section className="py-16 lg:py-20 bg-gradient-to-b from-background via-card/[0.15] to-background relative overflow-hidden">
+    <section id="breadth" className="py-16 lg:py-20 bg-gradient-to-b from-background via-card/[0.15] to-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -61,13 +61,13 @@ const TrustBand: React.FC = () => {
             return (
               <div
                 key={stat.label}
-                className="group flex items-center gap-3 px-5 py-4 rounded-xl border border-border/60 bg-card/20 hover:border-primary/25 hover:bg-card/40 transition-all duration-300"
+                className="group flex items-center gap-3 px-4 sm:px-5 py-4 rounded-xl border border-border/60 bg-card/20 hover:border-primary/25 hover:bg-card/40 transition-all duration-300"
               >
                 <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/[0.08] flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300">
                   <IconComponent size={15} className="text-primary/90" />
                 </div>
                 <div>
-                  <div className="text-base font-bold text-foreground leading-none tracking-tight">{stat.value}</div>
+                  <div className="text-base font-bold text-foreground leading-none tracking-tight whitespace-nowrap">{stat.value}</div>
                   <div className="text-[11px] text-muted-foreground mt-1.5">{stat.label}</div>
                 </div>
               </div>

@@ -16,7 +16,6 @@ const FEATURED_ARTICLES = pickInOrder(articles, NAV_FEATURED_ORDER);
 const NAV_ITEMS = [
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
-  { name: "Start here", path: "/start" },
   { name: "Portfolio", path: "/portfolio" },
   { name: "Articles", path: "/articles" },
 ];
@@ -164,7 +163,7 @@ const Navigation: React.FC = () => {
                 aria-haspopup={dropdownKey ? "true" : undefined}
               >
                 <span
-                  className={`relative flex items-center gap-1 rounded-full transition-all duration-500 ${
+                  className={`relative flex items-center gap-1 whitespace-nowrap rounded-full transition-all duration-500 ${
                     isDocked ? "px-4 py-2.5 text-[14px]" : "px-0 py-1 text-[15px]"
                   } font-medium tracking-[-0.01em] ${
                     active
@@ -216,8 +215,31 @@ const Navigation: React.FC = () => {
                         onMouseEnter={() => openDropdown("services")}
                         onMouseLeave={closeDropdownSoon}
                         style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-                        className="w-[640px] rounded-3xl border border-white/[0.06] p-3"
+                        className="w-[680px] rounded-3xl border border-white/[0.06] p-3"
                       >
+                        {/* Where to start — the three buying situations, in the
+                            buyer's words. The page behind them is /start; the
+                            label a buyer sees is the situation, never the route. */}
+                        <div className="px-1.5 pt-1.5 pb-2">
+                          <p className="px-2 pb-2 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-primary/70">Where are you starting from?</p>
+                          <div className="grid grid-cols-3 gap-1.5">
+                            {[
+                              { label: "A product that's stuck", sub: "Find out what's wrong first", to: "/product-rescue?from=nav" },
+                              { label: "Nothing built yet", sub: "Decide what V1 must prove", to: "/services/saas-mvp-development" },
+                              { label: "Work still done by hand", sub: "One workflow, built and live", to: "/services/ai-automation-solutions#start-small" },
+                            ].map((d) => (
+                              <Link
+                                key={d.to}
+                                to={d.to}
+                                onClick={trackOffersNavClick}
+                                className="group rounded-2xl border border-primary/15 bg-primary/[0.05] px-3.5 py-3 hover:bg-primary/[0.1] hover:border-primary/30 transition-colors duration-200"
+                              >
+                                <span className="block text-[13.5px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">{d.label}</span>
+                                <span className="block text-[12px] text-muted-foreground/70 mt-0.5">{d.sub}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
                         <div className="grid grid-cols-2 gap-1.5 p-1.5">
                           {services.map((service) => (
                             <Link
@@ -442,9 +464,9 @@ const Navigation: React.FC = () => {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-6 pt-10 pb-6 sm:px-8">
-              <div className="flex flex-col gap-1.5">
-                {[{ name: "Home", path: "/" }, ...NAV_ITEMS, { name: "Contact", path: "/contact" }].map(
+            <div className="flex-1 overflow-y-auto px-6 pt-8 pb-6 sm:px-8">
+              <div className="flex flex-col gap-1">
+                {[{ name: "Home", path: "/" }, { name: "Where to start", path: "/start" }, ...NAV_ITEMS].map(
                   (item, index) => {
                     const active = item.path === "/" ? location.pathname === "/" : isActiveRoute(item.path);
                     // Service pages and the three doors are one tap away on
@@ -461,8 +483,7 @@ const Navigation: React.FC = () => {
                           ? [
                               { name: "A product that's stuck", path: "/product-rescue?from=mobile-nav" },
                               { name: "Nothing built yet", path: "/services/saas-mvp-development" },
-                              { name: "A workflow run by hand", path: "/services/ai-automation-solutions" },
-                              { name: "Rescue or rebuild? Free tool", path: "/rescue-or-rebuild" },
+                              { name: "Work still done by hand", path: "/services/ai-automation-solutions#start-small" },
                             ]
                           : null;
                     return (
@@ -475,7 +496,7 @@ const Navigation: React.FC = () => {
                         <Link
                           to={item.path}
                           onClick={item.path === "/start" ? trackOffersNavClick : undefined}
-                          className={`block py-2 font-bold tracking-[-0.02em] leading-none text-[11vw] sm:text-5xl transition-colors duration-200 ${
+                          className={`block py-2 font-bold tracking-[-0.02em] leading-none text-[9.5vw] sm:text-[2.6rem] transition-colors duration-200 ${
                             active ? "text-foreground" : "text-muted-foreground/50 hover:text-foreground/80"
                           }`}
                         >

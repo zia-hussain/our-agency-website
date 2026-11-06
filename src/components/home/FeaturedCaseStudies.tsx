@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Target } from "lucide-react";
 import { motion } from "framer-motion";
 import { getProjectBySlug } from "../../data/projects";
-import { TESTIMONIAL_FILMS } from "../../data/testimonialFilms";
 import HeroEvidence from "../portfolio/HeroEvidence";
-import TestimonialFilm from "../common/TestimonialFilm";
 import PlatformIcon from "../common/PlatformIcon";
 import CoverImage from "../common/CoverImage";
 import { listingImageForProject } from "../../data/covers";
@@ -24,7 +22,6 @@ const FeaturedCaseStudies: React.FC = () => {
   const flagship = getProjectBySlug("fast-track-usa-app-rescue");
   const buildCase = getProjectBySlug("knipsr-event-media-saas");
   const automateCase = getProjectBySlug("floating-stone-ranch-processor-intake-engine");
-  const film = TESTIMONIAL_FILMS.josh;
 
   if (!flagship) return null;
 
@@ -51,7 +48,7 @@ const FeaturedCaseStudies: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.28 }}
-          className="max-w-3xl mb-14 lg:mb-16"
+          className="max-w-3xl mx-auto text-center mb-14 lg:mb-16"
         >
           <div className="mb-7">
             <span className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90">
@@ -63,7 +60,7 @@ const FeaturedCaseStudies: React.FC = () => {
             Two years with another team.
             <span className="block text-muted-foreground/50">Live three weeks after the handover.</span>
           </h2>
-          <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-[1.6] font-light">
+          <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
             The story we lead with is the one we can show in full — the founder on camera, his review where we can't edit it. One case for each of the three situations follows.
           </p>
         </motion.div>
@@ -119,10 +116,28 @@ const FeaturedCaseStudies: React.FC = () => {
             </div>
 
             <div className="lg:sticky lg:top-28">
-              <TestimonialFilm src={film.src} poster={film.poster} captionsSrc={film.captionsSrc} variant="proof" />
-              <p className="mt-3 text-xs text-muted-foreground/70">
-                {film.name}, {film.role} — filmed by the client.
-              </p>
+              {/* The evidence diagram, not the film: the film plays once, in
+                  the clients' own section below. Here the job is the record. */}
+              <figure className="rounded-2xl border border-border/50 bg-[#0F0E0D] p-3 sm:p-4">
+                <picture>
+                  <source media="(max-width: 640px)" srcSet="/project_images/fast-track-recovery-timeline-mobile.svg" />
+                  <img
+                    src="/project_images/fast-track-recovery-timeline.svg"
+                    alt="Timeline of the Fast Track USA takeover: roughly two years with a previous team, then three weeks from handover to launch"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto"
+                  />
+                </picture>
+                <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground/70">
+                  <span>Timeline as reported by the client.</span>
+                  <a href="#client-films" className="inline-flex items-center gap-1 text-primary/80 hover:text-primary transition-colors">
+                    Watch Josh tell it <ArrowRight size={11} />
+                  </a>
+                </figcaption>
+              </figure>
             </div>
           </div>
         </motion.article>

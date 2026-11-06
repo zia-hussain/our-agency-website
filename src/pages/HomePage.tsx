@@ -10,7 +10,6 @@ import SignatureMethod from "../components/home/SignatureMethod";
 import FeaturedCaseStudies from "../components/home/FeaturedCaseStudies";
 import FoundersStrip from "../components/home/FoundersStrip";
 import TechStack from "../components/home/TechStack";
-import TestimonialsCarousel from "../components/home/TestimonialsCarousel";
 import ClientProofFilm from "../components/home/ClientProofFilm";
 import FAQ from "../components/home/FAQ";
 import FinalCTA from "../components/home/FinalCTA";
@@ -136,8 +135,6 @@ const HomePage: React.FC = () => {
       <div className="performance-defer"><FoundersStrip /></div>
       <SectionDivider />
       <div className="performance-defer"><ClientProofFilm /></div>
-      <SectionDivider />
-      <div className="performance-defer"><TestimonialsCarousel /></div>
       <SectionDivider />
       <div className="performance-defer"><TechStack /></div>
       <SectionDivider />

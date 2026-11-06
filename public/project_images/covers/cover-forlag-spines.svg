@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="bk-key" cx="30%" cy="20%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="bk-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bk-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="bk-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="bk-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bk-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="bk-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="bk-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="bk-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="bk-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="bk-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bk-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bk-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="bk-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="bk-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="bk-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#bk-clip)">
+    <rect width="1200" height="900" fill="url(#bk-key)"/>
+    <rect width="1200" height="900" fill="url(#bk-warm)"/>
+
+    <ellipse cx="600" cy="800" rx="400" ry="34" fill="#000" opacity="0.55" filter="url(#bk-blur24)"/>
+    <!-- shelf -->
+    <g filter="url(#bk-shadow)"><rect x="220" y="740" width="760" height="38" rx="4" fill="url(#bk-stone2)"/></g>
+    <rect x="220" y="740" width="760" height="3" fill="#F3EDE4" opacity="0.18"/>
+    <path d="M220 778 L260 812 L1020 812 L980 778 Z" fill="#0E0C0A"/>
+    
+    <g filter="url(#bk-softshadow)"><rect x="300" y="320" width="78" height="420" rx="4" fill="url(#bk-stone)"/></g>
+    <rect x="300" y="320" width="78" height="420" rx="4" fill="#000" opacity="0.050"/>
+    <rect x="303" y="322" width="2" height="416" fill="#F3EDE4" opacity="0.14"/>
+    <rect x="310" y="350" width="58" height="2" fill="#F3EDE4" opacity="0.07"/>
+    <rect x="310" y="700" width="58" height="2" fill="#F3EDE4" opacity="0.05"/>
+    <rect x="316" y="410" width="46" height="147" rx="3" fill="#F3EDE4" opacity="0.035"/>
+    <g filter="url(#bk-softshadow)"><rect x="384" y="350" width="66" height="390" rx="4" fill="url(#bk-stone)"/></g>
+    <rect x="384" y="350" width="66" height="390" rx="4" fill="#000" opacity="0.095"/>
+    <rect x="387" y="352" width="2" height="386" fill="#F3EDE4" opacity="0.14"/>
+    <rect x="394" y="380" width="46" height="2" fill="#F3EDE4" opacity="0.07"/>
+    <rect x="394" y="700" width="46" height="2" fill="#F3EDE4" opacity="0.05"/>
+    <rect x="400" y="440" width="34" height="136.5" rx="3" fill="#F3EDE4" opacity="0.035"/>
+    <g filter="url(#bk-softshadow)"><rect x="456" y="300" width="92" height="440" rx="4" fill="url(#bk-stone)"/></g>
+    <rect x="456" y="300" width="92" height="440" rx="4" fill="#000" opacity="0.140"/>
+    <rect x="459" y="302" width="2" height="436" fill="#F3EDE4" opacity="0.14"/>
+    <rect x="466" y="330" width="72" height="2" fill="#F3EDE4" opacity="0.07"/>
+    <rect x="466" y="700" width="72" height="2" fill="#F3EDE4" opacity="0.05"/>
+    <rect x="472" y="390" width="60" height="154" rx="3" fill="#F3EDE4" opacity="0.035"/>
+    <g filter="url(#bk-softshadow)"><rect x="632" y="310" width="84" height="430" rx="4" fill="url(#bk-stone)"/></g>
+    <rect x="632" y="310" width="84" height="430" rx="4" fill="#000" opacity="0.230"/>
+    <rect x="635" y="312" width="2" height="426" fill="#F3EDE4" opacity="0.14"/>
+    <rect x="642" y="340" width="64" height="2" fill="#F3EDE4" opacity="0.07"/>
+    <rect x="642" y="700" width="64" height="2" fill="#F3EDE4" opacity="0.05"/>
+    <rect x="648" y="400" width="52" height="150.5" rx="3" fill="#F3EDE4" opacity="0.035"/>
+    <g filter="url(#bk-softshadow)"><rect x="722" y="360" width="62" height="380" rx="4" fill="url(#bk-stone)"/></g>
+    <rect x="722" y="360" width="62" height="380" rx="4" fill="#000" opacity="0.275"/>
+    <rect x="725" y="362" width="2" height="376" fill="#F3EDE4" opacity="0.14"/>
+    <rect x="732" y="390" width="42" height="2" fill="#F3EDE4" opacity="0.07"/>
+    <rect x="732" y="700" width="42" height="2" fill="#F3EDE4" opacity="0.05"/>
+    <rect x="738" y="450" width="30" height="133" rx="3" fill="#F3EDE4" opacity="0.035"/>
+    <g filter="url(#bk-softshadow)"><rect x="790" y="290" width="96" height="450" rx="4" fill="url(#bk-stone)"/></g>
+    <rect x="790" y="290" width="96" height="450" rx="4" fill="#000" opacity="0.320"/>
+    <rect x="793" y="292" width="2" height="446" fill="#F3EDE4" opacity="0.14"/>
+    <rect x="800" y="320" width="76" height="2" fill="#F3EDE4" opacity="0.07"/>
+    <rect x="800" y="700" width="76" height="2" fill="#F3EDE4" opacity="0.05"/>
+    <rect x="806" y="380" width="64" height="157.5" rx="3" fill="#F3EDE4" opacity="0.035"/>
+    <!-- the pulled spine: forward, lower, catching the key light -->
+    <rect x="538" y="360" width="106" height="440" rx="10" fill="#C48A64" opacity="0.26" filter="url(#bk-blur24)"/>
+    <g filter="url(#bk-shadow)"><rect x="548" y="370" width="86" height="420" rx="5" fill="url(#bk-copperV)"/></g>
+    <rect x="552" y="373" width="2" height="414" fill="#F6DDBE" opacity="0.85"/>
+    <rect x="560" y="406" width="62" height="3" fill="#2A1A10" opacity="0.45"/>
+    <rect x="560" y="742" width="62" height="3" fill="#2A1A10" opacity="0.4"/>
+    <rect x="566" y="480" width="50" height="150" rx="3" fill="#2A1A10" opacity="0.3"/>
+    <!-- top edge of the pulled book's pages -->
+    <path d="M548 370 L562 354 L648 354 L634 370 Z" fill="#EADFCF" opacity="0.55"/>
+    <rect width="1200" height="900" filter="url(#bk-grain)" opacity="0.9"/>
+  </g>
+</svg>

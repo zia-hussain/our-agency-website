@@ -253,8 +253,8 @@ const ContactPage: React.FC = () => {
     <PageTransition>
       <SEO
         googleVerification="XbgNbYnq2H0qTIfTCwVFlXrYWHnnvw0acGCUjdlI_Cs"
-        title="Contact Zumetrix Labs | Forge Clear Ideas Into Shipped Software"
-        description="Forge Clear Ideas Into Shipped Software. Contact Zumetrix Labs to discuss your SaaS MVP, React/Node.js app, AI automation, or mobile app project."
+        title="Contact Zumetrix Labs — tell us where you are"
+        description="Tell Zia or Omer where your product or operation stands. A reply within two business days, prices before the call, and a plain answer if nothing we do fits."
         keywords="contact Zumetrix Labs, software development consultation, web development quote, mobile app development contact, Syed Zia Hussain Shah contact, Syed Omer Shah Gillani contact"
         url="https://zumetrix.com/contact"
         image="https://zumetrix.com/og/page-contact.png"

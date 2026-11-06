@@ -11,7 +11,7 @@ const FinalCTA: React.FC = () => {
   const finalCTA = BRAND_CONTENT.finalCTA;
 
   return (
-    <section className="py-28 lg:py-36 bg-background relative overflow-hidden">
+    <section id="final-cta" className="py-28 lg:py-36 bg-background relative overflow-hidden">
       {/* A single quiet, static field of light — no pulsing blob */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_30%,rgba(196,138,100,0.07),transparent_60%)]" />
 

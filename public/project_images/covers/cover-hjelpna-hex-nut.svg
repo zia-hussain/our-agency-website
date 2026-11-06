@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="nt-key" cx="28%" cy="18%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="nt-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="nt-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="nt-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="nt-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nt-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="nt-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="nt-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="nt-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="nt-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="nt-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="nt-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="nt-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="nt-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="nt-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="nt-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#nt-clip)">
+    <rect width="1200" height="900" fill="url(#nt-key)"/>
+    <rect width="1200" height="900" fill="url(#nt-warm)"/>
+
+    <ellipse cx="600" cy="810" rx="360" ry="34" fill="#000" opacity="0.55" filter="url(#nt-blur24)"/>
+    <!-- thickness -->
+    <path d="M885.8 649 L 600 814 L 314.2 649 L 314.2 319 L 600 154 L 885.8 319 Z" fill="#0E0C0A" filter="url(#nt-shadow)"/>
+    <!-- top face -->
+    <path d="M885.8 615 L 600 780 L 314.2 615 L 314.2 285 L 600 120 L 885.8 285 Z" fill="url(#nt-stone)"/>
+    <path d="M885.8 615 L 600 780 L 314.2 615 L 314.2 285 L 600 120 L 885.8 285 Z" fill="none" stroke="url(#nt-edge)" stroke-width="3"/>
+    <!-- chamfer -->
+    <path d="M861.5 601 L 600 752 L 338.5 601 L 338.5 299 L 600 148 L 861.5 299 Z" fill="none" stroke="#000" stroke-opacity="0.35" stroke-width="2"/>
+    <path d="M859.8 600 L 600 750 L 340.2 600 L 340.2 300 L 600 150 L 859.8 300 Z" fill="none" stroke="#F3EDE4" stroke-opacity="0.07" stroke-width="2"/>
+    <!-- machined face: a faint circular ring ground around the hole -->
+    <circle cx="600" cy="450" r="220" fill="#000" opacity="0.18"/>
+    <circle cx="600" cy="450" r="220" fill="none" stroke="#F3EDE4" stroke-opacity="0.06" stroke-width="2"/>
+    <!-- the bore -->
+    <circle cx="600" cy="450" r="150" fill="#070605"/>
+    <circle cx="600" cy="450" r="142" fill="#0B0A09"/>
+    <!-- threads inside, dark -->
+    <path d="M729.7 497.2 A138 138 0 0 1 470.3 497.2" stroke="#2A241F" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M718.4 493.1 A126 126 0 0 1 481.6 493.1" stroke="#2A241F" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M707.1 489 A114 114 0 0 1 492.9 489" stroke="#2A241F" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- the one copper thread -->
+    <path d="M478.8 520 A140 140 0 0 1 721.2 380" stroke="#C48A64" stroke-opacity="0.45" stroke-width="36" fill="none" stroke-linecap="round" filter="url(#nt-blur24)"/>
+    <path d="M478.8 520 A140 140 0 0 1 721.2 380" stroke="url(#nt-copper)" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M466.1 426.4 A136 136 0 0 1 646.5 322.2" stroke="#F6DDBE" stroke-opacity="0.9" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- key light on the two upper-left facets -->
+    <path d="M314.2 615 L 314.2 285 L 600 120" stroke="#F3EDE4" stroke-opacity="0.38" stroke-width="5" fill="none" stroke-linejoin="round"/>
+    <rect width="1200" height="900" filter="url(#nt-grain)" opacity="0.9"/>
+  </g>
+</svg>

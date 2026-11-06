@@ -249,11 +249,47 @@ const variantFor = (slug: string): { flip: boolean; shift: 0 | 1 | 2 } => {
   return { flip: h % 2 === 1, shift: (h % 3) as 0 | 1 | 2 };
 };
 
+
+/** Case-specific covers: the most visible cases get an object that belongs to
+ *  their own story (same field, light and copper accent as the category
+ *  family). Fast Track keeps its hand-authored timeline; cases not listed here
+ *  fall back to their category cover. Artwork: scripts/covers/build-case-covers.mjs */
+const caseCover = (file: string, concept: string, alt: string): Cover => ({
+  src: `${P}/cover-${file}.svg`,
+  srcSet: `${P}/cover-${file}-800.webp 800w, ${P}/cover-${file}-1600.webp 1600w`,
+  sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
+  width: 1200,
+  height: 900,
+  alt,
+  og: `${P}/cover-${file}-og.png`,
+  ogAlt: alt,
+  concept,
+});
+
+export const CASE_COVERS: Record<string, Cover> = {
+  "knipsr-event-media-saas": caseCover("knipsr-aperture", "Camera iris: eight dark blades closing on the light, one copper blade among them", "A camera iris seen head-on: eight dark overlapping blades around a small bright opening, one blade in copper, lit softly from the upper left."),
+  "floating-stone-ranch-processor-intake-engine": caseCover("ranch-crate-tag", "Cold-room crate: one copper tag on a hook — every box traceable", "A dark wooden crate in cold light, frost on its lid, with a single copper tag hanging from a hook on its front."),
+  "forlag-publishing-sales-inventory-dashboard": caseCover("forlag-spines", "Shelf of dark book spines, one copper spine pulled forward", "A short row of dark book spines on a shelf, one spine in copper pulled forward and catching the light."),
+  "skill-x-swap-mvp": caseCover("swap-rings", "Two interlocking rings: one dark, one copper — an exchange", "Two interlocking rings on a dark field, one dark stone and one copper, each passing through the other."),
+  "first-north-peptides-website-ai-concierge": caseCover("peptides-vial", "A dark glass vial with a copper cap, glowing faintly from within", "A single dark glass vial with a ridged copper cap, a soft warm glow inside its lower half, lit from the upper left."),
+  "learning-platform-saas-stabilization": caseCover("platform-stair", "A dark staircase with hairline cracks low down, the third tread faced in copper", "A short flight of dark stone stairs seen from a three-quarter angle, hairline cracks in the two lowest risers, the third tread faced in copper."),
+  "liftly-operational-mvp-v1": caseCover("liftly-stack-band", "A folded stack of dark cloth bound by one copper band", "A neat stack of folded dark cloth, bound around the middle by a single copper band with a small clasp."),
+  "tomo-voice-ai-companion": caseCover("tomo-speaker", "A speaker cone, one copper concentric ring — a single voice", "A dark speaker cone seen head-on, concentric rings stepping inward to a domed centre, with one ring in copper."),
+  "hjelpna-handyman-marketplace": caseCover("hjelpna-hex-nut", "A dark hex nut, one copper thread catching the light", "A heavy dark hexagonal nut seen from above, its bore dark, with one thread inside picked out in copper."),
+  "pawspace-pet-services-marketplace": caseCover("pawspace-tag", "A flat blank pet tag, copper split ring through its edge", "A flat round dark pet tag, blank, lying at a slight angle, with a copper split ring through the hole at its edge."),
+  "bondfire-event-booking-app": caseCover("bondfire-ember", "A single copper ember among cold charcoal", "One glowing copper ember resting among pieces of cold dark charcoal, its light falling on the pieces nearest it."),
+};
+
 export const coverForProject = (p: ProjectLike): Cover => {
+  if (CASE_COVERS[p.slug]) return CASE_COVERS[p.slug];
   const base = PROJECT_COVERS[coverKeyForProject(p)];
   const v = variantFor(p.slug);
-  return { ...base, flip: v.flip ? !base.flip : base.flip, shift: v.shift };
+  // Two automation cases sit side by side in the archive and hash to the
+  // same variant; mirror one by hand so the pair doesn't read as a copy.
+  const flip = FORCE_FLIP.has(p.slug) ? !v.flip : v.flip;
+  return { ...base, flip: flip ? !base.flip : base.flip, shift: v.shift };
 };
+const FORCE_FLIP = new Set(["twilio-conference-call-logic"]);
 
 /** The image a card/listing should show: the authored evidence diagram where
  *  one exists, otherwise the category cover. */

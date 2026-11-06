@@ -17,7 +17,7 @@ const SignatureMethod: React.FC = () => {
   };
 
   return (
-    <section className="py-20 lg:py-24 bg-background relative overflow-hidden">
+    <section id="method" className="py-20 lg:py-24 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -39,7 +39,6 @@ const SignatureMethod: React.FC = () => {
           </h2>
 
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
-            That wasn't a lucky call. It's how every engagement works.{" "}
             {signatureMethod.subtitle}
           </p>
         </motion.div>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="rg-key" cx="30%" cy="20%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="rg-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rg-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="rg-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="rg-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rg-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="rg-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="rg-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="rg-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="rg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="rg-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="rg-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="rg-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="rg-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="rg-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="rg-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#rg-clip)">
+    <rect width="1200" height="900" fill="url(#rg-key)"/>
+    <rect width="1200" height="900" fill="url(#rg-warm)"/>
+
+    <ellipse cx="600" cy="790" rx="400" ry="34" fill="#000" opacity="0.55" filter="url(#rg-blur24)"/>
+    <ellipse cx="600" cy="450" rx="330" ry="260" fill="url(#rg-glow)" opacity="0.35"/>
+    <defs><clipPath id="rg-under"><rect x="520" y="450" width="160" height="300"/></clipPath></defs>
+    <!-- dark ring -->
+    <g filter="url(#rg-shadow)"><circle cx="470" cy="450" r="215" fill="none" stroke="url(#rg-stone)" stroke-width="62"/></g>
+    <circle cx="470" cy="450" r="245" fill="none" stroke="url(#rg-edge)" stroke-width="2"/>
+    <circle cx="470" cy="450" r="185" fill="none" stroke="#000" stroke-opacity="0.5" stroke-width="2"/>
+    <!-- copper ring over it -->
+    <circle cx="730" cy="450" r="215" fill="none" stroke="#C48A64" stroke-opacity="0.35" stroke-width="112" filter="url(#rg-blur24)"/>
+    <g filter="url(#rg-shadow)"><circle cx="730" cy="450" r="215" fill="none" stroke="url(#rg-copper)" stroke-width="62"/></g>
+    <path d="M543.8 557.5 A215 215 0 0 1 656.5 248" stroke="#F6DDBE" stroke-opacity="0.85" stroke-width="4" fill="none" stroke-linecap="round" transform="translate(-6,-6)"/>
+    <!-- the dark ring passes back over the copper at the lower crossing: the interlock -->
+    <g clip-path="url(#rg-under)">
+      <g filter="url(#rg-softshadow)"><circle cx="470" cy="450" r="215" fill="none" stroke="url(#rg-stone)" stroke-width="62"/></g>
+      <circle cx="470" cy="450" r="245" fill="none" stroke="url(#rg-edge)" stroke-width="2"/>
+    </g>
+    <!-- copper reflection on the dark ring's inner edge -->
+    <path d="M672 376.5 A215 215 0 0 1 672 523.5" stroke="#C48A64" stroke-opacity="0.3" stroke-width="37.199999999999996" fill="none" filter="url(#rg-blur8)"/>
+    <rect width="1200" height="900" filter="url(#rg-grain)" opacity="0.9"/>
+  </g>
+</svg>

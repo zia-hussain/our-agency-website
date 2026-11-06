@@ -17,7 +17,7 @@ const BRAND_FILM_CAPTIONS = "/captions/zumetrix-brand-film.vtt";
 
 const BrandFilmMoment: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-background py-20 sm:py-28">
+    <section id="film" className="relative overflow-hidden bg-background py-20 sm:py-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_0%,rgba(196,138,100,0.05),transparent_65%)]" />
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

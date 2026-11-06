@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="st-key" cx="26%" cy="18%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="st-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="st-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="st-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="st-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="st-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="st-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="st-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="st-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="st-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="st-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="st-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="st-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="st-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="st-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="st-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#st-clip)">
+    <rect width="1200" height="900" fill="url(#st-key)"/>
+    <rect width="1200" height="900" fill="url(#st-warm)"/>
+
+    <ellipse cx="640" cy="800" rx="460" ry="40" fill="#000" opacity="0.55" filter="url(#st-blur24)"/>
+    
+    
+    <g filter="url(#st-softshadow)">
+      <path d="M994 184 L1090 130 L1090 500 L994 554 Z" fill="#0F0D0B"/>
+      <rect x="594" y="184" width="400" height="74" fill="url(#st-stone)"/>
+      <rect x="594" y="184" width="400" height="74" fill="#000" opacity="0.09"/>
+      <path d="M594 184 L690 130 L1090 130 L994 184 Z" fill="#2E2823"/>
+      <path d="M594 184 L690 130 L1090 130 L994 184 Z" fill="url(#st-edge)" opacity="0.6"/>
+    </g>
+    <line x1="594" y1="184" x2="994" y2="184" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="2"/>
+    <line x1="594" y1="184" x2="690" y2="130" stroke="#F3EDE4" stroke-opacity="0.14" stroke-width="2"/>
+    <line x1="994" y1="184" x2="994" y2="258" stroke="#000" stroke-opacity="0.5" stroke-width="2"/>
+    
+    
+    <g filter="url(#st-softshadow)">
+      <path d="M898 312 L994 258 L994 554 L898 608 Z" fill="#0F0D0B"/>
+      <rect x="498" y="312" width="400" height="74" fill="url(#st-stone)"/>
+      <rect x="498" y="312" width="400" height="74" fill="#000" opacity="0.13"/>
+      <path d="M498 312 L594 258 L994 258 L898 312 Z" fill="#2E2823"/>
+      <path d="M498 312 L594 258 L994 258 L898 312 Z" fill="url(#st-edge)" opacity="0.6"/>
+    </g>
+    <line x1="498" y1="312" x2="898" y2="312" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="2"/>
+    <line x1="498" y1="312" x2="594" y2="258" stroke="#F3EDE4" stroke-opacity="0.14" stroke-width="2"/>
+    <line x1="898" y1="312" x2="898" y2="386" stroke="#000" stroke-opacity="0.5" stroke-width="2"/>
+    
+    <path d="M402 440 L498 386 L898 386 L802 440 Z" fill="#C48A64" opacity="0.4" filter="url(#st-blur24)" transform="translate(0,-10)"/>
+    <g filter="url(#st-softshadow)">
+      <path d="M802 440 L898 386 L898 608 L802 662 Z" fill="#0F0D0B"/>
+      <rect x="402" y="440" width="400" height="74" fill="url(#st-stone)"/>
+      <rect x="402" y="440" width="400" height="74" fill="#000" opacity="0.17"/>
+      <path d="M402 440 L498 386 L898 386 L802 440 Z" fill="url(#st-copper)"/>
+      
+    </g>
+    <line x1="402" y1="440" x2="802" y2="440" stroke="#F6DDBE" stroke-opacity="0.9" stroke-width="3"/>
+    <line x1="402" y1="440" x2="498" y2="386" stroke="#F6DDBE" stroke-opacity="0.7" stroke-width="2"/>
+    <line x1="802" y1="440" x2="802" y2="514" stroke="#000" stroke-opacity="0.5" stroke-width="2"/>
+    <rect x="402" y="440" width="400" height="12" fill="url(#st-copperV)"/><rect x="402" y="452" width="400" height="2" fill="#2A1A10" opacity="0.5"/>
+    
+    <g filter="url(#st-softshadow)">
+      <path d="M706 568 L802 514 L802 662 L706 716 Z" fill="#0F0D0B"/>
+      <rect x="306" y="568" width="400" height="74" fill="url(#st-stone)"/>
+      <rect x="306" y="568" width="400" height="74" fill="#000" opacity="0.21"/>
+      <path d="M306 568 L402 514 L802 514 L706 568 Z" fill="#2E2823"/>
+      <path d="M306 568 L402 514 L802 514 L706 568 Z" fill="url(#st-edge)" opacity="0.6"/>
+    </g>
+    <line x1="306" y1="568" x2="706" y2="568" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="2"/>
+    <line x1="306" y1="568" x2="402" y2="514" stroke="#F3EDE4" stroke-opacity="0.14" stroke-width="2"/>
+    <line x1="706" y1="568" x2="706" y2="642" stroke="#000" stroke-opacity="0.5" stroke-width="2"/>
+    
+    
+    <g filter="url(#st-softshadow)">
+      <path d="M610 696 L706 642 L706 716 L610 770 Z" fill="#0F0D0B"/>
+      <rect x="210" y="696" width="400" height="74" fill="url(#st-stone)"/>
+      <rect x="210" y="696" width="400" height="74" fill="#000" opacity="0.25"/>
+      <path d="M210 696 L306 642 L706 642 L610 696 Z" fill="#2E2823"/>
+      <path d="M210 696 L306 642 L706 642 L610 696 Z" fill="url(#st-edge)" opacity="0.6"/>
+    </g>
+    <line x1="210" y1="696" x2="610" y2="696" stroke="#F3EDE4" stroke-opacity="0.22" stroke-width="2"/>
+    <line x1="210" y1="696" x2="306" y2="642" stroke="#F3EDE4" stroke-opacity="0.14" stroke-width="2"/>
+    <line x1="610" y1="696" x2="610" y2="770" stroke="#000" stroke-opacity="0.5" stroke-width="2"/>
+    
+    <!-- hairline cracks on the two lowest risers -->
+    <path d="M330 766 l 18 -26 l -6 -22 l 14 -18" stroke="#050403" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M510 764 l -10 -30 l 16 -20" stroke="#050403" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M376 640 l 24 -28 l 20 -4 l 10 -26" stroke="#050403" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M556 638 l 8 -24 l -12 -22" stroke="#050403" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <rect width="1200" height="900" filter="url(#st-grain)" opacity="0.9"/>
+  </g>
+</svg>

@@ -78,8 +78,11 @@ function App() {
     '/rescue-or-rebuild', '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
     '/idea-to-build', '/idea-to-build/apply', '/idea-to-build/confirmed',
     '/manual-to-system', '/manual-to-system/apply', '/manual-to-system/confirmed',
+    '/services/saas-mvp-development', '/services/product-rescue-stabilization', '/services/web-application-development',
+    '/services/mobile-app-development', '/services/ai-automation-solutions',
+    '/services/mvp-development', '/services/ai-automation', '/services/startup-mvp-development',
+    '/services/enterprise-web-applications', '/services/digital-strategy-consulting',
   ].includes(location.pathname) ||
-    location.pathname.startsWith('/services/') ||
     location.pathname.startsWith('/portfolio/') ||
     location.pathname.startsWith('/articles/') ||
     location.pathname.startsWith('/founders/'));

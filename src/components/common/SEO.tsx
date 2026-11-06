@@ -23,7 +23,7 @@ const absoluteUrl = (u: string) => (/^https?:\/\//i.test(u) ? u : `${SITE_URL}${
 
 const SEO: React.FC<SEOProps> = ({
   title = "Zumetrix Labs | SaaS MVPs, Apps & AI Automation",
-  description = "Forge Clear Ideas Into Shipped Software. Zumetrix Labs builds SaaS MVPs, React/Node.js apps, AI automation, and mobile apps for founders who need thinking partners.",
+  description = "Zumetrix Labs builds SaaS products, rescues stuck ones and automates manual operations — founder-led, with 60+ shipped projects and 80+ written client reviews.",
   image = LOGO_URL,
   imageAlt,
   url = "https://zumetrix.com",

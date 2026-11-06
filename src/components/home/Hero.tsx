@@ -4,7 +4,7 @@ import {
   ArrowRight,
   ChevronDown,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { BRAND_CONTENT } from "../../config/content";
 import { renderContentSegments } from "../../utils/contentRenderer";
 
@@ -32,6 +32,7 @@ const item = {
 };
 
 const Hero: React.FC = () => {
+  const shouldReduceMotion = useReducedMotion();
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -40,7 +41,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="bg-background relative overflow-hidden pt-24 sm:pt-36 pb-20 sm:pb-28">
+    <section id="hero" className="bg-background relative overflow-hidden pt-24 sm:pt-36 pb-20 sm:pb-28">
       {/* The light is motivated — it gathers around the one line that
           matters most, not the block as a whole */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_40%,rgba(196,138,100,0.10),transparent_68%)]" />
@@ -64,43 +65,76 @@ const Hero: React.FC = () => {
         className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full"
       >
         <div className="flex flex-col items-center text-center">
-          {/* Eyebrow — states what kind of company this is, in six words */}
+          {/* Eyebrow */}
           <motion.div variants={item} className="flex justify-center">
-            <span
+            <Link
+              to="/contact"
               className="
-      inline-flex items-center gap-3
-      rounded-full pl-5 pr-5 py-2.5
-      text-xs font-semibold uppercase tracking-[0.14em]
+      btn-sheen group relative inline-flex items-center gap-3
+      rounded-full pl-4 pr-4 sm:pl-5 sm:pr-5 py-2.5 whitespace-nowrap
+      text-[10.5px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.14em]
       text-primary/90
-      border border-white/[0.06] mb-10 sm:mb-12
+      border border-white/[0.06]
+      transition-colors duration-300
+      hover:text-primary hover:border-white/[0.1]
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 mb-10 sm:mb-12
     "
               style={{ background: "linear-gradient(180deg, #18150F 0%, #0B0A08 100%)" }}
             >
-              <span>{BRAND_CONTENT.hero.badge}</span>
+              {/* The badge performs its own claim instead of just stating   */}
+              {/* it: "stalled" gets struck through, "shipped" lights up —   */}
+              {/* a single beat, once, timed just after the badge settles.   */}
+              <span className="inline-flex items-baseline gap-x-1.5">
+                <span>Where</span>
+                <span className="relative inline-block">
+                  <motion.span
+                    className="text-muted-foreground/60"
+                    animate={shouldReduceMotion ? undefined : { opacity: 0.5 }}
+                    transition={{ duration: 0.3, delay: 1.05 }}
+                  >
+                    stalled
+                  </motion.span>
+                  <motion.span
+                    aria-hidden="true"
+                    className="absolute left-0 right-0 top-1/2 h-px bg-muted-foreground/70 origin-left"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4, delay: 1.05, ease: [0.65, 0, 0.35, 1] }}
+                  />
+                </span>
+                <span>projects get</span>
+                <motion.span
+                  className="inline-block"
+                  animate={shouldReduceMotion ? undefined : { scale: [1, 1.1, 1] }}
+                  transition={{ duration: 0.5, delay: 1.45, times: [0, 0.45, 1], ease: "easeOut" }}
+                >
+                  shipped
+                </motion.span>
+              </span>
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
                 <span className="relative h-1.5 w-1.5 rounded-full bg-primary" />
               </span>
-            </span>
+            </Link>
           </motion.div>
 
           {/* Headline — one silhouette, three registers, no register an afterthought */}
           <h1 className="font-bold mb-9 sm:mb-10 tracking-[-0.02em]">
             <motion.span
               variants={item}
-              className="block text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] mb-1 sm:mb-1.5"
+              className="block text-foreground text-4xl sm:text-5xl md:text-[2.75rem] lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] mb-1 sm:mb-1.5"
             >
               {BRAND_CONTENT.hero.headline.line1}
             </motion.span>
             <motion.span
               variants={item}
-              className="block bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] pb-1 sm:pb-1.5"
+              className="block bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-[2.75rem] lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] pb-1 sm:pb-1.5"
             >
               {BRAND_CONTENT.hero.headline.line2}
             </motion.span>
             <motion.span
               variants={item}
-              className="block text-[#F3EAE1] text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.05] tracking-[0.01em] mt-4 sm:mt-5"
+              className="block text-[#F3EAE1] text-3xl sm:text-4xl md:text-[2.35rem] lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.05] tracking-[0.01em] mt-4 sm:mt-5"
             >
               {BRAND_CONTENT.hero.headline.line3}
             </motion.span>

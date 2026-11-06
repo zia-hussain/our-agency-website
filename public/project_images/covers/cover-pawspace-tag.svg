@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+
+  <defs>
+    <radialGradient id="pt-key" cx="28%" cy="18%" r="75%">
+      <stop offset="0" stop-color="#2A241F"/>
+      <stop offset="0.45" stop-color="#171412"/>
+      <stop offset="1" stop-color="#0B0A09"/>
+    </radialGradient>
+    <radialGradient id="pt-warm" cx="38%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#C48A64" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pt-stone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A332D"/>
+      <stop offset="0.5" stop-color="#211D19"/>
+      <stop offset="1" stop-color="#120F0D"/>
+    </linearGradient>
+    <linearGradient id="pt-stone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2823"/>
+      <stop offset="1" stop-color="#15120F"/>
+    </linearGradient>
+    <linearGradient id="pt-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EDE4" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#F3EDE4" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#F3EDE4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="pt-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.35" stop-color="#C48A64"/>
+      <stop offset="0.75" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#6E4630"/>
+    </linearGradient>
+    <linearGradient id="pt-copperV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0D2AE"/>
+      <stop offset="0.4" stop-color="#C48A64"/>
+      <stop offset="1" stop-color="#7A4E34"/>
+    </linearGradient>
+    <radialGradient id="pt-sphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#F6DDBE"/>
+      <stop offset="0.3" stop-color="#D59C72"/>
+      <stop offset="0.7" stop-color="#9A6442"/>
+      <stop offset="1" stop-color="#5B3A27"/>
+    </radialGradient>
+    <radialGradient id="pt-darkSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A423B"/>
+      <stop offset="0.4" stop-color="#26211D"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <radialGradient id="pt-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E8C49B" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#C48A64" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C48A64" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="pt-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="8" dy="26" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="pt-softshadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="12" result="s"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="pt-blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="pt-blur24"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="pt-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+    </filter>
+    <clipPath id="pt-clip"><rect width="1200" height="900"/></clipPath>
+  </defs>
+  <g clip-path="url(#pt-clip)">
+    <rect width="1200" height="900" fill="url(#pt-key)"/>
+    <rect width="1200" height="900" fill="url(#pt-warm)"/>
+
+    <ellipse cx="600" cy="760" rx="380" ry="46" fill="#000" opacity="0.55" filter="url(#pt-blur24)"/>
+    <defs>
+      <linearGradient id="pt-face" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3E3730"/>
+        <stop offset="0.45" stop-color="#211D19"/>
+        <stop offset="1" stop-color="#14110E"/>
+      </linearGradient>
+      <clipPath id="pt-face-clip"><ellipse cx="600" cy="500" rx="300" ry="232" transform="rotate(-14 600 500)"/></clipPath>
+      <clipPath id="pt-hole"><ellipse cx="364" cy="408" rx="26" ry="20" transform="rotate(-14 364 408)"/></clipPath>
+      <mask id="pt-outside"><rect width="1200" height="900" fill="#fff"/><ellipse cx="600" cy="500" rx="300" ry="232" fill="#000" transform="rotate(-14 600 500)"/><rect x="300" y="500" width="600" height="22" fill="#000" transform="rotate(-14 600 500)"/><ellipse cx="600" cy="522" rx="300" ry="232" fill="#000" transform="rotate(-14 600 522)"/></mask>
+    </defs>
+    <ellipse cx="600" cy="460" rx="360" ry="300" fill="url(#pt-glow)" opacity="0.3"/>
+    <ellipse cx="278" cy="458" rx="100" ry="64" fill="none" stroke="#7A4E34" stroke-width="20" transform="rotate(-30 278 458)"/>
+    <!-- thickness of the tag -->
+    <g filter="url(#pt-shadow)">
+      <ellipse cx="600" cy="522" rx="300" ry="232" fill="#0E0C0A" transform="rotate(-14 600 522)"/>
+      <rect x="300" y="500" width="600" height="22" fill="#0E0C0A" transform="rotate(-14 600 500)"/>
+      <ellipse cx="600" cy="500" rx="300" ry="232" fill="url(#pt-face)" transform="rotate(-14 600 500)"/>
+    </g>
+    <!-- a fine engraved border, the way tags are stamped; nothing written -->
+    <ellipse cx="600" cy="500" rx="266" ry="202" fill="none" stroke="#000" stroke-opacity="0.4" stroke-width="2" transform="rotate(-14 600 500)"/>
+    <ellipse cx="600" cy="500" rx="264" ry="200" fill="none" stroke="#F3EDE4" stroke-opacity="0.07" stroke-width="2" transform="rotate(-14 600 500)"/>
+    <ellipse cx="600" cy="500" rx="300" ry="232" fill="none" stroke="url(#pt-edge)" stroke-width="3" transform="rotate(-14 600 500)"/>
+    <!-- key light grazing the face -->
+    <g clip-path="url(#pt-face-clip)">
+      <ellipse cx="480" cy="390" rx="220" ry="120" fill="#F3EDE4" opacity="0.07" filter="url(#pt-blur24)"/>
+    </g>
+    <!-- the hole at the edge -->
+    <ellipse cx="364" cy="408" rx="26" ry="20" fill="#070605" transform="rotate(-14 364 408)"/>
+    <!-- copper split ring through the hole: drawn under the tag, then again where it shows (outside the tag and through the hole) -->
+    <ellipse cx="278" cy="458" rx="150" ry="120" fill="url(#pt-glow)" opacity="0.6"/>
+    <g mask="url(#pt-outside)" filter="url(#pt-softshadow)">
+      <ellipse cx="278" cy="458" rx="100" ry="64" fill="none" stroke="url(#pt-copper)" stroke-width="20" transform="rotate(-30 278 458)"/>
+      <path d="M186 442 A100 64 0 0 1 268 394" stroke="#F6DDBE" stroke-opacity="0.85" stroke-width="3" fill="none" stroke-linecap="round" transform="rotate(-30 278 458)"/>
+    </g>
+    <g clip-path="url(#pt-hole)">
+      <ellipse cx="278" cy="458" rx="100" ry="64" fill="none" stroke="url(#pt-copper)" stroke-width="20" transform="rotate(-30 278 458)"/>
+    </g>
+    <!-- shadow of the ring where it rests on the face -->
+    <ellipse cx="390" cy="428" rx="44" ry="14" fill="#000" opacity="0.45" filter="url(#pt-blur8)" transform="rotate(-14 390 428)"/>
+    <rect width="1200" height="900" filter="url(#pt-grain)" opacity="0.9"/>
+  </g>
+</svg>
