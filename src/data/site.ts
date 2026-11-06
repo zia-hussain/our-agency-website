@@ -36,9 +36,10 @@ export const SITE_DATA = {
   },
 
   // Company Logos Carousel - INFINITE SMOOTH SLIDER
-  // Client logos. `permitted` is written-permission status: only permitted
-  // logos render anywhere on the site (TrustTicker). Set it to true the day a
-  // client confirms in writing; nothing else needs to change.
+  // Client logos. `permitted` records written-permission status only; it is
+  // NOT enforced by the marquee today (production renders all five). Status
+  // as of the Nov 2026 ship pass: no written logo permission on file for any
+  // of these — owner to confirm per client and flip the flag when confirmed.
   companyLogosCarousel: {
     logos: [
       { name: "Tech Skills", imageUrl: "/companies_logos/techskills.webp", permitted: false },
@@ -104,6 +105,25 @@ export const SITE_DATA = {
         link: "/services/saas-mvp-development",
       },
       {
+        id: "product-rescue",
+        icon: "lifebuoy",
+        title: "Product Rescue & Stabilization",
+        oneLiner:
+          "For a product that already exists and is stuck, fragile or inherited",
+        description:
+          "We start with a technical and product assessment, then propose a stabilization plan based on what we actually find — not a guess made before anyone has read the code.",
+        pricing: "Assessment $750",
+        timeline: "Findings in 5 business days",
+        popular: false,
+        bullets: [
+          "Codebase health review: architecture, security, dependencies",
+          "Written findings: what's broken, what's fragile, what's fine",
+          "Scoped stabilization plan priced from the findings",
+          "Critical fixes and a handover you can keep",
+        ],
+        link: "/services/product-rescue-stabilization",
+      },
+      {
         id: "ai-automation",
         icon: "brain",
         title: "AI Automation & Workflows",
@@ -121,25 +141,6 @@ export const SITE_DATA = {
           "Document processing + data extraction automation",
         ],
         link: "/services/ai-automation-solutions",
-      },
-      {
-        id: "web-mobile",
-        icon: "devices",
-        title: "Web & Mobile Applications",
-        oneLiner:
-          "One codebase, both app stores, no compromise on how it feels",
-        description:
-          "Build responsive web applications and cross-platform mobile apps using React Native and modern web technologies for global audiences.",
-        pricing: "Starting at $5,500",
-        timeline: "6-12 weeks",
-        popular: false,
-        bullets: [
-          "React Native + Flutter cross-platform development",
-          "Progressive Web Apps (PWA) with offline support",
-          "Enterprise-grade security + performance optimization",
-          "App Store deployment + ongoing maintenance support",
-        ],
-        link: "/services/mobile-app-development",
       },
     ],
   },
@@ -184,7 +185,7 @@ export const SITE_DATA = {
     title: "Founder-led from",
     themedTitle: "strategy through delivery",
     subtitle:
-      "Zia owns what gets built and why; Omer owns how it gets built and that it holds. Both stay on every engagement from the first call to long after launch, with a small specialist team across design, development, QA and automation behind them — and a standing habit of saying no to work that shouldn't be built.",
+      "Zia leads product direction and client strategy. Omer leads architecture and engineering delivery. Every engagement is founder-led, supported by the specialists the project actually needs — and if something shouldn't be built, we say so.",
     founders: [
       {
         name: "Zia Hussain",
@@ -201,7 +202,7 @@ export const SITE_DATA = {
           "Client Success",
           "SaaS Architecture",
         ],
-        achievements: "Runs the first call, writes the scope, and is still on the thread after launch.",
+        achievements: "Product direction and client strategy on every engagement",
         image: "/profile_images/zia-hussain-portrait-thumb.webp",
         linkedin: "https://www.linkedin.com/in/zia-hussain-404-/",
         // Website CTAs book through the one company destination (Phase 1,
@@ -225,7 +226,7 @@ export const SITE_DATA = {
           "Cloud Infrastructure",
           "Performance Optimization",
         ],
-        achievements: "Architecture, integrations and automation — built to still hold up a year from now.",
+        achievements: "Architecture, integrations and engineering delivery on every engagement",
         image: "/profile_images/omer-gillani-portrait-thumb.webp",
         linkedin: "https://www.linkedin.com/in/omer-gillani/",
         calendly: "https://calendly.com/zumetrix-labs/consultation",

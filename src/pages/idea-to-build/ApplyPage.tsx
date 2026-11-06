@@ -93,7 +93,7 @@ const FIT_BOUNDARY_OPTIONS = [
 ];
 
 const STEPS = [
-  { id: "situation", title: "What best describes where you're stuck?", sub: "Pick the closest one — there's room to explain later." },
+  { id: "situation", title: "What best describes where you are?", sub: "Pick the closest one — there's room to explain later." },
   { id: "idea", title: "What are you building, and how far along is it?", sub: "A name, a one-line description, and where things stand today." },
   { id: "boundary", title: "Does this sound like one clear V1, or something bigger?", sub: "Pick what's true — this helps us scope the sprint correctly before you pay." },
   { id: "contact", title: "Last thing — who are we talking to?", sub: "So we can send the review and next steps." },

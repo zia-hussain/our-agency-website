@@ -16,9 +16,9 @@ const FEATURED_ARTICLES = pickInOrder(articles, NAV_FEATURED_ORDER);
 const NAV_ITEMS = [
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
+  { name: "Start here", path: "/start" },
   { name: "Portfolio", path: "/portfolio" },
   { name: "Articles", path: "/articles" },
-  { name: "Start here", path: "/start" },
 ];
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -170,10 +170,16 @@ const Navigation: React.FC = () => {
                     active
                       ? `text-foreground ${isDocked ? "bg-white/[0.055]" : ""}`
                       : item.path === "/start"
-                        ? "text-primary/85 hover:text-primary"
+                        ? "text-foreground/85 hover:text-foreground"
                         : "text-muted-foreground/70 hover:text-foreground/90"
                   }`}
                 >
+                  {item.path === "/start" && (
+                    <span aria-hidden="true" className="relative mr-1.5 flex h-[5px] w-[5px]">
+                      <span className="absolute inset-0 rounded-full bg-primary/60 motion-safe:animate-ping [animation-duration:2.4s]" />
+                      <span className="relative h-[5px] w-[5px] rounded-full bg-primary" />
+                    </span>
+                  )}
                   {item.name}
                   {dropdownKey && (
                     <ChevronDown
@@ -469,7 +475,7 @@ const Navigation: React.FC = () => {
 
             <div className="flex-1 overflow-y-auto px-6 pt-8 pb-6 sm:px-8">
               <div className="flex flex-col gap-1">
-                {[{ name: "Home", path: "/" }, ...NAV_ITEMS, { name: "Contact", path: "/contact" }].map(
+                {[{ name: "Home", path: "/" }, ...NAV_ITEMS].map(
                   (item, index) => {
                     const active = item.path === "/" ? location.pathname === "/" : isActiveRoute(item.path);
                     // Service pages and the three doors are one tap away on
@@ -499,10 +505,11 @@ const Navigation: React.FC = () => {
                         <Link
                           to={item.path}
                           onClick={item.path === "/start" ? trackOffersNavClick : undefined}
-                          className={`block py-2 font-bold tracking-[-0.02em] leading-none text-[9.5vw] sm:text-[2.6rem] transition-colors duration-200 ${
-                            active ? "text-foreground" : "text-muted-foreground/50 hover:text-foreground/80"
+                          className={`flex items-center gap-3 py-2 font-bold tracking-[-0.02em] leading-none text-[9.5vw] sm:text-[2.6rem] transition-colors duration-200 ${
+                            active ? "text-foreground" : item.path === "/start" ? "text-foreground/80" : "text-muted-foreground/50 hover:text-foreground/80"
                           }`}
                         >
+                          {item.path === "/start" && <span aria-hidden="true" className="h-2 w-2 rounded-full bg-primary flex-shrink-0" />}
                           {item.name}
                         </Link>
                         {subItems && (

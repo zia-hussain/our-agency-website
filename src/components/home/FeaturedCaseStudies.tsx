@@ -1,40 +1,47 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, Minus, MapPin, Target } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, MapPin, Target } from "lucide-react";
 import { motion } from "framer-motion";
 import { getProjectBySlug } from "../../data/projects";
 
 const FeaturedCaseStudies: React.FC = () => {
-  const flagship = getProjectBySlug("liftly-operational-mvp-v1");
-  const fixCase = getProjectBySlug("fast-track-usa-app-rescue");
+  // Lead story: the case with the strongest public record — the founder on
+  // film, a Trustpilot review corroborated on Google, a separate Upwork
+  // contract, and permission. Liftly and Knipsr are still proofStatus:"draft"
+  // (privacy review pending), so Liftly no longer carries the lead and
+  // Knipsr appears as a supporting card with its public reviews.
+  const flagship = getProjectBySlug("fast-track-usa-app-rescue");
+  const buildCase = getProjectBySlug("knipsr-event-media-saas");
   const automateCase = getProjectBySlug(
     "floating-stone-ranch-processor-intake-engine"
   );
 
   if (!flagship) return null;
 
+  // Authored for this one case; everything below traces to the case record
+  // (problem, solution, results, evidence, testimonial in data/projects.ts).
+  const headline = "Two years with another team. Live three weeks after the handover.";
   const situation =
-    flagship.caseStudy?.situation ??
-    "A founder came to Zumetrix with a broader product vision than the first release could carry.";
-  const problem = flagship.caseStudy?.problem ?? flagship.problem;
-  const built = flagship.caseStudy?.built ?? [];
-  const decision = flagship.caseStudy?.decisions?.[0];
-  const ctaAngle = flagship.caseStudy?.ctaAngle;
+    "Josh's app had been in development for around two years with a previous team without reaching a working, reliable launch. The technical causes aren't part of the public record — Josh's account describes the outcome, not the implementation.";
+  const problem =
+    "Zumetrix took over the existing, in-progress project and carried it to launch in three weeks — in Josh's words, with no bugs and no issues. We don't dress that up with a technical narrative we can't verify.";
+  const decision = {
+    title: "Why we tell it this way",
+    description:
+      "This case documents an outcome, not a method. What's verified is on the record: Josh on film, a Trustpilot review corroborated on Google, and a separate five-star Upwork contract. One client's three weeks is not a promise about yours.",
+  };
+  const ctaAngle = flagship.testimonial?.quote;
+  const built = flagship.results ?? [];
+  const evidence = flagship.evidence ?? [];
   const proofNote = flagship.caseStudy?.proofNotes?.[0];
 
-  const deferred = [
-    "Service minimums & distance bands",
-    "Labor, urgency & specialty-item pricing",
-    "Margin protection & admin overrides",
-  ];
-
   const supportingCases = [
-    fixCase && {
-      project: fixCase,
-      heading: "Fast Track USA",
-      eyebrow: "Inherited Product, Shipped",
+    buildCase && {
+      project: buildCase,
+      heading: "Knipsr",
+      eyebrow: "Built From Zero, Launch-Ready",
       purpose:
-        "Proof we can take over someone else's unfinished app and get it live — in Josh's words, two years stuck, three weeks to launch.",
+        "Proof we can take an idea to a production SaaS — background processing, retries and media delivery built to hold up on a real event day.",
     },
     automateCase && {
       project: automateCase,
@@ -44,7 +51,7 @@ const FeaturedCaseStudies: React.FC = () => {
         "Proof we can replace real, error-prone manual workflows with a system the team actually trusts.",
     },
   ].filter(Boolean) as {
-    project: NonNullable<typeof fixCase>;
+    project: NonNullable<typeof buildCase>;
     heading: string;
     eyebrow: string;
     purpose: string;
@@ -73,14 +80,14 @@ const FeaturedCaseStudies: React.FC = () => {
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-5 tracking-tight leading-[1.1]">
-            When the vision was
+            Work we can show
             <span className="block bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              bigger than the first release
+              with the receipts
             </span>
           </h2>
 
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
-            Here's exactly what we did about it.
+            One story told in full, with the record beside it. Then one case for each of the other two ways we work.
           </p>
         </motion.div>
 
@@ -90,7 +97,7 @@ const FeaturedCaseStudies: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.28 }}
-          id="liftly-flagship"
+          id="flagship-case"
           className="mb-20 lg:mb-24"
         >
           <div className="flex items-center gap-4 mb-10">
@@ -107,8 +114,7 @@ const FeaturedCaseStudies: React.FC = () => {
             {/* Narrative column */}
             <div className="lg:col-span-3">
               <h3 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-foreground mb-10 leading-[1.15] tracking-tight max-w-xl">
-                {flagship.client.name} had a bigger vision than its first
-                release could carry.
+                {headline}
               </h3>
 
               <div className="space-y-8 max-w-xl">
@@ -123,7 +129,7 @@ const FeaturedCaseStudies: React.FC = () => {
 
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-2">
-                    The trap
+                    What changed
                   </p>
                   <p className="text-muted-foreground leading-[1.75]">
                     {problem}
@@ -143,8 +149,15 @@ const FeaturedCaseStudies: React.FC = () => {
               </div>
 
               {ctaAngle && (
-                <blockquote className="mt-10 border-l-2 border-primary/40 pl-6 text-xl sm:text-2xl text-foreground/90 font-medium leading-[1.5] max-w-xl">
-                  "{ctaAngle}"
+                <blockquote className="mt-10 border-l-2 border-primary/40 pl-6 max-w-xl">
+                  <p className="text-xl sm:text-2xl text-foreground/90 font-medium leading-[1.5]">"{ctaAngle}"</p>
+                  {flagship.testimonial && (
+                    <footer className="mt-3 text-sm text-muted-foreground">
+                      {flagship.testimonial.author}
+                      {flagship.testimonial.role ? <span className="text-muted-foreground/60"> · {flagship.testimonial.role}</span> : null}
+                      <span className="text-muted-foreground/60"> · on film and on Trustpilot</span>
+                    </footer>
+                  )}
                 </blockquote>
               )}
 
@@ -152,7 +165,7 @@ const FeaturedCaseStudies: React.FC = () => {
                 to={`/portfolio/${flagship.slug}`}
                 className="inline-flex items-center gap-2 text-primary font-medium mt-10 hover:gap-3 transition-all duration-150"
               >
-                Read the full {flagship.client.name} case study
+                Read the full case study
                 <ArrowUpRight size={18} />
               </Link>
             </div>
@@ -160,21 +173,24 @@ const FeaturedCaseStudies: React.FC = () => {
             {/* Built vs. deferred column — a structured spec sheet, contrasting the free-flowing story */}
             <div className="lg:col-span-2">
               <div className="relative rounded-2xl overflow-hidden border border-primary/15 bg-background mb-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]">
-                <img
-                  src={flagship.image}
-                  alt={`${flagship.client.name} system overview`}
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-auto object-contain"
-                />
+                <picture>
+                  {flagship.heroImageMobile && <source media="(max-width: 640px)" srcSet={flagship.heroImageMobile} />}
+                  <img
+                    src={flagship.image}
+                    alt={flagship.ogImageAlt ?? `${flagship.client.name} overview`}
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto object-contain"
+                  />
+                </picture>
               </div>
 
               <div className="rounded-2xl border border-border/70 overflow-hidden">
                 <div className="bg-card/40 p-6">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4">
-                    Shipped in V1
+                    What happened
                   </p>
                   <ul className="space-y-2.5">
                     {built.map((item) => (
@@ -186,22 +202,24 @@ const FeaturedCaseStudies: React.FC = () => {
                   </ul>
                 </div>
 
-                <div className="bg-background/60 p-6 border-t border-border/50">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/50 mb-4">
-                    Deliberately deferred to V2
-                  </p>
-                  <ul className="space-y-2.5">
-                    {deferred.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground/60">
-                        <Minus size={16} className="text-muted-foreground/40 mt-0.5 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="text-xs text-muted-foreground/50 mt-4 italic">
-                    Planned and designed. Not built. Not shipped.
-                  </p>
-                </div>
+                {evidence.length > 0 && (
+                  <div className="bg-background/60 p-6 border-t border-border/50">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/60 mb-4">
+                      On the record
+                    </p>
+                    <ul className="space-y-3">
+                      {evidence.map((item) => (
+                        <li key={item.label} className="text-sm">
+                          <span className="block text-foreground/85 font-medium">{item.label}</span>
+                          <span className="block text-muted-foreground/70 leading-snug">{item.detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a href="#client-films" className="inline-flex items-center gap-1.5 text-xs text-primary/80 hover:text-primary mt-4 transition-colors">
+                      Watch Josh tell it <ArrowRight size={11} />
+                    </a>
+                  </div>
+                )}
               </div>
 
               {proofNote && (

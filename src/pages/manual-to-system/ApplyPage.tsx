@@ -90,7 +90,7 @@ const SCOPE_BOUNDARY_OPTIONS = [
 ];
 
 const STEPS = [
-  { id: "situation", title: "What best describes where you're stuck?", sub: "Pick the closest one — there's room to explain later." },
+  { id: "situation", title: "What best describes the workflow today?", sub: "Pick the closest one — there's room to explain later." },
   { id: "workflow", title: "What's the workflow, and where's the friction?", sub: "A name or area of the business, and what actually slows it down." },
   { id: "boundary", title: "Is this one clear workflow, or something bigger?", sub: "Pick what's true — this helps us scope the sprint correctly before you pay." },
   { id: "contact", title: "Last thing — who are we talking to?", sub: "So we can send the review and next steps." },

@@ -113,7 +113,7 @@ const ScrollRevealVisual: React.FC<{ children: React.ReactNode; className?: stri
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.92", "start 0.4"] });
   const scale = useTransform(scrollYProgress, [0, 1], reduceMotion ? [1, 1] : [0.94, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], reduceMotion ? [1, 1] : [0.35, 1]);
 
   return (
     <motion.div ref={ref} style={{ scale, opacity }} className={className}>

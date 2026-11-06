@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Rocket, Brain, Monitor } from "lucide-react";
+import { ArrowRight, Check, Rocket, Brain, Monitor, LifeBuoy } from "lucide-react";
 import { motion } from "framer-motion";
 import { getSiteData } from "../../data/site";
 import { OFFERS, offerHref } from "../../config/offers";
@@ -14,9 +14,9 @@ import { trackOfferSelect } from "../../utils/analytics";
 // direction) — three labeled lines separated by rules, the same device the
 // comparison facts and footer use elsewhere, not a third visual pattern.
 const OFFER_ROUTER = [
-  { offer: "idea-to-build", situation: "I have an idea and nothing built yet", label: "Define V1 before anyone writes code" },
-  { offer: "product-rescue", situation: "I have a product and it's stuck", label: "Find out what actually deserves fixing" },
-  { offer: "manual-to-system", situation: "My team still does this by hand", label: "Find out what deserves automating first" },
+  { offer: "idea-to-build", situation: "I have an idea and nothing built yet", label: "Define V1 before anyone writes code", step: "Optional first step", note: "or go straight to the build" },
+  { offer: "product-rescue", situation: "I have a product and it's stuck", label: "Find out what actually deserves fixing", step: "Where every rescue starts", note: "" },
+  { offer: "manual-to-system", situation: "My team still does this by hand", label: "Find out what deserves automating first", step: "Only for multi-system work", note: "one workflow usually goes straight to the build" },
 ] as const;
 
 const ServicesPreview: React.FC = () => {
@@ -26,6 +26,7 @@ const ServicesPreview: React.FC = () => {
     rocket: Rocket,
     brain: Brain,
     devices: Monitor,
+    lifebuoy: LifeBuoy,
   };
 
   return (
@@ -170,9 +171,11 @@ const ServicesPreview: React.FC = () => {
 
                     <div className="flex items-end justify-between gap-4">
                       <div>
-                        <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/70">Starting at</span>
+                        <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/70">
+                          {service.id === "product-rescue" ? "Assessment first" : "Starting at"}
+                        </span>
                         <p className={`${isFeatured ? "text-4xl" : "text-2xl"} font-bold text-foreground leading-none tracking-tight mt-1.5`}>
-                          {service.pricing.replace(/^Starting at\s*/i, "")}
+                          {service.pricing.replace(/^(Starting at|Assessment)\s*/i, "")}
                         </p>
                       </div>
 
@@ -239,7 +242,7 @@ const ServicesPreview: React.FC = () => {
               Not sure which of these you need?
             </h3>
             <p className="text-muted-foreground max-w-lg">
-              Start with the decision. Each of these is a bounded, paid assessment with a written answer — and the answer can be “don't”.
+              Each of these is a bounded, paid assessment with a written answer — and the answer can be “don't”. A rescue always starts here; a new build or a single workflow doesn't have to.
             </p>
           </div>
 
@@ -259,10 +262,14 @@ const ServicesPreview: React.FC = () => {
                     </span>
                     <span className="block text-sm text-muted-foreground mt-1">
                       {item.label}
+                      {item.note ? <span className="text-muted-foreground/60"> — {item.note}</span> : null}
                     </span>
                   </span>
-                  <span className="flex items-center gap-3 flex-shrink-0">
-                    <span className="text-sm text-muted-foreground/70">${offer.price}</span>
+                  <span className="flex items-center gap-3 flex-shrink-0 text-right">
+                    <span className="block max-w-[8.5rem] sm:max-w-none">
+                      <span className="block text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 leading-tight">{item.step}</span>
+                      <span className="block text-sm text-muted-foreground/70 mt-0.5">${offer.price}</span>
+                    </span>
                     <ArrowRight size={16} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
                   </span>
                 </Link>
