@@ -45,8 +45,11 @@ export const TESTIMONIAL_FILMS: Record<string, TestimonialFilmMeta> = {
   },
   reema: {
     id: "reema",
+    // Attribution kept to what the record supports: Reema is a repeat Fiverr
+    // client (username reemarafay). No job title or company appears in her
+    // film or in any review, so none is claimed here.
     name: "Reema Rafay",
-    role: "National Vice President, Arbonne",
+    role: "Repeat client · funnel and quiz system",
     context: "Anyone can assemble a funnel. Reema explains the difference between that and what's actually built behind it.",
     src: "/videos/reema-rafay-testimonial.mp4",
     poster: "/images/video-posters/reema-rafay-poster.jpg",
@@ -68,8 +71,12 @@ export const TESTIMONIAL_FILMS: Record<string, TestimonialFilmMeta> = {
   },
   krystof: {
     id: "krystof",
-    name: "Krystof Kapka",
-    role: "Co-Founder, AI Akvizicia",
+    // Attribution kept to what the record supports: the film names "Krystof"
+    // and describes Whop off-session payments and one-click upsells; two
+    // anonymous Upwork records corroborate that work. No surname or company
+    // appears in the transcript or the proof library, so none is claimed.
+    name: "Krystof",
+    role: "Whop payments client · off-session payments & upsells",
     context: "Technical work only matters if it moves a real number. Krystof explains the one that changed.",
     src: "/videos/krystof-testimonial.mp4",
     poster: "/images/video-posters/krystof-poster.jpg",

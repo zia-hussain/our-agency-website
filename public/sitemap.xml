@@ -173,15 +173,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://zumetrix.com/portfolio/utility-bill-deal-finder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://zumetrix.com/project_images/utility-bill-finder.jpg</image:loc>
-      <image:title>Utility Bill Deal Finder – AI-Powered Bill Analysis MVP</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://zumetrix.com/portfolio/pawspace-pet-services-marketplace</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -200,39 +191,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://zumetrix.com/portfolio/hostel-management-system-mern</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://zumetrix.com/project_images/Hostel-Management.jpg</image:loc>
-      <image:title>Hostel Management System – MERN Stack Admin Panel</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://zumetrix.com/portfolio/stripe-to-airtable-subscription-sync</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://zumetrix.com/project_images/stripe-to-airtable.jpg</image:loc>
-      <image:title>Stripe to Airtable – Subscription Sync Automation</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://zumetrix.com/portfolio/shopify-to-notion-pnl-automation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://zumetrix.com/project_images/shopify-to-airtable.jpg</image:loc>
       <image:title>Shopify to Notion – Automated P&amp;L Reporting</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://zumetrix.com/portfolio/twilio-auto-dialer-logic</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://zumetrix.com/project_images/twilio-call.jpg</image:loc>
-      <image:title>Twilio Auto Dialer – Sequential Call Logic</image:title>
     </image:image>
   </url>
   <url>
@@ -245,21 +209,21 @@
     </image:image>
   </url>
   <url>
-    <loc>https://zumetrix.com/portfolio/zumetrix-labs-internal-automation-stack</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://zumetrix.com/project_images/zumetrix.jpg</image:loc>
-      <image:title>Zumetrix Labs – Internal Automation &amp; CRM Stack</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://zumetrix.com/portfolio/fast-track-usa-app-rescue</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://zumetrix.com/project_images/fast-track-recovery-timeline.svg</image:loc>
       <image:title>Fast Track USA — Two Years Stuck, Three Weeks to Launch</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://zumetrix.com/portfolio/first-north-peptides-website-ai-concierge</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zumetrix.com/og/page-portfolio.png</image:loc>
+      <image:title>First North Peptides – Website, AI Concierge and Search Foundation</image:title>
     </image:image>
   </url>
   <url>

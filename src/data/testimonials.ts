@@ -1,7 +1,8 @@
 // Curated, manually-verified proof library.
 // Source of truth: internal/proof-library/Zumetrix_Written_Proof_Master.xlsx (not committed — see .gitignore).
-// Every quote below is copied verbatim from a real Fiverr, Upwork, Google, Trustpilot, or Clutch review.
-// Nothing here is rewritten, merged, or invented. Partial excerpts are cut only at clean sentence
+// Every quote with a `platform` is copied verbatim from a real Fiverr, Upwork, Google, Trustpilot, or
+// Clutch review. Entries marked `source: "collected-directly"` were sent to us by the client and carry
+// no platform badge. Nothing here is rewritten, merged, or invented. Partial excerpts are cut only at clean sentence
 // boundaries from reviews the source platform itself truncated — never reconstructed.
 //
 // Attribution rules applied:
@@ -40,7 +41,12 @@ export interface TestimonialEntry {
   project?: string;
   projectSlug?: string;
   category: ProofCategory[];
-  platform: "Fiverr" | "Upwork" | "Google" | "Trustpilot" | "Clutch";
+  /** Omitted for quotes that were shared with us directly (email/message) rather than posted on a
+   * review platform — those render without a platform badge or star row, by design. */
+  platform?: "Fiverr" | "Upwork" | "Google" | "Trustpilot" | "Clutch";
+  /** "collected-directly" = the client sent this to us; it is not a platform review and must never be
+   * shown with a platform icon or star rating. Default is a platform record. */
+  source?: "platform" | "collected-directly";
   /** Only set when the source explicitly carries a star rating (nearly every record in the source library
    * is a verified 5). Omitted for the one record that's an attestation, not a rated review. */
   rating?: number;
@@ -102,7 +108,9 @@ export const TESTIMONIALS: TestimonialEntry[] = [
       "Zia is the kind of dev who makes you double-check the delivery time because surely no one builds something that good, that fast. But he does. I gave him a backend mess, some vague Twilio goals, and he returned with a fully functional, beautifully structured API.",
     isPartial: true,
     author: "Nathan",
-    role: "Backend/API client",
+    role: "Twilio integration client",
+    project: "Twilio Conference Call – Dynamic Participant Management",
+    projectSlug: "twilio-conference-call-logic",
     category: ["rescue", "technical"],
     platform: "Fiverr",
     rating: 5,
@@ -117,8 +125,9 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     quote:
       "Their combination of web development, AI integration, design, UX, and SEO into one solution was impressive.",
     author: "Andi",
-    role: "First North Peptides",
+    role: "Director, First North Peptides",
     project: "First North Peptides",
+    projectSlug: "first-north-peptides-website-ai-concierge",
     category: ["build", "technical"],
     platform: "Clutch",
     rating: 5,
@@ -189,6 +198,29 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     platform: "Fiverr",
     rating: 5,
     repeatClient: true,
+    evidence: {
+      fact: { stat: "7 REVIEWS", label: "one client, seven separate mobile engagements on Fiverr" },
+    },
+  },
+  {
+    id: "dinah-honest-quick",
+    quote: "I'm very happy to have found this dev, he is honest, quick and actually gets the job done. Thanks!",
+    author: "Dinah",
+    role: "Multiple mobile app projects",
+    category: ["longterm", "technical"],
+    platform: "Fiverr",
+    rating: 5,
+    repeatClient: true,
+  },
+  {
+    id: "dinah-above-and-beyond",
+    quote: "Quick worker with the quality experience. Everything was impressive from beginning to end, I was blown away but how helpful and above and beyond this contractor went. Wow!",
+    author: "Dinah",
+    role: "Multiple mobile app projects",
+    category: ["technical"],
+    platform: "Fiverr",
+    rating: 5,
+    repeatClient: true,
   },
   {
     id: "kevin-automation",
@@ -249,7 +281,9 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     quote:
       "Pleasure working with Syed, went above and beyond. Set up my Shopify > Make.com > Notion automation to track PNL and inventory! Quality work",
     author: "Allayth",
-    role: "Automation client",
+    role: "Shopify → Notion P&L automation",
+    project: "Shopify to Notion – Automated P&L Reporting",
+    projectSlug: "shopify-to-notion-pnl-automation",
     category: ["automation"],
     platform: "Fiverr",
     rating: 5,
@@ -410,7 +444,72 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     repeatClient: true,
   },
 
-  // ---- Project-linked testimonials (collected directly, not from the marketplace proof library) ----
+  {
+    id: "sam-skill-x-swap-launch",
+    quote:
+      "Another perfect delivery from Omer - thanks so much. My app is now ready for launching thanks to his expertise. Timely, bug free, excellent communication at all times & always willing to go above and beyond. I wouldn't use anyone else.",
+    author: "Sam",
+    role: "Founder, Skill x Swap",
+    project: "Skill x Swap",
+    projectSlug: "skill-x-swap-mvp",
+    category: ["build", "technical"],
+    platform: "Fiverr",
+    rating: 5,
+    repeatClient: true,
+  },
+  {
+    id: "alan-learning-platform-second",
+    quote:
+      "This is my second time working with Zia, and the experience has been very smooth. Zia is fast, understanding, and a lot of fun to work with. He delivered on his promises, and we've established a very good connection that I hope will continue long-term.",
+    author: "Alan Ayoubi",
+    role: "Learning Platform SaaS",
+    project: "Learning Platform SaaS",
+    projectSlug: "learning-platform-saas-stabilization",
+    category: ["rescue", "longterm"],
+    platform: "Upwork",
+    rating: 5,
+    repeatClient: true,
+  },
+  {
+    id: "founder-knipsr-support",
+    quote:
+      "Once again it was a real pleasure working with Omer! He goes above and beyond to make every wished additional detail or feature come to live better than expected! Even after completion he is genuinely interested in how everything works out and helps regarding questions, bugs, etc",
+    author: "Founder",
+    role: "Knipsr",
+    project: "Knipsr",
+    projectSlug: "knipsr-event-media-saas",
+    category: ["build", "longterm"],
+    platform: "Fiverr",
+    rating: 5,
+    repeatClient: true,
+  },
+  {
+    id: "reema-lifetime",
+    quote:
+      "This is a dynamic team of professionals that are talented and integral. They understand the coding and development space with fluency and may have a greater understanding of your needs than yourself. I am a lifetime client of Omer, Zia with appreciation for Saad",
+    author: "Reema",
+    role: "Repeat client, multiple projects",
+    category: ["longterm", "technical"],
+    platform: "Fiverr",
+    rating: 5,
+    repeatClient: true,
+  },
+  {
+    id: "reema-multiple-projects",
+    quote:
+      "I have been working with this team on multiple projects. Their ability to make your vision a reality with the right technical systems and supports is unmatched in this industry. It's a one stop shop for all your development needs",
+    author: "Reema",
+    role: "Repeat client, multiple projects",
+    category: ["longterm"],
+    platform: "Fiverr",
+    rating: 5,
+    repeatClient: true,
+  },
+
+  // ---- Collected directly ----
+  // These were shared with us by the client (message/email) and are not in the marketplace proof
+  // library. They are shown without a platform badge or rating. If the founders produce the original
+  // message, the entry gains a `platform` and moves up. Until then, no badge.
   {
     id: "kelly-andrews-ifyify",
     quote:
@@ -420,8 +519,7 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     project: "Ifyify — AI-Powered Personal Branding Tool",
     projectSlug: "ifyify-ai-personal-branding",
     category: ["build", "technical"],
-    platform: "Fiverr",
-    rating: 5,
+    source: "collected-directly",
   },
   {
     id: "jenny-hjelpna",
@@ -432,8 +530,7 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     project: "Handyman Marketplace PWA",
     projectSlug: "hjelpna-handyman-marketplace",
     category: ["build", "technical"],
-    platform: "Fiverr",
-    rating: 5,
+    source: "collected-directly",
   },
   {
     id: "imane-utility-bill",
@@ -444,8 +541,7 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     project: "AI-Powered Bill Analysis MVP",
     projectSlug: "utility-bill-deal-finder",
     category: ["build"],
-    platform: "Fiverr",
-    rating: 5,
+    source: "collected-directly",
   },
   {
     id: "bharat-bondfire",
@@ -456,8 +552,7 @@ export const TESTIMONIALS: TestimonialEntry[] = [
     project: "Event Booking App Stabilization",
     projectSlug: "bondfire-event-booking-app",
     category: ["rescue"],
-    platform: "Fiverr",
-    rating: 5,
+    source: "collected-directly",
   },
 ];
 
@@ -465,7 +560,13 @@ export const getFeaturedTestimonials = () =>
   TESTIMONIALS.filter((t) => t.featured);
 
 export const getTestimonialLibrary = () =>
-  TESTIMONIALS.filter((t) => !t.featured);
+  TESTIMONIALS.filter((t) => !t.featured && t.source !== "collected-directly");
+
+/** Quotes shared with us directly (no platform record). Rendered in their own group, never with a badge. */
+export const getCollectedDirectly = () =>
+  TESTIMONIALS.filter((t) => t.source === "collected-directly");
+
+export const getTestimonialById = (id: string) => TESTIMONIALS.find((t) => t.id === id);
 
 export const getAllTestimonials = () => TESTIMONIALS;
 

@@ -40,3 +40,12 @@ Verified 2026-10-19/20 (Phase 1 — Truth & Measurement). Owner of changes: foun
 - "5.0 on Trustpilot" (displays 4.0 with 3 reviews).
 - Any company-wide "100% Job Success" or "Top Rated" (individual Upwork credentials of Zia).
 - "All reviews five-star" (one 4.3 exists).
+
+## Case-study archive rule (2026-11-06)
+
+- The public archive lists **client work only**. Entries with `listed: false` in `src/data/projects.ts` (internal demo, internal ops stack, an unbuilt plan, two client-less automation patterns) stay in data so old URLs resolve, but are excluded from listings, counts, filters and homepage pickers, and are `searchIndexable: false`.
+- Listed cases after this change: **15** (14 retained + First North Peptides, added from the approved Clutch/Trustpilot/Google record). `FACTS.counts.caseStudiesPublished` should be read as `listedProjects.length`.
+- A project page may quote a client only from (a) a platform review in the proof library, shown with its platform, or (b) a message the client sent us, shown with the label "Shared with us directly" and no badge or stars. No anonymous "Product Team" or self-authored quotes.
+- Film attributions carry only what the transcript or proof library supports: Reema Rafay (repeat client; username corroborates surname), Krystof (no surname/company on record), Sarah (Hinterland Co, per her film), Josh Nyce (Fast Track USA, approved).
+- Numbers removed because no record supports them: Forlag "-80% manual reporting time"; Skill x Swap "6 weeks" (record: two engagements, 10 + 7 days). FSR "roughly 60%" still appears in `src/data/faqs/service-automation.ts` and must go there too.
+- Pre-company work (2024) is labelled "2024 · pre-Zumetrix" and described as the founders' freelance work; the company was formed June 2025.

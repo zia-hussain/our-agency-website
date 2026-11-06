@@ -1,12 +1,12 @@
-# What We Learned Building 50+ Projects for Founders
+# What We Learned Building 60+ Projects for Founders
 
 **By Zia Hussain & Omer Gillani · December 2024 · 12 min read**
 
 ---
 
-Three years ago, we started taking freelance projects on Upwork. We were decent developers, optimistic about our skills, and completely unprepared for what founders actually need.
+Before Zumetrix Labs existed, the two of us took freelance projects on Upwork and Fiverr. We were decent developers, optimistic about our skills, and completely unprepared for what founders actually need.
 
-We've now delivered 50+ projects. Some raised funding. Some didn't. Some are still running. Some are dead. In our experience the difference wasn't the code—it was everything that happened before we wrote a single line.
+Between that freelance work and the studio we formed in June 2025, we have now delivered 60+ projects. Some raised funding. Some didn't. Some are still running. Some are dead. In our experience the difference wasn't the code—it was everything that happened before we wrote a single line.
 
 This is what we learned.
 
@@ -132,7 +132,7 @@ The founders thought "finished" meant "done forever." It doesn't. Software rots.
 
 ## Clarity matters more than skill
 
-We're better developers now than we were three years ago. But what changed our work most was learning to spot unclear projects early and either fix the clarity or walk away.
+We're better developers now than we were when we started. But what changed our work most was learning to spot unclear projects early and either fix the clarity or walk away.
 
 The pattern as we see it:
 - Vague problem → vague requirements → vague product → failed launch
@@ -148,7 +148,7 @@ If they can't answer all three clearly, the project isn't ready.
 
 ---
 
-## What we'd tell ourselves three years ago
+## What we'd tell ourselves at the start
 
 1. **Ask harder questions upfront.** Saying yes to everyone is not being helpful. It's being lazy.
 

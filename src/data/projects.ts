@@ -53,6 +53,19 @@ export interface Project {
   // "client-approved" or "verified" — see the Phase 1 delta report for the
   // full per-project reasoning.
   searchIndexable: boolean;
+  // false = kept in data (detail route still resolves) but removed from the
+  // public archive, counts and homepage pickers: internal/demo work, unbuilt
+  // plans and client-less patterns don't belong in a list of client cases.
+  listed?: boolean;
+  // One sentence: what this engagement proves about Zumetrix, stated at the
+  // level the evidence supports. Rendered as its own short section.
+  proves?: string;
+  // The public record behind the case — reviews, films, corroborations —
+  // each at the level the proof library supports. Rendered as a list.
+  evidence?: { label: string; detail?: string; href?: string }[];
+  // "collected-directly" = the quote was sent to us by the client, not posted
+  // on a review platform; the page says so instead of implying a badge.
+  testimonialSource?: "platform" | "collected-directly";
   heroOutcome?: string;
   snapshot?: string;
   proofPoints?: {
@@ -204,8 +217,8 @@ export const projects: Project[] = [
     title: "Ifyify - AI-Powered Personal Branding Tool",
     category: "Web Application",
     type: "saas",
-    description: "A sophisticated React-based AI platform that helps users craft professional bios, taglines, and brand personas using custom-built prompt flows and style selectors.",
-    longDescription: "Ifyify is an AI-powered personal branding platform built with React, TailwindCSS, Supabase, and OpenAI integration. It helps professionals generate bios, taglines, and brand personas through a guided, prompt-based flow. The build included animated style-selector interfaces, a multi-step onboarding experience, OpenAI-driven generation logic, authentication, and a Supabase backend structured for future feature expansion.",
+    description: "An AI bio and tagline generator for professionals, built as a two-week first phase on React, Supabase and OpenAI.",
+    longDescription: "Ifyify turns a few answers about a person into usable bios, taglines and a brand persona. Kelly wanted a first version in front of users in weeks, not a quarter, so the first phase was scoped to exactly that: a guided, multi-step flow, animated style selectors, OpenAI generation logic behind the prompts, authentication, and a Supabase backend shaped so the next phase would not start with a migration. React and Tailwind on the front, Supabase and the OpenAI API behind it.",
     image: "/project_images/Ifyify.jpg",
     gallery: [
       "/project_images/Ifyify.jpg",
@@ -221,25 +234,32 @@ export const projects: Project[] = [
     year: "2025",
     featured: true,
     results: [
-      "Successful MVP launch within 2 weeks timeline",
-      "Seamless AI integration with custom prompt flow system using OpenAI",
-      "Clean, responsive UI with animated style selector components",
-      "Client praised exceptional work ethic and committed to long-term collaboration",
-      "Platform structured for future feature expansion"
+      "Phase 1 live in two weeks, per the project record",
+      "A guided generation flow for bios, taglines and brand personas, running on OpenAI",
+      "Authentication and a Supabase schema structured for the next phase, so phase two adds features instead of rebuilding foundations"
     ],
-    problem: "The client needed a sophisticated AI-powered personal branding tool that could generate professional bios and taglines with custom style selectors, smooth user experience, and scalable architecture for rapid growth.",
-    solution: "We built a complete React-based platform with OpenAI integration, custom prompt engineering flows, beautifully animated style selectors, and robust Supabase backend for user management, authentication, and data storage with real-time capabilities.",
+    problem: "Kelly wanted a tool that turns a few answers about a person into usable bios, taglines and a brand persona — and wanted a first version live in weeks, not a quarter.",
+    solution: "We scoped phase one to the generation flow itself, not a platform: a guided multi-step experience, animated style selectors, prompt logic written against OpenAI, authentication, and a Supabase backend set up for the features that would come later. Two weeks from brief to live.",
     testimonial: {
       quote: "Zumetrix Labs delivered exactly what we envisioned and more. The AI integration is seamless, the user experience is fantastic, and the code quality is exceptional. Looking forward to Phase 2 expansion!",
       author: "Kelly Andrews",
       role: "Founder, Best Business Services"
     },
+    testimonialSource: "collected-directly",
+    caseStudy: {
+      decisions: [
+        { title: "Ship the flow, not the platform", description: "Everything that was not the guided generation flow — team features, billing, analytics — was left out of phase one on purpose. A two-week first version only works when the scope is one job done well." }
+      ],
+    },
+    proves: "That a first version can be small, specific and live in two weeks when the scope is one flow done properly, with a backend that does not have to be thrown away for phase two.",
+    evidence: [
+      { label: "Client's note, shared with us directly", detail: "Not a platform review; shown without a badge." }
+    ],
     liveLink: "",
     stack: ["React", "TypeScript", "TailwindCSS", "Supabase", "OpenAI API", "Vercel"],
     services: ["SaaS Development", "AI Integration", "UI/UX Design", "Database Design", "Authentication"],
     kpis: [
-      { label: "Phase 1 Duration", value: "2 weeks", description: "From concept to live MVP, per the project record" },
-      { label: "Client Feedback", value: "Positive", description: "Client-reported: \"delivered exactly what we envisioned and more\"" }
+      { label: "Phase 1 duration", value: "2 weeks", description: "From brief to live first version, per the project record" }
     ],
     relatedReading: [
       {
@@ -258,8 +278,8 @@ export const projects: Project[] = [
   title: "Forlag – Publishing Sales & Inventory Analytics Dashboard",
   category: "Web Application",
   type: "saas",
-  description: "An end-to-end analytics dashboard for a Norwegian publishing company, turning raw CSV files into live sales, inventory, and customer insights.",
-  longDescription: "Forlag is a data-driven analytics platform built specifically for a Norwegian publishing company that needed clarity across sales, inventory, and customer performance. Phase 1 shipped as a fully frontend-powered dashboard that reads Sales and Inventory CSV/XLSX files, computes KPIs on the fly, and stores structured aggregates in localStorage for instant load times. Phase 2 replaced that with a real backend — Node.js, PostgreSQL, and Supabase — and added a fully automated ingestion pipeline: incoming files land on the client's SMTP server, a GitHub Actions workflow picks them up, and the pipeline parses and inserts the data straight into the dashboard with no manual upload step at all. The UI features a modern glass-style layout, responsive grid-based KPIs, Nivo-powered charts, and carefully tuned performance to handle thousands of records. From MTD/YTD comparisons to inventory valuation and dead-stock detection, Forlag gives executives a clear, reliable, and beautiful way to understand their business at a glance — now updating itself.",
+  description: "A sales and inventory dashboard for a Norwegian publisher, built in two phases: first from spreadsheet exports, then on a real backend that ingests new files on its own.",
+  longDescription: "Forlag ran sales and inventory out of spreadsheets and manual calculations, which made month-to-date and year-to-date comparisons, inventory risk and customer behaviour hard to see at once. Phase one shipped a React dashboard that reads the sales and inventory CSV/XLSX exports, normalises dates, computes the KPIs on the fly and keeps processed aggregates in the browser for instant loads — about five weeks of work per the project record. Phase two replaced that foundation with Node.js, PostgreSQL and Supabase and removed the manual upload step entirely: incoming files land on the client's SMTP server, a GitHub Actions workflow picks them up, and the pipeline parses and inserts the data straight into the dashboard. MTD/YTD comparisons with correct same-period logic, a seven-KPI inventory view with dead-stock detection, Nivo charts, and performance that stays smooth past 30,000 order rows.",
   image: "/project_images/forlag.jpg",
   gallery: [
     "/project_images/forlag.jpg"
@@ -269,30 +289,39 @@ export const projects: Project[] = [
     "GitHub Actions", "Nivo Charts", "Data Visualization", "Responsive UI"
   ],
   client: {
-    name: "Harald & Eivind – Forlag (Publishing Company)",
+    name: "Harald – Forlag (publishing company)",
     country: "Norway",
     industry: "Publishing & Book Sales"
   },
-  duration: "6–8 weeks (Phased)",
+  duration: "Two phases · phase one about five weeks (per the Fiverr record)",
   team: "Zumetrix Labs Team",
   year: "2025",
   featured: true,
   homepageFeatured: true,
   results: [
-    "Replaced fragile Excel workflows with a visual, always-up-to-date dashboard.",
-    "Implemented MTD/YTD comparisons with correct same-period logic across years.",
-    "Designed a 7-KPI inventory overview including stock value, dead stock, and category breakdown.",
-    "Phase 2: rebuilt on a real Node.js + PostgreSQL + Supabase backend, replacing the original localStorage-only architecture.",
-    "Phase 2: fully automated data ingestion — a GitHub Actions workflow watches the client's SMTP server and inserts incoming files straight into the dashboard with zero manual upload.",
-    "Achieved fast performance even with 30,000+ order rows."
-  ],
-  problem: "The client managed sales and inventory through multiple spreadsheets and manual calculations, making it difficult to understand MTD/YTD performance, inventory risk, and customer behavior across different channels and time periods.",
-  solution: "Phase 1 was a modular React dashboard that ingested raw CSV/XLSX files, normalized dates, aggregated metrics per page, and stored processed data in localStorage. Phase 2 replaced that foundation with a real backend — Node.js, PostgreSQL, and Supabase — and added a GitHub Actions pipeline that watches the client's SMTP server for incoming files and inserts them directly into the dashboard, end to end, with no manual step left in the workflow.",
+      "Replaced spreadsheet workflows with one dashboard the business reads every day",
+      "Month-to-date and year-to-date comparisons with correct same-period logic across years",
+      "A seven-KPI inventory view: stock value, dead stock, category breakdown and year-to-date sold",
+      "Phase two: a Node.js + PostgreSQL + Supabase backend replaced the browser-only first version",
+      "Phase two: new files are ingested automatically from the client's SMTP server via GitHub Actions — no manual upload step remains",
+      "Smooth performance at 30,000+ order rows"
+    ],
+  problem: "Sales and inventory lived in several spreadsheets and manual calculations. Month-to-date and year-to-date performance, inventory risk and customer behaviour across channels could only be understood by someone willing to rebuild the numbers by hand.",
+  solution: "Phase one: a modular React dashboard that ingests the raw CSV/XLSX exports, normalises dates, aggregates per page and keeps processed data in the browser. Phase two: a real backend on Node.js, PostgreSQL and Supabase, plus a GitHub Actions pipeline that watches the client's SMTP server for incoming files and inserts them directly — the manual step is gone.",
   testimonial: {
     quote: "He built a beautiful sales- and inventory dashboard for me over a month, and went out of his way to make it just as I wanted it. He worked around the clock, and we had meetings whenever it was nescessary.",
     author: "Harald",
     role: "Co-owner, Forlag"
   },
+  caseStudy: {
+    decisions: [
+      { title: "Start in the browser, earn the backend", description: "Phase one deliberately had no server: reading the exports client-side got a usable dashboard in front of the business in weeks. Once it was clear the dashboard was being used daily, the backend and automated ingestion were worth building." }
+    ],
+  },
+  proves: "That operational software for a non-technical business can start small and still grow into a system that updates itself — and that we will build the second phase on top of the first rather than rewriting it.",
+  evidence: [
+    { label: "Harald's Fiverr review", detail: "Rated 4.3 — the one non-five-star review in our record, published here as written." }
+  ],
   liveLink: "",
   stack: [
     "React", "TypeScript", "TailwindCSS", "Nivo", "Vite",
@@ -307,27 +336,10 @@ export const projects: Project[] = [
     "CSV/XLSX Processing"
   ],
   kpis: [
-    {
-      label: "Rows Handled",
-      value: "30,000+",
-      description: "Smooth performance with thousands of orders and products"
-    },
-    {
-      label: "Manual Reporting Time",
-      value: "-80%",
-      description: "Reduction in manual Excel calculations and analysis"
-    },
-    {
-      label: "Data Ingestion",
-      value: "Fully Automated",
-      description: "GitHub Actions watches the client's SMTP server and inserts incoming files straight into the dashboard — no manual upload step"
-    },
-    {
-      label: "Inventory Visibility",
-      value: "Real-time",
-      description: "Dead stock, stock value, and YTD sold always visible"
-    }
-  ]
+      { label: "Rows handled", value: "30,000+", description: "Orders and products, with the dashboard still loading quickly" },
+      { label: "Data ingestion", value: "Automatic", description: "GitHub Actions watches the client's SMTP server and inserts incoming files — no upload step" },
+      { label: "Inventory visibility", value: "Always current", description: "Dead stock, stock value and year-to-date sold in one view" }
+    ]
 },
 
 // 8. Floating Stone Ranch – Processor Intake & Logistics Engine
@@ -339,8 +351,8 @@ export const projects: Project[] = [
   title: "Floating Stone Ranch – Processor Intake & Logistics Automation",
   category: "Enterprise Solution",
   type: "enterprise",
-  description: "An Airtable + Make.com powered intake and logistics engine for a beef processor, handling carcass tracking, boxing, and shipping flows.",
-  longDescription: "Floating Stone Ranch needed a robust system to manage beef processing logistics—from carcass intake to boxing, lot tracking, and shipping documentation. We designed an Airtable base that acts as the single source of truth for all cattle, carcasses, boxes, and shipments. On top of that, we built Make.com scenarios that automate status changes, generate Bill of Lading structures, and connect different tables via stable relationships. The system transforms manual, error-prone workflows into a streamlined digital process where each carcass, box, and shipment is traceable with clear data relationships and reporting capabilities.",
+  description: "An Airtable and Make.com system for a Canadian beef processor: carcass intake, boxing, lot tracking and shipping documentation in one place, with the status changes automated.",
+  longDescription: "Floating Stone Ranch processes beef and needed one system for the whole chain: carcass intake, cutting, boxing, lot tracking and shipping paperwork. We designed an Airtable base as the single source of truth for animals, carcasses, boxes, lots and shipments, then built Make.com scenarios on top to drive status transitions, generate Bill of Lading structures and keep the tables consistent as records move through the plant. The result is a digital process in which every carcass, box and shipment is traceable from intake to delivery. The engagement has run for eight months and is still active per the Fiverr record.",
   image: "/project_images/floating-stone.jpg",
   gallery: [
     "/project_images/floating-stone.jpg"
@@ -350,29 +362,38 @@ export const projects: Project[] = [
     "Logistics", "Bill of Lading", "No-Code", "Enterprise Workflow"
   ],
   client: {
-    name: "Floating Stone Ranch / Highland Beef Systems",
+    name: "Floating Stone Ranch",
     country: "Canada",
     industry: "Beef Processing & Logistics"
   },
-  duration: "4–6 weeks (Phase 1 Engine)",
+  duration: "Phase one engine 4–6 weeks · engagement ongoing (8 months per the record)",
   team: "Zumetrix Labs Team",
   year: "2025",
   featured: true,
   homepageFeatured: true,
   results: [
-    "Centralized carcass, box, and shipment data into a single Airtable base.",
-    "Replaced manual spreadsheets and papers with structured digital records.",
-    "Automated key status transitions via Make.com scenarios.",
-    "Prepared a scalable structure for advanced reporting and future modules.",
-    "Created a strong foundation for future processor, customer, and box-level analytics."
-  ],
-  problem: "The client had complex beef processing flows involving carcass intake, cutting, boxing, and shipping, but no centralized digital system that could reliably track each step, generate manifests, and support future analytics.",
-  solution: "We designed a normalized Airtable schema covering animals, carcasses, boxes, lots, and shipments, and layered Make.com automation scenarios on top to drive the workflow. These scenarios handle triggers, status changes, and cross-table updates, ensuring every carcass and box remains traceable from intake to final shipment, with Bill of Lading data generated automatically.",
+      "Carcass, box, lot and shipment data in one Airtable base instead of paper and spreadsheets",
+      "Key status transitions and Bill of Lading structures generated by Make.com scenarios",
+      "Every carcass and box traceable from intake to shipment",
+      "A structure built to add processors, customers and reporting without redesign",
+      "Still an active engagement eight months in, per the Fiverr record"
+    ],
+  problem: "The processing flow — intake, cutting, boxing, shipping — ran on paper and spreadsheets. Nothing tracked each step reliably, manifests were manual, and there was no base to build reporting on.",
+  solution: "We mapped the operation first, then modelled it: a normalised Airtable schema for animals, carcasses, boxes, lots and shipments, with Make.com scenarios handling triggers, status changes and cross-table updates so the records stay consistent and the Bill of Lading data is generated rather than typed.",
   testimonial: {
     quote: "The team understood the complexity of my industry and of the project quickly and were flexible with the scope as we all learned to deal with new solutions on the fly. I will continue to use this team.",
     author: "James",
     role: "Owner, Floating Stone Ranch"
   },
+  caseStudy: {
+    decisions: [
+      { title: "Model the operation before automating it", description: "The temptation with a paper process is to automate the first painful step. We spent the first stretch getting the data model right — what a lot is, what a box belongs to, when a shipment is real — because every scenario built afterwards depends on it." }
+    ],
+  },
+  proves: "That we can take an operation we had never seen before, learn it fast enough to model it correctly, and leave behind a system the business keeps extending with us eight months later.",
+  evidence: [
+    { label: "James's Fiverr review", detail: "Five stars; repeat client; the record shows an eight-month working relationship." }
+  ],
   liveLink: "",
   stack: [
     "Airtable", "Make.com", "Webhook Triggers", "REST APIs"
@@ -384,22 +405,10 @@ export const projects: Project[] = [
     "Data Modeling"
   ],
   kpis: [
-    {
-      label: "Data Centralization",
-      value: "100%",
-      description: "All carcass, box, and shipment data stored in one base"
-    },
-    {
-      label: "Automation Layer",
-      value: "Make.com",
-      description: "Key status transitions run through Make.com scenarios"
-    },
-    {
-      label: "Scalability",
-      value: "Multi-processor",
-      description: "Structure ready for multiple plants and customers"
-    }
-  ]
+      { label: "Source of truth", value: "One base", description: "All carcass, box and shipment records in a single Airtable base" },
+      { label: "Automation layer", value: "Make.com", description: "Status transitions and manifests run through scenarios, not people" },
+      { label: "Built for", value: "Multiple plants", description: "Schema designed for more processors and customers without redesign" }
+    ]
 },
 
 // 9. Skill x Swap – Skill Trading Marketplace MVP
@@ -411,8 +420,8 @@ export const projects: Project[] = [
   title: "Skill x Swap – Credit-Based Skill Trading Marketplace (MVP)",
   category: "Mobile Application",
   type: "mvp",
-  description: "A React Native MVP that lets users trade skills using a monthly credit system and earned swap credits, powered by Firebase and Stripe-ready architecture.",
-  longDescription: "Skill x Swap is a modern skill trading marketplace where users can offer their skills and request others' skills using a credit-based system. We built the MVP using React Native and Firebase, with a clean onboarding flow, Core vs Lite Pro user tiers, and a monthly credit allowance system. The platform also supports earned credits that accumulate as users successfully complete swaps. The app includes skills you offer and skills you want, a matchmaking flow, sending swap requests, and managing pending requests. The architecture is designed to plug in Stripe for subscription-based Pro accounts and an enterprise edition in future phases.",
+  description: "A React Native marketplace where people trade skills for credits, built to a launch-ready first version across two engagements.",
+  longDescription: "Skill x Swap lets people offer the skills they have and request the skills they want, using a monthly credit allowance plus credits earned by completing swaps. We built the first version in React Native with Firebase behind it: onboarding, Core and Lite Pro tiers, separate lists for skills offered and skills wanted, matching, swap requests and pending-request management, and the credit logic that keeps monthly and earned credits distinct. The architecture was left ready for Stripe subscriptions and an enterprise edition in later phases. Sam's second review on Fiverr says it plainly: the app was ready to launch.",
   image: "/project_images/skillxswap.jpg",
   gallery: [
     "/project_images/skillxswap.jpg"
@@ -426,24 +435,35 @@ export const projects: Project[] = [
     country: "United Kingdom",
     industry: "EdTech & Skill Sharing"
   },
-  duration: "6 weeks (MVP Phase 1)",
+  duration: "Two engagements (10 days and 7 days, per the Fiverr record)",
   team: "Zumetrix Labs Team",
   year: "2025",
   featured: true,
   homepageFeatured: true,
   results: [
-    "Completed a full-featured MVP including onboarding, skill management, and swap flows.",
-    "Implemented monthly credit allowances and persistent earned credits logic.",
-    "Designed dynamic skill lists where users can add missing skills to a global collection.",
-    "Prepared architecture for Stripe subscriptions and enterprise org accounts in future phases."
-  ],
-  problem: "The founder needed a clean, intuitive skill trading app that could handle different user tiers, monthly credit limits, and earned credits from completed swaps, while staying simple enough for a first MVP.",
-  solution: "We implemented a React Native app backed by Firebase, with clear user onboarding, separated \"Skills I Offer\" and \"Skills I Want\" lists, a credit-aware swap request system, and proper differentiation between monthly allowance credits and earned credits. The system was architected for future Stripe integration and an enterprise white-label edition.",
+      "A complete first version: onboarding, skill lists, matching, swap requests and pending-request management",
+      "Monthly credit allowances and persistent earned credits, kept separate in the data model",
+      "Dynamic skill lists where users add missing skills to a shared collection",
+      "Architecture ready for Stripe subscriptions and an enterprise edition",
+      "Launch-ready on delivery of the second engagement — \"My app is now ready for launching\", per Sam"
+    ],
+  problem: "Sam needed a skill-trading app that could handle user tiers, monthly credit limits and credits earned from completed swaps — and needed it simple enough to ship as a first version rather than a platform.",
+  solution: "A React Native app on Firebase with clear onboarding, separate \"skills I offer\" and \"skills I want\" lists, a credit-aware swap request system, and a data model that keeps allowance credits and earned credits apart. Built so Stripe and an enterprise white-label edition can be added without reworking the core.",
   testimonial: {
     quote: "I'd recommend absolutely everyone to work with Omer. From my first outreach with him, he understood my requirements exactly. Even better than I did! He communicates clearly, timely and is genuinely exceptional. I wouldn't have been able to launch my startup without his expertise in app building and development. 100% will use Omer every time I need help. Super great guy through and through!",
     author: "Sam",
     role: "Founder, Skill x Swap"
   },
+  caseStudy: {
+    decisions: [
+      { title: "Keep the credit model honest before making it clever", description: "Monthly allowance and earned credits had to be separate from day one; blending them would have made the launch simpler and the second month a mess." }
+    ],
+  },
+  proves: "That a two-sided mobile marketplace can reach launch as a first version when the credit model is designed properly and the feature list is held to what a first launch needs.",
+  evidence: [
+    { label: "Sam's first Fiverr review", detail: "\"I wouldn't have been able to launch my startup without his expertise.\" Five stars." },
+    { label: "Sam's second Fiverr review", detail: "\"My app is now ready for launching thanks to his expertise. Timely, bug free.\" Five stars." }
+  ],
   liveLink: "",
   stack: [
     "React Native", "Expo", "Firebase Auth", "Cloud Firestore"
@@ -455,17 +475,9 @@ export const projects: Project[] = [
     "Database Design"
   ],
   kpis: [
-    {
-      label: "MVP Timeline",
-      value: "6 weeks",
-      description: "From requirements clarification to testable build"
-    },
-    {
-      label: "Core Features",
-      value: "Credits, Matching, Requests",
-      description: "All core marketplace flows in V1"
-    }
-  ],
+      { label: "Core flows in V1", value: "Credits · Matching · Requests", description: "Every marketplace flow a first launch needs" },
+      { label: "Delivered in", value: "Two engagements", description: "Both reviewed five stars on Fiverr; the second confirms launch readiness" }
+    ],
   relatedReading: [
     {
       href: "/articles/mobile-app-development-flutter-react-native",
@@ -484,8 +496,8 @@ export const projects: Project[] = [
   title: "Tomo – Voice-First AI Companion App",
   category: "Mobile Application",
   type: "mobile",
-  description: "A voice-first AI companion built with React Native and voice SDKs, delivering smooth, real-time conversations in a premium UI.",
-  longDescription: "Tomo is a voice-first AI companion designed to feel like a friendly assistant you can just talk to. We built the mobile app using React Native and a voice SDK, focusing on low-latency request handling, clean audio pipeline management, and a beautifully minimal UI that fits the brand. The app maintains conversation state, handles streaming responses, and gives users a natural voice experience with subtle animations and gradients to keep the interface feeling alive.",
+  description: "A voice-first AI companion app in React Native: low-latency audio, streaming responses and an interface built to feel calm rather than busy.",
+  longDescription: "Tomo is meant to be talked to, not typed at. We built the mobile app in React Native with a voice SDK, keeping request latency low, managing the audio pipeline cleanly, holding conversation state and rendering streaming responses — with a deliberately minimal interface, subtle motion and gradients so the product feels alive without feeling noisy. The codebase is structured for the multi-modal features and agents the team plans next.",
   image: "/project_images/tomo.jpg",
   gallery: [
     "/project_images/tomo.jpg"
@@ -504,17 +516,12 @@ export const projects: Project[] = [
   year: "2025",
   featured: true,
   results: [
-    "Established a stable voice interaction loop with minimal latency.",
-    "Created a premium, brand-aligned interface with gradients and motion.",
-    "Structured the codebase for future multi-modal features and agents."
-  ],
-  problem: "The client needed a mobile-first experience for voice interactions with their AI models, including a high-quality UI, low-latency pipelines, and scalable architecture for future features.",
-  solution: "We built a React Native app integrating a voice SDK and AI backend APIs, architected audio streaming and response rendering carefully, and designed a UI that feels like a premium AI companion product rather than a simple chat app.",
-  testimonial: {
-    quote: "The mobile experience feels polished and on-brand. The voice flow is smooth, and the app feels like something we can confidently show users.",
-    author: "Product Team",
-    role: "Tomo"
-  },
+      "A stable voice interaction loop with low latency on real devices",
+      "A brand-aligned interface: minimal, with motion that signals state instead of decorating it",
+      "A codebase structured for multi-modal features and agents in later phases"
+    ],
+  problem: "The team needed a mobile-first way for people to talk to their AI models: a quality interface, low-latency audio and an architecture that would carry features they had not built yet.",
+  solution: "A React Native app integrating a voice SDK and the team's AI backend, with audio streaming and response rendering designed carefully, and an interface that reads as a companion product rather than a chat window.",
   liveLink: "",
   stack: [
     "React Native", "Expo", "Voice SDK", "AI APIs"
@@ -525,11 +532,11 @@ export const projects: Project[] = [
     "UI Implementation"
   ],
   kpis: [
-    {
-      label: "Mode",
-      value: "Voice-first",
-      description: "Core flows optimized for speaking, not just typing"
-    }
+      { label: "Mode", value: "Voice-first", description: "Core flows designed for speaking, not typing" }
+    ],
+  proves: "That we build mobile products where the hard part is the audio and state pipeline, not the screens — and ship an interface restrained enough to let that work show.",
+  evidence: [
+    { label: "No public review is attached to this engagement", detail: "We only quote clients from a review they published or a message they sent us; neither exists for this build yet." }
   ],
   relatedReading: [
     {
@@ -549,8 +556,8 @@ export const projects: Project[] = [
   title: "HjelpNå – Handyman Marketplace PWA",
   category: "Web Application",
   type: "mvp",
-  description: "A Bubble.io-based PWA marketplace for local handyman services in Norway, including job posting, bidding, subscriptions, and chat.",
-  longDescription: "HjelpNå is a Norwegian handyman marketplace similar to local service platforms like Minsmåjobb and TaskRabbit, built using Bubble.io as a Progressive Web App. The platform allows homeowners to post jobs, receive bids from service providers, and choose between standard and instant-help flows. It includes provider subscription tiers, Stripe-based escrow payments, real-time chat between clients and providers, and geo-targeting filters for relevant matches. We supported architecture recommendations, data structure design, and best-practice setup for scaling the PWA.",
+  description: "Architecture and feature design for a Norwegian handyman marketplace on Bubble: job posting, bidding, subscriptions, escrow payments and chat, structured to scale without a rewrite.",
+  longDescription: "HjelpNå is a Norwegian marketplace for local handyman work — homeowners post jobs, providers bid, and there is an instant-help path for urgent work — built as a progressive web app on Bubble. Jenny came to us for the thinking, not only the clicking: how to structure the data for jobs, bids, users and subscription tiers, how to design the posting, bidding and matching flows, and how to set up Stripe escrow, chat and geo-targeting so the product could grow without rebuilding its core. Our role was architecture, data design and best-practice setup, with ongoing feature collaboration.",
   image: "/project_images/helpna.jpg",
   gallery: [
     "/project_images/helpna.jpg"
@@ -568,17 +575,27 @@ export const projects: Project[] = [
   year: "2025",
   featured: false,
   results: [
-    "Defined a maintainable Bubble data architecture for jobs, bids, users, and subscriptions.",
-    "Implemented flows for job posting, provider bidding, and instant help.",
-    "Advised on Stripe escrow, notifications, and PWA behavior for mobile and desktop."
-  ],
-  problem: "The founder wanted to build a full handyman marketplace on Bubble but needed strong guidance on data structure, feature design, and clean UX to avoid typical no-code chaos.",
-  solution: "We helped shape the core data models in Bubble, structured the job posting, bidding, and matching flows, and advised on Stripe integration, chat, and geo-targeting so the product can scale without rewriting the core.",
+      "A maintainable Bubble data architecture for jobs, bids, users and subscriptions",
+      "Job posting, provider bidding and instant-help flows implemented on that structure",
+      "Stripe escrow, notifications and PWA behaviour designed for both mobile and desktop"
+    ],
+  problem: "Jenny wanted to build a full marketplace on Bubble and knew the risk: no-code products that grow without a data model turn into something nobody can change safely.",
+  solution: "We shaped the core data models in Bubble, structured the job, bid and matching flows, and advised on Stripe escrow, chat and geo-targeting — so the product could scale without rewriting the core.",
   testimonial: {
     quote: "Your Bubble knowledge and system thinking saved me from so many future problems. The marketplace now feels robust instead of hacked together.",
     author: "Jenny",
     role: "Founder, HjelpNå"
   },
+  testimonialSource: "collected-directly",
+  caseStudy: {
+    decisions: [
+      { title: "Design the data model before the screens", description: "On Bubble it is easy to build the first screen in an afternoon and impossible to fix the data model a year later. The first work was the schema." }
+    ],
+  },
+  proves: "That no-code is a platform choice, not a shortcut — and that the architecture judgment matters more on Bubble, not less.",
+  evidence: [
+    { label: "Jenny's note, shared with us directly", detail: "Not a platform review; shown without a badge." }
+  ],
   liveLink: "",
   stack: [
     "Bubble.io", "Stripe", "PWA", "Responsive Design"
@@ -589,12 +606,8 @@ export const projects: Project[] = [
     "Workflow Design"
   ],
   kpis: [
-    {
-      label: "Platform Type",
-      value: "PWA",
-      description: "Single codebase for mobile and desktop"
-    }
-  ]
+      { label: "Platform", value: "PWA on Bubble", description: "One codebase for mobile and desktop" }
+    ]
 },
 
 // 12. Utility Bill Deal Finder – AI OCR MVP
@@ -602,7 +615,8 @@ export const projects: Project[] = [
   id: 12,
   slug: "utility-bill-deal-finder",
   primaryService: "saas-mvp-development",
-  searchIndexable: true,
+  searchIndexable: false,
+  listed: false,
   title: "Utility Bill Deal Finder – AI-Powered Bill Analysis MVP",
   category: "Web Application",
   type: "mvp",
@@ -636,6 +650,7 @@ export const projects: Project[] = [
     author: "Imane",
     role: "Co-founder"
   },
+  testimonialSource: "collected-directly",
   liveLink: "",
   stack: [
     "React", "Next.js", "Node.js", "OCR APIs", "AI APIs"
@@ -663,8 +678,8 @@ export const projects: Project[] = [
   title: "PawSpace – Pet Services Marketplace App",
   category: "Mobile Application",
   type: "mobile",
-  description: "A React Native marketplace for pet services, including sitter listings, booking flows, and owner-provider coordination.",
-  longDescription: "PawSpace is a pet services marketplace app built with React Native, providing a clean way for pet owners to find and book sitters, walkers, and other services. The app features provider onboarding, profile creation, service listings, booking management, and a streamlined experience for both owners and providers. The UI focuses on trust, simplicity, and clarity, particularly around availability and booking flows.",
+  description: "A React Native marketplace for pet services — sitter and walker listings, booking and owner–provider coordination — built around the booking journey first.",
+  longDescription: "PawSpace lets pet owners find and book sitters, walkers and other services. We built the React Native app: provider onboarding and profiles, service listings, booking management, and a reusable UI kit for the cards, lists and modal flows both sides use. The interface was designed around trust and clarity — availability and booking states above everything else. This was work the founders did before Zumetrix Labs was formed.",
   image: "/project_images/pawspace.jpg",
   gallery: [
     "/project_images/pawspace.jpg"
@@ -679,20 +694,15 @@ export const projects: Project[] = [
   },
   duration: "Several weeks",
   team: "Lead Mobile Developer",
-  year: "2024",
+  year: "2024 · pre-Zumetrix",
   featured: false,
   results: [
-    "Delivered a polished mobile experience for pet owners and providers.",
-    "Implemented provider onboarding and booking logic.",
-    "Created a reusable UI kit for cards, lists, and modal flows."
-  ],
-  problem: "The client needed a mobile app that could make booking pet services as simple and trustworthy as booking a ride or a room.",
-  solution: "We built a React Native marketplace app with clear flows, robust state handling, and a UI that conveys trust and reliability, focusing on the core booking journey first.",
-  testimonial: {
-    quote: "The app feels intuitive and friendly—it matches exactly how we imagined PawSpace should look and behave.",
-    author: "Product Team",
-    role: "PawSpace"
-  },
+      "Provider onboarding, profiles and service listings",
+      "Booking management for owners and providers, with clear availability states",
+      "A reusable UI kit for cards, lists and modal flows"
+    ],
+  problem: "Booking a pet sitter should feel as simple and as trustworthy as booking a ride or a room. The existing options did not.",
+  solution: "A React Native marketplace with clear flows, careful state handling and an interface that puts availability and booking status first, built around the core booking journey before anything else.",
   liveLink: "",
   stack: [
     "React Native", "Expo", "Firebase"
@@ -707,6 +717,11 @@ export const projects: Project[] = [
       value: "iOS & Android",
       description: "Single codebase via React Native"
     }
+  ],
+  proves: "That we had built two-sided mobile marketplaces before Zumetrix Labs existed, and that the booking journey is where we start.",
+  evidence: [
+    { label: "No public review is attached to this engagement", detail: "We only quote clients from a review they published or a message they sent us; neither exists for this build yet." },
+    { label: "Pre-company work", detail: "Delivered in 2024 as freelance work by the founders; Zumetrix Labs was formed in June 2025." }
   ],
   relatedReading: [
     {
@@ -726,8 +741,8 @@ export const projects: Project[] = [
   title: "Bondfire – Event Booking App Stabilization & Feature Enhancements",
   category: "Mobile Application",
   type: "mobile",
-  description: "React Native app stabilization for an event booking product, including bug fixes, feature updates, and TestFlight deployments.",
-  longDescription: "Bondfire is an event-focused app that needed stability, bug fixes, and feature completion. We worked inside an existing React Native codebase to resolve merge conflicts, fix navigation bugs, improve booking flows, and prepare builds for TestFlight distribution. The project included collaborating with another developer, cleaning up branches, and ensuring successful iOS builds.",
+  description: "A React Native event-booking app that could not get a build out: merge conflicts resolved, navigation bugs fixed, booking flows steadied, TestFlight releases shipping again.",
+  longDescription: "Bondfire had a product and a problem: an existing React Native codebase with build failures, merge conflicts and navigation bugs that were stopping releases. We worked inside the codebase alongside the client's developer — cleaning up branches, resolving conflicts, fixing navigation and booking-flow bugs, and getting iOS builds through to TestFlight. No rewrite; a short engagement to get the team shipping again.",
   image: "/project_images/bondfire.jpg",
   gallery: [
     "/project_images/bondfire.jpg"
@@ -745,17 +760,28 @@ export const projects: Project[] = [
   year: "2025",
   featured: false,
   results: [
-    "Resolved critical issues blocking TestFlight releases.",
-    "Cleaned up Git branches and merge conflicts.",
-    "Improved reliability of booking flows during testing."
-  ],
-  problem: "The client had an event booking app with an unstable codebase, build issues, and merge conflicts that were slowing down progress.",
-  solution: "We stepped into the existing codebase, fixed core issues, stabilized builds, and improved the booking experience, acting as a technical closer to push the project forward.",
+      "The issues blocking TestFlight releases resolved",
+      "Git branches cleaned up and merge conflicts closed out",
+      "Booking flows made reliable through testing",
+      "Handed back to the client's developer with releases moving"
+    ],
+  problem: "An event-booking app with an unstable codebase: build failures, merge conflicts and navigation bugs were slowing the team to a stop.",
+  solution: "We stepped into the existing code, fixed the core issues, stabilised the builds and steadied the booking experience — working with the client's developer rather than around them.",
   testimonial: {
     quote: "You jumped into a messy situation and got us back to shipping. That was exactly what we needed.",
     author: "Bharat",
     role: "Developer, Bondfire"
   },
+  testimonialSource: "collected-directly",
+  caseStudy: {
+    decisions: [
+      { title: "Stabilise, do not rewrite", description: "The codebase was salvageable. The fastest route to shipping was fixing what blocked releases, not starting again." }
+    ],
+  },
+  proves: "That we can take over someone else's React Native codebase mid-flight, work with the existing developer, and get releases moving without a rebuild.",
+  evidence: [
+    { label: "Bharat's note, shared with us directly", detail: "Not a platform review; shown without a badge." }
+  ],
   liveLink: "",
   stack: [
     "React Native", "Expo", "Xcode", "Git"
@@ -791,7 +817,8 @@ export const projects: Project[] = [
   id: 15,
   slug: "hostel-management-system-mern",
   primaryService: "web-application-development",
-  searchIndexable: true,
+  searchIndexable: false,
+  listed: false,
   title: "Hostel Management System – MERN Stack Admin Panel",
   category: "Web Application",
   type: "saas",
@@ -811,7 +838,7 @@ export const projects: Project[] = [
   },
   duration: "2–3 weeks",
   team: "Solo Full Stack Developer",
-  year: "2024",
+  year: "2024 · pre-Zumetrix",
   featured: false,
   results: [
     "Delivered a complete CRUD and dashboard experience for hostel management.",
@@ -819,11 +846,6 @@ export const projects: Project[] = [
   ],
   problem: "There was a need for a structured, real-world style hostel management system that could be used both as a demo and a base for future client work.",
   solution: "We built a clean MERN-based dashboard with clear sections for rooms, bookings, billing, and staff, with a modern UI and scalable backend models.",
-  testimonial: {
-    quote: "This project shows real production thinking—exactly what clients want to see in a dev portfolio.",
-    author: "Internal Review",
-    role: "Zumetrix Labs"
-  },
   liveLink: "",
   stack: [
     "React", "Node.js", "Express", "MongoDB", "TailwindCSS"
@@ -846,7 +868,8 @@ export const projects: Project[] = [
   id: 16,
   slug: "stripe-to-airtable-subscription-sync",
   primaryService: "ai-automation-solutions",
-  searchIndexable: true,
+  searchIndexable: false,
+  listed: false,
   title: "Stripe to Airtable – Subscription Sync Automation",
   category: "Automation System",
   type: "automation",
@@ -866,7 +889,7 @@ export const projects: Project[] = [
   },
   duration: "Few days (per client)",
   team: "Automation Specialist",
-  year: "2024",
+  year: "2024 · pre-Zumetrix",
   featured: false,
   results: [
     "Stripe subscription events (created, updated, canceled) update Airtable records automatically.",
@@ -908,8 +931,8 @@ export const projects: Project[] = [
   title: "Shopify to Notion – Automated P&L Reporting",
   category: "Automation System",
   type: "automation",
-  description: "An automation flow that pushes Shopify order data into Notion to generate near real-time profit and loss views.",
-  longDescription: "For e-commerce clients running on Shopify, we created an automation flow that exports order and revenue data into Notion databases, enabling a living P&L report. The system pulls order details, fees, and key metadata, and maps them into Notion properties where the client can apply formulas, filters, and dashboards. This gives founders a quick, visual handle on performance without having to export CSVs every week.",
+  description: "A Make.com automation that pushes Shopify orders into Notion so a store owner can see profit, loss and inventory without weekly CSV exports.",
+  longDescription: "Allayth runs a Shopify store and was tracking P&L and inventory by exporting CSVs and rebuilding the numbers by hand. We built a Make.com flow that takes each new order — line items, fees and the metadata that matters for margin — and writes it into Notion databases structured so his own formulas, filters and views produce a living P&L and inventory picture. Rules, not AI: an exact mapping problem deserves an exact tool. Delivered in twelve days per the Fiverr record, as freelance work before Zumetrix Labs was formed.",
   image: "/project_images/shopify-to-airtable.jpg",
   gallery: [
     "/project_images/shopify-to-airtable.jpg"
@@ -918,21 +941,36 @@ export const projects: Project[] = [
     "Shopify", "Notion", "Make.com", "Zapier", "Automation", "E-commerce"
   ],
   client: {
-    name: "DTC Brands",
-    country: "Global",
+    name: "Allayth – Shopify store owner",
+    country: "United Kingdom",
     industry: "E-commerce"
   },
-  duration: "Few days",
-  team: "Automation Specialist",
-  year: "2024",
+  duration: "12 days (per the Fiverr record)",
+  team: "Omer (automation)",
+  year: "2024 · pre-Zumetrix",
   featured: false,
   results: [
-    "Turned static CSV exports into a live Notion-based P&L.",
-    "Enabled founders to monitor sales trends with minimal maintenance.",
-    "Replaced manual CSV exports with an automatic sync of new orders."
+      "New Shopify orders land in Notion automatically, with the fields a P&L needs",
+      "A living P&L and inventory view in Notion, driven by the owner's own formulas and filters",
+      "Weekly CSV exports and manual rebuilds eliminated"
+    ],
+  problem: "Allayth wanted to see P&L and inventory in Notion without exporting from Shopify every week and rebuilding the numbers by hand.",
+  solution: "A Make.com scenario that maps each Shopify order into structured Notion databases — orders, line items, fees — so Notion's own formulas can do the P&L work from then on.",
+  testimonial: {
+    quote: "Pleasure working with Syed, went above and beyond. Set up my Shopify > Make.com > Notion automation to track PNL and inventory! Quality work",
+    author: "Allayth",
+    role: "Shopify store owner"
+  },
+  caseStudy: {
+    decisions: [
+      { title: "Rules, not AI", description: "The job was an exact mapping from one schema to another. A deterministic scenario is cheaper, auditable and does not drift; a model would have added cost and risk to a problem that has none." }
+    ],
+  },
+  proves: "That a small, bounded automation — one workflow, built right — removes a weekly chore permanently, and that we pick the plain tool when the problem is plain.",
+  evidence: [
+    { label: "Allayth's Fiverr review", detail: "Five stars; names the exact workflow: \"Shopify > Make.com > Notion automation to track PNL and inventory\"." },
+    { label: "Pre-company work", detail: "Delivered in 2024 as freelance work by the founders; Zumetrix Labs was formed in June 2025." }
   ],
-  problem: "Founders wanted a simple way to see P&L-like views in Notion instead of running complex exports from Shopify every week.",
-  solution: "We connected Shopify to Notion via Make.com/Zapier, mapping relevant order data into carefully structured Notion databases that support formula-driven P&L views.",
   liveLink: "",
   stack: [
     "Shopify", "Notion", "Make.com", "Zapier"
@@ -942,12 +980,9 @@ export const projects: Project[] = [
     "Data Modeling"
   ],
   kpis: [
-    {
-      label: "Update Frequency",
-      value: "Automatic",
-      description: "New orders synced as they come in"
-    }
-  ],
+      { label: "Update frequency", value: "Automatic", description: "Each new order is synced as it arrives" },
+      { label: "Delivered in", value: "12 days", description: "Per the Fiverr record" }
+    ],
   relatedReading: [
     {
       href: "/articles/when-is-ai-automation-the-wrong-choice",
@@ -962,7 +997,8 @@ export const projects: Project[] = [
   id: 18,
   slug: "twilio-auto-dialer-logic",
   primaryService: "ai-automation-solutions",
-  searchIndexable: true,
+  searchIndexable: false,
+  listed: false,
   title: "Twilio Auto Dialer – Sequential Call Logic",
   category: "Automation System",
   type: "automation",
@@ -1017,8 +1053,8 @@ export const projects: Project[] = [
   title: "Twilio Conference Call – Dynamic Participant Management",
   category: "Automation System",
   type: "automation",
-  description: "A Twilio-based conference calling solution that supports adding and removing participants dynamically from React Native apps.",
-  longDescription: "We implemented Twilio conference call logic that allows a call host to add or remove participants from a running call, powered by Twilio Voice and backed by a clean backend API layer. This supports use cases like team calls, support triage, or escalation, especially in mobile apps where call flows need to be managed with minimal friction.",
+  description: "Twilio Voice conference logic for a React Native app: a host adds and removes participants from a live call, backed by a clean Node API.",
+  longDescription: "The client's app needed multi-party calls where a host can add or remove participants without dropping the call — team calls, support triage, escalation. We implemented Twilio conference rooms and a backend API layer in Node to manage participants, and wired it into the existing React Native call state and UI. The client's own words on the hand-off: a backend mess and vague Twilio goals in, a fully functional, structured API out.",
   image: "/project_images/twilio-auto-dialer.jpg",
   gallery: [
     "/project_images/twilio-auto-dialer.jpg"
@@ -1027,8 +1063,8 @@ export const projects: Project[] = [
     "Twilio", "React Native", "Voice", "Node.js", "Conference Calls"
   ],
   client: {
-    name: "Client Using Twilio Voice",
-    country: "Global",
+    name: "Nathan – Twilio Voice integration",
+    country: "United States",
     industry: "Communications & Support"
   },
   duration: "1–2 weeks",
@@ -1036,12 +1072,21 @@ export const projects: Project[] = [
   year: "2025",
   featured: false,
   results: [
-    "Enabled conference-style calls with flexible participant control.",
-    "Integrated with an existing React Native app handling call state and UI.",
-    "Improved collaboration options for the client’s call workflows."
+      "Conference calls with participants added and removed mid-call, no call resets",
+      "A Node API layer that owns call state cleanly, integrated with the existing React Native app",
+      "Delivered fast enough that the client's review says he double-checked the delivery time"
+    ],
+  problem: "A Twilio-backed app needed multi-party calls where the host can add or remove people without resetting the call — and the backend it had to be built on was, in the client's words, a mess.",
+  solution: "Twilio conference rooms plus backend endpoints to manage participants, hooked into the React Native call flows, with the API structured so the next feature does not start from the same mess.",
+  testimonial: {
+    quote: "Zia is the kind of dev who makes you double-check the delivery time because surely no one builds something that good, that fast. But he does. I gave him a backend mess, some vague Twilio goals, and he returned with a fully functional, beautifully structured API.",
+    author: "Nathan",
+    role: "Twilio integration client"
+  },
+  proves: "That we are comfortable inheriting an unclear backend and a vague brief, and returning something structured — quickly.",
+  evidence: [
+    { label: "Nathan's Fiverr reviews", detail: "Four five-star reviews across his Twilio work with Zia; the excerpt above is cut where the platform truncates it, nothing added." }
   ],
-  problem: "The client needed to handle multi-party calls in their Twilio-backed app, with the ability to add or remove participants without call resets.",
-  solution: "We implemented Twilio conference rooms and backend endpoints to manage participants, and hooked them into React Native UI flows for a smooth experience.",
   liveLink: "",
   stack: [
     "Twilio Voice", "Node.js", "React Native"
@@ -1065,7 +1110,8 @@ export const projects: Project[] = [
   id: 20,
   slug: "zumetrix-labs-internal-automation-stack",
   primaryService: "ai-automation-solutions",
-  searchIndexable: true,
+  searchIndexable: false,
+  listed: false,
   title: "Zumetrix Labs – Internal Automation & CRM Stack",
   category: "Enterprise Solution",
   type: "enterprise",
@@ -1083,22 +1129,17 @@ export const projects: Project[] = [
     country: "Pakistan",
     industry: "Software & Automation Agency"
   },
-  duration: "Ongoing (2023–2025)",
+  duration: "Ongoing — started in the founders' freelance years",
   team: "Founder & Systems Architect",
   year: "2025",
   featured: true,
   results: [
-    "Centralized tracking of deals, proposals, and client pipelines.",
-    "Automated repetitive reporting and reminders.",
-    "Allowed the founder to operate like a small agency instead of a solo freelancer."
-  ],
+      "Deals, proposals and client pipelines tracked in one place",
+      "Repetitive reporting and reminders automated",
+      "Lets two founders and a small team run like a studio instead of a set of inboxes"
+    ],
   problem: "As deal volume and projects grew, it became difficult to track everything with ad-hoc tools and mental notes.",
   solution: "We built a modular internal stack across Airtable, Notion, and Google Sheets, connected via Make.com and Zapier, to serve as a lightweight but powerful agency operating system.",
-  testimonial: {
-    quote: "These tools are why Zumetrix Labs can juggle so many high-impact projects without dropping the ball.",
-    author: "Zia Hussain",
-    role: "Founder, Zumetrix Labs"
-  },
   liveLink: "",
   stack: [
     "Airtable", "Notion", "Google Sheets", "Make.com", "Zapier"
@@ -1151,12 +1192,12 @@ export const projects: Project[] = [
   visibility: "anonymous-public",
   proofStatus: "draft",
   results: [
-    "Built a no-login, QR-based guest upload flow for private event media",
-    "Implemented durable background processing with retry and recovery for large media archives",
-    "Tuned gallery loading and caching for real event-day traffic patterns",
-    "Hardened expiry and private-access flows to protect guest and host privacy",
-    "Stress-tested the platform against real-world failure modes before production use"
-  ],
+      "A no-login, QR-based guest upload flow for private event media",
+      "Durable background processing with retry and recovery for large media archives",
+      "Gallery loading and caching tuned for real event-day traffic",
+      "Expiry and private-access flows hardened to protect guests and hosts",
+      "Failure modes tested against before the platform carried live events"
+    ],
   problem: "A private event media product needs to feel effortless for a guest tapping a QR code — but every part of that simplicity depends on infrastructure that has to survive spotty mobile connections, large photo and video files, traffic that spikes hard during an event and disappears after, and edge cases a demo never surfaces. The risk isn't writing the upload form. It's what happens when an upload fails halfway, when storage has to hold years of event archives, or when a gallery has to stay fast at scale.",
   solution: "We worked on the production engineering layer beneath Knipsr's guest and host experience: durable background job processing with retries and recovery for media uploads, storage and delivery architecture across Supabase, Postgres, Edge Functions, and Cloudflare Stream, caching and performance work on gallery loading, and access and expiry logic to keep private events private. Deployment ran across Vercel and Railway, with real-world QA and failure-mode testing before the platform carried live event traffic.",
   stack: ["React", "TypeScript", "Vite", "Supabase", "PostgreSQL", "Edge Functions", "Supabase Storage", "Cloudflare Stream", "Vercel", "Railway"],
@@ -1180,7 +1221,7 @@ export const projects: Project[] = [
       { title: "Production-grade reliability for real events", description: "Background jobs, retries, and recovery built to hold up under real event-day conditions, not only a demo.", confidence: "delivered" },
       { title: "Performance tuned for growing archives", description: "Gallery loading and caching addressed as event media archives grow, not only at small scale.", confidence: "delivered" }
     ],
-    proofNotes: ["Client and founder identity are withheld. Screenshots are pending privacy review — none are published yet."],
+    proofNotes: ["The product is named with the client's agreement; the founder's identity is not connected to it publicly. Screenshots are pending privacy review — none are published yet. The reviews quoted are public on Trustpilot, Google and Fiverr."],
     ctaAngle: "Talk to us when the engineering problem is the hard part, not the interface."
   },
   testimonial: {
@@ -1188,6 +1229,11 @@ export const projects: Project[] = [
     author: "Founder",
     role: "Knipsr"
   },
+  proves: "That we can build a consumer-facing SaaS from an idea to a launched product and own the unglamorous half — background jobs, retries, caching, privacy — that decides whether it holds up on the day.",
+  evidence: [
+    { label: "Founder's Trustpilot review", detail: "Five stars; corroborated on Google and by two Fiverr reviews on the same work.", href: "/client-stories" },
+    { label: "Founder's second Fiverr review", detail: "\"Even after completion he is genuinely interested in how everything works out and helps regarding questions, bugs, etc\"." }
+  ],
   relatedReading: [
     {
       href: "/articles/build-saas-mvp-in-30-days",
@@ -1252,9 +1298,14 @@ export const projects: Project[] = [
       { title: "Ship the operational loop before the pricing sophistication", description: "The business needed proof that bookings, serviceability, and payment worked end to end before a variable pricing engine had anything real to price." },
       { title: "Design V2 deliberately instead of bolting it on later", description: "Pricing Engine V2 concepts were scoped and documented during V1, so the next phase has a clear foundation instead of starting from a blank page." }
     ],
-    proofNotes: ["Client and founder identity are withheld. Pricing Engine V2 was designed and planned only — it is described here as planned work, not as shipped functionality. Screenshots are pending privacy review — none are published yet."],
+    proofNotes: ["Client and founder identity are withheld at the client's request. The operational V1 described here was delivered by Zumetrix; public documentation of it — screenshots or a client statement — is pending privacy review, and the only public review for this engagement refers to the landing page. Pricing Engine V2 was designed and planned only; it is described here as planned work, not shipped functionality."],
     ctaAngle: "If you have a bigger vision than your first release can carry, this is the kind of sequencing conversation worth having before you build."
   },
+  proves: "That we will argue a founder out of building their favourite part first when the business needs the boring part to work — and write down what was deferred so it is a plan, not a loss.",
+  evidence: [
+    { label: "Founder's Fiverr review", detail: "Five stars; the public review refers to the landing page work, not the operational V1 described above." },
+    { label: "Public documentation pending", detail: "No screenshots or client statement about the operational V1 are published yet. Until they are, treat the build details on this page as Zumetrix's account." }
+  ],
   relatedReading: [
     {
       href: "/articles/decision-room-001-liftly-sequencing",
@@ -1274,16 +1325,16 @@ export const projects: Project[] = [
   category: "Enterprise Solution",
   type: "saas",
   description: "A founder-built, AI-assisted SaaS that needed stabilization across frontend, backend, and routing — and a clear line between what was broken, what was unfinished, and what was future scope.",
-  longDescription: "This engagement is kept anonymized by request. The product was a founder-built, AI-assisted SaaS that had grown quickly and needed a technical partner to stabilize it rather than rebuild it. The work covered frontend and backend stabilization, API cleanup, database logic, routing fixes, completion of unfinished flows, and deployment troubleshooting — alongside business-rule clarification the founder needed but hadn't had time to resolve, such as Offers pricing changes, community invitation logic, and contact ownership rules. A recurring part of the work was simply separating signal from noise: what was actually broken, what was unfinished, what was intentional, and what was scope for later.",
+  longDescription: "The product is a founder-built, AI-assisted learning platform that had grown quickly and needed a technical partner to stabilise it rather than rebuild it. The company and product name are not published here; the founder's two Upwork reviews are. The work covered frontend and backend stabilisation, API cleanup, database logic, routing fixes, completion of unfinished flows and deployment troubleshooting — alongside business-rule clarification the founder needed but had not had time to resolve: Offers pricing changes, community invitation logic, contact ownership rules. A recurring part of the job was separating signal from noise: what was broken, what was unfinished, what was intentional, and what was scope for later. Two engagements on Upwork, $1,900 each, titled \"Scalable SaaS Refactor + DB & Code Optimization\".",
   image: "/project_images/learning-platform-saas-cover.svg",
   gallery: ["/project_images/learning-platform-saas-cover.svg"],
   tags: ["SaaS Stabilization", "API Cleanup", "Cloudflare Workers", "Technical Triage", "Founder Technical Partner"],
   client: {
-    name: "Product Stabilization & Technical Clarity",
+    name: "Learning Platform SaaS",
     country: "",
     industry: "EdTech / Learning Platform SaaS"
   },
-  clientLabel: "Engagement Type",
+  clientLabel: "Product",
   duration: "",
   team: "",
   year: "",
@@ -1320,9 +1371,19 @@ export const projects: Project[] = [
       { title: "Triage before touching code", description: "Before fixing anything, we categorized what was in front of us — bug, unfinished feature, intentional behavior, or future scope — so the founder could make informed calls instead of guessing." },
       { title: "Scope Stripe subscriptions as future work, not this engagement", description: "Subscription billing was discussed and scoped for a later phase. It was not implemented here, and this case study does not claim otherwise." }
     ],
-    proofNotes: ["Client, product, and founder identity are withheld — this case study is deliberately anonymized. No product screenshots are used or will be used for this project. Not every issue in the product was fixed during this engagement; scope here reflects only the work described above."],
+    proofNotes: ["The product and company are not named publicly. The founder's two Upwork reviews are public and are quoted here. No product screenshots are used or will be used for this project. Not every issue in the product was fixed during this engagement; scope here reflects only the work described above."],
     ctaAngle: "If your product needs someone to tell you honestly what's actually wrong with it before touching a line of code, this is that kind of engagement."
   },
+  testimonial: {
+    quote: "Working with Zia was really smooth and pleasant. You can trust him with any task. He treats the project as his own and is responsive to anything you need. This was my second project with him, and we've built a very good connection. I'll definitely reach out to him again whenever I need any help.",
+    author: "Alan Ayoubi",
+    role: "Founder, Learning Platform SaaS"
+  },
+  proves: "That we will stabilise a product instead of selling a rewrite, tell a founder which problems are bugs and which are decisions, and be asked back for a second engagement on the same product.",
+  evidence: [
+    { label: "Two Upwork reviews from the founder", detail: "Both five stars, both on contracts titled \"Scalable SaaS Refactor + DB & Code Optimization\", $1,900 each. \"This is my second time working with Zia.\"" },
+    { label: "Stripe billing not claimed", detail: "Subscription billing was scoped as future work during this engagement and was not built. This page does not claim it." }
+  ],
   relatedReading: [
     {
       href: "/articles/signs-your-saas-needs-stabilization-not-rebuild",
@@ -1427,6 +1488,12 @@ export const projects: Project[] = [
       attribution: "Josh Nyce, Owner & Founder, Fast Track USA — from his video",
     },
   },
+  proves: "That when a product has been stuck for a long time, the problem is sometimes the team, and a change of hands can end it quickly. One verified story — Josh's — not a typical timeline.",
+  evidence: [
+    { label: "Josh's own film", detail: "Recorded by the client; every quote on this page is verbatim from the transcript." },
+    { label: "Trustpilot review", detail: "Five stars, August 2026; same account corroborated on Google." },
+    { label: "Upwork record", detail: "A separate five-star contract with Josh on a related QR redirect setup." }
+  ],
   stack: [],
   services: [
     "Product Takeover",
@@ -1457,20 +1524,98 @@ export const projects: Project[] = [
   ]
 }
 
+,
+// 25. First North Peptides — website, AI concierge and SEO foundation
+// Everything here is sourced from the client's Clutch review (5.0; quality,
+// schedule, cost and willingness to refer all 5.0), corroborated on Trustpilot
+// and Google. Public company/project attribution is approved in the proof
+// library. Outcomes are the client's reported outcomes, stated as such.
+{
+  id: 25,
+  slug: "first-north-peptides-website-ai-concierge",
+  primaryService: "web-application-development",
+  searchIndexable: true,
+  title: "First North Peptides – Website, AI Concierge and Search Foundation",
+  category: "Web Application",
+  type: "saas",
+  description: "Full development of a Danish research company's website — design implementation, mobile, a custom AI concierge for customer questions, and the technical groundwork for Google — reviewed 5.0 on Clutch.",
+  longDescription: "First North Peptides needed a professional website with a long list of specific requirements, and a way to answer customer questions beyond an FAQ. Between June and August 2026 we handled the complete development: design implementation, mobile optimisation, functionality and user experience, a custom AI concierge for immediate customer assistance, Google and SEO groundwork, and the rounds of adjustment and refinement a detail-heavy brief needs. The client's Clutch review describes the result as a fully functional professional website that met the original requirements, a responsive desktop and mobile experience, integrated AI customer support that reduced the need for manual support, improved navigation, and a strong technical foundation for search. Project budget under $10,000. The site is public at firstnorth.bio and the client names it as a reference for our work.",
+  // Placeholder until the category cover system lands (covers are selected
+  // by category in src/data/covers.ts, not by this path). No client UI is
+  // shown without written permission.
+  image: "/og/page-portfolio.png",
+  tags: ["Web Development", "AI Concierge", "SEO Foundation", "Mobile Optimisation", "UX"],
+  client: {
+    name: "Andi – First North Peptides",
+    country: "Denmark",
+    industry: "Research & Life Sciences"
+  },
+  duration: "June–August 2026 (per the Clutch record)",
+  team: "Zia (lead) with the Zumetrix team",
+  year: "2026",
+  featured: true,
+  results: [
+    "A fully functional professional website meeting the original requirements, per the client",
+    "Responsive desktop and mobile experience, improved navigation and UX",
+    "A custom AI concierge answering customer questions beyond the FAQ — the client reports it reduced the need for manual customer support",
+    "Google and SEO groundwork: a technical foundation the client describes as strong",
+    "Ongoing adjustments, troubleshooting and refinement until the result matched the brief"
+  ],
+  problem: "A research company with specific, detailed requirements needed a website that would represent it properly, work on every device, answer customer questions without a person on hand, and be built so Google could understand it.",
+  solution: "We took the whole build: design implementation, functionality, mobile optimisation and UX, a custom AI concierge for customer assistance, and the technical SEO groundwork — then kept refining through the client's specific requests until the result matched what they had envisioned.",
+  testimonial: {
+    quote: "Their combination of web development, AI integration, design, UX, and SEO into one solution was impressive.",
+    author: "Andi",
+    role: "Director, First North Peptides"
+  },
+  liveLink: "",
+  stack: ["Web", "Custom AI Concierge", "SEO"],
+  services: ["Web Development", "AI Integration", "UX & Mobile Optimisation", "SEO Foundation"],
+  kpis: [
+    { label: "Clutch review", value: "5.0", description: "Quality 5.0 · Schedule 5.0 · Cost 5.0 · Willing to refer 5.0" },
+    { label: "Delivered", value: "Jun–Aug 2026", description: "Per the Clutch record; budget under $10,000" },
+    { label: "Customer support", value: "AI concierge", description: "Client-reported: reduced the need for manual support" }
+  ],
+  caseStudy: {
+    decisions: [
+      { title: "One team for the whole surface", description: "Web, design implementation, the AI concierge and the search groundwork were handled together rather than split across vendors — the client's review calls out that combination specifically." },
+      { title: "Keep refining until it matches the brief", description: "A detail-heavy brief means many specific requests. The review describes persistence through revisions until the result matched the vision; that was the job." }
+    ],
+    proofNotes: ["All outcomes on this page are the client's reported outcomes as recorded in the Clutch review. Public company and project attribution is approved by the client."]
+  },
+  proves: "That we deliver a complete public-facing build — design, development, an AI layer that does real work, and the search foundation — to a client exacting enough to write a long review about the details.",
+  evidence: [
+    { label: "Clutch review", detail: "5.0 overall; Quality, Schedule, Cost and Willing to Refer all 5.0. Reviewer: Director, First North Peptides, Copenhagen." },
+    { label: "Trustpilot and Google reviews", detail: "The same client's account of the project, published on both; names the site as a reference for our work." },
+    { label: "Public attribution", detail: "Company and project connection approved in our proof library." }
+  ],
+  relatedReading: [
+    {
+      href: "/services/ai-automation-solutions",
+      label: "AI that does a job, not a demo",
+      description: "The concierge here answers customers; our automation page is about where that kind of work belongs — and where it doesn't.",
+    },
+  ]
+}
+
 ];
 
 // Project filters and categories (API-ready structure)
+// The public archive: client work only. Internal/demo builds, unbuilt plans
+// and client-less patterns stay in `projects` (their detail routes still
+// resolve) but are excluded from listings, counts and pickers.
+export const isListed = (p: Project) => p.listed !== false;
+export const listedProjects = projects.filter(isListed);
+
 export const projectCategories = [
-  { id: "all", label: "All Projects", count: projects.length },
-  { id: "saas", label: "SaaS Applications", count: projects.filter(p => p.type === "saas").length },
-  { id: "mobile", label: "Mobile Apps", count: projects.filter(p => p.type === "mobile").length },
-  { id: "enterprise", label: "Enterprise Solutions", count: projects.filter(p => p.type === "enterprise").length },
-  { id: "mvp", label: "MVP Development", count: projects.filter(p => p.type === "mvp").length },
-  // Four automation projects had no filter of their own, so the filter
-  // counts summed to fewer than the archive (Phase 1 fact-consistency fix).
-  { id: "automation", label: "Automation Systems", count: projects.filter(p => p.type === "automation").length },
-  { id: "rescue", label: "Product Rescue", count: projects.filter(p => p.type === "rescue").length }
-];
+  { id: "all", label: "All Projects", count: listedProjects.length },
+  { id: "saas", label: "SaaS Applications", count: listedProjects.filter(p => p.type === "saas").length },
+  { id: "mobile", label: "Mobile Apps", count: listedProjects.filter(p => p.type === "mobile").length },
+  { id: "enterprise", label: "Enterprise Solutions", count: listedProjects.filter(p => p.type === "enterprise").length },
+  { id: "mvp", label: "MVP Development", count: listedProjects.filter(p => p.type === "mvp").length },
+  { id: "automation", label: "Automation Systems", count: listedProjects.filter(p => p.type === "automation").length },
+  { id: "rescue", label: "Product Rescue", count: listedProjects.filter(p => p.type === "rescue").length }
+].filter(c => c.count > 0);
 
 export const projectTechnologies = [
   "React", "Node.js", "Python", "React Native", "Firebase", "AWS", 
@@ -1478,10 +1623,10 @@ export const projectTechnologies = [
 ];
 
 // API-ready data access functions (ready for backend migration)
-export const getProjects = () => projects;
-export const getFeaturedProjects = () => projects.filter(p => p.featured);
-export const getHomepageFeaturedProjects = () => projects.filter(p => p.homepageFeatured);
+export const getProjects = () => listedProjects;
+export const getFeaturedProjects = () => listedProjects.filter(p => p.featured);
+export const getHomepageFeaturedProjects = () => listedProjects.filter(p => p.homepageFeatured);
 export const getProjectBySlug = (slug: string) => projects.find(p => p.slug === slug);
-export const getProjectsByCategory = (category: string) => 
-  category === "all" ? projects : projects.filter(p => p.type === category);
+export const getProjectsByCategory = (category: string) =>
+  category === "all" ? listedProjects : listedProjects.filter(p => p.type === category);
 export const getProjectCategories = () => projectCategories;

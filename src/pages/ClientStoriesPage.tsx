@@ -12,7 +12,10 @@ import {
   CATEGORY_LABELS,
   getFeaturedTestimonials,
   getTestimonialLibrary,
+  getCollectedDirectly,
 } from "../data/testimonials";
+import { buildCalendlyUrl } from "../utils/attribution";
+import { trackCalendlyClick } from "../utils/analytics";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -51,24 +54,37 @@ const Stars: React.FC<{ rating?: number; size?: number; center?: boolean }> = ({
   );
 };
 
+type PlatformName = NonNullable<TestimonialEntry["platform"]>;
+
+// A quote without a platform record was sent to us directly. It says so —
+// it never borrows a platform icon or a star row it did not earn.
 const PlatformBadge: React.FC<{ t: TestimonialEntry; center?: boolean; full?: boolean }> = ({
   t,
   center,
   full,
-}) => (
-  <div className={`flex items-center gap-1.5 text-muted-foreground/60 ${center ? "justify-center" : ""}`}>
-    <PlatformIcon platform={t.platform} size={14} />
-    <span className="text-xs">{t.platform}</span>
-    {full && t.corroboratedOn?.length ? (
-      <span className="flex items-center gap-1.5 text-xs">
-        <span className="text-muted-foreground/40">· verified on</span>
-        {t.corroboratedOn.map((p) => (
-          <PlatformIcon key={p} platform={p as TestimonialEntry["platform"]} size={14} />
-        ))}
-      </span>
-    ) : null}
-  </div>
-);
+}) => {
+  if (!t.platform) {
+    return (
+      <div className={`flex items-center gap-1.5 text-muted-foreground/60 ${center ? "justify-center" : ""}`}>
+        <span className="text-xs">Shared with us directly</span>
+      </div>
+    );
+  }
+  return (
+    <div className={`flex items-center gap-1.5 text-muted-foreground/60 ${center ? "justify-center" : ""}`}>
+      <PlatformIcon platform={t.platform} size={14} />
+      <span className="text-xs">{t.platform}</span>
+      {full && t.corroboratedOn?.length ? (
+        <span className="flex items-center gap-1.5 text-xs">
+          <span className="text-muted-foreground/40">· verified on</span>
+          {t.corroboratedOn.map((p) => (
+            <PlatformIcon key={p} platform={p as PlatformName} size={14} />
+          ))}
+        </span>
+      ) : null}
+    </div>
+  );
+};
 
 const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({ t, compact }) => {
   const { before, after } = t.evidence ?? {};
@@ -228,6 +244,7 @@ const ClientStoriesPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<ProofCategory | "all">("all");
   const featured = getFeaturedTestimonials();
   const library = getTestimonialLibrary();
+  const collected = getCollectedDirectly();
 
   const [flagship, ...rest] = featured;
   const rows: TestimonialEntry[][] = [];
@@ -429,6 +446,11 @@ const ClientStoriesPage: React.FC = () => {
                     <span className="text-[11px] text-muted-foreground">· Repeat client</span>
                   )}
                 </div>
+                {t.evidence?.fact && (
+                  <div className="mb-4">
+                    <FactStat t={t} size="md" />
+                  </div>
+                )}
                 <blockquote className="flex-grow text-sm leading-[1.6] text-foreground/90">
                   "{t.quote}"
                 </blockquote>
@@ -438,6 +460,34 @@ const ClientStoriesPage: React.FC = () => {
               </motion.article>
             ))}
           </div>
+
+          {/* Collected directly — clients who wrote to us rather than to a
+              platform. Grouped and labelled, with no badge and no stars, so
+              nobody mistakes a message for a verified marketplace review. */}
+          {collected.length > 0 && (
+            <div className="mt-20 pt-12 border-t border-border/40">
+              <div className="max-w-2xl mx-auto text-center mb-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/80 mb-4">Shared with us directly</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  These clients wrote to us rather than to a review platform. They are quoted as sent, with the project
+                  they refer to — and without a platform badge, because there isn't one.
+                </p>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
+                {collected.map((t) => (
+                  <article
+                    key={t.id}
+                    className="relative flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card/10 p-6"
+                  >
+                    <blockquote className="flex-grow text-sm leading-[1.6] text-foreground/80">"{t.quote}"</blockquote>
+                    <div className="mt-4 flex-shrink-0">
+                      <Byline t={t} />
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -482,12 +532,17 @@ const ClientStoriesPage: React.FC = () => {
             </h2>
 
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 lg:mb-14 leading-[1.6] font-light px-4">
-              Book a 30-minute call. We'll ask questions, tell you honestly
-              whether we're the right fit, and go from there.
+              Tell us what's happening. We'll say which of our services fits — or
+              that none does yet.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center items-center px-4">
-              <Link to="/contact">
+              <a
+                href={buildCalendlyUrl("client-stories-cta")}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCalendlyClick("client-stories-cta")}
+              >
                 <motion.button
                   whileHover={{ scale: 1.02, y: -3 }}
                   whileTap={{ scale: 0.98 }}
@@ -497,10 +552,10 @@ const ClientStoriesPage: React.FC = () => {
                            flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg shadow-lg w-full sm:w-auto justify-center"
                 >
                   <Calendar size={20} />
-                  Book a Strategy Call
+                  Book a call
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-150" />
                 </motion.button>
-              </Link>
+              </a>
 
               <Link to="/contact">
                 <motion.button
@@ -512,7 +567,7 @@ const ClientStoriesPage: React.FC = () => {
                            flex items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg border border-border hover:border-primary/30 w-full sm:w-auto justify-center"
                 >
                   <Mail size={20} />
-                  Send Project Brief
+                  Write to us instead
                 </motion.button>
               </Link>
             </div>

@@ -122,8 +122,8 @@ export const articles = [
   {
     id: 0,
     slug: "what-we-learned-building-50-projects",
-    title: "What We Learned Building 50+ Projects for Founders",
-    excerpt: "Three years, 50+ projects, and the uncomfortable lessons that changed how we scope, build, and launch software for founders.",
+    title: "What We Learned Building 60+ Projects for Founders",
+    excerpt: "Years of freelance work before Zumetrix Labs, 60+ projects since the founders started counting, and the uncomfortable lessons that changed how we scope, build and launch software.",
     content: markdownToHtml(founderLessonsArticle),
     contentFile: "/BLOG_ARTICLES/what-we-learned-building-50-projects.md",
     image: "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -137,8 +137,8 @@ export const articles = [
     category: "Insights",
     featured: false,
     seo: {
-      title: "What We Learned Building 50+ Projects | Zumetrix Labs",
-      description: "Honest lessons from 3 years building software for founders. What works, what doesn't, and where projects go wrong before the first line of code.",
+      title: "What We Learned Building 60+ Projects | Zumetrix Labs",
+      description: "Lessons from building software for founders — freelance first, then as Zumetrix Labs. What works, what doesn't, and where projects go wrong before the first line of code.",
       keywords: "software development lessons, founder advice, MVP development, agency insights, project management"
     },
     internalLinks: [
@@ -155,7 +155,7 @@ export const articles = [
     ],
     faqs: [
       {
-        question: "What is the biggest lesson from building 50+ founder projects?",
+        question: "What is the biggest lesson from building 60+ founder projects?",
         answer: "In our experience, unclear thinking causes more trouble than the code does. A clear user, a clear problem, a clear first release and an involved founder matter more than adding features."
       },
       {

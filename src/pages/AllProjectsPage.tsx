@@ -5,7 +5,7 @@ import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import ProjectCard from "../components/portfolio/ProjectCard";
 import { motion } from "framer-motion";
-import { projects, projectCategories } from "../data/projects";
+import { listedProjects as projects, projectCategories } from "../data/projects";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 
 const AllProjectsPage: React.FC = () => {
@@ -19,7 +19,7 @@ const AllProjectsPage: React.FC = () => {
     <PageTransition>
       <SEO
         title="Project Archive | Zumetrix Labs"
-        description="Browse the wider Zumetrix Labs build archive across SaaS, mobile applications, automation, internal systems, and product concepts."
+        description="Every client case Zumetrix Labs publishes — SaaS products, web and mobile applications, automation and product rescue — with the record behind each one."
         keywords="all projects portfolio, software development projects, SaaS projects, mobile app projects, enterprise solutions, MVP development"
         url="https://zumetrix.com/portfolio/all"
         noIndex
@@ -62,8 +62,8 @@ const AllProjectsPage: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed font-light">
-              Every project in the catalogue, not just the three we lead with —
-              client work, internal systems, and product concepts across industries.
+              Every client case we publish, not just the ones we lead with. Each one
+              names what was decided, what shipped and what the client said afterwards.
             </p>
           </AnimatedSection>
         </div>

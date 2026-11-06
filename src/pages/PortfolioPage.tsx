@@ -10,7 +10,7 @@ import ProjectSpotlight from "../components/portfolio/ProjectSpotlight";
 import AnimatedStat from "../components/portfolio/AnimatedStat";
 import ClientProofFilm from "../components/home/ClientProofFilm";
 import { motion } from "framer-motion";
-import { projects } from "../data/projects";
+import { listedProjects as projects } from "../data/projects";
 import { FACTS } from "../config/facts";
 import { portfolioFAQs } from "../data/faqs/portfolio";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
@@ -26,7 +26,7 @@ const GRAIN =
 // belongs on his own profiles.
 const stats = [
   { icon: Code, number: FACTS.counts.projectsShipped, label: "Projects completed" },
-  { icon: Users, number: FACTS.counts.clients, label: "Happy clients" },
+  { icon: Users, number: FACTS.counts.clients, label: "Clients" },
   { icon: Sparkles, number: "Founder-led", label: "Every single project" },
 ];
 
@@ -105,8 +105,9 @@ const PortfolioPage: React.FC = () => {
             </h1>
 
             <p className="text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              No concepts, no mockups — real builds for real clients, each one led
-              end-to-end by the founders who wrote the code.
+              Client work led by the founders, with a specialist team behind it. Each
+              case says what was decided, what shipped, and what the client said — and
+              where a client asked us not to name them, we don't.
             </p>
           </AnimatedSection>
         </div>
@@ -168,7 +169,7 @@ const PortfolioPage: React.FC = () => {
 
           <AnimatedSection className="text-center mt-28 sm:mt-32">
             <p className="text-sm text-muted-foreground mb-6">
-              {`${projects.length} builds in the full archive — different industries, same standard.`}
+              {`${projects.length} client cases in the full archive — different industries, same standard.`}
             </p>
             <Link to="/portfolio/all" className="group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200 btn-sheen">
               See All Projects

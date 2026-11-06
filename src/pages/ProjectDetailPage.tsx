@@ -41,6 +41,26 @@ const PROJECT_TO_OFFER: Record<string, { offer: keyof typeof OFFERS; line: strin
   "floating-stone-ranch-processor-intake-engine": { offer: "manual-to-system", line: "Carrying a similar workflow by hand right now?" },
 };
 
+// Every other case study bridges to the door its primary service belongs to
+// — the next step a reader in the same situation would actually take. Rescue
+// cases go to the assessment (quoting a rescue blind would be dishonest);
+// build and automate cases go to the service page, where the conversation
+// starts without a fee.
+const SERVICE_BRIDGE: Record<string, { href: string; line: string; cta: string }> = {
+  "product-rescue-stabilization": { href: "/product-rescue", line: "Have a product that's stuck or inherited?", cta: "Show us where you're stuck" },
+  "saas-mvp-development": { href: "/services/saas-mvp-development", line: "Deciding what your own first version has to prove?", cta: "Tell us what you're building" },
+  "web-application-development": { href: "/services/web-application-development", line: "Running your business on spreadsheets and memory?", cta: "Tell us what it runs on today" },
+  "mobile-app-development": { href: "/services/mobile-app-development", line: "Building for the phone in someone's hand?", cta: "Tell us what you're building" },
+  "ai-automation-solutions": { href: "/services/ai-automation-solutions", line: "Is your team still the integration between your tools?", cta: "Show us the workflow" },
+};
+
+const CONFIDENCE_LABEL: Record<string, string> = {
+  measured: "Measured",
+  "client-confirmed": "Client-confirmed",
+  delivered: "Delivered",
+  expected: "Expected",
+};
+
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
@@ -297,18 +317,18 @@ const ProjectDetailPage: React.FC = () => {
           <AnimatedSection className="text-center mb-14">
             <SectionEyebrow className="mb-6">The Situation</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
-              What they came to us with, and what we shipped.
+              What was happening, and what we did about it.
             </h2>
           </AnimatedSection>
 
           <div className="grid sm:grid-cols-2 gap-10 sm:gap-14">
             <AnimatedSection delay={0.04} className="opacity-55">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground mb-3">Before</p>
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground mb-3">What was happening</p>
               <p className="text-base text-muted-foreground leading-relaxed">{project.problem}</p>
             </AnimatedSection>
             <AnimatedSection delay={0.08} className="sm:border-l sm:border-primary/20 sm:pl-14">
               <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/70 mb-3">
-                {project.situationAfterLabel || "What We Built"}
+                {project.situationAfterLabel || "What Zumetrix did"}
               </p>
               <p className="text-lg text-foreground/90 leading-relaxed">{project.solution}</p>
             </AnimatedSection>
@@ -317,13 +337,51 @@ const ProjectDetailPage: React.FC = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* WHAT CHANGED — numbered results, same register as the service    */}
+      {/* THE DECISION THAT MATTERED — only when the record names one.     */}
+      {/* A case study is more useful for the judgment it shows than for   */}
+      {/* the feature list, so the decision gets its own quiet section.    */}
+      {/* ================================================================ */}
+      {project.caseStudy?.decisions && project.caseStudy.decisions.length > 0 && (
+        <section className="bg-background pt-20 sm:pt-24">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection className="text-center mb-10">
+              <SectionEyebrow className="mb-6">
+                {project.caseStudy.decisions.length > 1 ? "The Decisions That Mattered" : "The Decision That Mattered"}
+              </SectionEyebrow>
+            </AnimatedSection>
+            <div className="space-y-8">
+              {project.caseStudy.decisions.map((d) => (
+                <AnimatedSection key={d.title} className="relative pl-7 border-l border-primary/30">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-foreground tracking-tight leading-snug mb-3">{d.title}</h3>
+                  <p className="text-base text-muted-foreground leading-relaxed">{d.description}</p>
+                </AnimatedSection>
+              ))}
+            </div>
+            {project.caseStudy.built && project.caseStudy.built.length > 0 && (
+              <AnimatedSection className="mt-10">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground mb-4">In scope</p>
+                <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
+                  {project.caseStudy.built.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/85 leading-snug">
+                      <Check size={13} strokeWidth={2.5} className="text-primary/60 flex-shrink-0 mt-1" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </AnimatedSection>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ================================================================ */}
+      {/* WHAT SHIPPED — numbered results, same register as the service    */}
       {/* pages' "This is for you if" list, not a bulleted glass card.      */}
       {/* ================================================================ */}
       <section className="bg-background py-20 sm:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-12">
-            <SectionEyebrow className="mb-6">What Changed</SectionEyebrow>
+            <SectionEyebrow className="mb-6">{project.situationAfterLabel ? "What Changed" : "What Shipped"}</SectionEyebrow>
           </AnimatedSection>
           <div className="divide-y divide-border/30">
             {project.results.map((result, i) => (
@@ -356,6 +414,27 @@ const ProjectDetailPage: React.FC = () => {
               </motion.div>
             ))}
           </div>
+
+          {project.caseStudy?.results && project.caseStudy.results.length > 0 && (
+            <AnimatedSection className="mt-14 pt-10 border-t border-border/30">
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground mb-6">Outcomes, with how sure we are</p>
+              <div className="space-y-6">
+                {project.caseStudy.results.map((r) => (
+                  <div key={r.title}>
+                    <div className="flex flex-wrap items-center gap-3 mb-1.5">
+                      <h3 className="text-base font-semibold text-foreground">{r.title}</h3>
+                      {r.confidence && (
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] px-2 py-0.5 rounded-full border border-primary/30 text-primary/80">
+                          {CONFIDENCE_LABEL[r.confidence] ?? r.confidence}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{r.description}</p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+          )}
         </div>
       </section>
 
@@ -427,25 +506,33 @@ const ProjectDetailPage: React.FC = () => {
       {/* TESTIMONIAL — full editorial weight, same voice as the           */}
       {/* portfolio spotlights and the service pages' pull-quotes.         */}
       {/* ================================================================ */}
-      {project.testimonial && (
+      {(project.testimonial || project.evidence || project.caseStudy?.proofNotes) && (
         <section className="relative overflow-hidden bg-card/10 border-y border-border/40 py-24 sm:py-28">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_18%,rgba(196,138,100,0.06),transparent_70%)]" />
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <AnimatedSection>
+              <SectionEyebrow className="mb-8">The Evidence</SectionEyebrow>
+            </AnimatedSection>
             {project.testimonialLeadIn && (
               <AnimatedSection>
                 <p className="text-lg text-muted-foreground mb-10">{project.testimonialLeadIn}</p>
               </AnimatedSection>
             )}
-            <AnimatedSection>
-              <blockquote>
-                <p className="text-2xl sm:text-3xl text-foreground/90 leading-snug tracking-tight mb-6">
-                  "{project.testimonial.quote}"
-                </p>
-                <footer className="text-sm text-muted-foreground">
-                  {project.testimonial.author}, {project.testimonial.role}
-                </footer>
-              </blockquote>
-            </AnimatedSection>
+            {project.testimonial && (
+              <AnimatedSection>
+                <blockquote>
+                  <p className="text-2xl sm:text-3xl text-foreground/90 leading-snug tracking-tight mb-6">
+                    "{project.testimonial.quote}"
+                  </p>
+                  <footer className="text-sm text-muted-foreground">
+                    {project.testimonial.author}, {project.testimonial.role}
+                    {project.testimonialSource === "collected-directly" && (
+                      <span className="block mt-1.5 text-xs text-muted-foreground/60">Shared with us directly — not a platform review</span>
+                    )}
+                  </footer>
+                </blockquote>
+              </AnimatedSection>
+            )}
           </div>
 
           {testimonialFilm && (
@@ -463,6 +550,54 @@ const ProjectDetailPage: React.FC = () => {
               </AnimatedSection>
             </div>
           )}
+
+          {(project.evidence || project.caseStudy?.proofNotes) && (
+            <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+              {project.evidence && project.evidence.length > 0 && (
+                <AnimatedSection>
+                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground mb-5">What the record holds</p>
+                  <ul className="divide-y divide-border/30 border-y border-border/30">
+                    {project.evidence.map((e) => (
+                      <li key={e.label} className="py-4 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6">
+                        <span className="sm:w-56 flex-shrink-0 text-sm font-semibold text-foreground">
+                          {e.href ? (
+                            <Link to={e.href} className="hover:text-primary transition-colors duration-150">{e.label}</Link>
+                          ) : (
+                            e.label
+                          )}
+                        </span>
+                        {e.detail && <span className="text-sm text-muted-foreground leading-relaxed">{e.detail}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                </AnimatedSection>
+              )}
+              {project.caseStudy?.proofNotes && project.caseStudy.proofNotes.length > 0 && (
+                <AnimatedSection className="mt-8">
+                  {project.caseStudy.proofNotes.map((note) => (
+                    <p key={note} className="text-sm text-muted-foreground/80 leading-relaxed border-l-2 border-primary/30 pl-4">
+                      {note}
+                    </p>
+                  ))}
+                </AnimatedSection>
+              )}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* ================================================================ */}
+      {/* WHAT THIS PROVES — one sentence, at the level the evidence       */}
+      {/* supports. The reader should leave knowing why this case is here. */}
+      {/* ================================================================ */}
+      {project.proves && (
+        <section className="bg-background py-20 sm:py-24">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <AnimatedSection>
+              <SectionEyebrow className="mb-8">What This Proves</SectionEyebrow>
+              <p className="text-xl sm:text-2xl text-foreground/90 leading-snug tracking-tight">{project.proves}</p>
+            </AnimatedSection>
+          </div>
         </section>
       )}
 
@@ -534,7 +669,7 @@ const ProjectDetailPage: React.FC = () => {
                          flex items-center gap-3 sm:gap-4 overflow-hidden transition-shadow duration-300 btn-sheen mx-auto"
               >
                 <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.14] via-white/0 to-black/[0.06]" />
-                <span className="relative">Start Your Project</span>
+                <span className="relative">Tell us where you are</span>
                 <span className="relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/10 group-hover:bg-black/[0.14] transition-colors duration-300">
                   <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
@@ -547,7 +682,7 @@ const ProjectDetailPage: React.FC = () => {
             </Link>
           </AnimatedSection>
 
-          {PROJECT_TO_OFFER[project.slug] && (
+          {PROJECT_TO_OFFER[project.slug] ? (
             <AnimatedSection delay={0.14} className="mt-4">
               <Link
                 to={offerHref(PROJECT_TO_OFFER[project.slug].offer, `case-study:${project.slug}`)}
@@ -560,7 +695,17 @@ const ProjectDetailPage: React.FC = () => {
                 </span>
               </Link>
             </AnimatedSection>
-          )}
+          ) : SERVICE_BRIDGE[project.primaryService] ? (
+            <AnimatedSection delay={0.14} className="mt-4">
+              <Link
+                to={`${SERVICE_BRIDGE[project.primaryService].href}?from=case-study:${project.slug}`}
+                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
+              >
+                {SERVICE_BRIDGE[project.primaryService].line}{" "}
+                <span className="font-medium text-primary/90">{SERVICE_BRIDGE[project.primaryService].cta} →</span>
+              </Link>
+            </AnimatedSection>
+          ) : null}
         </div>
       </section>
     </PageTransition>

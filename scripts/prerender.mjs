@@ -53,6 +53,7 @@ const routes = [
   "/portfolio/twilio-conference-call-logic",
   "/portfolio/zumetrix-labs-internal-automation-stack",
   "/portfolio/fast-track-usa-app-rescue",
+  "/portfolio/first-north-peptides-website-ai-concierge",
   "/contact",
   "/articles",
   "/rescue-or-rebuild",
