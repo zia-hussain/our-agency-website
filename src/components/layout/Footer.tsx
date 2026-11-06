@@ -76,9 +76,11 @@ const Footer: React.FC = () => {
           {/* Closing statement */}
           <div className="relative px-6 pt-12 pb-10 sm:px-12 sm:pt-16 sm:pb-12 text-center">
             <h2 className="max-w-xl mx-auto font-bold tracking-[-0.02em] leading-[1.15] text-foreground text-2xl sm:text-4xl lg:text-[2.75rem]">
-              Tell us where you are.
-              <span className="block text-muted-foreground/60">We'll tell you what fits.</span>
+              Ready when you are.
             </h2>
+            <p className="mt-4 text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+              A 30-minute call with Zia or Omer, or an email answered within two business days.
+            </p>
             <a
               href={buildCalendlyUrl("footer")}
               onClick={(event) => {
@@ -92,7 +94,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="btn-sheen group inline-flex items-center gap-2.5 mt-7 rounded-full bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-6 pr-5 py-3.5 font-semibold text-sm"
             >
-              Book a 30-minute call
+              Book a call
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-black/10 group-hover:bg-black/[0.14] transition-colors duration-300">
                 <ArrowUpRight size={12} strokeWidth={2.5} />
               </span>

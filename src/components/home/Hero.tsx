@@ -122,22 +122,22 @@ const Hero: React.FC = () => {
           <h1 className="font-bold mb-9 sm:mb-10 tracking-[-0.02em]">
             <motion.span
               variants={item}
-              className="block text-foreground text-4xl sm:text-5xl md:text-[2.75rem] lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] mb-1 sm:mb-1.5"
+              className="block [text-wrap:balance] text-foreground text-4xl sm:text-5xl md:text-[2.75rem] lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] mb-1 sm:mb-1.5"
             >
               {BRAND_CONTENT.hero.headline.line1}
             </motion.span>
             <motion.span
               variants={item}
-              className="block bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-[2.75rem] lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] pb-1 sm:pb-1.5"
+              className="block [text-wrap:balance] bg-gradient-to-r from-primary via-primary/95 to-primary/85 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-[2.75rem] lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.05] pb-1 sm:pb-1.5"
             >
               {BRAND_CONTENT.hero.headline.line2}
             </motion.span>
-            <motion.span
+            {BRAND_CONTENT.hero.headline.line3 && <motion.span
               variants={item}
               className="block text-[#F3EAE1] text-3xl sm:text-4xl md:text-[2.35rem] lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.05] tracking-[0.01em] mt-4 sm:mt-5"
             >
               {BRAND_CONTENT.hero.headline.line3}
-            </motion.span>
+            </motion.span>}
           </h1>
 
           {/* One sharp supporting thought — tells them when to come to us */}

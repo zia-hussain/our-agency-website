@@ -44,15 +44,14 @@ export const BRAND_CONTENT = {
     badge: "Founder-led software studio",
 
     headline: {
-      line1: "We build the software",
-      line2: "your business actually needs —",
-      line3: "and tell you when it doesn't."
+      line1: "We take the whole problem,",
+      line2: "not just the spec.",
+      line3: ""
     },
 
     subheadline: [
-      { text: "A new SaaS product, a product that's stuck, or an operation still run by hand: ", type: "normal" },
-      { text: "we work out what should happen next, then build it.", type: "emphasis" },
-      { text: " Founder-led, with the record to show for it.", type: "normal" }
+      { text: "Bring us the idea, the product that's stuck, or the work your team shouldn't still be doing by hand", type: "normal" },
+      { text: " — we'll figure out what needs to happen next.", type: "emphasis" }
     ] as ContentSegment[],
 
     proofLine: `${FACTS.counts.projectsShipped} projects shipped · ${FACTS.counts.writtenReviews} written client reviews`,

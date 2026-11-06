@@ -174,7 +174,7 @@ function App() {
       </Suspense>
       {!isReviewRoute && !isNotFoundRoute && <Footer />}
       {!isReviewRoute && !isNotFoundRoute && <BackToTop />}
-      {!isReviewRoute && !isNotFoundRoute && !isUtilityRoute && !isProposalCaseStudy && <StickyCTABar />}
+      {!isReviewRoute && !isNotFoundRoute && !isUtilityRoute && !isProposalCaseStudy && location.pathname !== '/' && <StickyCTABar />}
     </div>
     </MotionConfig>
   );

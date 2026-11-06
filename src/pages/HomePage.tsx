@@ -4,9 +4,7 @@ import PageTransition from "../components/common/PageTransition";
 import Hero from "../components/home/Hero";
 import BrandFilmMoment from "../components/home/BrandFilmMoment";
 import TrustTicker from "../components/home/TrustTicker";
-import TrustBand from "../components/home/TrustBand";
 import ServicesPreview from "../components/home/ServicesPreview";
-import SignatureMethod from "../components/home/SignatureMethod";
 import FeaturedCaseStudies from "../components/home/FeaturedCaseStudies";
 import FoundersStrip from "../components/home/FoundersStrip";
 import TechStack from "../components/home/TechStack";
@@ -126,11 +124,7 @@ const HomePage: React.FC = () => {
       <SectionDivider />
       <div className="performance-defer"><ServicesPreview /></div>
       <SectionDivider />
-      <div className="performance-defer"><TrustBand /></div>
-      <SectionDivider />
       <div className="performance-defer"><FeaturedCaseStudies /></div>
-      <SectionDivider />
-      <div className="performance-defer"><SignatureMethod /></div>
       <SectionDivider />
       <div className="performance-defer"><FoundersStrip /></div>
       <SectionDivider />

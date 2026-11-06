@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Target } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { getProjectBySlug } from "../../data/projects";
-import HeroEvidence from "../portfolio/HeroEvidence";
 import PlatformIcon from "../common/PlatformIcon";
 import CoverImage from "../common/CoverImage";
 import { listingImageForProject } from "../../data/covers";
@@ -48,20 +47,13 @@ const FeaturedCaseStudies: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.28 }}
-          className="max-w-3xl mx-auto text-center mb-14 lg:mb-16"
+          className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 lg:mb-12"
         >
-          <div className="mb-7">
-            <span className="inline-flex items-center px-3.5 py-1.5 bg-card/40 backdrop-blur-xl border border-border/70 rounded-full text-xs font-medium uppercase tracking-[0.1em] text-primary/90">
-              <Target size={14} className="mr-2" />
-              The work
-            </span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.08]">
-            Two years with another team.
-            <span className="block text-muted-foreground/50">Live three weeks after the handover.</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.05]">
+            Work we can show in full.
           </h2>
-          <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.6] font-light">
-            The story we lead with is the one we can show in full — the founder on camera, his review where we can't edit it. One case for each of the three situations follows.
+          <p className="text-sm sm:text-base text-muted-foreground lg:max-w-sm lg:text-right leading-relaxed">
+            The founder on camera, his review where we can't edit it. Then one case for each of the other two situations.
           </p>
         </motion.div>
 
@@ -81,13 +73,10 @@ const FeaturedCaseStudies: React.FC = () => {
                 <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">{flagship.category}</span>
               </div>
               <h3 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-bold tracking-tight text-foreground leading-[1.15] mb-5">
-                {flagship.title}
+                Two years with another team.
+                <span className="block text-muted-foreground/60">Live three weeks after the handover.</span>
               </h3>
-              <p className="text-base text-muted-foreground leading-relaxed mb-7 max-w-xl">{flagship.problem}</p>
-
-              {flagship.heroEvidence && (
-                <HeroEvidence {...flagship.heroEvidence} className="mb-7" />
-              )}
+              <p className="text-base text-muted-foreground leading-relaxed mb-7 max-w-xl">Josh's app had been in development for around two years with a previous team and had never reliably launched. He handed it to us. Three weeks later it was live.</p>
 
               {flagship.testimonial && (
                 <figure className="border-l border-primary/40 pl-5 mb-7 max-w-xl">
@@ -102,8 +91,8 @@ const FeaturedCaseStudies: React.FC = () => {
                 </figure>
               )}
 
-              <p className="text-xs text-muted-foreground/70 leading-relaxed max-w-xl mb-8">
-                Timeline is Josh's account, corroborated by his written reviews. We weren't there for the first two years, so we don't diagnose them — and one client's three weeks is not a promise about yours.
+              <p className="text-xs text-muted-foreground/60 leading-relaxed max-w-xl mb-8">
+                Josh's account, corroborated by his written reviews. We weren't there for the first two years, and one client's three weeks is not a promise about yours.
               </p>
 
               <Link
@@ -113,9 +102,12 @@ const FeaturedCaseStudies: React.FC = () => {
                 Read the full Fast Track case study
                 <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform duration-200" />
               </Link>
+              <a href="#client-films" className="lg:hidden ml-5 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors">
+                Watch Josh tell it <ArrowRight size={12} />
+              </a>
             </div>
 
-            <div className="lg:sticky lg:top-28">
+            <div className="hidden lg:block lg:sticky lg:top-28">
               {/* The evidence diagram, not the film: the film plays once, in
                   the clients' own section below. Here the job is the record. */}
               <figure className="rounded-2xl border border-border/50 bg-[#0F0E0D] p-3 sm:p-4">
@@ -166,7 +158,7 @@ const FeaturedCaseStudies: React.FC = () => {
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-6">{line}</p>
               {project.testimonial && (
-                <p className="text-sm italic text-foreground/80 leading-snug border-l border-primary/30 pl-4 mb-6">
+                <p className="hidden sm:block text-sm italic text-foreground/80 leading-snug border-l border-primary/30 pl-4 mb-6">
                   “{project.testimonial.quote.length > 170 ? project.testimonial.quote.slice(0, 167).replace(/\s+\S*$/, "") + "…" : project.testimonial.quote}”
                   <span className="not-italic block mt-2 text-xs text-muted-foreground">— {project.testimonial.author}{project.testimonial.role ? `, ${project.testimonial.role}` : ""}</span>
                 </p>
