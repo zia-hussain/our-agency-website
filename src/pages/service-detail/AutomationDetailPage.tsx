@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { offerHref } from "../../config/offers";
+import { OFFERS, offerHref } from "../../config/offers";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Map, Cog, Send, ShieldCheck, Search, RefreshCw, Eye, AlertCircle, UserCheck } from "lucide-react";
+import OptionalStep from "../../components/common/OptionalStep";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
@@ -154,6 +155,17 @@ const AutomationDetailPage: React.FC = () => {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Start small: one workflow, built and live. The paid plan is offered where the workflow spans teams. */}
+      <OptionalStep
+        id="start-small"
+        eyebrow="Start with one workflow"
+        title="The one that hurts most — built, live, and watched. Then decide if there's a second."
+        description="We map the manual steps, build the single workflow that costs your team the most, and leave it running with failures flagged to a person and a handoff your team can use. When the process spans several teams or systems, the Manual-to-System Sprint decides what deserves automating before any tool is bought."
+        meta={[service.title, service.price, "one bounded workflow"]}
+        cta={{ label: "Show us the workflow", href: `/contact?service=${service.slug}&situation=manual-workflow` }}
+        alternative={{ label: `spans teams or systems? ${OFFERS["manual-to-system"].name} · $${OFFERS["manual-to-system"].price}`, href: offerHref("manual-to-system", `service:${service.slug}`) }}
+      />
 
       {/* ================================================================ */}
       {/* SIGNATURE SCENE — THE LINE. One integrated flow: scattered manual  */}

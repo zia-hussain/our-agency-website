@@ -89,7 +89,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zumetrix.com/offers</loc>
+    <loc>https://zumetrix.com/start</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -270,7 +270,7 @@
   </url>
   <url>
     <loc>https://zumetrix.com/articles/build-saas-mvp-in-30-days</loc>
-    <lastmod>2024-12-18</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -288,7 +288,7 @@
   </url>
   <url>
     <loc>https://zumetrix.com/articles/mobile-app-development-flutter-react-native</loc>
-    <lastmod>2024-11-28</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

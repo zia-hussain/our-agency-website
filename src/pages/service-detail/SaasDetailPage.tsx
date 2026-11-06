@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { offerHref } from "../../config/offers";
+import { trackContextualOfferCtaClick } from "../../utils/analytics";
+import { OFFERS, offerHref } from "../../config/offers";
 import { motion } from "framer-motion";
 import {
   ArrowLeft, ArrowRight, Check, X, Lightbulb, Rocket, Users, MapPin, Hammer,
   FlaskConical, MessageCircle, Flag, CalendarClock, LifeBuoy,
 } from "lucide-react";
+import OptionalStep from "../../components/common/OptionalStep";
 import SEO from "../../components/common/SEO";
 import PageTransition from "../../components/common/PageTransition";
 import AnimatedSection from "../../components/common/AnimatedSection";
@@ -209,6 +211,17 @@ const SaasDetailPage: React.FC = () => {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* The bounded paid step, offered beside the build — not in front of it. */}
+      <OptionalStep
+        id="v1-brief"
+        eyebrow="Want the V1 decision in writing first?"
+        title="Every build here starts with a written V1 decision. You can have that on its own."
+        description="What ships, what waits, and why — decided in week one of every build. If you'd rather see the decision before committing to a team, the Idea-to-Build Sprint delivers it in five business days as a Build-Ready V1 Brief, yours to build with us or anyone else."
+        meta={[OFFERS["idea-to-build"].name, `$${OFFERS["idea-to-build"].price}`, "5 business days"]}
+        cta={{ label: "Tell us what you're building", href: offerHref("idea-to-build", `service:${service.slug}`), onClick: () => trackContextualOfferCtaClick("idea-to-build", `service:${service.slug}`) }}
+        alternative={{ label: "start the build conversation directly", href: `/contact?service=${service.slug}&situation=nothing-built` }}
+      />
 
       {/* ================================================================ */}
       {/* IS THIS YOU — buyer self-recognition. Answers "is this my         */}

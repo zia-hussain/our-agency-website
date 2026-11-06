@@ -43,7 +43,7 @@ const PROCESS = [
     n: "01",
     icon: FileCheck,
     label: "Show us the product",
-    body: "One application. No credentials, no file uploads — just what's actually happening.",
+    body: "One short request. No credentials, no file uploads — just what's actually happening.",
   },
   {
     n: "02",
@@ -441,7 +441,7 @@ const ProductRescueLandingPage: React.FC = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
             <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Before you apply.</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Before you send it.</h2>
           </AnimatedSection>
           <div className="flex justify-center my-10 sm:my-12" aria-hidden="true">
             <span className="w-px h-10 sm:h-12 bg-gradient-to-b from-primary/40 to-transparent" />

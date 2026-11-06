@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Twitter, Instagram, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "../../config/site";
 import { buildCalendlyUrl } from "../../utils/attribution";
@@ -25,12 +25,12 @@ const LINK_GROUPS = [
     ],
   },
   {
-    label: "Offers",
+    label: "Start here",
     links: [
-      { name: "All Offers", path: "/offers" },
-      { name: "Idea-to-Build Sprint", path: offerHref("idea-to-build", "footer") },
+      { name: "Three ways in", path: "/start" },
       { name: "Product Rescue Assessment", path: offerHref("product-rescue", "footer") },
-      { name: "Manual-to-System Sprint", path: offerHref("manual-to-system", "footer") },
+      { name: "Rescue or rebuild? (free)", path: "/rescue-or-rebuild" },
+      { name: "How we work", path: "/about#how-we-build" },
     ],
   },
   {
@@ -55,7 +55,6 @@ const LINK_GROUPS = [
 const SOCIAL = [
   { icon: Linkedin, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
   { icon: Github, href: SOCIAL_LINKS.github, label: "GitHub" },
-  { icon: Twitter, href: SOCIAL_LINKS.twitter, label: "Twitter" },
   { icon: Instagram, href: SOCIAL_LINKS.instagram, label: "Instagram" },
 ];
 

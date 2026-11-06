@@ -620,6 +620,14 @@ const RescueDetailPage: React.FC = () => {
               </motion.button>
             </Link>
           </AnimatedSection>
+          <AnimatedSection delay={0.1} className="mt-7">
+            <p className="text-sm text-muted-foreground">
+              Already know what's wrong and just need it fixed?{" "}
+              <Link to="/contact?service=product-rescue-stabilization&situation=product-exists" className="text-foreground/80 hover:text-primary underline-offset-2 hover:underline transition-colors">
+                Write to us directly →
+              </Link>
+            </p>
+          </AnimatedSection>
         </div>
       </section>
     </PageTransition>

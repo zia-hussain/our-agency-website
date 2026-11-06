@@ -25,8 +25,8 @@ export const manualToSystemFAQs = [
       "Once payment, a short intake form, and a walkthrough of the current workflow are all in place — not the moment you pay. If arranging that takes a few extra days, the clock waits for it.",
   },
   {
-    question: "Do I need to document the workflow before applying?",
+    question: "Do I need to document the workflow first?",
     answer:
-      "No. A working call, a Loom walkthrough, or clear answers to our questions are enough to start. If you already have process documentation, it helps — but it's not a requirement to apply.",
+      "No. A working call, a Loom walkthrough, or clear answers to our questions are enough to start. If you already have process documentation, it helps — but it's not a requirement to start.",
   },
 ];

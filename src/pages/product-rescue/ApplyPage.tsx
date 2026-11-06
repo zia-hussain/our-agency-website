@@ -444,8 +444,8 @@ const ProductRescueApplyPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="Apply — Product Rescue Assessment | Zumetrix Labs"
-        description="Apply for the Product Rescue Assessment — a short application, reviewed by hand before you're ever asked to pay."
+        title="Show us where you're stuck — Product Rescue Assessment | Zumetrix Labs"
+        description="Tell us about the product that's stuck. A short request, read by a founder before you're ever asked to pay."
         url="https://zumetrix.com/product-rescue/apply"
         noIndex
       />
@@ -462,14 +462,14 @@ const ProductRescueApplyPage: React.FC = () => {
                 from memory. About three minutes.
               </p>
               <p className="mx-auto mb-10 max-w-md text-sm text-muted-foreground/70">
-                We review every application by hand — you won't be charged anything from here.
+                One of us reads every request personally — nothing is charged from here.
               </p>
               <button
                 type="button"
                 onClick={startForm}
                 className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground pl-7 pr-2 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
               >
-                Start the application
+                Start
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.16] transition-colors duration-300">
                   <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
@@ -587,7 +587,7 @@ const ProductRescueApplyPage: React.FC = () => {
                       </>
                     ) : (
                       <>
-                        Send application
+                        Send it
                         <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-200 group-hover:translate-x-0.5" />
                       </>
                     )}

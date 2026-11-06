@@ -34,7 +34,7 @@ export const applicationReceivedHtml = (application) => {
       <div style="margin-top:32px;">
         ${sectionLabel("What happens next")}
         ${numberedSteps([
-          ["01", "We read the application and decide whether this is a standard fit, needs a custom scope, or isn't the right tool for the situation."],
+          ["01", "We read your request and decide whether this is a standard fit, needs a custom scope, or isn't the right tool for the situation."],
           ["02", copy.step2],
           ["03", copy.step3],
         ])}

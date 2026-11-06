@@ -56,7 +56,7 @@ const routes = [
   "/contact",
   "/articles",
   "/rescue-or-rebuild",
-  "/offers",
+  "/start",
   "/product-rescue",
   "/product-rescue/apply",
   "/product-rescue/confirmed",

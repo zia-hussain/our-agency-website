@@ -41,7 +41,7 @@ const CONVERSATIONS: Record<string, { quote: string; response: string }> = {
   "something-else": {
     quote: "It's not quite any of these, but something is still off.",
     response:
-      "Not every situation fits a clean label. Tell us what's really going on in the application — that's exactly what it's for.",
+      "Not every situation fits a clean label. Tell us what's really going on in the request — that's exactly what it's for.",
   },
 };
 

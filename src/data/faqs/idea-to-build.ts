@@ -31,6 +31,6 @@ export const ideaToBuildFAQs = [
   {
     question: "Do I need existing research or a prototype already?",
     answer:
-      "No. Notes, a working call, or just clear answers to our questions are enough to start. If you do have research or mockups, they help — but they're not a requirement to apply.",
+      "No. Notes, a working call, or just clear answers to our questions are enough to start. If you do have research or mockups, they help — but they're not a requirement to start.",
   },
 ];

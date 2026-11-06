@@ -273,7 +273,7 @@ const ServicesPreview: React.FC = () => {
 
           <div className="mt-8">
             <Link
-              to="/offers"
+              to="/start"
               className="group inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/80 hover:text-primary transition-colors duration-200"
             >
               See all ways to start

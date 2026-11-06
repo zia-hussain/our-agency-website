@@ -81,7 +81,7 @@ const RECOGNITION_OPTIONS: RecognitionOption[] = [
     value: "something-else",
     quote: "It's not quite any of these, but something is still off.",
     response:
-      "Not every situation fits a clean label. Tell us what's really going on in the application — that's exactly what it's for.",
+      "Not every situation fits a clean label. Tell us what's really going on in the request — that's exactly what it's for.",
   },
 ];
 
@@ -90,7 +90,7 @@ const PROCESS = [
     n: "01",
     icon: FileCheck,
     label: "Show us the idea",
-    body: "One application. No pitch deck, no prototype required — just what you're actually trying to build and for whom.",
+    body: "One short request. No pitch deck, no prototype required — just what you're actually trying to build and for whom.",
   },
   {
     n: "02",
@@ -474,7 +474,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
             <SectionEyebrow className="mb-6">A Few More Things</SectionEyebrow>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Before you apply.</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Before you send it.</h2>
           </AnimatedSection>
           <div className="flex justify-center my-10 sm:my-12" aria-hidden="true">
             <span className="w-px h-10 sm:h-12 bg-gradient-to-b from-primary/40 to-transparent" />

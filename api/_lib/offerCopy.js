@@ -21,7 +21,7 @@ export const OFFER_COPY = {
     applicationReceived: {
       step2: "If it's a fit, we confirm the exact boundary and send a secure way to pay — the $750 assessment stays $750 unless the product genuinely needs a custom scope, and we'll say so plainly if it does.",
       step3: "The 5-business-day clock starts once payment, a short intake, and access/evidence are all ready — not the moment you pay.",
-      closingLine: `If Product Rescue turns out not to be the right fit for your situation, we'll say so directly and point you at whatever actually helps — including our free <a href="${SITE}/rescue-or-rebuild" style="color:${BRAND.accent};">rescue-or-rebuild diagnostic</a>, which needs no application at all.`,
+      closingLine: `If Product Rescue turns out not to be the right fit for your situation, we'll say so directly and point you at whatever actually helps — including our free <a href="${SITE}/rescue-or-rebuild" style="color:${BRAND.accent};">rescue-or-rebuild diagnostic</a>, which needs no request at all.`,
     },
     accepted: {
       title: "You're a fit for the Product Rescue Assessment.",
@@ -44,7 +44,7 @@ export const OFFER_COPY = {
       title: "This probably isn't the right fit — here's what is.",
       declineIntroNoun: "product assessment",
       steps: [
-        `Run the free <a href="${SITE}/rescue-or-rebuild" style="color:${BRAND.accent};">rescue-or-rebuild diagnostic</a> — four questions, an honest directional read, no application needed.`,
+        `Run the free <a href="${SITE}/rescue-or-rebuild" style="color:${BRAND.accent};">rescue-or-rebuild diagnostic</a> — four questions, an honest directional read, no request needed.`,
         `Read <a href="${SITE}/articles/should-you-rescue-or-rebuild-your-saas" style="color:${BRAND.accent};">the decision framework</a> the diagnostic is built on.`,
         `If none of that fits either, just reply to this email and tell us what's actually going on — we'll point you somewhere useful.`,
       ],

@@ -16,7 +16,7 @@ const FEATURED_ARTICLES = pickInOrder(articles, NAV_FEATURED_ORDER);
 const NAV_ITEMS = [
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
-  { name: "Offers", path: "/offers" },
+  { name: "Start here", path: "/start" },
   { name: "Portfolio", path: "/portfolio" },
   { name: "Articles", path: "/articles" },
 ];
@@ -155,7 +155,7 @@ const Navigation: React.FC = () => {
                 key={item.name}
                 to={item.path}
                 className="relative"
-                onClick={item.path === "/offers" ? trackOffersNavClick : undefined}
+                onClick={item.path === "/start" ? trackOffersNavClick : undefined}
                 onMouseEnter={dropdownKey ? () => openDropdown(dropdownKey) : undefined}
                 onMouseLeave={dropdownKey ? closeDropdownSoon : undefined}
                 onFocus={dropdownKey ? () => openDropdown(dropdownKey) : undefined}
@@ -442,11 +442,29 @@ const Navigation: React.FC = () => {
               </button>
             </div>
 
-            <div className="flex-1 flex flex-col justify-center px-6 sm:px-8">
-              <div className="flex flex-col gap-2">
+            <div className="flex-1 overflow-y-auto px-6 pt-10 pb-6 sm:px-8">
+              <div className="flex flex-col gap-1.5">
                 {[{ name: "Home", path: "/" }, ...NAV_ITEMS, { name: "Contact", path: "/contact" }].map(
                   (item, index) => {
                     const active = item.path === "/" ? location.pathname === "/" : isActiveRoute(item.path);
+                    // Service pages and the three doors are one tap away on
+                    // desktop (mega-menu) and were two taps away on mobile —
+                    // where paid traffic lands. Same destinations, listed under
+                    // their parent.
+                    const subItems =
+                      item.path === "/services"
+                        ? [
+                            ...services.map((s) => ({ name: s.title, path: `/services/${s.slug}` })),
+                            { name: rescueService.title, path: `/services/${rescueService.slug}` },
+                          ]
+                        : item.path === "/start"
+                          ? [
+                              { name: "A product that's stuck", path: "/product-rescue?from=mobile-nav" },
+                              { name: "Nothing built yet", path: "/services/saas-mvp-development" },
+                              { name: "A workflow run by hand", path: "/services/ai-automation-solutions" },
+                              { name: "Rescue or rebuild? Free tool", path: "/rescue-or-rebuild" },
+                            ]
+                          : null;
                     return (
                       <motion.div
                         key={item.name}
@@ -456,13 +474,31 @@ const Navigation: React.FC = () => {
                       >
                         <Link
                           to={item.path}
-                          onClick={item.path === "/offers" ? trackOffersNavClick : undefined}
-                          className={`block py-2.5 font-bold tracking-[-0.02em] leading-none text-[13vw] sm:text-5xl transition-colors duration-200 ${
+                          onClick={item.path === "/start" ? trackOffersNavClick : undefined}
+                          className={`block py-2 font-bold tracking-[-0.02em] leading-none text-[11vw] sm:text-5xl transition-colors duration-200 ${
                             active ? "text-foreground" : "text-muted-foreground/50 hover:text-foreground/80"
                           }`}
                         >
                           {item.name}
                         </Link>
+                        {subItems && (
+                          <ul className="mt-1 mb-3 ml-1 border-l border-white/[0.08] pl-4 space-y-1.5">
+                            {subItems.map((sub) => (
+                              <li key={sub.path}>
+                                <Link
+                                  to={sub.path}
+                                  className={`block py-0.5 text-[15px] transition-colors duration-200 ${
+                                    location.pathname === sub.path.split("?")[0]
+                                      ? "text-primary"
+                                      : "text-muted-foreground/70 hover:text-foreground"
+                                  }`}
+                                >
+                                  {sub.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </motion.div>
                     );
                   },

@@ -14,7 +14,7 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const FounderProfilePage = lazy(() => import("./pages/FounderProfilePage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
-const OffersPage = lazy(() => import("./pages/OffersPage"));
+const StartPage = lazy(() => import("./pages/StartPage"));
 const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ArticlesPage = lazy(() => import("./pages/ArticlesPage"));
@@ -64,7 +64,7 @@ function App() {
   // other offers built on the same engine (2026-09-30 BUILD/AUTOMATE
   // expansion).
   const isUtilityRoute = [
-    '/contact', '/privacy-policy', '/terms-of-service',
+    '/contact', '/privacy-policy', '/terms-of-service', '/start', '/client-stories',
     '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
     '/idea-to-build', '/idea-to-build/apply', '/idea-to-build/confirmed',
     '/manual-to-system', '/manual-to-system/apply', '/manual-to-system/confirmed',
@@ -73,7 +73,7 @@ function App() {
     location.pathname.startsWith('/portfolio/') &&
     new URLSearchParams(location.search).get('view') === 'proposal';
   const isNotFoundRoute = !([
-    '/', '/about', '/services', '/offers', '/portfolio', '/portfolio/all', '/contact',
+    '/', '/about', '/services', '/start', '/offers', '/portfolio', '/portfolio/all', '/contact',
     '/articles', '/privacy-policy', '/terms-of-service', '/review', '/client-stories',
     '/rescue-or-rebuild', '/product-rescue', '/product-rescue/apply', '/product-rescue/confirmed',
     '/idea-to-build', '/idea-to-build/apply', '/idea-to-build/confirmed',
@@ -141,7 +141,8 @@ function App() {
           <Route path="/services/web-application-development" element={<WebDetailPage />} />
           <Route path="/services/mobile-app-development" element={<MobileDetailPage />} />
           <Route path="/services/ai-automation-solutions" element={<AutomationDetailPage />} />
-          <Route path="/offers" element={<OffersPage />} />
+          <Route path="/start" element={<StartPage />} />
+          <Route path="/offers" element={<Navigate to="/start" replace />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/all" element={<AllProjectsPage />} />
           <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />

@@ -10,7 +10,7 @@ import ClosingGlow from "../components/common/ClosingGlow";
 import TestimonialFilm from "../components/common/TestimonialFilm";
 import TiltFrame from "../components/portfolio/TiltFrame";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
-import { OFFERS, offerHref } from "../config/offers";
+import { offerHref } from "../config/offers";
 import { trackOfferSelect, trackOffersHubView, trackContextualOfferCtaClick } from "../utils/analytics";
 
 // Editorial "final editing" pass (2026-10-19): the architecture, visual
@@ -31,7 +31,7 @@ const josh = TESTIMONIAL_FILMS.josh;
 // Fixed left-edge rail, desktop only — IntersectionObserver marks which
 // chapter is centered in the viewport and fills the connecting line up to
 // it. Doubles as in-page navigation (click a number, jump to that chapter).
-const ChapterRail: React.FC<{ chapters: { n: string; offer: string }[] }> = ({ chapters }) => {
+const ChapterRail: React.FC<{ chapters: { n: string; offer: string; door: string }[] }> = ({ chapters }) => {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -61,7 +61,6 @@ const ChapterRail: React.FC<{ chapters: { n: string; offer: string }[] }> = ({ c
       className="hidden xl:flex fixed left-8 top-1/2 -translate-y-1/2 z-30 flex-col items-start"
     >
       {chapters.map((c, i) => {
-        const offer = OFFERS[c.offer];
         return (
           <React.Fragment key={c.offer}>
             {i > 0 && (
@@ -94,7 +93,7 @@ const ChapterRail: React.FC<{ chapters: { n: string; offer: string }[] }> = ({ c
                   active === i ? "text-foreground/90" : "text-muted-foreground/40 group-hover:text-muted-foreground/70"
                 }`}
               >
-                {offer.category}
+                {c.door}
               </span>
             </button>
           </React.Fragment>
@@ -120,70 +119,113 @@ const ScrollRevealVisual: React.FC<{ children: React.ReactNode; className?: stri
   );
 };
 
-const CHAPTERS = [
+type Chapter = {
+  n: string;
+  offer: "product-rescue" | "idea-to-build" | "manual-to-system";
+  door: "FIX" | "BUILD" | "AUTOMATE";
+  icon: React.ComponentType<{ size?: number }>;
+  label: string;
+  statement: [string, string];
+  body: string;
+  /** The engagement the buyer actually wants — shown with real weight. */
+  engagement: { eyebrow: string; title: string; description: string; meta: string[] };
+  /** Primary action: implementation/conversation for BUILD and AUTOMATE, the
+   * paid assessment for FIX (quoting rescue work blind is irresponsible). */
+  primary: { label: string; href: string; event: "offer" | "contact" };
+  /** The bounded paid step, offered where it helps, required only where it protects the buyer. */
+  step?: { eyebrow: string; label: string; href: string };
+  stakes: { label: string; state: string; detail: string }[];
+  forYou: string[];
+  notForYou: string[];
+  proofLabel: string;
+  proof: string;
+  proofHref: string;
+  proofImage?: string;
+  emphasis?: boolean;
+};
+
+const CHAPTERS: Chapter[] = [
   {
     n: "01",
-    offer: "idea-to-build" as const,
-    icon: Rocket,
-    label: "Nothing Has Been Built Yet",
-    statement: ["You have the idea.", "V1 isn't clear yet."],
-    body: "Before turning assumptions into development cost, this decides exactly what your first version needs to prove — not the whole product, the one thing.",
-    resultDescription: "A documented decision — what belongs in V1, what doesn't, and why — yours to build with us or hand to any other team.",
-    stakes: [
-      { label: "Right now", state: "A wrong guess costs a conversation.", detail: "The V1 boundary is still just a decision — changing your mind here costs nothing but time." },
-      { label: "Mid-build", state: "A wrong guess costs sprints.", detail: "Code exists for the wrong version. Undoing it means rewriting, not reprioritizing." },
-      { label: "After launch", state: "A wrong guess costs trust.", detail: "Early users formed an opinion of the wrong product. That's harder to walk back than code." },
-    ],
-    forYou: ["An idea exists, but V1's boundary doesn't yet", "You want the decision made before development spend, not during it", "You're fine building the result with us or another team"],
-    notForYou: ["Something's already built and the problem is what's wrong with it — that's Product Rescue", "You already have a validated, specific V1 scope — you need a build, not a decision"],
-    deliverable: "Build-Ready V1 Brief",
-    cta: "Show Us What You're Building",
-    proofLabel: "Liftly",
-    proof: "The founder's broader marketplace vision already existed — a logistics platform with a sophisticated variable-pricing engine as the real differentiator. We separated the vision from the first release: V1 shipped the operational core — booking, serviceability, payment, admin — as a complete system on its own. The pricing engine was scoped and documented for a defined V2, not built prematurely into a release that didn't need it yet.",
-    proofHref: "/portfolio/liftly-operational-mvp-v1",
-    proofImage: "/project_images/liftly-cover.svg",
-  },
-  {
-    n: "02",
-    offer: "product-rescue" as const,
+    offer: "product-rescue",
+    door: "FIX",
     icon: Wrench,
-    label: "The Product Already Exists",
-    statement: ["The code exists.", "The next move isn't clear."],
-    body: "Before another sprint or rebuild, this finds out — from evidence, not a guess — what actually deserves fixing, replacing, or keeping.",
-    resultDescription: "An evidence-based read on what to keep, what to fix, and where a rebuild is actually justified — not a guess.",
+    label: "A product already exists",
+    statement: ["Find out what's actually wrong.", "Before paying to fix it."],
+    body: "Stalled, fragile, inherited, or just not trusted anymore. Before another sprint or a rebuild, the Product Rescue Assessment finds out — from the product's own evidence, not a guess — what deserves to stay, what needs fixing, and what should go.",
+    engagement: {
+      eyebrow: "What you get",
+      title: "A Rescue Brief, in five business days",
+      description: "What to keep, fix and replace, and what to fund first. Yours whether or not you hire us for the work that follows.",
+      meta: ["Product Rescue Assessment", "$750", "5 business days once access is ready"],
+    },
+    primary: { label: "Show us where you're stuck", href: offerHref("product-rescue", "start-hub"), event: "offer" },
+    step: { eyebrow: "Not ready to pay for an assessment?", label: "Four free questions — rescue or rebuild?", href: "/rescue-or-rebuild" },
     stakes: [
       { label: "Right now", state: "A wrong diagnosis costs a conversation.", detail: "Nothing has been built on the guess yet — changing course here costs nothing but time." },
       { label: "Next fix", state: "A wrong diagnosis costs a sprint.", detail: "Work goes into patching a symptom. If it was the wrong one, that work doesn't transfer." },
       { label: "Next rebuild", state: "A wrong diagnosis costs a rebuild.", detail: "The biggest bet, made on the same unverified read of what's actually wrong." },
     ],
     forYou: ["A real product already exists — stalled, breaking, inherited, or just not trusted anymore", "You can share access or evidence if accepted (we never ask for credentials up front)", "You want an outside, evidence-based read before spending on another attempt"],
-    notForYou: ["Nothing's been built yet — that's a V1 decision, not a rescue. Try Idea-to-Build instead", "You already know exactly what's wrong and just need it fixed — that's implementation, a service, not this assessment"],
-    deliverable: "Rescue Brief",
-    cta: "Show Us Where You're Stuck",
+    notForYou: ["Nothing's been built yet — that's a build decision, not a rescue. Start with the build door below", "You already know exactly what's wrong and just need it fixed — tell us, and we'll scope the work directly"],
     proofLabel: "Fast Track USA",
-    proof: "Josh Nyce, owner and founder, describes roughly two years with a previous team without a reliable launch. Zumetrix took the project over and shipped it in three weeks — bug-free, by his account, on video and in a separately-worded, verified Trustpilot review corroborated on Google.",
+    proof: "Josh Nyce, owner and founder, describes roughly two years with a previous team without a reliable launch. Zumetrix took the project over and shipped it in three weeks — by his account, on video and in a separately worded Trustpilot review corroborated on Google. One client's experience, not a typical timeline.",
     proofHref: "/portfolio/fast-track-usa-app-rescue",
     emphasis: true,
   },
   {
+    n: "02",
+    offer: "idea-to-build",
+    door: "BUILD",
+    icon: Rocket,
+    label: "Nothing built yet",
+    statement: ["Decide what the first version has to prove.", "Then build that."],
+    body: "Every build here starts with a written V1 decision — what ships, what waits, and why — before any code. For most founders that is week one of the build. If you want the decision on its own first, before committing to a team, that's the Idea-to-Build Sprint.",
+    engagement: {
+      eyebrow: "The engagement",
+      title: "A first version built to prove the second deserves to exist",
+      description: "Accounts, payments, the core flow and the admin it needs — scoped in writing in week one, shipped by the people who scoped it, with the founders close throughout.",
+      meta: ["SaaS & product development", "from $4,800", "scope decided in week one"],
+    },
+    primary: { label: "Tell us what you're building", href: "/contact?service=saas-mvp-development&situation=nothing-built", event: "contact" },
+    step: { eyebrow: "Want the V1 decision in writing first?", label: "Idea-to-Build Sprint · $950 · five business days", href: offerHref("idea-to-build", "start-hub") },
+    stakes: [
+      { label: "Right now", state: "A wrong guess costs a conversation.", detail: "The V1 boundary is still just a decision — changing your mind here costs nothing but time." },
+      { label: "Mid-build", state: "A wrong guess costs sprints.", detail: "Code exists for the wrong version. Undoing it means rewriting, not reprioritizing." },
+      { label: "After launch", state: "A wrong guess costs trust.", detail: "Early users formed an opinion of the wrong product. That's harder to walk back than code." },
+    ],
+    forYou: ["You have a real idea, mockups or research — and nothing shipped yet", "You'd rather argue about scope now than pay for the wrong version later", "You want to see the V1 decision in writing before any code exists"],
+    notForYou: ["Something's already built and the problem is what's wrong with it — that's the door above", "You want a slide deck or a prototype rather than working software"],
+    proofLabel: "Knipsr",
+    proof: "A product built from the ground up and taken to a launch-ready SaaS — durable background processing, retries, media streaming, and a stress test against real event-day failure modes before launch. The founder's own words are on Trustpilot; identity withheld at their request.",
+    proofHref: "/portfolio/knipsr-event-media-saas",
+    proofImage: "/project_images/knipsr-cover.svg",
+  },
+  {
     n: "03",
-    offer: "manual-to-system" as const,
+    offer: "manual-to-system",
+    door: "AUTOMATE",
     icon: Workflow,
-    label: "The Workflow Already Exists",
-    statement: ["The workflow works.", "What deserves automation isn't clear."],
-    body: "Before adding another tool, this decides what should actually be automated, simplified, connected, or left for a person to keep doing.",
-    resultDescription: "A clear plan for what to remove, simplify, connect, automate, or keep human — a decision, not a tool recommendation.",
+    label: "A workflow already exists",
+    statement: ["Get one workflow off your team's plate.", "Built, live, watched."],
+    body: "The process works because people remember what to do — that's the problem. We map the manual steps, build the one that hurts most, and leave it running with alerts and a handoff. Then we decide together whether there's a second.",
+    engagement: {
+      eyebrow: "The engagement",
+      title: "One bounded workflow, built and live",
+      description: "Make, n8n, Zapier or code — whichever the workflow deserves — with failures flagged to a person instead of disappearing, and a handoff document your team can actually use.",
+      meta: ["AI Automation & Workflows", "from $2,500", "one bounded workflow"],
+    },
+    primary: { label: "Show us the workflow", href: "/contact?service=ai-automation-solutions&situation=manual-workflow", event: "contact" },
+    step: { eyebrow: "Spans several teams or systems?", label: "Manual-to-System Sprint · $750 · a plan before any tool", href: offerHref("manual-to-system", "start-hub") },
     stakes: [
       { label: "This week", state: "One person quietly absorbs it.", detail: "It feels manageable — a few extra minutes per handoff, easy to not notice." },
       { label: "This quarter", state: "It becomes \"how we do things.\"", detail: "New hires learn the workaround as normal, not as a problem worth fixing." },
       { label: "Next hire", state: "You hire to cover the workflow.", detail: "Not because the business grew — because a person is now load-bearing infrastructure." },
     ],
-    forYou: ["A real, recurring workflow already runs today — carried by people, not a system", "You want to know what's actually worth automating before buying another tool", "You're open to some of it staying human — that's a legitimate outcome, not a failure"],
-    notForYou: ["Nothing's running manually yet to analyze — there's no workflow to automate", "You already know exactly what to automate and just need it built — that's implementation, a service, not this sprint"],
-    deliverable: "Workflow System Plan",
-    cta: "Show Us The Workflow",
+    forYou: ["A real, recurring workflow runs today — carried by people, not a system", "You can name the step that hurts most", "You're open to some of it staying human — that's a legitimate outcome, not a failure"],
+    notForYou: ["Nothing's running manually yet — there's no workflow to automate", "You want a tool recommendation rather than a running system"],
     proofLabel: "Floating Stone Ranch",
-    proof: "A beef processor's carcass intake, boxing, and shipping ran on spreadsheets and paper — no single source of truth, no reliable manifest. We centralized it into one Airtable-backed system and automated the status transitions that used to be tracked by hand, with a structure built to support the reporting that comes next.",
+    proof: "A beef processor's carcass intake, boxing and shipping ran on spreadsheets and paper. We centralized it into one Airtable-backed system and automated the status transitions that used to be tracked by hand — and eight months later the client is still working with us.",
     proofHref: "/portfolio/floating-stone-ranch-processor-intake-engine",
     proofImage: "/project_images/floating-stone.jpg",
   },
@@ -191,20 +233,20 @@ const CHAPTERS = [
 
 const DIFFERENCE = [
   {
-    typical: "Open-ended discovery call, then a scope that firms up (or doesn't) once work has already started.",
-    zumetrix: "A bounded, fixed-price assessment. You know the cost and the timeline before anything begins.",
+    typical: "A discovery call, then a scope that firms up (or doesn't) once work has already started.",
+    zumetrix: "A starting price on every service page and a fixed price on every assessment — before any call.",
   },
   {
-    typical: "The exploration happens on your dime, inside the build — figuring out what's actually needed while you're already paying to build it.",
-    zumetrix: "The decision happens first, on its own. What gets built is informed by it, not tangled with it.",
+    typical: "The exploration happens on your dime, inside the build — figuring out what's needed while you're already paying to build it.",
+    zumetrix: "The decision is made first and written down — in week one of a build, or on its own if you'd rather see it before committing.",
   },
   {
     typical: "If it doesn't work out, you've paid for partial work and still don't have clarity.",
-    zumetrix: "You keep the Brief either way — usable with us or with anyone else. Nothing about it depends on hiring us next.",
+    zumetrix: "Whatever was written — brief, plan or V1 decision — is yours, usable with us or with anyone else.",
   },
 ];
 
-const OffersPage: React.FC = () => {
+const StartPage: React.FC = () => {
   useEffect(() => {
     trackOffersHubView();
   }, []);
@@ -212,9 +254,10 @@ const OffersPage: React.FC = () => {
   return (
     <PageTransition>
       <SEO
-        title="Offers — Three Ways to Start With Zumetrix | Zumetrix Labs"
-        description="Three bounded, paid decisions — not packages. Idea-to-Build, Product Rescue, and Manual-to-System each give you a clear next step before any larger commitment."
-        url="https://zumetrix.com/offers"
+        title="Start Here — Three Ways In | Zumetrix Labs"
+        description="A product that's stuck, nothing built yet, or a workflow run by hand. Three ways to start with Zumetrix Labs — prices stated up front, a paid step only where it protects you."
+        url="https://zumetrix.com/start"
+        image="https://zumetrix.com/og/page-start.png"
       />
 
       {/* Hero */}
@@ -222,28 +265,29 @@ const OffersPage: React.FC = () => {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(196,138,100,0.06),transparent_65%)]" />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection mode="hero" className="mb-7">
-            <SectionEyebrow>Three Ways to Start</SectionEyebrow>
+            <SectionEyebrow>Start here</SectionEyebrow>
           </AnimatedSection>
           <AnimatedSection mode="hero" delay={0.04}>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground mb-8 text-balance">
-              Start with what already exists.
+              Three ways in.
+              <span className="block text-muted-foreground/50">Pick the one that matches this week.</span>
             </h1>
           </AnimatedSection>
           <AnimatedSection mode="hero" delay={0.08} className="space-y-2 mb-9">
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              No product yet? Decide what V1 needs to prove.
+              A product that's stuck? Find out what's wrong before paying to fix it.
             </p>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              Product already exists? Decide what deserves fixing.
+              Nothing built yet? Decide what V1 has to prove, then build that.
             </p>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              Workflow already exists? Decide what deserves automation.
+              A workflow run by hand? Get one off your team's plate.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.14}>
             <p className="text-sm text-muted-foreground/70">
-              Offers decide what should happen next.{" "}
-              <span className="text-foreground/80 font-medium">Services are how we implement it.</span>
+              Prices are stated before any call.{" "}
+              <span className="text-foreground/80 font-medium">A paid step comes first only where buying the work blind would be a mistake.</span>
             </p>
           </AnimatedSection>
         </div>
@@ -253,8 +297,7 @@ const OffersPage: React.FC = () => {
       <ChapterRail chapters={CHAPTERS} />
       <div className="relative bg-background">
         {CHAPTERS.map((chapter, idx) => {
-          const offer = OFFERS[chapter.offer];
-          const reversed = idx === 2;
+          const reversed = idx === 1;
           return (
             <section
               key={chapter.offer}
@@ -274,7 +317,7 @@ const OffersPage: React.FC = () => {
                       <span className="flex items-baseline gap-3">
                         <span className="text-sm font-mono text-primary/50 tracking-wider">{chapter.n}</span>
                         <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/70">
-                          {chapter.label}
+                          {chapter.door} · {chapter.label}
                         </span>
                       </span>
                     </AnimatedSection>
@@ -299,42 +342,62 @@ const OffersPage: React.FC = () => {
                       </p>
                     </AnimatedSection>
 
-                    {/* What You Get — the result, stated plainly and given
-                        real weight, not buried in a metadata chip. This is
-                        the part a cold reader needs to find instantly, so
-                        it gets its own clear space, not a tight stack. */}
-                    <AnimatedSection delay={0.1} className="mb-10">
+                    {/* The engagement — the thing the buyer actually wants,
+                        given real weight. For FIX that is the assessment
+                        itself; for BUILD and AUTOMATE it is the work. */}
+                    <AnimatedSection delay={0.1} className="mb-8">
                       <div className="rounded-xl border border-primary/25 bg-primary/[0.05] px-6 py-5 max-w-lg">
                         <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2">
-                          What You Get
+                          {chapter.engagement.eyebrow}
                         </p>
-                        <p className="text-lg font-bold text-foreground mb-2">{chapter.deliverable}</p>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{chapter.resultDescription}</p>
+                        <p className="text-lg font-bold text-foreground mb-2">{chapter.engagement.title}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{chapter.engagement.description}</p>
                       </div>
                     </AnimatedSection>
 
                     <AnimatedSection delay={0.12}>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-foreground/80 mb-10">
-                        <span className="font-semibold">{offer.name}</span>
-                        <span className="text-muted-foreground/40" aria-hidden="true">·</span>
-                        <span className="font-semibold text-foreground">${offer.price}</span>
-                        <span className="text-muted-foreground/40" aria-hidden="true">·</span>
-                        <span className="text-muted-foreground">5 business days</span>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-foreground/80 mb-8">
+                        {chapter.engagement.meta.map((m, i) => (
+                          <React.Fragment key={m}>
+                            {i > 0 && <span className="text-muted-foreground/40" aria-hidden="true">·</span>}
+                            <span className={i === 1 ? "font-semibold text-foreground" : i === 0 ? "font-semibold" : "text-muted-foreground"}>{m}</span>
+                          </React.Fragment>
+                        ))}
                       </div>
                     </AnimatedSection>
 
                     <AnimatedSection delay={0.16}>
                       <Link
-                        to={offerHref(chapter.offer, "offers-hub")}
-                        onClick={() => trackOfferSelect(chapter.offer)}
+                        to={chapter.primary.href}
+                        onClick={() =>
+                          chapter.primary.event === "offer"
+                            ? trackOfferSelect(chapter.offer)
+                            : trackContextualOfferCtaClick(chapter.offer, "start-hub-primary")
+                        }
                         className="btn-sheen group inline-flex items-center gap-3 rounded-full bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-6 pr-2 py-2.5 text-sm font-semibold"
                       >
-                        {chapter.cta}
+                        {chapter.primary.label}
                         <span className="flex items-center justify-center w-7 h-7 rounded-full bg-black/10 group-hover:bg-black/[0.14] transition-colors duration-300">
                           <ArrowRight size={13} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                         </span>
                       </Link>
                     </AnimatedSection>
+
+                    {chapter.step && (
+                      <AnimatedSection delay={0.2} className="mt-6">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/50 mb-1.5">
+                          {chapter.step.eyebrow}
+                        </p>
+                        <Link
+                          to={chapter.step.href}
+                          onClick={() => trackOfferSelect(chapter.offer)}
+                          className="group/step inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-primary transition-colors duration-200"
+                        >
+                          <span className="border-b border-foreground/15 group-hover/step:border-primary/50 transition-colors duration-200">{chapter.step.label}</span>
+                          <ArrowRight size={12} className="group-hover/step:translate-x-0.5 transition-transform duration-200" />
+                        </Link>
+                      </AnimatedSection>
+                    )}
                   </div>
 
                   {/* Proof — both branches get the cinematic scroll
@@ -466,7 +529,7 @@ const OffersPage: React.FC = () => {
           <AnimatedSection className="text-center mb-14">
             <SectionEyebrow className="mb-5">How This Is Different</SectionEyebrow>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight max-w-xl mx-auto leading-[1.2]">
-              Most engagements start with a conversation. This one starts with a decision.
+              Most engagements start with a call and a vague scope. Ours start with a price and a written decision.
             </h2>
           </AnimatedSection>
 
@@ -508,14 +571,14 @@ const OffersPage: React.FC = () => {
         <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-5">
-              None of These Sound Exactly Right?
+              None of these sound exactly right?
             </p>
             <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight leading-[1.2] mb-5">
-              Don't choose an offer just to choose one.
+              Don't pick a door just to pick one.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-9 max-w-md mx-auto">
-              Tell us what's happening. We'll tell you honestly whether one of
-              these fits — or whether you shouldn't buy one at all.
+              Say what's happening. We'll tell you which of these fits — or that
+              you shouldn't buy anything from us yet.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">
@@ -527,7 +590,7 @@ const OffersPage: React.FC = () => {
                 transition={{ duration: 0.15 }}
                 className="btn-sheen group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-b from-primary to-primary/[0.92] text-primary-foreground pl-7 pr-2 py-3 text-base font-semibold"
               >
-                Tell Us The Situation
+                Tell us the situation
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:bg-black/[0.14] transition-colors duration-300">
                   <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
@@ -540,4 +603,4 @@ const OffersPage: React.FC = () => {
   );
 };
 
-export default OffersPage;
+export default StartPage;

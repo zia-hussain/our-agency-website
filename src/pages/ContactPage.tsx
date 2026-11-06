@@ -79,6 +79,19 @@ const ContactPage: React.FC = () => {
     if (projectParam) {
       setSourceProjectSlug(projectParam);
     }
+    // `?situation=` is set only by the site's own door links (/start, the
+    // service pages, the mobile nav) so the form opens on the right
+    // "What exists today?" answer. Never user-supplied text.
+    const situationParam = searchParams.get("situation") || undefined;
+    const SITUATION_PARAM_TO_LABEL: Record<string, string> = {
+      "nothing-built": "Nothing is built yet",
+      "product-exists": "A product exists (live, stuck, or inherited)",
+      "manual-workflow": "A workflow runs on people and spreadsheets",
+    };
+    if (situationParam && SITUATION_PARAM_TO_LABEL[situationParam]) {
+      const label = SITUATION_PARAM_TO_LABEL[situationParam];
+      setFormData((prev) => (prev.situation ? prev : { ...prev, situation: label }));
+    }
     if (noteParam) {
       setFormData((prev) => (prev.message ? prev : { ...prev, message: noteParam }));
     }
@@ -679,7 +692,7 @@ const ContactPage: React.FC = () => {
                   </div>
                   <p className="mt-4 text-center text-xs text-muted-foreground/70">
                     Already know it's a BUILD, FIX, or AUTOMATE situation?{" "}
-                    <Link to="/offers" className="text-primary/90 hover:text-primary font-medium hover:underline underline-offset-2">
+                    <Link to="/start" className="text-primary/90 hover:text-primary font-medium hover:underline underline-offset-2">
                       See the three ways to start
                     </Link>
                   </p>

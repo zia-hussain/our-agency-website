@@ -12,6 +12,11 @@
   ],
   "redirects": [
     {
+      "source": "/offers",
+      "destination": "/start",
+      "permanent": true
+    },
+    {
       "source": "/services/mvp-development",
       "destination": "/services/saas-mvp-development",
       "permanent": true
