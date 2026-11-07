@@ -63,6 +63,7 @@ const flagship = getProjectBySlug("fast-track-usa-app-rescue");
 const knipsr = getProjectBySlug("knipsr-event-media-saas");
 const fsr = getProjectBySlug("floating-stone-ranch-processor-intake-engine");
 const josh = TESTIMONIAL_FILMS.josh;
+const reema = TESTIMONIAL_FILMS.reema;
 
 const SERVICES_SPEC: PanelSpec = {
   eyebrow: "What we build",
@@ -167,8 +168,9 @@ const PORTFOLIO_SPEC: PanelSpec = {
             label: "Fast Track USA",
             desc: "Product rescue · launched in three weeks",
             to: `/portfolio/${flagship.slug}`,
-            scene: "rescue" as VignetteKind,
-            kicker: "Rescued",
+            scene: "film" as VignetteKind,
+            sceneSrc: josh.poster,
+            kicker: "Rescued · on film",
             title: flagship.title,
             body: flagship.testimonial?.quote ? `“${flagship.testimonial.quote}”` : flagship.description,
             meta: flagship.testimonial ? `${flagship.testimonial.author}, ${flagship.testimonial.role ?? ""}` : undefined,
@@ -214,11 +216,11 @@ const PORTFOLIO_SPEC: PanelSpec = {
       desc: "Four founders, in their own words",
       to: "/client-stories",
       scene: "film",
-      sceneSrc: josh.poster,
-      kicker: "On film · 1:26",
-      title: josh.context,
-      body: flagship?.testimonial?.quote ? `“${flagship.testimonial.quote}”` : "",
-      meta: `${josh.name} · ${josh.role}`,
+      sceneSrc: reema.poster,
+      kicker: "Four films",
+      title: reema.context,
+      body: "Josh, Reema, Sarah and Krystof — four founders on what it was like to work with Zumetrix, in their own words, uncut.",
+      meta: `${reema.name} · ${reema.role}`,
       cta: "Watch the films",
     },
   ],
@@ -232,7 +234,7 @@ const PORTFOLIO_SPEC: PanelSpec = {
 };
 
 const SCENE_FOR_ARTICLE: Record<string, VignetteKind> = {
-  "Product Rescue": "rescue",
+  "Product Rescue": "notes",
   "AI & Automation": "automation",
   SaaS: "decision",
   "Decision Room": "decision",
