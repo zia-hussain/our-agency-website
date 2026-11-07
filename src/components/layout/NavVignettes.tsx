@@ -115,28 +115,32 @@ const Dashboard: React.FC<{ still: boolean }> = ({ still }) => (
 );
 
 const Saas: React.FC<{ still: boolean }> = ({ still }) => (
-  <div className="relative h-[70%] w-[62%]">
+  <div className="relative h-[84%] w-[66%]">
+    {/* Back: a settled payment. Sits up-left, its badge and card number kept
+        clear of the login card in front. */}
     <motion.div
-      animate={still ? undefined : { y: [0, -4, 0] }}
+      animate={still ? undefined : { y: [0, -3, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute left-0 top-2 w-[78%] rounded-xl border border-white/[0.08] bg-[#15120F]/90 p-3 shadow-[0_30px_60px_-24px_rgba(0,0,0,0.8)]"
+      className="absolute left-0 top-0 w-[58%] rounded-xl border border-white/[0.08] bg-[#15120F]/95 p-3.5 shadow-[0_30px_60px_-24px_rgba(0,0,0,0.8)]"
     >
       <div className="flex items-center justify-between">
-        <Line w="34%" />
+        <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-white/55">Invoice</span>
         <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-[0.12em] text-emerald-300">Paid</span>
       </div>
       <div className="mt-3 flex items-center gap-2">
         <span className="h-5 w-8 rounded-sm bg-white/[0.12]" />
-        <span className="font-mono text-[9px] tracking-[0.2em] text-white/40">•••• •••• •••• 4242</span>
+        <span className="font-mono text-[9px] tracking-[0.2em] text-white/45">•••• 4242</span>
       </div>
-      <Line w="55%" className="mt-3" />
+      <Line w="60%" className="mt-3" />
+      <Line w="40%" className="mt-1.5" />
     </motion.div>
+    {/* Front: the sign-in, offset down-right so the two never stack. */}
     <motion.div
-      animate={still ? undefined : { y: [0, 4, 0] }}
+      animate={still ? undefined : { y: [0, 3, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-      className="absolute bottom-0 right-0 w-[70%] rounded-xl border border-primary/25 bg-[#17130F] p-3.5 shadow-[0_30px_60px_-20px_rgba(196,138,100,0.35)]"
+      className="absolute bottom-0 right-0 w-[56%] rounded-xl border border-primary/25 bg-[#17130F] p-3.5 shadow-[0_30px_60px_-20px_rgba(196,138,100,0.35)]"
     >
-      <span className="block h-2 w-14 rounded-sm bg-white/[0.16]" />
+      <span className="block h-2 w-12 rounded-sm bg-white/[0.16]" />
       <span className="mt-3 block h-6 rounded-md border border-white/[0.08] bg-white/[0.03]" />
       <span className="mt-2 block h-6 rounded-md border border-white/[0.08] bg-white/[0.03]" />
       <span className="mt-3 block h-6 rounded-md bg-primary" />
