@@ -43,10 +43,12 @@ const Avatar: React.FC<{ name: string; size?: "sm" | "md" }> = ({ name, size = "
 );
 
 const PlatformMark: React.FC<{ t: TestimonialEntry }> = ({ t }) => (
+  t.platform ? (
   <span className="flex items-center gap-1.5 text-muted-foreground/60">
     <PlatformIcon platform={t.platform} size={14} />
     <span className="text-xs">{t.platform}</span>
   </span>
+  ) : null
 );
 
 const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({ t, compact }) => {

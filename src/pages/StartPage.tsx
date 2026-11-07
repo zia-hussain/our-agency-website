@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, X, Rocket, Wrench, Workflow } from "lucide-react";
+import { ArrowRight, Check, X, Rocket, Wrench, Workflow, type LucideIcon } from "lucide-react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import SEO from "../components/common/SEO";
 import PageTransition from "../components/common/PageTransition";
@@ -126,7 +126,7 @@ type Chapter = {
   n: string;
   offer: "product-rescue" | "idea-to-build" | "manual-to-system";
   door: "FIX" | "BUILD" | "AUTOMATE";
-  icon: React.ComponentType<{ size?: number }>;
+  icon: LucideIcon;
   label: string;
   statement: [string, string];
   body: string;

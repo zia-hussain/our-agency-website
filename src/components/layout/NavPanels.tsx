@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, type LucideIcon } from "lucide-react";
 import { services, rescueService } from "../../data/services";
 import { articles } from "../../data/articles.js";
 import { NAV_FEATURED_ORDER, pickInOrder } from "../../data/articleHierarchy";
@@ -31,7 +31,7 @@ type Item = {
   desc: string;
   to: string;
   onClick?: () => void;
-  icon?: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  icon?: LucideIcon;
   scene: VignetteKind;
   sceneSrc?: string;
   kicker: string;

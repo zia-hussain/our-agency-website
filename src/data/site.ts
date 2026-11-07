@@ -36,10 +36,9 @@ export const SITE_DATA = {
   },
 
   // Company Logos Carousel - INFINITE SMOOTH SLIDER
-  // Client logos. `permitted` records written-permission status only; it is
-  // NOT enforced by the marquee today (production renders all five). Status
-  // as of the Nov 2026 ship pass: no written logo permission on file for any
-  // of these — owner to confirm per client and flip the flag when confirmed.
+  // The marquee only renders logos with written permission on file.
+  // No written permission is recorded for these as of the Nov 2026 ship
+  // pass; the owner can enable each logo after permission is confirmed.
   companyLogosCarousel: {
     logos: [
       { name: "Tech Skills", imageUrl: "/companies_logos/techskills.webp", permitted: false },

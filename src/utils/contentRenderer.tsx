@@ -5,7 +5,6 @@
  * Use this to maintain visual hierarchy from centralized content config.
  */
 
-import React from 'react';
 import { ContentSegment } from '../config/content';
 
 /**

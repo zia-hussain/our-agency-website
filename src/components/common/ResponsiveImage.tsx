@@ -70,7 +70,6 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
         className={imgClassName}
         loading={priority ? "eager" : "lazy"}
         decoding={priority ? "sync" : "async"}
-        // @ts-expect-error fetchpriority isn't in the DOM typings this React version ships
         fetchpriority={priority ? "high" : undefined}
       />
     </picture>

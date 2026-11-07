@@ -6,7 +6,7 @@ const InfiniteLogoCarousel: React.FC = () => {
   const { companyLogosCarousel } = getSiteData();
 
   const logos = useMemo(
-    () => companyLogosCarousel?.logos ?? [],
+    () => (companyLogosCarousel?.logos ?? []).filter((logo) => logo.permitted),
     [companyLogosCarousel?.logos]
   );
 

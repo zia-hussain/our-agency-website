@@ -5,7 +5,6 @@ import PageTransition from "../components/common/PageTransition";
 import AnimatedSection from "../components/common/AnimatedSection";
 import CoverImage from "../components/common/CoverImage";
 import { articleShareImage, coverForArticle } from "../data/covers";
-import ResponsiveImage from "../components/common/ResponsiveImage";
 import TiltFrame from "../components/portfolio/TiltFrame";
 import ClosingGlow from "../components/common/ClosingGlow";
 import RescueFramework from "../components/articles/RescueFramework";
@@ -539,29 +538,11 @@ const ArticleDetailPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Article hero — the authored cluster cover by default (data/covers.ts).
-          An article switches to a real editorial image here once it has one
-          worth showing: set article.heroImage (plus heroImageAlt/Width/Height)
-          and this renders it instead. */}
+      {/* Article heroes use the cover family in data/covers.ts. */}
       {!article.hideHeroVisual && (
       <section className="pb-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            {article.heroImage ? (
-              <ResponsiveImage
-                src={article.heroImage}
-                mobileSrc={article.heroImageMobile}
-                alt={article.heroImageAlt || article.title}
-                width={article.heroImageWidth || 1600}
-                height={article.heroImageHeight || 900}
-                avifSrc={article.heroImageAvif}
-                webpSrc={article.heroImageWebp}
-                priority
-                caption={article.heroImageCaption}
-                credit={article.heroImageCredit}
-                className="w-full rounded-2xl border border-border/60 object-cover"
-              />
-            ) : (
               <figure className="m-0">
                 <TiltFrame>
                   <CoverImage cover={coverForArticle(article)} subject={article.title} className="aspect-video object-cover" priority sizes="(min-width: 1024px) 896px, 100vw" />
@@ -570,7 +551,6 @@ const ArticleDetailPage: React.FC = () => {
                   {article.title} · {article.category} · Zumetrix Labs
                 </figcaption>
               </figure>
-            )}
           </AnimatedSection>
         </div>
       </section>

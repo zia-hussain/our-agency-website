@@ -1,16 +1,11 @@
 import { Writable } from "node:stream";
 import { renderToPipeableStream } from "react-dom/server";
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider, type HelmetServerState } from "react-helmet-async";
 import { StaticRouter } from "react-router-dom/server";
 import App from "./App";
 
 type HelmetContext = {
-  helmet?: {
-    title: { toString: () => string };
-    meta: { toString: () => string };
-    link: { toString: () => string };
-    script: { toString: () => string };
-  };
+  helmet?: HelmetServerState;
 };
 
 export const render = (url: string) =>
