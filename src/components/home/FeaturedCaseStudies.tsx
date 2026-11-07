@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, MapPin, Target } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, MapPin, Target, Play } from "lucide-react";
 import TiltFrame from "../portfolio/TiltFrame";
+import { TESTIMONIAL_FILMS } from "../../data/testimonialFilms";
 import { motion } from "framer-motion";
 import { getProjectBySlug } from "../../data/projects";
 
@@ -155,8 +156,8 @@ const FeaturedCaseStudies: React.FC = () => {
                   {flagship.testimonial && (
                     <footer className="mt-3 text-sm text-muted-foreground">
                       {flagship.testimonial.author}
-                      {flagship.testimonial.role ? <span className="text-muted-foreground/60"> · {flagship.testimonial.role}</span> : null}
-                      <span className="text-muted-foreground/60"> · on film and on Trustpilot</span>
+                      {flagship.testimonial.role ? <span className="text-muted-foreground/75"> · {flagship.testimonial.role}</span> : null}
+                      <span className="text-muted-foreground/75"> · on film and on Trustpilot</span>
                     </footer>
                   )}
                 </blockquote>
@@ -173,28 +174,35 @@ const FeaturedCaseStudies: React.FC = () => {
 
             {/* Built vs. deferred column — a structured spec sheet, contrasting the free-flowing story */}
             <div className="lg:col-span-2">
-              <Link to={`/portfolio/${flagship.slug}`} aria-label={`Read the case study: ${flagship.title}`} className="block mb-6 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+              {/* The record itself, not a diagram of it: Josh on film. Clicking
+                  goes to the film section below, where it plays. */}
+              <a href="#client-films" aria-label="Watch Josh Nyce tell the Fast Track story on film" className="group/film block mb-6 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
               <TiltFrame
                 variant="card"
                 maxTilt={5}
                 frameClassName="relative rounded-2xl border border-primary/15 bg-background shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]"
                 innerClassName="relative overflow-hidden rounded-2xl"
               >
-                <picture>
-                  {flagship.heroImageMobile && <source media="(max-width: 640px)" srcSet={flagship.heroImageMobile} />}
-                  <img
-                    src={flagship.image}
-                    alt={flagship.ogImageAlt ?? `${flagship.client.name} overview`}
-                    title={flagship.title}
-                    width="800"
-                    height="600"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-auto object-contain"
-                  />
-                </picture>
+                <img
+                  src={TESTIMONIAL_FILMS.josh.poster}
+                  alt="Josh Nyce, Owner & Founder of Fast Track USA, on film about the rescue"
+                  title={flagship.title}
+                  width="1080"
+                  height="608"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover/film:scale-[1.02]"
+                />
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
+                <span className="absolute left-1/2 top-[44%] flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_14px_34px_-8px_rgba(196,138,100,0.7)] transition-transform duration-300 group-hover/film:scale-110">
+                  <Play size={20} strokeWidth={2.5} className="ml-0.5" fill="currentColor" />
+                </span>
+                <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-white/90 backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  On film · 1:26
+                </span>
               </TiltFrame>
-              </Link>
+              </a>
 
               <div className="rounded-2xl border border-border/70 overflow-hidden">
                 <div className="bg-card/40 p-6">
@@ -224,7 +232,7 @@ const FeaturedCaseStudies: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                    <a href="#client-films" className="inline-flex items-center gap-1.5 text-xs text-primary/80 hover:text-primary mt-4 transition-colors">
+                    <a href="#client-films" className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 mt-4 transition-colors">
                       Watch Josh tell it <ArrowRight size={11} />
                     </a>
                   </div>

@@ -339,7 +339,7 @@ const Navigation: React.FC = () => {
                   aria-hidden={!active}
                   {...({ inert: active ? undefined : "" } as Record<string, string | undefined>)}
                 >
-                  <Panel />
+                  <Panel live={openMenu === key} />
                 </motion.div>
               );
             })}
@@ -385,7 +385,7 @@ const Navigation: React.FC = () => {
           aria-label="Open navigation menu"
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-nav-panel"
-          className="btn-sheen flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+          className="btn-sheen relative flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 before:absolute before:-inset-1.5 before:content-['']"
         >
           <span className="flex flex-col items-center justify-center gap-[5px]">
             <span className="block h-px w-4 bg-foreground/90" aria-hidden="true" />

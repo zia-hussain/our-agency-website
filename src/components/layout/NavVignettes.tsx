@@ -355,8 +355,10 @@ const Timeline: React.FC<{ src: string }> = ({ src }) => (
 
 /* ---- entry ---- */
 
-const NavVignette: React.FC<{ kind: VignetteKind; src?: string }> = ({ kind, src }) => {
-  const still = !!useReducedMotion();
+const NavVignette: React.FC<{ kind: VignetteKind; src?: string; live?: boolean }> = ({ kind, src, live = true }) => {
+  // Still when the visitor prefers reduced motion, and still whenever the
+  // panel isn't the open one (nothing should animate behind a closed menu).
+  const still = !!useReducedMotion() || !live;
   if (kind === "film" && src) return <Film poster={src} />;
   if (kind === "timeline" && src) return <Timeline src={src} />;
   return (

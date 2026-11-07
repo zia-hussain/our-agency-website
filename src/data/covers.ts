@@ -237,8 +237,7 @@ export const coverKeyForProject = (p: ProjectLike): CoverKey => {
 /** True when the project carries its own hand-authored evidence visual
  *  (Fast Track's recovery timeline) that should be shown instead of a
  *  category cover. */
-const hasAuthoredVisual = (p: ProjectLike) =>
-  Boolean(p.heroImageFit === "contain" || (p.image && /fast-track/.test(p.image)));
+const hasAuthoredVisual = (p: ProjectLike) => p.heroImageFit === "contain";
 
 // Neighbouring cases in one category would otherwise show the identical
 // frame. A stable per-slug variant (mirror, and a slight shift of the object

@@ -127,6 +127,7 @@ function App() {
       <Analytics />
       <ScrollToTop />
       {!isReviewRoute && !isNotFoundRoute && <Navigation />}
+      <main id="main">
       <Suspense fallback={<LoadingFallback />}>
         <AnimatePresence mode="wait">
           <Routes>
@@ -172,6 +173,7 @@ function App() {
         </Routes>
       </AnimatePresence>
       </Suspense>
+      </main>
       {!isReviewRoute && !isNotFoundRoute && <Footer />}
       {!isReviewRoute && !isNotFoundRoute && <BackToTop />}
       {!isReviewRoute && !isNotFoundRoute && !isUtilityRoute && !isProposalCaseStudy && location.pathname !== '/' && <StickyCTABar />}

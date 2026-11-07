@@ -63,7 +63,6 @@ const flagship = getProjectBySlug("fast-track-usa-app-rescue");
 const knipsr = getProjectBySlug("knipsr-event-media-saas");
 const fsr = getProjectBySlug("floating-stone-ranch-processor-intake-engine");
 const josh = TESTIMONIAL_FILMS.josh;
-const timeline = flagship?.image;
 
 const SERVICES_SPEC: PanelSpec = {
   eyebrow: "What we build",
@@ -168,8 +167,7 @@ const PORTFOLIO_SPEC: PanelSpec = {
             label: "Fast Track USA",
             desc: "Product rescue · launched in three weeks",
             to: `/portfolio/${flagship.slug}`,
-            scene: "timeline" as VignetteKind,
-            sceneSrc: timeline,
+            scene: "rescue" as VignetteKind,
             kicker: "Rescued",
             title: flagship.title,
             body: flagship.testimonial?.quote ? `“${flagship.testimonial.quote}”` : flagship.description,
@@ -280,7 +278,7 @@ const SPECS: Record<PanelKey, PanelSpec> = { services: SERVICES_SPEC, start: STA
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey }> = ({ spec, panelKey }) => {
+const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey; live: boolean }> = ({ spec, panelKey, live }) => {
   const [active, setActive] = useState(0);
   const reduce = useReducedMotion();
   const item = spec.items[active] ?? spec.items[0];
@@ -370,7 +368,10 @@ const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey }> = ({ spe
               transition={{ duration: reduce ? 0 : 0.4, ease: EASE }}
               className="absolute inset-0 block"
             >
-              <NavVignette kind={item.scene} src={item.sceneSrc} />
+              {/* Scenes only run while this panel is the open one — four
+                  panels of perpetual motion behind a closed menu would tax a
+                  low-end phone for nothing. */}
+              <NavVignette kind={item.scene} src={item.sceneSrc} live={live} />
             </motion.span>
           </AnimatePresence>
           <AnimatePresence initial={false} mode="wait">
@@ -424,9 +425,9 @@ const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey }> = ({ spe
   );
 };
 
-export const PANELS: Record<PanelKey, React.FC> = {
-  services: () => <ListStagePanel spec={SPECS.services} panelKey="services" />,
-  start: () => <ListStagePanel spec={SPECS.start} panelKey="start" />,
-  portfolio: () => <ListStagePanel spec={SPECS.portfolio} panelKey="portfolio" />,
-  articles: () => <ListStagePanel spec={SPECS.articles} panelKey="articles" />,
+export const PANELS: Record<PanelKey, React.FC<{ live?: boolean }>> = {
+  services: ({ live = false }) => <ListStagePanel spec={SPECS.services} panelKey="services" live={live} />,
+  start: ({ live = false }) => <ListStagePanel spec={SPECS.start} panelKey="start" live={live} />,
+  portfolio: ({ live = false }) => <ListStagePanel spec={SPECS.portfolio} panelKey="portfolio" live={live} />,
+  articles: ({ live = false }) => <ListStagePanel spec={SPECS.articles} panelKey="articles" live={live} />,
 };

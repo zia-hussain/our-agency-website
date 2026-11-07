@@ -202,12 +202,17 @@ const Footer: React.FC = () => {
 
       {/* Quiet background bleed — texture, not statement */}
       <div className="relative mt-6 sm:mt-8 h-[6rem] sm:h-[8rem] lg:h-[10rem] overflow-hidden pointer-events-none select-none" aria-hidden="true">
-        <p
-          className="absolute left-1/2 -translate-x-1/2 top-0 font-bold uppercase leading-[0.85] tracking-tight text-foreground/[0.045] whitespace-nowrap"
-          style={{ fontSize: "clamp(4.5rem, 12.5vw, 8.5rem)" }}
+        <svg
+          className="absolute left-1/2 top-0 h-full w-auto -translate-x-1/2 text-foreground"
+          viewBox="0 0 1000 150"
+          preserveAspectRatio="xMidYMin meet"
+          focusable="false"
+          aria-hidden="true"
         >
-          Zumetrix
-        </p>
+          <text x="500" y="128" textAnchor="middle" fontSize="150" fontWeight="700" letterSpacing="-4" fill="currentColor" fillOpacity="0.045" style={{ textTransform: "uppercase" }}>
+            ZUMETRIX
+          </text>
+        </svg>
       </div>
     </footer>
   );

@@ -202,7 +202,7 @@ const CHAPTERS: Chapter[] = [
     proofLabel: "Knipsr",
     proof: "A product built from the ground up and taken to a launch-ready SaaS — durable background processing, retries, media streaming, and a stress test against real event-day failure modes before launch. The founder's own words are on Trustpilot; identity withheld at their request.",
     proofHref: "/portfolio/knipsr-event-media-saas",
-    proofImage: "/project_images/knipsr-cover.svg",
+    proofImage: "/project_images/covers/cover-saas-product.svg",
   },
   {
     n: "03",

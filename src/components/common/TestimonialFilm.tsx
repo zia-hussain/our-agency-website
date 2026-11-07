@@ -377,18 +377,18 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
               <button
                 onClick={togglePlay}
                 aria-label={isPlaying ? "Pause video" : "Play video"}
-                className="btn-sheen flex items-center justify-center w-9 h-9 rounded-full text-white hover:text-primary transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                className="btn-sheen flex items-center justify-center w-11 h-11 rounded-full text-white hover:text-primary transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
               >
                 {isPlaying ? <Pause size={18} className="fill-current" /> : <Play size={18} className="ml-0.5 fill-current" />}
               </button>
               <button
                 onClick={toggleMute}
                 aria-label={isMuted ? "Unmute video" : "Mute video"}
-                className="btn-sheen flex items-center justify-center w-9 h-9 rounded-full text-white hover:text-primary transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                className="btn-sheen flex items-center justify-center w-11 h-11 rounded-full text-white hover:text-primary transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
               >
                 {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
               </button>
@@ -398,7 +398,7 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
                 onClick={() => setCcOn((v) => !v)}
                 aria-label={ccOn ? "Turn off captions" : "Turn on captions"}
                 aria-pressed={ccOn}
-                className={`btn-sheen flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 ${ccOn ? "text-primary" : "text-white hover:text-primary"}`}
+                className={`btn-sheen flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 ${ccOn ? "text-primary" : "text-white hover:text-primary"}`}
               >
                 <Captions size={18} />
               </button>

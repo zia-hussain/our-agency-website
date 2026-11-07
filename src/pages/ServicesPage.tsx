@@ -567,15 +567,15 @@ const ServicesPage: React.FC = () => {
         <div id="chapter-saas" className="relative py-28 sm:py-40 overflow-hidden scroll-mt-20">
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedSection>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary/60 mb-6">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-6">
                 <span className="w-4 h-px bg-primary/40" aria-hidden="true" />
                 Chapter 01
               </span>
-              <h3 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
+              <h2 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
                 {saas.title}
-              </h3>
+              </h2>
               <p className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-lg mx-auto">
-                <span className="text-muted-foreground/50">Every idea feels like it needs everything.</span>{" "}
+                <span className="text-muted-foreground/70">Every idea feels like it needs everything.</span>{" "}
                 <span className="text-foreground">It doesn't.</span>
               </p>
               <Link
@@ -604,7 +604,7 @@ const ServicesPage: React.FC = () => {
                 <div className="relative rounded-2xl border border-border/50 overflow-hidden shadow-2xl shadow-black/50 bg-background">
                   <div className="px-8 py-9 bg-card/10 border-b border-dashed border-border/50">
                     <Lightbulb size={22} className="text-muted-foreground/40 mb-3 mx-auto" />
-                    <p className="text-base text-muted-foreground/50">An idea</p>
+                    <p className="text-base text-muted-foreground/75">An idea</p>
                   </div>
                   <div className="px-8 py-10 bg-gradient-to-b from-primary/10 to-primary/[0.03]">
                     <Rocket size={24} className="text-primary mb-3 mx-auto" />
@@ -677,15 +677,15 @@ const ServicesPage: React.FC = () => {
 
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedSection className="mb-14">
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary/60 mb-6">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-6">
                 <span className="w-4 h-px bg-primary/40" aria-hidden="true" />
                 Chapter 02
               </span>
-              <h3 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
+              <h2 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
                 {rescueService.title}
-              </h3>
+              </h2>
               <p className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-lg mx-auto">
-                <span className="text-muted-foreground/50">You've already paid for this once.</span>{" "}
+                <span className="text-muted-foreground/70">You've already paid for this once.</span>{" "}
                 <span className="text-foreground">We're not going to make you pay for it twice.</span>
               </p>
               <Link
@@ -848,7 +848,7 @@ const ServicesPage: React.FC = () => {
                     {knipsrProject && (
                       <p className="text-sm text-muted-foreground mt-3">
                         Not a one-off —{" "}
-                        <Link to={`/portfolio/${knipsrProject.slug}`} className="text-primary hover:underline">
+                        <Link to={`/portfolio/${knipsrProject.slug}`} className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
                           Knipsr's event-day systems
                         </Link>{" "}
                         got the same treatment.
@@ -869,15 +869,15 @@ const ServicesPage: React.FC = () => {
         <div id="chapter-web" className="py-28 sm:py-40 scroll-mt-20">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedSection>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary/60 mb-6">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-6">
                 <span className="w-4 h-px bg-primary/40" aria-hidden="true" />
                 Chapter 03
               </span>
-              <h3 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
+              <h2 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
                 {webApp.title}
-              </h3>
+              </h2>
               <p className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-lg mx-auto">
-                <span className="text-muted-foreground/50">Not always a new product —</span>{" "}
+                <span className="text-muted-foreground/70">Not always a new product —</span>{" "}
                 <span className="text-foreground">often a business that's outgrown spreadsheets.</span>
               </p>
               <Link
@@ -991,7 +991,7 @@ const ServicesPage: React.FC = () => {
                   {forlagProject && (
                     <>
                       {" · "}
-                      <Link to={`/portfolio/${forlagProject.slug}`} className="text-primary hover:underline">Case study</Link>
+                      <Link to={`/portfolio/${forlagProject.slug}`} className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">Case study</Link>
                     </>
                   )}
                 </footer>
@@ -1035,15 +1035,15 @@ const ServicesPage: React.FC = () => {
         <div id="chapter-mobile" className="py-28 sm:py-40 bg-card/10 border-y border-border/40 overflow-hidden scroll-mt-20">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedSection>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary/60 mb-6">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-6">
                 <span className="w-4 h-px bg-primary/40" aria-hidden="true" />
                 Chapter 04
               </span>
-              <h3 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
+              <h2 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
                 {mobile.title}
-              </h3>
+              </h2>
               <p className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-lg mx-auto">
-                <span className="text-muted-foreground/50">Web software lives on a desk.</span>{" "}
+                <span className="text-muted-foreground/70">Web software lives on a desk.</span>{" "}
                 <span className="text-foreground">This has to live in someone's hand.</span>
               </p>
               <Link
@@ -1107,7 +1107,7 @@ const ServicesPage: React.FC = () => {
                   {skillXSwapProject && (
                     <>
                       {" · "}
-                      <Link to={`/portfolio/${skillXSwapProject.slug}`} className="text-primary hover:underline">Case study</Link>
+                      <Link to={`/portfolio/${skillXSwapProject.slug}`} className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">Case study</Link>
                     </>
                   )}
                 </footer>
@@ -1145,15 +1145,15 @@ const ServicesPage: React.FC = () => {
         <div id="chapter-automation" className="py-28 sm:py-40 scroll-mt-20">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedSection>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary/60 mb-6">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-6">
                 <span className="w-4 h-px bg-primary/40" aria-hidden="true" />
                 Chapter 05
               </span>
-              <h3 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
+              <h2 className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight mb-5">
                 {automation.title}
-              </h3>
+              </h2>
               <p className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-lg mx-auto">
-                <span className="text-muted-foreground/50">Somewhere in your company, someone opens the same three tools every morning</span>{" "}
+                <span className="text-muted-foreground/70">Somewhere in your company, someone opens the same three tools every morning</span>{" "}
                 <span className="text-foreground">and copies data between them by hand.</span>
               </p>
               <Link
@@ -1257,7 +1257,7 @@ const ServicesPage: React.FC = () => {
           <AnimatedSection>
             <SectionEyebrow className="mb-6">The Process</SectionEyebrow>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15]">
-              <span className="text-muted-foreground/50">Nothing, then a live product.</span>{" "}
+              <span className="text-muted-foreground/70">Nothing, then a live product.</span>{" "}
               <span className="text-foreground">Five frames, then we stay.</span>
             </p>
           </AnimatedSection>
@@ -1557,7 +1557,7 @@ const ServicesPage: React.FC = () => {
           <AnimatedSection>
             <SectionEyebrow className="mb-6">The Record</SectionEyebrow>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15]">
-              <span className="text-muted-foreground/50">A five-star badge is easy to put on a website.</span>{" "}
+              <span className="text-muted-foreground/70">A five-star badge is easy to put on a website.</span>{" "}
               <span className="text-foreground">What clients said somewhere we don't control isn't.</span>
             </p>
           </AnimatedSection>
@@ -1704,7 +1704,7 @@ const ServicesPage: React.FC = () => {
           <AnimatedSection className="text-center">
             <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
             <h2 className="text-xl sm:text-2xl lg:text-3xl tracking-tight leading-[1.35]">
-              <span className="text-muted-foreground/50">A few things are still worth spelling out.</span>{" "}
+              <span className="text-muted-foreground/70">A few things are still worth spelling out.</span>{" "}
               <span className="text-foreground">Here's what founders usually ask before reaching out.</span>
             </h2>
           </AnimatedSection>

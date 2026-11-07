@@ -1176,7 +1176,7 @@ export const projects: Project[] = [
   type: "saas",
   description: "A private, QR-based event media platform where guests upload photos and videos into a shared gallery with no app and no account — built to hold up under real event-day load.",
   longDescription: "Knipsr lets event hosts create a private media space guests join by scanning a QR code, then upload photos and videos directly from their phone with no app install and no account required. Behind that simple guest experience sits the harder problem: durable handling of large, growing media archives, background processing that has to survive retries and partial failures, gallery performance that stays fast as an event's archive grows, and expiry and access flows that keep private events private. Zumetrix worked on the engineering behind that reliability, not only the interface in front of it.",
-  image: "/project_images/knipsr-cover.svg",
+  image: "/project_images/covers/cover-saas-product.svg",
   gallery: ["/project_images/knipsr-cover.svg"],
   tags: ["React", "TypeScript", "Vite", "Supabase", "PostgreSQL", "Edge Functions", "Cloudflare Stream", "Production SaaS"],
   client: {
@@ -1254,7 +1254,7 @@ export const projects: Project[] = [
   type: "mvp",
   description: "A logistics and service booking platform where the founder's broader marketplace vision was deliberately sequenced: ship the operational foundation first, design the sophisticated pricing engine for a defined V2.",
   longDescription: "Liftly's founder had a broader logistics marketplace vision, but the first release needed to prove the operational core before it could carry that vision. Zumetrix worked on scoping and building V1 around what the business actually needed to run: customer booking, pickup and dropoff, serviceability and distance-based eligibility, item and job details, deposits and payment, and the internal admin controls to run bookings day to day. A more sophisticated Pricing Engine — covering service minimums, distance bands, labor, stairs, urgency, specialty items, and margin protection — was designed and planned for a defined V2, not built prematurely into the first release.",
-  image: "/project_images/liftly-cover.svg",
+  image: "/project_images/covers/cover-saas-product.svg",
   gallery: ["/project_images/liftly-cover.svg"],
   tags: ["Product Sequencing", "Booking Systems", "Operational Software", "Logistics", "MVP Scope Strategy"],
   client: {
@@ -1326,7 +1326,7 @@ export const projects: Project[] = [
   type: "saas",
   description: "A founder-built, AI-assisted SaaS that needed stabilization across frontend, backend, and routing — and a clear line between what was broken, what was unfinished, and what was future scope.",
   longDescription: "The product is a founder-built, AI-assisted learning platform that had grown quickly and needed a technical partner to stabilise it rather than rebuild it. The company and product name are not published here; the founder's two Upwork reviews are. The work covered frontend and backend stabilisation, API cleanup, database logic, routing fixes, completion of unfinished flows and deployment troubleshooting — alongside business-rule clarification the founder needed but had not had time to resolve: Offers pricing changes, community invitation logic, contact ownership rules. A recurring part of the job was separating signal from noise: what was broken, what was unfinished, what was intentional, and what was scope for later. Two engagements on Upwork, $1,900 each, titled \"Scalable SaaS Refactor + DB & Code Optimization\".",
-  image: "/project_images/learning-platform-saas-cover.svg",
+  image: "/project_images/covers/cover-internal-system.svg",
   gallery: ["/project_images/learning-platform-saas-cover.svg"],
   tags: ["SaaS Stabilization", "API Cleanup", "Cloudflare Workers", "Technical Triage", "Founder Technical Partner"],
   client: {
@@ -1417,11 +1417,9 @@ export const projects: Project[] = [
   type: "rescue",
   description: "A previous development team spent roughly two years without a reliable launch. Zumetrix took over an existing, in-progress app and shipped it in three weeks.",
   longDescription: "This is a recovery story, not a technical case study — we're not going to describe an architecture or a stack we can't verify. What's verified: Josh Nyce, owner and founder of Fast Track USA, says his app sat in development for about two years with a previous team without reaching a reliable launch. Zumetrix took the project over and shipped it in three weeks, which Josh has described — on video and in a separately-worded, verified Trustpilot review corroborated on Google — as launching in flawless, bug-free condition.",
-  image: "/project_images/fast-track-recovery-timeline.svg",
+  image: "/project_images/covers/cover-product-rescue.svg",
   ogImage: "/project_images/fast-track-og.png",
   ogImageAlt: "Fast Track USA: about two years with a previous team trying to get the app launched, then three weeks to launch after Zumetrix took over, per the client. \"No bugs, no issues.\" — Josh Nyce, Owner & Founder.",
-  heroImageFit: "contain",
-  heroImageMobile: "/project_images/fast-track-recovery-timeline-mobile.svg",
   gallery: ["/project_images/fast-track-recovery-timeline.svg"],
   tags: ["Product Rescue", "Recovery", "Takeover"],
   client: {
