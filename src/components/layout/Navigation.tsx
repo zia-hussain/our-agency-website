@@ -228,7 +228,9 @@ const Navigation: React.FC = () => {
                 aria-controls={dropdownKey ? "nav-panel" : undefined}
               >
                 <span
-                  className={`relative flex items-center gap-1 whitespace-nowrap rounded-full transition-all duration-500 ${
+                  className={`relative isolate flex items-center gap-1 whitespace-nowrap rounded-full transition-all duration-500 ${
+                    isOpen && !isDocked ? "before:absolute before:-inset-x-3.5 before:-inset-y-2 before:-z-10 before:rounded-full before:bg-white/[0.06]" : ""
+                  } ${
                     isDocked ? "px-3.5 py-2.5 text-[14px]" : "px-0 py-1 text-[15px]"
                   } font-medium tracking-[-0.01em] ${
                     active
