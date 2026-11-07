@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type { Project } from "../../data/projects";
 import { listingImageForProject } from "../../data/covers";
+import TiltFrame from "./TiltFrame";
 
 interface ProjectCardProps {
   project: Project;
@@ -33,8 +34,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = "archive" }) 
         transition={{ duration: 0.15 }}
         className="h-full flex flex-col"
       >
-        <div className="rounded-xl border border-border/60 bg-gradient-to-b from-primary/[0.05] to-transparent p-1.5 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)] group-hover:shadow-[0_30px_60px_-24px_rgba(196,138,100,0.25)] group-hover:border-primary/30 transition-shadow duration-300">
-          <div className="overflow-hidden rounded-lg">
+        <TiltFrame
+          variant="card"
+          frameClassName="relative rounded-xl border border-border/60 bg-gradient-to-b from-primary/[0.05] to-transparent p-1.5 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)] group-hover:shadow-[0_30px_60px_-24px_rgba(196,138,100,0.25)] group-hover:border-primary/30 transition-shadow duration-300"
+        >
             <motion.img
               src={cover.src}
               srcSet={cover.srcSet || undefined}
@@ -48,8 +51,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = "archive" }) 
               transition={{ duration: 0.3 }}
               className={`w-full aspect-[4/3] ${project.heroImageFit === "contain" ? "object-contain bg-background" : "object-cover"}`}
             />
-          </div>
-        </div>
+        </TiltFrame>
 
         <div className="pt-5 flex flex-col flex-grow">
           <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.1em] text-primary/80 mb-2">

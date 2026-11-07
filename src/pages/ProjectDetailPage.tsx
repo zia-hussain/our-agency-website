@@ -665,7 +665,10 @@ const ProjectDetailPage: React.FC = () => {
           </AnimatedSection>
           <AnimatedSection delay={0.06} className="relative inline-block">
             <ClosingGlow />
-            <Link to={`/contact?project=${project.slug}`}>
+            <Link
+              to={project.type === "rescue" ? offerHref("product-rescue", `case-study:${project.slug}`) : `/contact?project=${project.slug}`}
+              onClick={project.type === "rescue" ? () => trackContextualOfferCtaClick("product-rescue", `case-study:${project.slug}`) : undefined}
+            >
               <motion.button
                 whileHover={{ scale: 1.02, y: -3 }}
                 whileTap={{ scale: 0.98 }}
@@ -676,20 +679,25 @@ const ProjectDetailPage: React.FC = () => {
                          flex items-center gap-3 sm:gap-4 overflow-hidden transition-shadow duration-300 btn-sheen mx-auto"
               >
                 <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.14] via-white/0 to-black/[0.06]" />
-                <span className="relative">Tell us where you are</span>
+                <span className="relative">{project.type === "rescue" ? "Start with the $750 assessment" : "Tell us where you are"}</span>
                 <span className="relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/10 group-hover:bg-black/[0.14] transition-colors duration-300">
                   <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-[1.5px] transition-transform duration-200" />
                 </span>
               </motion.button>
             </Link>
           </AnimatedSection>
-          <AnimatedSection delay={0.1} className="mt-8">
+          <AnimatedSection delay={0.1} className="mt-8 flex flex-col items-center gap-3">
+            {project.type === "rescue" && (
+              <Link to={`/contact?project=${project.slug}`} className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150">
+                Not ready for the assessment? Tell us where you are instead
+              </Link>
+            )}
             <Link to="/portfolio" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150">
               View more projects
             </Link>
           </AnimatedSection>
 
-          {PROJECT_TO_OFFER[project.slug] ? (
+          {project.type === "rescue" ? null : PROJECT_TO_OFFER[project.slug] ? (
             <AnimatedSection delay={0.14} className="mt-4">
               <Link
                 to={offerHref(PROJECT_TO_OFFER[project.slug].offer, `case-study:${project.slug}`)}

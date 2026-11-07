@@ -1,13 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, ChevronDown, X } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { services, rescueService } from "../../data/services";
-import { articles } from "../../data/articles.js";
-import { NAV_FEATURED_ORDER, pickInOrder } from "../../data/articleHierarchy";
 import { trackOffersNavClick } from "../../utils/analytics";
+import { PANELS, PANEL_WIDTH, type PanelKey } from "./NavPanels";
 
-const FEATURED_ARTICLES = pickInOrder(articles, NAV_FEATURED_ORDER);
+const PANEL_KEYS: PanelKey[] = ["services", "start", "portfolio", "articles"];
+const PANEL_FOR_PATH: Record<string, PanelKey> = {
+  "/services": "services",
+  "/start": "start",
+  "/portfolio": "portfolio",
+  "/articles": "articles",
+};
 
 // One resolved object, not a UI panel: a solid, heavy instrument sitting
 // above the page, not a translucent bar blending into it. The glossy
@@ -23,15 +28,19 @@ const NAV_ITEMS = [
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-// Fade + a few px of lift, nothing else — no scale pop. Asymmetric on
-// purpose: slow and silky opening, quick and quiet on the way out, the
-// same feel premium mega-menus (Linear, Stripe) reach for. Each state
-// owns its own transition so AnimatePresence picks the right one for
-// enter vs. exit automatically.
-const DROPDOWN_VARIANTS = {
-  hidden: { opacity: 0, y: -6, transition: { duration: 0.14, ease: [0.4, 0, 1, 1] as [number, number, number, number] } },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
-};
+// One panel, four contents. Moving the pointer from "Services" to
+// "Portfolio" does not close and reopen anything: the same surface stays
+// put and morphs — width and height spring to the next content while the
+// old content fades under the new. That continuity is what reads as
+// smooth; a per-item dropdown can never get it. Timings are asymmetric on
+// purpose: a short open delay so sweeping across the pill doesn't flash
+// panels, a slightly longer close delay so crossing the gap between the
+// trigger and the panel never slams it shut.
+const OPEN_DELAY = 70;
+const CLOSE_DELAY = 160;
+const PANEL_SHOW = { duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] };
+const PANEL_HIDE = { duration: 0.16, ease: [0.4, 0, 1, 1] as [number, number, number, number] };
+const PANEL_MORPH = { type: "spring" as const, stiffness: 420, damping: 40, mass: 0.9 };
 
 const SHELL_SHADOW_WIDE =
   "inset 0 1px 0 0 rgba(255,255,255,0.12), inset 0 0 0 1px rgba(255,255,255,0.04), 0 40px 90px -30px rgba(0,0,0,0.8), 0 14px 32px -14px rgba(0,0,0,0.55)";
@@ -41,29 +50,83 @@ const SHELL_SHADOW_DOCKED =
 const Navigation: React.FC = () => {
   const [isDocked, setIsDocked] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState<"services" | "articles" | null>(null);
+  const [openMenu, setOpenMenu] = useState<PanelKey | null>(null);
+  // The last panel that was open keeps rendering while the surface fades
+  // out, so closing never snaps to an empty box.
+  const [shownMenu, setShownMenu] = useState<PanelKey>("services");
+  const [panelHeights, setPanelHeights] = useState<Record<PanelKey, number>>({ services: 0, start: 0, portfolio: 0, articles: 0 });
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
-  const closeMenuTimeout = useRef<number | null>(null);
+  const openTimeout = useRef<number | null>(null);
+  const closeTimeout = useRef<number | null>(null);
+  const panelRefs = useRef<Partial<Record<PanelKey, HTMLDivElement | null>>>({});
   const shouldReduceMotion = useReducedMotion();
 
-  // Small delay on close so crossing the gap between the nav item and the
-  // panel below it doesn't flicker the menu shut mid-move.
-  const openDropdown = (menu: "services" | "articles") => {
-    if (closeMenuTimeout.current) window.clearTimeout(closeMenuTimeout.current);
-    setOpenMenu(menu);
+  const clearTimers = () => {
+    if (openTimeout.current) window.clearTimeout(openTimeout.current);
+    if (closeTimeout.current) window.clearTimeout(closeTimeout.current);
+    openTimeout.current = null;
+    closeTimeout.current = null;
   };
-  const closeDropdownSoon = () => {
-    closeMenuTimeout.current = window.setTimeout(() => setOpenMenu(null), 150);
+  const openDropdown = useCallback((menu: PanelKey, immediate = false) => {
+    clearTimers();
+    const go = () => {
+      setShownMenu(menu);
+      setOpenMenu(menu);
+    };
+    // Already open: switch at once, that's the morph. Closed: a short
+    // intent delay so a pointer sweeping across the pill stays quiet.
+    if (immediate || openMenu) go();
+    else openTimeout.current = window.setTimeout(go, OPEN_DELAY);
+  }, [openMenu]);
+  const closeDropdownSoon = useCallback(() => {
+    clearTimers();
+    closeTimeout.current = window.setTimeout(() => setOpenMenu(null), CLOSE_DELAY);
+  }, []);
+  const closeDropdownNow = useCallback(() => {
+    clearTimers();
+    setOpenMenu(null);
+  }, []);
+
+  // Each panel reports its own natural height; the shared surface animates
+  // to whichever is showing. ResizeObserver so late-loading covers or font
+  // swaps correct the measurement instead of leaving a cropped panel.
+  useEffect(() => {
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver((entries) => {
+      setPanelHeights((prev) => {
+        let next = prev;
+        for (const entry of entries) {
+          const key = (entry.target as HTMLElement).dataset.panel as PanelKey | undefined;
+          const h = Math.round(entry.contentRect.height);
+          if (key && prev[key] !== h) next = { ...next, [key]: h };
+        }
+        return next;
+      });
+    });
+    for (const key of PANEL_KEYS) {
+      const node = panelRefs.current[key];
+      if (node) observer.observe(node);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  // Pointer leaves the whole shell (pill + panel): close. Keyboard focus
+  // leaving it: close too. Escape closes from anywhere inside.
+  const handleShellLeave = () => closeDropdownSoon();
+  const handleShellBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeDropdownNow();
   };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isMobileMenuOpen) setIsMobileMenuOpen(false);
+      if (event.key !== "Escape") return;
+      if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+      closeDropdownNow();
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, closeDropdownNow]);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
@@ -114,6 +177,8 @@ const Navigation: React.FC = () => {
         transition={{ duration: 0.6, ease: EASE }}
         style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", width: "100%" }}
         className="relative hidden lg:flex items-center justify-center border border-white/[0.04]"
+        onMouseLeave={handleShellLeave}
+        onBlur={handleShellBlur}
       >
         <AnimatePresence mode="popLayout">
           {!isDocked && (
@@ -126,7 +191,7 @@ const Navigation: React.FC = () => {
               style={{ perspective: 600 }}
               className="overflow-x-hidden overflow-y-visible flex-shrink-0"
             >
-              <Link to="/" aria-label="Zumetrix Labs home" className="flex items-center pr-8">
+              <Link to="/" aria-label="Zumetrix Labs home" className="flex items-center pr-8" onMouseEnter={closeDropdownSoon}>
                 <img
                   className="h-10 w-auto select-none"
                   src="/logo/zumetrix-email.webp"
@@ -148,7 +213,7 @@ const Navigation: React.FC = () => {
         >
           {NAV_ITEMS.map((item) => {
             const active = isActiveRoute(item.path);
-            const dropdownKey = item.path === "/services" ? "services" : item.path === "/articles" ? "articles" : null;
+            const dropdownKey: PanelKey | null = PANEL_FOR_PATH[item.path] ?? null;
             const isOpen = dropdownKey !== null && openMenu === dropdownKey;
             return (
               <Link
@@ -156,12 +221,11 @@ const Navigation: React.FC = () => {
                 to={item.path}
                 className="relative"
                 onClick={item.path === "/start" ? trackOffersNavClick : undefined}
-                onMouseEnter={dropdownKey ? () => openDropdown(dropdownKey) : undefined}
-                onMouseLeave={dropdownKey ? closeDropdownSoon : undefined}
-                onFocus={dropdownKey ? () => openDropdown(dropdownKey) : undefined}
-                onBlur={dropdownKey ? closeDropdownSoon : undefined}
+                onMouseEnter={dropdownKey ? () => openDropdown(dropdownKey) : () => closeDropdownSoon()}
+                onFocus={dropdownKey ? () => openDropdown(dropdownKey, true) : undefined}
                 aria-expanded={dropdownKey ? isOpen : undefined}
                 aria-haspopup={dropdownKey ? "true" : undefined}
+                aria-controls={dropdownKey ? "nav-panel" : undefined}
               >
                 <span
                   className={`relative flex items-center gap-1 whitespace-nowrap rounded-full transition-all duration-500 ${
@@ -199,163 +263,6 @@ const Navigation: React.FC = () => {
                   )}
                 </span>
 
-                {/* Mega-menus are anchored to their own trigger word, not   */}
-                {/* the wide nav pill — centering on the whole pill left a   */}
-                {/* dead zone between "Services"/"Articles" and the panel    */}
-                {/* below it, closing the menu before the pointer could      */}
-                {/* reach it. Nesting the panel inside the trigger's own     */}
-                {/* <Link> (already `relative`) fixes both the alignment     */}
-                {/* and the hover gap: the panel is a DOM descendant, so the */}
-                {/* browser doesn't fire mouseleave while crossing into it.  */}
-                {dropdownKey === "services" && (
-                  // A static wrapper owns the horizontal centering transform;
-                  // framer-motion owns the panel's own enter/exit transform.
-                  // Putting both `-translate-x-1/2` and motion's `y`/`scale`
-                  // on the same element let framer silently overwrite the
-                  // Tailwind transform, so the panel never actually centered.
-                  <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 z-[70]">
-                  <AnimatePresence>
-                    {openMenu === "services" && (
-                      <motion.div
-                        variants={DROPDOWN_VARIANTS}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        onMouseEnter={() => openDropdown("services")}
-                        onMouseLeave={closeDropdownSoon}
-                        style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-                        className="w-[680px] rounded-3xl border border-white/[0.06] p-3"
-                      >
-                        {/* Where to start — the three buying situations, in the
-                            buyer's words. The page behind them is /start; the
-                            label a buyer sees is the situation, never the route. */}
-                        <div className="px-1.5 pt-1.5 pb-2">
-                          <p className="px-2 pb-2 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-primary/70">Where are you starting from?</p>
-                          <div className="grid grid-cols-3 gap-1.5">
-                            {[
-                              { label: "A product that's stuck", sub: "Find out what's wrong first", to: "/product-rescue?from=nav" },
-                              { label: "Nothing built yet", sub: "Decide what V1 must prove", to: "/services/saas-mvp-development" },
-                              { label: "Work still done by hand", sub: "One workflow, built and live", to: "/services/ai-automation-solutions#start-small" },
-                            ].map((d) => (
-                              <Link
-                                key={d.to}
-                                to={d.to}
-                                onClick={trackOffersNavClick}
-                                className="group rounded-2xl border border-primary/15 bg-primary/[0.05] px-3.5 py-3 hover:bg-primary/[0.1] hover:border-primary/30 transition-colors duration-200"
-                              >
-                                <span className="block text-[13.5px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">{d.label}</span>
-                                <span className="block text-[12px] text-muted-foreground/70 mt-0.5">{d.sub}</span>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-1.5 p-1.5">
-                          {services.map((service) => (
-                            <Link
-                              key={service.slug}
-                              to={`/services/${service.slug}`}
-                              className="group flex items-start gap-3.5 rounded-2xl p-3.5 hover:bg-white/[0.04] transition-colors duration-200"
-                            >
-                              <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary/25 bg-background flex-shrink-0 group-hover:border-primary/45 transition-colors duration-200">
-                                <service.icon size={17} className="text-primary" />
-                              </span>
-                              <span className="min-w-0">
-                                <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
-                                  {service.title}
-                                </span>
-                                <span className="block text-[12.5px] text-muted-foreground/70 leading-snug mt-0.5 line-clamp-2">
-                                  {service.subtitle}
-                                </span>
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
-
-                        {/* Rescue stays visually distinct from the four equal cards  */}
-                        {/* above — same rule the Services hub itself already follows: */}
-                        {/* it's a different buyer state (something stuck, not         */}
-                        {/* something new), not a fifth interchangeable option.        */}
-                        <div className="px-1.5 pb-1.5">
-                          <Link
-                            to={`/services/${rescueService.slug}`}
-                            className="group flex items-center gap-3.5 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3.5 hover:bg-white/[0.05] hover:border-primary/20 transition-colors duration-200"
-                          >
-                            <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-border/60 bg-background flex-shrink-0 group-hover:border-primary/40 transition-colors duration-200">
-                              <rescueService.icon size={17} className="text-muted-foreground group-hover:text-primary transition-colors duration-200" />
-                            </span>
-                            <span className="min-w-0">
-                              <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
-                                {rescueService.title}
-                              </span>
-                              <span className="block text-[12.5px] text-muted-foreground/70 leading-snug mt-0.5">
-                                {rescueService.subtitle}
-                              </span>
-                            </span>
-                          </Link>
-                        </div>
-
-                        <div className="mt-1 pt-3 px-4 pb-2 border-t border-white/[0.06]">
-                          <Link
-                            to="/services"
-                            className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
-                          >
-                            View all services
-                            <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-                          </Link>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                  </div>
-                )}
-
-                {dropdownKey === "articles" && (
-                  <AnimatePresence>
-                    {openMenu === "articles" && (
-                      <motion.div
-                        variants={DROPDOWN_VARIANTS}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        onMouseEnter={() => openDropdown("articles")}
-                        onMouseLeave={closeDropdownSoon}
-                        style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-                        className="absolute top-full mt-3 right-0 w-[420px] rounded-3xl border border-white/[0.06] p-3 z-[70]"
-                      >
-                        <div className="px-1 pt-1 pb-2">
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary/70 px-2.5">Featured Reading</p>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                          {FEATURED_ARTICLES.map((article) => (
-                            <Link
-                              key={article.slug}
-                              to={`/articles/${article.slug}`}
-                              className="group rounded-2xl p-3.5 hover:bg-white/[0.04] transition-colors duration-200"
-                            >
-                              <div className="flex items-center gap-2 text-[11px] text-muted-foreground/60 mb-1">
-                                <span>{article.category}</span>
-                                <span aria-hidden="true">·</span>
-                                <span>{article.readTime}</span>
-                              </div>
-                              <span className="block text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-200 leading-snug">
-                                {article.title}
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
-                        <div className="mt-1 pt-3 px-4 pb-2 border-t border-white/[0.06]">
-                          <Link
-                            to="/articles"
-                            className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground/80 hover:text-primary transition-colors duration-200"
-                          >
-                            View all articles
-                            <ArrowRight size={12} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-                          </Link>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                )}
               </Link>
             );
           })}
@@ -374,6 +281,7 @@ const Navigation: React.FC = () => {
             >
               <Link
                 to="/contact"
+                onMouseEnter={closeDropdownSoon}
                 className="btn-sheen group flex items-center gap-2 rounded-full bg-gradient-to-b from-primary to-primary/[0.9] pl-6 pr-5 py-3 ml-8 text-[15px] font-semibold text-primary-foreground whitespace-nowrap"
               >
                 Let&apos;s talk
@@ -384,6 +292,57 @@ const Navigation: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* The shared panel. Lives inside the pill so the pointer never
+            leaves the shell on the way down; the top padding is the hover
+            bridge across the visual gap. Always in the document (hidden
+            when closed, inert so it never catches focus) so every page's
+            markup carries these links for crawlers and prefetchers. */}
+        <motion.div
+          id="nav-panel"
+          initial={false}
+          animate={
+            openMenu
+              ? { opacity: 1, y: 0, visibility: "visible" as const }
+              : { opacity: 0, y: -6, transitionEnd: { visibility: "hidden" as const } }
+          }
+          transition={openMenu ? PANEL_SHOW : PANEL_HIDE}
+          style={{ x: "-50%", visibility: openMenu ? "visible" : "hidden" }}
+          className={`absolute left-1/2 top-full z-[70] pt-3 ${openMenu ? "pointer-events-auto" : "pointer-events-none"}`}
+          onMouseEnter={() => openMenu && openDropdown(openMenu, true)}
+          {...({ inert: openMenu ? undefined : "" } as Record<string, string | undefined>)}
+        >
+          <motion.div
+            initial={false}
+            animate={{ width: PANEL_WIDTH[shownMenu], height: panelHeights[shownMenu] || "auto" }}
+            transition={shouldReduceMotion ? { duration: 0 } : PANEL_MORPH}
+            style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
+            className="relative overflow-hidden rounded-3xl border border-white/[0.06]"
+          >
+            {PANEL_KEYS.map((key) => {
+              const Panel = PANELS[key];
+              const active = shownMenu === key;
+              return (
+                <motion.div
+                  key={key}
+                  data-panel={key}
+                  ref={(node) => {
+                    panelRefs.current[key] = node;
+                  }}
+                  initial={false}
+                  animate={{ opacity: active ? 1 : 0, visibility: active ? ("visible" as const) : ("hidden" as const) }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.18, ease: "easeOut" }}
+                  style={{ width: PANEL_WIDTH[key] }}
+                  className={active ? "relative" : "absolute left-0 top-0 pointer-events-none"}
+                  aria-hidden={!active}
+                  {...({ inert: active ? undefined : "" } as Record<string, string | undefined>)}
+                >
+                  <Panel />
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </motion.div>
       </motion.div>
 
       {/* Mobile — same wide-to-docked logic, no CTA to add/remove here
@@ -473,7 +432,7 @@ const Navigation: React.FC = () => {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-6 pt-8 pb-6 sm:px-8">
+            <div className="flex-1 overflow-y-auto px-6 pt-6 pb-4 sm:px-8">
               <div className="flex flex-col gap-1">
                 {[{ name: "Home", path: "/" }, ...NAV_ITEMS].map(
                   (item, index) => {
@@ -490,11 +449,16 @@ const Navigation: React.FC = () => {
                           ]
                         : item.path === "/start"
                           ? [
-                              { name: "A product that's stuck", path: "/product-rescue?from=mobile-nav" },
-                              { name: "Nothing built yet", path: "/services/saas-mvp-development" },
-                              { name: "Work still done by hand", path: "/services/ai-automation-solutions#start-small" },
+                              { name: "I have a product and it's stuck", path: "/product-rescue?from=mobile-nav" },
+                              { name: "I have an idea and nothing built yet", path: "/contact?service=saas-mvp-development&situation=nothing-built" },
+                              { name: "My team still does this by hand", path: "/contact?service=ai-automation-solutions&situation=manual-workflow" },
                             ]
-                          : null;
+                          : item.path === "/portfolio"
+                            ? [
+                                { name: "Clients on film", path: "/client-stories" },
+                                { name: "Every project", path: "/portfolio/all" },
+                              ]
+                            : null;
                     return (
                       <motion.div
                         key={item.name}
@@ -505,7 +469,7 @@ const Navigation: React.FC = () => {
                         <Link
                           to={item.path}
                           onClick={item.path === "/start" ? trackOffersNavClick : undefined}
-                          className={`flex items-center gap-3 py-2 font-bold tracking-[-0.02em] leading-none text-[9.5vw] sm:text-[2.6rem] transition-colors duration-200 ${
+                          className={`flex items-center gap-3 py-1.5 font-bold tracking-[-0.02em] leading-none text-[8.5vw] sm:text-[2.4rem] transition-colors duration-200 ${
                             active ? "text-foreground" : item.path === "/start" ? "text-foreground/80" : "text-muted-foreground/50 hover:text-foreground/80"
                           }`}
                         >
@@ -513,12 +477,12 @@ const Navigation: React.FC = () => {
                           {item.name}
                         </Link>
                         {subItems && (
-                          <ul className="mt-1 mb-3 ml-1 border-l border-white/[0.08] pl-4 space-y-1.5">
+                          <ul className="mt-1 mb-2.5 ml-1 border-l border-white/[0.08] pl-4 space-y-1">
                             {subItems.map((sub) => (
                               <li key={sub.path}>
                                 <Link
                                   to={sub.path}
-                                  className={`block py-0.5 text-[15px] transition-colors duration-200 ${
+                                  className={`block py-px text-[14px] transition-colors duration-200 ${
                                     location.pathname === sub.path.split("?")[0]
                                       ? "text-primary"
                                       : "text-muted-foreground/70 hover:text-foreground"

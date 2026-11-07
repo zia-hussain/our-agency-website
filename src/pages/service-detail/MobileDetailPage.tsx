@@ -85,6 +85,7 @@ const MobileDetailPage: React.FC = () => {
         name: service.title,
         description: service.description,
         url: pageUrl,
+        image: `https://zumetrix.com/og/services-${service.slug}.png`,
         provider: { "@id": "https://zumetrix.com/#organization" },
         serviceType: service.technologies,
         areaServed: "Worldwide",

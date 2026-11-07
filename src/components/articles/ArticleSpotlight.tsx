@@ -79,7 +79,7 @@ const ArticleSpotlight: React.FC<ArticleSpotlightProps> = ({ article, index, dec
           <p className="text-base text-muted-foreground leading-relaxed mb-7">{article.excerpt}</p>
 
           <div className="flex items-center gap-3 mb-7 pt-6 border-t border-border/30">
-            <img src={article.authorImage} alt={article.author} className="w-10 h-10 rounded-full object-cover border border-border/50" />
+            <img src={article.authorImage} alt={article.author} width="80" height="80" loading="lazy" decoding="async" className="w-10 h-10 rounded-full object-cover border border-border/50" />
             <div>
               <p className="text-sm font-semibold text-foreground">{article.author}</p>
               <p className="text-xs text-muted-foreground">{article.authorRole}</p>

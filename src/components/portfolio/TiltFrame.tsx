@@ -1,9 +1,21 @@
 import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 
 interface TiltFrameProps {
   children: React.ReactNode;
   frameClassName?: string;
+  /**
+   * "spotlight" (default) is the hero treatment: 7° of lean, copper frame,
+   * deep shadow. "card" is the same physics scaled for a grid cell — a
+   * smaller lean, and the card's own existing frame classes are kept
+   * (passed in via frameClassName) so a card in a grid looks exactly as it
+   * did at rest and only gains the motion.
+   */
+  variant?: "spotlight" | "card";
+  /** Max lean in degrees; defaults to 7 for spotlight, 4 for card. */
+  maxTilt?: number;
+  /** Class for the clipping box around the children (the rounded inner). */
+  innerClassName?: string;
 }
 
 // The tactile hallmark of a premium agency site — whatever's inside leans
@@ -11,15 +23,26 @@ interface TiltFrameProps {
 // instead of sitting flat. Physics-based (spring), so it settles rather
 // than snaps. Generalized from TiltImage so it can wrap anything — an
 // <img>, or a generated SVG visual like ArticleVisual — not just photos.
-const TiltFrame: React.FC<TiltFrameProps> = ({ children, frameClassName = "" }) => {
+// Pointer-only by nature: touch devices never fire mousemove, so a phone
+// sees the resting frame and nothing jitters under a scrolling thumb.
+// Reduced motion keeps the glare and drops the lean.
+const TiltFrame: React.FC<TiltFrameProps> = ({
+  children,
+  frameClassName = "",
+  variant = "spotlight",
+  maxTilt,
+  innerClassName,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [hovering, setHovering] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const lean = shouldReduceMotion ? 0 : maxTilt ?? (variant === "card" ? 4 : 7);
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
   const springX = useSpring(x, { stiffness: 200, damping: 20 });
   const springY = useSpring(y, { stiffness: 200, damping: 20 });
-  const rotateX = useTransform(springY, [0, 1], [7, -7]);
-  const rotateY = useTransform(springX, [0, 1], [-7, 7]);
+  const rotateX = useTransform(springY, [0, 1], [lean, -lean]);
+  const rotateY = useTransform(springX, [0, 1], [-lean, lean]);
   const glareX = useTransform(springX, [0, 1], ["0%", "100%"]);
   const glareY = useTransform(springY, [0, 1], ["0%", "100%"]);
 
@@ -38,8 +61,15 @@ const TiltFrame: React.FC<TiltFrameProps> = ({ children, frameClassName = "" }) 
 
   const glareBackground = useTransform(
     [glareX, glareY],
-    ([gx, gy]) => `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,0.16), transparent 55%)`
+    ([gx, gy]) =>
+      `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,${variant === "card" ? 0.11 : 0.16}), transparent 55%)`
   );
+
+  const frame =
+    variant === "card"
+      ? frameClassName
+      : `relative rounded-2xl border border-primary/25 bg-gradient-to-b from-primary/[0.06] to-transparent p-2 shadow-[0_40px_90px_-30px_rgba(196,138,100,0.35)] ${frameClassName}`;
+  const inner = innerClassName ?? (variant === "card" ? "relative overflow-hidden rounded-lg" : "relative overflow-hidden rounded-xl");
 
   return (
     <motion.div
@@ -48,9 +78,9 @@ const TiltFrame: React.FC<TiltFrameProps> = ({ children, frameClassName = "" }) 
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={reset}
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
-      className={`relative rounded-2xl border border-primary/25 bg-gradient-to-b from-primary/[0.06] to-transparent p-2 shadow-[0_40px_90px_-30px_rgba(196,138,100,0.35)] ${frameClassName}`}
+      className={frame}
     >
-      <div className="relative overflow-hidden rounded-xl">
+      <div className={inner}>
         {children}
         <motion.div
           aria-hidden="true"

@@ -401,6 +401,10 @@ const ArticleDetailPage: React.FC = () => {
                     transition={{ duration: 0.1 }}
                     src={article.authorImage}
                     alt={article.author}
+                    width="112"
+                    height="112"
+                    loading="lazy"
+                    decoding="async"
                     className="w-14 h-14 rounded-full object-cover border-2 border-border"
                   />
                   <div>

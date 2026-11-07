@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import CoverImage from "../common/CoverImage";
 import { coverForArticle } from "../../data/covers";
+import TiltFrame from "../portfolio/TiltFrame";
 
 interface ArticleCardProps {
   article: {
@@ -24,13 +25,14 @@ interface ArticleCardProps {
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => (
   <Link to={`/articles/${article.slug}`} className="group block h-full">
     <article className="h-full flex flex-col">
-      <div className="rounded-xl border border-border/60 bg-gradient-to-b from-primary/[0.05] to-transparent p-1.5 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)] group-hover:shadow-[0_30px_60px_-24px_rgba(196,138,100,0.25)] group-hover:border-primary/30 transition-shadow duration-300">
-        <div className="overflow-hidden rounded-lg">
-          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-            <CoverImage cover={coverForArticle(article)} className="aspect-video object-cover" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
-          </motion.div>
-        </div>
-      </div>
+      <TiltFrame
+        variant="card"
+        frameClassName="relative rounded-xl border border-border/60 bg-gradient-to-b from-primary/[0.05] to-transparent p-1.5 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)] group-hover:shadow-[0_30px_60px_-24px_rgba(196,138,100,0.25)] group-hover:border-primary/30 transition-shadow duration-300"
+      >
+        <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+          <CoverImage cover={coverForArticle(article)} className="aspect-video object-cover" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        </motion.div>
+      </TiltFrame>
 
       <div className="pt-5 flex flex-col flex-grow">
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">

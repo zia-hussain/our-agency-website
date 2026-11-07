@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, MapPin, Target } from "lucide-react";
+import TiltFrame from "../portfolio/TiltFrame";
 import { motion } from "framer-motion";
 import { getProjectBySlug } from "../../data/projects";
 
@@ -172,7 +173,12 @@ const FeaturedCaseStudies: React.FC = () => {
 
             {/* Built vs. deferred column — a structured spec sheet, contrasting the free-flowing story */}
             <div className="lg:col-span-2">
-              <div className="relative rounded-2xl overflow-hidden border border-primary/15 bg-background mb-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]">
+              <TiltFrame
+                variant="card"
+                maxTilt={5}
+                frameClassName="relative rounded-2xl border border-primary/15 bg-background mb-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]"
+                innerClassName="relative overflow-hidden rounded-2xl"
+              >
                 <picture>
                   {flagship.heroImageMobile && <source media="(max-width: 640px)" srcSet={flagship.heroImageMobile} />}
                   <img
@@ -185,7 +191,7 @@ const FeaturedCaseStudies: React.FC = () => {
                     className="w-full h-auto object-contain"
                   />
                 </picture>
-              </div>
+              </TiltFrame>
 
               <div className="rounded-2xl border border-border/70 overflow-hidden">
                 <div className="bg-card/40 p-6">

@@ -20,10 +20,12 @@ import {
   MessageCircle,
   FileText,
   CheckCircle,
+  ArrowRight,
 } from "lucide-react";
 import { trackCTAClick, trackCalendlyClick } from "../utils/analytics";
 import { routeLead } from "../services/leadRouter";
 import { buildCalendlyUrl } from "../utils/attribution";
+import { getProjectBySlug } from "../data/projects";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -79,6 +81,22 @@ const ContactPage: React.FC = () => {
     }
     if (projectParam) {
       setSourceProjectSlug(projectParam);
+      // Arriving from a case study: the visitor has just read a story about
+      // a specific kind of work, so open the form on that service — and,
+      // where the story type implies it, on the matching "what exists
+      // today" answer. Still only a default; every select stays editable.
+      const fromProject = getProjectBySlug(projectParam);
+      if (fromProject && !serviceParam) {
+        const label = SERVICE_SLUG_TO_LABEL[fromProject.primaryService];
+        if (label) setFormData((prev) => (prev.projectType ? prev : { ...prev, projectType: label }));
+        const impliedSituation =
+          fromProject.type === "rescue"
+            ? "A product exists (live, stuck, or inherited)"
+            : fromProject.type === "automation" || fromProject.primaryService === "ai-automation-solutions"
+              ? "A workflow runs on people and spreadsheets"
+              : null;
+        if (impliedSituation) setFormData((prev) => (prev.situation ? prev : { ...prev, situation: impliedSituation }));
+      }
     }
     // `?situation=` is set only by the site's own door links (/start, the
     // service pages, the mobile nav) so the form opens on the right
@@ -351,6 +369,30 @@ const ContactPage: React.FC = () => {
                       A confirmation is on its way to your inbox. We will review
                       the full context and reply within two business days — and if what you described matches one of our services or the Rescue Assessment, the reply will say which.
                     </p>
+                    {/* The warmest moment in the whole funnel is the ten
+                        seconds after someone hits send. Two business days
+                        is the honest reply time; a slot on the calendar is
+                        the faster path for anyone who already knows they
+                        want the call. Same company Calendly, attributed. */}
+                    <div className="mt-8 rounded-2xl border border-primary/20 bg-primary/[0.05] px-6 py-5 text-left">
+                      <p className="text-sm font-semibold text-foreground">Don&apos;t want to wait for the reply?</p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        Pick a 30-minute slot with Zia or Omer now. We&apos;ll read your brief before the call.
+                      </p>
+                      <a
+                        href={buildCalendlyUrl("contact-success")}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(event) => {
+                          event.currentTarget.href = buildCalendlyUrl("contact-success");
+                          trackCalendlyClick("contact-success");
+                        }}
+                        className="btn-sheen mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-primary to-primary/90 px-5 py-2.5 text-sm font-semibold text-primary-foreground"
+                      >
+                        Book the call now
+                        <ArrowRight size={14} strokeWidth={2.5} />
+                      </a>
+                    </div>
                   </motion.div>
                 ) : (
                   <form id="project-brief-form" onSubmit={handleSubmit} className="space-y-6">
