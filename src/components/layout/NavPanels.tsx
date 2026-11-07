@@ -2,81 +2,102 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { services, rescueService } from "../../data/services";
 import { articles } from "../../data/articles.js";
 import { NAV_FEATURED_ORDER, pickInOrder } from "../../data/articleHierarchy";
 import { getProjectBySlug } from "../../data/projects";
+import { TESTIMONIAL_FILMS } from "../../data/testimonialFilms";
 import { FACTS } from "../../config/facts";
 import { trackOffersNavClick, trackOfferSelect } from "../../utils/analytics";
+import NavVignette, { type VignetteKind } from "./NavVignettes";
 
-// Pure type. No pictures, no tiles, no chips, no descriptions. A list of
-// large, quiet links on the left; on the right, one statement that changes
-// with the pointer — the sentence the destination page opens on, plus the
-// one fact that matters (a price, a step, a client's own words). Hairlines,
-// air, a single copper accent. Everything renders on the server with the
-// first item staged, so each page's markup carries these links.
+// One instrument for all four menus: a list on the left, a stage on the
+// right. Resting on an item changes the stage — a living miniature of the
+// thing (a dashboard drawing its chart, a workflow with a pulse running
+// through it, a triage board turning green), its one line, the fact that
+// matters, and the action. The stage is itself the link. Everything renders
+// on the server with the first item staged, so each page's markup carries
+// these links.
 
 export type PanelKey = "services" | "start" | "portfolio" | "articles";
 
-const WIDTH = 980;
+const WIDTH = 940;
 export const PANEL_WIDTH: Record<PanelKey, number> = { services: WIDTH, start: WIDTH, portfolio: WIDTH, articles: WIDTH };
 
 type Item = {
   id: string;
   label: string;
-  /** Small right-aligned fact next to the label (a price, a category). */
-  aside?: string;
+  desc: string;
   to: string;
   onClick?: () => void;
-  /** Mono eyebrow over the statement. */
-  eyebrow: string;
-  /** The one sentence the destination page would open on. */
-  statement: string;
-  /** One line of fact beneath it — never a pitch. */
-  fact?: string;
+  icon?: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  scene: VignetteKind;
+  sceneSrc?: string;
+  kicker: string;
+  title: string;
+  body: string;
+  meta?: string;
   cta: string;
 };
 
 type PanelSpec = {
-  title: string;
+  eyebrow: string;
   items: Item[];
+  notes?: { h: string; b: string }[];
+  foot: { to: string; label: string; onClick?: () => void };
   footLeft: string;
-  footLink: { to: string; label: string; onClick?: () => void };
+  footCta: { to: string; label: string; onClick?: () => void };
 };
 
 /* ---------- data ---------- */
 
+const SCENE_FOR_SERVICE: Record<string, VignetteKind> = {
+  "web-application-development": "dashboard",
+  "saas-mvp-development": "saas",
+  "mobile-app-development": "mobile",
+  "ai-automation-solutions": "automation",
+};
+
 const flagship = getProjectBySlug("fast-track-usa-app-rescue");
 const knipsr = getProjectBySlug("knipsr-event-media-saas");
 const fsr = getProjectBySlug("floating-stone-ranch-processor-intake-engine");
+const josh = TESTIMONIAL_FILMS.josh;
+const timeline = flagship?.image;
 
 const SERVICES_SPEC: PanelSpec = {
-  title: "Services",
+  eyebrow: "What we build",
   items: [
     ...services.map((s) => ({
       id: s.slug,
       label: s.title,
-      aside: s.price,
+      desc: s.subtitle,
       to: `/services/${s.slug}`,
-      eyebrow: s.title,
-      statement: s.subtitle,
-      fact: `${s.price} · published before the call`,
-      cta: "Explore",
+      icon: s.icon,
+      scene: SCENE_FOR_SERVICE[s.slug] ?? "dashboard",
+      kicker: s.price,
+      title: s.subtitle,
+      body: s.description,
+      meta: "Price published before the call",
+      cta: "Explore the service",
     })),
     {
       id: rescueService.slug,
       label: rescueService.title,
-      aside: "Assessment $750",
+      desc: "Already built and stuck? Assessment first.",
       to: `/services/${rescueService.slug}`,
-      eyebrow: "When something already exists",
-      statement: "We read the code before anyone prices a fix.",
-      fact: "Assessment $750 · findings in five business days · then a plan priced from what we find",
+      icon: rescueService.icon,
+      scene: "rescue",
+      kicker: "Assessment $750 · findings in 5 business days",
+      title: "We read the code before anyone prices a fix.",
+      body: "Written findings — what's broken, what's fragile, what's fine — then a stabilization plan priced from what we actually found.",
+      meta: "Fast Track USA: two years stuck, launched three weeks after handover",
       cta: "See how a rescue starts",
     },
   ],
-  footLeft: "Five services. Every price on the page, none after a discovery call.",
-  footLink: { to: "/start", label: "Not sure which? Start here", onClick: trackOffersNavClick },
+  foot: { to: "/services", label: "Compare all five, with prices" },
+  footLeft: "Five services. Every price on the page — none after a discovery call.",
+  footCta: { to: "/start", label: "Not sure which? Start here", onClick: trackOffersNavClick },
 };
 
 const door = (offer: string) => () => {
@@ -85,117 +106,181 @@ const door = (offer: string) => () => {
 };
 
 const START_SPEC: PanelSpec = {
-  title: "Start here",
+  eyebrow: "Which one is you this week?",
   items: [
     {
       id: "fix",
       label: "I have a product and it's stuck",
-      aside: "Fix",
+      desc: "Assessment first — $750, five business days",
       to: "/product-rescue?from=nav",
       onClick: door("product-rescue"),
-      eyebrow: "Assessment first",
-      statement: "Find out what's actually wrong before paying to fix it.",
-      fact: "$750 · five business days · written findings · “don't” is an allowed answer",
+      scene: "rescue",
+      kicker: "FIX · assessment first",
+      title: "Find out what's actually wrong before paying to fix it.",
+      body: "A $750 assessment reads the codebase, architecture, security and dependencies. Five business days later you hold written findings and a plan priced from them — and “don't” is an allowed answer.",
+      meta: "Where every rescue starts",
       cta: "Show us where you're stuck",
     },
     {
       id: "build",
       label: "I have an idea and nothing built yet",
-      aside: "Build",
+      desc: "A build conversation — V1 decided in writing if needed",
       to: "/contact?service=saas-mvp-development&situation=nothing-built",
       onClick: door("idea-to-build"),
-      eyebrow: "Talk — or decide V1 in writing first",
-      statement: "Decide what the first version has to prove. Then build that.",
-      fact: "Build from $4,800 · optional Idea-to-Build Sprint $950 when V1 isn't settled",
+      scene: "decision",
+      kicker: "BUILD · talk, or decide V1 first",
+      title: "Decide what the first version has to prove. Then build that.",
+      body: "Tell us what you're building and we talk scope. If V1 isn't settled, the $950 Idea-to-Build Sprint decides it in writing in five business days — yours to build with us or anyone.",
+      meta: "SaaS MVP from $4,800",
       cta: "Tell us what you're building",
     },
     {
       id: "automate",
       label: "My team still does this by hand",
-      aside: "Automate",
+      desc: "One workflow, built and live — direct",
       to: "/contact?service=ai-automation-solutions&situation=manual-workflow",
       onClick: door("manual-to-system"),
-      eyebrow: "One workflow, direct",
-      statement: "Get one workflow off your team's plate. Built, live, watched.",
-      fact: "From $2,500 · a $750 plan first only when it spans several teams or systems",
+      scene: "automation",
+      kicker: "AUTOMATE · one workflow, direct",
+      title: "Get one workflow off your team's plate. Built, live, watched.",
+      body: "Start with the workflow that hurts most. If it spans several teams or systems, the $750 Manual-to-System Sprint maps it first so the build lands in the right order.",
+      meta: "Automation from $2,500",
       cta: "Show us the workflow",
     },
   ],
+  notes: [
+    { h: "A price before the call", b: "Every paid step is published, never quoted after a discovery meeting." },
+    { h: "A written answer", b: "Findings, a V1 decision or a workflow plan — on paper, yours to keep." },
+    { h: "“Don't” is an allowed answer", b: "If something shouldn't be built, the written answer says so." },
+  ],
+  foot: { to: "/start", label: "See all three in full", onClick: trackOffersNavClick },
   footLeft: "Zia or Omer reads every brief and replies within two business days.",
-  footLink: { to: "/contact", label: "Prefer to just talk? Let's talk" },
+  footCta: { to: "/contact", label: "Prefer to just talk? Let's talk" },
 };
 
-const caseItem = (p: ReturnType<typeof getProjectBySlug>, aside: string): Item | null =>
-  p
-    ? {
-        id: p.slug,
-        label: p.client.name.split(" — ").pop() || p.client.name,
-        aside,
-        to: `/portfolio/${p.slug}`,
-        eyebrow: p.title,
-        statement: p.testimonial?.quote ? `“${p.testimonial.quote}”` : p.description,
-        fact: p.testimonial ? `${p.testimonial.author}${p.testimonial.role ? ` · ${p.testimonial.role}` : ""}` : p.client.name,
-        cta: "Read the case study",
-      }
-    : null;
-
 const PORTFOLIO_SPEC: PanelSpec = {
-  title: "Portfolio",
+  eyebrow: "Work we'd show first",
   items: [
-    caseItem(flagship, "Rescued"),
-    caseItem(knipsr, "Built from zero"),
-    caseItem(fsr, "Automated"),
+    ...(flagship
+      ? [
+          {
+            id: flagship.slug,
+            label: "Fast Track USA",
+            desc: "Product rescue · launched in three weeks",
+            to: `/portfolio/${flagship.slug}`,
+            scene: "timeline" as VignetteKind,
+            sceneSrc: timeline,
+            kicker: "Rescued",
+            title: flagship.title,
+            body: flagship.testimonial?.quote ? `“${flagship.testimonial.quote}”` : flagship.description,
+            meta: flagship.testimonial ? `${flagship.testimonial.author}, ${flagship.testimonial.role ?? ""}` : undefined,
+            cta: "Read the case study",
+          },
+        ]
+      : []),
+    ...(knipsr
+      ? [
+          {
+            id: knipsr.slug,
+            label: "Knipsr",
+            desc: "Event-media SaaS · built from zero",
+            to: `/portfolio/${knipsr.slug}`,
+            scene: "gallery" as VignetteKind,
+            kicker: "Built from zero",
+            title: knipsr.title,
+            body: knipsr.description,
+            meta: `${knipsr.client.name}${knipsr.client.country ? ` · ${knipsr.client.country}` : ""}`,
+            cta: "Read the case study",
+          },
+        ]
+      : []),
+    ...(fsr
+      ? [
+          {
+            id: fsr.slug,
+            label: "Floating Stone Ranch",
+            desc: "Processor intake · automated",
+            to: `/portfolio/${fsr.slug}`,
+            scene: "automation" as VignetteKind,
+            kicker: "Automated",
+            title: fsr.title,
+            body: fsr.testimonial?.quote ? `“${fsr.testimonial.quote}”` : fsr.description,
+            meta: fsr.testimonial ? `${fsr.testimonial.author}, ${fsr.testimonial.role ?? ""}` : `${fsr.client.name} · ${fsr.client.country ?? ""}`,
+            cta: "Read the case study",
+          },
+        ]
+      : []),
     {
       id: "films",
       label: "Clients on film",
-      aside: "Four founders",
+      desc: "Four founders, in their own words",
       to: "/client-stories",
-      eyebrow: "In their own words",
-      statement: "Another team spent two years without shipping it. Josh explains what changed the moment Zumetrix took over.",
-      fact: "Josh Nyce · Owner & Founder, Fast Track USA · also on Trustpilot",
+      scene: "film",
+      sceneSrc: josh.poster,
+      kicker: "On film · 1:26",
+      title: josh.context,
+      body: flagship?.testimonial?.quote ? `“${flagship.testimonial.quote}”` : "",
+      meta: `${josh.name} · ${josh.role}`,
       cta: "Watch the films",
     },
-  ].filter(Boolean) as Item[],
+  ],
+  notes: [
+    { h: "Every case says three things", b: "What was decided, what shipped, and what the client said." },
+    { h: "Named only with permission", b: "Where a client asked us not to name them, we don't." },
+  ],
+  foot: { to: "/portfolio/all", label: "Every project" },
   footLeft: `${FACTS.counts.projectsShipped} projects · ${FACTS.counts.clients} clients · ${FACTS.counts.writtenReviews} written reviews on five platforms`,
-  footLink: { to: "/portfolio/all", label: "Every project" },
+  footCta: { to: "/portfolio", label: "Case studies" },
+};
+
+const SCENE_FOR_ARTICLE: Record<string, VignetteKind> = {
+  "Product Rescue": "rescue",
+  "AI & Automation": "automation",
+  SaaS: "decision",
+  "Decision Room": "decision",
 };
 
 const FEATURED_ARTICLES = pickInOrder(articles, NAV_FEATURED_ORDER).slice(0, 4);
 const ARTICLES_SPEC: PanelSpec = {
-  title: "Articles",
+  eyebrow: "Decisions, written down",
   items: [
     ...FEATURED_ARTICLES.map((a) => ({
       id: a.slug,
       label: a.title,
-      aside: a.readTime,
+      desc: `${a.category} · ${a.readTime}`,
       to: `/articles/${a.slug}`,
-      eyebrow: `${a.category} · by ${a.author}`,
-      statement: a.title,
-      fact: a.excerpt,
-      cta: "Read",
+      scene: SCENE_FOR_ARTICLE[a.category] ?? ("notes" as VignetteKind),
+      kicker: `${a.category} · ${a.readTime}`,
+      title: a.title,
+      body: a.excerpt,
+      meta: `By ${a.author}`,
+      cta: "Read the article",
     })),
     {
       id: "tool",
-      label: "Rescue or rebuild?",
-      aside: "Free · 2 min",
+      label: "Rescue or rebuild? Free check",
+      desc: "Four questions, no email, two minutes",
       to: "/rescue-or-rebuild",
-      eyebrow: "A free check, not a lead form",
-      statement: "Four questions. No email. An honest read on where your product stands.",
-      fact: "Structural integrity · operational control · business reversibility · scope of the problem",
-      cta: "Run it",
+      scene: "rescue",
+      kicker: "Free tool · 2 minutes",
+      title: "Rescue it, or rebuild it?",
+      body: "Structural integrity, operational control, business reversibility, scope of the problem. Four honest answers — including “I don't know” — and a read on where your product stands.",
+      meta: "No email. No score. The same first pass we run ourselves.",
+      cta: "Run the free check",
     },
   ],
+  foot: { to: "/articles", label: "All articles" },
   footLeft: "Written by Zia and Omer from real delivery work.",
-  footLink: { to: "/articles", label: "All articles" },
+  footCta: { to: "/start", label: "Which of these is you? Start here", onClick: trackOffersNavClick },
 };
 
 const SPECS: Record<PanelKey, PanelSpec> = { services: SERVICES_SPEC, start: START_SPEC, portfolio: PORTFOLIO_SPEC, articles: ARTICLES_SPEC };
 
-/* ---------- the panel ---------- */
+/* ---------- the instrument ---------- */
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const TypePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey }> = ({ spec, panelKey }) => {
+const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey }> = ({ spec, panelKey }) => {
   const [active, setActive] = useState(0);
   const reduce = useReducedMotion();
   const item = spec.items[active] ?? spec.items[0];
@@ -209,99 +294,139 @@ const TypePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey }> = ({ spec, pa
   };
 
   return (
-    <div className="px-10 pb-7 pt-8">
-      <div className="grid grid-cols-[1fr_1fr] gap-x-14">
-        {/* list */}
-        <div className="flex flex-col" onKeyDown={onKey}>
-          <p className="mb-5 font-mono text-[10.5px] uppercase tracking-[0.22em] text-primary/80">{spec.title}</p>
-          <div className="flex flex-col">
-            {spec.items.map((it, i) => {
-              const on = i === active;
-              return (
-                <Link
-                  key={it.id}
-                  to={it.to}
-                  data-item
-                  onClick={it.onClick}
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  className="group relative flex items-baseline justify-between gap-6 border-t border-white/[0.06] py-[15px] focus:outline-none first:border-t-0"
-                >
-                  <span
-                    className={`block text-[19px] font-semibold leading-tight tracking-[-0.012em] transition-[color,transform] duration-300 ease-out ${
-                      on ? "translate-x-1.5 text-foreground" : "text-foreground/55"
-                    }`}
-                  >
-                    {it.label}
+    <div className="grid grid-cols-[348px_1fr]">
+      {/* list */}
+      <div className="flex flex-col p-5 pr-0">
+        <p className="px-4 pb-3 pt-1 text-[10.5px] font-semibold uppercase tracking-[0.2em] text-primary/75">{spec.eyebrow}</p>
+        <div className="relative flex flex-col gap-0.5" onKeyDown={onKey}>
+          {spec.items.map((it, i) => {
+            const on = i === active;
+            return (
+              <Link
+                key={it.id}
+                to={it.to}
+                data-item
+                onClick={it.onClick}
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                className={`group relative flex items-center gap-3.5 rounded-xl py-3 pl-4 pr-3 transition-colors duration-200 focus:outline-none ${on ? "bg-white/[0.05]" : "hover:bg-white/[0.03]"}`}
+              >
+                {on && (
+                  <motion.span
+                    layoutId={`nav-stage-mark-${panelKey}`}
+                    transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                    className="absolute bottom-3 left-0 top-3 w-[2px] rounded-full bg-primary"
+                  />
+                )}
+                {it.icon && (
+                  <span className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[11px] border transition-colors duration-200 ${on ? "border-primary/40 bg-primary/[0.12] text-primary" : "border-white/[0.07] bg-white/[0.02] text-muted-foreground/70"}`}>
+                    <it.icon size={16} strokeWidth={1.9} />
                   </span>
-                  {it.aside && (
-                    <span
-                      className={`flex-shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors duration-300 ${
-                        on ? "text-primary" : "text-muted-foreground/45"
-                      }`}
-                    >
-                      {it.aside}
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
-          </div>
+                )}
+                <span className="min-w-0 flex-1">
+                  <span className={`line-clamp-2 text-[14.5px] font-semibold leading-snug transition-colors duration-200 ${on ? "text-foreground" : "text-foreground/80"}`}>{it.label}</span>
+                  <span className="mt-0.5 block truncate text-[12px] text-muted-foreground/65">{it.desc}</span>
+                </span>
+                <ArrowRight size={14} strokeWidth={2.5} className={`flex-shrink-0 text-primary transition-all duration-200 ${on ? "translate-x-0 opacity-100" : "-translate-x-1 opacity-0"}`} />
+              </Link>
+            );
+          })}
         </div>
+        {spec.notes && (
+          <ul className="mt-5 flex flex-col gap-3 border-t border-white/[0.06] px-4 pt-5">
+            {spec.notes.map((n) => (
+              <li key={n.h} className="flex gap-3">
+                <span className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary/80" />
+                <span>
+                  <span className="block text-[13px] font-semibold leading-snug text-foreground/90">{n.h}</span>
+                  <span className="mt-0.5 block text-[12px] leading-snug text-muted-foreground/65">{n.b}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="mt-auto px-4 pt-5">
+          <Link to={spec.foot.to} onClick={spec.foot.onClick} className="group inline-flex items-center gap-1.5 text-[12.5px] font-medium text-muted-foreground/75 transition-colors duration-200 hover:text-foreground">
+            {spec.foot.label}
+            <ArrowRight size={11} strokeWidth={2.5} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+      </div>
 
-        {/* statement */}
-        <Link
-          to={item.to}
-          onClick={item.onClick}
-          aria-label={`${item.cta}: ${item.label}`}
-          className="group/stage relative flex flex-col border-l border-white/[0.06] pl-14 focus:outline-none"
-        >
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-px top-0 h-16 w-px bg-gradient-to-b from-primary/70 to-transparent"
-          />
-          <AnimatePresence initial={false} mode="wait">
+      {/* stage */}
+      <Link
+        to={item.to}
+        onClick={item.onClick}
+        aria-label={`${item.cta}: ${item.title}`}
+        className="group/stage m-5 flex flex-col overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#0B0A09] shadow-[0_30px_70px_-30px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.05)] focus:outline-none focus-visible:ring-1 focus-visible:ring-primary/50"
+      >
+        <span className="relative block aspect-[16/9] overflow-hidden">
+          <AnimatePresence initial={false} mode="popLayout">
             <motion.span
               key={item.id}
-              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? { opacity: 0 } : { opacity: 0, y: -6 }}
-              transition={{ duration: reduce ? 0 : 0.28, ease: EASE }}
-              className="flex flex-1 flex-col"
+              initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.03 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: reduce ? 0 : 0.4, ease: EASE }}
+              className="absolute inset-0 block"
             >
-              <span className="mb-5 block font-mono text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground/60">{item.eyebrow}</span>
-              <span className="block text-[28px] font-semibold leading-[1.18] tracking-[-0.02em] text-foreground [text-wrap:balance]">
-                {item.statement}
-              </span>
-              {item.fact && <span className="mt-5 line-clamp-3 text-[13px] leading-relaxed text-muted-foreground/70">{item.fact}</span>}
-              <span className="mt-auto inline-flex items-center gap-2 pt-8 text-[14px] font-medium text-primary">
-                {item.cta}
-                <ArrowRight size={14} strokeWidth={2.25} className="transition-transform duration-300 ease-out group-hover/stage:translate-x-1" />
-              </span>
+              <NavVignette kind={item.scene} src={item.sceneSrc} />
             </motion.span>
           </AnimatePresence>
-        </Link>
-      </div>
+          <AnimatePresence initial={false} mode="wait">
+            <motion.span
+              key={`${item.id}-k`}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute bottom-3.5 left-4 inline-flex max-w-[85%] items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-white/90 backdrop-blur"
+            >
+              <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+              <span className="truncate">{item.kicker}</span>
+            </motion.span>
+          </AnimatePresence>
+        </span>
+        <AnimatePresence initial={false} mode="wait">
+          <motion.span
+            key={`${item.id}-t`}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: reduce ? 0 : 0.22, ease: "easeOut" }}
+            className="flex flex-1 flex-col px-5 pb-4 pt-4"
+          >
+            <span className="block text-[16.5px] font-semibold leading-snug tracking-tight text-foreground [text-wrap:balance]">{item.title}</span>
+            <span className="mt-2 line-clamp-2 text-[13px] leading-[1.55] text-muted-foreground/80">{item.body}</span>
+            <span className="mt-auto flex items-end justify-between gap-4 pt-4">
+              <span className="line-clamp-2 text-[11.5px] leading-snug text-muted-foreground/60">{item.meta}</span>
+              <span className="inline-flex flex-shrink-0 items-center gap-1.5 text-[13px] font-semibold text-primary">
+                {item.cta}
+                <ArrowUpRight size={14} strokeWidth={2.5} className="transition-transform duration-200 group-hover/stage:translate-x-0.5 group-hover/stage:-translate-y-0.5" />
+              </span>
+            </span>
+          </motion.span>
+        </AnimatePresence>
+      </Link>
 
-      <div className="mt-8 flex items-center justify-between border-t border-white/[0.06] pt-5">
-        <span className="text-[12.5px] text-muted-foreground/55">{spec.footLeft}</span>
+      <div className="col-span-2 flex items-center justify-between border-t border-white/[0.06] px-6 py-3.5">
+        <span className="text-[11.5px] text-muted-foreground/55">{spec.footLeft}</span>
         <Link
-          to={spec.footLink.to}
-          onClick={spec.footLink.onClick}
-          className="group inline-flex items-center gap-2 text-[13px] font-medium text-foreground/80 transition-colors duration-200 hover:text-primary"
+          to={spec.footCta.to}
+          onClick={spec.footCta.onClick}
+          className="group inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.07] px-3.5 py-1.5 text-[12.5px] font-semibold text-primary transition-colors duration-200 hover:bg-primary/[0.15]"
         >
-          {spec.footLink.label}
-          <ArrowRight size={13} strokeWidth={2.25} className="transition-transform duration-300 ease-out group-hover:translate-x-1" />
+          {spec.footCta.label}
+          <ArrowRight size={12} strokeWidth={2.5} className="transition-transform duration-200 group-hover:translate-x-0.5" />
         </Link>
       </div>
-      <span className="sr-only">{panelKey}</span>
     </div>
   );
 };
 
 export const PANELS: Record<PanelKey, React.FC> = {
-  services: () => <TypePanel spec={SPECS.services} panelKey="services" />,
-  start: () => <TypePanel spec={SPECS.start} panelKey="start" />,
-  portfolio: () => <TypePanel spec={SPECS.portfolio} panelKey="portfolio" />,
-  articles: () => <TypePanel spec={SPECS.articles} panelKey="articles" />,
+  services: () => <ListStagePanel spec={SPECS.services} panelKey="services" />,
+  start: () => <ListStagePanel spec={SPECS.start} panelKey="start" />,
+  portfolio: () => <ListStagePanel spec={SPECS.portfolio} panelKey="portfolio" />,
+  articles: () => <ListStagePanel spec={SPECS.articles} panelKey="articles" />,
 };
