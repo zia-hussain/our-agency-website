@@ -19,6 +19,7 @@ import { services } from "../../data/services";
 import { saasDetailFAQs } from "../../data/faqs/service-saas";
 import { TESTIMONIALS } from "../../data/testimonials";
 import PlatformIcon from "../../components/common/PlatformIcon";
+import TiltFrame from "../../components/portfolio/TiltFrame";
 
 const service = services.find((s) => s.slug === "saas-mvp-development")!;
 const pageUrl = `https://zumetrix.com/services/${service.slug}`;
@@ -192,6 +193,7 @@ const SaasDetailPage: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection mode="hero" delay={0.1} className="mt-16 sm:mt-20">
+            <TiltFrame variant="card" maxTilt={3} glare={false} frameClassName="" innerClassName="relative">
             <div className="relative max-w-3xl mx-auto grid sm:grid-cols-3 gap-4 sm:gap-3 items-stretch text-left">
               <div className="rounded-2xl border border-border/50 bg-card/15 p-6 flex flex-col items-center text-center shadow-[0_25px_60px_-25px_rgba(0,0,0,0.6)]">
                 <Lightbulb size={22} className="text-muted-foreground/40 mb-3" />
@@ -213,6 +215,7 @@ const SaasDetailPage: React.FC = () => {
                 <p className="text-xs text-muted-foreground/50 mt-1">Focused, working, live</p>
               </div>
             </div>
+            </TiltFrame>
           </AnimatedSection>
         </div>
       </section>

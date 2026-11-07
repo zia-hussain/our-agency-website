@@ -9,6 +9,10 @@ interface CoverImageProps {
   priority?: boolean;
   /** Override the responsive `sizes` hint for the slot this renders in. */
   sizes?: string;
+  /** The entity the cover stands for (article or case title). Leads the alt
+   *  and fills the title attribute, so the image is tied to its subject for
+   *  search and for anyone hovering it — the picture description follows. */
+  subject?: string;
 }
 
 // One <img> for every authored cover. The SVG master is the `src` (crisp at
@@ -16,14 +20,15 @@ interface CoverImageProps {
 // prefer raster for the slot. Intrinsic width/height stop layout shift;
 // decoding is async; alt describes the picture and its category, never the
 // project name (that's adjacent HTML).
-const CoverImage: React.FC<CoverImageProps> = ({ cover, className = "", priority = false, sizes }) => (
+const CoverImage: React.FC<CoverImageProps> = ({ cover, className = "", priority = false, sizes, subject }) => (
   <img
     src={cover.src}
     srcSet={cover.srcSet || undefined}
     sizes={cover.srcSet ? sizes || cover.sizes : undefined}
     width={cover.width}
     height={cover.height}
-    alt={cover.alt}
+    alt={subject ? `${subject} — ${cover.alt}` : cover.alt}
+    title={subject || undefined}
     loading={priority ? "eager" : "lazy"}
     decoding="async"
     {...(priority ? ({ fetchpriority: "high" } as Record<string, string>) : {})}

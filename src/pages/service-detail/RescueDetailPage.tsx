@@ -16,6 +16,7 @@ import { rescueDetailFAQs } from "../../data/faqs/service-rescue";
 import { TESTIMONIAL_FILMS } from "../../data/testimonialFilms";
 import { buildVideoObjectSchema } from "../../utils/videoSchema";
 import { TESTIMONIALS } from "../../data/testimonials";
+import TiltFrame from "../../components/portfolio/TiltFrame";
 
 const service = rescueService;
 const pageUrl = `https://zumetrix.com/services/${service.slug}`;
@@ -132,6 +133,7 @@ const RescueDetailPage: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection mode="hero" delay={0.1} className="mt-16 sm:mt-20">
+            <TiltFrame variant="card" maxTilt={3} glare={false} frameClassName="" innerClassName="relative">
             <div className="relative max-w-lg mx-auto rounded-2xl border border-border/50 bg-card/10 overflow-hidden text-left">
               <div className="px-6 py-4 border-b border-border/50 bg-card/20">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60">Findings report</p>
@@ -152,6 +154,7 @@ const RescueDetailPage: React.FC = () => {
               </div>
             </div>
             <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — every real assessment produces its own findings.</p>
+            </TiltFrame>
           </AnimatedSection>
         </div>
       </section>

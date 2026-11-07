@@ -38,7 +38,9 @@ const ProjectSpotlight: React.FC<ProjectSpotlightProps> = ({ project, index }) =
           transition={{ duration: 0.4 }}
           className="relative"
         >
-          <TiltImage src={cover.src} srcSet={cover.srcSet} sizes="(min-width: 1024px) 50vw, 100vw" width={cover.width} height={cover.height} alt={cover.alt} className="aspect-[4/3]" fit={project.heroImageFit} />
+          <Link to={`/portfolio/${project.slug}`} aria-label={`Read the case study: ${project.title}`} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-2xl">
+            <TiltImage src={cover.src} srcSet={cover.srcSet} sizes="(min-width: 1024px) 50vw, 100vw" width={cover.width} height={cover.height} alt={`${project.title} — ${cover.alt}`} title={project.title} className="aspect-[4/3]" fit={project.heroImageFit} />
+          </Link>
         </motion.div>
 
         <motion.div

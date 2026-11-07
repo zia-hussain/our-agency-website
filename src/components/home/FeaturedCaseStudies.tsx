@@ -173,10 +173,11 @@ const FeaturedCaseStudies: React.FC = () => {
 
             {/* Built vs. deferred column — a structured spec sheet, contrasting the free-flowing story */}
             <div className="lg:col-span-2">
+              <Link to={`/portfolio/${flagship.slug}`} aria-label={`Read the case study: ${flagship.title}`} className="block mb-6 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
               <TiltFrame
                 variant="card"
                 maxTilt={5}
-                frameClassName="relative rounded-2xl border border-primary/15 bg-background mb-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]"
+                frameClassName="relative rounded-2xl border border-primary/15 bg-background shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-white/[0.03]"
                 innerClassName="relative overflow-hidden rounded-2xl"
               >
                 <picture>
@@ -184,6 +185,7 @@ const FeaturedCaseStudies: React.FC = () => {
                   <img
                     src={flagship.image}
                     alt={flagship.ogImageAlt ?? `${flagship.client.name} overview`}
+                    title={flagship.title}
                     width="800"
                     height="600"
                     loading="lazy"
@@ -192,6 +194,7 @@ const FeaturedCaseStudies: React.FC = () => {
                   />
                 </picture>
               </TiltFrame>
+              </Link>
 
               <div className="rounded-2xl border border-border/70 overflow-hidden">
                 <div className="bg-card/40 p-6">

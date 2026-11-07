@@ -15,6 +15,7 @@ import { services } from "../../data/services";
 import { automationDetailFAQs } from "../../data/faqs/service-automation";
 import { getProjectBySlug } from "../../data/projects";
 import { TESTIMONIALS } from "../../data/testimonials";
+import TiltFrame from "../../components/portfolio/TiltFrame";
 
 const service = services.find((s) => s.slug === "ai-automation-solutions")!;
 const pageUrl = `https://zumetrix.com/services/${service.slug}`;
@@ -122,6 +123,7 @@ const AutomationDetailPage: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection mode="hero" delay={0.1} className="mt-16 sm:mt-20">
+            <TiltFrame variant="card" maxTilt={3} glare={false} frameClassName="" innerClassName="relative">
             <div className="flex items-center justify-center px-2 mb-10">
               <div className="flex items-end gap-2 sm:gap-7">
                 {[{ label: "Emails", mt: "0px", rotate: "-7deg" }, { label: "Sheets", mt: "20px", rotate: "5deg" }, { label: "Manual", mt: "-8px", rotate: "-3deg" }, { label: "Tools", mt: "14px", rotate: "6deg" }].map((sq) => (
@@ -153,6 +155,7 @@ const AutomationDetailPage: React.FC = () => {
               </div>
             </div>
             <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — every real workflow is mapped to your own tools.</p>
+            </TiltFrame>
           </AnimatedSection>
         </div>
       </section>

@@ -46,9 +46,11 @@ const ArticleSpotlight: React.FC<ArticleSpotlightProps> = ({ article, index, dec
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.4 }}
         >
-          <TiltFrame>
-            <CoverImage cover={coverForArticle(article)} className="aspect-video object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
-          </TiltFrame>
+          <Link to={`/articles/${article.slug}`} aria-label={`Read: ${article.title}`} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-2xl">
+            <TiltFrame>
+              <CoverImage cover={coverForArticle(article)} subject={article.title} className="aspect-video object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+            </TiltFrame>
+          </Link>
         </motion.div>
 
         <motion.div

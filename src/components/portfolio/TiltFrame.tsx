@@ -16,6 +16,8 @@ interface TiltFrameProps {
   maxTilt?: number;
   /** Class for the clipping box around the children (the rounded inner). */
   innerClassName?: string;
+  /** Light sheen that tracks the cursor; off for a group of separate cards, where one sheen across gaps reads wrong. */
+  glare?: boolean;
 }
 
 // The tactile hallmark of a premium agency site — whatever's inside leans
@@ -32,6 +34,7 @@ const TiltFrame: React.FC<TiltFrameProps> = ({
   variant = "spotlight",
   maxTilt,
   innerClassName,
+  glare = true,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [hovering, setHovering] = useState(false);
@@ -82,11 +85,13 @@ const TiltFrame: React.FC<TiltFrameProps> = ({
     >
       <div className={inner}>
         {children}
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
-          style={{ background: glareBackground, opacity: hovering ? 1 : 0 }}
-        />
+        {glare && (
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
+            style={{ background: glareBackground, opacity: hovering ? 1 : 0 }}
+          />
+        )}
       </div>
     </motion.div>
   );

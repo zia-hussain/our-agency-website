@@ -17,6 +17,7 @@ import RecognitionSelector, { type RecognitionOption } from "../offers/Recogniti
 import { ideaToBuildFAQs } from "../../data/faqs/idea-to-build";
 import { getOffer, offerSourceKey } from "../../config/offers";
 import { trackOfferDetailView } from "../../utils/analytics";
+import TiltFrame from "../../components/portfolio/TiltFrame";
 
 const pageUrl = "https://zumetrix.com/idea-to-build";
 const offer = getOffer("idea-to-build")!;
@@ -252,6 +253,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
           </motion.div>
 
           <motion.div variants={heroItem} className="mt-16 sm:mt-20">
+            <TiltFrame variant="card" maxTilt={4} frameClassName="max-w-lg mx-auto" innerClassName="relative overflow-hidden rounded-2xl">
             <div className="relative max-w-lg mx-auto rounded-2xl border border-border/50 bg-card/10 overflow-hidden text-left">
               <div className="px-6 py-4 border-b border-border/50 bg-card/20">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60">V1 Brief — preview</p>
@@ -272,6 +274,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
               </div>
             </div>
             <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — your Brief is built from your own idea and answers.</p>
+            </TiltFrame>
           </motion.div>
         </motion.div>
       </section>

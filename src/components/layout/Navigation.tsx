@@ -317,7 +317,7 @@ const Navigation: React.FC = () => {
             animate={{ width: PANEL_WIDTH[shownMenu], height: panelHeights[shownMenu] || "auto" }}
             transition={shouldReduceMotion ? { duration: 0 } : PANEL_MORPH}
             style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-            className="relative overflow-hidden rounded-3xl border border-white/[0.06]"
+            className="relative overflow-hidden rounded-[28px] border border-white/[0.07] ring-1 ring-inset ring-white/[0.03]"
           >
             {PANEL_KEYS.map((key) => {
               const Panel = PANELS[key];

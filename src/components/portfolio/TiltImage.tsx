@@ -22,9 +22,11 @@ interface TiltImageProps {
   height?: number;
   /** Above-the-fold hero: eager + high fetch priority instead of lazy. */
   priority?: boolean;
+  /** Tooltip / subject name for the image. */
+  title?: string;
 }
 
-const TiltImage: React.FC<TiltImageProps> = ({ src, alt, className = "", frameClassName = "", fit = "cover", mobileSrc, srcSet, sizes, width, height, priority = false }) => (
+const TiltImage: React.FC<TiltImageProps> = ({ src, alt, className = "", frameClassName = "", fit = "cover", mobileSrc, srcSet, sizes, width, height, priority = false, title }) => (
   <TiltFrame frameClassName={frameClassName}>
     <picture>
       {mobileSrc && <source srcSet={mobileSrc} media="(max-width: 640px)" />}
@@ -35,6 +37,7 @@ const TiltImage: React.FC<TiltImageProps> = ({ src, alt, className = "", frameCl
         width={width}
         height={height}
         alt={alt}
+        title={title}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
         {...(priority ? ({ fetchpriority: "high" } as Record<string, string>) : {})}

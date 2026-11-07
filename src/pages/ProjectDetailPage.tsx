@@ -297,18 +297,24 @@ const ProjectDetailPage: React.FC = () => {
               {project.heroEvidence ? (
                 <HeroEvidence {...project.heroEvidence} />
               ) : (
-                <TiltImage
-                  src={cover.src}
-                  srcSet={cover.srcSet}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  width={cover.width}
-                  height={cover.height}
-                  alt={cover.alt}
-                  className={project.heroImageMobile ? "aspect-auto sm:aspect-[4/3]" : "aspect-[4/3]"}
-                  fit={project.heroImageFit}
-                  mobileSrc={project.heroImageMobile}
-                  priority
-                />
+                <figure className="m-0">
+                  <TiltImage
+                    src={cover.src}
+                    srcSet={cover.srcSet}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    width={cover.width}
+                    height={cover.height}
+                    alt={`${project.title} — ${cover.alt}`}
+                    title={project.title}
+                    className={project.heroImageMobile ? "aspect-auto sm:aspect-[4/3]" : "aspect-[4/3]"}
+                    fit={project.heroImageFit}
+                    mobileSrc={project.heroImageMobile}
+                    priority
+                  />
+                  <figcaption className="mt-3 text-[12px] text-muted-foreground/60">
+                    {project.client.name} · {project.category} case study · Zumetrix Labs
+                  </figcaption>
+                </figure>
               )}
             </AnimatedSection>
           </div>

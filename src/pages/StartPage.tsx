@@ -433,16 +433,23 @@ const StartPage: React.FC = () => {
                     </ScrollRevealVisual>
                   ) : (
                     <ScrollRevealVisual className={reversed ? "lg:order-1" : ""}>
-                      <TiltFrame>
-                        {(() => {
-                          const proofProject = getProjectBySlug(chapter.proofHref.replace("/portfolio/", ""));
-                          return proofProject ? (
-                            <CoverImage cover={listingImageForProject(proofProject)} sizes="(min-width: 1024px) 45vw, 92vw" className="bg-background" />
-                          ) : (
-                            <img src={chapter.proofImage} alt="" width="1000" height="625" loading="lazy" decoding="async" className="w-full h-auto object-contain bg-background" />
-                          );
-                        })()}
-                      </TiltFrame>
+                      <Link
+                        to={chapter.proofHref}
+                        onClick={() => trackContextualOfferCtaClick(chapter.offer, "offers-hub-proof-visual")}
+                        aria-label="Open the full case study"
+                        className="block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                      >
+                        <TiltFrame>
+                          {(() => {
+                            const proofProject = getProjectBySlug(chapter.proofHref.replace("/portfolio/", ""));
+                            return proofProject ? (
+                              <CoverImage cover={listingImageForProject(proofProject)} subject={proofProject.title} sizes="(min-width: 1024px) 45vw, 92vw" className="bg-background" />
+                            ) : (
+                              <img src={chapter.proofImage} alt="" width="1000" height="625" loading="lazy" decoding="async" className="w-full h-auto object-contain bg-background" />
+                            );
+                          })()}
+                        </TiltFrame>
+                      </Link>
                       <div className="mt-5">
                         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">
                           {chapter.proofLabel}

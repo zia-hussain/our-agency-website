@@ -16,6 +16,7 @@ import { TESTIMONIAL_FILMS } from "../../data/testimonialFilms";
 import { buildVideoObjectSchema } from "../../utils/videoSchema";
 import { getProjectBySlug } from "../../data/projects";
 import { TESTIMONIALS } from "../../data/testimonials";
+import TiltFrame from "../../components/portfolio/TiltFrame";
 
 const service = services.find((s) => s.slug === "web-application-development")!;
 const pageUrl = `https://zumetrix.com/services/${service.slug}`;
@@ -121,6 +122,7 @@ const WebDetailPage: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection mode="hero" delay={0.1} className="mt-16 sm:mt-20 max-w-4xl mx-auto">
+            <TiltFrame variant="card" maxTilt={3} glare={false} frameClassName="" innerClassName="relative">
             <div className="relative rounded-xl border border-border/60 overflow-hidden bg-card/15 shadow-[0_50px_110px_-25px_rgba(0,0,0,0.7),0_25px_55px_-20px_rgba(196,138,100,0.2)]">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_75%_10%,rgba(196,138,100,0.1),transparent_65%)]" />
               <div className="relative flex flex-wrap items-center gap-x-1 gap-y-1.5 px-4 py-3 border-b border-border/60 bg-card/40">
@@ -152,6 +154,7 @@ const WebDetailPage: React.FC = () => {
                 </div>
               </div>
             </div>
+            </TiltFrame>
           </AnimatedSection>
         </div>
       </section>

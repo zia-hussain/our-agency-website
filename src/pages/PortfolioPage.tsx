@@ -17,6 +17,7 @@ import { portfolioFAQs } from "../data/faqs/portfolio";
 import { TESTIMONIAL_FILMS } from "../data/testimonialFilms";
 import { buildVideoObjectSchema } from "../utils/videoSchema";
 import { ArrowRight, Eye, Code, Users, Sparkles } from "lucide-react";
+import HeroActions from "../components/common/HeroActions";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -110,6 +111,13 @@ const PortfolioPage: React.FC = () => {
               case says what was decided, what shipped, and what the client said — and
               where a client asked us not to name them, we don't.
             </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1} className="mt-10 sm:mt-12">
+            <HeroActions
+              primary={{ label: "Tell us where you are", to: "/contact", track: "Portfolio hero — Tell us where you are" }}
+              secondary={{ label: "Watch clients on film", to: "/client-stories", track: "Portfolio hero — Clients on film" }}
+              note="No pitch. Zia or Omer reads it and replies within two business days."
+            />
           </AnimatedSection>
         </div>
       </section>

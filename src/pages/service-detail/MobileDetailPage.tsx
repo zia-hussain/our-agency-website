@@ -13,6 +13,7 @@ import { services } from "../../data/services";
 import { mobileDetailFAQs } from "../../data/faqs/service-mobile";
 import { getProjectBySlug } from "../../data/projects";
 import { TESTIMONIALS } from "../../data/testimonials";
+import TiltFrame from "../../components/portfolio/TiltFrame";
 
 const service = services.find((s) => s.slug === "mobile-app-development")!;
 const pageUrl = `https://zumetrix.com/services/${service.slug}`;
@@ -161,6 +162,7 @@ const MobileDetailPage: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection mode="hero" delay={0.1} className="mt-16 sm:mt-20 flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-16">
+            <TiltFrame variant="card" maxTilt={3} glare={false} frameClassName="" innerClassName="relative">
             <div className="relative w-64 sm:w-72 aspect-[9/19.5] rounded-[2.75rem] bg-gradient-to-b from-card via-card/70 to-card/40 border border-border p-[3px] -rotate-2 shadow-[0_35px_80px_-20px_rgba(0,0,0,0.85),0_0_60px_-15px_rgba(196,138,100,0.22)] flex-shrink-0">
               <div className="pointer-events-none absolute inset-0 rounded-[2.75rem] bg-gradient-to-br from-foreground/10 via-transparent to-transparent" />
               <span className="absolute -left-px top-20 w-[3px] h-7 rounded-l-sm bg-border" />
@@ -200,6 +202,7 @@ const MobileDetailPage: React.FC = () => {
                 </div>
               ))}
             </div>
+            </TiltFrame>
           </AnimatedSection>
         </div>
       </section>

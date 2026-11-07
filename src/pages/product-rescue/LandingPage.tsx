@@ -16,6 +16,7 @@ import ConsequenceStakes from "./components/ConsequenceStakes";
 import { productRescueFAQs } from "../../data/faqs/product-rescue";
 import { getOffer, offerSourceKey } from "../../config/offers";
 import { trackRescueOfferViewed, trackOfferDetailView } from "../../utils/analytics";
+import TiltFrame from "../../components/portfolio/TiltFrame";
 
 const pageUrl = "https://zumetrix.com/product-rescue";
 const offer = getOffer("product-rescue")!;
@@ -220,6 +221,7 @@ const ProductRescueLandingPage: React.FC = () => {
           {/* What the conflicting opinions above resolve into — a concrete  */}
           {/* preview of the deliverable, not an abstract promise.           */}
           <motion.div variants={heroItem} className="mt-16 sm:mt-20">
+            <TiltFrame variant="card" maxTilt={4} frameClassName="max-w-lg mx-auto" innerClassName="relative overflow-hidden rounded-2xl">
             <div className="relative max-w-lg mx-auto rounded-2xl border border-border/50 bg-card/10 overflow-hidden text-left">
               <div className="px-6 py-4 border-b border-border/50 bg-card/20">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60">Rescue Brief — preview</p>
@@ -240,6 +242,7 @@ const ProductRescueLandingPage: React.FC = () => {
               </div>
             </div>
             <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — your Rescue Brief is built from your product's own evidence.</p>
+            </TiltFrame>
           </motion.div>
         </motion.div>
       </section>

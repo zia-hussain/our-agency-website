@@ -562,9 +562,14 @@ const ArticleDetailPage: React.FC = () => {
                 className="w-full rounded-2xl border border-border/60 object-cover"
               />
             ) : (
-              <TiltFrame>
-                <CoverImage cover={coverForArticle(article)} className="aspect-video object-cover" priority sizes="(min-width: 1024px) 896px, 100vw" />
-              </TiltFrame>
+              <figure className="m-0">
+                <TiltFrame>
+                  <CoverImage cover={coverForArticle(article)} subject={article.title} className="aspect-video object-cover" priority sizes="(min-width: 1024px) 896px, 100vw" />
+                </TiltFrame>
+                <figcaption className="mt-3 text-center text-[12px] text-muted-foreground/60">
+                  {article.title} · {article.category} · Zumetrix Labs
+                </figcaption>
+              </figure>
             )}
           </AnimatedSection>
         </div>

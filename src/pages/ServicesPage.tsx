@@ -18,6 +18,7 @@ import { TESTIMONIALS } from "../data/testimonials";
 import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
+import HeroActions from "../components/common/HeroActions";
 
 const saas = services.find((s) => s.slug === "saas-mvp-development")!;
 const webApp = services.find((s) => s.slug === "web-application-development")!;
@@ -481,6 +482,13 @@ const ServicesPage: React.FC = () => {
               Whether that means building something new, fixing what's not
               working, or turning manual work into a system.
             </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1} className="relative z-10 mt-10 sm:mt-12">
+            <HeroActions
+              primary={{ label: "Tell us where you are", to: "/contact", track: "Services hero — Tell us where you are" }}
+              secondary={{ label: "Not sure which? Start here", to: "/start", track: "Services hero — Start here" }}
+              note="Every price on this page is published before the call."
+            />
           </AnimatedSection>
           <motion.div
             initial={{ opacity: 0 }}

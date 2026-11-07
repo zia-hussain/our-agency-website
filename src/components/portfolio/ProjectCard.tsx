@@ -44,7 +44,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = "archive" }) 
               sizes={cover.srcSet ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : undefined}
               width={cover.width}
               height={cover.height}
-              alt={cover.alt}
+              alt={`${project.title} — ${cover.alt}`}
+              title={project.title}
               loading="lazy"
               decoding="async"
               whileHover={{ scale: 1.02 }}

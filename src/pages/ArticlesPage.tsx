@@ -14,6 +14,7 @@ import { articles, categories } from "../data/articles.js";
 import { articlesFAQs } from "../data/faqs/articles";
 import { getAuthorIdentity } from "../data/authors";
 import { DECISION_LABEL, FEATURED_ORDER, INDEX_ORDER, pickInOrder, sortByOrder } from "../data/articleHierarchy";
+import HeroActions from "../components/common/HeroActions";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -110,6 +111,13 @@ const ArticlesPage: React.FC = () => {
               Written by Zia Hussain and Omer Gillani from real product work — not
               theory, and not written to rank for a keyword.
             </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1} className="mt-10 sm:mt-12">
+            <HeroActions
+              primary={{ label: "Rescue or rebuild? Run the free check", to: "/rescue-or-rebuild", track: "Articles hero — Free check" }}
+              secondary={{ label: "Tell us where you are", to: "/contact", track: "Articles hero — Tell us where you are" }}
+              note="Four questions, no email, two minutes — the same first pass we run ourselves."
+            />
           </AnimatedSection>
         </div>
       </section>
