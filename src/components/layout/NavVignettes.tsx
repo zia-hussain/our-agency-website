@@ -39,7 +39,9 @@ const Frame: React.FC<{ children: React.ReactNode; className?: string }> = ({ ch
         maskImage: "radial-gradient(80% 80% at 50% 40%, #000 30%, transparent 100%)",
       }}
     />
-    <div className="absolute inset-0 flex items-center justify-center">{children}</div>
+    {/* The kicker chip lives in the bottom 56px of the stage, so the scene
+        centres in the band above it and never collides with the label. */}
+    <div className="absolute inset-x-0 bottom-14 top-0 flex items-center justify-center px-8 pt-6">{children}</div>
   </div>
 );
 
@@ -143,13 +145,13 @@ const Saas: React.FC<{ still: boolean }> = ({ still }) => (
 );
 
 const Mobile: React.FC<{ still: boolean }> = ({ still }) => (
-  <div className="relative flex h-full w-full items-end justify-center">
-    <div className="relative w-[26%] translate-y-[14%] rounded-[22px] border border-white/[0.12] bg-[#0E0C0B] p-1.5 shadow-[0_40px_70px_-20px_rgba(0,0,0,0.9)]">
+  <div className="relative flex h-full w-full items-center justify-center">
+    <div className="relative w-[21%] rounded-[20px] border border-white/[0.12] bg-[#0E0C0B] p-1.5 shadow-[0_40px_70px_-20px_rgba(0,0,0,0.9)]">
       <div className="absolute left-1/2 top-2.5 h-1.5 w-10 -translate-x-1/2 rounded-full bg-black" />
-      <div className="aspect-[9/17] overflow-hidden rounded-[17px] bg-gradient-to-b from-[#1A1612] to-[#0F0D0B] p-2.5 pt-6">
+      <div className="aspect-[9/15] overflow-hidden rounded-[15px] bg-gradient-to-b from-[#1A1612] to-[#0F0D0B] p-2.5 pt-6">
         <span className="block h-2 w-12 rounded-sm bg-white/[0.16]" />
         <div className="mt-3 flex flex-col gap-1.5">
-          {[0, 1, 2, 3].map((i) => (
+          {[0, 1, 2].map((i) => (
             <motion.div
               key={i}
               animate={still ? undefined : { opacity: [0.35, 1, 0.35] }}
@@ -167,14 +169,14 @@ const Mobile: React.FC<{ still: boolean }> = ({ still }) => (
     <motion.span
       animate={still ? undefined : { y: [0, -3, 0] }}
       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute left-[18%] top-[24%] inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-[#15120F] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-white/80 shadow-[0_20px_40px_-16px_rgba(0,0,0,0.8)]"
+      className="absolute left-[13%] top-[22%] inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-[#15120F] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-white/80 shadow-[0_20px_40px_-16px_rgba(0,0,0,0.8)]"
     >
       <Check size={9} strokeWidth={3} className="text-emerald-300" /> iOS · Android
     </motion.span>
     <motion.span
       animate={still ? undefined : { y: [0, 3, 0] }}
       transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-      className="absolute right-[16%] top-[42%] inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-[#15120F] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-primary shadow-[0_20px_40px_-16px_rgba(0,0,0,0.8)]"
+      className="absolute right-[12%] top-[46%] inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-[#15120F] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-primary shadow-[0_20px_40px_-16px_rgba(0,0,0,0.8)]"
     >
       One codebase
     </motion.span>

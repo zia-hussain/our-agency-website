@@ -360,7 +360,7 @@ const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey }> = ({ spe
         aria-label={`${item.cta}: ${item.title}`}
         className="group/stage m-5 flex flex-col overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#0B0A09] shadow-[0_30px_70px_-30px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.05)] focus:outline-none focus-visible:ring-1 focus-visible:ring-primary/50"
       >
-        <span className="relative block aspect-[16/9] overflow-hidden">
+        <span className="relative block min-h-[300px] flex-1 overflow-hidden">
           <AnimatePresence initial={false} mode="popLayout">
             <motion.span
               key={item.id}
@@ -394,11 +394,11 @@ const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey }> = ({ spe
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: reduce ? 0 : 0.22, ease: "easeOut" }}
-            className="flex flex-1 flex-col px-5 pb-4 pt-4"
+            className="flex flex-col px-5 pb-5 pt-4"
           >
             <span className="block text-[16.5px] font-semibold leading-snug tracking-tight text-foreground [text-wrap:balance]">{item.title}</span>
             <span className="mt-2 line-clamp-2 text-[13px] leading-[1.55] text-muted-foreground/80">{item.body}</span>
-            <span className="mt-auto flex items-end justify-between gap-4 pt-4">
+            <span className="mt-4 flex items-end justify-between gap-4 border-t border-white/[0.06] pt-3.5">
               <span className="line-clamp-2 text-[11.5px] leading-snug text-muted-foreground/60">{item.meta}</span>
               <span className="inline-flex flex-shrink-0 items-center gap-1.5 text-[13px] font-semibold text-primary">
                 {item.cta}
