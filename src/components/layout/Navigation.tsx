@@ -318,8 +318,8 @@ const Navigation: React.FC = () => {
             initial={false}
             animate={{ width: PANEL_WIDTH[shownMenu], height: panelHeights[shownMenu] || "auto" }}
             transition={shouldReduceMotion ? { duration: 0 } : PANEL_MORPH}
-            style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", boxShadow: SHELL_SHADOW_WIDE }}
-            className="relative overflow-hidden rounded-[28px] border border-white/[0.07] ring-1 ring-inset ring-white/[0.03]"
+            style={{ background: "#0C0B0A", boxShadow: "0 40px 90px -30px rgba(0,0,0,0.85), 0 14px 32px -14px rgba(0,0,0,0.6)" }}
+            className="relative overflow-hidden rounded-[24px] border border-white/[0.08]"
           >
             {PANEL_KEYS.map((key) => {
               const Panel = PANELS[key];
