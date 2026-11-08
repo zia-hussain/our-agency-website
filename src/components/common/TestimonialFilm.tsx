@@ -294,36 +294,17 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           )}
         </AnimatePresence>
 
-        {/* Playing muted, silently, is invisible — this is the one prompt   */}
-        {/* that tells a visitor sound exists and is one tap away.           */}
-        <AnimatePresence>
-          {showSoundHint && isMuted && (
-            <motion.button
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={unmute}
-              aria-label="Tap for sound"
-              className="btn-sheen absolute top-3 right-3 sm:top-5 sm:right-5 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-sm border border-white/15 p-2 sm:pl-3 sm:pr-3.5 sm:py-2 text-xs font-semibold text-white"
-            >
-              <VolumeX size={13} />
-              {/* Full pill only from sm: up — below that, the vertically  */}
-              {/* centered play button and a text pill in the same corner  */}
-              {/* have too little room and visually crowd each other. */}
-              <span className="hidden sm:inline">Tap for sound</span>
-            </motion.button>
-          )}
-        </AnimatePresence>
-
       </div>
 
-      {/* Control rail — its own surface under the frame, never over it.
-          The progress hairline sits on the seam so it still reads as the
-          film's timeline; play, sound, timecode and captions live in a
-          44px row beneath it. Always visible: there's nothing to get out
-          of the way of any more, so nothing needs to auto-hide. */}
-      <div className="relative border-t border-white/[0.06] bg-background">
+      {/* The console — one surface under the frame that holds everything
+          that isn't picture. The seam is the timeline (a 2px hairline that
+          grows under the pointer), and one row carries transport on the
+          left, the live caption in the middle, timecode and CC on the
+          right. Flat icons: on a dark rail a disc behind each icon is the
+          default-skin tell, so hover gets a halo and nothing else. Nothing
+          here ever sits over the footage — the films carry their own lower
+          thirds, chapter cards and the Zumetrix mark down there. */}
+      <div className="relative border-t border-white/[0.06] bg-[#0B0B0B]">
         <div
           ref={progressBarRef}
           onPointerDown={handlePointerDown}
@@ -335,69 +316,97 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           aria-valuenow={Math.round(ariaProgress)}
           aria-valuemin={0}
           aria-valuemax={100}
-          className="group/bar relative -mt-px h-[3px] w-full cursor-pointer touch-none bg-white/[0.08] transition-[height] duration-150 hover:h-1.5"
+          className="group/bar absolute inset-x-0 -top-[5px] z-10 h-[11px] cursor-pointer touch-none"
         >
-          <div ref={progressFillRef} className="absolute inset-y-0 left-0 bg-primary" style={{ width: "0%" }}>
-            <span className="absolute right-0 top-1/2 h-3 w-3 -translate-y-1/2 translate-x-1/2 rounded-full bg-primary opacity-0 shadow-[0_0_0_3px_rgba(12,12,12,0.9)] transition-opacity duration-150 group-hover/bar:opacity-100" />
+          <div className="absolute inset-x-0 top-[4px] h-[2px] bg-white/[0.08] transition-[height,top] duration-150 group-hover/bar:-top-px group-hover/bar:h-[4px]">
+            <div ref={progressFillRef} className="relative h-full bg-primary/90" style={{ width: "0%" }}>
+              <span className="absolute right-0 top-1/2 h-[11px] w-[11px] -translate-y-1/2 translate-x-1/2 scale-0 rounded-full bg-primary shadow-[0_0_0_3px_rgba(11,11,11,1)] transition-transform duration-150 group-hover/bar:scale-100" />
+            </div>
           </div>
         </div>
-        <div className="flex h-12 items-center justify-between px-2 sm:h-14 sm:px-3">
-          <div className="flex items-center gap-0.5">
-            <button
-              onClick={togglePlay}
-              aria-label={isPlaying ? "Pause video" : "Play video"}
-              className="btn-sheen flex h-11 w-11 items-center justify-center rounded-full text-foreground transition-colors duration-150 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-            >
-              {isPlaying ? <Pause size={18} className="fill-current" /> : <Play size={18} className="ml-0.5 fill-current" />}
-            </button>
-            <button
-              onClick={toggleMute}
-              aria-label={isMuted ? "Unmute video" : "Mute video"}
-              className="btn-sheen flex h-11 w-11 items-center justify-center rounded-full text-foreground transition-colors duration-150 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-            >
-              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-            </button>
-          </div>
-          <div className="flex items-center gap-1 sm:gap-2">
-            {timecode.duration > 0 && (
-              <span className="px-2 font-mono text-[12px] tabular-nums text-muted-foreground/80" aria-live="off">
-                {formatTime(timecode.current)}
-                <span className="text-muted-foreground/70"> / {formatTime(timecode.duration)}</span>
-              </span>
-            )}
-            {captionsSrc && cues.length > 0 && (
+
+        <div className="flex flex-col sm:grid sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:gap-4 px-2.5 sm:px-3 pt-2.5 pb-2 sm:py-0 sm:min-h-[64px]">
+          {/* Caption — first in DOM order on phones (reads above the
+              controls), middle column from sm: up. Crossfades per cue;
+              fixed two-line box so the console never changes height. */}
+          {ccOn && cues.length > 0 ? (
+            <div className="order-first sm:order-none flex min-h-[2.6rem] items-center justify-center px-2 pb-1.5 sm:px-0 sm:pb-0" aria-live="polite">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.p
+                  key={hasStarted ? activeCue?.start ?? "none" : "preview"}
+                  initial={{ opacity: 0, y: 3 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -3 }}
+                  transition={{ duration: 0.18 }}
+                  className={`line-clamp-2 text-center text-[14px] leading-[1.35] sm:text-[15px] ${
+                    hasStarted ? "text-foreground/85" : "text-muted-foreground/70"
+                  }`}
+                >
+                  {hasStarted ? activeCue?.text ?? "" : cues[0]?.text ?? ""}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          ) : (
+            <div className="hidden sm:block" />
+          )}
+
+          <div className="flex items-center justify-between sm:contents">
+            <div className="flex items-center gap-1 sm:order-first">
               <button
-                onClick={() => setCcOn((v) => !v)}
-                aria-label={ccOn ? "Turn off captions" : "Turn on captions"}
-                aria-pressed={ccOn}
-                className={`btn-sheen flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 ${ccOn ? "text-primary" : "text-foreground hover:text-primary"}`}
+                onClick={togglePlay}
+                aria-label={isPlaying ? "Pause video" : "Play video"}
+                className="flex h-10 w-10 items-center justify-center rounded-full text-foreground/90 transition-colors duration-150 hover:bg-white/[0.06] hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
               >
-                <Captions size={18} />
+                {isPlaying ? <Pause size={17} className="fill-current" /> : <Play size={17} className="ml-0.5 fill-current" />}
               </button>
-            )}
+              {/* Sound. While the film runs muted the control says so in
+                  words, once — then it's a plain icon like the others. */}
+              {showSoundHint && isMuted ? (
+                <button
+                  onClick={unmute}
+                  aria-label="Turn sound on"
+                  className="btn-sheen inline-flex h-9 items-center gap-2 rounded-full border border-primary/35 bg-primary/10 pl-3 pr-3.5 text-[12px] font-semibold tracking-[0.01em] text-primary transition-colors duration-150 hover:bg-primary/15"
+                >
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/70 motion-reduce:hidden" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+                  </span>
+                  Sound
+                </button>
+              ) : (
+                <button
+                  onClick={toggleMute}
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-foreground/90 transition-colors duration-150 hover:bg-white/[0.06] hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                >
+                  {isMuted ? <VolumeX size={17} /> : <Volume2 size={17} />}
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-1 sm:order-last">
+              {timecode.duration > 0 && (
+                <span className="px-1.5 font-mono text-[12px] tabular-nums text-muted-foreground/75" aria-live="off">
+                  {formatTime(timecode.current)}
+                  <span className="text-muted-foreground/70"> / {formatTime(timecode.duration)}</span>
+                </span>
+              )}
+              {captionsSrc && cues.length > 0 && (
+                <button
+                  onClick={() => setCcOn((v) => !v)}
+                  aria-label={ccOn ? "Turn off captions" : "Turn on captions"}
+                  aria-pressed={ccOn}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-150 hover:bg-white/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 ${
+                    ccOn ? "text-primary" : "text-foreground/70 hover:text-foreground"
+                  }`}
+                >
+                  <Captions size={17} />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Captions live in their own reserved strip below the frame, not */}
-      {/* layered over it — this footage already carries its own burned-in */}
-      {/* captions and graphics at positions that move throughout, so no   */}
-      {/* overlay position could promise to never sit near one. A fixed    */}
-      {/* height (not sized to each cue) keeps the stage from jumping      */}
-      {/* between lines as the film plays.                                 */}
-      {ccOn && cues.length > 0 && (
-        <div className="relative flex min-h-[3.25rem] items-center justify-center border-t border-white/[0.05] bg-[#0A0A0A] px-5 py-2.5 sm:min-h-[3.75rem] sm:px-8">
-          {/* Before play, the first line sits here dimmed — a preview of the
-              voice, and the strip never reads as an empty box. */}
-          <p
-            className={`max-w-[90%] text-center text-sm font-medium leading-snug sm:text-base ${
-              hasStarted ? "text-foreground/90" : "text-muted-foreground/70"
-            }`}
-          >
-            {hasStarted ? activeCue?.text ?? "" : cues[0]?.text ?? ""}
-          </p>
-        </div>
-      )}
     </motion.div>
   );
 };
