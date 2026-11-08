@@ -36,6 +36,13 @@ const PLAY_BUTTON_SIZE: Record<NonNullable<TestimonialFilmProps["variant"]>, str
   proof: "w-16 h-16 sm:w-20 sm:h-20",
 };
 
+const formatTime = (seconds: number) => {
+  if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s.toString().padStart(2, "0")}`;
+};
+
 const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   src,
   poster,
@@ -62,16 +69,8 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
   const [cues, setCues] = useState<VttCue[]>([]);
   const [activeCue, setActiveCue] = useState<VttCue | null>(null);
   const [showSoundHint, setShowSoundHint] = useState(false);
+  const [timecode, setTimecode] = useState({ current: 0, duration: 0 });
   const hasAutoplayedRef = useRef(false);
-
-  // Auto-hiding controls — brand variant only (the homepage hero moment).
-  // Every other instance keeps its controls permanently visible; this one
-  // fades them out after a couple of idle seconds while playing, the same
-  // way any premium video player behaves, and brings them straight back on
-  // the first sign of a cursor or touch.
-  const isAutoHideVariant = variant === "brand";
-  const [controlsVisible, setControlsVisible] = useState(true);
-  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const inView = useInView(sectionRef, { amount: 0.35 });
 
@@ -85,6 +84,7 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
     setAriaProgress(0);
     setActiveCue(null);
     setShowSoundHint(false);
+    setTimecode((t) => ({ current: 0, duration: t.duration }));
     hasAutoplayedRef.current = false;
     const video = videoRef.current;
     if (video) {
@@ -161,49 +161,6 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [isPlaying, ccOn, cues]);
-
-  // Controls show on hover and hide the instant the pointer actually
-  // leaves the stage — not a guessed timeout, a real signal. Touch has no
-  // "leave" to listen for, so touch alone keeps a short idle fallback.
-  // Either way, nothing hides while paused/poster state — only while
-  // actually playing.
-  const clearHideTimer = () => {
-    if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-  };
-
-  const showControls = () => {
-    if (!isAutoHideVariant) return;
-    clearHideTimer();
-    setControlsVisible(true);
-  };
-
-  const handleStagePointerMove = (e: React.PointerEvent) => {
-    if (!isAutoHideVariant) return;
-    showControls();
-    if (e.pointerType === "touch") {
-      hideTimerRef.current = setTimeout(() => setControlsVisible(false), 2000);
-    }
-  };
-
-  const handleStagePointerLeave = (e: React.PointerEvent) => {
-    if (!isAutoHideVariant || e.pointerType === "touch") return;
-    clearHideTimer();
-    if (isPlaying) setControlsVisible(false);
-  };
-
-  useEffect(() => {
-    if (!isAutoHideVariant) return;
-    if (!isPlaying) {
-      clearHideTimer();
-      setControlsVisible(true);
-      return;
-    }
-    // Starts visible the moment playback begins, then fades on its own a
-    // couple of seconds later if nothing ever interacts with the stage at
-    // all (the one case pointer events alone can't cover).
-    hideTimerRef.current = setTimeout(() => setControlsVisible(false), 2500);
-    return clearHideTimer;
-  }, [isPlaying, isAutoHideVariant]);
 
   const unmute = () => {
     const video = videoRef.current;
@@ -282,12 +239,11 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
       className={`relative overflow-hidden border border-primary/15 ring-1 ring-inset ring-white/[0.03] ${STAGE_SIZE[variant]} ${className}`}
     >
       <div className="pointer-events-none absolute -inset-px rounded-[inherit] bg-[radial-gradient(circle_at_50%_0%,rgba(196,138,100,0.10),transparent_60%)] z-10" />
-      <div
-        className="relative aspect-video bg-background"
-        onPointerMove={isAutoHideVariant ? handleStagePointerMove : undefined}
-        onPointerDown={isAutoHideVariant ? showControls : undefined}
-        onPointerLeave={isAutoHideVariant ? handleStagePointerLeave : undefined}
-      >
+      {/* The stage is picture only. These films carry their own lower
+          thirds, chapter cards and the Zumetrix mark in the bottom band, so
+          nothing of ours is allowed to sit over the frame while it plays —
+          the controls live in a rail of their own underneath (below). */}
+      <div className="relative aspect-video bg-background">
         <video
           ref={videoRef}
           src={src}
@@ -295,12 +251,18 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           muted={isMuted}
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           onTimeUpdate={() => {
             const video = videoRef.current;
-            if (video?.duration) setAriaProgress((video.currentTime / video.duration) * 100);
+            if (!video?.duration) return;
+            setAriaProgress((video.currentTime / video.duration) * 100);
+            setTimecode({ current: video.currentTime, duration: video.duration });
+          }}
+          onLoadedMetadata={() => {
+            const video = videoRef.current;
+            if (video?.duration) setTimecode({ current: video.currentTime, duration: video.duration });
           }}
           onClick={handleStageClick}
           className="absolute inset-0 w-full h-full object-cover cursor-pointer"
@@ -354,51 +316,61 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
           )}
         </AnimatePresence>
 
+      </div>
+
+      {/* Control rail — its own surface under the frame, never over it.
+          The progress hairline sits on the seam so it still reads as the
+          film's timeline; play, sound, timecode and captions live in a
+          44px row beneath it. Always visible: there's nothing to get out
+          of the way of any more, so nothing needs to auto-hide. */}
+      <div className="relative border-t border-white/[0.06] bg-background">
         <div
-          className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent pt-10 pb-3 px-4 sm:px-5 transition-opacity duration-500 ease-out ${
-            isAutoHideVariant && !controlsVisible ? "opacity-0 pointer-events-none" : "opacity-100"
-          }`}
+          ref={progressBarRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          role="slider"
+          aria-label="Seek video"
+          aria-valuenow={Math.round(ariaProgress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          className="group/bar relative -mt-px h-[3px] w-full cursor-pointer touch-none bg-white/[0.08] transition-[height] duration-150 hover:h-1.5"
         >
-          <div
-            ref={progressBarRef}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerCancel={handlePointerUp}
-            role="slider"
-            aria-label="Seek video"
-            aria-valuenow={Math.round(ariaProgress)}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            className="group/bar relative h-1 hover:h-1.5 transition-[height] duration-150 w-full rounded-full bg-white/20 cursor-pointer mb-2.5 touch-none"
-          >
-            <div ref={progressFillRef} className="absolute inset-y-0 left-0 rounded-full bg-primary" style={{ width: "0%" }}>
-              <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 rounded-full bg-primary opacity-0 group-hover/bar:opacity-100 transition-opacity duration-150 shadow-[0_0_0_3px_rgba(0,0,0,0.35)]" />
-            </div>
+          <div ref={progressFillRef} className="absolute inset-y-0 left-0 bg-primary" style={{ width: "0%" }}>
+            <span className="absolute right-0 top-1/2 h-3 w-3 -translate-y-1/2 translate-x-1/2 rounded-full bg-primary opacity-0 shadow-[0_0_0_3px_rgba(12,12,12,0.9)] transition-opacity duration-150 group-hover/bar:opacity-100" />
           </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <button
-                onClick={togglePlay}
-                aria-label={isPlaying ? "Pause video" : "Play video"}
-                className="btn-sheen flex items-center justify-center w-11 h-11 rounded-full text-white hover:text-primary transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-              >
-                {isPlaying ? <Pause size={18} className="fill-current" /> : <Play size={18} className="ml-0.5 fill-current" />}
-              </button>
-              <button
-                onClick={toggleMute}
-                aria-label={isMuted ? "Unmute video" : "Mute video"}
-                className="btn-sheen flex items-center justify-center w-11 h-11 rounded-full text-white hover:text-primary transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-              >
-                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-              </button>
-            </div>
+        </div>
+        <div className="flex h-12 items-center justify-between px-2 sm:h-14 sm:px-3">
+          <div className="flex items-center gap-0.5">
+            <button
+              onClick={togglePlay}
+              aria-label={isPlaying ? "Pause video" : "Play video"}
+              className="btn-sheen flex h-11 w-11 items-center justify-center rounded-full text-foreground transition-colors duration-150 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+            >
+              {isPlaying ? <Pause size={18} className="fill-current" /> : <Play size={18} className="ml-0.5 fill-current" />}
+            </button>
+            <button
+              onClick={toggleMute}
+              aria-label={isMuted ? "Unmute video" : "Mute video"}
+              className="btn-sheen flex h-11 w-11 items-center justify-center rounded-full text-foreground transition-colors duration-150 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+            >
+              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+            </button>
+          </div>
+          <div className="flex items-center gap-1 sm:gap-2">
+            {timecode.duration > 0 && (
+              <span className="px-2 font-mono text-[12px] tabular-nums text-muted-foreground/80" aria-live="off">
+                {formatTime(timecode.current)}
+                <span className="text-muted-foreground/70"> / {formatTime(timecode.duration)}</span>
+              </span>
+            )}
             {captionsSrc && cues.length > 0 && (
               <button
                 onClick={() => setCcOn((v) => !v)}
                 aria-label={ccOn ? "Turn off captions" : "Turn on captions"}
                 aria-pressed={ccOn}
-                className={`btn-sheen flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 ${ccOn ? "text-primary" : "text-white hover:text-primary"}`}
+                className={`btn-sheen flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 ${ccOn ? "text-primary" : "text-foreground hover:text-primary"}`}
               >
                 <Captions size={18} />
               </button>
@@ -414,9 +386,15 @@ const TestimonialFilm: React.FC<TestimonialFilmProps> = ({
       {/* height (not sized to each cue) keeps the stage from jumping      */}
       {/* between lines as the film plays.                                 */}
       {ccOn && cues.length > 0 && (
-        <div className="relative flex min-h-[3.25rem] items-center justify-center border-t border-white/[0.06] bg-background px-5 py-2.5 sm:min-h-[3.75rem] sm:px-8">
-          <p className="max-w-[90%] text-center text-sm font-medium leading-snug text-foreground/90 sm:text-base">
-            {activeCue?.text ?? ""}
+        <div className="relative flex min-h-[3.25rem] items-center justify-center border-t border-white/[0.05] bg-[#0A0A0A] px-5 py-2.5 sm:min-h-[3.75rem] sm:px-8">
+          {/* Before play, the first line sits here dimmed — a preview of the
+              voice, and the strip never reads as an empty box. */}
+          <p
+            className={`max-w-[90%] text-center text-sm font-medium leading-snug sm:text-base ${
+              hasStarted ? "text-foreground/90" : "text-muted-foreground/70"
+            }`}
+          >
+            {hasStarted ? activeCue?.text ?? "" : cues[0]?.text ?? ""}
           </p>
         </div>
       )}
