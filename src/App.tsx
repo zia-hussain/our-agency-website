@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
 import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import Navigation from "./components/layout/Navigation";
@@ -54,6 +54,7 @@ const LoadingFallback = () => (
 function App() {
   const location = useLocation();
   const isReviewRoute = location.pathname === '/review';
+  const pageViewArmed = useRef(false);
   // /product-rescue/apply and /confirmed get the same treatment as /contact —
   // a self-contained flow of their own, not competing with a generic sticky
   // CTA bar. /product-rescue (the landing page) is included too: its whole
@@ -111,11 +112,41 @@ function App() {
     // written once per session, read back by every form submit and website
     // Calendly link. See src/utils/attribution.ts.
     captureFirstTouch();
-    trackEvent('page_view', {
-      page_path: location.pathname,
-      page_location: window.location.href,
-      page_title: document.title,
-    });
+    const fire = () =>
+      trackEvent('page_view', {
+        page_path: location.pathname,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+    // Initial load: the prerendered <title> is already the right one, so
+    // send straight away. Client-side navigations: the new route's SEO
+    // component (react-helmet-async) writes the title a tick or two after
+    // this effect runs, so the hit used to carry the PREVIOUS page's title
+    // (/contact reported as "Software Development Services"). Wait for the
+    // <title> node to change, with a short ceiling so a route that keeps the
+    // same title still reports.
+    if (!pageViewArmed.current) {
+      pageViewArmed.current = true;
+      fire();
+      return;
+    }
+    const titleEl = document.querySelector('title');
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      observer.disconnect();
+      window.clearTimeout(ceiling);
+      fire();
+    };
+    const observer = new MutationObserver(finish);
+    if (titleEl) observer.observe(titleEl, { childList: true, characterData: true, subtree: true });
+    const ceiling = window.setTimeout(finish, 1200);
+    return () => {
+      done = true;
+      observer.disconnect();
+      window.clearTimeout(ceiling);
+    };
   }, [location.pathname, location.search, isReviewRoute]);
 
   return (

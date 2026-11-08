@@ -30,10 +30,19 @@ const Analytics = () => {
     window.__zumetrixAnalyticsScheduled = true;
 
     window.dataLayer = window.dataLayer || [];
+    // Launch-day finding (2026-11-08): this stub MUST push the `arguments`
+    // object, exactly like Google's snippet. gtag.js only treats
+    // `[object Arguments]` entries as commands; a rest-parameter Array
+    // (`(...args) => dataLayer.push(args)`) is silently ignored — so the
+    // `config` was never applied, no destination existed, and every
+    // page_view / cta_click / generate_lead / offer_application_* was
+    // dropped on the client. The property had received nothing from the
+    // site. Verified live: pushing `arguments` brought the tag up at once.
     window.gtag =
       window.gtag ||
-      function gtag(...args: unknown[]) {
-        window.dataLayer.push(args);
+      function gtag() {
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer.push(arguments);
       };
 
     // Phase 1 measurement fix: queue `js` + `config` NOW, before any event.
