@@ -325,7 +325,7 @@ const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey; live: bool
                 )}
                 <span className="min-w-0 flex-1">
                   <span className={`line-clamp-2 text-[14.5px] font-semibold leading-snug transition-colors duration-200 ${on ? "text-foreground" : "text-foreground/80"}`}>{it.label}</span>
-                  <span className="mt-0.5 block truncate text-[12px] text-muted-foreground/65">{it.desc}</span>
+                  <span className="mt-0.5 block truncate text-[12px] text-muted-foreground/80">{it.desc}</span>
                 </span>
                 <ArrowRight size={14} strokeWidth={2.5} className={`flex-shrink-0 text-primary transition-all duration-200 ${on ? "translate-x-0 opacity-100" : "-translate-x-1 opacity-0"}`} />
               </Link>
@@ -339,7 +339,7 @@ const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey; live: bool
                 <span className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary/80" />
                 <span>
                   <span className="block text-[13px] font-semibold leading-snug text-foreground/90">{n.h}</span>
-                  <span className="mt-0.5 block text-[12px] leading-snug text-muted-foreground/65">{n.b}</span>
+                  <span className="mt-0.5 block text-[12px] leading-snug text-muted-foreground/80">{n.b}</span>
                 </span>
               </li>
             ))}
@@ -402,7 +402,7 @@ const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey; live: bool
             <span className="block text-[16.5px] font-semibold leading-snug tracking-tight text-foreground [text-wrap:balance]">{item.title}</span>
             <span className="mt-2 line-clamp-2 text-[13px] leading-[1.55] text-muted-foreground/80">{item.body}</span>
             <span className="mt-4 flex items-end justify-between gap-4 border-t border-white/[0.06] pt-3.5">
-              <span className="line-clamp-2 text-[11.5px] leading-snug text-muted-foreground/60">{item.meta}</span>
+              <span className="line-clamp-2 text-[11.5px] leading-snug text-muted-foreground/80">{item.meta}</span>
               <span className="inline-flex flex-shrink-0 items-center gap-1.5 text-[13px] font-semibold text-primary">
                 {item.cta}
                 <ArrowUpRight size={14} strokeWidth={2.5} className="transition-transform duration-200 group-hover/stage:translate-x-0.5 group-hover/stage:-translate-y-0.5" />
@@ -413,7 +413,7 @@ const ListStagePanel: React.FC<{ spec: PanelSpec; panelKey: PanelKey; live: bool
       </Link>
 
       <div className="col-span-2 flex items-center justify-between border-t border-white/[0.06] px-6 py-3.5">
-        <span className="text-[11.5px] text-muted-foreground/55">{spec.footLeft}</span>
+        <span className="text-[11.5px] text-muted-foreground/75">{spec.footLeft}</span>
         <Link
           to={spec.footCta.to}
           onClick={spec.footCta.onClick}

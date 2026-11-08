@@ -88,7 +88,7 @@ const V1BoundaryVisual: React.FC = () => {
     <AnimatedSection delay={0.06} className="mt-8">
       <LayoutGroup>
         <div className="rounded-3xl border border-border/50 bg-black/30 p-5 sm:p-8">
-          <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/50">
+          <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/75">
             The wishlist
           </p>
           <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 px-2 sm:px-6 min-h-[52px] items-center">
@@ -101,11 +101,11 @@ const V1BoundaryVisual: React.FC = () => {
 
           <div aria-hidden="true" className="my-6 sm:my-7 flex items-center gap-3">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent to-primary/40" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary/70">Proof target</span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary/90">Proof target</span>
             <span className="h-px flex-1 bg-gradient-to-l from-transparent to-primary/40" />
           </div>
 
-          <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/50">
+          <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/75">
             The first version
           </p>
           <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
@@ -131,11 +131,11 @@ const V1BoundaryVisual: React.FC = () => {
                       ? "border border-primary bg-gradient-to-b from-primary/[0.14] to-transparent"
                       : lane.weight === "solid"
                         ? "border border-primary/30 bg-gradient-to-b from-primary/[0.06] to-transparent hover:border-primary/50"
-                        : "border border-dashed border-border/50 bg-card/5 opacity-80 hover:opacity-100"
+                        : "border border-dashed border-border/50 bg-card/5 opacity-90 hover:opacity-100"
                   }`}
                 >
                   {showHint && (
-                    <span className="absolute right-3 top-3 flex items-center gap-1 rounded-full border border-primary/25 bg-background/70 px-2 py-1 text-[9px] font-semibold uppercase tracking-wide text-primary/80">
+                    <span className="absolute right-3 top-3 flex items-center gap-1 rounded-full border border-primary/25 bg-background/70 px-2 py-1 text-[9px] font-semibold uppercase tracking-wide text-primary">
                       <MousePointerClick size={10} />
                       Tap
                     </span>
@@ -152,7 +152,7 @@ const V1BoundaryVisual: React.FC = () => {
                         <IdeaChip key={idea.id} idea={idea} state="sorted" />
                       ))}
                     </AnimatePresence>
-                    {isActive && sorted.length === 0 && <span className="text-xs text-muted-foreground/40">—</span>}
+                    {isActive && sorted.length === 0 && <span className="text-xs text-muted-foreground/70">—</span>}
                   </div>
                 </motion.button>
               );
@@ -160,7 +160,7 @@ const V1BoundaryVisual: React.FC = () => {
           </div>
 
           <div className="mt-4 rounded-2xl border border-border/30 bg-card/10 px-5 py-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/50 mb-1.5">What this produces</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/75 mb-1.5">What this produces</p>
             <p className="text-sm text-foreground/85 leading-relaxed">
               {counts.v1} things ship in V1. The other {counts.later} — real, not forgotten, just not yet.
             </p>
@@ -183,7 +183,7 @@ const V1BoundaryVisual: React.FC = () => {
         </div>
       </LayoutGroup>
 
-      <p className="mt-4 text-center text-xs text-muted-foreground/60">
+      <p className="mt-4 text-center text-xs text-muted-foreground/80">
         Tap Build now or Not yet — watch a wishlist become a version.
       </p>
     </AnimatedSection>

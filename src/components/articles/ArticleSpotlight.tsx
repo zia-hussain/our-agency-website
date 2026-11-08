@@ -59,15 +59,15 @@ const ArticleSpotlight: React.FC<ArticleSpotlightProps> = ({ article, index, dec
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.4, delay: 0.06 }}
         >
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/70 mb-4">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/90 mb-4">
             {decision && (
               <>
                 <span className="text-primary">{decision}</span>
-                <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+                <span className="text-muted-foreground/70" aria-hidden="true">·</span>
               </>
             )}
             <span>{article.category}</span>
-            <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+            <span className="text-muted-foreground/70" aria-hidden="true">·</span>
             <span className="text-muted-foreground normal-case tracking-normal inline-flex items-center gap-1">
               <Clock size={12} />
               {article.readTime}

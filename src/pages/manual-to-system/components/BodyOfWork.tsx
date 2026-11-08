@@ -38,17 +38,17 @@ const BodyOfWork: React.FC = () => (
     {/* Flagship — Zumetrix's own internal stack */}
     <AnimatedSection delay={0.05} className="text-center mb-8">
       <span className="text-2xl sm:text-3xl font-bold text-primary tracking-tight">OUR OWN SYSTEM</span>
-      <p className="text-xs text-muted-foreground/60 mt-1">Zumetrix Labs' internal automation & CRM stack</p>
+      <p className="text-xs text-muted-foreground/80 mt-1">Zumetrix Labs' internal automation & CRM stack</p>
     </AnimatedSection>
 
     <AnimatedSection delay={0.06} className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="rounded-2xl border border-border/50 bg-background/50 p-7 sm:p-8">
-        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50">What it replaced</p>
+        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75">What it replaced</p>
         <p className="text-sm text-muted-foreground leading-relaxed mb-6">
           As deal volume and project count grew, tracking everything with ad-hoc tools and mental
           notes stopped working — the workflow itself was the bottleneck, not the team's effort.
         </p>
-        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50">What it is now</p>
+        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75">What it is now</p>
         <ul className="space-y-2.5 mb-6">
           {STACK_RESULTS.map((item) => (
             <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/85 leading-relaxed">
@@ -93,12 +93,12 @@ const BodyOfWork: React.FC = () => (
       <AnimatedSection delay={0.05}>
         <div className="rounded-2xl border border-border/50 bg-background/50 p-7 sm:p-9">
           <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-1.5">CONNECTED</p>
-          <p className="text-xs text-muted-foreground/60 mb-6">Stripe → Airtable subscription sync</p>
+          <p className="text-xs text-muted-foreground/80 mb-6">Stripe → Airtable subscription sync</p>
           <p className="text-sm text-muted-foreground leading-relaxed mb-5">
             Subscription events in Stripe now update Airtable automatically — webhook-driven, fully
             deterministic, no manual copying and no AI in the loop, because the task never needed it.
           </p>
-          <Link to="/portfolio/stripe-to-airtable-subscription-sync" className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200">
+          <Link to="/portfolio/stripe-to-airtable-subscription-sync" className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary/90 hover:text-primary transition-colors duration-200">
             See the case study
             <ArrowRight size={11} />
           </Link>

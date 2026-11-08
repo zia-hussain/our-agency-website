@@ -37,7 +37,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => (
       <div className="pt-5 flex flex-col flex-grow">
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
           <span>{article.author}</span>
-          <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+          <span className="text-muted-foreground/70" aria-hidden="true">·</span>
           <span className="inline-flex items-center gap-1">
             <Clock size={11} />
             {article.readTime}

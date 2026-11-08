@@ -134,7 +134,7 @@ const Footer: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="btn-sheen flex items-center justify-center w-9 h-9 rounded-full text-muted-foreground/60 hover:text-primary transition-colors duration-150"
+                      className="btn-sheen flex items-center justify-center w-9 h-9 rounded-full text-muted-foreground/80 hover:text-primary transition-colors duration-150"
                     >
                       <social.icon size={16} />
                     </a>
@@ -145,7 +145,7 @@ const Footer: React.FC = () => {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6">
                 {LINK_GROUPS.map((group) => (
                   <div key={group.label} className={group.label === "Services" || group.label === "Offers" ? "col-span-2 sm:col-span-2" : ""}>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/45 mb-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70 mb-3">
                       {group.label}
                     </p>
                     <ul className="space-y-2">
@@ -164,7 +164,7 @@ const Footer: React.FC = () => {
                 ))}
 
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/45 mb-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70 mb-3">
                     Legal
                   </p>
                   <ul className="space-y-2">
@@ -193,7 +193,7 @@ const Footer: React.FC = () => {
 
           {/* Bottom line */}
           <div className="relative px-6 py-5 sm:px-12">
-            <p className="text-xs text-muted-foreground/50 text-center sm:text-left">
+            <p className="text-xs text-muted-foreground/75 text-center sm:text-left">
               &copy; {currentYear} {SITE_CONFIG.company.name}. All rights reserved. {BRAND_CONTENT.footer.copyright}.
             </p>
           </div>

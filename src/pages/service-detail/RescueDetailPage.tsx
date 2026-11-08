@@ -118,7 +118,7 @@ const RescueDetailPage: React.FC = () => {
             <SectionEyebrow className="mb-7">Product Rescue &amp; Stabilization</SectionEyebrow>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight mb-6">{service.title}</h1>
             <p className="text-xl sm:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-xl mx-auto">
-              <span className="text-muted-foreground/50">You already paid for this once.</span>{" "}
+              <span className="text-muted-foreground/75">You already paid for this once.</span>{" "}
               <span className="text-foreground">We start by understanding what's actually wrong.</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
@@ -136,7 +136,7 @@ const RescueDetailPage: React.FC = () => {
             <TiltFrame variant="card" maxTilt={3} glare={false} frameClassName="" innerClassName="relative">
             <div className="relative max-w-lg mx-auto rounded-2xl border border-border/50 bg-card/10 overflow-hidden text-left">
               <div className="px-6 py-4 border-b border-border/50 bg-card/20">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60">Findings report</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80">Findings report</p>
               </div>
               <div className="divide-y divide-border/40">
                 <div className="flex items-center justify-between px-6 py-4">
@@ -149,11 +149,11 @@ const RescueDetailPage: React.FC = () => {
                 </div>
                 <div className="flex items-center justify-between px-6 py-4">
                   <span className="text-sm text-foreground/80">Admin permission logic</span>
-                  <span className="text-xs font-semibold text-muted-foreground/60">Unfinished — was mid-build</span>
+                  <span className="text-xs font-semibold text-muted-foreground/80">Unfinished — was mid-build</span>
                 </div>
               </div>
             </div>
-            <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — every real assessment produces its own findings.</p>
+            <p className="text-center text-xs text-muted-foreground/75 mt-4 italic">Illustrative — every real assessment produces its own findings.</p>
             </TiltFrame>
           </AnimatedSection>
         </div>
@@ -169,7 +169,7 @@ const RescueDetailPage: React.FC = () => {
           {SKEPTIC_FRAGMENTS.map((frag) => (
             <span
               key={frag.text}
-              className="absolute whitespace-nowrap text-sm text-muted-foreground/30 italic"
+              className="absolute whitespace-nowrap text-sm text-muted-foreground/70 italic"
               style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}
             >
               {frag.text}
@@ -205,7 +205,7 @@ const RescueDetailPage: React.FC = () => {
             {["Old bugs", "Half-built features", "Unclear code", "Security gaps", "Slow queries", "No docs"].map((chip, i) => (
               <span
                 key={chip}
-                className="text-xs font-medium text-muted-foreground/50 border border-border/40 rounded-full px-3.5 py-1.5"
+                className="text-xs font-medium text-muted-foreground/75 border border-border/40 rounded-full px-3.5 py-1.5"
                 style={{ transform: `rotate(${[-3, 2, -2, 3, -1, 2][i]}deg)` }}
               >
                 {chip}
@@ -289,7 +289,7 @@ const RescueDetailPage: React.FC = () => {
             </div>
             <div className="sm:col-span-2 rounded-2xl border border-dashed border-border/40 bg-card/5 p-6 sm:p-7 opacity-50 flex flex-col justify-center">
               <p className="text-sm font-semibold text-muted-foreground mb-2">Rebuild what can't responsibly be saved</p>
-              <p className="text-xs text-muted-foreground/60 leading-relaxed">Only where the assessment shows it — and we'll show you exactly why.</p>
+              <p className="text-xs text-muted-foreground/80 leading-relaxed">Only where the assessment shows it — and we'll show you exactly why.</p>
             </div>
           </div>
         </AnimatedSection>
@@ -313,7 +313,7 @@ const RescueDetailPage: React.FC = () => {
           </div>
 
           <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/90">
               <motion.path
                 d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
                 stroke="currentColor"
@@ -347,7 +347,7 @@ const RescueDetailPage: React.FC = () => {
               </span>
               <div className="flex items-center justify-center gap-2 mb-3">
                 <span className="h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Handover — Ongoing</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/90">After Handover — Ongoing</span>
               </div>
               <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Stay on</p>
               <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
@@ -379,22 +379,22 @@ const RescueDetailPage: React.FC = () => {
               </h2>
               <div className="flex items-center justify-center gap-6 sm:gap-10">
                 <div className="text-center">
-                  <p className="text-4xl sm:text-6xl font-bold text-muted-foreground/35 line-through decoration-2 tracking-tight">{fastTrackTestimonial.evidence.before.stat}</p>
-                  <p className="text-xs text-muted-foreground/50 mt-2">{fastTrackTestimonial.evidence.before.label}</p>
+                  <p className="text-4xl sm:text-6xl font-bold text-muted-foreground/70 line-through decoration-2 tracking-tight">{fastTrackTestimonial.evidence.before.stat}</p>
+                  <p className="text-xs text-muted-foreground/75 mt-2">{fastTrackTestimonial.evidence.before.label}</p>
                 </div>
-                <ArrowRight size={22} className="text-primary/60 flex-shrink-0" />
+                <ArrowRight size={22} className="text-primary/90 flex-shrink-0" />
                 <div className="text-center">
                   <p className="text-4xl sm:text-6xl font-bold text-primary tracking-tight">{fastTrackTestimonial.evidence.after.stat}</p>
                   <p className="text-xs text-muted-foreground mt-2">{fastTrackTestimonial.evidence.after.label}</p>
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground/50 italic mt-6">One verified client story — not a typical timeline.</p>
+              <p className="text-xs text-muted-foreground/75 italic mt-6">One verified client story — not a typical timeline.</p>
             </AnimatedSection>
           </div>
 
           <AnimatedSection delay={0.06} className="text-center mb-8">
             <span className="text-2xl sm:text-3xl font-bold text-primary tracking-tight">RECOVER</span>
-            <p className="text-xs text-muted-foreground/60 mt-1">Recovery after prolonged delivery failure</p>
+            <p className="text-xs text-muted-foreground/80 mt-1">Recovery after prolonged delivery failure</p>
           </AnimatedSection>
 
           {/* The connector — a short vertical thread from the stat straight  */}
@@ -405,7 +405,7 @@ const RescueDetailPage: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.08} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-6 text-center">Josh, in his own words</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-6 text-center">Josh, in his own words</p>
             <TestimonialFilm
               src="/videos/Josh.mp4"
               poster="/images/video-posters/josh-nyce-poster.jpg"
@@ -443,7 +443,7 @@ const RescueDetailPage: React.FC = () => {
             </p>
             <div className="flex items-center justify-center gap-3 sm:gap-6 flex-wrap">
               {["RECOVER", "STABILIZE", "UNTANGLE"].map((word, i) => (
-                <span key={word} className={`text-lg sm:text-xl font-bold tracking-tight ${i === 0 ? "text-primary/50 line-through decoration-1" : "text-foreground"}`}>
+                <span key={word} className={`text-lg sm:text-xl font-bold tracking-tight ${i === 0 ? "text-primary/90 line-through decoration-1" : "text-foreground"}`}>
                   {word}
                 </span>
               ))}
@@ -455,8 +455,8 @@ const RescueDetailPage: React.FC = () => {
           <AnimatedSection delay={0.08} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 gap-5 sm:gap-6">
             <div className="rounded-2xl border border-border/50 bg-background/50 p-7 sm:p-9">
               <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-1.5">STABILIZE</p>
-              <p className="text-xs text-muted-foreground/60 mb-6">Production reliability under real load</p>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-3">
+              <p className="text-xs text-muted-foreground/80 mb-6">Production reliability under real load</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-3">
                 Knipsr — event media platform
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed mb-5">
@@ -481,8 +481,8 @@ const RescueDetailPage: React.FC = () => {
 
             <div className="rounded-2xl border border-border/50 bg-background/50 p-7 sm:p-9">
               <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-1.5">UNTANGLE</p>
-              <p className="text-xs text-muted-foreground/60 mb-6">Bug vs. unfinished vs. intended vs. new scope</p>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-3">
+              <p className="text-xs text-muted-foreground/80 mb-6">Bug vs. unfinished vs. intended vs. new scope</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-3">
                 What "diagnose before fixing" looks like
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed mb-5">
@@ -496,7 +496,7 @@ const RescueDetailPage: React.FC = () => {
                   </span>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground/60 leading-relaxed mt-5">
+              <p className="text-xs text-muted-foreground/80 leading-relaxed mt-5">
                 That triage turns "something's wrong" into a plan you can actually approve.
               </p>
             </div>
@@ -510,7 +510,7 @@ const RescueDetailPage: React.FC = () => {
               {[nathanTestimonial, alanSecondTestimonial, dinahTestimonial].filter(Boolean).map((t) => t && (
                 <div key={t.id}>
                   <p className="text-xs text-muted-foreground/80 leading-relaxed mb-2">"{t.quote}"</p>
-                  <p className="text-[11px] text-muted-foreground/60">
+                  <p className="text-[11px] text-muted-foreground/80">
                     {t.author}{t.role ? `, ${t.role}` : ""}{t.platform ? ` · ${t.platform}` : ""}{t.repeatClient ? " · repeat client" : ""}
                   </p>
                 </div>
@@ -526,7 +526,7 @@ const RescueDetailPage: React.FC = () => {
       <section className="relative bg-card/10 border-y border-border/40 py-20 sm:py-24">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection className="flex items-start gap-4 text-left max-w-xl mx-auto">
-            <X size={18} className="text-muted-foreground/40 flex-shrink-0 mt-1" />
+            <X size={18} className="text-muted-foreground/70 flex-shrink-0 mt-1" />
             <p className="text-sm text-muted-foreground leading-relaxed">
               <span className="text-foreground font-semibold">If the assessment finds it's beyond repair, we'll say so —</span>{" "}
               and show you exactly why — before any fix work is scoped or started. If it finds the
@@ -599,7 +599,7 @@ const RescueDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">Something's not working.</span>
+              <span className="block text-muted-foreground/75">Something's not working.</span>
               <span className="block text-foreground mt-2">Tell us what — we'll tell you what it takes.</span>
             </p>
           </AnimatedSection>

@@ -10,7 +10,7 @@ import { CheckCircle2, Circle } from "lucide-react";
 // nothing about that file changes because this file now exists
 // (2026-09-30 BUILD/AUTOMATE expansion).
 export const inputBase =
-  "w-full bg-transparent border-0 border-b-2 border-primary/20 pb-3 text-foreground text-xl sm:text-2xl font-light placeholder:text-muted-foreground/25 focus:outline-none focus:border-primary/60 transition-colors duration-300 leading-relaxed";
+  "w-full bg-transparent border-0 border-b-2 border-primary/20 pb-3 text-foreground text-xl sm:text-2xl font-light placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/60 transition-colors duration-300 leading-relaxed";
 export const textareaBase = `${inputBase} text-lg sm:text-xl resize-none`;
 
 export function AutoTextarea({
@@ -72,7 +72,7 @@ export function ChoiceButtons({
             {isSelected ? (
               <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-primary" />
             ) : (
-              <Circle size={18} className="mt-0.5 shrink-0 text-muted-foreground/40" />
+              <Circle size={18} className="mt-0.5 shrink-0 text-muted-foreground/70" />
             )}
             <span className="text-[15px] leading-snug text-foreground">{option.label}</span>
           </button>

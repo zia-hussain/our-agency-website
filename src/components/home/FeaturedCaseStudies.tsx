@@ -221,7 +221,7 @@ const FeaturedCaseStudies: React.FC = () => {
 
                 {evidence.length > 0 && (
                   <div className="bg-background/60 p-6 border-t border-border/50">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/60 mb-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/80 mb-4">
                       On the record
                     </p>
                     <ul className="space-y-3">
@@ -232,7 +232,7 @@ const FeaturedCaseStudies: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                    <a href="#client-films" className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 mt-4 transition-colors">
+                    <a href="#client-films" className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/90 mt-4 transition-colors">
                       Watch Josh tell it <ArrowRight size={11} />
                     </a>
                   </div>
@@ -301,7 +301,7 @@ const FeaturedCaseStudies: React.FC = () => {
                         <ul className="space-y-2">
                           {project.results.slice(0, 2).map((r) => (
                             <li key={r} className="text-xs text-muted-foreground/90 flex items-start gap-2">
-                              <Check size={13} className="text-primary/70 mt-0.5 flex-shrink-0" />
+                              <Check size={13} className="text-primary/90 mt-0.5 flex-shrink-0" />
                               <span className="line-clamp-2">{r}</span>
                             </li>
                           ))}

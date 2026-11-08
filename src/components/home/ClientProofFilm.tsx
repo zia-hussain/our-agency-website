@@ -102,7 +102,7 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.28 }}
-            className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/70 mb-5"
+            className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/90 mb-5"
           >
             {eyebrow}
           </motion.p>
@@ -113,7 +113,7 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
             transition={{ duration: 0.28, delay: 0.05 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.12]"
           >
-            <span className="block text-muted-foreground/50">{headingLead}</span>
+            <span className="block text-muted-foreground/75">{headingLead}</span>
             <span className="block text-foreground mt-1.5">{headingMain}</span>
           </motion.p>
         </div>
@@ -167,7 +167,7 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
                   <p className="text-lg sm:text-xl text-foreground/90 leading-snug tracking-tight mb-3">"{active.quote}"</p>
                   <footer className="text-sm text-muted-foreground">
                     {active.name}
-                    <span className="text-muted-foreground/50"> · {active.role}</span>
+                    <span className="text-muted-foreground/75"> · {active.role}</span>
                   </footer>
                 </blockquote>
               </motion.div>
@@ -195,11 +195,11 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
                       aria-hidden="true"
                     />
                     <span
-                      className={`block text-lg sm:text-xl font-bold tracking-tight transition-colors duration-200 ${isActive ? "text-foreground" : "text-muted-foreground/50 group-hover:text-muted-foreground"}`}
+                      className={`block text-lg sm:text-xl font-bold tracking-tight transition-colors duration-200 ${isActive ? "text-foreground" : "text-muted-foreground/75 group-hover:text-muted-foreground"}`}
                     >
                       {story.dimension}
                     </span>
-                    <span className={`block text-xs mt-1 transition-colors duration-200 ${isActive ? "text-primary/80" : "text-muted-foreground/40"}`}>
+                    <span className={`block text-xs mt-1 transition-colors duration-200 ${isActive ? "text-primary/90" : "text-muted-foreground/70"}`}>
                       {story.name} · {story.role}
                     </span>
                   </button>
@@ -220,8 +220,8 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
                       isActive ? "border-primary/50 bg-primary/10" : "border-border/50 bg-card/10"
                     }`}
                   >
-                    <span className={`block text-sm font-bold ${isActive ? "text-foreground" : "text-muted-foreground/60"}`}>{story.dimension}</span>
-                    <span className={`block text-[11px] ${isActive ? "text-primary/70" : "text-muted-foreground/40"}`}>{story.name}</span>
+                    <span className={`block text-sm font-bold ${isActive ? "text-foreground" : "text-muted-foreground/80"}`}>{story.dimension}</span>
+                    <span className={`block text-[11px] ${isActive ? "text-primary/90" : "text-muted-foreground/70"}`}>{story.name}</span>
                   </button>
                 );
               })}
@@ -237,12 +237,12 @@ const ClientProofFilm: React.FC<ClientProofFilmProps> = ({
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.28, delay: 0.1 }}
-          className="text-center text-sm text-muted-foreground/50 italic mt-16 sm:mt-20"
+          className="text-center text-sm text-muted-foreground/75 italic mt-16 sm:mt-20"
         >
           {exitLine ?? (
             <>
               Four of the voices. The written record sits where we can't edit it —{" "}
-              <Link to="/client-stories" className="not-italic text-primary/80 hover:text-primary transition-colors">
+              <Link to="/client-stories" className="not-italic text-primary/90 hover:text-primary transition-colors">
                 {FACTS.counts.writtenReviews} reviews across five platforms
               </Link>
               .

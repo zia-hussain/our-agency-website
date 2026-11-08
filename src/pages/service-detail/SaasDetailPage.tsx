@@ -178,7 +178,7 @@ const SaasDetailPage: React.FC = () => {
             <SectionEyebrow className="mb-7">SaaS Product Development</SectionEyebrow>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight mb-6">{service.title}</h1>
             <p className="text-xl sm:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-xl mx-auto">
-              <span className="text-muted-foreground/50">We don't build every feature you can imagine.</span>{" "}
+              <span className="text-muted-foreground/75">We don't build every feature you can imagine.</span>{" "}
               <span className="text-foreground">We decide what your first version needs to prove.</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
@@ -196,23 +196,23 @@ const SaasDetailPage: React.FC = () => {
             <TiltFrame variant="card" maxTilt={3} glare={false} frameClassName="" innerClassName="relative">
             <div className="relative max-w-3xl mx-auto grid sm:grid-cols-3 gap-4 sm:gap-3 items-stretch text-left">
               <div className="rounded-2xl border border-border/50 bg-card/15 p-6 flex flex-col items-center text-center shadow-[0_25px_60px_-25px_rgba(0,0,0,0.6)]">
-                <Lightbulb size={22} className="text-muted-foreground/40 mb-3" />
-                <p className="text-sm text-muted-foreground/60">An idea</p>
-                <p className="text-xs text-muted-foreground/40 mt-1">Everything feels essential</p>
+                <Lightbulb size={22} className="text-muted-foreground/70 mb-3" />
+                <p className="text-sm text-muted-foreground/80">An idea</p>
+                <p className="text-xs text-muted-foreground/70 mt-1">Everything feels essential</p>
               </div>
               <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/[0.08] to-transparent p-6 shadow-[0_30px_70px_-25px_rgba(196,138,100,0.25)]">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary/70 mb-3 text-center">Scope decisions</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary/90 mb-3 text-center">Scope decisions</p>
                 <ul className="space-y-2.5">
                   <li className="flex items-center gap-2 text-xs text-foreground/85"><Check size={12} className="text-primary flex-shrink-0" /> Accounts &amp; payments</li>
                   <li className="flex items-center gap-2 text-xs text-foreground/85"><Check size={12} className="text-primary flex-shrink-0" /> Core user flow</li>
                   <li className="flex items-center gap-2 text-xs text-foreground/85"><Check size={12} className="text-primary flex-shrink-0" /> Admin &amp; dashboards</li>
-                  <li className="flex items-center gap-2 text-xs text-muted-foreground/45 line-through decoration-muted-foreground/30"><X size={12} className="text-muted-foreground/35 flex-shrink-0" /> Advanced automation — v2</li>
+                  <li className="flex items-center gap-2 text-xs text-muted-foreground/70 line-through decoration-muted-foreground/30"><X size={12} className="text-muted-foreground/70 flex-shrink-0" /> Advanced automation — v2</li>
                 </ul>
               </div>
               <div className="rounded-2xl border border-primary/40 bg-gradient-to-b from-primary/12 to-primary/[0.02] p-6 flex flex-col items-center text-center shadow-[0_30px_70px_-20px_rgba(196,138,100,0.35)]">
                 <Rocket size={22} className="text-primary mb-3" />
                 <p className="text-sm font-semibold text-foreground">A real product</p>
-                <p className="text-xs text-muted-foreground/50 mt-1">Focused, working, live</p>
+                <p className="text-xs text-muted-foreground/75 mt-1">Focused, working, live</p>
               </div>
             </div>
             </TiltFrame>
@@ -238,7 +238,7 @@ const SaasDetailPage: React.FC = () => {
       <section className="relative bg-background py-20 sm:py-28 border-b border-border/40">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/50">This is for you if</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/75">This is for you if</p>
           </AnimatedSection>
           <div className="space-y-0 divide-y divide-border/30">
             {[
@@ -247,7 +247,7 @@ const SaasDetailPage: React.FC = () => {
               "You need something real in front of users or investors — not a slide deck.",
             ].map((line, i) => (
               <AnimatedSection key={line} delay={i * 0.05} className="py-6 sm:py-7 flex items-start sm:items-center gap-5">
-                <span className="text-xs font-semibold text-primary/50 flex-shrink-0 mt-1 sm:mt-0">0{i + 1}</span>
+                <span className="text-xs font-semibold text-primary/90 flex-shrink-0 mt-1 sm:mt-0">0{i + 1}</span>
                 <p className="text-xl sm:text-2xl text-foreground/90 tracking-tight leading-snug">{line}</p>
               </AnimatedSection>
             ))}
@@ -274,7 +274,7 @@ const SaasDetailPage: React.FC = () => {
           {/* The deck — narrower, elevated, floating above ground.          */}
           <div className="relative z-20 mx-auto w-[82%] sm:w-[62%] rounded-2xl border border-primary/40 bg-gradient-to-b from-primary/[0.14] to-primary/[0.04] px-6 sm:px-9 pt-6 sm:pt-8 pb-7 sm:pb-9 shadow-[0_40px_80px_-25px_rgba(196,138,100,0.4)]">
             <p className="text-base sm:text-lg font-bold text-foreground tracking-tight mb-1">Visible product</p>
-            <p className="text-[11px] text-primary/70 font-semibold uppercase tracking-[0.14em] mb-5">what users touch</p>
+            <p className="text-[11px] text-primary/90 font-semibold uppercase tracking-[0.14em] mb-5">what users touch</p>
             <div className="flex flex-wrap gap-2">
               {CORE_LAYER.map((item) => (
                 <span key={item} className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-background/60 pl-2.5 pr-3 py-1.5 text-xs sm:text-sm text-foreground/90">
@@ -298,18 +298,18 @@ const SaasDetailPage: React.FC = () => {
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
             <div className="relative px-6 sm:px-12 pt-8 sm:pt-10 pb-9 sm:pb-12">
               <p className="text-base sm:text-lg font-bold text-muted-foreground tracking-tight mb-1">Foundation</p>
-              <p className="text-[11px] text-muted-foreground/60 font-semibold uppercase tracking-[0.14em] mb-6">what carries it</p>
+              <p className="text-[11px] text-muted-foreground/80 font-semibold uppercase tracking-[0.14em] mb-6">what carries it</p>
               <div className="flex flex-wrap gap-2.5 max-w-3xl">
                 {FOUNDATION_LAYER.map((item) => (
                   <span key={item} className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 pl-3 pr-4 py-2 text-sm text-muted-foreground">
-                    <Check size={12} strokeWidth={2.5} className="text-muted-foreground/50 flex-shrink-0" />
+                    <Check size={12} strokeWidth={2.5} className="text-muted-foreground/75 flex-shrink-0" />
                     {item}
                   </span>
                 ))}
               </div>
             </div>
           </div>
-          <p className="text-center text-xs text-muted-foreground/50 italic mt-6">
+          <p className="text-center text-xs text-muted-foreground/75 italic mt-6">
             The foundation is wider than the product for a reason — it has to carry more than what's visible.
           </p>
         </AnimatedSection>
@@ -345,7 +345,7 @@ const SaasDetailPage: React.FC = () => {
                 {/* uneven depending on how the two segments join; a filled    */}
                 {/* shape is exact by construction, every time.                */}
                 <div aria-hidden="true" className="hidden sm:block absolute left-0 top-10 h-16" style={{ width: loopArc.containerWidth }}>
-                  <svg width={loopArc.containerWidth} height={64} viewBox={`0 0 ${loopArc.containerWidth} 64`} className="overflow-visible text-primary/80">
+                  <svg width={loopArc.containerWidth} height={64} viewBox={`0 0 ${loopArc.containerWidth} 64`} className="overflow-visible text-primary/90">
                     {/* Pulled in from Validate's icon toward Build's — a short, */}
                     {/* contained swoosh instead of a line stretched across the */}
                     {/* whole row — and it now ends exactly at the arrowhead's  */}
@@ -403,7 +403,7 @@ const SaasDetailPage: React.FC = () => {
                 {/* partial nudge that left the label reading off to one side. */}
                 <p
                   aria-hidden="true"
-                  className="hidden sm:block absolute text-xs font-semibold text-primary/70 whitespace-nowrap"
+                  className="hidden sm:block absolute text-xs font-semibold text-primary/90 whitespace-nowrap"
                   style={{ left: loopArc.tipX, top: 0, transform: "translateX(-50%)" }}
                 >
                   Loops until ready
@@ -422,7 +422,7 @@ const SaasDetailPage: React.FC = () => {
                     >
                       <step.icon size={22} className="text-primary" />
                     </span>
-                    <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/60 mb-2">Step 0{i + 1}</p>
+                    <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/90 mb-2">Step 0{i + 1}</p>
                     <p className="text-lg font-bold text-foreground mb-2">{step.title}</p>
                     <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                   </div>
@@ -430,7 +430,7 @@ const SaasDetailPage: React.FC = () => {
               ))}
             </div>
 
-            <p className="sm:hidden text-center text-xs text-muted-foreground/60 italic mt-6">
+            <p className="sm:hidden text-center text-xs text-muted-foreground/80 italic mt-6">
               Loops back into Build until the first version is ready.
             </p>
           </div>
@@ -466,7 +466,7 @@ const SaasDetailPage: React.FC = () => {
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-8 -mt-2">
               <div className="opacity-45 text-center sm:text-left">
                 <p className="text-sm font-semibold text-muted-foreground mb-1">Build everything imagined</p>
-                <p className="text-xs text-muted-foreground/60 leading-relaxed">Six months. A launch that proves nothing — too much shipped at once to know what worked.</p>
+                <p className="text-xs text-muted-foreground/80 leading-relaxed">Six months. A launch that proves nothing — too much shipped at once to know what worked.</p>
               </div>
               <div className="text-center sm:text-right">
                 <p className="text-lg font-bold text-foreground mb-1">Build what proves the concept</p>
@@ -484,7 +484,7 @@ const SaasDetailPage: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.04} className="text-center mb-12 max-w-xl mx-auto mt-4">
-            <p className="text-sm text-primary/70 font-semibold italic mb-6">Liftly took exactly this path.</p>
+            <p className="text-sm text-primary/90 font-semibold italic mb-6">Liftly took exactly this path.</p>
             <SectionEyebrow className="mb-6">The Proof</SectionEyebrow>
             <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-4">
               A founder had a bigger vision than the first release could carry.
@@ -513,7 +513,7 @@ const SaasDetailPage: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center gap-3 mt-4 opacity-45 px-2">
-              <X size={12} strokeWidth={3} className="text-muted-foreground/50 flex-shrink-0" />
+              <X size={12} strokeWidth={3} className="text-muted-foreground/75 flex-shrink-0" />
               <p className="text-xs text-muted-foreground leading-relaxed">
                 <span className="font-semibold">V2 — designed, not built:</span> {LIFTLY_DEFERRED.join(" · ")}
               </p>
@@ -529,7 +529,7 @@ const SaasDetailPage: React.FC = () => {
               </p>
               <footer className="text-sm text-muted-foreground">Founder, Liftly</footer>
             </blockquote>
-            <p className="text-xs text-muted-foreground/50 italic mt-4 max-w-md mx-auto">
+            <p className="text-xs text-muted-foreground/75 italic mt-4 max-w-md mx-auto">
               Client identity withheld by request. The public review refers to the landing page; documentation of the operational V1 is pending and this page claims no more than that.
             </p>
           </AnimatedSection>
@@ -538,7 +538,7 @@ const SaasDetailPage: React.FC = () => {
               scoping story can't answer on its own is "did it ship?"       */}
           {(knipsrTestimonial || sarahTestimonial) && (
             <AnimatedSection delay={0.16} className="max-w-3xl mx-auto mt-12 pt-10 border-t border-border/30">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-6 text-center">Built here, launched, still supported</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/90 mb-6 text-center">Built here, launched, still supported</p>
               <div className="grid sm:grid-cols-2 gap-6 text-left">
                 {[knipsrTestimonial, sarahTestimonial].filter(Boolean).map((t) => t && (
                   <figure key={t.id} className="rounded-2xl border border-border/50 bg-card/15 p-6">
@@ -548,7 +548,7 @@ const SaasDetailPage: React.FC = () => {
                       {t.role && <span>· {t.role}</span>}
                       {t.platform && <span className="inline-flex items-center gap-1"><PlatformIcon platform={t.platform} size={11} /> {t.platform}</span>}
                       {t.projectSlug && (
-                        <Link to={`/portfolio/${t.projectSlug}`} className="text-primary/80 hover:text-primary">Case study →</Link>
+                        <Link to={`/portfolio/${t.projectSlug}`} className="text-primary/90 hover:text-primary">Case study →</Link>
                       )}
                     </figcaption>
                   </figure>
@@ -595,7 +595,7 @@ const SaasDetailPage: React.FC = () => {
           </AnimatedSection>
 
           <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/90">
               <motion.path
                 d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
                 stroke="currentColor"
@@ -637,7 +637,7 @@ const SaasDetailPage: React.FC = () => {
                     <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
                     <span className="relative h-2 w-2 rounded-full bg-primary" />
                   </span>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Launch — Ongoing</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/90">After Launch — Ongoing</span>
                 </div>
                 <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Support</p>
                 <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
@@ -707,7 +707,7 @@ const SaasDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">You have the idea.</span>
+              <span className="block text-muted-foreground/75">You have the idea.</span>
               <span className="block text-foreground mt-2">Let's decide what it needs to become first.</span>
             </p>
           </AnimatedSection>

@@ -160,7 +160,7 @@ const PortfolioPage: React.FC = () => {
           <AnimatedSection className="text-center mb-24 sm:mb-28">
             <SectionEyebrow className="mb-6">Featured Work</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
-              <span className="text-muted-foreground/50">A few we'd show first.</span>{" "}
+              <span className="text-muted-foreground/75">A few we'd show first.</span>{" "}
               <span className="text-foreground">Every one strong enough to stand alone.</span>
             </h2>
           </AnimatedSection>
@@ -212,7 +212,7 @@ const PortfolioPage: React.FC = () => {
           <AnimatedSection className="text-center">
             <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
-              <span className="text-muted-foreground/50">Before you look through the work,</span>{" "}
+              <span className="text-muted-foreground/75">Before you look through the work,</span>{" "}
               <span className="text-foreground">here's what people usually ask.</span>
             </h2>
             <p className="mt-5 text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
@@ -237,7 +237,7 @@ const PortfolioPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">Yours could be</span>
+              <span className="block text-muted-foreground/75">Yours could be</span>
               <span className="block text-foreground mt-2">the next one on this page.</span>
             </p>
           </AnimatedSection>

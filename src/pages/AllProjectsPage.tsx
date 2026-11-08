@@ -86,7 +86,7 @@ const AllProjectsPage: React.FC = () => {
                 >
                   {filter.label}
                   <span
-                    className={activeFilter === filter.id ? "text-primary/60 ml-1.5" : "text-muted-foreground/50 ml-1.5"}
+                    className={activeFilter === filter.id ? "text-primary/90 ml-1.5" : "text-muted-foreground/75 ml-1.5"}
                   >
                     {filter.count}
                   </span>

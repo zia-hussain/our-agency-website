@@ -26,7 +26,7 @@ const OptionalStep: React.FC<OptionalStepProps> = ({ id, eyebrow, title, descrip
       <AnimatedSection>
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-14 items-center rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/[0.06] via-transparent to-transparent p-7 sm:p-10">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/70 mb-4">{eyebrow}</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/90 mb-4">{eyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground leading-[1.15] mb-4">{title}</h2>
             <p className="text-base text-muted-foreground leading-relaxed max-w-xl">{description}</p>
           </div>
@@ -34,7 +34,7 @@ const OptionalStep: React.FC<OptionalStepProps> = ({ id, eyebrow, title, descrip
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm mb-6">
               {meta.map((m, i) => (
                 <React.Fragment key={m}>
-                  {i > 0 && <span className="text-muted-foreground/40" aria-hidden="true">·</span>}
+                  {i > 0 && <span className="text-muted-foreground/70" aria-hidden="true">·</span>}
                   <span className={i === 1 ? "font-semibold text-foreground" : "text-muted-foreground"}>{m}</span>
                 </React.Fragment>
               ))}

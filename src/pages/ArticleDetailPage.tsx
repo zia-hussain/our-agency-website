@@ -62,7 +62,7 @@ const PROSE_CLASSES = `article-content prose prose-lg dark:prose-invert mx-auto 
                        prose-p:text-[1.0625rem] prose-p:leading-[1.95] prose-p:text-zinc-300
                        prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:font-medium
                        prose-strong:text-foreground prose-strong:font-semibold
-                       prose-ul:my-7 prose-ul:pl-6 prose-ul:text-zinc-300 prose-li:my-2 prose-li:leading-[1.85] marker:prose-li:text-primary/70
+                       prose-ul:my-7 prose-ul:pl-6 prose-ul:text-zinc-300 prose-li:my-2 prose-li:leading-[1.85] marker:prose-li:text-primary/90
                        prose-ol:my-7 prose-ol:pl-7 prose-ol:text-zinc-300
                        prose-code:rounded-md prose-code:bg-card/70 prose-code:px-2 prose-code:py-1 prose-code:text-sm prose-code:text-primary
                        prose-pre:rounded-2xl prose-pre:border prose-pre:border-border prose-pre:bg-card/70 prose-pre:p-6
@@ -370,11 +370,11 @@ const ArticleDetailPage: React.FC = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection mode="hero">
             {/* Category / featured — plain meta row, not a pair of badges */}
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/70 mb-6">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/90 mb-6">
               <span>{article.category}</span>
               {article.featured && (
                 <>
-                  <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+                  <span className="text-muted-foreground/70" aria-hidden="true">·</span>
                   <span className="text-primary normal-case tracking-normal">Featured</span>
                 </>
               )}
@@ -547,7 +547,7 @@ const ArticleDetailPage: React.FC = () => {
                 <TiltFrame>
                   <CoverImage cover={coverForArticle(article)} subject={article.title} className="aspect-video object-cover" priority sizes="(min-width: 1024px) 896px, 100vw" />
                 </TiltFrame>
-                <figcaption className="mt-3 text-center text-[12px] text-muted-foreground/60">
+                <figcaption className="mt-3 text-center text-[12px] text-muted-foreground/80">
                   {article.title} · {article.category} · Zumetrix Labs
                 </figcaption>
               </figure>
@@ -845,7 +845,7 @@ const ArticleDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
-              <span className="block text-muted-foreground/50">{article.closing?.lead ?? "Want this applied"}</span>
+              <span className="block text-muted-foreground/75">{article.closing?.lead ?? "Want this applied"}</span>
               <span className="block text-foreground mt-2">{article.closing?.emphasis ?? "to your own product?"}</span>
             </p>
             <p className="text-base text-muted-foreground max-w-md mx-auto mb-12 leading-relaxed">

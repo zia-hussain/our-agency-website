@@ -119,7 +119,7 @@ const TechStack: React.FC = () => {
                   {capability.technologies.slice(0, 3).map((tech) => (
                     <span
                       key={tech}
-                      className="text-[11px] px-2 py-0.5 bg-primary/[0.06] text-primary/75 border border-primary/10 rounded-full"
+                      className="text-[11px] px-2 py-0.5 bg-primary/[0.06] text-primary/90 border border-primary/10 rounded-full"
                     >
                       {tech}
                     </span>
@@ -137,7 +137,7 @@ const TechStack: React.FC = () => {
           transition={{ duration: 0.28, delay: 0.15 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold text-muted-foreground/60 mb-6 uppercase tracking-[0.14em]">
+          <p className="text-xs font-semibold text-muted-foreground/80 mb-6 uppercase tracking-[0.14em]">
             Full Technology Stack
           </p>
           <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto">

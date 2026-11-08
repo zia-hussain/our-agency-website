@@ -31,7 +31,7 @@ const ConsequenceStakes: React.FC = () => (
         {ROWS.map((row, i) => (
           <AnimatedSection key={row.label} delay={i * 0.06}>
             <div className={`flex items-center gap-5 rounded-xl border p-5 ${i === 2 ? "border-primary/40 bg-primary/[0.05]" : "border-border/50 bg-card/10"}`}>
-              <span className={`text-xs font-semibold uppercase tracking-[0.14em] w-28 flex-shrink-0 ${i === 2 ? "text-primary" : "text-muted-foreground/60"}`}>{row.label}</span>
+              <span className={`text-xs font-semibold uppercase tracking-[0.14em] w-28 flex-shrink-0 ${i === 2 ? "text-primary" : "text-muted-foreground/80"}`}>{row.label}</span>
               <span className="text-sm text-foreground/85 leading-relaxed">{row.detail}</span>
             </div>
           </AnimatedSection>

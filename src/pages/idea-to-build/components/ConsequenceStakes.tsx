@@ -47,7 +47,7 @@ const ConsequenceStakes: React.FC = () => (
                 i === 2 ? "border-primary/40 bg-gradient-to-b from-primary/[0.08] to-transparent" : "border-border/50 bg-background/40"
               }`}
             >
-              <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/50">{stage.label}</p>
+              <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/75">{stage.label}</p>
               <p className={`mb-3 text-lg font-bold leading-snug ${i === 2 ? "text-primary" : "text-foreground"}`}>{stage.state}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">{stage.detail}</p>
             </div>

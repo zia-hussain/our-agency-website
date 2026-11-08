@@ -514,9 +514,9 @@ export default function ReviewPage() {
                   {error && (
                     <motion.div initial={{ opacity: 0, y: 8, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0 }} className="flex items-center gap-3 mt-8 p-4 bg-red-500/6 border border-red-500/15 rounded-2xl">
-                      <AlertCircle className="w-4 h-4 text-red-400/70 shrink-0" />
-                      <p className="text-red-400/70 text-sm flex-1">{error}</p>
-                      <button onClick={() => setError('')}><X className="w-4 h-4 text-red-400/30 hover:text-red-400/60" /></button>
+                      <AlertCircle className="w-4 h-4 text-red-400/85 shrink-0" />
+                      <p className="text-red-400/85 text-sm flex-1">{error}</p>
+                      <button onClick={() => setError('')}><X className="w-4 h-4 text-red-400/30 hover:text-red-400/85" /></button>
                     </motion.div>
                   )}
                 </AnimatePresence>

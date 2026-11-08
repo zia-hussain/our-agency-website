@@ -181,7 +181,7 @@ const ManualToSystemLandingPage: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.12 }}
-              className="absolute whitespace-nowrap text-sm text-muted-foreground/35 italic"
+              className="absolute whitespace-nowrap text-sm text-muted-foreground/70 italic"
               style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}
             >
               {frag.text}
@@ -312,7 +312,7 @@ const ManualToSystemLandingPage: React.FC = () => {
           <div className="grid gap-8 lg:grid-cols-2">
             <AnimatedSection delay={0.04}>
               <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/[0.07] to-transparent p-7 sm:p-8 h-full">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-primary/80">What you'll know</p>
+                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-primary/90">What you'll know</p>
                 <ul className="space-y-4">
                   {[
                     "What should be removed from the workflow entirely",
@@ -330,7 +330,7 @@ const ManualToSystemLandingPage: React.FC = () => {
             </AnimatedSection>
             <AnimatedSection delay={0.08}>
               <div className="rounded-2xl border border-border/50 bg-card/10 p-7 sm:p-8 h-full">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">The mechanics</p>
+                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">The mechanics</p>
                 <ul className="space-y-4 mb-6">
                   {[
                     "One bounded workflow",
@@ -345,9 +345,9 @@ const ManualToSystemLandingPage: React.FC = () => {
                   ))}
                 </ul>
                 <div className="border-t border-border/40 pt-5">
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/45">Not included</p>
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">Not included</p>
                   <p className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed">
-                    <X size={11} className="mt-0.5 text-muted-foreground/40 flex-shrink-0" />
+                    <X size={11} className="mt-0.5 text-muted-foreground/70 flex-shrink-0" />
                     Implementation, a specific automation build, and an invented hours-saved
                     figure.
                   </p>
@@ -477,7 +477,7 @@ const ManualToSystemLandingPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
-              <span className="block text-muted-foreground/50">Stop being the integration.</span>
+              <span className="block text-muted-foreground/75">Stop being the integration.</span>
               <span className="block text-foreground mt-2">Let the system carry it.</span>
             </p>
           </AnimatedSection>

@@ -188,7 +188,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.08 + i * 0.025 }}
-              className="absolute whitespace-nowrap text-xs text-muted-foreground/30 italic"
+              className="absolute whitespace-nowrap text-xs text-muted-foreground/70 italic"
               style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}
             >
               {frag.text}
@@ -256,7 +256,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
             <TiltFrame variant="card" maxTilt={4} frameClassName="max-w-lg mx-auto" innerClassName="relative overflow-hidden rounded-2xl">
             <div className="relative max-w-lg mx-auto rounded-2xl border border-border/50 bg-card/10 overflow-hidden text-left">
               <div className="px-6 py-4 border-b border-border/50 bg-card/20">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60">V1 Brief — preview</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80">V1 Brief — preview</p>
               </div>
               <div className="divide-y divide-border/40">
                 <div className="flex items-center justify-between px-6 py-4">
@@ -265,15 +265,15 @@ const IdeaToBuildLandingPage: React.FC = () => {
                 </div>
                 <div className="flex items-center justify-between px-6 py-4">
                   <span className="text-sm text-foreground/80">Custom pricing engine</span>
-                  <span className="text-xs font-semibold text-muted-foreground/60">Not yet — earns its place in V2</span>
+                  <span className="text-xs font-semibold text-muted-foreground/80">Not yet — earns its place in V2</span>
                 </div>
                 <div className="flex items-center justify-between px-6 py-4">
                   <span className="text-sm text-foreground/80">Group sessions</span>
-                  <span className="text-xs font-semibold text-muted-foreground/60">Not yet — validate solo first</span>
+                  <span className="text-xs font-semibold text-muted-foreground/80">Not yet — validate solo first</span>
                 </div>
               </div>
             </div>
-            <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — your Brief is built from your own idea and answers.</p>
+            <p className="text-center text-xs text-muted-foreground/75 mt-4 italic">Illustrative — your Brief is built from your own idea and answers.</p>
             </TiltFrame>
           </motion.div>
         </motion.div>
@@ -338,7 +338,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
           <div className="grid gap-8 lg:grid-cols-2">
             <AnimatedSection delay={0.04}>
               <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/[0.07] to-transparent p-7 sm:p-8 h-full">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-primary/80">What you'll know</p>
+                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-primary/90">What you'll know</p>
                 <ul className="space-y-4">
                   {[
                     "What your first version actually needs to prove",
@@ -356,7 +356,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
             </AnimatedSection>
             <AnimatedSection delay={0.08}>
               <div className="rounded-2xl border border-border/50 bg-card/10 p-7 sm:p-8 h-full">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">The mechanics</p>
+                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">The mechanics</p>
                 <ul className="space-y-4 mb-6">
                   {[
                     "One product concept, one primary V1 decision",
@@ -371,9 +371,9 @@ const IdeaToBuildLandingPage: React.FC = () => {
                   ))}
                 </ul>
                 <div className="border-t border-border/40 pt-5">
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/45">Not included</p>
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">Not included</p>
                   <p className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed">
-                    <X size={11} className="mt-0.5 text-muted-foreground/40 flex-shrink-0" />
+                    <X size={11} className="mt-0.5 text-muted-foreground/70 flex-shrink-0" />
                     Implementation, a clickable prototype, UI design, and invented market
                     validation.
                   </p>
@@ -504,7 +504,7 @@ const IdeaToBuildLandingPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
-              <span className="block text-muted-foreground/50">The idea can wait.</span>
+              <span className="block text-muted-foreground/75">The idea can wait.</span>
               <span className="block text-foreground mt-2">The decision shouldn't.</span>
             </p>
           </AnimatedSection>

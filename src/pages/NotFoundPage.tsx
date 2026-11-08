@@ -83,18 +83,19 @@ export default function NotFoundPage() {
         <Link to="/" className="flex items-center gap-2.5 group">
           <img
             src="/logo/Logo Icon.png"
-            alt="Zumetrix Labs"
+            alt=""
+            aria-hidden="true"
             className="h-7 w-auto"
             style={{ filter: 'brightness(0.5) sepia(1) saturate(2) hue-rotate(-20deg)' }}
             onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
           />
-          <span className="text-[#EDEDED]/30 text-sm font-medium group-hover:text-[#EDEDED]/60 transition-colors duration-300">
+          <span className="text-[#EDEDED]/70 text-sm font-medium group-hover:text-[#EDEDED]/60 transition-colors duration-300">
             Zumetrix Labs
           </span>
         </Link>
         <Link
           to="/"
-          className="flex items-center gap-2 px-5 py-2.5 border border-[#1E1E1E] rounded-full text-[#EDEDED]/30 hover:text-[#EDEDED]/70 hover:border-[#C48A64]/30 text-sm transition-all duration-300"
+          className="flex items-center gap-2 px-5 py-2.5 border border-[#1E1E1E] rounded-full text-[#EDEDED]/70 hover:text-[#EDEDED]/70 hover:border-[#C48A64]/30 text-sm transition-all duration-300"
         >
           Back to site
           <ArrowRight className="w-3.5 h-3.5" />
@@ -167,7 +168,7 @@ export default function NotFoundPage() {
           initial={{ opacity: 0.95, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.4 }}
-          className="text-[#EDEDED]/35 text-base sm:text-lg font-light max-w-md leading-relaxed mb-3"
+          className="text-[#EDEDED]/70 text-base sm:text-lg font-light max-w-md leading-relaxed mb-3"
         >
           The URL you hit doesn't match anything we've built — yet. Maybe it moved, maybe it never existed, maybe you were just exploring.
         </motion.p>
@@ -178,10 +179,10 @@ export default function NotFoundPage() {
             initial={{ opacity: 0.95 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.55 }}
-            className="text-[#EDEDED]/15 text-xs font-mono mb-10"
+            className="text-[#EDEDED]/70 text-xs font-mono mb-10"
           >
-            <span className="text-[#C48A64]/30">GET</span> {path}{' '}
-            <span className="text-[#C48A64]/30 ml-2">404</span>
+            <span className="text-[#C48A64]/80">GET</span> {path}{' '}
+            <span className="text-[#C48A64]/80 ml-2">404</span>
           </motion.p>
         )}
 
@@ -203,7 +204,7 @@ export default function NotFoundPage() {
           </Link>
           <Link
             to="/contact"
-            className="flex items-center gap-2 px-8 py-4 border border-[#1E1E1E] text-[#EDEDED]/40 text-sm font-medium rounded-full hover:border-[#C48A64]/25 hover:text-[#EDEDED]/70 active:scale-[0.97] transition-all duration-300"
+            className="flex items-center gap-2 px-8 py-4 border border-[#1E1E1E] text-[#EDEDED]/70 text-sm font-medium rounded-full hover:border-[#C48A64]/25 hover:text-[#EDEDED]/70 active:scale-[0.97] transition-all duration-300"
           >
             Talk to us
             <ArrowUpRight className="w-4 h-4" />
@@ -217,12 +218,12 @@ export default function NotFoundPage() {
           transition={{ delay: 0.7 }}
           className="flex flex-wrap items-center justify-center gap-2"
         >
-          <span className="text-[#EDEDED]/15 text-xs mr-1">Or find what you need —</span>
+          <span className="text-[#EDEDED]/70 text-xs mr-1">Or find what you need —</span>
           {LINKS.map((link, i) => (
             <Link
               key={i}
               to={link.href}
-              className="px-3.5 py-1.5 rounded-full border border-[#1E1E1E] text-[#EDEDED]/25 text-xs hover:border-[#C48A64]/25 hover:text-[#C48A64]/70 transition-all duration-200"
+              className="px-3.5 py-1.5 rounded-full border border-[#1E1E1E] text-[#EDEDED]/70 text-xs hover:border-[#C48A64]/25 hover:text-[#C48A64]/90 transition-all duration-200"
             >
               {link.label}
             </Link>
@@ -237,7 +238,7 @@ export default function NotFoundPage() {
         transition={{ delay: 0.9 }}
         className="relative z-10 flex items-center justify-center pb-7"
       >
-        <p className="text-[#EDEDED]/8 text-[11px] font-mono tracking-wider">
+        <p className="text-[#EDEDED]/60 text-[11px] font-mono tracking-wider">
           ZUMETRIX LABS · ERR_ROUTE_NOT_FOUND · {new Date().getFullYear()}
         </p>
       </motion.div>

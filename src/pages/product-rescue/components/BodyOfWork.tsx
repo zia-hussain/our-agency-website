@@ -53,12 +53,12 @@ const BodyOfWork: React.FC = () => {
         <AnimatedSection>
           <div className="flex items-center justify-center gap-6 sm:gap-10 mb-3">
             <div className="text-center">
-              <p className="text-4xl sm:text-6xl font-bold text-muted-foreground/35 line-through decoration-2 tracking-tight">{fastTrack.evidence.before.stat}</p>
-              <p className="text-xs text-muted-foreground/50 mt-2">{fastTrack.evidence.before.label}</p>
+              <p className="text-4xl sm:text-6xl font-bold text-muted-foreground/70 line-through decoration-2 tracking-tight">{fastTrack.evidence.before.stat}</p>
+              <p className="text-xs text-muted-foreground/75 mt-2">{fastTrack.evidence.before.label}</p>
             </div>
             <div aria-hidden="true" className="flex flex-col items-center gap-1">
               <span className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
-              <ArrowRight size={18} className="text-primary/60 flex-shrink-0" />
+              <ArrowRight size={18} className="text-primary/90 flex-shrink-0" />
             </div>
             <div className="text-center">
               <p className="text-4xl sm:text-6xl font-bold text-primary tracking-tight">{fastTrack.evidence.after.stat}</p>
@@ -70,7 +70,7 @@ const BodyOfWork: React.FC = () => {
 
       <AnimatedSection delay={0.05} className="text-center mb-8">
         <span className="text-2xl sm:text-3xl font-bold text-primary tracking-tight">RESCUED</span>
-        <p className="text-xs text-muted-foreground/60 mt-1">One client's stuck product, in his own words</p>
+        <p className="text-xs text-muted-foreground/80 mt-1">One client's stuck product, in his own words</p>
       </AnimatedSection>
 
       <AnimatedSection delay={0.06} className="flex justify-center mb-6" aria-hidden="true">
@@ -78,7 +78,7 @@ const BodyOfWork: React.FC = () => {
       </AnimatedSection>
 
       <AnimatedSection delay={0.07} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-6 text-center">Josh, in his own words</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-6 text-center">Josh, in his own words</p>
         <TestimonialFilm
           src="/videos/Josh.mp4"
           poster="/images/video-posters/josh-nyce-poster.jpg"
@@ -110,7 +110,7 @@ const BodyOfWork: React.FC = () => {
             this.
           </p>
           <div className="flex items-center justify-center gap-3 sm:gap-6 flex-wrap">
-            <span className="text-lg sm:text-xl font-bold tracking-tight text-primary/50 line-through decoration-1">RESCUED</span>
+            <span className="text-lg sm:text-xl font-bold tracking-tight text-primary/90 line-through decoration-1">RESCUED</span>
             <span className="text-lg sm:text-xl font-bold tracking-tight text-foreground">BUILT</span>
             <span className="text-lg sm:text-xl font-bold tracking-tight text-foreground">STABILIZED</span>
           </div>
@@ -119,12 +119,12 @@ const BodyOfWork: React.FC = () => {
         <AnimatedSection delay={0.06} className="grid sm:grid-cols-2 gap-5 sm:gap-6">
           <div className="rounded-2xl border border-border/50 bg-background/50 p-7 sm:p-9">
             <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-1.5">BUILT</p>
-            <p className="text-xs text-muted-foreground/60 mb-6">Knipsr — event media platform</p>
+            <p className="text-xs text-muted-foreground/80 mb-6">Knipsr — event media platform</p>
 
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-1.5">Situation</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-1.5">Situation</p>
             <p className="text-sm text-muted-foreground leading-relaxed mb-5">Simple guest experience, real event-day load underneath.</p>
 
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-2">Role</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-2">Role</p>
             <ul className="space-y-2 mb-5">
               {KNIPSR_HARDENED.slice(0, 3).map((item) => (
                 <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
@@ -134,14 +134,14 @@ const BodyOfWork: React.FC = () => {
               ))}
             </ul>
 
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-2">Demonstrates</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-2">Demonstrates</p>
             {knipsr && (
               <blockquote className="pb-5 border-b border-border/30">
                 <p className="text-sm text-foreground/80 italic leading-relaxed">"{knipsr.quote}"</p>
                 <p className="text-xs text-muted-foreground mt-2">Founder, Knipsr</p>
               </blockquote>
             )}
-            <Link to="/portfolio/knipsr-event-media-saas" className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200">
+            <Link to="/portfolio/knipsr-event-media-saas" className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary/90 hover:text-primary transition-colors duration-200">
               See the case study
               <ArrowRight size={11} />
             </Link>
@@ -149,15 +149,15 @@ const BodyOfWork: React.FC = () => {
 
           <div className="rounded-2xl border border-border/50 bg-background/50 p-7 sm:p-9">
             <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-1.5">STABILIZED</p>
-            <p className="text-xs text-muted-foreground/60 mb-6">A founder-built SaaS, kept anonymous</p>
+            <p className="text-xs text-muted-foreground/80 mb-6">A founder-built SaaS, kept anonymous</p>
 
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-1.5">Situation</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-1.5">Situation</p>
             <p className="text-sm text-muted-foreground leading-relaxed mb-5">A fast-growing product that needed stabilizing, not rebuilding.</p>
 
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-1.5">Role</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-1.5">Role</p>
             <p className="text-sm text-muted-foreground leading-relaxed mb-5">Frontend, backend, and routing stabilized — without a rewrite.</p>
 
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-2">Demonstrates</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-2">Demonstrates</p>
             <div className="grid grid-cols-2 gap-2 pb-5 border-b border-border/30">
               {TRIAGE_CATEGORIES.map((cat) => (
                 <span key={cat} className="text-xs font-medium text-foreground/80 border border-border/50 rounded-lg px-2.5 py-2 text-center">
@@ -165,7 +165,7 @@ const BodyOfWork: React.FC = () => {
                 </span>
               ))}
             </div>
-            <Link to="/portfolio/learning-platform-saas-stabilization" className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200">
+            <Link to="/portfolio/learning-platform-saas-stabilization" className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary/90 hover:text-primary transition-colors duration-200">
               See the case study
               <ArrowRight size={11} />
             </Link>

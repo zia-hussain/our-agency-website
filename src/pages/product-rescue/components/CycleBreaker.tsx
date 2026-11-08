@@ -24,7 +24,7 @@ const CycleBreaker: React.FC = () => (
     <span className="mx-1 flex-shrink-0 text-border/50" aria-hidden="true">
       <Repeat size={14} />
     </span>
-    <span className="text-xs text-muted-foreground/50 italic">repeats</span>
+    <span className="text-xs text-muted-foreground/75 italic">repeats</span>
   </AnimatedSection>
 );
 

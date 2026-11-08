@@ -108,7 +108,7 @@ const AutomationDetailPage: React.FC = () => {
             <SectionEyebrow className="mb-7">AI Automation &amp; Workflows</SectionEyebrow>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight mb-6">{service.title}</h1>
             <p className="text-xl sm:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-xl mx-auto">
-              <span className="text-muted-foreground/50">The manual work between your tools,</span>{" "}
+              <span className="text-muted-foreground/75">The manual work between your tools,</span>{" "}
               <span className="text-foreground">replaced by a system that runs it.</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
@@ -129,7 +129,7 @@ const AutomationDetailPage: React.FC = () => {
                 {[{ label: "Emails", mt: "0px", rotate: "-7deg" }, { label: "Sheets", mt: "20px", rotate: "5deg" }, { label: "Manual", mt: "-8px", rotate: "-3deg" }, { label: "Tools", mt: "14px", rotate: "6deg" }].map((sq) => (
                   <span key={sq.label} className="flex flex-col items-center gap-2 sm:gap-3" style={{ marginTop: sq.mt }}>
                     <span className="block w-6 h-6 sm:w-11 sm:h-11 rounded-[6px] sm:rounded-[7px] border border-muted-foreground/30" style={{ transform: `rotate(${sq.rotate})` }} />
-                    <span className="text-[10px] sm:text-xs text-muted-foreground/50 whitespace-nowrap">{sq.label}</span>
+                    <span className="text-[10px] sm:text-xs text-muted-foreground/75 whitespace-nowrap">{sq.label}</span>
                   </span>
                 ))}
               </div>
@@ -138,12 +138,12 @@ const AutomationDetailPage: React.FC = () => {
                 <span className="flex items-center justify-center w-11 h-11 sm:w-20 sm:h-20 rounded-full border-2 border-primary bg-primary/10">
                   <span className="w-3 h-3 rounded-full bg-primary" />
                 </span>
-                <span className="text-xs sm:text-sm text-primary/80 font-semibold whitespace-nowrap">One system</span>
+                <span className="text-xs sm:text-sm text-primary/90 font-semibold whitespace-nowrap">One system</span>
               </span>
             </div>
             <div className="max-w-md mx-auto rounded-xl border border-border/50 bg-card/10 overflow-hidden text-left">
               <div className="flex items-center justify-between px-5 py-3 border-b border-border/50 bg-card/20">
-                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">Workflow run</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">Workflow run</span>
                 <span className="flex items-center gap-1.5 text-[10px] font-bold text-primary uppercase tracking-wide">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" /> Live
                 </span>
@@ -154,7 +154,7 @@ const AutomationDetailPage: React.FC = () => {
                 <div className="flex items-center justify-between px-5 py-3"><span className="text-xs text-foreground/80">Observed: no errors, 0 manual steps</span><Check size={13} className="text-primary" /></div>
               </div>
             </div>
-            <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — every real workflow is mapped to your own tools.</p>
+            <p className="text-center text-xs text-muted-foreground/75 mt-4 italic">Illustrative — every real workflow is mapped to your own tools.</p>
             </TiltFrame>
           </AnimatedSection>
         </div>
@@ -192,7 +192,7 @@ const AutomationDetailPage: React.FC = () => {
             {["Email", "Spreadsheet", "Slack", "Manual entry"].map((chip, i) => (
               <span
                 key={chip}
-                className="text-xs font-medium text-muted-foreground/60 border border-border/40 rounded-full px-3.5 py-1.5"
+                className="text-xs font-medium text-muted-foreground/80 border border-border/40 rounded-full px-3.5 py-1.5"
                 style={{ transform: `rotate(${[-3, 2, -2, 3][i]}deg)` }}
               >
                 {chip}
@@ -204,7 +204,7 @@ const AutomationDetailPage: React.FC = () => {
               { text: "checking three tabs to confirm one order", top: "0%", left: "4%", rotate: "-3deg" },
               { text: "re-typing the same data twice", top: "40%", left: "56%", rotate: "2deg" },
             ].map((frag) => (
-              <span key={frag.text} className="absolute whitespace-nowrap text-xs text-muted-foreground/30 italic" style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}>
+              <span key={frag.text} className="absolute whitespace-nowrap text-xs text-muted-foreground/70 italic" style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}>
                 {frag.text}
               </span>
             ))}
@@ -261,8 +261,8 @@ const AutomationDetailPage: React.FC = () => {
 
         <AnimatedSection delay={0.06} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-4 px-1">
-            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground/40">Manual</span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-primary/70">Coordinated</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground/70">Manual</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-primary/90">Coordinated</span>
           </div>
 
           <div className="relative">
@@ -285,13 +285,13 @@ const AutomationDetailPage: React.FC = () => {
                             : "border-2 border-dashed border-border/40 bg-card/10"
                       }`}
                     >
-                      <step.icon size={18} className={isCoordinated ? "text-primary" : isPivot ? "text-primary/70" : "text-muted-foreground/40"} />
+                      <step.icon size={18} className={isCoordinated ? "text-primary" : isPivot ? "text-primary/90" : "text-muted-foreground/70"} />
                     </span>
-                    <p className="text-[11px] font-bold text-primary/60 mb-1">0{i + 1}</p>
+                    <p className="text-[11px] font-bold text-primary/90 mb-1">0{i + 1}</p>
                     <p className={`text-xs sm:text-sm font-bold mb-1 leading-tight ${isCoordinated ? "text-foreground" : "text-muted-foreground"}`}>
                       {step.title}
                     </p>
-                    <p className="text-[11px] text-muted-foreground/60 leading-snug hidden sm:block">{step.description}</p>
+                    <p className="text-[11px] text-muted-foreground/80 leading-snug hidden sm:block">{step.description}</p>
                   </div>
                 );
               })}
@@ -299,7 +299,7 @@ const AutomationDetailPage: React.FC = () => {
           </div>
 
           <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/90">
               <motion.path
                 d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
                 stroke="currentColor"
@@ -341,7 +341,7 @@ const AutomationDetailPage: React.FC = () => {
                     <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
                     <span className="relative h-2 w-2 rounded-full bg-primary" />
                   </span>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Observe — Ongoing</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/90">After Observe — Ongoing</span>
                 </div>
                 <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Support</p>
                 <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
@@ -387,7 +387,7 @@ const AutomationDetailPage: React.FC = () => {
         <AnimatedSection delay={0.1} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="rounded-2xl border border-border/50 bg-background/50 overflow-hidden">
             <div className="flex items-center justify-center px-6 py-3.5 border-b border-border/50 bg-card/20">
-              <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary/70">The result</span>
+              <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary/90">The result</span>
             </div>
             <div className="grid grid-cols-1 divide-y divide-border/40 md:grid-cols-2 md:divide-x md:divide-y-0">
               <div className="text-center px-4 py-9 sm:py-11">
@@ -430,13 +430,13 @@ const AutomationDetailPage: React.FC = () => {
               {kevinTestimonial && (
                 <>
                   <p className="text-lg sm:text-xl text-foreground/90 leading-snug tracking-tight mb-3">"{kevinTestimonial.quote}"</p>
-                  <p className="text-xs text-muted-foreground mb-6">{kevinTestimonial.author} <span className="text-muted-foreground/50">({kevinTestimonial.platform})</span></p>
+                  <p className="text-xs text-muted-foreground mb-6">{kevinTestimonial.author} <span className="text-muted-foreground/75">({kevinTestimonial.platform})</span></p>
                 </>
               )}
               {allaythTestimonial && (
                 <p className="text-sm text-muted-foreground/80 leading-relaxed italic pl-6 border-l-2 border-primary/20">
                   "{allaythTestimonial.quote}"{" "}
-                  <span className="not-italic text-muted-foreground/60">— {allaythTestimonial.author}, {allaythTestimonial.role}</span>
+                  <span className="not-italic text-muted-foreground/80">— {allaythTestimonial.author}, {allaythTestimonial.role}</span>
                 </p>
               )}
             </AnimatedSection>
@@ -484,10 +484,10 @@ const AutomationDetailPage: React.FC = () => {
           <div className="grid sm:grid-cols-2 gap-6 sm:gap-10 max-w-md mx-auto mb-16">
             <div className="text-center sm:text-right order-2 sm:order-1 opacity-50">
               <span className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-dashed border-border/50 bg-background mb-3">
-                <UserCheck size={16} className="text-muted-foreground/60" />
+                <UserCheck size={16} className="text-muted-foreground/80" />
               </span>
               <p className="text-sm font-semibold text-muted-foreground mb-1">Escalated to a person</p>
-              <p className="text-xs text-muted-foreground/60 leading-relaxed">When a retry isn't safe, a person should be told exactly what happened — not left guessing.</p>
+              <p className="text-xs text-muted-foreground/80 leading-relaxed">When a retry isn't safe, a person should be told exactly what happened — not left guessing.</p>
             </div>
             <div className="text-center sm:text-left order-1 sm:order-2">
               <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-primary bg-primary/10 shadow-[0_18px_38px_-16px_rgba(196,138,100,0.5)] mb-3">
@@ -502,7 +502,7 @@ const AutomationDetailPage: React.FC = () => {
           {/* which branch a given failure took, which is the point.         */}
           <div className="rounded-2xl border border-border/50 bg-card/10 overflow-hidden max-w-lg mx-auto">
             <div className="flex items-center gap-2 px-5 py-3 border-b border-border/50 bg-card/20">
-              <Eye size={13} className="text-primary/70 flex-shrink-0" />
+              <Eye size={13} className="text-primary/90 flex-shrink-0" />
               <span className="text-xs font-bold uppercase tracking-[0.14em] text-foreground/80">What a run log looks like</span>
             </div>
             <div className="divide-y divide-border/30">
@@ -512,14 +512,14 @@ const AutomationDetailPage: React.FC = () => {
                 { t: "14:03:02", label: "Payment webhook — escalated", ok: false },
               ].map((row) => (
                 <div key={row.t} className="flex items-center gap-3 px-5 py-2.5">
-                  <span className="font-mono text-[10px] text-muted-foreground/50 flex-shrink-0 w-14">{row.t}</span>
+                  <span className="font-mono text-[10px] text-muted-foreground/75 flex-shrink-0 w-14">{row.t}</span>
                   <span className="text-xs text-muted-foreground flex-1">{row.label}</span>
                   <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${row.ok ? "bg-primary" : "bg-muted-foreground/50"}`} />
                 </div>
               ))}
             </div>
           </div>
-          <p className="text-center text-xs text-muted-foreground/50 italic mt-4">Illustrative — what a failed step should do, and what's worth monitoring, depends on the workflow.</p>
+          <p className="text-center text-xs text-muted-foreground/75 italic mt-4">Illustrative — what a failed step should do, and what's worth monitoring, depends on the workflow.</p>
         </AnimatedSection>
       </section>
 
@@ -576,7 +576,7 @@ const AutomationDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">Show us the manual workflow.</span>
+              <span className="block text-muted-foreground/75">Show us the manual workflow.</span>
               <span className="block text-foreground mt-2">We'll tell you what's worth automating.</span>
             </p>
           </AnimatedSection>

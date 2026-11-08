@@ -24,7 +24,7 @@ const FAQ: React.FC = () => {
         <AnimatedSection className="text-center">
           <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
-            <span className="text-muted-foreground/50">Before you reach out,</span>{" "}
+            <span className="text-muted-foreground/75">Before you reach out,</span>{" "}
             <span className="text-foreground">here's what we get asked most.</span>
           </h2>
           <p className="mt-5 text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">

@@ -82,7 +82,7 @@ const renderCells = (rule: FrameworkRule) => {
         <span
           key={`empty-${col}`}
           aria-hidden="true"
-          className={`hidden text-muted-foreground/30 md:block ${COL_START[col as Column]}`}
+          className={`hidden text-muted-foreground/70 md:block ${COL_START[col as Column]}`}
         >
           —
         </span>,
@@ -113,7 +113,7 @@ const RescueFramework: React.FC = () => (
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Sets the stakes</p>
         <p className="mt-1.5 text-base font-semibold tracking-tight text-foreground">{stakes.name}</p>
         <p className="mt-0.5 text-sm leading-snug text-muted-foreground">
-          {stakes.ask} <span className="text-muted-foreground/60">{stakes.states}</span>
+          {stakes.ask} <span className="text-muted-foreground/80">{stakes.states}</span>
         </p>
         <p className="mt-2.5 border-t border-border/40 pt-2.5 text-[13px] leading-snug text-muted-foreground">
           <span className="font-semibold text-foreground">Never selects a row.</span> Sets how urgently to act, and whether a
@@ -127,11 +127,11 @@ const RescueFramework: React.FC = () => (
         <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 border-b border-border/40 bg-card/[0.12] px-5 py-3 text-xs font-medium text-foreground md:px-6 md:text-[13px]">
           <span className="inline-flex items-center gap-2.5 whitespace-nowrap">
             Answer the questions
-            <ArrowRight size={13} aria-hidden="true" className="text-primary/70" />
+            <ArrowRight size={13} aria-hidden="true" className="text-primary/90" />
           </span>
           <span className="inline-flex items-center gap-2.5 whitespace-nowrap">
             Rules run top to bottom
-            <ArrowRight size={13} aria-hidden="true" className="text-primary/70" />
+            <ArrowRight size={13} aria-hidden="true" className="text-primary/90" />
           </span>
           <span>The first match is your outcome</span>
         </p>
@@ -178,11 +178,11 @@ const RescueFramework: React.FC = () => (
                 {renderCells(rule)}
               </div>
 
-              <ArrowRight size={15} aria-hidden="true" className="hidden text-muted-foreground/40 md:col-start-5 md:block" />
+              <ArrowRight size={15} aria-hidden="true" className="hidden text-muted-foreground/70 md:col-start-5 md:block" />
 
               <div className="col-start-2 min-w-0 md:col-start-6">
                 <p className="flex items-center gap-2 text-base font-semibold tracking-tight text-foreground">
-                  <ArrowRight size={14} aria-hidden="true" className="flex-shrink-0 text-primary/70 md:hidden" />
+                  <ArrowRight size={14} aria-hidden="true" className="flex-shrink-0 text-primary/90 md:hidden" />
                   {rule.title}
                 </p>
                 <p className="mt-0.5 text-sm leading-snug text-muted-foreground">{rule.why}</p>

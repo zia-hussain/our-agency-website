@@ -154,7 +154,7 @@ const ProductRescueLandingPage: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="absolute whitespace-nowrap text-sm text-muted-foreground/35 italic"
+              className="absolute whitespace-nowrap text-sm text-muted-foreground/70 italic"
               style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}
             >
               {frag.text}
@@ -224,7 +224,7 @@ const ProductRescueLandingPage: React.FC = () => {
             <TiltFrame variant="card" maxTilt={4} frameClassName="max-w-lg mx-auto" innerClassName="relative overflow-hidden rounded-2xl">
             <div className="relative max-w-lg mx-auto rounded-2xl border border-border/50 bg-card/10 overflow-hidden text-left">
               <div className="px-6 py-4 border-b border-border/50 bg-card/20">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60">Rescue Brief — preview</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80">Rescue Brief — preview</p>
               </div>
               <div className="divide-y divide-border/40">
                 <div className="flex items-center justify-between px-6 py-4">
@@ -237,11 +237,11 @@ const ProductRescueLandingPage: React.FC = () => {
                 </div>
                 <div className="flex items-center justify-between px-6 py-4">
                   <span className="text-sm text-foreground/80">Onboarding drop-off</span>
-                  <span className="text-xs font-semibold text-muted-foreground/60">Fix — bounded, scoped</span>
+                  <span className="text-xs font-semibold text-muted-foreground/80">Fix — bounded, scoped</span>
                 </div>
               </div>
             </div>
-            <p className="text-center text-xs text-muted-foreground/50 mt-4 italic">Illustrative — your Rescue Brief is built from your product's own evidence.</p>
+            <p className="text-center text-xs text-muted-foreground/75 mt-4 italic">Illustrative — your Rescue Brief is built from your product's own evidence.</p>
             </TiltFrame>
           </motion.div>
         </motion.div>
@@ -308,7 +308,7 @@ const ProductRescueLandingPage: React.FC = () => {
           <div className="grid gap-8 lg:grid-cols-2">
             <AnimatedSection delay={0.04}>
               <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/[0.07] to-transparent p-7 sm:p-8 h-full">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-primary/80">What you'll know</p>
+                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-primary/90">What you'll know</p>
                 <ul className="space-y-4">
                   {[
                     "What's already doing its job — confirmed, not just assumed",
@@ -326,7 +326,7 @@ const ProductRescueLandingPage: React.FC = () => {
             </AnimatedSection>
             <AnimatedSection delay={0.08}>
               <div className="rounded-2xl border border-border/50 bg-card/10 p-7 sm:p-8 h-full">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">The mechanics</p>
+                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">The mechanics</p>
                 <ul className="space-y-4 mb-6">
                   {[
                     "One bounded software product",
@@ -341,9 +341,9 @@ const ProductRescueLandingPage: React.FC = () => {
                   ))}
                 </ul>
                 <div className="border-t border-border/40 pt-5">
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/45">Not included</p>
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">Not included</p>
                   <p className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed">
-                    <X size={11} className="mt-0.5 text-muted-foreground/40 flex-shrink-0" />
+                    <X size={11} className="mt-0.5 text-muted-foreground/70 flex-shrink-0" />
                     Implementation, a line-by-line audit or pen test, and a guaranteed root cause or
                     recovery — the brief is a decision, not those things.
                   </p>
@@ -471,7 +471,7 @@ const ProductRescueLandingPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
-              <span className="block text-muted-foreground/50">No more competing opinions.</span>
+              <span className="block text-muted-foreground/75">No more competing opinions.</span>
               <span className="block text-foreground mt-2">Just an evidence-backed next decision.</span>
             </p>
           </AnimatedSection>

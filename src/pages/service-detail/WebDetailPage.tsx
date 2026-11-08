@@ -107,7 +107,7 @@ const WebDetailPage: React.FC = () => {
             <SectionEyebrow className="mb-7">Web Application Development</SectionEyebrow>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight mb-6">{service.title}</h1>
             <p className="text-xl sm:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-xl mx-auto">
-              <span className="text-muted-foreground/50">The custom software your business runs on —</span>{" "}
+              <span className="text-muted-foreground/75">The custom software your business runs on —</span>{" "}
               <span className="text-foreground">not a website, not a template.</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
@@ -132,7 +132,7 @@ const WebDetailPage: React.FC = () => {
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/50" />
                 </div>
                 {["Dashboard", "Orders", "Inventory", "Customers"].map((tab, i) => (
-                  <span key={tab} className={`px-3 py-1.5 rounded-md text-[11px] sm:text-xs font-medium whitespace-nowrap ${i === 0 ? "bg-primary/15 text-primary border border-primary/25" : "text-muted-foreground/45"}`}>{tab}</span>
+                  <span key={tab} className={`px-3 py-1.5 rounded-md text-[11px] sm:text-xs font-medium whitespace-nowrap ${i === 0 ? "bg-primary/15 text-primary border border-primary/25" : "text-muted-foreground/70"}`}>{tab}</span>
                 ))}
               </div>
               <div aria-hidden="true" className="relative p-6 sm:p-9">
@@ -141,7 +141,7 @@ const WebDetailPage: React.FC = () => {
                     <div key={i} className={`rounded-lg border p-3 sm:p-3.5 ${active ? "border-primary/30 bg-gradient-to-br from-primary/10 to-transparent" : "border-border/60 bg-background/40"}`}>
                       <div className="flex items-center justify-between mb-2.5">
                         <span className="h-1.5 w-8 rounded-full bg-border" />
-                        <Icon size={11} strokeWidth={2.5} className={up ? "text-primary/60" : "text-red-400/60"} />
+                        <Icon size={11} strokeWidth={2.5} className={up ? "text-primary/90" : "text-red-400/85"} />
                       </div>
                       <span className={`block h-3 w-1/2 rounded-full ${active ? "bg-primary/50" : "bg-foreground/20"}`} />
                     </div>
@@ -244,13 +244,13 @@ const WebDetailPage: React.FC = () => {
             ].map((col, i) => (
               <div key={col.label} className={i > 0 ? "sm:border-l sm:border-border/40 sm:pl-6 lg:pl-8" : ""}>
                 <div className="flex items-center gap-2 mb-4">
-                  <col.icon size={15} className="text-primary/70" />
+                  <col.icon size={15} className="text-primary/90" />
                   <p className="text-sm font-bold uppercase tracking-[0.14em] text-foreground/80">{col.label}</p>
                 </div>
                 <ul className="space-y-2.5">
                   {col.items.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed">
-                      <Check size={11} className="text-primary/70 flex-shrink-0 mt-0.5" />
+                      <Check size={11} className="text-primary/90 flex-shrink-0 mt-0.5" />
                       {item}
                     </li>
                   ))}
@@ -285,7 +285,7 @@ const WebDetailPage: React.FC = () => {
                       />
                     ))}
                   </div>
-                  <p className="text-xs font-semibold text-primary/60 mb-1.5">0{i + 1}</p>
+                  <p className="text-xs font-semibold text-primary/90 mb-1.5">0{i + 1}</p>
                   <p className="text-sm font-bold text-foreground mb-2">{step.title}</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
@@ -294,7 +294,7 @@ const WebDetailPage: React.FC = () => {
           </div>
 
           <div className="flex justify-center my-6 sm:my-8" aria-hidden="true">
-            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+            <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/90">
               <motion.path
                 d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
                 stroke="currentColor"
@@ -335,7 +335,7 @@ const WebDetailPage: React.FC = () => {
                     <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
                     <span className="relative h-2 w-2 rounded-full bg-primary" />
                   </span>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Deploy — Ongoing</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/90">After Deploy — Ongoing</span>
                 </div>
                 <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Support</p>
                 <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
@@ -365,7 +365,7 @@ const WebDetailPage: React.FC = () => {
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-14">
           <AnimatedSection delay={0.03}>
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary/70 mb-2">Proof one — the operation</p>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary/90 mb-2">Proof one — the operation</p>
             <h3 className="text-xl sm:text-2xl font-bold text-foreground tracking-tight max-w-lg mx-auto">
               A publishing company ran its business on spreadsheets. Now it runs on this.
             </h3>
@@ -391,7 +391,7 @@ const WebDetailPage: React.FC = () => {
         <AnimatedSection delay={0.12} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="rounded-2xl border border-border/50 bg-background/50 overflow-hidden">
             <div className="flex items-center justify-center px-6 py-3.5 border-b border-border/50 bg-card/20">
-              <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary/70">Operational visibility</span>
+              <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary/90">Operational visibility</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-border/40">
               {[
@@ -431,13 +431,13 @@ const WebDetailPage: React.FC = () => {
                 "Their combination of web development, AI integration, design, UX, and SEO into
                 one solution was impressive."
               </p>
-              <p className="text-xs text-muted-foreground mb-6">Andi, First North Peptides <span className="text-muted-foreground/50">(Clutch, verified)</span></p>
+              <p className="text-xs text-muted-foreground mb-6">Andi, First North Peptides <span className="text-muted-foreground/75">(Clutch, verified)</span></p>
               {raheemTestimonial && (
                 <div className="flex gap-4 pt-5 border-t border-border/20">
                   <span className="w-px flex-shrink-0 bg-border/40 mt-0.5" aria-hidden="true" />
                   <div>
                     <p className="text-sm text-muted-foreground/80 leading-relaxed mb-2">"{raheemTestimonial.quote}"</p>
-                    <p className="text-xs text-muted-foreground/60">{raheemTestimonial.author}, {raheemTestimonial.role}</p>
+                    <p className="text-xs text-muted-foreground/80">{raheemTestimonial.author}, {raheemTestimonial.role}</p>
                   </div>
                 </div>
               )}
@@ -453,7 +453,7 @@ const WebDetailPage: React.FC = () => {
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
           <AnimatedSection>
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary/70 mb-2">Proof two — the engineering</p>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary/90 mb-2">Proof two — the engineering</p>
             <h3 className="text-xl sm:text-2xl font-bold text-foreground tracking-tight max-w-lg mx-auto mb-4">
               Anyone can build a funnel. Not everyone builds what's behind it.
             </h3>
@@ -540,7 +540,7 @@ const WebDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">Tell us what your business</span>
+              <span className="block text-muted-foreground/75">Tell us what your business</span>
               <span className="block text-foreground mt-2">actually runs on today.</span>
             </p>
           </AnimatedSection>

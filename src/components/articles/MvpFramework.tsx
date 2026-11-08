@@ -37,12 +37,12 @@ const StateCard: React.FC<{ state: FrameworkState }> = ({ state }) => (
 
 const Gate: React.FC<{ gate: FrameworkGate }> = ({ gate }) => (
   <div className="flex flex-col items-center justify-center gap-1.5 px-1 py-3 text-center md:w-[9.5rem] md:flex-shrink-0 md:py-0">
-    <span aria-hidden="true" className="text-primary/70">
+    <span aria-hidden="true" className="text-primary/90">
       <ArrowDown size={15} className="md:hidden" />
       <ArrowRight size={16} className="hidden md:block" />
     </span>
     <p className="max-w-[16rem] text-xs font-medium leading-snug text-foreground">{gate.question}</p>
-    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60">{gate.basis}</p>
+    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">{gate.basis}</p>
   </div>
 );
 

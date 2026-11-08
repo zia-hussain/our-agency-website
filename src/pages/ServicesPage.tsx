@@ -494,7 +494,7 @@ const ServicesPage: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.1 }}
-            className="relative z-10 flex justify-center mt-16 sm:mt-20 text-muted-foreground/25"
+            className="relative z-10 flex justify-center mt-16 sm:mt-20 text-muted-foreground/70"
             aria-hidden="true"
           >
             <ChevronDown size={18} />
@@ -541,7 +541,7 @@ const ServicesPage: React.FC = () => {
                     {item.blurb}
                   </span>
                 </span>
-                <span className="flex-shrink-0 mt-2 sm:mt-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-border/60 text-muted-foreground/60 group-hover:border-primary/40 group-hover:text-primary group-hover:bg-primary/10 transition-all duration-300">
+                <span className="flex-shrink-0 mt-2 sm:mt-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-border/60 text-muted-foreground/80 group-hover:border-primary/40 group-hover:text-primary group-hover:bg-primary/10 transition-all duration-300">
                   <ArrowRight size={14} strokeWidth={2.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
                 </span>
               </button>
@@ -603,7 +603,7 @@ const ServicesPage: React.FC = () => {
                 </span>
                 <div className="relative rounded-2xl border border-border/50 overflow-hidden shadow-2xl shadow-black/50 bg-background">
                   <div className="px-8 py-9 bg-card/10 border-b border-dashed border-border/50">
-                    <Lightbulb size={22} className="text-muted-foreground/40 mb-3 mx-auto" />
+                    <Lightbulb size={22} className="text-muted-foreground/70 mb-3 mx-auto" />
                     <p className="text-base text-muted-foreground/75">An idea</p>
                   </div>
                   <div className="px-8 py-10 bg-gradient-to-b from-primary/10 to-primary/[0.03]">
@@ -667,7 +667,7 @@ const ServicesPage: React.FC = () => {
             ].map((frag) => (
               <span
                 key={frag.text}
-                className="absolute whitespace-nowrap text-sm text-muted-foreground/25 italic"
+                className="absolute whitespace-nowrap text-sm text-muted-foreground/70 italic"
                 style={{ top: frag.top, left: frag.left, transform: `rotate(${frag.rotate})` }}
               >
                 {frag.text}
@@ -711,7 +711,7 @@ const ServicesPage: React.FC = () => {
             <AnimatedSection delay={0.08} className="mb-14">
               <div className="relative w-full max-w-lg mx-auto rounded-2xl border border-border/50 overflow-hidden shadow-2xl shadow-black/50 grid sm:grid-cols-2 text-left">
                 <div className="relative p-7 sm:p-8 bg-card/10 border-b sm:border-b-0 sm:border-r border-dashed border-border/50">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/45 mb-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/70 mb-6">
                     Before
                   </p>
                   <div className="space-y-2.5 mb-6">
@@ -720,13 +720,13 @@ const ServicesPage: React.FC = () => {
                     <span className="block h-2 rounded-full bg-red-400/25 w-full" />
                     <span className="block h-2 rounded-full bg-border w-2/5" />
                   </div>
-                  <span className="inline-flex items-center gap-2 text-xs text-red-400/70">
+                  <span className="inline-flex items-center gap-2 text-xs text-red-400/85">
                     <span className="w-1.5 h-1.5 rounded-full bg-red-400/60 flex-shrink-0" />
                     Breaking under real use
                   </span>
                 </div>
                 <div className="relative p-7 sm:p-8 bg-gradient-to-br from-primary/10 to-primary/[0.03]">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/70 mb-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/90 mb-6">
                     After
                   </p>
                   <div className="space-y-2.5 mb-6">
@@ -804,7 +804,7 @@ const ServicesPage: React.FC = () => {
             <>
               <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <AnimatedSection delay={0.09} className="mb-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80">
                     A client, unscripted
                   </p>
                 </AnimatedSection>
@@ -842,7 +842,7 @@ const ServicesPage: React.FC = () => {
                         {fastTrackTestimonial.author}, Fast Track
                       </footer>
                     </blockquote>
-                    <p className="text-xs text-muted-foreground/50 italic mt-5">
+                    <p className="text-xs text-muted-foreground/75 italic mt-5">
                       One verified client story — not a typical timeline.
                     </p>
                     {knipsrProject && (
@@ -913,7 +913,7 @@ const ServicesPage: React.FC = () => {
                     className={`px-3 py-1.5 rounded-md text-[11px] sm:text-xs font-medium whitespace-nowrap ${
                       i === 0
                         ? "bg-primary/15 text-primary border border-primary/25"
-                        : "text-muted-foreground/45"
+                        : "text-muted-foreground/70"
                     }`}
                   >
                     {tab}
@@ -927,7 +927,7 @@ const ServicesPage: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <div className="hidden sm:flex items-center rounded-full border border-border/60 bg-background/40 p-0.5">
                       <span className="px-2.5 py-1 rounded-full text-[9px] font-semibold bg-primary/20 text-primary">MTD</span>
-                      <span className="px-2.5 py-1 rounded-full text-[9px] font-medium text-muted-foreground/50">YTD</span>
+                      <span className="px-2.5 py-1 rounded-full text-[9px] font-medium text-muted-foreground/75">YTD</span>
                     </div>
                     <span className="w-7 h-7 rounded-full bg-primary/20 border border-primary/30 flex-shrink-0" />
                   </div>
@@ -944,7 +944,7 @@ const ServicesPage: React.FC = () => {
                     >
                       <div className="flex items-center justify-between mb-2.5">
                         <span className="h-1.5 w-8 rounded-full bg-border" />
-                        <Icon size={11} strokeWidth={2.5} className={up ? "text-primary/60" : "text-red-400/60"} />
+                        <Icon size={11} strokeWidth={2.5} className={up ? "text-primary/90" : "text-red-400/85"} />
                       </div>
                       <span className={`block h-3 w-1/2 rounded-full ${active ? "bg-primary/50" : "bg-foreground/20"}`} />
                     </div>
@@ -1019,7 +1019,7 @@ const ServicesPage: React.FC = () => {
               </div>
               <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
                 {["MTD/YTD comparisons", "7-KPI inventory view with dead-stock detection", "30,000+ order rows, no backend database"].map((fact) => (
-                  <span key={fact} className="text-sm text-muted-foreground/60">
+                  <span key={fact} className="text-sm text-muted-foreground/80">
                     {fact}
                   </span>
                 ))}
@@ -1183,7 +1183,7 @@ const ServicesPage: React.FC = () => {
                         className="block w-6 h-6 sm:w-11 sm:h-11 rounded-[6px] sm:rounded-[7px] border border-muted-foreground/30"
                         style={{ transform: `rotate(${sq.rotate})` }}
                       />
-                      <span className="text-[10px] sm:text-xs text-muted-foreground/50 whitespace-nowrap">{sq.label}</span>
+                      <span className="text-[10px] sm:text-xs text-muted-foreground/75 whitespace-nowrap">{sq.label}</span>
                     </span>
                   ))}
                 </div>
@@ -1192,7 +1192,7 @@ const ServicesPage: React.FC = () => {
                   <span className="flex items-center justify-center w-11 h-11 sm:w-20 sm:h-20 rounded-full border-2 border-primary bg-primary/10">
                     <span className="w-3 h-3 rounded-full bg-primary" />
                   </span>
-                  <span className="text-xs sm:text-sm text-primary/80 font-semibold whitespace-nowrap">One system</span>
+                  <span className="text-xs sm:text-sm text-primary/90 font-semibold whitespace-nowrap">One system</span>
                 </span>
               </div>
             </AnimatedSection>
@@ -1229,7 +1229,7 @@ const ServicesPage: React.FC = () => {
               </div>
 
               <div className="max-w-lg mx-auto">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-3">
                   One real engagement
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-6">
@@ -1355,15 +1355,15 @@ const ServicesPage: React.FC = () => {
 
                   <div className="flex items-start justify-between gap-2 mt-3 px-0.5">
                     <div className="flex items-center gap-2 min-w-0">
-                      <Icon size={14} className="text-primary/70 flex-shrink-0" />
+                      <Icon size={14} className="text-primary/90 flex-shrink-0" />
                       <span>
                         <span className="block text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-200">
                           {phase.title}
                         </span>
-                        <span className="block text-[11px] text-muted-foreground/55 truncate">{phase.output}</span>
+                        <span className="block text-[11px] text-muted-foreground/75 truncate">{phase.output}</span>
                       </span>
                     </div>
-                    <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full border border-border/60 text-muted-foreground/50 group-hover:border-primary/40 group-hover:text-primary group-hover:bg-primary/10 transition-all duration-300">
+                    <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full border border-border/60 text-muted-foreground/75 group-hover:border-primary/40 group-hover:text-primary group-hover:bg-primary/10 transition-all duration-300">
                       <Plus size={11} className="group-hover:rotate-90 transition-transform duration-300" />
                     </span>
                   </div>
@@ -1374,7 +1374,7 @@ const ServicesPage: React.FC = () => {
         </AnimatedSection>
 
         <div className="flex justify-center my-4 sm:my-6" aria-hidden="true">
-          <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+          <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/90">
             <motion.path
               d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
               stroke="currentColor"
@@ -1418,7 +1418,7 @@ const ServicesPage: React.FC = () => {
                     <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
                     <span className="relative h-2 w-2 rounded-full bg-primary" />
                   </span>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">Step 6 — Ongoing</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/90">Step 6 — Ongoing</span>
                 </div>
                 <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">{processPhaseDetails[5].title}</p>
                 <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto mb-7">{processPhaseDetails[5].line}</p>
@@ -1500,7 +1500,7 @@ const ServicesPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="rounded-2xl border border-primary/15 bg-primary/5 p-5">
-                  <p className="text-xs uppercase tracking-[0.18em] text-primary/80">
+                  <p className="text-xs uppercase tracking-[0.18em] text-primary/90">
                     You receive
                   </p>
                   <p className="mt-3 text-base font-semibold leading-relaxed text-foreground">
@@ -1600,7 +1600,7 @@ const ServicesPage: React.FC = () => {
             </SealBadge>
             <SealBadge sizeClass="w-28 h-28 sm:w-44 sm:h-44" rotate="rotate-0" z={3} primary>
               <span className="text-3xl sm:text-6xl font-bold text-primary leading-none">{recordReviewCount}</span>
-              <span className="text-[8px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mt-1.5 sm:mt-2">
+              <span className="text-[8px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/90 mt-1.5 sm:mt-2">
                 Written reviews
               </span>
             </SealBadge>
@@ -1619,7 +1619,7 @@ const ServicesPage: React.FC = () => {
 
         <AnimatedSection delay={0.1} className="text-center px-4 mb-16 sm:mb-20">
           <div className="flex justify-center mb-3">
-            <ShieldCheck size={16} className="text-primary/60" />
+            <ShieldCheck size={16} className="text-primary/90" />
           </div>
           <p className="text-sm text-muted-foreground max-w-xs mx-auto">
             {FACTS.counts.writtenReviews} written reviews across Fiverr, Upwork, Trustpilot, Clutch and Google, posted where we can't edit them. All but one are five stars; the exception is a 4.3. Read them at the source from the founders' profiles.
@@ -1648,7 +1648,7 @@ const ServicesPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.25] mb-8 sm:mb-10">
-              <span className="block text-muted-foreground/50">You don't need the solution.</span>
+              <span className="block text-muted-foreground/75">You don't need the solution.</span>
               <span className="block text-foreground mt-1.5">Just tell us where you are.</span>
             </p>
           </AnimatedSection>
@@ -1679,7 +1679,7 @@ const ServicesPage: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.14}>
-            <p className="mt-14 sm:mt-16 text-xs sm:text-sm italic text-muted-foreground/40">
+            <p className="mt-14 sm:mt-16 text-xs sm:text-sm italic text-muted-foreground/70">
               Your starting point decides what's next.
             </p>
           </AnimatedSection>

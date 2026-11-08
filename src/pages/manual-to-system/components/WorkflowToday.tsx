@@ -37,7 +37,7 @@ const WorkflowToday: React.FC = () => (
         {TOOLS.map((tool, i) => (
           <span
             key={tool}
-            className="absolute whitespace-nowrap rounded-full border border-border/40 bg-card/20 px-3 py-1 text-[11px] text-muted-foreground/50"
+            className="absolute whitespace-nowrap rounded-full border border-border/40 bg-card/20 px-3 py-1 text-[11px] text-muted-foreground/75"
             style={{
               top: `${(i % 2) * 42}%`,
               left: `${(i * 12.5) % 92}%`,

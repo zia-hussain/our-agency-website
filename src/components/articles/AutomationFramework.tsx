@@ -29,7 +29,7 @@ const NODE_ICON: Record<"input" | "action", LucideIcon> = { input: Inbox, action
 const FILL_ICON: Record<string, LucideIcon> = { rules: ListChecks, ai: Cpu, none: ArrowRight, person: UserCheck };
 
 const Connector: React.FC = () => (
-  <span aria-hidden="true" className="flex items-center justify-center self-center py-1 text-primary/70 md:px-2 md:py-0">
+  <span aria-hidden="true" className="flex items-center justify-center self-center py-1 text-primary/90 md:px-2 md:py-0">
     <ArrowDown size={15} className="md:hidden" />
     <ArrowRight size={16} className="hidden md:block" />
   </span>
@@ -49,7 +49,7 @@ const SlotPanel: React.FC<{ slot: Slot }> = ({ slot }) => (
   <div className="min-w-0 flex-1 rounded-xl border border-primary/25 bg-card/20 p-3.5 md:p-4">
     <p className="flex flex-wrap items-baseline gap-x-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
       {slot.label}
-      {slot.aka && <span className="text-[11px] font-medium normal-case tracking-normal text-muted-foreground/60">{slot.aka}</span>}
+      {slot.aka && <span className="text-[11px] font-medium normal-case tracking-normal text-muted-foreground/80">{slot.aka}</span>}
     </p>
     <p className="mt-1.5 text-[15px] font-semibold leading-snug tracking-tight text-foreground">{slot.question}</p>
     <div className="mt-3">
@@ -58,13 +58,13 @@ const SlotPanel: React.FC<{ slot: Slot }> = ({ slot }) => (
         return (
           <React.Fragment key={fill.key}>
             {i > 0 && (
-              <p aria-hidden="true" className="my-1 text-center text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/50">
+              <p aria-hidden="true" className="my-1 text-center text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/75">
                 or
               </p>
             )}
             <div className="rounded-lg border border-border/50 bg-card/30 p-2.5 md:p-3">
               <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                <Icon size={14} aria-hidden="true" className="flex-shrink-0 text-primary/70" />
+                <Icon size={14} aria-hidden="true" className="flex-shrink-0 text-primary/90" />
                 {fill.title}
               </p>
               <p className="mt-1 text-[13px] leading-snug text-muted-foreground">{fill.body}</p>
@@ -131,7 +131,7 @@ const AutomationFramework: React.FC = () => (
                 <p className="flex flex-wrap items-center gap-x-1 text-xs leading-snug text-muted-foreground md:mt-1.5">
                   {shape.steps.map((step, i) => (
                     <React.Fragment key={`${step}-${i}`}>
-                      {i > 0 && <span aria-hidden="true" className="text-primary/60">→</span>}
+                      {i > 0 && <span aria-hidden="true" className="text-primary/90">→</span>}
                       <span>{STEP_TEXT[step]}</span>
                     </React.Fragment>
                   ))}

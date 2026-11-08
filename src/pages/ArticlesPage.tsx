@@ -133,7 +133,7 @@ const ArticlesPage: React.FC = () => {
             <AnimatedSection className="text-center mb-24 sm:mb-28">
               <SectionEyebrow className="mb-6">Featured</SectionEyebrow>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
-                <span className="text-muted-foreground/50">What to build, what to fix, what to automate.</span>{" "}
+                <span className="text-muted-foreground/75">What to build, what to fix, what to automate.</span>{" "}
                 <span className="text-foreground">Start with the thinking.</span>
               </h2>
             </AnimatedSection>
@@ -170,7 +170,7 @@ const ArticlesPage: React.FC = () => {
                   }`}
                 >
                   {category.label}
-                  <span className={activeFilter === category.id ? "text-primary/60 ml-1.5" : "text-muted-foreground/50 ml-1.5"}>
+                  <span className={activeFilter === category.id ? "text-primary/90 ml-1.5" : "text-muted-foreground/75 ml-1.5"}>
                     {category.count}
                   </span>
                 </button>
@@ -219,7 +219,7 @@ const ArticlesPage: React.FC = () => {
           <AnimatedSection className="text-center">
             <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
-              <span className="text-muted-foreground/50">Before you start reading,</span>{" "}
+              <span className="text-muted-foreground/75">Before you start reading,</span>{" "}
               <span className="text-foreground">here's what people usually ask.</span>
             </h2>
             <p className="mt-5 text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
@@ -243,7 +243,7 @@ const ArticlesPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">Read enough?</span>
+              <span className="block text-muted-foreground/75">Read enough?</span>
               <span className="block text-foreground mt-2">Let's talk about your build.</span>
             </p>
           </AnimatedSection>

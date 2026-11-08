@@ -183,9 +183,9 @@ const RescueOrRebuildPage: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-center text-xs text-muted-foreground/60 mt-5">
+                  <p className="text-center text-xs text-muted-foreground/80 mt-5">
                     Same framework behind our{" "}
-                    <Link to="/articles/should-you-rescue-or-rebuild-your-saas" className="text-primary/80 hover:text-primary underline underline-offset-2">
+                    <Link to="/articles/should-you-rescue-or-rebuild-your-saas" className="text-primary/90 hover:text-primary underline underline-offset-2">
                       Rescue-or-Rebuild decision guide
                     </Link>
                     .
@@ -250,7 +250,7 @@ const RescueOrRebuildPage: React.FC = () => {
                         {isSelected ? (
                           <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-primary" />
                         ) : (
-                          <Circle size={18} className="mt-0.5 shrink-0 text-muted-foreground/40" />
+                          <Circle size={18} className="mt-0.5 shrink-0 text-muted-foreground/70" />
                         )}
                         <span className="text-[15px] leading-snug text-foreground">{option.label}</span>
                       </button>

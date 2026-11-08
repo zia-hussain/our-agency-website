@@ -44,6 +44,7 @@ const PANEL_MORPH = { type: "spring" as const, stiffness: 420, damping: 40, mass
 
 const SHELL_SHADOW_WIDE =
   "inset 0 1px 0 0 rgba(255,255,255,0.12), inset 0 0 0 1px rgba(255,255,255,0.04), 0 40px 90px -30px rgba(0,0,0,0.8), 0 14px 32px -14px rgba(0,0,0,0.55)";
+const DOCK_LAYOUT = { duration: 0.6, ease: EASE };
 const SHELL_SHADOW_DOCKED =
   "inset 0 1px 0 0 rgba(255,255,255,0.16), inset 0 0 0 1px rgba(255,255,255,0.07), 0 34px 70px -22px rgba(0,0,0,0.9), 0 12px 28px -10px rgba(0,0,0,0.7)";
 
@@ -154,7 +155,7 @@ const Navigation: React.FC = () => {
   const isActiveRoute = (path: string) => location.pathname.startsWith(path);
 
   return (
-    <nav ref={navRef} className="fixed top-0 inset-x-0 z-50 flex justify-center px-4 pt-5 sm:pt-6">
+    <motion.nav ref={navRef} layoutRoot className="fixed top-0 inset-x-0 z-50 flex justify-center px-4 pt-5 sm:pt-6">
       {/* Desktop — one shell, two purposes. Wide at arrival: full brand
           presence — the real logo lockup and the CTA are both here in
           full, nothing held back. Docked: pure utility — once the visitor
@@ -162,36 +163,46 @@ const Navigation: React.FC = () => {
           already covers conversion from the bottom of the screen, so the
           floating dock reduces to exactly one job: getting between pages. */}
       <motion.div
+        layout
         initial={shouldReduceMotion ? undefined : { y: -20, opacity: 0 }}
         animate={{
           y: 0,
           opacity: 1,
-          maxWidth: isDocked ? 560 : 1180,
-          borderRadius: 999,
-          paddingLeft: isDocked ? 8 : 30,
-          paddingRight: isDocked ? 8 : 30,
-          paddingTop: isDocked ? 8 : 16,
-          paddingBottom: isDocked ? 8 : 16,
           boxShadow: isDocked ? SHELL_SHADOW_DOCKED : SHELL_SHADOW_WIDE,
         }}
-        transition={{ duration: 0.6, ease: EASE }}
-        style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", width: "100%" }}
-        className="relative hidden lg:flex items-center justify-center border border-white/[0.04]"
+        transition={{ duration: 0.6, ease: EASE, layout: DOCK_LAYOUT }}
+        // Wide→docked is a FLIP layout animation (framer `layout`): the box
+        // snaps to its new geometry once and the visible morph is pure
+        // transform, so the dock no longer registers a layout shift on
+        // every animation frame (was ≈0.06 CLS per dock, all of it here).
+        // Width/padding therefore live in style/classes, not `animate`.
+        style={{
+          background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)",
+          width: "100%",
+          maxWidth: isDocked ? 560 : 1180,
+          borderRadius: 999,
+        }}
+        className={`relative hidden lg:flex items-center justify-center border border-white/[0.04] ${
+          isDocked ? "px-2 py-2" : "px-[30px] py-4"
+        }`}
         onMouseLeave={handleShellLeave}
         onBlur={handleShellBlur}
       >
-        <AnimatePresence mode="popLayout">
-          {!isDocked && (
-            <motion.div
-              key="logo"
-              initial={{ opacity: 0, width: 0, scale: 0.75 }}
-              animate={{ opacity: 1, width: "auto", scale: 1 }}
-              exit={{ opacity: 0, width: 0, scale: 0.75 }}
-              transition={{ duration: 0.4, ease: EASE }}
-              style={{ perspective: 600 }}
-              className="overflow-x-hidden overflow-y-visible flex-shrink-0"
-            >
-              <Link to="/" aria-label="Zumetrix Labs home" className="flex items-center pr-8" onMouseEnter={closeDropdownSoon}>
+        {/* Logo and CTA stay mounted through the dock (an exiting element
+            popped out of flow would float outside the shrinking pill for
+            its exit duration). Docked they collapse to 1px and fade, and the
+            FLIP transform carries the squeeze — same read as before, no
+            layout shift, nothing focusable left behind. */}
+        <motion.div
+          layout
+          animate={{ opacity: isDocked ? 0 : 1 }}
+          transition={{ duration: 0.4, ease: EASE, layout: DOCK_LAYOUT }}
+          className={`flex-shrink-0 ${isDocked ? "w-px overflow-hidden pointer-events-none" : ""}`}
+          aria-hidden={isDocked || undefined}
+          {...({ inert: isDocked ? "" : undefined } as Record<string, string | undefined>)}
+        >
+          {(
+            <Link to="/" aria-label="Zumetrix Labs home" className="flex items-center pr-8" onMouseEnter={closeDropdownSoon} tabIndex={isDocked ? -1 : undefined}>
                 <img
                   className="h-10 w-auto select-none"
                   src="/logo/zumetrix-email.webp"
@@ -202,24 +213,23 @@ const Navigation: React.FC = () => {
                   fetchpriority="high"
                 />
               </Link>
-            </motion.div>
           )}
-        </AnimatePresence>
+        </motion.div>
 
-        <div
-          className={`flex items-center transition-[gap] duration-500 ease-out ${
-            isDocked ? "gap-0.5" : "flex-1 justify-center gap-10 xl:gap-14"
-          }`}
+        <motion.div
+          layout
+          transition={{ layout: DOCK_LAYOUT }}
+          className={`flex items-center ${isDocked ? "gap-0.5" : "flex-1 justify-center gap-10 xl:gap-14"}`}
         >
           {NAV_ITEMS.map((item) => {
             const active = isActiveRoute(item.path);
             const dropdownKey: PanelKey | null = PANEL_FOR_PATH[item.path] ?? null;
             const isOpen = dropdownKey !== null && openMenu === dropdownKey;
             return (
+              <motion.div key={item.name} layout="position" transition={{ layout: DOCK_LAYOUT }} className="relative">
               <Link
-                key={item.name}
                 to={item.path}
-                className="relative"
+                className="relative block"
                 onClick={item.path === "/start" ? trackOffersNavClick : undefined}
                 onMouseEnter={dropdownKey ? () => openDropdown(dropdownKey) : () => closeDropdownSoon()}
                 onFocus={dropdownKey ? () => openDropdown(dropdownKey, true) : undefined}
@@ -228,7 +238,7 @@ const Navigation: React.FC = () => {
                 aria-controls={dropdownKey ? "nav-panel" : undefined}
               >
                 <span
-                  className={`relative isolate flex items-center gap-1 whitespace-nowrap rounded-full transition-all duration-500 ${
+                  className={`relative isolate flex items-center gap-1 whitespace-nowrap rounded-full transition-colors duration-300 ${
                     isOpen && !isDocked ? "before:absolute before:-inset-x-3.5 before:-inset-y-2 before:-z-10 before:rounded-full before:bg-white/[0.06]" : ""
                   } ${
                     isDocked ? "px-3.5 py-2.5 text-[14px]" : "px-0 py-1 text-[15px]"
@@ -264,26 +274,25 @@ const Navigation: React.FC = () => {
                     />
                   )}
                 </span>
-
               </Link>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        <AnimatePresence mode="popLayout">
-          {!isDocked && (
-            <motion.div
-              key="cta"
-              initial={{ opacity: 0, width: 0, scale: 0.75 }}
-              animate={{ opacity: 1, width: "auto", scale: 1 }}
-              exit={{ opacity: 0, width: 0, scale: 0.75 }}
-              transition={{ duration: 0.4, ease: EASE }}
-              style={{ perspective: 600 }}
-              className="overflow-x-hidden overflow-y-visible flex-shrink-0 py-1"
-            >
+        <motion.div
+          layout
+          animate={{ opacity: isDocked ? 0 : 1 }}
+          transition={{ duration: 0.4, ease: EASE, layout: DOCK_LAYOUT }}
+          className={`flex-shrink-0 py-1 ${isDocked ? "w-px overflow-hidden pointer-events-none" : ""}`}
+          aria-hidden={isDocked || undefined}
+          {...({ inert: isDocked ? "" : undefined } as Record<string, string | undefined>)}
+        >
+          {(
               <Link
                 to="/contact"
                 onMouseEnter={closeDropdownSoon}
+                tabIndex={isDocked ? -1 : undefined}
                 className="btn-sheen group flex items-center gap-2 rounded-full bg-gradient-to-b from-primary to-primary/[0.9] pl-6 pr-5 py-3 ml-8 text-[15px] font-semibold text-primary-foreground whitespace-nowrap"
               >
                 Let&apos;s talk
@@ -291,9 +300,8 @@ const Navigation: React.FC = () => {
                   <ArrowRight size={12} strokeWidth={2.5} />
                 </span>
               </Link>
-            </motion.div>
           )}
-        </AnimatePresence>
+        </motion.div>
 
         {/* The shared panel. Lives inside the pill so the pointer never
             leaves the shell on the way down; the top padding is the hover
@@ -350,27 +358,31 @@ const Navigation: React.FC = () => {
       {/* Mobile — same wide-to-docked logic, no CTA to add/remove here
           since the mobile menu itself is the action surface. */}
       <motion.div
+        layout
         initial={shouldReduceMotion ? undefined : { y: -20, opacity: 0 }}
         animate={{
           y: 0,
           opacity: 1,
-          maxWidth: isDocked ? 380 : 560,
-          borderRadius: 999,
-          paddingLeft: isDocked ? 14 : 20,
-          paddingRight: isDocked ? 8 : 12,
-          paddingTop: isDocked ? 8 : 12,
-          paddingBottom: isDocked ? 8 : 12,
           boxShadow: isDocked ? SHELL_SHADOW_DOCKED : SHELL_SHADOW_WIDE,
         }}
-        transition={{ duration: 0.55, ease: EASE }}
-        style={{ background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)", width: "100%" }}
-        className="lg:hidden flex items-center justify-between border border-white/[0.04]"
+        transition={{ duration: 0.55, ease: EASE, layout: DOCK_LAYOUT }}
+        // Same FLIP treatment as the desktop shell: geometry in style/classes,
+        // the morph on transform, zero layout shift while docking.
+        style={{
+          background: "linear-gradient(180deg, #16140F 0%, #0A0908 100%)",
+          width: "100%",
+          maxWidth: isDocked ? 380 : 560,
+          borderRadius: 999,
+        }}
+        className={`lg:hidden flex items-center justify-between border border-white/[0.04] ${
+          isDocked ? "pl-3.5 pr-2 py-2" : "pl-5 pr-3 py-3"
+        }`}
       >
         <Link to="/" aria-label="Zumetrix Labs home" className="flex items-center overflow-hidden">
           <motion.img
-            animate={{ height: isDocked ? 24 : 30 }}
-            transition={{ duration: 0.5, ease: EASE }}
-            className="w-auto select-none"
+            layout
+            transition={{ layout: DOCK_LAYOUT }}
+            className={`w-auto select-none ${isDocked ? "h-6" : "h-[30px]"}`}
             src="/logo/zumetrix-email.webp"
             alt="Zumetrix Labs"
             width="288"
@@ -379,7 +391,9 @@ const Navigation: React.FC = () => {
             fetchpriority="high"
           />
         </Link>
-        <button
+        <motion.button
+          layout="position"
+          transition={{ layout: DOCK_LAYOUT }}
           type="button"
           onClick={() => setIsMobileMenuOpen(true)}
           aria-label="Open navigation menu"
@@ -391,7 +405,7 @@ const Navigation: React.FC = () => {
             <span className="block h-px w-4 bg-foreground/90" aria-hidden="true" />
             <span className="block h-px w-4 bg-foreground/90" aria-hidden="true" />
           </span>
-        </button>
+        </motion.button>
       </motion.div>
 
       {/* Mobile — editorial full-screen menu */}
@@ -472,7 +486,7 @@ const Navigation: React.FC = () => {
                           to={item.path}
                           onClick={item.path === "/start" ? trackOffersNavClick : undefined}
                           className={`flex items-center gap-3 py-1.5 font-bold tracking-[-0.02em] leading-none text-[8.5vw] sm:text-[2.4rem] transition-colors duration-200 ${
-                            active ? "text-foreground" : item.path === "/start" ? "text-foreground/80" : "text-muted-foreground/50 hover:text-foreground/80"
+                            active ? "text-foreground" : item.path === "/start" ? "text-foreground/80" : "text-muted-foreground/75 hover:text-foreground/80"
                           }`}
                         >
                           {item.path === "/start" && <span aria-hidden="true" className="h-2 w-2 rounded-full bg-primary flex-shrink-0" />}
@@ -519,7 +533,7 @@ const Navigation: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 

@@ -43,8 +43,12 @@ const Avatar: React.FC<{ name: string; size?: "sm" | "md" }> = ({ name, size = "
 );
 
 const PlatformMark: React.FC<{ t: TestimonialEntry }> = ({ t }) => (
+<<<<<<< ours
   t.platform ? (
   <span className="flex items-center gap-1.5 text-muted-foreground/60">
+=======
+  <span className="flex items-center gap-1.5 text-muted-foreground/80">
+>>>>>>> theirs
     <PlatformIcon platform={t.platform} size={14} />
     <span className="text-xs">{t.platform}</span>
   </span>
@@ -59,7 +63,7 @@ const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({
   return (
     <div className={`flex items-center ${compact ? "justify-start gap-4" : "justify-center gap-6 sm:gap-10"}`}>
       <div className={compact ? "" : "text-center"}>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/55 mb-2">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-2">
           {before.who}
         </p>
         <div className={`font-bold tracking-tight tabular-nums text-foreground/45 ${numCls}`}>{before.stat}</div>
@@ -75,11 +79,11 @@ const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({
             className="absolute inset-0 origin-left bg-primary"
           />
         </span>
-        <ArrowRight className="text-primary/60" size={compact ? 15 : 18} />
+        <ArrowRight className="text-primary/90" size={compact ? 15 : 18} />
       </div>
 
       <div className={compact ? "" : "text-center"}>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/90 mb-2">
           {after.who}
         </p>
         <div className={`font-bold tracking-tight tabular-nums bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent ${numCls}`}>

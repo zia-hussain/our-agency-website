@@ -124,7 +124,7 @@ function ReviewSummary({ data }: { data: FormState }) {
     <div className="space-y-0 border border-border/50 rounded-3xl overflow-hidden">
       {items.map((item) => (
         <div key={item.label} className="flex gap-4 px-6 py-4 border-b border-border/40 last:border-0">
-          <span className="text-primary/50 text-sm w-28 shrink-0 pt-0.5">{item.label}</span>
+          <span className="text-primary/90 text-sm w-28 shrink-0 pt-0.5">{item.label}</span>
           <span className="text-foreground/80 text-sm leading-relaxed flex-1 whitespace-pre-line">{item.value}</span>
         </div>
       ))}
@@ -151,16 +151,16 @@ function SituationSummary({ data }: { data: FormState }) {
 
   return (
     <motion.div layout className="mt-10 rounded-2xl border border-primary/20 bg-primary/[0.04] p-5">
-      <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-primary/70">Here's what we're hearing</p>
+      <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-primary/90">Here's what we're hearing</p>
       <div className="space-y-2.5">
         {rows.map((row) => (
           <div key={row.label} className="flex gap-3 text-xs">
-            <span className="w-28 flex-shrink-0 text-muted-foreground/55">{row.label}</span>
+            <span className="w-28 flex-shrink-0 text-muted-foreground/75">{row.label}</span>
             <span className="flex-1 leading-relaxed text-foreground/85 line-clamp-2">{row.value}</span>
           </div>
         ))}
       </div>
-      <p className="mt-3.5 border-t border-primary/10 pt-3 text-[11px] text-muted-foreground/45">
+      <p className="mt-3.5 border-t border-primary/10 pt-3 text-[11px] text-muted-foreground/70">
         What you're telling us — not yet what we've mapped.
       </p>
     </motion.div>
@@ -426,7 +426,7 @@ const ManualToSystemApplyPage: React.FC = () => {
                   {current.id === "situation" && (
                     <>
                       {prefilled && data.situationType && (
-                        <p className="mb-4 text-xs font-medium text-primary/80">Carried over from what you told us — change it if it's not quite right.</p>
+                        <p className="mb-4 text-xs font-medium text-primary/90">Carried over from what you told us — change it if it's not quite right.</p>
                       )}
                       <ChoiceButtons options={SITUATION_TYPES} value={data.situationType} onSelect={(v) => { update("situationType", v); setError(""); setPrefilled(false); }} />
                     </>
@@ -437,7 +437,7 @@ const ManualToSystemApplyPage: React.FC = () => {
                       <input autoFocus className={inputBase} placeholder="e.g. Lead intake, client onboarding, order fulfillment" value={data.productName} onChange={(e) => update("productName", e.target.value)} />
                       <AutoTextarea value={data.productDescription} onChange={(v) => update("productDescription", v)} placeholder="Which tools, spreadsheets, or people are currently involved?" rows={2} />
                       <div>
-                        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/50">What's actually slowing it down</p>
+                        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground/75">What's actually slowing it down</p>
                         <ChoiceButtons options={FRICTION_TYPE_OPTIONS} value={data.frictionType} onSelect={(v) => { update("frictionType", v); setError(""); }} />
                       </div>
                     </div>
@@ -471,17 +471,17 @@ const ManualToSystemApplyPage: React.FC = () => {
               <AnimatePresence>
                 {error && (
                   <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mt-8 flex items-center gap-3 rounded-2xl border border-red-500/15 bg-red-500/[0.06] p-4">
-                    <AlertCircle size={16} className="flex-shrink-0 text-red-400/70" />
+                    <AlertCircle size={16} className="flex-shrink-0 text-red-400/85" />
                     <p role="alert" className="flex-1 text-sm text-red-400/80">{error}</p>
                     <button type="button" onClick={() => setError("")} aria-label="Dismiss">
-                      <X size={16} className="text-red-400/40 hover:text-red-400/70" />
+                      <X size={16} className="text-red-400/40 hover:text-red-400/85" />
                     </button>
                   </motion.div>
                 )}
               </AnimatePresence>
 
               <div className="mt-12 flex items-center justify-between">
-                <span className="hidden text-xs text-muted-foreground/40 sm:inline">{pct}% complete</span>
+                <span className="hidden text-xs text-muted-foreground/70 sm:inline">{pct}% complete</span>
                 {!isLast ? (
                   <button
                     type="button"

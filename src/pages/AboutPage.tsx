@@ -83,8 +83,8 @@ const EvidenceNote: React.FC<{ evidence: Evidence; className?: string }> = ({ ev
     <p className="text-sm text-muted-foreground">
       <span className="text-primary font-medium">{evidence.author}</span>, {evidence.role}
       {" · "}
-      <Link to={evidence.linkTo} className="text-primary hover:underline">
-        {evidence.linkTo === "/client-stories" ? "See more" : "Case study"}
+      <Link to={evidence.linkTo} className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
+        {evidence.linkTo === "/client-stories" ? "More client stories" : "Read the case study"}
       </Link>
     </p>
   </div>
@@ -105,7 +105,7 @@ const ProcessStage: React.FC<{
     className={`grid lg:grid-cols-12 gap-x-10 gap-y-6 items-start ${reverse ? "lg:text-right" : ""}`}
   >
     <div className={`lg:col-span-5 flex items-baseline gap-4 ${reverse ? "lg:flex-row-reverse lg:justify-start" : ""}`}>
-      <span className="text-3xl sm:text-4xl font-bold text-primary/25 tabular-nums leading-none">{n}</span>
+      <span aria-hidden="true" className="text-3xl sm:text-4xl font-bold text-primary/65 tabular-nums leading-none">{n}</span>
       <h3 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[0.95] tracking-tight">
         {title}
       </h3>
@@ -127,7 +127,7 @@ const ForkGlyph: React.FC<{ flip?: boolean; label: string }> = ({ flip, label })
   const glyph = (
     <svg
       viewBox="0 0 600 90"
-      className={`w-full max-w-2xl h-auto text-primary/50 ${flip ? "-scale-y-100" : ""}`}
+      className={`w-full max-w-2xl h-auto text-primary/90 ${flip ? "-scale-y-100" : ""}`}
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
@@ -146,7 +146,7 @@ const ForkGlyph: React.FC<{ flip?: boolean; label: string }> = ({ flip, label })
   return (
     <div className="flex flex-col items-center gap-4 py-16 lg:py-24">
       {!flip && glyph}
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/60">{label}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">{label}</p>
       {flip && glyph}
     </div>
   );
@@ -340,7 +340,7 @@ const AboutPage: React.FC = () => {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="border-t-2 border-primary/40 pt-7"
               >
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-3">
                   {col.context}
                 </p>
                 <h3 className="text-3xl sm:text-4xl font-bold text-foreground mb-5 tracking-tight">{col.label}</h3>
@@ -406,27 +406,27 @@ const AboutPage: React.FC = () => {
             </div>
             <p className="text-base text-muted-foreground">
               This shows up differently across{" "}
-              <Link to="/services/saas-mvp-development" className="text-primary hover:underline">
+              <Link to="/services/saas-mvp-development" className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
                 SaaS MVPs
               </Link>
               ,{" "}
-              <Link to="/services/mobile-app-development" className="text-primary hover:underline">
+              <Link to="/services/mobile-app-development" className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
                 mobile
               </Link>
               {" "}and{" "}
-              <Link to="/services/web-application-development" className="text-primary hover:underline">
+              <Link to="/services/web-application-development" className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
                 web apps
               </Link>
               ,{" "}
-              <Link to="/services/ai-automation-solutions" className="text-primary hover:underline">
+              <Link to="/services/ai-automation-solutions" className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
                 AI automation
               </Link>
               , and{" "}
-              <Link to="/services/product-rescue-stabilization" className="text-primary hover:underline">
+              <Link to="/services/product-rescue-stabilization" className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
                 product rescue work
               </Link>
               {" "}— see the full range on{" "}
-              <Link to="/services" className="text-primary hover:underline">
+              <Link to="/services" className="text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
                 Services
               </Link>
               .
@@ -548,7 +548,7 @@ const AboutPage: React.FC = () => {
                       {founder.bio}
                     </p>
 
-                    <p className="text-xs text-muted-foreground/60 mb-5">
+                    <p className="text-xs text-muted-foreground/80 mb-5">
                       {founder.skills.join(" · ")}
                     </p>
 
@@ -625,7 +625,7 @@ const AboutPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="py-24 lg:py-32 border-t border-border/40"
           >
-            <span className="text-xs font-semibold text-primary/50 tabular-nums">01 / 04</span>
+            <span className="text-xs font-semibold text-primary/90 tabular-nums">01 / 04</span>
             <h3 className="text-5xl sm:text-7xl lg:text-[6.5rem] font-bold text-foreground leading-[0.95] tracking-tight mt-6 mb-10 max-w-4xl">
               The next decision
               <br />
@@ -648,7 +648,7 @@ const AboutPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="py-24 lg:py-36 border-t border-border/40 text-center"
           >
-            <span className="text-xs font-semibold text-primary/50 tabular-nums">02 / 04</span>
+            <span className="text-xs font-semibold text-primary/90 tabular-nums">02 / 04</span>
             <p className="text-2xl text-muted-foreground mt-6 mb-4">A feature has</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-10">
               <span className="text-4xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
@@ -674,12 +674,12 @@ const AboutPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="py-24 lg:py-36 border-t border-border/40 text-center"
           >
-            <span className="text-xs font-semibold text-primary/50 tabular-nums">03 / 04</span>
+            <span className="text-xs font-semibold text-primary/90 tabular-nums">03 / 04</span>
             <div className="flex items-center justify-center gap-8 sm:gap-12 mt-8 mb-10">
               <span className="text-6xl sm:text-8xl lg:text-9xl font-bold text-foreground/40 tracking-tight">
                 V1
               </span>
-              <ArrowRight className="text-primary/50 flex-shrink-0" size={40} />
+              <ArrowRight className="text-primary/90 flex-shrink-0" size={40} />
               <span className="text-6xl sm:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent tracking-tight">
                 V2
               </span>
@@ -702,7 +702,7 @@ const AboutPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="py-24 lg:py-32 border-t border-border/40 text-right"
           >
-            <span className="text-xs font-semibold text-primary/50 tabular-nums">04 / 04</span>
+            <span className="text-xs font-semibold text-primary/90 tabular-nums">04 / 04</span>
             <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-[1.1] tracking-tight mt-6 mb-6 ml-auto max-w-lg">
               If rebuilding isn't necessary, we say so.
             </h3>
@@ -725,28 +725,28 @@ const AboutPage: React.FC = () => {
           <p className="text-lg text-muted-foreground/70 italic mb-6">
             None of this is theoretical.
           </p>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/60 mb-16">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80 mb-16">
             One Verified Client Story
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-16 mb-16">
             <div className="text-center sm:text-right">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-4">
                 Previous Dev Team
               </p>
               <p className="text-6xl sm:text-8xl lg:text-9xl font-bold text-foreground/40 tabular-nums leading-none">
                 2 YEARS
               </p>
-              <p className="text-sm text-muted-foreground/50 mt-4">stalled</p>
+              <p className="text-sm text-muted-foreground/75 mt-4">stalled</p>
             </div>
-            <ArrowRight className="text-primary/50 flex-shrink-0 rotate-90 sm:rotate-0" size={40} />
+            <ArrowRight className="text-primary/90 flex-shrink-0 rotate-90 sm:rotate-0" size={40} />
             <div className="text-center sm:text-left">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/70 mb-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/90 mb-4">
                 Zumetrix
               </p>
               <p className="text-6xl sm:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent tabular-nums leading-none">
                 3 WEEKS
               </p>
-              <p className="text-sm text-muted-foreground/50 mt-4">operational</p>
+              <p className="text-sm text-muted-foreground/75 mt-4">operational</p>
             </div>
           </div>
           <p className="text-2xl sm:text-3xl text-foreground/90 leading-relaxed max-w-2xl mx-auto italic mb-8">
@@ -756,7 +756,7 @@ const AboutPage: React.FC = () => {
           <p className="text-base font-medium text-primary mb-2">
             Josh Nyce, Fast Track · Trustpilot
           </p>
-          <p className="text-xs text-muted-foreground/60 max-w-md mx-auto mb-2">
+          <p className="text-xs text-muted-foreground/80 max-w-md mx-auto mb-2">
             One client's account, corroborated by his Trustpilot and Google reviews — not a typical timeline.
           </p>
           <Link
@@ -774,7 +774,7 @@ const AboutPage: React.FC = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-10 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
-              <span className="text-muted-foreground/50">About the people,</span>{" "}
+              <span className="text-muted-foreground/75">About the people,</span>{" "}
               <span className="text-foreground">what founders usually ask.</span>
             </h2>
           </AnimatedSection>
@@ -793,9 +793,14 @@ const AboutPage: React.FC = () => {
             WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 90%)",
           }}
         >
-          <p className="text-[9rem] sm:text-[15rem] lg:text-[21rem] font-bold leading-none text-foreground/[0.07] tabular-nums select-none tracking-tight">
-            2025
-          </p>
+          {/* Watermark drawn as SVG text (like the footer's): purely
+              decorative, so it's out of the accessibility tree and out of
+              contrast audits, while rendering identically. */}
+          <svg aria-hidden="true" focusable="false" className="h-[9rem] sm:h-[15rem] lg:h-[21rem] w-auto select-none" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet">
+            <text x="500" y="250" textAnchor="middle" fontSize="300" fontWeight="700" letterSpacing="-10" fill="currentColor" fillOpacity="0.07" className="text-foreground tabular-nums" style={{ fontFamily: "inherit" }}>
+              2025
+            </text>
+          </svg>
         </div>
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <AnimatedSection className="text-center mb-20">
@@ -924,7 +929,7 @@ const AboutPage: React.FC = () => {
                 <span>it moves in the open</span>
               </div>
               <div className="flex justify-center my-2.5" aria-hidden="true">
-                <ArrowDown size={14} className="text-primary/50" />
+                <ArrowDown size={14} className="text-primary/90" />
               </div>
               <div className="flex justify-center">
                 <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.07] px-4 py-1.5 text-sm font-semibold text-primary">

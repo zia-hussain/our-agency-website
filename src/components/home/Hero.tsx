@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
                 <span>Where</span>
                 <span className="relative inline-block">
                   <motion.span
-                    className="text-muted-foreground/60"
+                    className="text-muted-foreground/80"
                     animate={shouldReduceMotion ? undefined : { opacity: 0.5 }}
                     transition={{ duration: 0.3, delay: 1.05 }}
                   >
@@ -189,8 +189,8 @@ const Hero: React.FC = () => {
                 </span>
                 <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform duration-200" />
               </button>
-              <span className="text-muted-foreground/30">·</span>
-              <span className="text-muted-foreground/45">{BRAND_CONTENT.hero.proofLine}</span>
+              <span className="text-muted-foreground/70">·</span>
+              <span className="text-muted-foreground/70">{BRAND_CONTENT.hero.proofLine}</span>
             </div>
           </motion.div>
         </div>
@@ -201,7 +201,7 @@ const Hero: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.1 }}
-        className="relative z-10 flex justify-center mt-16 sm:mt-20 text-muted-foreground/25"
+        className="relative z-10 flex justify-center mt-16 sm:mt-20 text-muted-foreground/70"
         aria-hidden="true"
       >
         <ChevronDown size={18} />

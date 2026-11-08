@@ -79,7 +79,7 @@ const PrivacyPolicyPage: React.FC = () => {
                            prose-p:text-muted-foreground prose-p:leading-[1.9]
                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                            prose-strong:text-foreground prose-strong:font-semibold
-                           prose-ul:text-muted-foreground prose-li:my-1.5 prose-li:leading-[1.8] marker:prose-li:text-primary/70
+                           prose-ul:text-muted-foreground prose-li:my-1.5 prose-li:leading-[1.8] marker:prose-li:text-primary/90
                            [&>h2:first-of-type]:mt-0 [&>h2:first-of-type]:border-t-0 [&>h2:first-of-type]:pt-0"
             >
               <h2 id="introduction">1. Introduction</h2>

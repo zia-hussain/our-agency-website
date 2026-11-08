@@ -228,17 +228,17 @@ const ProjectDetailPage: React.FC = () => {
 
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <AnimatedSection mode="hero">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/70 mb-5">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/90 mb-5">
                 <span>{project.category}</span>
                 {project.client.country && (
                   <>
-                    <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+                    <span className="text-muted-foreground/70" aria-hidden="true">·</span>
                     <span className="text-muted-foreground normal-case tracking-normal">{project.client.country}</span>
                   </>
                 )}
                 {project.featured && (
                   <>
-                    <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+                    <span className="text-muted-foreground/70" aria-hidden="true">·</span>
                     <span className="text-primary normal-case tracking-normal">Featured</span>
                   </>
                 )}
@@ -256,7 +256,7 @@ const ProjectDetailPage: React.FC = () => {
                 <div className="flex flex-wrap gap-x-9 gap-y-5 mb-9 pt-7 border-t border-border/40">
                   {metaFields.map((field) => (
                     <div key={field.label}>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground/60 mb-1">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground/80 mb-1">
                         {field.label}
                       </p>
                       <p className="font-semibold text-foreground">{field.value}</p>
@@ -311,7 +311,7 @@ const ProjectDetailPage: React.FC = () => {
                     mobileSrc={project.heroImageMobile}
                     priority
                   />
-                  <figcaption className="mt-3 text-[12px] text-muted-foreground/60">
+                  <figcaption className="mt-3 text-[12px] text-muted-foreground/80">
                     {project.client.name} · {project.category} case study · Zumetrix Labs
                   </figcaption>
                 </figure>
@@ -340,7 +340,7 @@ const ProjectDetailPage: React.FC = () => {
               <p className="text-base text-muted-foreground leading-relaxed">{project.problem}</p>
             </AnimatedSection>
             <AnimatedSection delay={0.08} className="sm:border-l sm:border-primary/20 sm:pl-14">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/70 mb-3">
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/90 mb-3">
                 {project.situationAfterLabel || "What Zumetrix did"}
               </p>
               <p className="text-lg text-foreground/90 leading-relaxed">{project.solution}</p>
@@ -376,7 +376,7 @@ const ProjectDetailPage: React.FC = () => {
                 <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
                   {project.caseStudy.built.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/85 leading-snug">
-                      <Check size={13} strokeWidth={2.5} className="text-primary/60 flex-shrink-0 mt-1" />
+                      <Check size={13} strokeWidth={2.5} className="text-primary/90 flex-shrink-0 mt-1" />
                       {item}
                     </li>
                   ))}
@@ -411,7 +411,7 @@ const ProjectDetailPage: React.FC = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.3, delay: i * 0.05, type: "spring", stiffness: 300, damping: 20 }}
-                  className="text-xs font-semibold text-primary/50 flex-shrink-0 mt-1.5"
+                  className="text-xs font-semibold text-primary/90 flex-shrink-0 mt-1.5"
                 >
                   0{i + 1}
                 </motion.span>
@@ -437,7 +437,7 @@ const ProjectDetailPage: React.FC = () => {
                     <div className="flex flex-wrap items-center gap-3 mb-1.5">
                       <h3 className="text-base font-semibold text-foreground">{r.title}</h3>
                       {r.confidence && (
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] px-2 py-0.5 rounded-full border border-primary/30 text-primary/80">
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] px-2 py-0.5 rounded-full border border-primary/30 text-primary/90">
                           {CONFIDENCE_LABEL[r.confidence] ?? r.confidence}
                         </span>
                       )}
@@ -483,14 +483,14 @@ const ProjectDetailPage: React.FC = () => {
           <div className={project.stack.length > 0 ? "grid sm:grid-cols-2 gap-12" : "max-w-3xl mx-auto text-center"}>
             {project.stack.length > 0 && (
               <AnimatedSection>
-                <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/70 mb-5">Built With</p>
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary/90 mb-5">Built With</p>
                 <div className="flex flex-wrap gap-2">
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
                       className="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border border-border/50 bg-card/20 text-muted-foreground"
                     >
-                      <Check size={11} strokeWidth={2.5} className="text-primary/60 flex-shrink-0" />
+                      <Check size={11} strokeWidth={2.5} className="text-primary/90 flex-shrink-0" />
                       {tech}
                     </span>
                   ))}
@@ -540,7 +540,7 @@ const ProjectDetailPage: React.FC = () => {
                   <footer className="text-sm text-muted-foreground">
                     {project.testimonial.author}, {project.testimonial.role}
                     {project.testimonialSource === "collected-directly" && (
-                      <span className="block mt-1.5 text-xs text-muted-foreground/60">Shared with us directly — not a platform review</span>
+                      <span className="block mt-1.5 text-xs text-muted-foreground/80">Shared with us directly — not a platform review</span>
                     )}
                   </footer>
                 </blockquote>
@@ -551,7 +551,7 @@ const ProjectDetailPage: React.FC = () => {
           {testimonialFilm && (
             <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
               <AnimatedSection delay={0.06}>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-6 text-center">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-6 text-center">
                   {testimonialFilm.name}, in their own words
                 </p>
                 <TestimonialFilm
@@ -661,7 +661,7 @@ const ProjectDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">
+              <span className="block text-muted-foreground/75">
                 {project.closeHeadline?.muted || "You've seen what we built."}
               </span>
               <span className="block text-foreground mt-2">

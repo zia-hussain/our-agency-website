@@ -30,13 +30,13 @@ const HeroEvidence: React.FC<HeroEvidenceProps> = ({
 }) => (
   <TiltFrame>
     <div className={`bg-card/20 px-7 py-9 sm:px-10 sm:py-11 ${className}`}>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60 mb-2">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/80 mb-2">
         {beforeLabel}
       </p>
-      <p className="text-4xl sm:text-5xl font-bold text-muted-foreground/50 tracking-tight leading-none mb-2">
+      <p className="text-4xl sm:text-5xl font-bold text-muted-foreground/75 tracking-tight leading-none mb-2">
         {beforeValue}
       </p>
-      <p className="text-sm text-muted-foreground/60">{beforeCaption}</p>
+      <p className="text-sm text-muted-foreground/80">{beforeCaption}</p>
 
       <div className="flex items-center gap-4 my-8" aria-hidden="true">
         <span className="h-px flex-1 bg-border/50" />
@@ -46,13 +46,13 @@ const HeroEvidence: React.FC<HeroEvidenceProps> = ({
         <span className="h-px flex-1 bg-border/50" />
       </div>
 
-      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-2">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/90 mb-2">
         {afterLabel}
       </p>
       <p className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight leading-none mb-2">
         {afterValue}
       </p>
-      <p className="text-sm text-primary/80">{afterCaption}</p>
+      <p className="text-sm text-primary/90">{afterCaption}</p>
     </div>
   </TiltFrame>
 );

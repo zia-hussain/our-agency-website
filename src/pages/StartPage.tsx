@@ -86,14 +86,14 @@ const ChapterRail: React.FC<{ chapters: { n: string; offer: string; door: string
                 className={`flex h-[27px] w-[27px] flex-shrink-0 items-center justify-center rounded-full border font-mono text-[10px] transition-colors duration-300 ${
                   active === i
                     ? "border-primary text-primary bg-primary/10"
-                    : "border-border/50 text-muted-foreground/50 group-hover:border-primary/40 group-hover:text-muted-foreground/80"
+                    : "border-border/50 text-muted-foreground/75 group-hover:border-primary/40 group-hover:text-muted-foreground/80"
                 }`}
               >
                 {c.n}
               </span>
               <span
                 className={`text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ${
-                  active === i ? "text-foreground/90" : "text-muted-foreground/40 group-hover:text-muted-foreground/70"
+                  active === i ? "text-foreground/90" : "text-muted-foreground/70 group-hover:text-muted-foreground/70"
                 }`}
               >
                 {c.door}
@@ -273,7 +273,7 @@ const StartPage: React.FC = () => {
           <AnimatedSection mode="hero" delay={0.04}>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground mb-8 text-balance">
               Three ways in.
-              <span className="block text-muted-foreground/50">Pick the one that matches this week.</span>
+              <span className="block text-muted-foreground/75">Pick the one that matches this week.</span>
             </h1>
           </AnimatedSection>
           <AnimatedSection mode="hero" delay={0.08} className="space-y-2 mb-9">
@@ -318,8 +318,8 @@ const StartPage: React.FC = () => {
                         <chapter.icon size={18} />
                       </span>
                       <span className="flex items-baseline gap-3">
-                        <span className="text-sm font-mono text-primary/50 tracking-wider">{chapter.n}</span>
-                        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/70">
+                        <span className="text-sm font-mono text-primary/90 tracking-wider">{chapter.n}</span>
+                        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/90">
                           {chapter.door} · {chapter.label}
                         </span>
                       </span>
@@ -332,7 +332,7 @@ const StartPage: React.FC = () => {
                         }`}
                       >
                         {chapter.statement.map((line, i) => (
-                          <span key={i} className={`block ${i === 1 ? "text-muted-foreground/50" : ""}`}>
+                          <span key={i} className={`block ${i === 1 ? "text-muted-foreground/75" : ""}`}>
                             {line}
                           </span>
                         ))}
@@ -350,7 +350,7 @@ const StartPage: React.FC = () => {
                         itself; for BUILD and AUTOMATE it is the work. */}
                     <AnimatedSection delay={0.1} className="mb-8">
                       <div className="rounded-xl border border-primary/25 bg-primary/[0.05] px-6 py-5 max-w-lg">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/90 mb-2">
                           {chapter.engagement.eyebrow}
                         </p>
                         <p className="text-lg font-bold text-foreground mb-2">{chapter.engagement.title}</p>
@@ -362,7 +362,7 @@ const StartPage: React.FC = () => {
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-foreground/80 mb-8">
                         {chapter.engagement.meta.map((m, i) => (
                           <React.Fragment key={m}>
-                            {i > 0 && <span className="text-muted-foreground/40" aria-hidden="true">·</span>}
+                            {i > 0 && <span className="text-muted-foreground/70" aria-hidden="true">·</span>}
                             <span className={i === 1 ? "font-semibold text-foreground" : i === 0 ? "font-semibold" : "text-muted-foreground"}>{m}</span>
                           </React.Fragment>
                         ))}
@@ -388,7 +388,7 @@ const StartPage: React.FC = () => {
 
                     {chapter.step && (
                       <AnimatedSection delay={0.2} className="mt-6">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/50 mb-1.5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/75 mb-1.5">
                           {chapter.step.eyebrow}
                         </p>
                         <Link
@@ -417,14 +417,14 @@ const StartPage: React.FC = () => {
                         variant="proof"
                       />
                       <div className="mt-5">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-2.5">
                           {chapter.proofLabel}
                         </p>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-3">{chapter.proof}</p>
                         <Link
                           to={chapter.proofHref}
                           onClick={() => trackContextualOfferCtaClick(chapter.offer, "offers-hub-proof")}
-                          className="group/link inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200"
+                          className="group/link inline-flex items-center gap-1.5 text-xs font-medium text-primary/90 hover:text-primary transition-colors duration-200"
                         >
                           See the full case study
                           <ArrowRight size={11} className="group-hover/link:translate-x-0.5 transition-transform duration-200" />
@@ -451,14 +451,14 @@ const StartPage: React.FC = () => {
                         </TiltFrame>
                       </Link>
                       <div className="mt-5">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/70 mb-2.5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-2.5">
                           {chapter.proofLabel}
                         </p>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-3">{chapter.proof}</p>
                         <Link
                           to={chapter.proofHref}
                           onClick={() => trackContextualOfferCtaClick(chapter.offer, "offers-hub-proof")}
-                          className="group/link inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200"
+                          className="group/link inline-flex items-center gap-1.5 text-xs font-medium text-primary/90 hover:text-primary transition-colors duration-200"
                         >
                           See the case study
                           <ArrowRight size={11} className="group-hover/link:translate-x-0.5 transition-transform duration-200" />
@@ -472,7 +472,7 @@ const StartPage: React.FC = () => {
                     treatment each offer's own ConsequenceStakes uses),
                     not a bare text row. */}
                 <AnimatedSection delay={0.1} className="mb-16 lg:mb-20">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50 mb-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75 mb-6">
                     Why Now
                   </p>
                   <div className="grid gap-4 sm:grid-cols-3">
@@ -483,7 +483,7 @@ const StartPage: React.FC = () => {
                           i === 2 ? "border-primary/40 bg-gradient-to-b from-primary/[0.08] to-transparent" : "border-border/50 bg-background/40"
                         }`}
                       >
-                        <p className="mb-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/50">
+                        <p className="mb-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/75">
                           {stage.label}
                         </p>
                         <p className={`mb-3.5 text-base sm:text-lg font-bold leading-snug ${i === 2 ? "text-primary" : "text-foreground"}`}>
@@ -499,26 +499,26 @@ const StartPage: React.FC = () => {
                 <AnimatedSection delay={0.14}>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div className="rounded-2xl border border-primary/20 bg-primary/[0.04] p-7">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-5">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/90 mb-5">
                         This is for you if
                       </p>
                       <ul className="space-y-3.5">
                         {chapter.forYou.map((line) => (
                           <li key={line} className="flex items-start gap-2.5 text-sm text-foreground/80 leading-snug">
-                            <Check size={14} className="text-primary/70 mt-0.5 flex-shrink-0" />
+                            <Check size={14} className="text-primary/90 mt-0.5 flex-shrink-0" />
                             <span>{line}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div className="rounded-2xl border border-border/50 bg-background/30 p-7">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60 mb-5">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/80 mb-5">
                         Not for you if
                       </p>
                       <ul className="space-y-3.5">
                         {chapter.notForYou.map((line) => (
                           <li key={line} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-snug">
-                            <X size={14} className="text-muted-foreground/50 mt-0.5 flex-shrink-0" />
+                            <X size={14} className="text-muted-foreground/75 mt-0.5 flex-shrink-0" />
                             <span>{line}</span>
                           </li>
                         ))}
@@ -548,10 +548,10 @@ const StartPage: React.FC = () => {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="h-full rounded-2xl border border-border/50 bg-background/40 p-6">
                     <div className="flex items-center gap-2.5 mb-3">
-                      <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-border/60 text-muted-foreground/60">
+                      <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-border/60 text-muted-foreground/80">
                         <X size={12} />
                       </span>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/50">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/75">
                         The Usual Way
                       </p>
                     </div>
@@ -562,7 +562,7 @@ const StartPage: React.FC = () => {
                       <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-primary/40 text-primary">
                         <Check size={12} />
                       </span>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/90">
                         Zumetrix
                       </p>
                     </div>
@@ -579,7 +579,7 @@ const StartPage: React.FC = () => {
       <section className="relative bg-background pt-16 sm:pt-20 pb-24 sm:pb-32">
         <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-5">
               None of these sound exactly right?
             </p>
             <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight leading-[1.2] mb-5">

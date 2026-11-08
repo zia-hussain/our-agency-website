@@ -49,9 +49,9 @@ const ProjectSpotlight: React.FC<ProjectSpotlightProps> = ({ project, index }) =
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.4, delay: 0.06 }}
         >
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/70 mb-4">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary/90 mb-4">
             <span>{project.category}</span>
-            <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+            <span className="text-muted-foreground/70" aria-hidden="true">·</span>
             <span className="text-muted-foreground normal-case tracking-normal">{project.client.country}</span>
           </div>
 
@@ -99,7 +99,7 @@ const ProjectSpotlight: React.FC<ProjectSpotlightProps> = ({ project, index }) =
                 key={tech}
                 className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-full border border-border/50 text-muted-foreground"
               >
-                <Check size={10} strokeWidth={2.5} className="text-primary/60 flex-shrink-0" />
+                <Check size={10} strokeWidth={2.5} className="text-primary/90 flex-shrink-0" />
                 {tech}
               </span>
             ))}

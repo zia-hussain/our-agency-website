@@ -65,18 +65,18 @@ const PlatformBadge: React.FC<{ t: TestimonialEntry; center?: boolean; full?: bo
 }) => {
   if (!t.platform) {
     return (
-      <div className={`flex items-center gap-1.5 text-muted-foreground/60 ${center ? "justify-center" : ""}`}>
+      <div className={`flex items-center gap-1.5 text-muted-foreground/80 ${center ? "justify-center" : ""}`}>
         <span className="text-xs">Shared with us directly</span>
       </div>
     );
   }
   return (
-    <div className={`flex items-center gap-1.5 text-muted-foreground/60 ${center ? "justify-center" : ""}`}>
+    <div className={`flex items-center gap-1.5 text-muted-foreground/80 ${center ? "justify-center" : ""}`}>
       <PlatformIcon platform={t.platform} size={14} />
       <span className="text-xs">{t.platform}</span>
       {full && t.corroboratedOn?.length ? (
         <span className="flex items-center gap-1.5 text-xs">
-          <span className="text-muted-foreground/40">· verified on</span>
+          <span className="text-muted-foreground/70">· verified on</span>
           {t.corroboratedOn.map((p) => (
             <PlatformIcon key={p} platform={p as PlatformName} size={14} />
           ))}
@@ -94,7 +94,7 @@ const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({
   return (
     <div className={`flex items-center ${compact ? "justify-start" : "justify-center"} gap-4 sm:gap-6`}>
       <div className={compact ? "" : "text-center"}>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60 mb-1.5">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/80 mb-1.5">
           {before.who}
         </p>
         <div className={`font-bold tracking-tight tabular-nums text-foreground/45 ${numCls}`}>{before.stat}</div>
@@ -109,10 +109,10 @@ const BeforeAfterStat: React.FC<{ t: TestimonialEntry; compact?: boolean }> = ({
             className="absolute inset-0 origin-left bg-primary"
           />
         </span>
-        <ArrowRight className="text-primary/60" size={compact ? 14 : 18} />
+        <ArrowRight className="text-primary/90" size={compact ? 14 : 18} />
       </div>
       <div className={compact ? "" : "text-center"}>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary/70 mb-1.5">{after.who}</p>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary/90 mb-1.5">{after.who}</p>
         <div className={`font-bold tracking-tight tabular-nums bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent ${numCls}`}>
           {after.stat}
         </div>
@@ -467,7 +467,7 @@ const ClientStoriesPage: React.FC = () => {
           {collected.length > 0 && (
             <div className="mt-20 pt-12 border-t border-border/40">
               <div className="max-w-2xl mx-auto text-center mb-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/80 mb-4">Shared with us directly</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/90 mb-4">Shared with us directly</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   These clients wrote to us rather than to a review platform. They are quoted as sent, with the project
                   they refer to — and without a platform badge, because there isn't one.

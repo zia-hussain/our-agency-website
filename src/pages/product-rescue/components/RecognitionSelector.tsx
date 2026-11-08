@@ -75,7 +75,7 @@ const RecognitionSelector: React.FC = () => {
                   : "border-border/50 bg-background/40 text-foreground/85 hover:border-primary/30 hover:bg-background/60"
               }`}
             >
-              <span aria-hidden="true" className={`mb-2 block text-lg leading-none transition-colors duration-200 ${isActive ? "text-primary" : "text-muted-foreground/30 group-hover:text-primary/50"}`}>
+              <span aria-hidden="true" className={`mb-2 block text-lg leading-none transition-colors duration-200 ${isActive ? "text-primary" : "text-muted-foreground/70 group-hover:text-primary/90"}`}>
                 &ldquo;
               </span>
               {CONVERSATIONS[situation.value].quote}

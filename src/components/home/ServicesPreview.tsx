@@ -141,13 +141,13 @@ const ServicesPreview: React.FC = () => {
                   <div className="mt-auto pt-7 border-t border-border/50">
                     {isFeatured ? (
                       <div className="mb-7">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60 mb-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80 mb-4">
                           What's included
                         </p>
                         <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
                           {service.bullets.map((bullet) => (
                             <li key={bullet} className="flex items-start gap-2.5 text-sm text-foreground/80 leading-snug">
-                              <Check size={14} className="text-primary/70 mt-0.5 flex-shrink-0" />
+                              <Check size={14} className="text-primary/90 mt-0.5 flex-shrink-0" />
                               <span>{bullet}</span>
                             </li>
                           ))}
@@ -155,13 +155,13 @@ const ServicesPreview: React.FC = () => {
                       </div>
                     ) : (
                       <div className="mb-6">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/60 mb-3">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80 mb-3">
                           What's included
                         </p>
                         <ul className="space-y-3">
                           {service.bullets.slice(0, 3).map((bullet) => (
                             <li key={bullet} className="flex items-start gap-2.5 text-sm text-muted-foreground/90 leading-snug">
-                              <Check size={14} className="text-primary/70 mt-0.5 flex-shrink-0" />
+                              <Check size={14} className="text-primary/90 mt-0.5 flex-shrink-0" />
                               <span>{bullet}</span>
                             </li>
                           ))}
@@ -262,15 +262,15 @@ const ServicesPreview: React.FC = () => {
                     </span>
                     <span className="block text-sm text-muted-foreground mt-1">
                       {item.label}
-                      {item.note ? <span className="text-muted-foreground/60"> — {item.note}</span> : null}
+                      {item.note ? <span className="text-muted-foreground/80"> — {item.note}</span> : null}
                     </span>
                   </span>
                   <span className="flex items-center gap-3 flex-shrink-0 text-right">
                     <span className="block max-w-[8.5rem] sm:max-w-none">
-                      <span className="block text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/70 leading-tight">{item.step}</span>
+                      <span className="block text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] text-primary/90 leading-tight">{item.step}</span>
                       <span className="block text-sm text-muted-foreground/70 mt-0.5">${offer.price}</span>
                     </span>
-                    <ArrowRight size={16} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
+                    <ArrowRight size={16} className="text-muted-foreground/75 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
                   </span>
                 </Link>
               );

@@ -44,7 +44,7 @@ const ClientExperience: React.FC<ClientExperienceProps> = ({ eyebrow, heading, i
 
     {advice && (
       <AnimatedSection delay={0.1} className="max-w-2xl mx-auto mt-12 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-4">{advice.label}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-4">{advice.label}</p>
         <p className="text-xl sm:text-2xl text-foreground/90 leading-snug tracking-tight">"{advice.quote}"</p>
         <p className="mt-4 text-sm text-muted-foreground">{advice.attribution}</p>
       </AnimatedSection>

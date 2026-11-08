@@ -413,7 +413,7 @@ const ContactPage: React.FC = () => {
                     {/* Tip: put these at file top if you want, or keep inline */}
                     {/*
     const labelCls = "block text-[13px] font-medium text-muted-foreground mb-1.5";
-    const fieldCls = "w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/60 transition-all duration-200 outline-none
+    const fieldCls = "w-full h-12 px-4 rounded-xl bg-background/80 border border-border/70 text-foreground placeholder:text-muted-foreground/80 transition-all duration-200 outline-none
                       focus:border-primary/60 focus:ring-4 focus:ring-primary/15 focus:bg-background/95
                       hover:border-border focus:shadow-[0_0_0_1px_rgba(196,138,100,0.6)]";
     const selectWrapCls = "relative";
@@ -440,7 +440,7 @@ const ContactPage: React.FC = () => {
                           autoComplete="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/60"
+                          className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/80"
                           placeholder="Your full name"
                         />
                       </div>
@@ -464,7 +464,7 @@ const ContactPage: React.FC = () => {
                           title="Please enter a complete email address, e.g. name@company.com"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/60"
+                          className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/80"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -484,7 +484,7 @@ const ContactPage: React.FC = () => {
                         autoComplete="organization"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/60"
+                        className="input-premium w-full h-12 px-4 rounded-xl text-foreground placeholder:text-muted-foreground/80"
                         placeholder="Your company name"
                       />
                     </div>
@@ -599,7 +599,7 @@ const ContactPage: React.FC = () => {
                         rows={6}
                         value={formData.message}
                         onChange={handleInputChange}
-                        className="input-premium w-full min-h-[144px] px-4 py-3 rounded-xl text-foreground placeholder:text-muted-foreground/60 resize-y"
+                        className="input-premium w-full min-h-[144px] px-4 py-3 rounded-xl text-foreground placeholder:text-muted-foreground/80 resize-y"
                         placeholder="Tell us about your project, goals, and any specific requirements…"
                       />
                       <p className="mt-1 text-xs text-muted-foreground/70">
@@ -779,7 +779,7 @@ const ContactPage: React.FC = () => {
           <AnimatedSection className="text-center">
             <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-[1.25]">
-              <span className="text-muted-foreground/50">Before you send this,</span>{" "}
+              <span className="text-muted-foreground/75">Before you send this,</span>{" "}
               <span className="text-foreground">here's what people usually ask.</span>
             </h2>
             <p className="mt-5 text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">

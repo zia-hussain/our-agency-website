@@ -147,7 +147,7 @@ const MobileDetailPage: React.FC = () => {
             <SectionEyebrow className="mb-7">Mobile App Development</SectionEyebrow>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight mb-6">{service.title}</h1>
             <p className="text-xl sm:text-2xl font-semibold tracking-tight leading-[1.35] mb-8 max-w-xl mx-auto">
-              <span className="text-muted-foreground/50">Built for the phone in someone's hand —</span>{" "}
+              <span className="text-muted-foreground/75">Built for the phone in someone's hand —</span>{" "}
               <span className="text-foreground">not a shrunken website.</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
@@ -282,7 +282,7 @@ const MobileDetailPage: React.FC = () => {
                   <ul className="space-y-3">
                     {col.items.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
-                        <Check size={12} className="text-primary/70 flex-shrink-0 mt-0.5" />
+                        <Check size={12} className="text-primary/90 flex-shrink-0 mt-0.5" />
                         {item}
                       </li>
                     ))}
@@ -316,7 +316,7 @@ const MobileDetailPage: React.FC = () => {
           <div ref={railContainerRef} className="relative pt-2">
             {rail && (
               <div aria-hidden="true" className="hidden sm:block absolute left-0 top-0 h-16" style={{ width: rail.containerWidth }}>
-                <svg width={rail.containerWidth} height={64} viewBox={`0 0 ${rail.containerWidth} 64`} className="overflow-visible text-primary/60">
+                <svg width={rail.containerWidth} height={64} viewBox={`0 0 ${rail.containerWidth} 64`} className="overflow-visible text-primary/90">
                   <path id="mobile-rail-path" d={`M ${rail.x1} ${rail.y} L ${rail.x2} ${rail.y}`} fill="none" stroke="none" />
                   <motion.path
                     d={`M ${rail.x1} ${rail.y} L ${rail.x2} ${rail.y}`}
@@ -369,11 +369,11 @@ const MobileDetailPage: React.FC = () => {
                             <stage.icon size={18} className="relative text-primary" />
                           </span>
                         ) : (
-                          <stage.icon size={18} className={stage.stage === "hardware" ? "text-foreground/70" : "text-muted-foreground/50"} />
+                          <stage.icon size={18} className={stage.stage === "hardware" ? "text-foreground/70" : "text-muted-foreground/75"} />
                         )}
                       </span>
                     )}
-                    <p className="text-[11px] font-bold text-primary/60 mb-1">0{i + 1}</p>
+                    <p className="text-[11px] font-bold text-primary/90 mb-1">0{i + 1}</p>
                     <p className="text-xs sm:text-sm font-bold text-foreground leading-tight mb-1">{stage.label}</p>
                     <p className="text-[11px] text-muted-foreground leading-snug hidden sm:block">{stage.description}</p>
                   </div>
@@ -384,7 +384,7 @@ const MobileDetailPage: React.FC = () => {
         </AnimatedSection>
 
         <div className="flex justify-center my-4 sm:my-6" aria-hidden="true">
-          <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/80">
+          <svg width="64" height="96" viewBox="0 0 64 96" fill="none" className="text-primary/90">
             <motion.path
               d="M32 4 C48 4, 51 21, 36 28 C19 35, 11 49, 24 58 C33 64, 40 69, 37 78"
               stroke="currentColor"
@@ -425,7 +425,7 @@ const MobileDetailPage: React.FC = () => {
                   <span className="absolute inset-0 rounded-full bg-primary/60 animate-ping" style={{ animationDuration: "2.5s" }} />
                   <span className="relative h-2 w-2 rounded-full bg-primary" />
                 </span>
-                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">After Production — Ongoing</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary/90">After Production — Ongoing</span>
               </div>
               <p className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-3">Support</p>
               <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
@@ -462,7 +462,7 @@ const MobileDetailPage: React.FC = () => {
               </div>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/60 mb-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground/80 mb-5">
                 Skill x Swap — credit-based skill trading marketplace
               </p>
               <div className="flex items-baseline gap-3 mb-6">
@@ -557,7 +557,7 @@ const MobileDetailPage: React.FC = () => {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-12">
-              <span className="block text-muted-foreground/50">Tell us what you're building —</span>
+              <span className="block text-muted-foreground/75">Tell us what you're building —</span>
               <span className="block text-foreground mt-2">and who's going to carry it.</span>
             </p>
           </AnimatedSection>

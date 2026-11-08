@@ -39,7 +39,7 @@ const LegalTOC: React.FC<LegalTOCProps> = ({ items }) => {
 
   return (
     <nav aria-label="Table of contents" className="not-prose rounded-xl border border-border/60 bg-card/20 p-6 mb-14 shadow-[0_25px_50px_-28px_rgba(0,0,0,0.55)]">
-      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary/70 mb-4">On this page</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary/90 mb-4">On this page</p>
       <div className="grid sm:grid-cols-2 gap-x-8 gap-y-1">
         {items.map((item) => {
           const isActive = item.id === activeId;

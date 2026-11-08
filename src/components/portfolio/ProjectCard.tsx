@@ -55,9 +55,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = "archive" }) 
         </TiltFrame>
 
         <div className="pt-5 flex flex-col flex-grow">
-          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.1em] text-primary/80 mb-2">
+          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.1em] text-primary/90 mb-2">
             <span>{project.category}</span>
-            <span className="text-muted-foreground/40" aria-hidden="true">·</span>
+            <span className="text-muted-foreground/70" aria-hidden="true">·</span>
             <span className="text-muted-foreground normal-case tracking-normal">{project.year}</span>
           </div>
 

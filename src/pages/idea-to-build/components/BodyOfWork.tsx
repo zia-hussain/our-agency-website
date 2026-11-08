@@ -44,12 +44,12 @@ const BodyOfWork: React.FC = () => (
       <AnimatedSection>
         <div className="flex items-center justify-center gap-6 sm:gap-10 mb-3">
           <div className="text-center max-w-[160px] sm:max-w-[200px]">
-            <p className="text-sm sm:text-base font-bold text-muted-foreground/45 leading-snug">The full vision</p>
-            <p className="text-xs text-muted-foreground/55 mt-2 leading-relaxed">A logistics marketplace with a sophisticated variable-pricing engine</p>
+            <p className="text-sm sm:text-base font-bold text-muted-foreground/70 leading-snug">The full vision</p>
+            <p className="text-xs text-muted-foreground/75 mt-2 leading-relaxed">A logistics marketplace with a sophisticated variable-pricing engine</p>
           </div>
           <div aria-hidden="true" className="flex flex-col items-center gap-1">
             <span className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
-            <ArrowRight size={18} className="text-primary/60 flex-shrink-0" />
+            <ArrowRight size={18} className="text-primary/90 flex-shrink-0" />
           </div>
           <div className="text-center max-w-[160px] sm:max-w-[200px]">
             <p className="text-sm sm:text-base font-bold text-primary leading-snug">What shipped as V1</p>
@@ -61,12 +61,12 @@ const BodyOfWork: React.FC = () => (
 
     <AnimatedSection delay={0.05} className="text-center mb-8">
       <span className="text-2xl sm:text-3xl font-bold text-primary tracking-tight">LIFTLY</span>
-      <p className="text-xs text-muted-foreground/60 mt-1">Operational V1, shipped — client identity withheld by request</p>
+      <p className="text-xs text-muted-foreground/80 mt-1">Operational V1, shipped — client identity withheld by request</p>
     </AnimatedSection>
 
     <AnimatedSection delay={0.06} className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="rounded-2xl border border-border/50 bg-background/50 p-7 sm:p-8">
-        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50">What actually shipped in V1</p>
+        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75">What actually shipped in V1</p>
         <ul className="space-y-2.5 mb-6">
           {V1_SHIPPED.map((item) => (
             <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/85 leading-relaxed">
@@ -76,8 +76,8 @@ const BodyOfWork: React.FC = () => (
           ))}
         </ul>
         <div className="border-t border-border/30 pt-5">
-          <p className="mb-1.5 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/50">
-            <X size={11} className="text-muted-foreground/40" />
+          <p className="mb-1.5 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/75">
+            <X size={11} className="text-muted-foreground/70" />
             Explicitly not in V1
           </p>
           <p className="text-xs text-muted-foreground leading-relaxed">
@@ -113,7 +113,7 @@ const BodyOfWork: React.FC = () => (
       <AnimatedSection delay={0.05}>
         <div className="rounded-2xl border border-border/50 bg-background/50 p-7 sm:p-9">
           <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-1.5">BUILT</p>
-          <p className="text-xs text-muted-foreground/60 mb-6">Knipsr — event media platform, launch-ready</p>
+          <p className="text-xs text-muted-foreground/80 mb-6">Knipsr — event media platform, launch-ready</p>
           <p className="text-sm text-muted-foreground leading-relaxed mb-5">
             A no-login, QR-based guest upload experience up front — durable background processing,
             retry and recovery, and real event-day load underneath. Simple where guests touch it,
@@ -125,7 +125,7 @@ const BodyOfWork: React.FC = () => (
               <p className="text-xs text-muted-foreground mt-2">Founder, Knipsr</p>
             </blockquote>
           )}
-          <Link to="/portfolio/knipsr-event-media-saas" className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary/80 hover:text-primary transition-colors duration-200">
+          <Link to="/portfolio/knipsr-event-media-saas" className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary/90 hover:text-primary transition-colors duration-200">
             See the case study
             <ArrowRight size={11} />
           </Link>

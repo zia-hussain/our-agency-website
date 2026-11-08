@@ -20,7 +20,7 @@ type ViewState = "loading" | "not-found" | "ready";
 
 const ChecklistRow: React.FC<{ label: string; done: boolean; note?: string }> = ({ label, done, note }) => (
   <div className="flex items-start gap-3.5 rounded-xl border border-border/50 bg-card/10 px-5 py-4">
-    <span className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border ${done ? "border-primary bg-primary/15 text-primary" : "border-border/60 text-muted-foreground/40"}`}>
+    <span className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border ${done ? "border-primary bg-primary/15 text-primary" : "border-border/60 text-muted-foreground/70"}`}>
       {done ? <Check size={12} strokeWidth={3} /> : <Circle size={8} />}
     </span>
     <div>
@@ -140,7 +140,7 @@ const IdeaToBuildConfirmedPage: React.FC = () => {
                       onChange={(e) => setAccessNote(e.target.value)}
                       placeholder="Research links, notes, a deck, competitor examples — or anything else worth knowing before we start. (optional)"
                       rows={3}
-                      className="w-full rounded-xl border border-border/50 bg-background/40 p-4 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary/50 focus:outline-none"
+                      className="w-full rounded-xl border border-border/50 bg-background/40 p-4 text-sm text-foreground placeholder:text-muted-foreground/75 focus:border-primary/50 focus:outline-none"
                     />
                     {intakeError && <p className="text-sm text-red-400/80">{intakeError}</p>}
                     <button

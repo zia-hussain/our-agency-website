@@ -27,9 +27,9 @@ const BrandFilmMoment: React.FC = () => {
           transition={{ duration: 0.28 }}
           className="text-center mb-9 sm:mb-10"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/70 mb-4">The Zumetrix Film</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/90 mb-4">The Zumetrix Film</p>
           <p className="text-2xl sm:text-3xl font-bold tracking-tight max-w-md mx-auto leading-[1.25]">
-            <span className="text-muted-foreground/50">What it's actually like</span>{" "}
+            <span className="text-muted-foreground/75">What it's actually like</span>{" "}
             <span className="text-foreground">to work with this team.</span>
           </p>
         </motion.div>
