@@ -43,12 +43,8 @@ const Avatar: React.FC<{ name: string; size?: "sm" | "md" }> = ({ name, size = "
 );
 
 const PlatformMark: React.FC<{ t: TestimonialEntry }> = ({ t }) => (
-<<<<<<< ours
   t.platform ? (
-  <span className="flex items-center gap-1.5 text-muted-foreground/60">
-=======
   <span className="flex items-center gap-1.5 text-muted-foreground/80">
->>>>>>> theirs
     <PlatformIcon platform={t.platform} size={14} />
     <span className="text-xs">{t.platform}</span>
   </span>
